@@ -2,6 +2,7 @@
 library(MuMIn)
 library(arm)
 library(visreg)
+library(lm.beta)
 
 CA_marine <- (lm(log(CA_mg) ~ logmass*TL + logmass*Abs_lat, na.action="na.fail", data=nutmassCA_Feb24, subset=Habitat=="marine"))
 mod1fish <- (lm(log(CA_mg) ~ logmass*TL + logmass*Abs_lat, na.action="na.fail", data=nutmassCA_Feb24, subset=Habitat=="freshwater"))
@@ -57,13 +58,15 @@ confint(model.avg(dd.EPA.fresh, subset = delta < 2))
 confint((get.models(dd.EPA.fresh, 1)[[1]]))
 summary((get.models(dd.EPA.fresh, 1)[[1]]))
 
-EPA.all <- lm(log(EPA_g) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmass_EPA_Feb27)
+EPA.all <- lm(log(EPA_g) ~ logmass*TL+ logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmass_EPA_Feb27)
 dd.EPA.all <- dredge(EPA.all)
 summary(model.avg(dd.EPA.all, subset = delta < 2))
 confint(model.avg(dd.EPA.all, subset = delta < 2))
 confint((get.models(dd.EPA.all, 1)[[1]]))
 summary((get.models(dd.EPA.all, 1)[[1]]))
 summary(nutmass_EPA_Feb27$Habitat)
+
+coef(model.avg(dd.EPA.all, subset = delta < 2))
 
 
 ###DHA
@@ -208,18 +211,42 @@ CA.size <- lm(log(CA_mg) ~ logmass, data=nutmassCA_Feb24)
 visreg(CA.size, xvar="logmass", mar=c(2, 6, 2, 2), xlab="log(body mass), g", ylab="log(calcium content, mg/100 edible portion)")
 
 CA.all <- lm(log(CA_mg) ~ logmass*TL + logmass*Abs_lat +logmass*Habitat, na.action="na.fail", data=nutmassCA_Feb24)
-dd.CA.all <- dredge(CA.all, fixed="logmass")
-summary(model.avg(dd.CA.all, subset = delta < 2))
+CA.all.scale <- lm(log(CA_mg) ~ rescale(logmass)*rescale(TL) + rescale(logmass)*rescale(Abs_lat) + rescale(logmass)*Habitat, na.action="na.fail", data=nutmassCA_Feb24.fm)
+dd.CA.all.scale <- dredge(CA.all.scale)
+summary(model.avg(dd.CA.all.scale, subset = delta < 2))
 coefplot(CA.all)
 model.names(dd.CA.all)
-confint(model.avg(dd.CA.all, subset = delta < 2))
+confint(model.avg(dd.CA.all.scale, subset = delta < 2))
 confint((get.models(dd.CA.all, 1)[[1]]))
 summary((get.models(dd.CA.all, 1)[[1]]))
-?MuMIn
 
-CA.best <- lm(log(CA_mg) ~ Abs_lat +Habitat+logmass+TL+Abs_lat*logmass, na.action="na.fail", data=nutmassCA_Feb24)
-coefplot(CA.best, cex.pts=2, varnames=longnames, mar=c(1, 0, 3, 1), vertical=TRUE, h.axis=TRUE, v.axis=TRUE, main="")
+ca.best.beta <- lm.beta(model.avg(dd.CA.all, subset = delta < 2))
+print(lm.D9.beta)
+summary(lm.D9.beta)
+coef(lm.D9.beta)
+
+
+CA.best <- lm(log(CA_mg) ~ Abs_lat +Habitat+logmass+TL+Abs_lat*logmass, na.action="na.fail", data=nutmassCA_Feb24.fm)
+coefplot(standardize(CA.best), cex.pts=2, varnames=longnames, mar=c(1, 0, 3, 1), vertical=TRUE, h.axis=TRUE, v.axis=TRUE, main="")
 longnames<-c("intercept", "Latitude", "Habitat (freshwater)", "Habitat (marine)", "Body size", "Trophic position", "Latitude*Size")
 ?coefplot
+CA.best.beta <- lm.beta(CA.best)
+summary(CA.best.beta)
+coefplot(CA.best.beta)
+coefplot(CA.best)
+summary(nutmassCA_Feb24$Habitat)
+
+nutmassCA_Feb24.fm <- subset(nutmassCA_Feb24, Habitat!="brackish")
+
+?scale
+?standardize
+confint(standardize(CA.best))
+coefplot(standardize(CA.best))
+summary(standardize(CA.best))
+
+?rescale
 
 visreg(CA.best)
+
+?standardize
+standardize(CA.best)
