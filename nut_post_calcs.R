@@ -13,6 +13,9 @@ exp(mean(CA.RDI$logmass))
 exp(min(CA.RDI$logmass))
 exp(max(CA.RDI$logmass))/1000
 
+0.1*60
+
+
 
 
 length(unique(CA.RDI$ASFIS.Scientific.name))
@@ -29,5 +32,24 @@ exp(max(CA.lessthanRDI$logmass))/1000
 
 1300/4
 
+####Mercury
+
+length(unique(nutmassHG_Feb27$ASFIS.Scientific.name))
+belowrfd <-subset(nutmassHG_Feb27, HG_mcg < 6.00)
+summary(belowrfd)
+length(unique(belowrfd$ASFIS.Scientific.name))
 
 
+exp(mean(belowrfd$logmass))/1000
+exp(min(belowrfd$logmass))/1000
+exp(max(belowrfd$logmass))/1000
+
+exp(mean(aboverfd$logmass))/1000
+exp(min(aboverfd$logmass))/1000
+exp(max(aboverfd$logmass))/1000
+
+
+
+aboverfd <-subset(nutmassHG_Feb27, HG_mcg > 6.00)
+summary(aboverfd)
+length(unique(aboverfd$ASFIS.Scientific.name))
