@@ -1,6 +1,7 @@
 ###March 10 2015
 library(MuMIn)
 library(arm)
+library(visreg)
 
 ##EPA models
 EPA.1 <- lm(log(EPA_g) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmass_EPA_Feb27)
@@ -27,6 +28,13 @@ coef.table.EPA <- cbind(coef.EPA.avg, confint.EPA.avg)
 coef.table.EPA
 summary(model.avg(EPA.1, EPA.2))
 
+EPA.lat <- lm(log(EPA_g) ~ Abs_lat, data=nutmass_EPA_Feb27)
+EPA.mass <- lm(log(EPA_g) ~ logmass, data=nutmass_EPA_Feb27)
+
+visreg(EPA.lat)
+visreg(EPA.mass)
+summary(EPA.mass)
+
 ###standardized models
 EPA.1 <- standardize(lm(log(EPA_g) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmass_EPA_Feb27))
 EPA.2 <- standardize(lm(log(EPA_g) ~ logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmass_EPA_Feb27))
@@ -44,7 +52,7 @@ EPA.12 <- standardize(lm(log(EPA_g) ~ logmass, na.action="na.fail", data=nutmass
 EPA.13 <- standardize(lm(log(EPA_g) ~ Abs_lat, na.action="na.fail", data=nutmass_EPA_Feb27))
 EPA.14 <- standardize(lm(log(EPA_g) ~ Habitat, na.action="na.fail", data=nutmass_EPA_Feb27))
 
-model.sel(EPA.1, EPA.2, EPA.3, EPA.4, EPA.5, EPA.6, EPA.7, EPA.8, EPA.8b, EPA.9, EPA.10, EPA.11, EPA.12, EPA.13, EPA.14)
+model.sel(EPA.1, EPA.2, EPA.3, EPA.4, EPA.5, EPA.6, EPA.7, EPA.8, EPA.8b, EPA.9, EPA.10, EPA.11, EPA.12, EPA.13)
 
 
 ##EPA standardize reg coefs
@@ -59,6 +67,7 @@ coef.table.EPA.s
 coefplot(EPA.2.s)
 coefplot(EPA.1.s, main="EPA coefficients", cex.pts=1.5)
 summary(model.avg(EPA.1.s, EPA.2.s))
+summary(EPA.2.s)
 
 
 ##DHA models
@@ -109,6 +118,7 @@ coef.table.DHA <- cbind(coef.DHA, confint.DHA)
 coef.table.DHA
 summary(DHA.1)
 coefplot(DHA.1, main="DHA coefficients", cex.pts=1.5)
+summary(DHA.1)
 
 ###CA models
 
@@ -134,6 +144,9 @@ confint.CA <- confint(model.avg(CA.8, CA.8b))
 coef.table.CA <- cbind(coef.CA, confint.CA)
 coef.table.CA
 summary(CA.8)
+1.10^(-0.151034)
+exp(-0.075334)
+
 
 ###standardized CA models
 CA.1 <- standardize(lm(log(CA_mg) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmassCA_Feb24))
@@ -160,6 +173,9 @@ coef.table.CA
 summary(model.avg(CA.8, CA.8b))
 coefplot(CA.8)
 coefplot(CA.8b, main="CA coefficients", cex.pts=1.5)
+summary(CA.8b)
+summary(CA.8)
+
 
 ##ZN models
 
@@ -187,6 +203,7 @@ confint.ZN.avg <- confint(model.avg(ZN.13, ZN.11, ZN.6))
 coef.table.ZN <- cbind(coef.ZN.avg, confint.ZN.avg)
 coef.table.ZN
 summary(ZN.13)
+exp(-0.029316)
 
 ###standardized ZN models
 ZN.1 <- standardize(lm(log(ZN_mg) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmassZN_Feb27))
@@ -214,6 +231,9 @@ coef.table.ZN
 coefplot(ZN.6, main="ZN coefficients", cex.pts=1.5)
 coefplot(ZN.13)
 coefplot(ZN.11)
+summary(ZN.6)
+summary(ZN.11)
+summary(ZN.13)
 
 ##FE models
 
@@ -239,6 +259,9 @@ coef.FE.avg <- coef(model.avg(FE.8, FE.9))
 confint.FE.avg <- confint(model.avg(FE.8, FE.9))
 coef.table.FE <- cbind(coef.FE.avg, confint.FE.avg)
 coef.table.FE
+summary(FE.8)
+summary(FE.9)
+exp(-0.049477)
 
 ###standardized FE models
 
@@ -267,7 +290,8 @@ coef.table.FE <- cbind(coef.FE.avg, confint.FE.avg)
 coef.table.FE
 coefplot(FE.8, main="FE coefficients", cex.pts=1.5)
 coefplot(FE.9, main="FE coefficients", cex.pts=1.5)
-
+summary(FE.8)
+summary(FE.9)
 
 ##HG models
 HG.1 <- lm(log(HG_mcg) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmassHG_Feb27)
@@ -294,6 +318,10 @@ confint.HG <- confint(model.avg(HG.8, HG.8b))
 coef.table.HG <- cbind(coef.HG, confint.HG)
 coef.table.HG
 summary(HG.8)
+summary(HG.8b)
+1.10^0.24488 
+exp(-0.04236606)
+exp(0.42093897)
 
 ##standardized HG models
 HG.1 <- standardize(lm(log(HG_mcg) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmassHG_Feb27))
@@ -321,4 +349,56 @@ coef.table.HG <- cbind(coef.HG, confint.HG)
 coef.table.HG
 summary(HG.8b)
 coefplot(HG.8b, main="HG coefficients", cex.pts=1.5)
+summary(HG.8)
 
+###Scatterplots
+EPA.lat <- lm(log(EPA_g) ~ Abs_lat, data=nutmass_EPA_Feb27)
+EPA.mass <- lm(log(EPA_g) ~ logmass, data=nutmass_EPA_Feb27)
+
+visreg(EPA.lat)
+visreg(EPA.mass)
+summary(EPA.mass)
+summary(EPA.lat)
+
+100-100*(1.10^-0.1268)
+100*(exp(0.024596))
+
+DHA.lat <- lm(log(DHA_g) ~ Abs_lat, data=nutmassDHA_Feb27)
+DHA.size <- lm(log(DHA_g) ~ logmass, data=nutmassDHA_Feb27)
+visreg(DHA.lat)
+visreg(DHA.size)
+summary(DHA.lat)
+summary(DHA.size)
+100*(10*exp(0.015331))
+100*(1-(1.10^-0.09145))
+
+
+HG.lat <- lm(log(HG_mcg) ~ Abs_lat, data=nutmassHG_Feb27)
+HG.size <- lm(log(HG_mcg) ~ logmass, data=nutmassHG_Feb27)
+visreg(HG.lat)
+visreg(HG.size)
+summary(HG.size)
+100*(1.10^0.27158)
+
+FE.lat <- lm(log(FE_mg) ~ Abs_lat, data=nutmassFE_feb27)
+FE.size <- lm(log(FE_mg) ~ logmass, data=nutmassFE_feb27)
+visreg(FE.lat)
+visreg(FE.size)
+
+ZN.lat <- lm(log(ZN_mg) ~ Abs_lat, data=nutmassZN_Feb27)
+ZN.size <- lm(log(ZN_mg) ~ logmass, data=nutmassZN_Feb27)
+visreg(ZN.lat)
+visreg(ZN.size)
+
+CA.lat <- lm(log(CA_mg) ~ Abs_lat, data=nutmassCA_Feb24)
+CA.size <- lm(log(CA_mg) ~ logmass, data=nutmassCA_Feb24)
+visreg(CA.lat)
+visreg(CA.size)
+summary(CA.size)
+summary(CA.lat)
+
+(1-(1.10^(-0.36185)))*100
+100-(100*(exp(-0.075209)))
+
+plot(nutmassCA_Feb24$logmass ~ nutmassCA_Feb24$Abs_lat)
+cor(nutmassCA_Feb24$logmass, nutmassCA_Feb24$Abs_lat)
