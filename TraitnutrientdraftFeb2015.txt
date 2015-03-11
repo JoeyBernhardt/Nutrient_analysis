@@ -24,18 +24,14 @@ Ecological stoichiometry, which is the study of the balance of energy and elemen
 We hypothesized that species’ nutritional profiles would be intrinsically linked to functional traits because elements that are of nutritional value to humans also serve functional roles in organismal physiology. For example, the same traits of the chili pepper, Capsicum, that make it nutritionally valuable to humans (i.e. its high vitamin A, C, beta carotene and antibacterial properties) are functional traits that evolved as chemical defense compounds (Tewksbury et al. 2008). Also, the high protein content of legume seeds (i.e. beans and peanuts) is likely an adaptive trait for growth in low nitrogen soils (Anderson et al. 2004). Functional traits such as trophic position may be related to the nutritional content of seafood species because they affect the scope and quantity of nutrients to which an organism is exposed, as well as the physiological constraints on body composition (Simpson and Raubenheimer 2012). 
 
 
-Given that our goal is to understand the drivers of elemental composition of species, we will consider the elemental basis of structural and functional components of species’ physiology.  Here, we consider the nutritional profile of a fish assemblage as an ecosystem function. We test whether nutrient profiles of fish are related to species’ traits, such as body size or trophic position, which predict substantial variation in many ecosystem functions (Woodward et al. 2005). At the organismal level, we hypothesized that micronutrient content in the edible portion of fish tissues would reflect physiological functions. We test two specific predictions: 1) calcium content scales allometrically with fish skeleton mass and; 2) omega-3 fatty acid content increases with cold tolerance adaptations in fish. We expected that calcium content in fish bodies? would scale allometrically with fish skeleton mass since most calcium in fish is stored in the skeleton (Hendrixon et al. 2002). Fish skeleton mass scales isometrically across a wide range of fish taxa and life stages (Berrios-Lopez et al. 1996). Thus, we expected whole-body calcium content in fish to scale isometrically as well, meaning that whole body calcium content should increase with body size. In the case of fatty acids, we predicted that omega-3 fatty acid content in fish would increase for species occupying colder waters due to the functional role of polyunsaturated fatty acids in maintaining cell membrane fluidity at cold temperatures (Farkas et al. 1984). We test this prediction using fish collected over a range of latitudes from tropical to polar waters. We assume that latitude is a reasonable proxy for cold-water tolerance over such a broad spatial scale (Sunday et al. 2011). 
+Given that our goal is to understand the drivers of elemental composition of species, we will consider the elemental basis of structural and functional components of species’ physiology.  Here, we consider the nutritional profile of a fish assemblage as an ecosystem function. We test whether nutrient profiles of fish are related to species’ traits, such as body size or trophic position, which predict substantial variation in many ecosystem functions (Woodward et al. 2005). At the organismal level, we hypothesized that micronutrient content in the edible portion of fish tissues would reflect physiological functions. We test two specific predictions: 1) calcium content scales allometrically with fish skeleton mass and; 2) omega-3 fatty acid content increases with cold tolerance adaptations in fish. We expected that whole-body calcium content in fish would scale allometrically with fish skeleton mass since most calcium in fish is stored in the skeleton (Hendrixon et al. 2002). Fish skeleton mass scales isometrically across a wide range of fish taxa and life stages (Berrios-Lopez et al. 1996). Thus, we expected whole-body calcium content in fish to scale isometrically as well, meaning that whole body calcium content should increase with body size. In the case of fatty acids, we predicted that omega-3 fatty acid content in fish would increase for species occupying colder waters due to the functional role of polyunsaturated fatty acids in maintaining cell membrane fluidity at cold temperatures (Farkas et al. 1984). We test this prediction using fish collected over a range of latitudes from tropical to polar waters. We assume that latitude is a reasonable proxy for cold-water tolerance over such a broad spatial scale (Sunday et al. 2011). 
 
 
 We find that a trait-based approach is effective at simplifying the complexity of aquatic food webs into a few key axes that strongly control the composition of micronutrients in fish assemblages. We have identified two traits, body size and thermal niche, both of which are related to temperature and are correlated with the micronutrient content of fish tissue. With these established scaling relationships, we can estimate how the distribution of traits in an ecosystem, such as the distribution of body sizes, influences the nutritional profile of the fish assemblage as whole. This is an important step towards understanding the mechanisms underlying the nutritional benefits that humans derive from aquatic ecosystems. 
 
-
-
-
 Methods
 
 To understand how nutrient profile varies among species, we tested for covariation between species’ nutritional profiles and attributes of species known to be both biologically important and exhibit predictable scaling relationships. 
-
 
 Literature search and data collection
 
@@ -49,12 +45,9 @@ Statistical Analysis
 
 We modeled the relationship between nutrient content and species’ traits with linear regression models using a log-transformed power function. The full model included the entire set of predictors:
 
-
 ln(nutrient content) = Β0.i + Β1.i*ln(body size)*latitude + Β2.i*ln(body size)*(trophic position)  + Β3.i*ln(body size)*(habitat) + εi
 
-
 We created models from subsets of the full model that represented hypotheses based on the known physiological roles of micronutrients. We identified the best subset of models using the Akaike Information Criterion, adjusted for small sample sizes (AICc). We used AICc, δaic and Akaike weights (w) to compare models.  We ranked models based on w, and selected the set of models that produced a cumulative w > 0.95, meaning that we are 95% confident that the chosen set includes the best model (Burnham and Anderson 2002). 
-
 
 We report all models with AICc differences ( δaic = AICi − AICmin) less than or equal to two ( δaic ≤ 2). In cases where we could not obtain measurements of all traits for all species, we performed model selection on reduced datasets without missing values (Appendix A). To account for model uncertainty, we performed model averaging of coefficients in all models with  δaic < 2, including zeros as coefficients when variables did not enter a particular model (Burnham and Anderson 2002). We conducted all our analyses in R version 3.1.2 (R Core Development 2014) using the MuMIn package (http://r-forge.r-project.org/projects/mumin/).
 
@@ -76,7 +69,7 @@ The top lm had moderate explanatory power (R2=0.27-0.28). Body size, latitude an
 
 
 Mercury
-The top lm had moderate explanatory power (R2=0.27). Latitude, habitat, trophic level and body size all appear in the top model set. Latitude, habitat and body size all have significant effects. Each 10% increase in body size leads to a 2.62% increase in mercury content. With each degree of latitude away from the equator, mercury content decreases by 4%. Marine species contain 50% more mercury than freshwater species.
+The top lm had moderate explanatory power (R2=0.27). Latitude, habitat, trophic level and body size all appear in the top model set. Latitude, habitat and body size all have significant effects. Each 10% increase in body size leads to a 2.62% increase in mercury content. With each degree of latitude away from the equator, mercury content decreases by 4%. Marine species contain 50% more mercury than freshwater species. Thirty-three species contained more than the EPA's reference dose limit for mercury (0.1 mcg/kg body weight/day, assuming a 60kg person). The mean body mass of species above the reference dose limit was 9.35 kg (min=0.4kg, max=2532.63kg) vs. 3.92 kg (min=1.03kg, max=66.92kg) for the species below the reference limit. 
 
 
 Fatty acids
@@ -89,6 +82,8 @@ The top models had moderate explanatory power (R2=0.2).  Habitat, latitude, body
 DHA
 The top model had moderate explanatory power (R2=0.18). Habitat, latitude, body size and trophic level, as well as the interactions between these predictors and body size all entered the top model set. Of these terms, all had significant effects except habitat*body size interaction. With each degree of latitude away from the equator, DHA content increases by 1.54%. Each 10% increase in body size leads to a 0.87% decrease in DHA content. 
 
+
+Discussion
 
 
 
