@@ -1,0 +1,180 @@
+---
+title: "NutrientTraitMS"
+author: "Joey Bernhardt"
+date: "March 11, 2015"
+output: word_document
+---
+
+# Functional basis of nutritional diversity in aquatic ecosystems
+
+
+## Abstract
+
+
+Humans rely on food derived from aquatic ecosystems for protein and essential micronutrients such as vitamins and minerals. A primary challenge is to understand the links between the functional composition of aquatic food webs and their ability to provide a diversity of nutrients essential to the human diet. Here we draw on allometric scaling theory and ecological stoichiometry to generate predictions about how a species’ nutritional profile is related to species traits such as growth rate or body size. However, predicting a species’ nutritional value in the human diet requires knowledge of not only the drivers of a species’ nutrient content, but also human dietary practices, which may influence which body parts are consumed, and thus the nutritional value of an edible portion.[a] In this study we test whether functional traits can predict species’ nutritional value to people by using dietary food composition data. These data reflect the physiology of organismal nutrient content as well as human dietary practices. We find that a trait-based approach is effective at simplifying the complexity of aquatic food webs into a few key axes that strongly control the composition of micronutrients in fish assemblages. ADD A SENTENCE HERE WITH RESULTS. 
+
+
+## Introduction
+While it has long been recognized that ecosystems provide essential benefits to humanity, a mechanistic understanding of the ecological processes underlying the supply of ecosystem services remains elusive. The ecology of food security is not just about predicting yields, it is about understanding the ecological conditions that lead to a stable supply of nutritionally diverse foods. Although fisheries productivity is studied extensively, there has been surprisingly little consideration of the drivers of the nutritional quality of fisheries yields. Furthermore, which attributes of a food web’s structure influence its ability to provide the essential elements of a human diet remains an open question. One of the most widely studied and universally important benefits that humans derive from natural ecosystems is food provisioning. Indeed, many coastal human communities rely on wild harvests from local aquatic ecosystems to meet nutritional requirements for macronutrients, such as protein and fats, and micronutrients, such as vitamins and minerals (Kuhnlein and Receveur 2007, Kuhnlein et al. 2009, Kawarazuka and Bene 2011). 
+
+
+### Nutrition as an ecosystem function and service
+
+The nutritional quality of prey species plays a fundamental role in ecosystem function. Food webs characterized by nutritionally valuable prey support higher consumer and predator biomass and have higher trophic transfer efficiencies (Hecky 1984, Muller Navarra et al. 2000, Brett et al. 2009). Changes in forage fish communities from lipid-rich to lipid-poor fish in the Pacific Ocean have caused predatory marine birds and mammals to shift their diet to less nutritionally valuable lipid-poor fish and suffer population declines (Rosen and Trites 2006; Romano et al. 2006, Osterblom et al. 2008). For human consumers, the nutritional value of fish is an essential dimension of the benefits that people derive from fisheries. Fish consumption plays an important role in combating micronutrient deficiencies in many vulnerable populations (Kawarazuka and Bene 2011). 
+
+
+### Physiological basis of  nutrient composition
+
+Ecological stoichiometry, which is the study of the balance of energy and elements in ecological interactions, has provided some insight into the drivers of diverse macronutrient ratios among species. The ecological stoichiometry framework has proven useful in understanding the elemental constraints on species’ life histories. One of the premises of the ecological stoichiometry framework is that organisms’ elemental composition is fundamentally linked to the biochemical composition of the cells and tissues that play functional roles in organismal physiology (Sterner and Elser, 2002). For example, one of the most extensively studied causes of variability in phosphorus content is life history strategy. Fast growing organisms have high phosphorus content due to phosphorus-intensive growth - the growth rate hypothesis (Sterner and Elser 2002). As a result, species’ traits such as growth rates are intimately linked to their elemental composition. 
+
+
+We hypothesized that species’ nutritional profiles would be intrinsically linked to functional traits because elements that are of nutritional value to humans also serve functional roles in organismal physiology. For example, the same traits of the chili pepper, Capsicum, that make it nutritionally valuable to humans (i.e. its high vitamin A, C, beta carotene and antibacterial properties) are functional traits that evolved as chemical defense compounds (Tewksbury et al. 2008). Also, the high protein content of legume seeds (i.e. beans and peanuts) is likely an adaptive trait for growth in low nitrogen soils (Anderson et al. 2004). Functional traits such as trophic position may be related to the nutritional content of seafood species because they affect the scope and quantity of nutrients to which an organism is exposed, as well as the physiological constraints on body composition (Simpson and Raubenheimer 2012). 
+
+
+Given that our goal is to understand the drivers of elemental composition of species, we will consider the elemental basis of structural and functional components of species’ physiology.  Here, we consider the nutritional profile of a fish assemblage as an ecosystem function. We test whether nutrient profiles of fish are related to species’ traits, such as body size or trophic position, which predict substantial variation in many ecosystem functions (Woodward et al. 2005). At the organismal level, we hypothesized that micronutrient content in the edible portion of fish tissues would reflect physiological functions. We test two specific predictions: 1) calcium content scales allometrically with fish skeleton mass and; 2) omega-3 fatty acid content increases with cold tolerance adaptations in fish. We expected that whole-body calcium content in fish would scale allometrically with fish skeleton mass since most calcium in fish is stored in the skeleton (Hendrixon et al. 2002). Fish skeleton mass scales isometrically across a wide range of fish taxa and life stages (Berrios-Lopez et al. 1996). Thus, we expected whole-body calcium content in fish to scale isometrically as well, meaning that whole body calcium content should increase with body size. In the case of fatty acids, we predicted that omega-3 fatty acid content in fish would increase for species occupying colder waters due to the functional role of polyunsaturated fatty acids in maintaining cell membrane fluidity at cold temperatures (Farkas et al. 1984). We test this prediction using fish collected over a range of latitudes from tropical to polar waters. We assume that latitude is a reasonable proxy for cold-water tolerance over such a broad spatial scale (Sunday et al. 2011). 
+
+
+We find that a trait-based approach is effective at simplifying the complexity of aquatic food webs into a few key axes that strongly control the composition of micronutrients in fish assemblages. We have identified two traits, body size and thermal niche, both of which are related to temperature and are correlated with the micronutrient content of fish tissue. With these established scaling relationships, we can estimate how the distribution of traits in an ecosystem, such as the distribution of body sizes, influences the nutritional profile of the fish assemblage as whole. This is an important step towards understanding the mechanisms underlying the nutritional benefits that humans derive from aquatic ecosystems. 
+
+## Methods
+
+To understand how nutrient profile varies among species, we tested for covariation between species’ nutritional profiles and attributes of species known to be both biologically important and exhibit predictable scaling relationships. 
+
+### Literature search and data collection
+
+To test how nutrient profile varies with ecological traits, we assembled a dataset of nutrient content in the edible portions of 354 aquatic species. We defined the nutritional profile of a species as the quantity of a given nutrient in 100 g of edible tissue - a metric that is commonly used in the human food composition literature (Nowak et al. 2014). We included finfish, crustaceans, and molluscs of marine and freshwater origin. We aimed to include as many species as possible, covering a wide geographic range. We carried out a comprehensive literature search for analytical compositional values for each of these species. We searched the peer-reviewed literature as well as food composition databases or tables, such as the Food and Agriculture Organization’s INFOODS database (FAO/INFOODS 2014) and the United States Department of Agriculture’s Nutrient Files (USDA 2012). We restricted our analysis to include only the edible portions of wild, raw fish (thus excluding prepared or farmed seafood items).  Our dataset includes quantities for the following micronutrients: calcium; iron; zinc; magnesium and two fatty acids: eicosapentaenoic acid (EPA); and docosahexaenoic acid (DHA). To address inconsistencies in fatty acid data reporting, we standardized fatty acid measurements using the fatty acid conversion factors proposed by Nowak et al. (2014). 
+
+
+Ecological trait information was collected for each species from FishBase (Froese and Pauly 2014) and SeaLifeBase (Palomares and Pauly 2014). We included body size (maximum length), fractional trophic position, temperature preference (using latitude as a proxy) and habitat preference. We converted body length data into body mass, using established length-mass relationship data (mass= a*length b). We used species-specific or taxon-specific a and b parameter values published in Froese et al. (2013). 
+
+
+### Statistical Analysis
+
+We modeled the relationship between nutrient content and species’ traits with linear regression models using a log-transformed power function. The full model included the entire set of predictors:
+
+ $$ ln(nutrient content) = Β0.i + Β1.i*ln(body size)*latitude + Β2.i*ln(body size)*(trophic position)  + Β3.i*ln(body size)*(habitat) + εi $$ 
+
+We created models from subsets of the full model that represented hypotheses based on the known physiological roles of micronutrients. We identified the best subset of models using the Akaike Information Criterion, adjusted for small sample sizes (AICc). We used AICc, δaic and Akaike weights (w) to compare models.  We ranked models based on w, and selected the set of models that produced a cumulative w > 0.95, meaning that we are 95% confident that the chosen set includes the best model (Burnham and Anderson 2002). 
+
+We report all models with AICc differences ( δaic = AICi − AICmin) less than or equal to two ( δaic ≤ 2). In cases where we could not obtain measurements of all traits for all species, we performed model selection on reduced datasets without missing values (Appendix A). To account for model uncertainty, we performed model averaging of coefficients in all models with  δaic < 2, including zeros as coefficients when variables did not enter a particular model (Burnham and Anderson 2002). We conducted all our analyses in R version 3.1.2 (R Core Development 2014) using the MuMIn package (http://r-forge.r-project.org/projects/mumin/).
+
+-somewhere here, need to address multi-collinearity of predictor variables etc. 
+
+
+## Results 
+
+### Minerals
+
+**Calcium**  
+The lop lm had high explanatory power (R2=0.63). In the top two lm, body size, habitat, latitude all had significant effects and high relative importance based on Akaike weight summations (wip). Trophic position had a relatively low importance weight, and the confidence intervals surrounding the model-averaged regression coefficient contained zero. For every 10% increase in body size, calcium content decreases by 3.39%. With each degree of latitude away from the equator, calcium content decreases by 7.25%. Out of 83 species for which we have calcium data, 20 species have calcium contents greater than 25% of RDA in one 100g portion. The mean body size of these species is 495.83 g (min=3.71g, max=38.82 kg). The remaining 63 species contained less than 25% of calcium RDA in one portion, and had mean body size 6.27 kg (min=31g, max=2532.63kg).
+
+
+**Iron**  
+The top lm had moderate explanatory power (R2=0.32). Habitat, latitude and body size all appeared in the top model set. However, only latitude showed a significant effect. With each degree of latitude away from the equator, iron content decreases by 5%. 
+
+
+**Zinc**  
+The top lm had moderate explanatory power (R2=0.27-0.28). Body size, latitude and body size* latitude were all present in the top set of models. Across these models, only latitude had a significant effect. For each degree of latitude away from the equator, zinc content decreases by 3%. 
+
+
+**Mercury**  
+The top lm had moderate explanatory power (R2=0.27). Latitude, habitat, trophic level and body size all appear in the top model set. Latitude, habitat and body size all have significant effects. Each 10% increase in body size leads to a 2.62% increase in mercury content. With each degree of latitude away from the equator, mercury content decreases by 4%. Marine species contain 50% more mercury than freshwater species. Thirty-three species contained more than the EPA's reference dose limit for mercury (0.1 mcg/kg body weight/day, assuming a 60kg person). The mean body mass of species above the reference dose limit was 9.35 kg (min=0.4kg, max=2532.63kg) vs. 3.92 kg (min=1.03kg, max=66.92kg) for the species below the reference limit. 
+
+
+### Fatty acids
+
+
+**EPA**  
+The top models had moderate explanatory power (R2=0.2).  Habitat, latitude, body size and trophic level, as well as the interactions between these predictors and body size all entered the top model set. Of these terms, latitude and body size had significant effects. For each 10% increase in body size, EPA content decreases by 1.20%. Each degree of latitude away from the equator leads to a 2.49% increase in EPA content. 
+
+
+**DHA**  
+The top model had moderate explanatory power (R2=0.18). Habitat, latitude, body size and trophic level, as well as the interactions between these predictors and body size all entered the top model set. Of these terms, all had significant effects except habitat*body size interaction. With each degree of latitude away from the equator, DHA content increases by 1.54%. Each 10% increase in body size leads to a 0.87% decrease in DHA content. 
+
+
+## Discussion
+
+start by discussing how variable nutrients are in the fish in our dataset, vs how variable they have been found to be in other studies (reference papers in stoich book)
+
+**Variability in macroelements (C, N, P)**
+-Vanni et al. 2002: found x order of magnitude of variation among X species in CN ratios
+-Hendrixon et al. 2007: found this
+
+**Variability in macronutrients (lipids, proteins etc.)**
+-Spitz et al. 2010 found that lipid contents in 78 marine forage species were highly variable, ranging from 0.3-12% of body mass. 
+-Childress et al. 1990 found that lipid content varies with depth preference, maybe due to differing metabolic requirements associated with living at depth. 
+
+
+**Latitudinal patterns**
+then discuss the importance of latitude in other studies (i.e. why is latitude always such an important predictor?). What are some other latitudinal patterns in nutritional traits, and traits more broadly? (maybe reference the bdg paper)
+
+Which results were consistent with our hypotheses?
+Body size scaling papers...skeleton papers.
+Litzow essential fatty acid hypothesis, and other references describing the relationship between temperature and polyunsaturated fatty acid content.
+
+Which results were not consistent with our hypotheses? Why not?
+
+What is outstanding in the literature? Where do we go from here?
+
+i.e. conceptual framework...need to develop better stoichiometry theory in the case of micronutrients, especially in the context of human nutrition. 
+
+-mention Karimi paper.
+-which nutrients should be under stonger homeostatic control?
+
+
+
+
+
+
+
+References
+
+
+Andersen M, Hauggaard-Nielsen H, Ambus P, Jensen E. 2004 Biomass production, symbiotic nitrogen fixation and inorganic N use in dual and tri-component annual intercrops. Plant Soil 2004;266:273–87.
+Burnham, K. P., and D. R. Anderson. 2002. Model selection and multimodel inference. Springer-Verlag, New York.
+
+
+FAO/INFOODS (2014). FAO/INFOODS Food Composition Database for Biodiversity version 2.0 - BioFoodComp2.0. Rome: FAO. Retrieved July 2014, from http://www.fao.org/infoods/infoods/food-biodiversity/en/.
+
+
+Froese, R. and D. Pauly. Editors. 2014. FishBase. World Wide Web electronic publication. www.fishbase.org, version (08/2014). 
+
+
+Froese, R., J. Thorson and R.B. Reyes Jr., 2013. A Bayesian approach for estimating length-weight relationships in fishes. J. Appl. Ichthyol. (2013):1-7.
+
+
+Kawarazuka, N., & Béné, C. (2011). The potential role of small fish species in improving micronutrient deficiencies in developing countries: building evidence. Public Health Nutrition, 14(11), 1927–1938. doi:10.1017/S1368980011000814
+
+
+Kuhnlein, H. V., & Receveur, O. (2007). Local cultural animal food contributes high levels of nutrients for Arctic Canadian Indigenous adults and children. The Journal of nutrition, 137(4), 1110–1114.
+
+
+Kuhnlein, H. V., Erasmus, B., & Spigelski, D. (2009). Indigenous peoples' food systems: the many dimensions of culture, diversity and environment for nutrition and health.
+
+
+Nowak, V., Rittenschober, D., Exler, J., and U. R. Charrondiere. Proposal on the usage of conversion factors for fatty acids in fish and shellfish, Food Chemistry, Volume 153, 15 June 2014, Pages 457-463
+
+
+Tewksbury J, Reagan K, Machnicki N, Carlo T, Haak D, Peñaloza AC, Levey D. Evolutionary ecology of pungency in wild chilies. Proc Natl Acad Sci U S A 2008;105:11808–11.
+
+
+US Department of Agriculture (2012) National nutrient database. http://fnic.nal.usda.gov/nal_display/index.php?info_center54&tax_level52&tax_subject5279&topic_id51387 (accessed July 2014).
+
+
+Woodward, G., Ebenman, B., Emmerson, M., MONTOYA, J., OLESEN, J., VALIDO, A., & WARREN, P. (2005). Body size in ecological networks. Trends in Ecology and Evolution, 20(7), 402–409. doi:10.1016/j.tree.2005.04.005
+
+
+
+
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
