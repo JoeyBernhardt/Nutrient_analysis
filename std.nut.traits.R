@@ -165,7 +165,7 @@ CA.12 <- standardize(lm(log(CA_mg) ~ logmass, na.action="na.fail", data=nutmassC
 CA.13 <- standardize(lm(log(CA_mg) ~ Abs_lat, na.action="na.fail", data=nutmassCA_Feb24))
 CA.14 <- standardize(lm(log(CA_mg) ~ Habitat, na.action="na.fail", data=nutmassCA_Feb24))
 
-model.sel(CA.1, CA.2, CA.3, CA.4, CA.5, CA.6, CA.7, CA.8, CA.8b, CA.9, CA.10, CA.11, CA.12, CA.13, CA.14)
+model.sel(CA.1, CA.2, CA.3, CA.4, CA.5, CA.6, CA.7, CA.8, CA.8b, CA.9, CA.10, CA.11, CA.12, CA.13)
 coef.CA <- coef(model.avg(CA.8, CA.8b))
 confint.CA <- confint(model.avg(CA.8, CA.8b))
 coef.table.CA <- cbind(coef.CA, confint.CA)

@@ -27,6 +27,8 @@ The nutritional quality of prey species plays a fundamental role in ecosystem fu
 
 Ecological stoichiometry, which is the study of the balance of energy and elements in ecological interactions, has provided some insight into the drivers of diverse macronutrient ratios among species. The ecological stoichiometry framework has proven useful in understanding the elemental constraints on species’ life histories. One of the premises of the ecological stoichiometry framework is that organisms’ elemental composition is fundamentally linked to the biochemical composition of the cells and tissues that play functional roles in organismal physiology (Sterner and Elser, 2002). For example, one of the most extensively studied causes of variability in phosphorus content is life history strategy. Fast growing organisms have high phosphorus content due to phosphorus-intensive growth - the growth rate hypothesis (Sterner and Elser 2002). As a result, species’ traits such as growth rates are intimately linked to their elemental composition. 
 
+An open question is: how does the elemental stoichiometry of fish consumers vary, and how does it correlate with body size, morphology and diet choice? (Vrede et al. 2010)
+
 
 We hypothesized that species’ nutritional profiles would be intrinsically linked to functional traits because elements that are of nutritional value to humans also serve functional roles in organismal physiology. For example, the same traits of the chili pepper, Capsicum, that make it nutritionally valuable to humans (i.e. its high vitamin A, C, beta carotene and antibacterial properties) are functional traits that evolved as chemical defense compounds (Tewksbury et al. 2008). Also, the high protein content of legume seeds (i.e. beans and peanuts) is likely an adaptive trait for growth in low nitrogen soils (Anderson et al. 2004). Functional traits such as trophic position may be related to the nutritional content of seafood species because they affect the scope and quantity of nutrients to which an organism is exposed, as well as the physiological constraints on body composition (Simpson and Raubenheimer 2012). 
 
@@ -93,20 +95,25 @@ The top model had moderate explanatory power (R2=0.18). Habitat, latitude, body 
 
 
 ## Discussion
+The elemental stoichiometry of fish is a trait arising from a variety of evolutionary pressures on form and function (Kay et al. 2005). Diverse stoichiometries among fih taxa are a consequence of the variation in fish body composition, and the proportion of hard structures, biochemicals that constitute all living organisms such as proteins, carbohydrates and lipids. The variability in stoichiometry among fish has been related to allometry (Hendrixson et al. 2007, Vrede et al. 2010), habitat preferences (Childress et al. 1990, Sterner and George 2000, Hendrixson et al. 2007, Vrede et al. 2010), diet type (Pilati and Vanni 2007, Hendrixson et al. 2007, Vrede et al. 2010), ontogeny (Pilati and Vanni 2007), and degree of ossification (Hendrixson et al. 2007, Czamanski et al. 2011). In this study, we documented the degree of variability in micronutrients with respect to these sources of variation.
 
-start by discussing how variable nutrients are in the fish in our dataset, vs how variable they have been found to be in other studies (reference papers in stoich book)
+The degree of variability in macrolements and macronutrients among fish is well documented and context-dependent. In a study of 26 species of neotropical fishes, Vanni et al. 2002 found about 3 fold variation in body P contents, with the highest P species belonging to the Loricariidae, a family containing thetropical armoured catﬁsh. Dantas and Attayde 2007 found that N and P contents varied two-fold among eight tropical and temperate species, and for some but not all of these species, N and P contents varied with body size. Other studies have found less variation in CNP, (Sterner and George, 2000, Tanner et al. 2000). Vrede et al. 2010 found significant body size patterns in whole body P content even within a single population of a perch species. However, the effect was not significant when the dorsal muscle tissue was examined separately. They also found significant diet and morphology effects. Hendrixon et al. 2007 found that fish P varied about two fold across 20 species. Found that P content varies with body size and feeding type. When accounting for the phylogeny, interspecific allometric trends no longer were statistically significant. They found that in general, fishes of intermediate size, or piscivorous or insectivorous fishes, are generally the most P-rich. 
 
-**Variability in macroelements (C, N, P)**
--Vanni et al. 2002: found x order of magnitude of variation among X species in CN ratios
--Hendrixon et al. 2007: found this
+Patterns in macronutrient variability have also been documented across fish taxa. Spitz et al. 2010 found that lipid contents in 78 marine forage species were highly variable, ranging from 0.3-12% of body mass. Childress et al. 1990 found that lipid content varies with depth preference, maybe due to differing metabolic requirements associated with living at depth. 
 
-**Variability in macronutrients (lipids, proteins etc.)**
--Spitz et al. 2010 found that lipid contents in 78 marine forage species were highly variable, ranging from 0.3-12% of body mass. 
--Childress et al. 1990 found that lipid content varies with depth preference, maybe due to differing metabolic requirements associated with living at depth. 
+
+In this study, we found even greater levels of variability in stoichiometry than has been documented in the literaure. Micronutrient content was highly variable across the species in our dataset. Calcium content per edible portion varied by more than 500-fold (min=2.99, max=1503.00, median=45.15 mg/100g).Fatty acids varied by X amount. Essential microelements varied by X fold, while non-essential elements such as mercury varied by X amount.  Some possibles reasons for why we found more variability: we were looking at micronutrients, which may be more variable than macronutrients due to their higher degree of functional specificity or lower level of homeostasis (Karimi et al. 2006). In addition, we sampled fish over a much greater range of taxa, body sizes, geographic origins etc. Also, our data was for the edible portion of fish, which includes different body tissues depending on the fish and its size. Sometimes the edible portion contains organs such as liver and skeleton, sometimes it is just muscle tissue. Nonetheless, in spite of the diversity of fish included in our analysis, we found that our models had relatively high levels of explanatory power, suggesting that we identified some traits that have a strong influence on whole body stoichiometry as well as the stoichiometry of the edible portion. 
+
+
 
 
 **Latitudinal patterns**
+We found that latitude was consistently an important predictor of nutrient content across all the nutrients we tested. Latitude is often found to be important (refs), perhaps because geographic origin is related to a suite of traits that could affect species' function and form. For example, latitude reflects evolutionary and historical distinctiveness of different ocean basins, differences in thermal and metabolic contraints on growth and reproduction, all of which could influence species' stoichiometry.
+
+
 then discuss the importance of latitude in other studies (i.e. why is latitude always such an important predictor?). What are some other latitudinal patterns in nutritional traits, and traits more broadly? (maybe reference the bdg paper)
+
+latitude reflects phylogeny, thermal history etc. 
 
 Which results were consistent with our hypotheses?
 Body size scaling papers...skeleton papers.
@@ -114,6 +121,7 @@ Litzow essential fatty acid hypothesis, and other references describing the rela
 
 Which results were not consistent with our hypotheses? Why not?
 
+Future directions: Applied ecologicial stoichiometry
 What is outstanding in the literature? Where do we go from here?
 
 i.e. conceptual framework...need to develop better stoichiometry theory in the case of micronutrients, especially in the context of human nutrition. 
