@@ -16,3 +16,5 @@ filter(ntbl, ASFIS.Scientific.name == "Abramis brama")
 filter(ntbl, ASFIS.Scientific.name %in% c("Abramis brama", "Thymallus arcticus"))
 nut %>% head
 nut %>% head(3)
+
+select(ntbl, ASFIS.Scientific.name, CA_mg)
