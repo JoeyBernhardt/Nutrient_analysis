@@ -48,6 +48,15 @@ ntbl %>%
   head(4)
 ```
 
+Convert max length to max body size using length-weight conversion (W = a × L^b)
+```{r}
+ntbl <- ntbl %>%
+  mutate(max_size = lwA * (max_length^lwB))
+
+ntbl %>%
+  glimpse()
+```
+
 ```{r results = 'asis'}
 knitr::kable(nut)
 ```
