@@ -8,7 +8,6 @@ output:
 
 
 ```{r}
-install.packages("ggthemes")
 library(ggthemes)
 library(dplyr)
 library(ggplot2)
@@ -31,22 +30,18 @@ Change variable names to more intuitive names
   rename(species = ASFIS.Scientific.name,
          taxon = ISSCAAP_cat,
          max_length = SLMAX)
-View(ntbl)
 ```
 
 Pull out variables we will use in this analysis
 ```{r select variables of interest}
 ntbl <- ntbl %>%
   select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
- View(ntbl)
 ```
 
 Convert max length to max body size using length-weight conversion (W = a × L^b)
 ```{r}
 ntbl <- ntbl %>%
   mutate(max_size = lwA * (max_length^lwB))
-
-View(ntbl) 
 ntbl %>%
   glimpse()
 ```
@@ -66,58 +61,37 @@ ntbl %>%
 
 What if we want to know the number of species in each habitat?
 ```{r}
-ntbl$Habitat <- as.factor(ntbl$Habitat)
-
-glimpse(ntbl)
-
 ntbl %>%
+  filter(Habitat %in% c("marine")) %>%
+  filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
-  summarize(n_obs = n(),
-            n_species = n_distinct(species), 
-            mean_size = mean(max_size))
-
-summary(ntbl)
-ggplot(ntbl, aes(x = Habitat, y= max_size) + geom_boxplot(aes(group = Habitat)))
-
-ntbl %>%
-  filter(Habitat %in% c("marine", "freshwater")) %>%
-  filter(!is.na(max_size)) %>% 
-  group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
+
+mean.size <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  group_by(Habitat) %>%
+  summarise_each(funs(mean, median), max_size)
+knitr::kable(mean.size)
 
 ntbl %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
-
-View(ntbl)
 ```
 
 ```{r}
-
-hist(ntbl$max_size)
-summary(ntbl$max_size)
-
-ntbl %>%
-  filter(Habitat == "marine") %>%
-  select(max_size)
-
-ntbl %>% filter(ntbl, Habitat == "marine")
-
-
-
-ntbl %>%
-  group_by(Habitat) %>%
-  summarize(mean_bodysize = max(max_size))
-
 ggplot(ntbl, aes(x = max_size, y = CA_mg, color = Habitat)) + geom_point() +
   scale_x_log10()
 
 ggplot(ntbl, aes(x = log(max_size), y = log(EPA_g), color = Habitat)) + geom_point()
 
-p <- ggplot(data=ntbl, aes(x=Abs_lat, y=log(EPA_g), group=Habitat, colour=Habitat))
-p + geom_point() 
-p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5)))
+p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
+p + geom_point()
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.25)))
+
+p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=log(max_size), y=log(EPA_g)))
+p + geom_point()
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.25)))
              
 ```
 
