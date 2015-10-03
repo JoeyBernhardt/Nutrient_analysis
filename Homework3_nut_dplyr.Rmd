@@ -8,8 +8,11 @@ output:
 
 
 ```{r}
+install.packages("ggthemes")
+library(ggthemes)
 library(dplyr)
 library(ggplot2)
+library(knitr)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=FALSE)
 
@@ -19,13 +22,7 @@ summary(nut)
 ntbl <- tbl_df(nut)
 
 glimpse(ntbl)
-(snippet <- subset(nut, ASFIS.Scientific.name == "Abramis brama"))
 
-filter(ntbl, TL < 3)
-filter(ntbl, ASFIS.Scientific.name == "Abramis brama")
-filter(ntbl, ASFIS.Scientific.name %in% c("Abramis brama", "Thymallus arcticus"))
-nut %>% head
-nut %>% head(3)
 ```
 
 Change variable names to more intuitive names
@@ -34,14 +31,14 @@ Change variable names to more intuitive names
   rename(species = ASFIS.Scientific.name,
          taxon = ISSCAAP_cat,
          max_length = SLMAX)
-
+View(ntbl)
 ```
 
 Pull out variables we will use in this analysis
 ```{r select variables of interest}
 ntbl <- ntbl %>%
-  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup)
-  
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
+ View(ntbl)
 ```
 
 Convert max length to max body size using length-weight conversion (W = a × L^b)
@@ -49,6 +46,7 @@ Convert max length to max body size using length-weight conversion (W = a × L^b
 ntbl <- ntbl %>%
   mutate(max_size = lwA * (max_length^lwB))
 
+View(ntbl) 
 ntbl %>%
   glimpse()
 ```
@@ -68,11 +66,31 @@ ntbl %>%
 
 What if we want to know the number of species in each habitat?
 ```{r}
+ntbl$Habitat <- as.factor(ntbl$Habitat)
+
+glimpse(ntbl)
+
 ntbl %>%
   group_by(Habitat) %>%
   summarize(n_obs = n(),
             n_species = n_distinct(species), 
             mean_size = mean(max_size))
+
+summary(ntbl)
+ggplot(ntbl, aes(x = Habitat, y= max_size) + geom_boxplot(aes(group = Habitat)))
+
+ntbl %>%
+  filter(Habitat %in% c("marine", "freshwater")) %>%
+  filter(!is.na(max_size)) %>% 
+  group_by(taxon) %>%
+  summarise_each(funs(mean, median), max_size)
+
+ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  group_by(taxon) %>%
+  summarise_each(funs(mean, median), max_size)
+
+View(ntbl)
 ```
 
 ```{r}
@@ -95,6 +113,11 @@ ntbl %>%
 ggplot(ntbl, aes(x = max_size, y = CA_mg, color = Habitat)) + geom_point() +
   scale_x_log10()
 
-summary(max_size)
+ggplot(ntbl, aes(x = log(max_size), y = log(EPA_g), color = Habitat)) + geom_point()
+
+p <- ggplot(data=ntbl, aes(x=Abs_lat, y=log(EPA_g), group=Habitat, colour=Habitat))
+p + geom_point() 
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5)))
+             
 ```
 
