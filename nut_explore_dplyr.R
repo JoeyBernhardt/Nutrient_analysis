@@ -5,6 +5,7 @@ nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.
 
 str(nut)
 summary(nut)
+View(nut)
 nut$ASFIS.Scientific.name
 ntbl <- tbl_df(nut)
 ntbl

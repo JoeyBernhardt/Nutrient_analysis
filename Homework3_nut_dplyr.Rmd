@@ -16,7 +16,6 @@ nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.
 str(nut)
 summary(nut)
 
-nut$ASFIS.Scientific.name
 ntbl <- tbl_df(nut)
 
 glimpse(ntbl)
@@ -27,7 +26,6 @@ filter(ntbl, ASFIS.Scientific.name == "Abramis brama")
 filter(ntbl, ASFIS.Scientific.name %in% c("Abramis brama", "Thymallus arcticus"))
 nut %>% head
 nut %>% head(3)
-
 ```
 
 Change variable names to more intuitive names
@@ -35,17 +33,15 @@ Change variable names to more intuitive names
  ntbl <- ntbl %>%
   rename(species = ASFIS.Scientific.name,
          taxon = ISSCAAP_cat,
-         body_size = SLMAX)
-ntbl <- ntbl %>%
-  rename(max_length = body_size)
+         max_length = SLMAX)
 
 ```
 
 Pull out variables we will use in this analysis
 ```{r select variables of interest}
-ntbl %>%
-  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB) %>%
-  head(4)
+ntbl <- ntbl %>%
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup)
+  
 ```
 
 Convert max length to max body size using length-weight conversion (W = a × L^b)
@@ -56,3 +52,49 @@ ntbl <- ntbl %>%
 ntbl %>%
   glimpse()
 ```
+
+How many observations are there per habitat?
+```{r}
+ntbl %>%
+  group_by(Habitat) %>%
+  summarize(n_obs = n())
+```
+
+```{r}
+ntbl %>%
+  group_by(Habitat) %>%
+  tally
+```
+
+What if we want to know the number of species in each habitat?
+```{r}
+ntbl %>%
+  group_by(Habitat) %>%
+  summarize(n_obs = n(),
+            n_species = n_distinct(species), 
+            mean_size = mean(max_size))
+```
+
+```{r}
+
+hist(ntbl$max_size)
+summary(ntbl$max_size)
+
+ntbl %>%
+  filter(Habitat == "marine") %>%
+  select(max_size)
+
+ntbl %>% filter(ntbl, Habitat == "marine")
+
+
+
+ntbl %>%
+  group_by(Habitat) %>%
+  summarize(mean_bodysize = max(max_size))
+
+ggplot(ntbl, aes(x = max_size, y = CA_mg, color = Habitat)) + geom_point() +
+  scale_x_log10()
+
+summary(max_size)
+```
+
