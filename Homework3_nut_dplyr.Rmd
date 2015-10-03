@@ -1,0 +1,60 @@
+---
+title: "Homework3"
+output: 
+  html_document: 
+    keep_md: yes
+    toc: yes
+---
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=FALSE)
+
+str(nut)
+summary(nut)
+View(nut)
+nut$ASFIS.Scientific.name
+ntbl <- tbl_df(nut)
+ntbl
+glimpse(ntbl)
+(snippet <- subset(nut, ASFIS.Scientific.name == "Abramis brama"))
+
+filter(ntbl, TL < 3)
+filter(ntbl, ASFIS.Scientific.name == "Abramis brama")
+filter(ntbl, ASFIS.Scientific.name %in% c("Abramis brama", "Thymallus arcticus"))
+nut %>% head
+nut %>% head(3)
+
+```
+
+Change variable names to more intuitive names
+```{r}
+ ntbl <- ntbl %>%
+  rename(species = ASFIS.Scientific.name,
+         taxon = ISSCAAP_cat,
+         body_size = SLMAX)
+ntbl <- ntbl %>%
+  rename(max_length = body_size)
+
+```
+
+Pull out variables we will use in this analysis
+```{r select variables of interest}
+ntbl %>%
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB) %>%
+  head(4)
+```
+
+```{r results = 'asis'}
+knitr::kable(nut)
+```
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
