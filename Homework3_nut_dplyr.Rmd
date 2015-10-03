@@ -15,10 +15,10 @@ nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.
 
 str(nut)
 summary(nut)
-View(nut)
+
 nut$ASFIS.Scientific.name
 ntbl <- tbl_df(nut)
-ntbl
+
 glimpse(ntbl)
 (snippet <- subset(nut, ASFIS.Scientific.name == "Abramis brama"))
 
@@ -56,14 +56,3 @@ ntbl <- ntbl %>%
 ntbl %>%
   glimpse()
 ```
-
-```{r results = 'asis'}
-knitr::kable(nut)
-```
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
