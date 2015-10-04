@@ -8,10 +8,12 @@ output:
 
 
 ```{r}
+library(plotrix)
 library(ggthemes)
 library(dplyr)
 library(ggplot2)
 library(knitr)
+library(Hmisc)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=FALSE)
 
@@ -61,23 +63,68 @@ ntbl %>%
 
 What if we want to know the number of species in each habitat?
 ```{r}
-ntbl %>%
-  filter(Habitat %in% c("marine")) %>%
-  filter(!is.na(max_size)) %>% 
-  group_by(Habitat) %>%
-  summarise_each(funs(mean, median), max_size)
-
 mean.size <- ntbl %>%
+  filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
-  summarise_each(funs(mean, median), max_size)
+  summarise_each(funs(mean, median, std.error), max_size)
 knitr::kable(mean.size)
 
-ntbl %>%
+
+taxon.size <- ntbl %>%
+  filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
-  summarise_each(funs(mean, median), max_size)
+  summarise_each(funs(mean, median), max_size/1000)
+knitr::kable(taxon.size)
 ```
+```{r min and max}
+calcium <- ntbl %>%
+  filter(!is.na(CA_mg)) %>%
+  filter(Habitat == "marine") %>%
+  group_by(taxon) %>%
+  summarise_each(funs(min, max, mean), CA_mg)
+knitr::kable(calcium)
+
+zinc <- ntbl %>%
+  filter(!is.na(ZN_mg) | !is.na(CA_mg)) %>%
+  filter(Habitat == "marine") %>%
+  group_by(taxon) %>%
+  summarise_each(funs(min, max, mean), ZN_mg, CA_mg)
+knitr::kable(zinc)
+
+```
+
+```{r trimmed mean}
+stat_sum_single <- function(fun, geom="point", colour = "red", ...) {
+  stat_summary(fun.y=fun, colour=colour, geom=geom, size = 3, ...)
+}
+
+ggplot(ntbl, aes(x=factor(Habitat), y=max_size, group = 1)) +
+  stat_sum_single(mean, trim = 0.30, colour = "purple") + 
+  stat_sum_single(mean, trim = 0.05, colour = "blue")
+
+stat_sum_single <- function(fun, geom="point", colour = "red", ...) {
+  stat_summary(fun.y=fun, colour=colour, geom=geom, size = 3, ...)
+}
+
+ggplot(ntbl, aes(x=factor(taxon), y=log(max_size), group = 1)) +
+  stat_sum_single(mean, trim = 0.30, colour = "purple") + 
+  stat_sum_single(mean, trim = 0.05, colour = "blue") +
+  stat_summary(fun.data = mean_cl_boot, geom = "pointrange") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  theme_pander()
+ 
+
+
+
+
+```
+```{r body size CA by hab}
+p <- ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), color = Habitat))
+p + geom_point()
+p + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+```
+
 
 ```{r}
 ggplot(ntbl, aes(x = max_size, y = CA_mg, color = Habitat)) + geom_point() +
@@ -87,11 +134,30 @@ ggplot(ntbl, aes(x = log(max_size), y = log(EPA_g), color = Habitat)) + geom_poi
 
 p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + geom_point()
-p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.25)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander()
+
+
 
 p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=log(max_size), y=log(EPA_g)))
 p + geom_point()
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.25)))
              
+```
+
+How does calcium content vary with body size?
+```{r calcium body size}
+p <- ggplot(subset(ntbl, Habitat == "freshwater"), aes(x=log(max_size), y=log(CA_mg)))
+p + geom_point()
+p + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+
+```
+
+How many species in the dataset have 50% of RDI for EPA in one portion?
+```{r EPA RDI}
+EPA.RDI <- ntbl %>%
+  filter(EPA_g > 0.5) %>% 
+group_by(taxon) %>%
+  tally
+knitr::kable(EPA.RDI)
 ```
 

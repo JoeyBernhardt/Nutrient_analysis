@@ -27,7 +27,7 @@ select(ntbl, ASFIS.Scientific.name, CA_mg)
 #1. Get the min and max of x nutrient/body size, for each species
 #2. Look at the spread of x within each habitat (grouping variable)
 #3. Get a trimmed mean, i.e. mean of some sort of subset of the data
-#4. How does nutrient content vary with body size?
+#4. How does nutrient content vary with body size? Latitude etc. 
 #5. Create some sort of benchmark from the data (i.e. mean, median, quantile, etc.), then determine how many species have a nutrient content less than that
 #6. For each table, make sure to include a relevant figure. 
 # Your figure does not have to depict every last number from the data aggregation result. It just needs to complement the table, add context, and allow for some sanity checking both ways. 
