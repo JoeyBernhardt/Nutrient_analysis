@@ -82,10 +82,8 @@ knitr::kable(calcium)
 ```
 
 How does calcium vary with body size
-```{r body size CA by hab}
-p <- ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), color = Habitat))
-p + geom_point()
-p + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+```{r body size CA by hab, cal.size}
+ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), color = Habitat)) + geom_point() + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
 ```
 
 How many species in the dataset have 50% of RDI for EPA in one portion?
