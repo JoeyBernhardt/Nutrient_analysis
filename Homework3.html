@@ -248,7 +248,7 @@ ntbl %&gt;%
   filter(!is.na(max_size)) %&gt;% 
   group_by(Habitat) %&gt;%
   summarise_each(funs(mean, median, std.error), max_size)
-knitr::kable(mean.size)</code></pre>
+kable(mean.size)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -285,7 +285,7 @@ knitr::kable(mean.size)</code></pre>
   filter(!is.na(max_size)) %&gt;% 
   group_by(taxon) %&gt;%
   summarise_each(funs(mean, median), max_size)
-knitr::kable(taxon.size)</code></pre>
+kable(taxon.size)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -407,7 +407,7 @@ knitr::kable(taxon.size)</code></pre>
   filter(Habitat == &quot;marine&quot;) %&gt;%
   group_by(taxon) %&gt;%
   summarise_each(funs(min, max, mean), CA_mg)
-knitr::kable(calcium)</code></pre>
+kable(calcium)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -534,7 +534,7 @@ knitr::kable(calcium)</code></pre>
   filter(EPA_g &gt; 0.5) %&gt;% 
 group_by(taxon) %&gt;%
   tally
-knitr::kable(EPA.RDI)</code></pre>
+kable(EPA.RDI)</code></pre>
 <table>
 <thead>
 <tr class="header">
