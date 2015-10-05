@@ -71,13 +71,13 @@ taxon.size <- ntbl %>%
 kable(taxon.size)
 ```
 
-```{r calcium range}
+```{r results= 'asis'}
 calcium <- ntbl %>%
   filter(!is.na(CA_mg)) %>%
   filter(Habitat == "marine") %>%
   group_by(taxon) %>%
   summarise_each(funs(min, max, mean), CA_mg)
-kable(calcium)
+knitr:: kable(calcium)
 
 ```
 

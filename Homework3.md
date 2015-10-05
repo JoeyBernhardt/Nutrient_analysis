@@ -289,7 +289,7 @@ calcium <- ntbl %>%
   filter(Habitat == "marine") %>%
   group_by(taxon) %>%
   summarise_each(funs(min, max, mean), CA_mg)
-kable(calcium)
+knitr:: kable(calcium)
 ```
 
 

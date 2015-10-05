@@ -407,7 +407,7 @@ kable(taxon.size)</code></pre>
   filter(Habitat == &quot;marine&quot;) %&gt;%
   group_by(taxon) %&gt;%
   summarise_each(funs(min, max, mean), CA_mg)
-kable(calcium)</code></pre>
+knitr:: kable(calcium)</code></pre>
 <table>
 <thead>
 <tr class="header">
