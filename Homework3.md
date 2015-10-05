@@ -317,18 +317,7 @@ Tunas, bonitos, billfishes             11.00     83.49    42.78600
 How does calcium vary with body size
 
 ```r
-p <- ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), color = Habitat))
-p + geom_point()
-```
-
-```
-## Warning: Removed 1016 rows containing missing values (geom_point).
-```
-
-![](Homework3_files/figure-html/body size CA by hab-1.png) 
-
-```r
-p + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), color = Habitat)) + geom_point() + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
 ```
 
 ```
@@ -343,7 +332,11 @@ p + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(a
 ## Warning: Removed 719 rows containing missing values (stat_smooth).
 ```
 
-![](Homework3_files/figure-html/body size CA by hab-2.png) 
+```
+## Warning: Removed 1016 rows containing missing values (geom_point).
+```
+
+![](Homework3_files/figure-html/body size CA by hab, cal.size-1.png) 
 
 How many species in the dataset have 50% of RDI for EPA in one portion?
 
