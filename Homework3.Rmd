@@ -69,7 +69,7 @@ ntbl %>%
   summarise_each(funs(mean, median), max_size)
 ```
 
-```{r results= 'asis'}
+```{r}
 ntbl %>%
   filter(!is.na(CA_mg)) %>%
   filter(Habitat == "marine") %>%

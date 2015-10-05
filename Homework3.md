@@ -283,27 +283,29 @@ ntbl %>%
   summarise_each(funs(min, max, mean), CA_mg)
 ```
 
-Source: local data frame [17 x 4]
-
-                                taxon    min     max      mean
-                                (chr)  (dbl)   (dbl)     (dbl)
-1                                       8.00  219.00  49.75000
-2           Clams, cockles, arkshells  62.90  327.00 192.73333
-3        Miscellaneous coastal fishes   6.90 1252.61 242.12857
-4        Miscellaneous pelagic fishes   6.00  637.14 234.23143
-5           Abalones, winkles, conchs 444.00 1200.00 782.60000
-6  Carps, barbels and other cyprinids  21.45   21.45  21.45000
-7               Cods, hakes, haddocks   7.80   14.20  10.78182
-8                  Crabs, sea-spiders 112.00  115.00 113.50000
-9          Flounders, halibuts, soles   5.90   28.00  15.50000
-10      Herrings, sardines, anchovies 398.52  398.52 398.52000
-11      Lobsters, spiny-rock lobsters  72.00  110.00  90.66667
-12      Miscellaneous demersal fishes   6.80   14.00  10.60500
-13                            Mussels  67.76   67.76  67.76000
-14                            Oysters  13.14   13.14  13.14000
-15            Sharks, rays, chimaeras  10.00   12.00  11.00000
-16                    Shrimps, prawns  59.10   62.40  60.37500
-17         Tunas, bonitos, billfishes  11.00   83.49  42.78600
+```
+## Source: local data frame [17 x 4]
+## 
+##                                 taxon    min     max      mean
+##                                 (chr)  (dbl)   (dbl)     (dbl)
+## 1                                       8.00  219.00  49.75000
+## 2           Clams, cockles, arkshells  62.90  327.00 192.73333
+## 3        Miscellaneous coastal fishes   6.90 1252.61 242.12857
+## 4        Miscellaneous pelagic fishes   6.00  637.14 234.23143
+## 5           Abalones, winkles, conchs 444.00 1200.00 782.60000
+## 6  Carps, barbels and other cyprinids  21.45   21.45  21.45000
+## 7               Cods, hakes, haddocks   7.80   14.20  10.78182
+## 8                  Crabs, sea-spiders 112.00  115.00 113.50000
+## 9          Flounders, halibuts, soles   5.90   28.00  15.50000
+## 10      Herrings, sardines, anchovies 398.52  398.52 398.52000
+## 11      Lobsters, spiny-rock lobsters  72.00  110.00  90.66667
+## 12      Miscellaneous demersal fishes   6.80   14.00  10.60500
+## 13                            Mussels  67.76   67.76  67.76000
+## 14                            Oysters  13.14   13.14  13.14000
+## 15            Sharks, rays, chimaeras  10.00   12.00  11.00000
+## 16                    Shrimps, prawns  59.10   62.40  60.37500
+## 17         Tunas, bonitos, billfishes  11.00   83.49  42.78600
+```
 
 How does calcium vary with body size
 
