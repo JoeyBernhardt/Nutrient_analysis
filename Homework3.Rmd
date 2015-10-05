@@ -53,12 +53,11 @@ ntbl %>%
 
 How does body size vary by habitat?
 ```{r}
-mean.size <- ntbl %>%
+ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
   summarise_each(funs(mean, median, std.error), max_size)
-kable(mean.size)
 ```
 
 How does body size vary by taxon?

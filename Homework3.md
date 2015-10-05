@@ -229,21 +229,22 @@ ntbl %>%
 How does body size vary by habitat?
 
 ```r
-mean.size <- ntbl %>%
+ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
   summarise_each(funs(mean, median, std.error), max_size)
-kable(mean.size)
 ```
 
-
-
-Habitat            mean     median    std.error
------------  ----------  ---------  -----------
-brackish       3076.059   3703.477     347.3409
-freshwater    23428.190   3658.227    5289.1943
-marine        34954.391   2753.823   12989.8103
+```
+## Source: local data frame [3 x 4]
+## 
+##      Habitat      mean   median  std.error
+##        (chr)     (dbl)    (dbl)      (dbl)
+## 1   brackish  3076.059 3703.477   347.3409
+## 2 freshwater 23428.190 3658.227  5289.1943
+## 3     marine 34954.391 2753.823 12989.8103
+```
 
 How does body size vary by taxon?
 

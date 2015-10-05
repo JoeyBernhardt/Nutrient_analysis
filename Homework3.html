@@ -243,42 +243,18 @@ ntbl %&gt;%
 ## 2 freshwater   381
 ## 3     marine   792</code></pre>
 <p>How does body size vary by habitat?</p>
-<pre class="r"><code>mean.size &lt;- ntbl %&gt;%
+<pre class="r"><code>ntbl %&gt;%
   filter(Habitat %in% c(&quot;marine&quot;, &quot;freshwater&quot;, &quot;brackish&quot;)) %&gt;%
   filter(!is.na(max_size)) %&gt;% 
   group_by(Habitat) %&gt;%
-  summarise_each(funs(mean, median, std.error), max_size)
-kable(mean.size)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Habitat</th>
-<th align="right">mean</th>
-<th align="right">median</th>
-<th align="right">std.error</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">brackish</td>
-<td align="right">3076.059</td>
-<td align="right">3703.477</td>
-<td align="right">347.3409</td>
-</tr>
-<tr class="even">
-<td align="left">freshwater</td>
-<td align="right">23428.190</td>
-<td align="right">3658.227</td>
-<td align="right">5289.1943</td>
-</tr>
-<tr class="odd">
-<td align="left">marine</td>
-<td align="right">34954.391</td>
-<td align="right">2753.823</td>
-<td align="right">12989.8103</td>
-</tr>
-</tbody>
-</table>
+  summarise_each(funs(mean, median, std.error), max_size)</code></pre>
+<pre><code>## Source: local data frame [3 x 4]
+## 
+##      Habitat      mean   median  std.error
+##        (chr)     (dbl)    (dbl)      (dbl)
+## 1   brackish  3076.059 3703.477   347.3409
+## 2 freshwater 23428.190 3658.227  5289.1943
+## 3     marine 34954.391 2753.823 12989.8103</code></pre>
 <p>How does body size vary by taxon?</p>
 <pre class="r"><code>taxon.size &lt;- ntbl %&gt;%
   filter(Habitat %in% c(&quot;marine&quot;, &quot;freshwater&quot;, &quot;brackish&quot;)) %&gt;%
