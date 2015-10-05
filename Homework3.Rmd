@@ -62,22 +62,19 @@ ntbl %>%
 
 How does body size vary by taxon?
 ```{r}
-taxon.size <- ntbl %>%
+ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
-kable(taxon.size)
 ```
 
 ```{r results= 'asis'}
-calcium <- ntbl %>%
+ntbl %>%
   filter(!is.na(CA_mg)) %>%
   filter(Habitat == "marine") %>%
   group_by(taxon) %>%
   summarise_each(funs(min, max, mean), CA_mg)
-knitr:: kable(calcium)
-
 ```
 
 How does calcium vary with body size
@@ -87,9 +84,8 @@ ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size)
 
 How many species in the dataset have 50% of RDI for EPA in one portion?
 ```{r EPA RDI}
-EPA.RDI <- ntbl %>%
+ntbl %>%
   filter(EPA_g > 0.5) %>% 
 group_by(taxon) %>%
   tally
-kable(EPA.RDI)
 ```

@@ -249,71 +249,61 @@ ntbl %>%
 How does body size vary by taxon?
 
 ```r
-taxon.size <- ntbl %>%
+ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
-kable(taxon.size)
+```
+
+```
+## Source: local data frame [21 x 3]
+## 
+##                                 taxon         mean      median
+##                                 (chr)        (dbl)       (dbl)
+## 1                                      14681.79330 10445.97158
+## 2           Clams, cockles, arkshells     12.67195    12.67195
+## 3        Miscellaneous coastal fishes   4552.76846  1641.50191
+## 4     Miscellaneous diadromous fishes  57650.91850 59097.79551
+## 5     Miscellaneous freshwater fishes  45154.25052  7582.46744
+## 6        Miscellaneous pelagic fishes   5472.45047  2610.79301
+## 7                               Shads   2796.98838  3703.47653
+## 8  Carps, barbels and other cyprinids   3933.27114  1456.16610
+## 9               Cods, hakes, haddocks  22216.97698 12308.95159
+## 10         Flounders, halibuts, soles 141206.47064  2261.37504
+## ..                                ...          ...         ...
 ```
 
 
-
-taxon                                         mean         median
------------------------------------  -------------  -------------
-                                      1.468179e+04   1.044597e+04
-Clams, cockles, arkshells             1.267195e+01   1.267195e+01
-Miscellaneous coastal fishes          4.552768e+03   1.641502e+03
-Miscellaneous diadromous fishes       5.765092e+04   5.909780e+04
-Miscellaneous freshwater fishes       4.515425e+04   7.582467e+03
-Miscellaneous pelagic fishes          5.472450e+03   2.610793e+03
-Shads                                 2.796988e+03   3.703477e+03
-Carps, barbels and other cyprinids    3.933271e+03   1.456166e+03
-Cods, hakes, haddocks                 2.221698e+04   1.230895e+04
-Flounders, halibuts, soles            1.412065e+05   2.261375e+03
-Herrings, sardines, anchovies         2.968979e+02   1.345720e+02
-Lobsters, spiny-rock lobsters         1.475762e-01   1.475762e-01
-Miscellaneous demersal fishes         9.172275e+03   2.314919e+03
-Oysters                               2.341686e-01   2.341686e-01
-River eels                            4.345957e+03   4.434354e+03
-Salmons, trouts, smelts               7.742402e+03   4.039240e+03
-Sharks, rays, chimaeras               6.237867e+04   1.149189e+04
-Shrimps, prawns                       4.594069e+01   5.897300e-02
-Sturgeons, paddlefishes               6.076626e+06   6.076626e+06
-Tilapias and other cichlids           2.843935e+03   3.658227e+03
-Tunas, bonitos, billfishes            9.072954e+04   8.357213e+03
-
-
 ```r
-calcium <- ntbl %>%
+ntbl %>%
   filter(!is.na(CA_mg)) %>%
   filter(Habitat == "marine") %>%
   group_by(taxon) %>%
   summarise_each(funs(min, max, mean), CA_mg)
-knitr:: kable(calcium)
 ```
 
+Source: local data frame [17 x 4]
 
-
-taxon                                    min       max        mean
------------------------------------  -------  --------  ----------
-                                        8.00    219.00    49.75000
-Clams, cockles, arkshells              62.90    327.00   192.73333
-Miscellaneous coastal fishes            6.90   1252.61   242.12857
-Miscellaneous pelagic fishes            6.00    637.14   234.23143
-Abalones, winkles, conchs             444.00   1200.00   782.60000
-Carps, barbels and other cyprinids     21.45     21.45    21.45000
-Cods, hakes, haddocks                   7.80     14.20    10.78182
-Crabs, sea-spiders                    112.00    115.00   113.50000
-Flounders, halibuts, soles              5.90     28.00    15.50000
-Herrings, sardines, anchovies         398.52    398.52   398.52000
-Lobsters, spiny-rock lobsters          72.00    110.00    90.66667
-Miscellaneous demersal fishes           6.80     14.00    10.60500
-Mussels                                67.76     67.76    67.76000
-Oysters                                13.14     13.14    13.14000
-Sharks, rays, chimaeras                10.00     12.00    11.00000
-Shrimps, prawns                        59.10     62.40    60.37500
-Tunas, bonitos, billfishes             11.00     83.49    42.78600
+                                taxon    min     max      mean
+                                (chr)  (dbl)   (dbl)     (dbl)
+1                                       8.00  219.00  49.75000
+2           Clams, cockles, arkshells  62.90  327.00 192.73333
+3        Miscellaneous coastal fishes   6.90 1252.61 242.12857
+4        Miscellaneous pelagic fishes   6.00  637.14 234.23143
+5           Abalones, winkles, conchs 444.00 1200.00 782.60000
+6  Carps, barbels and other cyprinids  21.45   21.45  21.45000
+7               Cods, hakes, haddocks   7.80   14.20  10.78182
+8                  Crabs, sea-spiders 112.00  115.00 113.50000
+9          Flounders, halibuts, soles   5.90   28.00  15.50000
+10      Herrings, sardines, anchovies 398.52  398.52 398.52000
+11      Lobsters, spiny-rock lobsters  72.00  110.00  90.66667
+12      Miscellaneous demersal fishes   6.80   14.00  10.60500
+13                            Mussels  67.76   67.76  67.76000
+14                            Oysters  13.14   13.14  13.14000
+15            Sharks, rays, chimaeras  10.00   12.00  11.00000
+16                    Shrimps, prawns  59.10   62.40  60.37500
+17         Tunas, bonitos, billfishes  11.00   83.49  42.78600
 
 How does calcium vary with body size
 
@@ -342,25 +332,26 @@ ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size)
 How many species in the dataset have 50% of RDI for EPA in one portion?
 
 ```r
-EPA.RDI <- ntbl %>%
+ntbl %>%
   filter(EPA_g > 0.5) %>% 
 group_by(taxon) %>%
   tally
-kable(EPA.RDI)
 ```
 
-
-
-taxon                               n
---------------------------------  ---
-Miscellaneous coastal fishes        4
-Miscellaneous freshwater fishes     1
-Miscellaneous pelagic fishes        8
-Shads                               2
-Abalones, winkles, conchs           1
-Cods, hakes, haddocks               1
-Crabs, sea-spiders                  2
-Herrings, sardines, anchovies      16
-Miscellaneous demersal fishes       3
-Salmons, trouts, smelts             1
-Tunas, bonitos, billfishes          6
+```
+## Source: local data frame [11 x 2]
+## 
+##                               taxon     n
+##                               (chr) (int)
+## 1      Miscellaneous coastal fishes     4
+## 2   Miscellaneous freshwater fishes     1
+## 3      Miscellaneous pelagic fishes     8
+## 4                             Shads     2
+## 5         Abalones, winkles, conchs     1
+## 6             Cods, hakes, haddocks     1
+## 7                Crabs, sea-spiders     2
+## 8     Herrings, sardines, anchovies    16
+## 9     Miscellaneous demersal fishes     3
+## 10          Salmons, trouts, smelts     1
+## 11       Tunas, bonitos, billfishes     6
+```
