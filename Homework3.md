@@ -229,68 +229,67 @@ taxon.size <- ntbl %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
-knitr::kable(taxon.size, align = 'c', format = 'markdown')
+knitr::kable(taxon.size, align = 'c', format = 'markdown', digits = 2)
 ```
 
 
 
-|               taxon                |     mean     |    median    |
-|:----------------------------------:|:------------:|:------------:|
-|                                    |  14.6817933  |  10.4459716  |
-|     Clams, cockles, arkshells      |  0.0126719   |  0.0126719   |
-|    Miscellaneous coastal fishes    |  4.5527685   |  1.6415019   |
-|  Miscellaneous diadromous fishes   |  57.6509185  |  59.0977955  |
-|  Miscellaneous freshwater fishes   |  45.1542505  |  7.5824674   |
-|    Miscellaneous pelagic fishes    |  5.4724505   |  2.6107930   |
-|               Shads                |  2.7969884   |  3.7034765   |
-| Carps, barbels and other cyprinids |  3.9332711   |  1.4561661   |
-|       Cods, hakes, haddocks        |  22.2169770  |  12.3089516  |
-|     Flounders, halibuts, soles     | 141.2064706  |  2.2613750   |
-|   Herrings, sardines, anchovies    |  0.2968979   |  0.1345720   |
-|   Lobsters, spiny-rock lobsters    |  0.0001476   |  0.0001476   |
-|   Miscellaneous demersal fishes    |  9.1722753   |  2.3149192   |
-|              Oysters               |  0.0002342   |  0.0002342   |
-|             River eels             |  4.3459565   |  4.4343539   |
-|      Salmons, trouts, smelts       |  7.7424025   |  4.0392401   |
-|      Sharks, rays, chimaeras       |  62.3786674  |  11.4918862  |
-|          Shrimps, prawns           |  0.0459407   |  0.0000590   |
-|      Sturgeons, paddlefishes       | 6076.6260795 | 6076.6260795 |
-|    Tilapias and other cichlids     |  2.8439355   |  3.6582266   |
-|     Tunas, bonitos, billfishes     |  90.7295408  |  8.3572133   |
+|               taxon                |  mean   | median  |
+|:----------------------------------:|:-------:|:-------:|
+|                                    |  14.68  |  10.45  |
+|     Clams, cockles, arkshells      |  0.01   |  0.01   |
+|    Miscellaneous coastal fishes    |  4.55   |  1.64   |
+|  Miscellaneous diadromous fishes   |  57.65  |  59.10  |
+|  Miscellaneous freshwater fishes   |  45.15  |  7.58   |
+|    Miscellaneous pelagic fishes    |  5.47   |  2.61   |
+|               Shads                |  2.80   |  3.70   |
+| Carps, barbels and other cyprinids |  3.93   |  1.46   |
+|       Cods, hakes, haddocks        |  22.22  |  12.31  |
+|     Flounders, halibuts, soles     | 141.21  |  2.26   |
+|   Herrings, sardines, anchovies    |  0.30   |  0.13   |
+|   Lobsters, spiny-rock lobsters    |  0.00   |  0.00   |
+|   Miscellaneous demersal fishes    |  9.17   |  2.31   |
+|              Oysters               |  0.00   |  0.00   |
+|             River eels             |  4.35   |  4.43   |
+|      Salmons, trouts, smelts       |  7.74   |  4.04   |
+|      Sharks, rays, chimaeras       |  62.38  |  11.49  |
+|          Shrimps, prawns           |  0.05   |  0.00   |
+|      Sturgeons, paddlefishes       | 6076.63 | 6076.63 |
+|    Tilapias and other cichlids     |  2.84   |  3.66   |
+|     Tunas, bonitos, billfishes     |  90.73  |  8.36   |
 
 How does calcium content vary across taxa?
 
 ```r
-ntbl %>%
+calcium <- ntbl %>%
   filter(!is.na(CA_mg)) %>%
   filter(Habitat == "marine") %>%
   group_by(taxon) %>%
   summarise_each(funs(min, max, mean), CA_mg)
+knitr::kable(calcium, align = 'c', format = 'markdown', digits = 2)
 ```
 
-```
-## Source: local data frame [17 x 4]
-## 
-##                                 taxon    min     max      mean
-##                                 (chr)  (dbl)   (dbl)     (dbl)
-## 1                                       8.00  219.00  49.75000
-## 2           Clams, cockles, arkshells  62.90  327.00 192.73333
-## 3        Miscellaneous coastal fishes   6.90 1252.61 242.12857
-## 4        Miscellaneous pelagic fishes   6.00  637.14 234.23143
-## 5           Abalones, winkles, conchs 444.00 1200.00 782.60000
-## 6  Carps, barbels and other cyprinids  21.45   21.45  21.45000
-## 7               Cods, hakes, haddocks   7.80   14.20  10.78182
-## 8                  Crabs, sea-spiders 112.00  115.00 113.50000
-## 9          Flounders, halibuts, soles   5.90   28.00  15.50000
-## 10      Herrings, sardines, anchovies 398.52  398.52 398.52000
-## 11      Lobsters, spiny-rock lobsters  72.00  110.00  90.66667
-## 12      Miscellaneous demersal fishes   6.80   14.00  10.60500
-## 13                            Mussels  67.76   67.76  67.76000
-## 14                            Oysters  13.14   13.14  13.14000
-## 15            Sharks, rays, chimaeras  10.00   12.00  11.00000
-## 16                    Shrimps, prawns  59.10   62.40  60.37500
-## 17         Tunas, bonitos, billfishes  11.00   83.49  42.78600
-```
+
+
+|               taxon                |  min   |   max   |  mean  |
+|:----------------------------------:|:------:|:-------:|:------:|
+|                                    |  8.00  | 219.00  | 49.75  |
+|     Clams, cockles, arkshells      | 62.90  | 327.00  | 192.73 |
+|    Miscellaneous coastal fishes    |  6.90  | 1252.61 | 242.13 |
+|    Miscellaneous pelagic fishes    |  6.00  | 637.14  | 234.23 |
+|     Abalones, winkles, conchs      | 444.00 | 1200.00 | 782.60 |
+| Carps, barbels and other cyprinids | 21.45  |  21.45  | 21.45  |
+|       Cods, hakes, haddocks        |  7.80  |  14.20  | 10.78  |
+|         Crabs, sea-spiders         | 112.00 | 115.00  | 113.50 |
+|     Flounders, halibuts, soles     |  5.90  |  28.00  | 15.50  |
+|   Herrings, sardines, anchovies    | 398.52 | 398.52  | 398.52 |
+|   Lobsters, spiny-rock lobsters    | 72.00  | 110.00  | 90.67  |
+|   Miscellaneous demersal fishes    |  6.80  |  14.00  | 10.61  |
+|              Mussels               | 67.76  |  67.76  | 67.76  |
+|              Oysters               | 13.14  |  13.14  | 13.14  |
+|      Sharks, rays, chimaeras       | 10.00  |  12.00  | 11.00  |
+|          Shrimps, prawns           | 59.10  |  62.40  | 60.38  |
+|     Tunas, bonitos, billfishes     | 11.00  |  83.49  | 42.79  |
 
 How does calcium vary with body size?
 

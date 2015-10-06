@@ -75,17 +75,19 @@ taxon.size <- ntbl %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
-knitr::kable(taxon.size, align = 'c', format = 'markdown')
+knitr::kable(taxon.size, align = 'c', format = 'markdown', digits = 2)
 
 ```
 
 How does calcium content vary across taxa?
 ```{r}
-ntbl %>%
+calcium <- ntbl %>%
   filter(!is.na(CA_mg)) %>%
   filter(Habitat == "marine") %>%
   group_by(taxon) %>%
   summarise_each(funs(min, max, mean), CA_mg)
+knitr::kable(calcium, align = 'c', format = 'markdown', digits = 2)
+
 ```
 
 How does calcium vary with body size?
