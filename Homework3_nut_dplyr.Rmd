@@ -17,9 +17,6 @@ library(Hmisc)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=FALSE)
 
-str(nut)
-summary(nut)
-
 ntbl <- tbl_df(nut)
 
 glimpse(ntbl)
@@ -50,15 +47,10 @@ ntbl %>%
 
 How many observations are there per habitat?
 ```{r}
-ntbl %>%
-  group_by(Habitat) %>%
-  summarize(n_obs = n())
-```
-
-```{r}
-ntbl %>%
+n_obs_hab <- ntbl %>%
   group_by(Habitat) %>%
   tally
+knitr::kable(n_obs_hab, align = 'c', format = 'markdown')
 ```
 
 What if we want to know the number of species in each habitat?
@@ -68,15 +60,15 @@ mean.size <- ntbl %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
   summarise_each(funs(mean, median, std.error), max_size)
-knitr::kable(mean.size)
+knitr::kable(mean.size, align = 'c', format = 'markdown')
 
 
 taxon.size <- ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
-  summarise_each(funs(mean, median), max_size/1000)
-knitr::kable(taxon.size)
+  summarise_each(funs(mean, median), max_size)
+knitr::kable(taxon.size, align = 'c', format = 'markdown')
 ```
 ```{r min and max}
 calcium <- ntbl %>%

@@ -45,28 +45,33 @@ ntbl %>%
 
 What if we want to know the number of species in each habitat?
 ```{r}
-ntbl %>%
+n_obs_hab <- ntbl %>%
   group_by(Habitat) %>%
   tally
+knitr::kable(n_obs_hab, align = 'c', format = 'markdown')
 ```
 
 
 How does body size vary by habitat?
 ```{r}
-ntbl %>%
+hab.size <- ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
   summarise_each(funs(mean, median, std.error), max_size)
+knitr::kable(hab.size, align = 'c', format = 'markdown')
+
 ```
 
 How does body size vary by taxon?
 ```{r}
-ntbl %>%
+taxon.size <- ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(taxon) %>%
   summarise_each(funs(mean, median), max_size)
+knitr::kable(taxon.size, align = 'c', format = 'markdown')
+
 ```
 
 ```{r}
@@ -77,15 +82,16 @@ ntbl %>%
   summarise_each(funs(min, max, mean), CA_mg)
 ```
 
-How does calcium vary with body size
+How does calcium vary with body size?
 ```{r body size CA by hab, cal.size}
-ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), color = Habitat)) + geom_point() + stat_summary(aes(y = log(CA_mg)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), group = Habitat, color = Habitat)) + geom_point() + stat_summary(aes(y = log(CA_mg)), fun.y= mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
 ```
 
 How many species in the dataset have 50% of RDI for EPA in one portion?
 ```{r EPA RDI}
-ntbl %>%
+EPA.RDI <- ntbl %>%
   filter(EPA_g > 0.5) %>% 
 group_by(taxon) %>%
   tally
+knitr::kable(EPA.RDI, align = 'c', format = 'markdown')
 ```
