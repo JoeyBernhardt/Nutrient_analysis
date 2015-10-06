@@ -12,46 +12,11 @@ library(ggthemes)
 ```
 
 ```r
-library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
+suppressPackageStartupMessages(library(dplyr))
 library(ggplot2)
 library(knitr)
-library(Hmisc)
-```
+suppressPackageStartupMessages(library(Hmisc))
 
-```
-## Loading required package: grid
-## Loading required package: lattice
-## Loading required package: survival
-## Loading required package: Formula
-## 
-## Attaching package: 'Hmisc'
-## 
-## The following objects are masked from 'package:dplyr':
-## 
-##     combine, src, summarize
-## 
-## The following objects are masked from 'package:base':
-## 
-##     format.pval, round.POSIXt, trunc.POSIXt, units
-```
-
-```r
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=FALSE)
 
 ntbl <- tbl_df(nut)
@@ -182,7 +147,7 @@ Convert max length to max body size using length-weight conversion (W = a × L^b
 
 ```r
 ntbl <- ntbl %>%
-  mutate(max_size = lwA * (max_length^lwB))
+  mutate(max_size = (lwA * (max_length^lwB)/1000))
 ntbl %>%
   glimpse()
 ```
@@ -204,7 +169,7 @@ ntbl %>%
 ## $ Habitat    (chr) "marine", "freshwater", "freshwater", "freshwater",...
 ## $ Subgroup   (chr) "Finfish", "Finfish", "Finfish", "Finfish", "Finfis...
 ## $ Abs_lat    (dbl) 53.87537, 54.08424, 41.53000, 54.00394, 54.11710, 5...
-## $ max_size   (dbl) 8900.07469, 8900.07469, 8900.07469, 8900.07469, 890...
+## $ max_size   (dbl) 8.90007469, 8.90007469, 8.90007469, 8.90007469, 8.9...
 ```
 
 What if we want to know the number of species in each habitat?
@@ -232,17 +197,29 @@ hab.size <- ntbl %>%
   filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
-  summarise_each(funs(mean, median, std.error), max_size)
+  summarise_each(funs(mean, median, min, max, std.error), max_size)
 knitr::kable(hab.size, align = 'c', format = 'markdown')
 ```
 
 
 
-|  Habitat   |   mean    |  median  | std.error  |
-|:----------:|:---------:|:--------:|:----------:|
-|  brackish  | 3076.059  | 3703.477 |  347.3409  |
-| freshwater | 23428.190 | 3658.227 | 5289.1943  |
-|   marine   | 34954.391 | 2753.823 | 12989.8103 |
+|  Habitat   |   mean    |  median  |    min    |     max     | std.error  |
+|:----------:|:---------:|:--------:|:---------:|:-----------:|:----------:|
+|  brackish  | 3.076059  | 3.703476 | 0.0315295 |  3.703476   | 0.3473409  |
+| freshwater | 23.428190 | 3.658227 | 0.0005305 | 839.322900  | 5.2891943  |
+|   marine   | 34.954391 | 2.753823 | 0.0000590 | 6076.626079 | 12.9898103 |
+
+Oh good, it looks like body size is pretty consistent across habitats. 
+
+```r
+ggplot(ntbl, aes(x = Habitat, y = log(max_size))) + geom_boxplot(aes(group = Habitat, color = Habitat)) + ylab("log body mass (kg)") + theme_pander()
+```
+
+```
+## Warning: Removed 205 rows containing non-finite values (stat_boxplot).
+```
+
+![](Homework3_files/figure-html/unnamed-chunk-6-1.png) 
 
 How does body size vary by taxon?
 
@@ -259,28 +236,29 @@ knitr::kable(taxon.size, align = 'c', format = 'markdown')
 
 |               taxon                |     mean     |    median    |
 |:----------------------------------:|:------------:|:------------:|
-|                                    | 1.468179e+04 | 1.044597e+04 |
-|     Clams, cockles, arkshells      | 1.267195e+01 | 1.267195e+01 |
-|    Miscellaneous coastal fishes    | 4.552768e+03 | 1.641502e+03 |
-|  Miscellaneous diadromous fishes   | 5.765092e+04 | 5.909780e+04 |
-|  Miscellaneous freshwater fishes   | 4.515425e+04 | 7.582467e+03 |
-|    Miscellaneous pelagic fishes    | 5.472450e+03 | 2.610793e+03 |
-|               Shads                | 2.796988e+03 | 3.703477e+03 |
-| Carps, barbels and other cyprinids | 3.933271e+03 | 1.456166e+03 |
-|       Cods, hakes, haddocks        | 2.221698e+04 | 1.230895e+04 |
-|     Flounders, halibuts, soles     | 1.412065e+05 | 2.261375e+03 |
-|   Herrings, sardines, anchovies    | 2.968979e+02 | 1.345720e+02 |
-|   Lobsters, spiny-rock lobsters    | 1.475762e-01 | 1.475762e-01 |
-|   Miscellaneous demersal fishes    | 9.172275e+03 | 2.314919e+03 |
-|              Oysters               | 2.341686e-01 | 2.341686e-01 |
-|             River eels             | 4.345957e+03 | 4.434354e+03 |
-|      Salmons, trouts, smelts       | 7.742402e+03 | 4.039240e+03 |
-|      Sharks, rays, chimaeras       | 6.237867e+04 | 1.149189e+04 |
-|          Shrimps, prawns           | 4.594069e+01 | 5.897300e-02 |
-|      Sturgeons, paddlefishes       | 6.076626e+06 | 6.076626e+06 |
-|    Tilapias and other cichlids     | 2.843935e+03 | 3.658227e+03 |
-|     Tunas, bonitos, billfishes     | 9.072954e+04 | 8.357213e+03 |
+|                                    |  14.6817933  |  10.4459716  |
+|     Clams, cockles, arkshells      |  0.0126719   |  0.0126719   |
+|    Miscellaneous coastal fishes    |  4.5527685   |  1.6415019   |
+|  Miscellaneous diadromous fishes   |  57.6509185  |  59.0977955  |
+|  Miscellaneous freshwater fishes   |  45.1542505  |  7.5824674   |
+|    Miscellaneous pelagic fishes    |  5.4724505   |  2.6107930   |
+|               Shads                |  2.7969884   |  3.7034765   |
+| Carps, barbels and other cyprinids |  3.9332711   |  1.4561661   |
+|       Cods, hakes, haddocks        |  22.2169770  |  12.3089516  |
+|     Flounders, halibuts, soles     | 141.2064706  |  2.2613750   |
+|   Herrings, sardines, anchovies    |  0.2968979   |  0.1345720   |
+|   Lobsters, spiny-rock lobsters    |  0.0001476   |  0.0001476   |
+|   Miscellaneous demersal fishes    |  9.1722753   |  2.3149192   |
+|              Oysters               |  0.0002342   |  0.0002342   |
+|             River eels             |  4.3459565   |  4.4343539   |
+|      Salmons, trouts, smelts       |  7.7424025   |  4.0392401   |
+|      Sharks, rays, chimaeras       |  62.3786674  |  11.4918862  |
+|          Shrimps, prawns           |  0.0459407   |  0.0000590   |
+|      Sturgeons, paddlefishes       | 6076.6260795 | 6076.6260795 |
+|    Tilapias and other cichlids     |  2.8439355   |  3.6582266   |
+|     Tunas, bonitos, billfishes     |  90.7295408  |  8.3572133   |
 
+How does calcium content vary across taxa?
 
 ```r
 ntbl %>%
@@ -334,7 +312,7 @@ ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=max_size, y=C
 
 ![](Homework3_files/figure-html/body size CA by hab, cal.size-1.png) 
 
-How many species in the dataset have 50% of RDI for EPA in one portion?
+The recommended daily intake (RDI) for EPA, an essential fatty acid in the human diet is 1g/day. How many species in the dataset have 50% of RDI for EPA in one portion?
 
 ```r
 EPA.RDI <- ntbl %>%
