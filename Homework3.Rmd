@@ -84,7 +84,7 @@ ntbl %>%
 
 How does calcium vary with body size?
 ```{r body size CA by hab, cal.size}
-ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), group = Habitat, color = Habitat)) + geom_point() + stat_summary(aes(y = log(CA_mg)), fun.y= mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=max_size, y=CA_mg, group = Habitat, color = Habitat)) + stat_summary(fun.y= "mean", geom = "point") + geom_hline(aes(yintercept=250)) + stat_smooth(method = "lm") + theme_pander() + scale_x_log10() + scale_y_log10()
 ```
 
 How many species in the dataset have 50% of RDI for EPA in one portion?
@@ -93,5 +93,13 @@ EPA.RDI <- ntbl %>%
   filter(EPA_g > 0.5) %>% 
 group_by(taxon) %>%
   tally
-knitr::kable(EPA.RDI, align = 'c', format = 'markdown')
+
+EPA.RDI.prop <- EPA.RDI %>% mutate (RDI.prop = (n/45)*100)
+knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown')
+
+EPA.total <- ntbl %>%
+filter(!is.na(EPA_g)) %>% 
+  group_by(taxon) %>%
+  tally
+knitr::kable(EPA.total, align = 'c', format = 'markdown')
 ```

@@ -317,7 +317,7 @@ ntbl %>%
 How does calcium vary with body size?
 
 ```r
-ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size), y=log(CA_mg), group = Habitat, color = Habitat)) + geom_point() + stat_summary(aes(y = log(CA_mg)), fun.y= mean, geom = "point") + geom_hline(aes(yintercept=log(250))) + stat_smooth(method = "lm") + theme_pander()
+ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=max_size, y=CA_mg, group = Habitat, color = Habitat)) + stat_summary(fun.y= "mean", geom = "point") + geom_hline(aes(yintercept=250)) + stat_smooth(method = "lm") + theme_pander() + scale_x_log10() + scale_y_log10()
 ```
 
 ```
@@ -332,10 +332,6 @@ ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=log(max_size)
 ## Warning: Removed 719 rows containing missing values (stat_smooth).
 ```
 
-```
-## Warning: Removed 1016 rows containing missing values (geom_point).
-```
-
 ![](Homework3_files/figure-html/body size CA by hab, cal.size-1.png) 
 
 How many species in the dataset have 50% of RDI for EPA in one portion?
@@ -345,21 +341,62 @@ EPA.RDI <- ntbl %>%
   filter(EPA_g > 0.5) %>% 
 group_by(taxon) %>%
   tally
-knitr::kable(EPA.RDI, align = 'c', format = 'markdown')
+
+EPA.RDI.prop <- EPA.RDI %>% mutate (RDI.prop = (n/45)*100)
+knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown')
 ```
 
 
 
-|              taxon              | n  |
-|:-------------------------------:|:--:|
-|  Miscellaneous coastal fishes   | 4  |
-| Miscellaneous freshwater fishes | 1  |
-|  Miscellaneous pelagic fishes   | 8  |
-|              Shads              | 2  |
-|    Abalones, winkles, conchs    | 1  |
-|      Cods, hakes, haddocks      | 1  |
-|       Crabs, sea-spiders        | 2  |
-|  Herrings, sardines, anchovies  | 16 |
-|  Miscellaneous demersal fishes  | 3  |
-|     Salmons, trouts, smelts     | 1  |
-|   Tunas, bonitos, billfishes    | 6  |
+|              taxon              | n  | RDI.prop  |
+|:-------------------------------:|:--:|:---------:|
+|  Miscellaneous coastal fishes   | 4  | 8.888889  |
+| Miscellaneous freshwater fishes | 1  | 2.222222  |
+|  Miscellaneous pelagic fishes   | 8  | 17.777778 |
+|              Shads              | 2  | 4.444444  |
+|    Abalones, winkles, conchs    | 1  | 2.222222  |
+|      Cods, hakes, haddocks      | 1  | 2.222222  |
+|       Crabs, sea-spiders        | 2  | 4.444444  |
+|  Herrings, sardines, anchovies  | 16 | 35.555556 |
+|  Miscellaneous demersal fishes  | 3  | 6.666667  |
+|     Salmons, trouts, smelts     | 1  | 2.222222  |
+|   Tunas, bonitos, billfishes    | 6  | 13.333333 |
+
+```r
+EPA.total <- ntbl %>%
+filter(!is.na(EPA_g)) %>% 
+  group_by(taxon) %>%
+  tally
+knitr::kable(EPA.total, align = 'c', format = 'markdown')
+```
+
+
+
+|               taxon                | n  |
+|:----------------------------------:|:--:|
+|     Clams, cockles, arkshells      | 8  |
+|    Miscellaneous coastal fishes    | 84 |
+|  Miscellaneous diadromous fishes   | 8  |
+|  Miscellaneous freshwater fishes   | 67 |
+|    Miscellaneous pelagic fishes    | 52 |
+|               Shads                | 2  |
+|     Abalones, winkles, conchs      | 3  |
+| Carps, barbels and other cyprinids | 14 |
+|       Cods, hakes, haddocks        | 27 |
+|         Crabs, sea-spiders         | 8  |
+|     Flounders, halibuts, soles     | 12 |
+|       Freshwater crustaceans       | 4  |
+|   Herrings, sardines, anchovies    | 34 |
+|     King crabs, squat-lobsters     | 2  |
+|   Krill, planktonic crustaceans    | 1  |
+|   Lobsters, spiny-rock lobsters    | 10 |
+|   Miscellaneous demersal fishes    | 35 |
+|              Mussels               | 2  |
+|              Oysters               | 4  |
+|             River eels             | 1  |
+|      Salmons, trouts, smelts       | 42 |
+|      Sharks, rays, chimaeras       | 11 |
+|          Shrimps, prawns           | 26 |
+|  Squids, cuttlefishes, octopuses   | 23 |
+|    Tilapias and other cichlids     | 17 |
+|     Tunas, bonitos, billfishes     | 25 |
