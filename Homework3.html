@@ -212,7 +212,7 @@ ntbl %&gt;%
 <pre class="r"><code>n_obs_hab &lt;- ntbl %&gt;%
   group_by(Habitat) %&gt;%
   tally
-knitr::kable(n_obs_hab, align = 'c', format = 'markdown')</code></pre>
+knitr::kable(n_obs_hab, align = 'c', format = 'markdown', digits = 2)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -241,7 +241,7 @@ knitr::kable(n_obs_hab, align = 'c', format = 'markdown')</code></pre>
   filter(!is.na(max_size)) %&gt;% 
   group_by(Habitat) %&gt;%
   summarise_each(funs(mean, median, min, max, std.error), max_size)
-knitr::kable(hab.size, align = 'c', format = 'markdown')</code></pre>
+knitr::kable(hab.size, align = 'c', format = 'markdown', digits = 2)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -256,27 +256,27 @@ knitr::kable(hab.size, align = 'c', format = 'markdown')</code></pre>
 <tbody>
 <tr class="odd">
 <td align="center">brackish</td>
-<td align="center">3.076059</td>
-<td align="center">3.703476</td>
-<td align="center">0.0315295</td>
-<td align="center">3.703476</td>
-<td align="center">0.3473409</td>
+<td align="center">3.08</td>
+<td align="center">3.70</td>
+<td align="center">0.03</td>
+<td align="center">3.70</td>
+<td align="center">0.35</td>
 </tr>
 <tr class="even">
 <td align="center">freshwater</td>
-<td align="center">23.428190</td>
-<td align="center">3.658227</td>
-<td align="center">0.0005305</td>
-<td align="center">839.322900</td>
-<td align="center">5.2891943</td>
+<td align="center">23.43</td>
+<td align="center">3.66</td>
+<td align="center">0.00</td>
+<td align="center">839.32</td>
+<td align="center">5.29</td>
 </tr>
 <tr class="odd">
 <td align="center">marine</td>
-<td align="center">34.954391</td>
-<td align="center">2.753823</td>
-<td align="center">0.0000590</td>
-<td align="center">6076.626079</td>
-<td align="center">12.9898103</td>
+<td align="center">34.95</td>
+<td align="center">2.75</td>
+<td align="center">0.00</td>
+<td align="center">6076.63</td>
+<td align="center">12.99</td>
 </tr>
 </tbody>
 </table>
@@ -447,7 +447,7 @@ group_by(taxon) %&gt;%
   tally
 
 EPA.RDI.prop &lt;- EPA.RDI %&gt;% mutate (RDI.prop = (n/45)*100)
-knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown')</code></pre>
+knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown', digits = 2)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -460,57 +460,57 @@ knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown')</code></pre>
 <tr class="odd">
 <td align="center">Miscellaneous coastal fishes</td>
 <td align="center">4</td>
-<td align="center">8.888889</td>
+<td align="center">8.89</td>
 </tr>
 <tr class="even">
 <td align="center">Miscellaneous freshwater fishes</td>
 <td align="center">1</td>
-<td align="center">2.222222</td>
+<td align="center">2.22</td>
 </tr>
 <tr class="odd">
 <td align="center">Miscellaneous pelagic fishes</td>
 <td align="center">8</td>
-<td align="center">17.777778</td>
+<td align="center">17.78</td>
 </tr>
 <tr class="even">
 <td align="center">Shads</td>
 <td align="center">2</td>
-<td align="center">4.444444</td>
+<td align="center">4.44</td>
 </tr>
 <tr class="odd">
 <td align="center">Abalones, winkles, conchs</td>
 <td align="center">1</td>
-<td align="center">2.222222</td>
+<td align="center">2.22</td>
 </tr>
 <tr class="even">
 <td align="center">Cods, hakes, haddocks</td>
 <td align="center">1</td>
-<td align="center">2.222222</td>
+<td align="center">2.22</td>
 </tr>
 <tr class="odd">
 <td align="center">Crabs, sea-spiders</td>
 <td align="center">2</td>
-<td align="center">4.444444</td>
+<td align="center">4.44</td>
 </tr>
 <tr class="even">
 <td align="center">Herrings, sardines, anchovies</td>
 <td align="center">16</td>
-<td align="center">35.555556</td>
+<td align="center">35.56</td>
 </tr>
 <tr class="odd">
 <td align="center">Miscellaneous demersal fishes</td>
 <td align="center">3</td>
-<td align="center">6.666667</td>
+<td align="center">6.67</td>
 </tr>
 <tr class="even">
 <td align="center">Salmons, trouts, smelts</td>
 <td align="center">1</td>
-<td align="center">2.222222</td>
+<td align="center">2.22</td>
 </tr>
 <tr class="odd">
 <td align="center">Tunas, bonitos, billfishes</td>
 <td align="center">6</td>
-<td align="center">13.333333</td>
+<td align="center">13.33</td>
 </tr>
 </tbody>
 </table>
@@ -518,7 +518,7 @@ knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown')</code></pre>
 filter(!is.na(EPA_g)) %&gt;% 
   group_by(taxon) %&gt;%
   tally
-knitr::kable(EPA.total, align = 'c', format = 'markdown')</code></pre>
+knitr::kable(EPA.total, align = 'c', format = 'markdown', digits = 2)</code></pre>
 <table>
 <thead>
 <tr class="header">

@@ -178,7 +178,7 @@ What if we want to know the number of species in each habitat?
 n_obs_hab <- ntbl %>%
   group_by(Habitat) %>%
   tally
-knitr::kable(n_obs_hab, align = 'c', format = 'markdown')
+knitr::kable(n_obs_hab, align = 'c', format = 'markdown', digits = 2)
 ```
 
 
@@ -198,16 +198,16 @@ hab.size <- ntbl %>%
   filter(!is.na(max_size)) %>% 
   group_by(Habitat) %>%
   summarise_each(funs(mean, median, min, max, std.error), max_size)
-knitr::kable(hab.size, align = 'c', format = 'markdown')
+knitr::kable(hab.size, align = 'c', format = 'markdown', digits = 2)
 ```
 
 
 
-|  Habitat   |   mean    |  median  |    min    |     max     | std.error  |
-|:----------:|:---------:|:--------:|:---------:|:-----------:|:----------:|
-|  brackish  | 3.076059  | 3.703476 | 0.0315295 |  3.703476   | 0.3473409  |
-| freshwater | 23.428190 | 3.658227 | 0.0005305 | 839.322900  | 5.2891943  |
-|   marine   | 34.954391 | 2.753823 | 0.0000590 | 6076.626079 | 12.9898103 |
+|  Habitat   | mean  | median | min  |   max   | std.error |
+|:----------:|:-----:|:------:|:----:|:-------:|:---------:|
+|  brackish  | 3.08  |  3.70  | 0.03 |  3.70   |   0.35    |
+| freshwater | 23.43 |  3.66  | 0.00 | 839.32  |   5.29    |
+|   marine   | 34.95 |  2.75  | 0.00 | 6076.63 |   12.99   |
 
 Oh good, it looks like body size is pretty consistent across habitats. 
 
@@ -321,31 +321,31 @@ group_by(taxon) %>%
   tally
 
 EPA.RDI.prop <- EPA.RDI %>% mutate (RDI.prop = (n/45)*100)
-knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown')
+knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown', digits = 2)
 ```
 
 
 
-|              taxon              | n  | RDI.prop  |
-|:-------------------------------:|:--:|:---------:|
-|  Miscellaneous coastal fishes   | 4  | 8.888889  |
-| Miscellaneous freshwater fishes | 1  | 2.222222  |
-|  Miscellaneous pelagic fishes   | 8  | 17.777778 |
-|              Shads              | 2  | 4.444444  |
-|    Abalones, winkles, conchs    | 1  | 2.222222  |
-|      Cods, hakes, haddocks      | 1  | 2.222222  |
-|       Crabs, sea-spiders        | 2  | 4.444444  |
-|  Herrings, sardines, anchovies  | 16 | 35.555556 |
-|  Miscellaneous demersal fishes  | 3  | 6.666667  |
-|     Salmons, trouts, smelts     | 1  | 2.222222  |
-|   Tunas, bonitos, billfishes    | 6  | 13.333333 |
+|              taxon              | n  | RDI.prop |
+|:-------------------------------:|:--:|:--------:|
+|  Miscellaneous coastal fishes   | 4  |   8.89   |
+| Miscellaneous freshwater fishes | 1  |   2.22   |
+|  Miscellaneous pelagic fishes   | 8  |  17.78   |
+|              Shads              | 2  |   4.44   |
+|    Abalones, winkles, conchs    | 1  |   2.22   |
+|      Cods, hakes, haddocks      | 1  |   2.22   |
+|       Crabs, sea-spiders        | 2  |   4.44   |
+|  Herrings, sardines, anchovies  | 16 |  35.56   |
+|  Miscellaneous demersal fishes  | 3  |   6.67   |
+|     Salmons, trouts, smelts     | 1  |   2.22   |
+|   Tunas, bonitos, billfishes    | 6  |  13.33   |
 
 ```r
 EPA.total <- ntbl %>%
 filter(!is.na(EPA_g)) %>% 
   group_by(taxon) %>%
   tally
-knitr::kable(EPA.total, align = 'c', format = 'markdown')
+knitr::kable(EPA.total, align = 'c', format = 'markdown', digits = 2)
 ```
 
 
