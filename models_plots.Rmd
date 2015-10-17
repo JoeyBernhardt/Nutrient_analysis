@@ -1,6 +1,8 @@
 ---
 title: "plots and models"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 Oct 15: OK, what I've done so far:
