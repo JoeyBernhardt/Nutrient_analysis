@@ -29,7 +29,7 @@ Change variable names to more intuitive names
          max_length = SLMAX)
 ```
 
-Pull out variables we will use in this analysis
+Pull out variables we will use in this analysis :blowfish:
 ```{r select variables of interest}
 ntbl <- ntbl %>%
   select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
@@ -77,6 +77,9 @@ taxon.size <- ntbl %>%
   summarise_each(funs(mean, median), max_size)
 knitr::kable(taxon.size, align = 'c', format = 'markdown', digits = 2)
 
+ggplot(ntbl, aes(x=factor(taxon), y=log(max_size), group = 1)) +
+  stat_summary(fun.data = mean_cl_boot, geom = "pointrange") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  theme_pander()
 ```
 
 How does calcium content vary across taxa?
@@ -111,3 +114,11 @@ filter(!is.na(EPA_g)) %>%
   tally
 knitr::kable(EPA.total, align = 'c', format = 'markdown', digits = 2)
 ```
+
+How does EPA content vary with latitude?
+In the following figure, which shows the EPA content in g per 100g edible portion, the black line indicates the recommended daily intake. 
+```{r}
+p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion")
+```
+

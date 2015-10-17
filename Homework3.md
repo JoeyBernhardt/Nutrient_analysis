@@ -136,7 +136,7 @@ Change variable names to more intuitive names
          max_length = SLMAX)
 ```
 
-Pull out variables we will use in this analysis
+Pull out variables we will use in this analysis :blowfish:
 
 ```r
 ntbl <- ntbl %>%
@@ -258,6 +258,22 @@ knitr::kable(taxon.size, align = 'c', format = 'markdown', digits = 2)
 |    Tilapias and other cichlids     |  2.84   |  3.66   |
 |     Tunas, bonitos, billfishes     |  90.73  |  8.36   |
 
+```r
+ggplot(ntbl, aes(x=factor(taxon), y=log(max_size), group = 1)) +
+  stat_summary(fun.data = mean_cl_boot, geom = "pointrange") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  theme_pander()
+```
+
+```
+## Warning: Removed 205 rows containing missing values (stat_summary).
+```
+
+```
+## Warning: Removed 3 rows containing missing values (geom_segment).
+```
+
+![](Homework3_files/figure-html/unnamed-chunk-7-1.png) 
+
 How does calcium content vary across taxa?
 
 ```r
@@ -377,3 +393,22 @@ knitr::kable(EPA.total, align = 'c', format = 'markdown', digits = 2)
 |  Squids, cuttlefishes, octopuses   | 23 |
 |    Tilapias and other cichlids     | 17 |
 |     Tunas, bonitos, billfishes     | 25 |
+
+How does EPA content vary with latitude?
+In the following figure, which shows the EPA content in g per 100g edible portion, the black line indicates the recommended daily intake. 
+
+```r
+p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion")
+```
+
+```
+## Warning: Removed 418 rows containing missing values (stat_summary).
+```
+
+```
+## Warning: Removed 418 rows containing missing values (stat_smooth).
+```
+
+![](Homework3_files/figure-html/unnamed-chunk-9-1.png) 
+

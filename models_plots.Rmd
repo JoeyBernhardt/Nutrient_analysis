@@ -1,0 +1,332 @@
+---
+title: "plots and models"
+output: html_document
+---
+
+Oct 15: OK, what I've done so far:
+
+fit a linear model for CA content as a function of size, separately for each taxon, and also for each habitat
+
+I've also done the same thing using a robust lm, with quite similar fits. Only issue here is that I can't use tidy on the lmrob outputs. This is aggravating!!
+
+Next up, compare alternative models using AIC. write a function to do this.
+
+```{r}
+library(plotrix)
+library(broom)
+library(ggthemes)
+suppressPackageStartupMessages(library(dplyr))
+library(ggplot2)
+library(knitr)
+suppressPackageStartupMessages(library(Hmisc))
+library(robustbase)
+library(tidyr)
+
+nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
+ntbl <- tbl_df(nut)
+
+```
+
+Let's change variable names to more intuitive names.
+
+```{r}
+ ntbl <- ntbl %>%
+  rename(species = ASFIS.Scientific.name,
+         taxon = ISSCAAP_cat,
+         max_length = SLMAX)
+```
+
+Pull out variables we will use in this analysis. 
+
+```{r select variables of interest}
+ntbl <- ntbl %>%
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
+```
+
+Convert max length to max body size using length-weight conversion (W = a × L^b). For more information about this conversion approach, see this [explanation](http://www.fishbase.ca/manual/FishBaseThe_LENGTH_WEIGHT_Table.htm) on FishBase. 
+```{r}
+ntbl <- ntbl %>%
+  mutate(max_size = (lwA * (max_length^lwB)/1000))
+```
+
+Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. 
+```{r}
+ntbl.CA <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(CA_mg)) %>% 
+  filter(!is.na(taxon))
+```
+
+First things, first, let's write out our models. Here we are interested in comparing the fits of the linear model using OLS and the robust fit, using robustbase. 
+```{r}
+size.fit.lm <- lm(log(CA_mg) ~ log(max_size), ntbl.CA)
+size.fit.lmrob <- lmrob(log(CA_mg) ~ log(max_size), ntbl.CA)
+```
+
+let's compare the fits of these two models
+```{r}
+lm.table <- cbind(summary(size.fit.lm)$coeff, confint(size.fit.lm))
+knitr::kable(lm.table, align = 'c', format = 'markdown', digits = 4)
+
+lmrob.table <- cbind(summary(size.fit.lmrob)$coeff, confint(size.fit.lmrob))
+knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
+```
+
+Let's plot those
+```{r}
+cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'royalblue')
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear Fits", values=cols)
+```
+
+OK, now set up the initial function
+``` {r}
+size.fit <- function(df) {
+  (CA.fit <- lm(log(CA_mg) ~ log(max_size), df))
+}
+```
+
+Here is a slightly more general function to do the same thing. More general in that here we allow the nutrient to be variable.
+```{r}
+size.fit2 <- function(df, nutrient) {
+  model <- lm(log(nutrient) ~ log(max_size), data = df)
+  y   = coef(model)[2]
+  ylo = confint(model)[2]
+  yhi = confint(model)[4]
+  setNames(data.frame(t(c(y, ylo, yhi))), c("beta", "ylo", "yhi"))
+}
+
+
+size.fit2(ntbl.CA, ntbl.CA$CA_mg)
+
+test<- ntbl.CA %>%  
+  group_by(taxon) %>% 
+  do(size.fit2(., .$CA_mg)) %>% 
+  ungroup() %>% 
+  arrange(desc(beta))
+test  
+
+test$taxon <- factor(test$taxon, levels=unique(test$taxon))
+ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
+  geom_pointrange() + 
+  coord_flip() + 
+  geom_hline(aes(x=0), lty=2) +
+  xlab('taxon') +
+  ylab('Regression Coefficient') 
+
+```
+
+
+same function, just using robustlm
+```{r}
+size.fit.rob <- function(df) {
+  (CA.fit <- lmrob(log(CA_mg) ~ log(max_size), df))
+}
+```
+
+use the function, group by taxon
+```{r}
+size.fits.lm <- ntbl.CA %>%
+  group_by(taxon) %>% 
+  do(fit=size.fit(.))
+size.fits.lm
+```
+
+Here, let's tidy the parameter estimates
+```{r}
+tidy.fits.lm <- size.fits.lm %>% 
+  tidy(fit, conf.int = TRUE)
+head(tidy.fits.lm)
+
+augment.fits.lm <- size.fits.lm %>% augment(fit)
+```
+
+plot the residuals, by taxon
+
+```{r}
+ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+plot the residuals, by size
+```{r}
+ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+Let's plot those estimates! This is the most satisfying plot yet! From this plot, we can clearly see for which taxa there is a positive or negative relationship between body size and calcium content. 
+```{r}  
+  ggplot(subset(tidy.fits.lm, term == "log(max_size)"), aes(estimate, taxon, color = taxon)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline()
+```
+
+Now let's run the same models, but group by habitat. Tidy as before. 
+```{r}
+  size.hab <- ntbl.CA %>%
+  group_by(Habitat) %>% 
+  do(fit=size.fit(.))
+
+tidy.fit.hab <- size.hab %>% 
+  tidy(fit, conf.int = TRUE)
+
+  
+  ggplot(subset(tidy.fit.hab, term == "log(max_size)"), aes(estimate, Habitat, color = Habitat)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline()
+```
+
+
+
+
+```{r with robust}
+  
+  
+#' MASS::rlm(x ~ y, data = df)$coefficients
+  
+  lmrob.fit <- lmrob(log(CA_mg) ~ log(max_size), ntbl)
+  lm.fit <- lm(log(CA_mg) ~ log(max_size), ntbl)
+  rlm.fit <- MASS::rlm(log(CA_mg) ~ log(max_size), ntbl.CA, model = TRUE, x.ret = TRUE, y.ret = FALSE)
+  
+  summary(rlm.fit)
+  tidy.rlm.fit <- tidy(rlm.fit)
+head(tidy.rlm.fit)
+  
+  summary(lmrob.fit)
+  summary(lm.fit)
+  summary(rlm.fit)
+
+  
+  lmrob.table <- cbind(summary(lmrob.fit)$coeff, confint(lmrob.fit))
+  lm.table <- cbind(summary(lm.fit)$coeff, confint(lm.fit))
+  knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
+  knitr::kable(lm.table, align = 'c', format = 'markdown', digits = 4)
+  
+  
+(tidy.lmrob.fit <- tidy(lmrob.table))
+
+tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
+
+tidy.rlm.fit <- tidy(rlm.fit)
+head(tidy.lmrob.fit)
+
+
+
+results.rlm <- augment(rlm.fit)
+results.rlm$.resid
+
+```
+Let's make a function to compare the robust and regular lm fits. Note to self: add AIC here.
+```{r}
+suppressPackageStartupMessages(require(MASS))
+compare_models <- function(df, nutrient) {
+  model_lm <- lm(log(nutrient) ~ log(max_size), data = df)
+  lm_df <- data.frame(slope = coef(model_lm)[2], intercept = coef(model_lm)[1], model = "normal")
+  model_rlm <- rlm(log(nutrient) ~ log(max_size), data = df, method = "MM")
+  rlm_df <- data.frame(slope = coef(model_rlm)[2], intercept = coef(model_rlm)[1], model = "robust")
+  return(rbind(lm_df, rlm_df))
+}
+
+knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
+
+```
+OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
+```{r}
+#'model.comparison <- ntbl.CA %>% group_by(taxon) %>% do(model.comp = compare_models(., ntbl.CA$CA_mg))
+```
+
+
+Function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. 
+```{r}
+mean_resid <- function(df) {
+    size.fit <- lm(log(CA_mg) ~ log(max_size), df)
+    x <- mean(abs(resid(size.fit)))
+    y <- setNames(data.frame(t(x)), c("mean_residual"))
+    y
+}
+
+mean_resid(ntbl.CA %>% filter(Habitat == "marine"))
+
+
+resid_1 <- ntbl.CA %>%
+group_by(taxon) %>% 
+do(mean_resid(.)) %>% 
+  unnest(mean_residual) %>% 
+  arrange(desc(mean_residual))
+resid_1
+
+```
+
+New function idea! Let's find the % of each taxon that has EPA values above RDI
+
+So, for one taxon, what would this look like?
+```{r}
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon))
+
+#' Let's try for one taxon
+EPA.RDI <- ntbl.EPA %>%
+  filter(taxon == "Salmons, trouts, smelts") %>% 
+  mutate(RDI = ifelse(EPA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))    
+
+#' Here's the function
+epa.prop <- function(df) {
+  (EPA.RDI <- df %>%
+  mutate(RDI = ifelse(EPA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+#' Here it is applied to my dataset, grouped by taxon, and unnested, summarised etc. The final output that I want is the percentage of fish species in each taxon that reaches a threshold of 25% of RDI in one portion.
+epa.prp <- ntbl.EPA %>%
+  do(EPA.prp=epa.prop(.)) %>% 
+    unnest(EPA.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+#' And this graph shows these percentages ordered by increasing percentage. Yahoo! Success!
+ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 6) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+head(epa.prp)
+```       
+    
+ Here's let's look at latitude
+```{r}
+epa.prp2 <- ntbl.EPA %>%
+  do(EPA.prp=epa.prop(.)) %>% 
+    unnest(EPA.prp) %>%
+arrange(desc(Abs_lat))
+
+
+#' this figure shows the percentage of each taxon that reaches RDI, as arranged by increasing latitude
+ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+
+p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion")
+
+```
+   
+    
+         
+this doesn't work, because I can't figure out how to pull out the right column to unnest.
+epa.prop2 <- function(df) {
+  (EPA.RDI <- df %>%
+  mutate(RDI = ifelse(EPA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) %>%  
+  unnest(.[,2]) %>% ##this is where I run into problems. 
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100)
+}
+epa.prop2(ntbl.EPA)
+head(epa.prp)
