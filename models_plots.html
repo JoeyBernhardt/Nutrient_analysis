@@ -68,22 +68,15 @@ img {
 <p>fit a linear model for CA content as a function of size, separately for each taxon, and also for each habitat</p>
 <p>I’ve also done the same thing using a robust lm, with quite similar fits. Only issue here is that I can’t use tidy on the lmrob outputs. This is aggravating!!</p>
 <p>Next up, compare alternative models using AIC. write a function to do this.</p>
-<pre class="r"><code>library(plotrix)
+<pre class="r"><code>library(ggplot2)
+library(plotrix)
 library(broom)
-library(ggthemes)</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre class="r"><code>suppressPackageStartupMessages(library(dplyr))
-library(ggplot2)
+library(ggthemes)
+suppressPackageStartupMessages(library(dplyr))
 library(knitr)
 suppressPackageStartupMessages(library(Hmisc))
-library(robustbase)</code></pre>
-<pre><code>## 
-## Attaching package: 'robustbase'
-## 
-## The following object is masked from 'package:survival':
-## 
-##     heart</code></pre>
-<pre class="r"><code>library(tidyr)
+suppressPackageStartupMessages(library(robustbase))
+library(tidyr)
 
 nut &lt;- read.csv(&quot;~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv&quot;, comment.char=&quot;#&quot;, stringsAsFactors=TRUE, na.strings=c(&quot;&quot;,&quot;.&quot;,&quot;NA&quot;))
 ntbl &lt;- tbl_df(nut)</code></pre>
@@ -493,19 +486,19 @@ head(tidy.rlm.fit)</code></pre>
 </table>
 <pre class="r"><code>(tidy.lmrob.fit &lt;- tidy(lmrob.table))</code></pre>
 <pre><code>##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934469e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
 ## 2 -0.09063825</code></pre>
 <pre class="r"><code>tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)</code></pre>
 <pre><code>##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934469e-51
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03</code></pre>
 <pre class="r"><code>tidy.rlm.fit &lt;- tidy(rlm.fit)
 head(tidy.lmrob.fit)</code></pre>
 <pre><code>##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934469e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -556,7 +549,7 @@ compare_models &lt;- function(df, nutrient) {
 }
 
 knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = &quot;markdown&quot;)</code></pre>
-<p>| | slope| intercept|model | |:————–|———-:|———:|:——| |log(max_size) | -0.2600487| 4.098491|normal | |log(max_size)1 | -0.2670055| 4.039430|robust | OK, now let’s apply this function across all taxa. OK this doesn’t work…maybe because the different fitting approaches drop different numbers of taxa??</p>
+<p>| | slope| intercept|model | |:————–|———-:|———:|:——| |log(max_size) | -0.2600487| 4.098491|normal | |log(max_size)1 | -0.2670055| 4.039429|robust | OK, now let’s apply this function across all taxa. OK this doesn’t work…maybe because the different fitting approaches drop different numbers of taxa??</p>
 <pre class="r"><code>#'model.comparison &lt;- ntbl.CA %&gt;% group_by(taxon) %&gt;% do(model.comp = compare_models(., ntbl.CA$CA_mg))</code></pre>
 <p>Function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values…an indication of worst fit.</p>
 <pre class="r"><code>mean_resid &lt;- function(df) {

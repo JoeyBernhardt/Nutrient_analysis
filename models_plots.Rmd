@@ -14,14 +14,14 @@ I've also done the same thing using a robust lm, with quite similar fits. Only i
 Next up, compare alternative models using AIC. write a function to do this.
 
 ```{r}
+library(ggplot2)
 library(plotrix)
 library(broom)
 library(ggthemes)
 suppressPackageStartupMessages(library(dplyr))
-library(ggplot2)
 library(knitr)
 suppressPackageStartupMessages(library(Hmisc))
-library(robustbase)
+suppressPackageStartupMessages(library(robustbase))
 library(tidyr)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))

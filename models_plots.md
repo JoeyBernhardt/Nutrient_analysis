@@ -10,33 +10,14 @@ Next up, compare alternative models using AIC. write a function to do this.
 
 
 ```r
+library(ggplot2)
 library(plotrix)
 library(broom)
 library(ggthemes)
-```
-
-```
-## Loading required package: ggplot2
-```
-
-```r
 suppressPackageStartupMessages(library(dplyr))
-library(ggplot2)
 library(knitr)
 suppressPackageStartupMessages(library(Hmisc))
-library(robustbase)
-```
-
-```
-## 
-## Attaching package: 'robustbase'
-## 
-## The following object is masked from 'package:survival':
-## 
-##     heart
-```
-
-```r
+suppressPackageStartupMessages(library(robustbase))
 library(tidyr)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
@@ -547,7 +528,7 @@ head(tidy.rlm.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934469e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -560,7 +541,7 @@ tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934469e-51
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03
 ```
 
@@ -571,7 +552,7 @@ head(tidy.lmrob.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934469e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -638,7 +619,7 @@ knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 |               |      slope| intercept|model  |
 |:--------------|----------:|---------:|:------|
 |log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039430|robust |
+|log(max_size)1 | -0.2670055|  4.039429|robust |
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 
 ```r
