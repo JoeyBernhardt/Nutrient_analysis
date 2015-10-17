@@ -493,22 +493,22 @@ head(tidy.rlm.fit)</code></pre>
 </table>
 <pre class="r"><code>(tidy.lmrob.fit &lt;- tidy(lmrob.table))</code></pre>
 <pre><code>##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934505e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934472e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
-## 1  4.33814796
+## 1  4.33814795
 ## 2 -0.09063825</code></pre>
 <pre class="r"><code>tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)</code></pre>
 <pre><code>##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934505e-51
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934472e-51
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03</code></pre>
 <pre class="r"><code>tidy.rlm.fit &lt;- tidy(rlm.fit)
 head(tidy.lmrob.fit)</code></pre>
 <pre><code>##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934505e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934472e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
-## 1  4.33814796
+## 1  4.33814795
 ## 2 -0.09063825</code></pre>
 <pre class="r"><code>results.rlm &lt;- augment(rlm.fit)
 results.rlm$.resid</code></pre>
