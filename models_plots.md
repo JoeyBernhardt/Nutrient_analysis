@@ -341,7 +341,7 @@ Let's plot those estimates! This is the most satisfying plot yet! From this plot
   ggplot(subset(tidy.fits.lm, term == "log(max_size)"), aes(estimate, taxon, color = taxon)) +
     geom_point() +
     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
-    geom_vline()
+    geom_vline() + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
@@ -619,7 +619,7 @@ knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 |               |      slope| intercept|model  |
 |:--------------|----------:|---------:|:------|
 |log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039429|robust |
+|log(max_size)1 | -0.2670055|  4.039430|robust |
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 
 ```r
@@ -773,3 +773,25 @@ epa.prop2 <- function(df) {
 }
 epa.prop2(ntbl.EPA)
 head(epa.prp)
+
+
+
+```r
+library(MuMIn)
+EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
+EPA.2 <- lm(log(EPA_g) ~ log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
+
+AIC.table <- function(mod1, mod2) {
+  model.sel(mod1, mod2)
+  model.average <-  model.avg(mod1, mod2)
+  return((msTable <- model.average$msTable))
+  }
+
+AIC.table(EPA.1, EPA.2)
+```
+
+```
+##         df    logLik     AICc    delta    weight
+## 12356    8 -702.9139 1422.172 0.000000 0.6515007
+## 1234567 10 -701.4473 1423.424 1.251284 0.3484993
+```

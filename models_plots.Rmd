@@ -158,7 +158,7 @@ Let's plot those estimates! This is the most satisfying plot yet! From this plot
   ggplot(subset(tidy.fits.lm, term == "log(max_size)"), aes(estimate, taxon, color = taxon)) +
     geom_point() +
     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
-    geom_vline()
+    geom_vline() + theme(legend.position="none")
 ```
 
 Now let's run the same models, but group by habitat. Tidy as before. 
@@ -332,3 +332,18 @@ epa.prop2 <- function(df) {
 }
 epa.prop2(ntbl.EPA)
 head(epa.prp)
+
+
+```{r}
+library(MuMIn)
+EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
+EPA.2 <- lm(log(EPA_g) ~ log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
+
+AIC.table <- function(mod1, mod2) {
+  model.sel(mod1, mod2)
+  model.average <-  model.avg(mod1, mod2)
+  return((msTable <- model.average$msTable))
+  }
+
+AIC.table(EPA.1, EPA.2)
+```
