@@ -5,14 +5,26 @@ output:
     keep_md: yes
 ---
 
-Oct 15: OK, what I've done so far:
+Welcome to my homework 4! Like last [time](https://github.com/STAT545-UBC/joanna_bernhardt/blob/master/Homework_3/Homework_3.md), I'll be using a different dataset than Gapminder. This is a dataset that I'm working with as one of my PhD projects. 
 
-fit a linear model for CA content as a function of size, separately for each taxon, and also for each habitat
+See this [issue](https://github.com/STAT545-UBC/joanna_bernhardt/issues/7), where I ask Jenny for permission to use my data, and she approves.
 
-I've also done the same thing using a robust lm, with quite similar fits. Only issue here is that I can't use tidy on the lmrob outputs. This is aggravating!!
+The data I will be using include the nutrient content (i.e. vitamins, minerals, essential fatty acids) of several hundred species of fish :blowfish: :fish: :tropical_fish:. I've also added data on fish body size, trophic level (i.e. predator, herbivore), and latitude of where the fish was caught. 
 
-Next up, compare alternative models using AIC. write a function to do this.
+Here's some background on the project: 
 
+*One of the most widely studied and universally important benefits that humans derive from natural ecosystems is food provisioning. Indeed, many coastal human communities rely on wild harvests from local aquatic ecosystems to meet nutritional requirements for macronutrients, such as protein and fats, and micronutrients, such as vitamins and minerals. The value of a fish species in terms of human nutrition benefits can be quantified as the nutrient content in an edible portion relative to Recommended Daily Intake (RDI) values. The RDI is the daily intake level of a nutrient that is considered to be sufficient to meet the requirements of 97–98% of healthy individuals in every demographic. Although fisheries productivity is studied extensively, there has been surprisingly little consideration of the drivers of the nutritional quality of fisheries yields.*
+
+Thus, the main questions I'll be adressing in this data are: 
+
+1. What is the range of nutrient content across species? 
+2. Does nutrient content vary with fish species' traits such as body size or trophic level? 
+
+To do this I'll take a model selection approach, wherein I'll compare models which contain different species' traits as parameters to see which models fit the data best, and thus which species traits vary with nutrient content. 
+
+I've collected nutrient and fish trait data from the peer-reviewed literature and databases such as [FishBase](https://en.wikipedia.org/wiki/FishBase). 
+
+Loading required packages.
 ```{r}
 library(ggplot2)
 library(plotrix)
@@ -51,21 +63,28 @@ ntbl <- ntbl %>%
   mutate(max_size = (lwA * (max_length^lwB)/1000))
 ```
 
-Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. 
+Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Here I'll create two tbl_dfs which I'll call on later. One will be for calcium (a nutrient essential for bone formation and ion regulation in fish), and EPA, an omega-3 fatty acid. 
 ```{r}
 ntbl.CA <- ntbl %>%
   filter(!is.na(max_size)) %>% 
   filter(!is.na(CA_mg)) %>% 
   filter(!is.na(taxon))
+
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon))
 ```
 
-First things, first, let's write out our models. Here we are interested in comparing the fits of the linear model using OLS and the robust fit, using robustbase. 
+First things, first, let's write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna). So, I'll fit a model of calcium content as a function of body size. 
+
+Here I'm interested in comparing the fits of the linear model using OLS and the robust fit, using robustbase. 
 ```{r}
 size.fit.lm <- lm(log(CA_mg) ~ log(max_size), ntbl.CA)
 size.fit.lmrob <- lmrob(log(CA_mg) ~ log(max_size), ntbl.CA)
 ```
 
-let's compare the fits of these two models
+Let's compare the fits of these two models. As you can see from the tables below, they have pretty similar fits (similar coefficient (slope) estimates and confidence intervals). Does this mean that there aren't many crazy outliers?
 ```{r}
 lm.table <- cbind(summary(size.fit.lm)$coeff, confint(size.fit.lm))
 knitr::kable(lm.table, align = 'c', format = 'markdown', digits = 4)
@@ -74,13 +93,13 @@ lmrob.table <- cbind(summary(size.fit.lmrob)$coeff, confint(size.fit.lmrob))
 knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
 ```
 
-Let's plot those
+Let's plot those two fits. Neither one looks all that great at this point. 
 ```{r}
 cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'royalblue')
 ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear Fits", values=cols) + theme(legend.position="none")
 ```
 
-OK, now set up the initial function
+OK, now let's set up the initial function, in its simplest form. 
 ``` {r}
 size.fit <- function(df) {
   (CA.fit <- lm(log(CA_mg) ~ log(max_size), df))
@@ -96,17 +115,25 @@ size.fit2 <- function(df, nutrient) {
   yhi = confint(model)[4]
   setNames(data.frame(t(c(y, ylo, yhi))), c("beta", "ylo", "yhi"))
 }
+```
 
+Looks like the function works for the dataset as a whole!
+```{r}
+(size.fit2(ntbl.CA, ntbl.CA$CA_mg))
+```
 
-size.fit2(ntbl.CA, ntbl.CA$CA_mg)
-
+Now let's apply it by groups: taxon by taxon. 
+```{r}
 test<- ntbl.CA %>%  
   group_by(taxon) %>% 
   do(size.fit2(., .$CA_mg)) %>% 
   ungroup() %>% 
   arrange(desc(beta))
 test  
+```
 
+Let's plot that
+```{r}
 test$taxon <- factor(test$taxon, levels=unique(test$taxon))
 ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
   geom_pointrange() + 
@@ -117,7 +144,7 @@ ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
 
 ```
 
-And now a more general function for fitting lms
+And now here's a more general function for fitting lms (thanks to Jenny's [post](http://stat545-ubc.github.io/block025_lm-poly.html) for this code)
 ```{r}
 lm_general<- function(df, y, x, ...) {
   lm_formula <-
@@ -133,7 +160,7 @@ size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size
 ```
 
 
-same function, just using robustlm
+same function as my initial lm function, just using robustlm this time. 
 ```{r}
 size.fit.rob <- function(df) {
   (CA.fit <- lmrob(log(CA_mg) ~ log(max_size), df))
@@ -191,8 +218,6 @@ tidy.fit.hab <- size.hab %>%
     geom_vline() + theme(legend.position="none")
 ```
 
-
-
 Now let's try to fit with a robust approach.
 ```{r with robust}
 
@@ -201,33 +226,7 @@ Now let's try to fit with a robust approach.
   lmrob.fit <- lmrob(log(CA_mg) ~ log(max_size), ntbl)
   lm.fit <- lm(log(CA_mg) ~ log(max_size), ntbl)
   rlm.fit <- MASS::rlm(log(CA_mg) ~ log(max_size), ntbl.CA, model = TRUE, x.ret = TRUE, y.ret = FALSE)
-  
-  summary(rlm.fit)
-  tidy.rlm.fit <- tidy(rlm.fit)
-head(tidy.rlm.fit)
-  
-  summary(lmrob.fit)
-  summary(lm.fit)
-  summary(rlm.fit)
-
-  
-  lmrob.table <- cbind(summary(lmrob.fit)$coeff, confint(lmrob.fit))
-  lm.table <- cbind(summary(lm.fit)$coeff, confint(lm.fit))
-  knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
-  knitr::kable(lm.table, align = 'c', format = 'markdown', digits = 4)
-  
-  
-(tidy.lmrob.fit <- tidy(lmrob.table))
-
-tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
-
-tidy.rlm.fit <- tidy(rlm.fit)
-head(tidy.lmrob.fit)
-
-
-results.rlm <- augment(rlm.fit)
-results.rlm$.resid
-
+ 
 ```
 Let's make a function to compare the robust and regular lm fits. Note to self: add AIC here.
 ```{r}
@@ -275,11 +274,6 @@ New function idea! Let's find the % of each taxon that has EPA values above RDI
 
 So, for one taxon, what would this look like?
 ```{r}
-ntbl.EPA <- ntbl %>%
-  filter(!is.na(Abs_lat)) %>% 
-  filter(!is.na(EPA_g)) %>% 
-  filter(!is.na(taxon))
-
 #' Let's try for one taxon
 EPA.RDI <- ntbl.EPA %>%
   filter(taxon == "Salmons, trouts, smelts") %>% 

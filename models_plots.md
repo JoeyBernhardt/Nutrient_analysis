@@ -1,13 +1,25 @@
 # plots and models
 
-Oct 15: OK, what I've done so far:
+Welcome to my homework 4! Like last [time](https://github.com/STAT545-UBC/joanna_bernhardt/blob/master/Homework_3/Homework_3.md), I'll be using a different dataset than Gapminder. This is a dataset that I'm working with as one of my PhD projects. 
 
-fit a linear model for CA content as a function of size, separately for each taxon, and also for each habitat
+See this [issue](https://github.com/STAT545-UBC/joanna_bernhardt/issues/7), where I ask Jenny for permission to use my data, and she approves.
 
-I've also done the same thing using a robust lm, with quite similar fits. Only issue here is that I can't use tidy on the lmrob outputs. This is aggravating!!
+The data I will be using include the nutrient content (i.e. vitamins, minerals, essential fatty acids) of several hundred species of fish :blowfish: :fish: :tropical_fish:. I've also added data on fish body size, trophic level (i.e. predator, herbivore), and latitude of where the fish was caught. 
 
-Next up, compare alternative models using AIC. write a function to do this.
+Here's some background on the project: 
 
+*One of the most widely studied and universally important benefits that humans derive from natural ecosystems is food provisioning. Indeed, many coastal human communities rely on wild harvests from local aquatic ecosystems to meet nutritional requirements for macronutrients, such as protein and fats, and micronutrients, such as vitamins and minerals. The value of a fish species in terms of human nutrition benefits can be quantified as the nutrient content in an edible portion relative to Recommended Daily Intake (RDI) values. The RDI is the daily intake level of a nutrient that is considered to be sufficient to meet the requirements of 97–98% of healthy individuals in every demographic. Although fisheries productivity is studied extensively, there has been surprisingly little consideration of the drivers of the nutritional quality of fisheries yields.*
+
+Thus, the main questions I'll be adressing in this data are: 
+
+1. What is the range of nutrient content across species? 
+2. Does nutrient content vary with fish species' traits such as body size or trophic level? 
+
+To do this I'll take a model selection approach, wherein I'll compare models which contain different species' traits as parameters to see which models fit the data best, and thus which species traits vary with nutrient content. 
+
+I've collected nutrient and fish trait data from the peer-reviewed literature and databases such as [FishBase](https://en.wikipedia.org/wiki/FishBase). 
+
+Loading required packages.
 
 ```r
 library(ggplot2)
@@ -49,23 +61,30 @@ ntbl <- ntbl %>%
   mutate(max_size = (lwA * (max_length^lwB)/1000))
 ```
 
-Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. 
+Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Here I'll create two tbl_dfs which I'll call on later. One will be for calcium (a nutrient essential for bone formation and ion regulation in fish), and EPA, an omega-3 fatty acid. 
 
 ```r
 ntbl.CA <- ntbl %>%
   filter(!is.na(max_size)) %>% 
   filter(!is.na(CA_mg)) %>% 
   filter(!is.na(taxon))
+
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon))
 ```
 
-First things, first, let's write out our models. Here we are interested in comparing the fits of the linear model using OLS and the robust fit, using robustbase. 
+First things, first, let's write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna). So, I'll fit a model of calcium content as a function of body size. 
+
+Here I'm interested in comparing the fits of the linear model using OLS and the robust fit, using robustbase. 
 
 ```r
 size.fit.lm <- lm(log(CA_mg) ~ log(max_size), ntbl.CA)
 size.fit.lmrob <- lmrob(log(CA_mg) ~ log(max_size), ntbl.CA)
 ```
 
-let's compare the fits of these two models
+Let's compare the fits of these two models. As you can see from the tables below, they have pretty similar fits (similar coefficient (slope) estimates and confidence intervals). Does this mean that there aren't many crazy outliers?
 
 ```r
 lm.table <- cbind(summary(size.fit.lm)$coeff, confint(size.fit.lm))
@@ -91,7 +110,7 @@ knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
 |(Intercept)   |  4.0395  |   0.1813   | 22.2781 |       0e+00        | 3.6814  | 4.3976  |
 |log(max_size) | -0.2670  |   0.0737   | -3.6250 |       4e-04        | -0.4125 | -0.1215 |
 
-Let's plot those
+Let's plot those two fits. Neither one looks all that great at this point. 
 
 ```r
 cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'royalblue')
@@ -100,7 +119,7 @@ ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y=
 
 ![](models_plots_files/figure-html/unnamed-chunk-7-1.png) 
 
-OK, now set up the initial function
+OK, now let's set up the initial function, in its simplest form. 
 
 ```r
 size.fit <- function(df) {
@@ -118,15 +137,20 @@ size.fit2 <- function(df, nutrient) {
   yhi = confint(model)[4]
   setNames(data.frame(t(c(y, ylo, yhi))), c("beta", "ylo", "yhi"))
 }
+```
 
+Looks like the function works for the dataset as a whole!
 
-size.fit2(ntbl.CA, ntbl.CA$CA_mg)
+```r
+(size.fit2(ntbl.CA, ntbl.CA$CA_mg))
 ```
 
 ```
 ##         beta        ylo        yhi
 ## 1 -0.2600487 -0.3530635 -0.1670339
 ```
+
+Now let's apply it by groups: taxon by taxon. 
 
 ```r
 test<- ntbl.CA %>%  
@@ -186,6 +210,8 @@ test
 ## 15        Tilapias and other cichlids          NA          NA           NA
 ```
 
+Let's plot that
+
 ```r
 test$taxon <- factor(test$taxon, levels=unique(test$taxon))
 ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
@@ -232,9 +258,9 @@ ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
 ## Warning: Removed 1 rows containing missing values (geom_point).
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-9-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-12-1.png) 
 
-And now a more general function for fitting lms
+And now here's a more general function for fitting lms (thanks to Jenny's [post](http://stat545-ubc.github.io/block025_lm-poly.html) for this code)
 
 ```r
 lm_general<- function(df, y, x, ...) {
@@ -291,7 +317,7 @@ size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size
 ```
 
 
-same function, just using robustlm
+same function as my initial lm function, just using robustlm this time. 
 
 ```r
 size.fit.rob <- function(df) {
@@ -380,7 +406,7 @@ plot the residuals, by taxon
 ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-14-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-17-1.png) 
 
 plot the residuals, by size
 
@@ -388,7 +414,7 @@ plot the residuals, by size
 ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-18-1.png) 
 
 Let's plot those estimates! This is the most satisfying plot yet! From this plot, we can clearly see for which taxa there is a positive or negative relationship between body size and calcium content. 
 
@@ -399,7 +425,7 @@ Let's plot those estimates! This is the most satisfying plot yet! From this plot
     geom_vline() + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-16-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
 
 Now let's run the same models, but group by habitat. Tidy as before. 
 
@@ -418,9 +444,7 @@ tidy.fit.hab <- size.hab %>%
     geom_vline() + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-17-1.png) 
-
-
+![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
 
 Now let's try to fit with a robust approach.
 
@@ -430,229 +454,6 @@ Now let's try to fit with a robust approach.
   lmrob.fit <- lmrob(log(CA_mg) ~ log(max_size), ntbl)
   lm.fit <- lm(log(CA_mg) ~ log(max_size), ntbl)
   rlm.fit <- MASS::rlm(log(CA_mg) ~ log(max_size), ntbl.CA, model = TRUE, x.ret = TRUE, y.ret = FALSE)
-  
-  summary(rlm.fit)
-```
-
-```
-## 
-## Call: rlm(formula = log(CA_mg) ~ log(max_size), data = ntbl.CA, model = TRUE, 
-##     x.ret = TRUE, y.ret = FALSE)
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.7803 -1.0348  0.1450  0.9159  4.1060 
-## 
-## Coefficients:
-##               Value   Std. Error t value
-## (Intercept)    4.0296  0.1283    31.4017
-## log(max_size) -0.2625  0.0489    -5.3682
-## 
-## Residual standard error: 1.465 on 159 degrees of freedom
-```
-
-```r
-  tidy.rlm.fit <- tidy(rlm.fit)
-head(tidy.rlm.fit)
-```
-
-```
-##            term   estimate  std.error statistic
-## 1   (Intercept)  4.0295580 0.12832278 31.401737
-## 2 log(max_size) -0.2625197 0.04890304 -5.368168
-```
-
-```r
-  summary(lmrob.fit)
-```
-
-```
-## 
-## Call:
-## lmrob(formula = log(CA_mg) ~ log(max_size), data = ntbl)
-##  \--> method = "MM"
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.7463 -1.0273  0.1675  0.7722  4.0487 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)    3.97813    0.18236  21.814  < 2e-16 ***
-## log(max_size) -0.23281    0.07202  -3.233  0.00148 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Robust residual standard error: 1.368 
-## Multiple R-squared:  0.1343,	Adjusted R-squared:  0.1291 
-## Convergence in 14 IRWLS iterations
-## 
-## Robustness weights: 
-##  4 weights are ~= 1. The remaining 166 ones are summarized as
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.3609  0.8797  0.9548  0.9088  0.9841  0.9989 
-## Algorithmic parameters: 
-##        tuning.chi                bb        tuning.psi        refine.tol 
-##         1.548e+00         5.000e-01         4.685e+00         1.000e-07 
-##           rel.tol         solve.tol       eps.outlier             eps.x 
-##         1.000e-07         1.000e-07         5.882e-04         1.605e-11 
-## warn.limit.reject warn.limit.meanrw 
-##         5.000e-01         5.000e-01 
-##      nResample         max.it       best.r.s       k.fast.s          k.max 
-##            500             50              2              1            200 
-##    maxit.scale      trace.lev            mts     compute.rd fast.s.large.n 
-##            200              0           1000              0           2000 
-##                   psi           subsampling                   cov 
-##            "bisquare"         "nonsingular"         ".vcov.avar1" 
-## compute.outlier.stats 
-##                  "SM" 
-## seed : int(0)
-```
-
-```r
-  summary(lm.fit)
-```
-
-```
-## 
-## Call:
-## lm(formula = log(CA_mg) ~ log(max_size), data = ntbl)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.8159 -1.1021  0.0944  0.6965  3.9693 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)    4.04591    0.11876  34.068  < 2e-16 ***
-## log(max_size) -0.22962    0.04393  -5.227 5.06e-07 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.404 on 168 degrees of freedom
-##   (1018 observations deleted due to missingness)
-## Multiple R-squared:  0.1399,	Adjusted R-squared:  0.1348 
-## F-statistic: 27.32 on 1 and 168 DF,  p-value: 5.064e-07
-```
-
-```r
-  summary(rlm.fit)
-```
-
-```
-## 
-## Call: rlm(formula = log(CA_mg) ~ log(max_size), data = ntbl.CA, model = TRUE, 
-##     x.ret = TRUE, y.ret = FALSE)
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -2.7803 -1.0348  0.1450  0.9159  4.1060 
-## 
-## Coefficients:
-##               Value   Std. Error t value
-## (Intercept)    4.0296  0.1283    31.4017
-## log(max_size) -0.2625  0.0489    -5.3682
-## 
-## Residual standard error: 1.465 on 159 degrees of freedom
-```
-
-```r
-  lmrob.table <- cbind(summary(lmrob.fit)$coeff, confint(lmrob.fit))
-  lm.table <- cbind(summary(lm.fit)$coeff, confint(lm.fit))
-  knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
-```
-
-
-
-|              | Estimate | Std. Error | t value | Pr(>&#124;t&#124;) |  2.5 %  | 97.5 %  |
-|:-------------|:--------:|:----------:|:-------:|:------------------:|:-------:|:-------:|
-|(Intercept)   |  3.9781  |   0.1824   | 21.8142 |       0.0000       | 3.6181  | 4.3381  |
-|log(max_size) | -0.2328  |   0.0720   | -3.2328 |       0.0015       | -0.3750 | -0.0906 |
-
-```r
-  knitr::kable(lm.table, align = 'c', format = 'markdown', digits = 4)
-```
-
-
-
-|              | Estimate | Std. Error | t value | Pr(>&#124;t&#124;) |  2.5 %  | 97.5 %  |
-|:-------------|:--------:|:----------:|:-------:|:------------------:|:-------:|:-------:|
-|(Intercept)   |  4.0459  |   0.1188   | 34.0685 |         0          | 3.8115  | 4.2804  |
-|log(max_size) | -0.2296  |   0.0439   | -5.2269 |         0          | -0.3163 | -0.1429 |
-
-```r
-(tidy.lmrob.fit <- tidy(lmrob.table))
-```
-
-```
-##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934504e-51  3.6181059
-## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
-##       X97.5..
-## 1  4.33814796
-## 2 -0.09063825
-```
-
-```r
-tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
-```
-
-```
-##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934504e-51
-## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03
-```
-
-```r
-tidy.rlm.fit <- tidy(rlm.fit)
-head(tidy.lmrob.fit)
-```
-
-```
-##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934504e-51  3.6181059
-## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
-##       X97.5..
-## 1  4.33814796
-## 2 -0.09063825
-```
-
-```r
-results.rlm <- augment(rlm.fit)
-results.rlm$.resid
-```
-
-```
-##   [1] -1.00466919  0.51461763 -0.41496865 -1.01681158 -0.96164273
-##   [6]  0.49556943 -1.29184783 -1.17730666 -1.25415634 -1.41667527
-##  [11] -1.03479374 -1.53518183  0.51383667  0.47935050  4.10600573
-##  [16]  0.76494442  0.14502471  0.07226536  1.56964169  3.61999780
-##  [21] -1.75151830 -1.66441892 -1.56143653 -1.71304497 -1.71304497
-##  [26] -1.37657273 -0.38577824 -0.45149631 -0.71761620 -1.51909124
-##  [31]  1.57478779  2.12689292  2.33137815  3.32309731 -0.20195975
-##  [36]  0.68355933  0.96642211  1.87107909 -1.33839530 -1.20486391
-##  [41] -0.80860774 -0.91874555 -0.93674699 -0.78127983 -0.94424114
-##  [46] -0.98949773 -0.76272415  2.77324997  1.38527619  1.56919698
-##  [51]  0.03048786 -0.38628365 -0.81619890  0.37815109  0.32936092
-##  [56]  0.63232819  0.63232819 -1.80472557 -0.73205598 -1.52011428
-##  [61] -1.46837644 -1.59097876 -1.33881063 -1.37300200 -0.80966643
-##  [66]  2.21646664  2.24669532 -2.06862193 -1.84547838 -1.64480768
-##  [71]  2.74322117  3.09424958  2.79571762  0.16684402  0.66216546
-##  [76]  0.73738888  2.62954512 -1.85384762 -2.78028045  0.70594434
-##  [81]  0.09374020  0.39216351 -0.83504730 -0.89243087 -1.41901404
-##  [86] -1.56665004 -1.33445665 -1.29805078 -0.07482892 -0.92437114
-##  [91] -1.38987988 -0.15266529  2.37680606  1.73355195 -2.00745666
-##  [96] -1.62618745 -1.31702008 -0.93277181 -0.91309225 -0.80942547
-## [101] -1.33562527 -2.40156536 -0.99136548 -2.01709368  0.58814307
-## [106]  0.53098466  0.98816127  0.95432820 -0.75041989  0.77701340
-## [111] -0.97404399 -0.41395839  0.95253099 -0.41961079  0.68308699
-## [116] -0.45764184  0.79161013  0.89978043 -0.41442821  0.61192999
-## [121]  0.45037135  1.57669144  0.27235685  0.22192599 -0.87040529
-## [126] -1.74279105  1.03371786  0.91593482  2.27861333  0.47021828
-## [131]  0.44627359  0.42846223  0.46298441  0.54462840  0.16451200
-## [136]  0.35033731  0.32402706  0.23195791  0.22256817  0.37079435
-## [141]  0.39253620 -1.17614668 -1.08785407 -1.44856128 -0.28779814
-## [146]  0.59114430  0.68645448  1.95760324  2.28419278  1.75757035
-## [151]  1.31423713  2.71817053  1.97382422  0.92093418  1.23929322
-## [156]  1.55363131  1.10717759  2.25481830  1.72484342  2.51570374
-## [161]  1.69137465
 ```
 Let's make a function to compare the robust and regular lm fits. Note to self: add AIC here.
 
@@ -674,7 +475,7 @@ knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 |               |      slope| intercept|model  |
 |:--------------|----------:|---------:|:------|
 |log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039429|robust |
+|log(max_size)1 | -0.2670055|  4.039430|robust |
 
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 
@@ -737,11 +538,6 @@ New function idea! Let's find the % of each taxon that has EPA values above RDI
 So, for one taxon, what would this look like?
 
 ```r
-ntbl.EPA <- ntbl %>%
-  filter(!is.na(Abs_lat)) %>% 
-  filter(!is.na(EPA_g)) %>% 
-  filter(!is.na(taxon))
-
 #' Let's try for one taxon
 EPA.RDI <- ntbl.EPA %>%
   filter(taxon == "Salmons, trouts, smelts") %>% 
@@ -772,7 +568,7 @@ epa.prp <- ntbl.EPA %>%
 ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 6) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-24-1.png) 
 
 ```r
 head(epa.prp)
@@ -804,14 +600,14 @@ arrange(desc(Abs_lat))
 ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-25-1.png) 
 
 ```r
 p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-22-2.png) 
+![](models_plots_files/figure-html/unnamed-chunk-25-2.png) 
    
     
          
