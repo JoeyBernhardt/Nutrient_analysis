@@ -583,10 +583,10 @@ head(tidy.rlm.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934466e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934504e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
-## 1  4.33814795
+## 1  4.33814796
 ## 2 -0.09063825
 ```
 
@@ -596,7 +596,7 @@ tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934466e-51
+## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934504e-51
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03
 ```
 
@@ -607,10 +607,10 @@ head(tidy.lmrob.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934466e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236437 21.814167 6.934504e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
-## 1  4.33814795
+## 1  4.33814796
 ## 2 -0.09063825
 ```
 
@@ -674,7 +674,7 @@ knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 |               |      slope| intercept|model  |
 |:--------------|----------:|---------:|:------|
 |log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039430|robust |
+|log(max_size)1 | -0.2670055|  4.039429|robust |
 
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 
@@ -801,7 +801,7 @@ arrange(desc(Abs_lat))
 
 
 #' this figure shows the percentage of each taxon that reaches RDI, as arranged by increasing latitude
-ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
