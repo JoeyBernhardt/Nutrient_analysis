@@ -234,6 +234,62 @@ ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
 
 ![](models_plots_files/figure-html/unnamed-chunk-9-1.png) 
 
+And now a more general function for fitting lms
+
+```r
+lm_general<- function(df, y, x, ...) {
+  lm_formula <-
+    substitute(y ~ x,
+               list(y = substitute(y), x = substitute(x)))
+  eval(lm(lm_formula, data = df, ...))
+}
+
+lm_general(ntbl.CA, log(max_size), log(CA_mg))
+```
+
+```
+## 
+## Call:
+## lm(formula = lm_formula, data = df)
+## 
+## Coefficients:
+## (Intercept)   log(CA_mg)  
+##      3.4799      -0.6187
+```
+
+```r
+size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size), log(CA_mg))))
+```
+
+```
+## Warning in summary.lm(x): essentially perfect fit: summary may be
+## unreliable
+```
+
+```r
+(size.fits3)
+```
+
+```
+## Source: local data frame [28 x 6]
+## Groups: taxon [15]
+## 
+##                                 taxon        term  estimate std.error
+##                                (fctr)       (chr)     (dbl)     (dbl)
+## 1           Clams, cockles, arkshells (Intercept) -4.368365       NaN
+## 2        Miscellaneous coastal fishes (Intercept)  2.938447 1.4589489
+## 3        Miscellaneous coastal fishes  log(CA_mg) -0.500871 0.3403379
+## 4     Miscellaneous freshwater fishes (Intercept)  3.119484 0.8580236
+## 5     Miscellaneous freshwater fishes  log(CA_mg) -0.337518 0.2047178
+## 6        Miscellaneous pelagic fishes (Intercept)  7.024622 1.9301798
+## 7        Miscellaneous pelagic fishes  log(CA_mg) -1.240157 0.3569467
+## 8                               Shads (Intercept) -6.465633 2.5608105
+## 9                               Shads  log(CA_mg)  1.890944 0.6541407
+## 10 Carps, barbels and other cyprinids (Intercept)  4.351822 0.7231912
+## ..                                ...         ...       ...       ...
+## Variables not shown: statistic (dbl), p.value (dbl)
+```
+
 
 same function, just using robustlm
 
@@ -320,12 +376,11 @@ augment.fits.lm <- size.fits.lm %>% augment(fit)
 
 plot the residuals, by taxon
 
-
 ```r
 ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-13-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-14-1.png) 
 
 plot the residuals, by size
 
@@ -333,7 +388,7 @@ plot the residuals, by size
 ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-14-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
 
 Let's plot those estimates! This is the most satisfying plot yet! From this plot, we can clearly see for which taxa there is a positive or negative relationship between body size and calcium content. 
 
@@ -344,7 +399,7 @@ Let's plot those estimates! This is the most satisfying plot yet! From this plot
     geom_vline() + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-16-1.png) 
 
 Now let's run the same models, but group by habitat. Tidy as before. 
 
@@ -363,11 +418,11 @@ tidy.fit.hab <- size.hab %>%
     geom_vline()
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-16-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-17-1.png) 
 
 
 
-
+Now let's try to fit with a robust approach.
 
 ```r
 #' MASS::rlm(x ~ y, data = df)$coefficients
@@ -528,7 +583,7 @@ head(tidy.rlm.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934470e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -541,7 +596,7 @@ tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934470e-51
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03
 ```
 
@@ -552,7 +607,7 @@ head(tidy.lmrob.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934471e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934470e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -619,7 +674,8 @@ knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 |               |      slope| intercept|model  |
 |:--------------|----------:|---------:|:------|
 |log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039430|robust |
+|log(max_size)1 | -0.2670055|  4.039429|robust |
+
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 
 ```r
@@ -651,7 +707,7 @@ group_by(taxon) %>%
 do(mean_resid(.)) %>% 
   unnest(mean_residual) %>% 
   arrange(desc(mean_residual))
-resid_1
+(resid_1) #' here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
 ```
 
 ```
@@ -716,7 +772,7 @@ epa.prp <- ntbl.EPA %>%
 ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 6) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
 
 ```r
 head(epa.prp)
@@ -748,14 +804,14 @@ arrange(desc(Abs_lat))
 ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
 
 ```r
 p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-21-2.png) 
+![](models_plots_files/figure-html/unnamed-chunk-22-2.png) 
    
     
          
@@ -781,13 +837,28 @@ library(MuMIn)
 EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
 EPA.2 <- lm(log(EPA_g) ~ log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
 
+model.sel(EPA.1, EPA.2)
+```
+
+```
+## Model selection table 
+##        (Int) Abs_lat Hbt log(max_siz)      TL Abs_lat:log(max_siz)
+## EPA.2 -1.253 0.01606   +     -0.02843                    0.0003885
+## EPA.1 -1.268 0.01671   +      0.23830 0.03674            0.0001372
+##       Hbt:log(max_siz) log(max_siz):TL df   logLik   AICc delta weight
+## EPA.2                +                  8 -702.914 1422.2  0.00  0.652
+## EPA.1                +        -0.07451 10 -701.447 1423.4  1.25  0.348
+## Models ranked by AICc(x)
+```
+
+```r
+#' this function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
 AIC.table <- function(mod1, mod2) {
-  model.sel(mod1, mod2)
   model.average <-  model.avg(mod1, mod2)
   return((msTable <- model.average$msTable))
   }
 
-AIC.table(EPA.1, EPA.2)
+(AIC.table(EPA.1, EPA.2))
 ```
 
 ```
@@ -795,3 +866,5 @@ AIC.table(EPA.1, EPA.2)
 ## 12356    8 -702.9139 1422.172 0.000000 0.6515007
 ## 1234567 10 -701.4473 1423.424 1.251284 0.3484993
 ```
+
+

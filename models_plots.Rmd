@@ -117,6 +117,21 @@ ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
 
 ```
 
+And now a more general function for fitting lms
+```{r}
+lm_general<- function(df, y, x, ...) {
+  lm_formula <-
+    substitute(y ~ x,
+               list(y = substitute(y), x = substitute(x)))
+  eval(lm(lm_formula, data = df, ...))
+}
+
+lm_general(ntbl.CA, log(max_size), log(CA_mg))
+
+size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size), log(CA_mg))))
+(size.fits3)
+```
+
 
 same function, just using robustlm
 ```{r}
@@ -143,7 +158,6 @@ augment.fits.lm <- size.fits.lm %>% augment(fit)
 ```
 
 plot the residuals, by taxon
-
 ```{r}
 ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
 ```
@@ -179,10 +193,9 @@ tidy.fit.hab <- size.hab %>%
 
 
 
-
+Now let's try to fit with a robust approach.
 ```{r with robust}
-  
-  
+
 #' MASS::rlm(x ~ y, data = df)$coefficients
   
   lmrob.fit <- lmrob(log(CA_mg) ~ log(max_size), ntbl)
@@ -212,7 +225,6 @@ tidy.rlm.fit <- tidy(rlm.fit)
 head(tidy.lmrob.fit)
 
 
-
 results.rlm <- augment(rlm.fit)
 results.rlm$.resid
 
@@ -231,6 +243,7 @@ compare_models <- function(df, nutrient) {
 knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 
 ```
+
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 ```{r}
 #'model.comparison <- ntbl.CA %>% group_by(taxon) %>% do(model.comp = compare_models(., ntbl.CA$CA_mg))
@@ -254,7 +267,7 @@ group_by(taxon) %>%
 do(mean_resid(.)) %>% 
   unnest(mean_residual) %>% 
   arrange(desc(mean_residual))
-resid_1
+(resid_1) #' here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
 
 ```
 
@@ -339,11 +352,15 @@ library(MuMIn)
 EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
 EPA.2 <- lm(log(EPA_g) ~ log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
 
+model.sel(EPA.1, EPA.2)
+
+#' this function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
 AIC.table <- function(mod1, mod2) {
-  model.sel(mod1, mod2)
   model.average <-  model.avg(mod1, mod2)
   return((msTable <- model.average$msTable))
   }
 
-AIC.table(EPA.1, EPA.2)
+(AIC.table(EPA.1, EPA.2))
 ```
+
+
