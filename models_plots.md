@@ -385,7 +385,7 @@ ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(siz
 plot the residuals, by size
 
 ```r
-ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
@@ -415,7 +415,7 @@ tidy.fit.hab <- size.hab %>%
   ggplot(subset(tidy.fit.hab, term == "log(max_size)"), aes(estimate, Habitat, color = Habitat)) +
     geom_point() +
     geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
-    geom_vline()
+    geom_vline() + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-17-1.png) 
@@ -583,7 +583,7 @@ head(tidy.rlm.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934470e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934466e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -596,7 +596,7 @@ tidy(summary(lmrob.fit)$coeff, conf.int = TRUE)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934470e-51
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934466e-51
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03
 ```
 
@@ -607,7 +607,7 @@ head(tidy.lmrob.fit)
 
 ```
 ##       .rownames   Estimate Std..Error   t.value     Pr...t..     X2.5..
-## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934470e-51  3.6181059
+## 1   (Intercept)  3.9781269 0.18236436 21.814168 6.934466e-51  3.6181059
 ## 2 log(max_size) -0.2328128 0.07201683 -3.232756 1.475822e-03 -0.3749874
 ##       X97.5..
 ## 1  4.33814795
@@ -674,7 +674,7 @@ knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
 |               |      slope| intercept|model  |
 |:--------------|----------:|---------:|:------|
 |log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039429|robust |
+|log(max_size)1 | -0.2670055|  4.039430|robust |
 
 OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
 
@@ -769,7 +769,7 @@ epa.prp <- ntbl.EPA %>%
   arrange(mean.percent.RDI)
 
 #' And this graph shows these percentages ordered by increasing percentage. Yahoo! Success!
-ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 6) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 6) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
@@ -808,7 +808,7 @@ ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxo
 
 ```r
 p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
-p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion")
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-22-2.png) 
