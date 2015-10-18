@@ -143,7 +143,7 @@ Let's plot those two fits. Neither one looks all that great at this point.
 
 ```r
 cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'purple')
-ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear model Fits", values=cols) + theme(legend.position="none")
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear model Fits", values=cols)
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-9-1.png) 
@@ -376,7 +376,7 @@ head(tidy.fits.lm)
 augment.fits.lm <- size.fits.lm %>% augment(fit)
 ```
 
-Here I plot the residuals, by taxon. What this shows me is that some groups, such as the miscellaneous freshwater fishes have much higher variable and worse fit that say the tunas, bonitos and billifishes. This makes sense because some of these groups are much more closely related than others. 
+Here I plot the residuals, by taxon. What this shows me is that some groups, such as the miscellaneous freshwater fishes have much higher variability and worse fit that say the tunas, bonitos and billifishes. This makes sense because some of these groups are much more closely related than others. 
 
 ```r
 ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
@@ -392,7 +392,7 @@ ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_p
 
 ![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
 
-Here's a function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. 
+Here's a function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. Again, here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
 
 ```r
 mean_resid <- function(df) {
@@ -416,7 +416,7 @@ group_by(taxon) %>%
 do(mean_resid(.)) %>% 
   unnest(mean_residual) %>% 
   arrange(desc(mean_residual))
-(resid_1) #' again, here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
+(resid_1)
 ```
 
 ```
@@ -441,7 +441,7 @@ do(mean_resid(.)) %>%
 ## 15            Sharks, rays, chimaeras     0.0000000
 ```
 
-Let's plot those estimates! This is the most satisfying plot yet! From this plot, we can clearly see for which taxa there is a positive or negative relationship between body size and calcium content. Check out that variability--some groups have less calcium as fish body size gets bigger, and others show the opposite pattern. It would be intersting to dig further into these patterns. What could the underlying biological processes responsible for these patterns?
+Let's plot those slope estimates! This is the most satisfying plot yet! From this plot, we can clearly see for which taxa there is a positive or negative relationship between body size and calcium content. Check out that variability--some groups have less calcium as fish body size gets bigger, and others show the opposite pattern. It would be intersting to dig further into these patterns. What could the underlying biological processes responsible for these patterns?
 
 ```r
   ggplot(subset(tidy.fits.lm, term == "log(max_size)"), aes(estimate, taxon, color = taxon)) +
@@ -530,8 +530,7 @@ size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size
 
 ##### Putting nutrient variability in the context of human nutrition
 
-Now, let's explore some of the variability in nutrient content that we saw above, but this in the context of how this matters to humans: recommended daily intake (RDI) values. 
-
+Now, let's explore some of the variability in nutrient content that we saw above, but this time in the context of how this matters to humans: recommended daily intake (RDI) values. Recommended daily intake values may be familiar to you in the context of those numbers printed on food products' nutrition labels (i.e. one serving of milk gives you 30% of your RDI of calcium). These target intake values are typically set by a country's government nutritionists. 
 
 Let's find the % of each taxon that has EPA (an omega-3 fatty acid) values above RDI. 
 
@@ -546,7 +545,7 @@ EPA.RDI <- ntbl.EPA %>%
  mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
   mutate(mean.per.RDI= mean(per.RDI))    
 ```
-Here's the function
+Here's the function:
 
 ```r
 epa.prop <- function(df) {
@@ -627,7 +626,7 @@ ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxo
 
 ![](models_plots_files/figure-html/unnamed-chunk-30-1.png) 
    
-    
+Here I tried to apply this function to all taxa individually, but couldn't figure out. See below for where I was getting errors.     
 
 ```r
 #' this doesn't work, because I can't figure out how to pull out the right column to unnest.
@@ -646,7 +645,7 @@ ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxo
 #'head(epa.prp)
 ```
 
-
+OK, now we've seen that some fish species' traits (i.e. body size, latitude) are related to nutritional profile. But what if I want to uncover which traits vary with nutritional profile in a more systematic way? I could create a set of models which contain different subsets of the variables I think might influence nutritional profile, and then compare how to models fit the data. Here I write out two such candiate models. 
 
 ```r
 library(MuMIn)
@@ -667,8 +666,10 @@ model.sel(EPA.1, EPA.2)
 ## Models ranked by AICc(x)
 ```
 
+This function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
+
+
 ```r
-#' this function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
 AIC.table <- function(mod1, mod2) {
   model.average <-  model.avg(mod1, mod2)
   return((msTable <- model.average$msTable))
@@ -683,4 +684,12 @@ AIC.table <- function(mod1, mod2) {
 ## 1234567 10 -701.4473 1423.424 1.251284 0.3484993
 ```
 
+#### The end! 
+Thanks for sticking with me to this point. To sum up what I did and reflect on the process...I created several functions, some of which were meant to run simple linear models across the entire fish dataset, one taxon at a time. Another function was meant to compare the fits of the OLS lm and the robust lm fits. From that, I saw that the two approaches yielded quite similar results. I also examined how the slope estimates and model fits, via residual analysis, varied across taxa. I saw, not suprisingly, that the groups that contained a more diverse set of species, showed higher variability. 
+
+Also, I wrote some functions to see how taxa vary in terms of the number of species that reach RDI in a single portion. Interestingly, there is quite high variability in nutrient content! That means that not all fish are created equal when it comes to nutrition. Some are much better sources of key nutrients than others.
+
+Finally, I wrote a function that could help me in the model selection process, by comparing AIC values.
+
+Upon reflection, what caused me the most trouble was figuring out how to put out the relevant parameters from the model fitting attempts. Also, I have to give credit to some of my classmates Tony Hui, Matt Strimas-Mackey and Adam Baimel, from whom I took some nice code :) It is certainly really helpful to be able to learn/copy from my peers...
 
