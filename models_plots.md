@@ -95,7 +95,7 @@ Let's plot those
 
 ```r
 cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'royalblue')
-ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear Fits", values=cols)
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear Fits", values=cols) + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-7-1.png) 
@@ -193,7 +193,7 @@ ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
   coord_flip() + 
   geom_hline(aes(x=0), lty=2) +
   xlab('taxon') +
-  ylab('Regression Coefficient') 
+  ylab('Regression Coefficient') + theme(legend.position="none")
 ```
 
 ```
@@ -377,7 +377,7 @@ augment.fits.lm <- size.fits.lm %>% augment(fit)
 plot the residuals, by taxon
 
 ```r
-ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-14-1.png) 
