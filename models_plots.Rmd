@@ -76,6 +76,10 @@ ntbl.EPA <- ntbl %>%
   filter(!is.na(taxon))
 ```
 
+
+##### Exploring the range of variability in nutrient content among fish taxa 
+
+
 First things, first, let's write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna)? So, I'll fit a model of calcium content as a function of body size. 
 
 Here I'm interested in comparing the fits of the linear model using OLS and the robust fit, using robustbase, as suggested by Jenny. 
@@ -117,7 +121,7 @@ OK, now let's apply this function across all taxa. OK this doesn't work...maybe 
 Let's plot those two fits. Neither one looks all that great at this point. 
 ```{r}
 cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'purple')
-ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="Linear model Fits", values=cols)
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="model approach", values=cols)
 ```
 
 
@@ -267,7 +271,7 @@ size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size
 
 Now, let's explore some of the variability in nutrient content that we saw above, but this time in the context of how this matters to humans: recommended daily intake (RDI) values. Recommended daily intake values may be familiar to you in the context of those numbers printed on food products' nutrition labels (i.e. one serving of milk gives you 30% of your RDI of calcium). These target intake values are typically set by a country's government nutritionists. 
 
-Let's find the % of each taxon that has EPA (an omega-3 fatty acid) values above RDI. 
+Let's find the % of each taxon that, in one portion, has EPA (an omega-3 fatty acid) values above RDI. 
 
 So, for one taxon, what would this look like?
 ```{r}
@@ -279,7 +283,7 @@ EPA.RDI <- ntbl.EPA %>%
  mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
   mutate(mean.per.RDI= mean(per.RDI))    
 ```
-Here's the function:
+Here's a function for calculating the percentage of species in a taxon that reach 25% of RDI in a single portion (i.e. 100g of fish tissue). 
 ```{r}
 epa.prop <- function(df) {
   (EPA.RDI <- df %>%
