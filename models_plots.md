@@ -1,10 +1,10 @@
-# plots and models
+# Nutrient analysis plots and models
 
-Here's some background on the project: 
+Some background on the project: 
 
 *One of the most widely studied and universally important benefits that humans derive from natural ecosystems is food provisioning. Indeed, many coastal human communities rely on wild harvests from local aquatic ecosystems to meet nutritional requirements for macronutrients, such as protein and fats, and micronutrients, such as vitamins and minerals. The value of a fish species in terms of human nutrition benefits can be quantified as the nutrient content in an edible portion relative to Recommended Daily Intake (RDI) values. The RDI is the daily intake level of a nutrient that is considered to be sufficient to meet the requirements of 97–98% of healthy individuals in every demographic. Although fisheries productivity is studied extensively, there has been surprisingly little consideration of the drivers of the nutritional quality of fisheries yields.*
 
-Thus, the main questions I'll be adressing in this data are: 
+Thus, the main questions I'll be adressing with this data are: 
 
 1. What is the range of nutrient content across species? 
 2. Does nutrient content vary with fish species' traits such as body size or trophic level? 
@@ -13,7 +13,7 @@ To do this I'll take a model selection approach, wherein I'll compare models whi
 
 I've collected nutrient and fish trait data from the peer-reviewed literature and databases such as [FishBase](https://en.wikipedia.org/wiki/FishBase). 
 
-Loading required packages.
+#### Loading required packages.
 
 ```r
 library(ggplot2)
@@ -29,6 +29,8 @@ library(tidyr)
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
 ntbl <- tbl_df(nut)
 ```
+
+#### Data cleaning and wrangling
 
 Let's change variable names to more intuitive names.
 
@@ -100,7 +102,7 @@ str(ntbl.HG)
 #### Exploring the range of variability in nutrient content among fish taxa 
 
 
-First things, first, let's write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna)? So, I'll fit a model of calcium content as a function of body size. 
+First, I'll write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna)? So, I'll fit a model of calcium content as a function of body size. 
 
 
 Here is a function that will allow me to run a lm for any set of variables:
@@ -117,7 +119,7 @@ lm_gen<- function(df, y, x, ...) {
   lm(lm_formula, data = df, ...)
 }
 
-lm_gen(ntbl.CA, "log(max_size)", "log(DHA_g)") #' here I test it with calcium as function of max body size. looks like it works!
+lm_gen(ntbl.CA, "log(max_size)", "log(CA_mg)") #' here I test it with calcium as function of max body size. looks like it works!
 ```
 
 ```
@@ -126,12 +128,12 @@ lm_gen(ntbl.CA, "log(max_size)", "log(DHA_g)") #' here I test it with calcium as
 ## lm(formula = lm_formula, data = df)
 ## 
 ## Coefficients:
-## (Intercept)   log(DHA_g)  
-##       4.460        1.388
+## (Intercept)   log(CA_mg)  
+##      3.4799      -0.6187
 ```
 
 
-And now, to conclude this section, here's an even more general function for fitting lms (thanks to Jenny's [post](http://stat545-ubc.github.io/block025_lm-poly.html) for this code). I think this is about as general it's going to get! Nice, it looks like this works. 
+Here's an even more general function for fitting lms (thanks to Jenny's [post](http://stat545-ubc.github.io/block025_lm-poly.html) for this code). I think this is about as general it's going to get! Nice, it looks like this works. 
 
 ```r
 lm_general<- function(df, y, x, ...) {
@@ -196,7 +198,7 @@ ggplot(subset(size.fitsCA, term == "log(max_size)"), aes(estimate, taxon, color 
 ![](models_plots_files/figure-html/unnamed-chunk-7-1.png) 
 
 
-#### repeating for many variables
+#### repeating for the other nutrients
 
 ```r
 # nuts <- ntbl %>% names %>% .[5:8]
@@ -329,44 +331,6 @@ ggplot(subset(TL.fitsHG, term == "TL"), aes(estimate, taxon, color = taxon)) +
 ![](models_plots_files/figure-html/unnamed-chunk-9-2.png) 
 
 
-Let's compare the fits of these two models. As you can see from the tables below, they have pretty similar fits (similar coefficient (slope) estimates and confidence intervals). Does this mean that there aren't many crazy outliers?
-
-```r
-# lm.table <- cbind(summary(size.fit.lm)$coeff, confint(size.fit.lm))
-# knitr::kable(lm.table, align = 'c', format = 'markdown', digits = 4)
-# 
-# lmrob.table <- cbind(summary(size.fit.lmrob)$coeff, confint(size.fit.lmrob))
-# knitr::kable(lmrob.table, align = 'c', format = 'markdown', digits = 4)
-```
-
-Let's make a function to compare the robust and regular lm fits. Thanks to [tony_hui](https://github.com/STAT545-UBC/tony_hui) for inspiration on this model comparison code. As you can see from the table below, the fits are pretty much the same!
-
-```r
-suppressPackageStartupMessages(require(MASS))
-compare_models <- function(df, nutrient) {
-  model_lm <- lm(log(nutrient) ~ log(max_size), data = df)
-  lm_df <- data.frame(slope = coef(model_lm)[2], intercept = coef(model_lm)[1], model = "normal")
-  model_rlm <- rlm(log(nutrient) ~ log(max_size), data = df, method = "MM")
-  rlm_df <- data.frame(slope = coef(model_rlm)[2], intercept = coef(model_rlm)[1], model = "robust")
-  return(rbind(lm_df, rlm_df))
-}
-
-knitr::kable(compare_models(ntbl.CA, ntbl.CA$CA_mg), format = "markdown")
-```
-
-
-
-|               |      slope| intercept|model  |
-|:--------------|----------:|---------:|:------|
-|log(max_size)  | -0.2600487|  4.098491|normal |
-|log(max_size)1 | -0.2670055|  4.039430|robust |
-
-OK, now let's apply this function across all taxa. OK this doesn't work...maybe because the different fitting approaches drop different numbers of taxa??
-
-```r
-#'model.comparison <- ntbl.CA %>% group_by(taxon) %>% do(model.comp = compare_models(., ntbl.CA$CA_mg))
-```
-
 
 Let's plot those two fits. Neither one looks all that great at this point. 
 
@@ -375,156 +339,16 @@ cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'purple')
 ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="model approach", values=cols)
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-13-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-10-1.png) 
 
-
-
-OK, now let's set up the initial linear model function, in its simplest form. 
-
-```r
-size.fit <- function(df) {
-  (CA.fit <- lm(log(CA_mg) ~ log(max_size), df))
-}
-```
-
-Here is a slightly more general function to do the same thing. More general in that here we allow the nutrient to be variable. I put this together thanks to inspiration from [adam_baimel](https://github.com/STAT545-UBC/adam_baimel/issues/6#issuecomment-144514497).
-
-```r
-size.fit2 <- function(df, nutrient) {
-  model <- lm(log(nutrient) ~ log(max_size), data = df)
-  y   = coef(model)[2]
-  ylo = confint(model)[2]
-  yhi = confint(model)[4]
-  setNames(data.frame(t(c(y, ylo, yhi))), c("beta", "ylo", "yhi"))
-}
-```
-
-Looks like the function works for the dataset as a whole!
-
-```r
-(size.fit2(ntbl.CA, ntbl.CA$CA_mg))
-```
-
-```
-##         beta        ylo        yhi
-## 1 -0.2600487 -0.3530635 -0.1670339
-```
-
-Now let's apply it by groups: taxon by taxon. 
-
-```r
-test<- ntbl.CA %>%  
-  group_by(taxon) %>% 
-  do(size.fit2(., .$CA_mg)) %>% 
-  ungroup() %>% 
-  arrange(desc(beta))
-test  
-```
-
-```
-## Source: local data frame [15 x 4]
-## 
-##                                 taxon        beta         ylo          yhi
-##                                (fctr)       (dbl)       (dbl)        (dbl)
-## 1                               Shads  0.21708865  0.05346372  0.380713576
-## 2             Sharks, rays, chimaeras  0.20415019         NaN          NaN
-## 3          Tunas, bonitos, billfishes -0.01902145 -0.29107574  0.253032847
-## 4               Cods, hakes, haddocks -0.03791203 -0.16263333  0.086809273
-## 5       Miscellaneous demersal fishes -0.09844436 -0.28519516  0.088306435
-## 6     Miscellaneous freshwater fishes -0.26217407 -0.58790934  0.063561198
-## 7        Miscellaneous pelagic fishes -0.37334532 -0.60381916 -0.142871482
-## 8             Salmons, trouts, smelts -0.47549595 -0.75030801 -0.200683891
-## 9  Carps, barbels and other cyprinids -0.51506580 -0.72391948 -0.306212120
-## 10       Miscellaneous coastal fishes -0.70131198 -2.02438810  0.621764140
-## 11         Flounders, halibuts, soles -0.95205118 -1.90178944 -0.002312919
-## 12          Clams, cockles, arkshells          NA          NA           NA
-## 13      Herrings, sardines, anchovies          NA          NA           NA
-## 14      Lobsters, spiny-rock lobsters          NA          NA           NA
-## 15        Tilapias and other cichlids          NA          NA           NA
-```
-
-Let's plot that, again, thanks to [adam_baimel](https://github.com/STAT545-UBC/adam_baimel/issues/6#issuecomment-144514497)
-
-```r
-test$taxon <- factor(test$taxon, levels=unique(test$taxon))
-ggplot(test, aes(x=taxon, y=beta, ymin=ylo, ymax=yhi)) +
-  geom_pointrange() + 
-  coord_flip() + 
-  geom_hline(aes(x=0), lty=2) +
-  xlab('taxon') +
-  ylab('Regression Coefficient') + theme(legend.position="none")
-```
-
-![](models_plots_files/figure-html/unnamed-chunk-18-1.png) 
-
-
-
-Here's the same function as my initial lm function, just using robustlm this time. 
-
-```r
-size.fit.rob <- function(df) {
-  (CA.fit <- lmrob(log(CA_mg) ~ log(max_size), df))
-}
-```
 
 Here we apply the function, group by taxon.
 
 ```r
-size.fits.lm <- ntbl.CA %>%
+augment.fits.lm <- ntbl.CA %>%
   group_by(taxon) %>% 
-  do(fit=size.fit(.))
-size.fits.lm
-```
-
-```
-## Source: local data frame [15 x 2]
-## Groups: <by row>
-## 
-##                                 taxon     fit
-##                                (fctr)   (chr)
-## 1           Clams, cockles, arkshells <S3:lm>
-## 2        Miscellaneous coastal fishes <S3:lm>
-## 3     Miscellaneous freshwater fishes <S3:lm>
-## 4        Miscellaneous pelagic fishes <S3:lm>
-## 5                               Shads <S3:lm>
-## 6  Carps, barbels and other cyprinids <S3:lm>
-## 7               Cods, hakes, haddocks <S3:lm>
-## 8          Flounders, halibuts, soles <S3:lm>
-## 9       Herrings, sardines, anchovies <S3:lm>
-## 10      Lobsters, spiny-rock lobsters <S3:lm>
-## 11      Miscellaneous demersal fishes <S3:lm>
-## 12            Salmons, trouts, smelts <S3:lm>
-## 13            Sharks, rays, chimaeras <S3:lm>
-## 14        Tilapias and other cichlids <S3:lm>
-## 15         Tunas, bonitos, billfishes <S3:lm>
-```
-
-Here, let's tidy the parameter estimates.
-
-```r
-tidy.fits.lm <- size.fits.lm %>% 
-  tidy(fit, conf.int = TRUE)
-head(tidy.fits.lm)
-```
-
-```
-## Source: local data frame [6 x 8]
-## Groups: taxon [3]
-## 
-##                              taxon          term   estimate std.error
-##                             (fctr)         (chr)      (dbl)     (dbl)
-## 1        Clams, cockles, arkshells   (Intercept)  4.1415462       NaN
-## 2        Clams, cockles, arkshells   (Intercept)  4.1415462       NaN
-## 3     Miscellaneous coastal fishes   (Intercept)  4.6305332 0.8014623
-## 4     Miscellaneous coastal fishes log(max_size) -0.7013120 0.4765360
-## 5  Miscellaneous freshwater fishes   (Intercept)  4.2901387 0.4295241
-## 6  Miscellaneous freshwater fishes log(max_size) -0.2621741 0.1590188
-## Variables not shown: statistic (dbl), p.value (dbl), conf.low (dbl),
-##   conf.high (dbl)
-```
-
-```r
-augment.fits.lm <- size.fits.lm %>% augment(fit)
+  do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) 
 ```
 
 Here I plot the residuals, by taxon. What this shows me is that some groups, such as the miscellaneous freshwater fishes have much higher variability and worse fit that say the tunas, bonitos and billifishes. This makes sense because some of these groups are much more closely related than others. 
@@ -533,7 +357,7 @@ Here I plot the residuals, by taxon. What this shows me is that some groups, suc
 ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-12-1.png) 
 
 And now, plot the residuals, by size. Well at least this doesn't look too funnel-shaped or anything too weird. That's somewhat reassuring!
 
@@ -541,7 +365,7 @@ And now, plot the residuals, by size. Well at least this doesn't look too funnel
 ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-23-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-13-1.png) 
 
 Here's a function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. Again, here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
 
@@ -592,26 +416,13 @@ do(mean_resid(.)) %>%
 ## 15            Sharks, rays, chimaeras     0.0000000
 ```
 
-Let's plot those slope estimates! This is the most satisfying plot yet! From this plot, we can clearly see for which taxa there is a positive or negative relationship between body size and calcium content. Check out that variability--some groups have less calcium as fish body size gets bigger, and others show the opposite pattern. It would be intersting to dig further into these patterns. What could the underlying biological processes responsible for these patterns?
-
-```r
-  ggplot(subset(tidy.fits.lm, term == "log(max_size)"), aes(estimate, taxon, color = taxon)) +
-    geom_point() +
-    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
-    geom_vline() + theme(legend.position="none")
-```
-
-![](models_plots_files/figure-html/unnamed-chunk-25-1.png) 
-
 Now let's run the same models, but group by habitat. Tidy as before. Weird! Both the marine and freshwater groups show significant negative slopes and the brackish group shows a positive relationship between calcium content and body size. I can think of no biological explanation for this!
 
 ```r
-  size.hab <- ntbl.CA %>%
+  tidy.fit.hab <- ntbl.CA %>%
   group_by(Habitat) %>% 
-  do(fit=size.fit(.))
-
-tidy.fit.hab <- size.hab %>% 
-  tidy(fit, conf.int = TRUE)
+  do(tidy(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) 
 
   
   ggplot(subset(tidy.fit.hab, term == "log(max_size)"), aes(estimate, Habitat, color = Habitat)) +
@@ -620,7 +431,7 @@ tidy.fit.hab <- size.hab %>%
     geom_vline() + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-26-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
 
 
 ##### Putting nutrient variability in the context of human nutrition
@@ -667,10 +478,10 @@ epa.prp <- ntbl.EPA %>%
 And this graph shows these percentages ordered by increasing percentage. Yahoo! Success!
 
 ```r
-ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 6) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-30-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
 
 ```r
 head(epa.prp)
@@ -690,7 +501,46 @@ head(epa.prp)
 ```
     
 
-Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I would hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
+
+```r
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon))
+
+ggplot(ntbl, aes(x=taxon, y=DHA_g)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +geom_hline(aes(yintercept=0.25))
+```
+
+```
+## Warning: Removed 672 rows containing missing values (geom_point).
+```
+
+![](models_plots_files/figure-html/DHA-1.png) 
+
+```r
+dha.prop <- function(df) {
+  (DHA.RDI <- df %>%
+  mutate(RDI = ifelse(DHA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(DHA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+dha.prp <- ntbl.DHA%>%
+  do(DHA.prp=dha.prop(.)) %>% 
+    unnest(DHA.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(dha.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+```
+
+![](models_plots_files/figure-html/DHA-2.png) 
+
+
+Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
 
 
 This figure shows how EPA content varies as a function of latitude. 
@@ -700,7 +550,7 @@ p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-31-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
 
 
 Here I apply my EPA RDI function to the whole dataset and arrange the results by decreasing latitude. 
@@ -719,7 +569,7 @@ This figure shows the percentage of each taxon that reaches RDI, as arranged by 
 ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-33-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
    
 Here I tried to apply this function to all taxa individually, but couldn't figure out. See below for where I was getting errors.     
 
