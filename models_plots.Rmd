@@ -230,27 +230,26 @@ ggplot(subset(TL.fitsHG, term == "TL"), aes(estimate, taxon, color = taxon)) +
 
 Let's plot those two fits. Neither one looks all that great at this point. 
 ```{r warning= FALSE}
-cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'purple')
-ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="model approach", values=cols)
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg), color=taxon)) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
 ```
 
-
-Here we apply the function, group by taxon.
+Residuals, grouped by taxon.
 ```{r warning= FALSE}
-augment.fits.lm <- ntbl.CA %>%
+ntbl.CA %>%
   group_by(taxon) %>% 
   do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
-          conf.int = TRUE)) 
-```
-
-Here I plot the residuals, by taxon. What this shows me is that some groups, such as the miscellaneous freshwater fishes have much higher variability and worse fit that say the tunas, bonitos and billifishes. This makes sense because some of these groups are much more closely related than others. 
-```{r warning= FALSE}
-ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+          conf.int = TRUE)) %>% 
+ggplot(., aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
 And now, plot the residuals, by size. Well at least this doesn't look too funnel-shaped or anything too weird. That's somewhat reassuring!
 ```{r warning= FALSE}
-ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+
+ntbl.CA %>%
+  group_by(taxon) %>% 
+  do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) %>% 
+ggplot(., aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
 Here's a function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. Again, here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 

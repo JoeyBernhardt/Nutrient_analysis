@@ -335,37 +335,34 @@ ggplot(subset(TL.fitsHG, term == "TL"), aes(estimate, taxon, color = taxon)) +
 Let's plot those two fits. Neither one looks all that great at this point. 
 
 ```r
-cols <- c('lm() fit' = 'orange', 'lmrob() fit' = 'purple')
-ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(aes(color = 'lm() fit'), method = 'lm') + geom_smooth(aes(color = 'lmrob() fit'), method = 'lmrob') +  scale_colour_manual(name="model approach", values=cols)
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg), color=taxon)) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-10-1.png) 
 
-
-Here we apply the function, group by taxon.
+Residuals, grouped by taxon.
 
 ```r
-augment.fits.lm <- ntbl.CA %>%
+ntbl.CA %>%
   group_by(taxon) %>% 
   do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
-          conf.int = TRUE)) 
+          conf.int = TRUE)) %>% 
+ggplot(., aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-Here I plot the residuals, by taxon. What this shows me is that some groups, such as the miscellaneous freshwater fishes have much higher variability and worse fit that say the tunas, bonitos and billifishes. This makes sense because some of these groups are much more closely related than others. 
-
-```r
-ggplot(augment.fits.lm, aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
-```
-
-![](models_plots_files/figure-html/unnamed-chunk-12-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-11-1.png) 
 
 And now, plot the residuals, by size. Well at least this doesn't look too funnel-shaped or anything too weird. That's somewhat reassuring!
 
 ```r
-ggplot(augment.fits.lm, aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+ntbl.CA %>%
+  group_by(taxon) %>% 
+  do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) %>% 
+ggplot(., aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-13-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-12-1.png) 
 
 Here's a function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. Again, here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
 
@@ -431,7 +428,7 @@ Now let's run the same models, but group by habitat. Tidy as before. Weird! Both
     geom_vline() + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-15-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-14-1.png) 
 
 
 ##### Putting nutrient variability in the context of human nutrition
@@ -481,7 +478,7 @@ And this graph shows these percentages ordered by increasing percentage. Yahoo! 
 ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-18-1.png) 
 
 ```r
 head(epa.prp)
@@ -550,7 +547,7 @@ p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
 
 
 Here I apply my EPA RDI function to the whole dataset and arrange the results by decreasing latitude. 
@@ -569,7 +566,7 @@ This figure shows the percentage of each taxon that reaches RDI, as arranged by 
 ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
    
 Here I tried to apply this function to all taxa individually, but couldn't figure out. See below for where I was getting errors.     
 
