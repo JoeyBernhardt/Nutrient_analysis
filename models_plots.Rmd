@@ -500,6 +500,17 @@ ntbl.ZN <- ntbl %>%
   filter(!is.na(max_size))
 
 ZN.1 <- lm(log(ZN_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.ZN, na.action = "na.fail")
+
+dredge(ZN.1) #' best model set includes latitude, size, and TL 
+
+ZN.R1 <- lm(log(ZN_mg) ~ Abs_lat + log(max_size), data=ntbl.ZN, na.action = "na.fail")
+
+ZN.R2 <- lm(log(ZN_mg) ~ Abs_lat + log(max_size) + TL, data=ntbl.ZN, na.action = "na.fail")
+
+ZN.avg <- model.avg(ZN.R1, ZN.R2)
+
+summary(ZN.avg)
+
 ZN.size <- lm(log(ZN_mg) ~ log(max_size), data=ntbl.ZN)
 summary(ZN.1)
 
