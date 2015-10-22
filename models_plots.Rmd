@@ -29,6 +29,7 @@ library(knitr)
 suppressPackageStartupMessages(library(Hmisc))
 suppressPackageStartupMessages(library(robustbase))
 library(tidyr)
+library(MuMIn)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
 ntbl <- tbl_df(nut)
@@ -437,6 +438,33 @@ FE.prp <- ntbl.FE%>%
   arrange(mean.percent.RDI)
 
 ggplot(FE.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for iron")
+
+
+ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size)) %>% 
+  ggplot(., aes(x=log(max_size), y=log(FE_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+
+
+ntbl.FE <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+FE.1 <- lm(log(FE_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.FE, na.action = "na.fail")
+
+dredge(FE.1) #' best model has lat, habitat, size, and lat*size
+
+FE.R1 <- lm(log(FE_mg) ~ log(max_size)*Abs_lat + Habitat, data=ntbl.FE, na.action = "na.fail")
+summary(FE.R1)
+
 ```
 
 Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.

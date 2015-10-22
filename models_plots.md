@@ -25,6 +25,7 @@ library(knitr)
 suppressPackageStartupMessages(library(Hmisc))
 suppressPackageStartupMessages(library(robustbase))
 library(tidyr)
+library(MuMIn)
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
 ntbl <- tbl_df(nut)
@@ -624,6 +625,148 @@ ggplot(FE.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, c
 ```
 
 ![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
+
+```r
+ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size)) %>% 
+  ggplot(., aes(x=log(max_size), y=log(FE_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+```
+
+![](models_plots_files/figure-html/unnamed-chunk-21-2.png) 
+
+```r
+ntbl.FE <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+FE.1 <- lm(log(FE_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.FE, na.action = "na.fail")
+
+dredge(FE.1) #' best model has lat, habitat, size, and lat*size
+```
+
+```
+## Fixed term is "(Intercept)"
+```
+
+```
+## Global model call: lm(formula = log(FE_mg) ~ log(max_size) * TL + log(max_size) * 
+##     Abs_lat + log(max_size) * Habitat, data = ntbl.FE, na.action = "na.fail")
+## ---
+## Model selection table 
+##        (Int)  Abs_lat Hbt log(max_siz)        TL Abs_lat:log(max_siz)
+## 24  -0.49750 -0.04667   +      0.18020                      -0.006051
+## 32  -0.59970 -0.04680   +      0.18040  0.031980            -0.006145
+## 56  -0.49420 -0.04641   +      0.18860                      -0.006184
+## 96  -0.30370 -0.04670   +     -0.12820 -0.101000            -0.005424
+## 64  -0.59960 -0.04651   +      0.19000  0.033100            -0.006301
+## 4   -0.26750 -0.04965   +                                            
+## 128 -0.29430 -0.04590   +     -0.11150 -0.102000            -0.005824
+## 8   -0.49810 -0.04770   +     -0.04661                               
+## 40  -0.53680 -0.05054   +     -0.08711                               
+## 80   0.04201 -0.04721   +     -0.43630 -0.225300                     
+## 12   0.03473 -0.04864   +              -0.112700                     
+## 112 -0.05036 -0.04923   +     -0.42030 -0.198400                     
+## 16  -0.32720 -0.04746   +     -0.04102 -0.053440                     
+## 48  -0.39950 -0.05031   +     -0.08219 -0.042810                     
+## 30   0.45610 -0.04073          0.23490  0.243000            -0.008021
+## 22   1.21000 -0.03912          0.23730                      -0.007417
+## 94   0.90210 -0.04072         -0.11600  0.088350            -0.007166
+## 2    1.16500 -0.04153                                                
+## 78   1.29400 -0.04084         -0.53420 -0.062990                     
+## 6    1.14100 -0.03981         -0.04135                               
+## 10   0.93750 -0.04236                   0.074050                     
+## 14   0.66160 -0.04086         -0.05719  0.153500                     
+## 7   -2.45000            +     -0.11860                               
+## 79  -1.43500            +     -0.52490 -0.364400                     
+## 111 -1.17100            +     -0.54570 -0.400000                     
+## 15  -1.84200            +     -0.09860 -0.179600                     
+## 39  -2.32800            +     -0.08317                               
+## 47  -1.70900            +     -0.06234 -0.182100                     
+## 11  -1.03500            +              -0.335100                     
+## 3   -2.04000            +                                            
+## 5   -0.42310                  -0.10290                               
+## 77   0.23270                  -0.58160 -0.223100                     
+## 13  -0.40360                  -0.10230 -0.005736                     
+## 1   -0.54080                                                         
+## 9    0.03282                           -0.162700                     
+##     Hbt:log(max_siz) log(max_siz):TL df   logLik  AICc delta weight
+## 24                                    7 -227.734 470.2  0.00  0.391
+## 32                                    8 -227.713 472.4  2.18  0.131
+## 56                 +                  8 -227.730 472.5  2.22  0.129
+## 96                           0.08473  9 -226.784 472.8  2.59  0.107
+## 64                 +                  9 -227.706 474.7  4.43  0.043
+## 4                                     5 -232.168 474.7  4.50  0.041
+## 128                +         0.08732 10 -226.739 475.0  4.79  0.036
+## 8                                     6 -231.430 475.4  5.19  0.029
+## 40                 +                  7 -230.536 475.8  5.60  0.024
+## 80                           0.11850  8 -229.531 476.1  5.82  0.021
+## 12                                    6 -231.856 476.3  6.05  0.019
+## 112                +         0.10510  9 -229.120 477.5  7.26  0.010
+## 16                                    7 -231.370 477.5  7.27  0.010
+## 48                 +                  8 -230.497 478.0  7.75  0.008
+## 30                                    6 -241.369 495.3 25.07  0.000
+## 22                                    5 -242.484 495.4 25.13  0.000
+## 94                           0.09623  7 -240.361 495.5 25.25  0.000
+## 2                                     3 -247.587 501.3 31.09  0.000
+## 78                           0.14350  6 -244.431 501.4 31.20  0.000
+## 6                                     4 -247.102 502.5 32.23  0.000
+## 10                                    4 -247.472 503.2 32.97  0.000
+## 14                                    5 -246.673 503.8 33.51  0.000
+## 7                                     5 -255.362 521.1 50.89  0.000
+## 79                           0.12790  7 -253.286 521.3 51.10  0.000
+## 111                +         0.15000  8 -252.304 521.6 51.37  0.000
+## 15                                    6 -254.859 522.3 52.05  0.000
+## 39                 +                  6 -254.907 522.4 52.15  0.000
+## 47                 +                  7 -254.388 523.5 53.31  0.000
+## 11                                    5 -256.979 524.4 54.13  0.000
+## 3                                     4 -259.023 526.3 56.07  0.000
+## 5                                     3 -262.277 530.7 60.47  0.000
+## 77                           0.14420  5 -260.435 531.3 61.04  0.000
+## 13                                    4 -262.277 532.8 62.58  0.000
+## 1                                     2 -264.878 533.8 63.60  0.000
+## 9                                     3 -264.403 535.0 64.73  0.000
+## Models ranked by AICc(x)
+```
+
+```r
+FE.R1 <- lm(log(FE_mg) ~ log(max_size)*Abs_lat + Habitat, data=ntbl.FE, na.action = "na.fail")
+summary(FE.R1)
+```
+
+```
+## 
+## Call:
+## lm(formula = log(FE_mg) ~ log(max_size) * Abs_lat + Habitat, 
+##     data = ntbl.FE, na.action = "na.fail")
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.52837 -0.72689 -0.01739  0.55986  2.83144 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)           -0.497480   1.131191  -0.440  0.66074    
+## log(max_size)          0.180234   0.092334   1.952  0.05284 .  
+## Abs_lat               -0.046673   0.006348  -7.352 1.26e-11 ***
+## Habitatfreshwater      1.571346   1.113675   1.411  0.16037    
+## Habitatmarine          2.544786   1.115191   2.282  0.02393 *  
+## log(max_size):Abs_lat -0.006051   0.002243  -2.697  0.00781 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.094 on 147 degrees of freedom
+## Multiple R-squared:  0.3846,	Adjusted R-squared:  0.3637 
+## F-statistic: 18.38 on 5 and 147 DF,  p-value: 3.796e-14
+```
 
 Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
 
