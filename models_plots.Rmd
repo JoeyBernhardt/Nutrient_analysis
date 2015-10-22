@@ -62,7 +62,7 @@ ntbl <- ntbl %>%
   mutate(max_size = (lwA * (max_length^lwB)/1000))
 ```
 
-Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Here I'll create two tbl_dfs which I'll call on later. One will be for calcium (a nutrient essential for bone formation and ion regulation in fish), and EPA, an omega-3 fatty acid. 
+Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Side note: I'd prefer to NOT have to do this kind of thing, and I can run some models without doing this, but not all. Any tips on dealing with lots of NAs would be great. 
 ```{r warning= FALSE}
 ntbl.CA <- ntbl %>%
   filter(!is.na(max_size)) %>% 
@@ -88,6 +88,8 @@ str(ntbl.HG)
 
 
 First, I'll write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna)? So, I'll fit a model of calcium content as a function of body size. 
+
+
 
 
 Here is a function that will allow me to run a lm for any set of variables:
@@ -315,6 +317,8 @@ epa.prop <- function(df) {
 ```
 
 Here it is applied to my dataset, grouped by taxon, and unnested, summarised etc. The final output that I want is the percentage of fish species in each taxon that reaches a threshold of 25% of RDI in one portion.
+
+####EPA
 ```{r warning= FALSE}
 epa.prp <- ntbl.EPA %>%
   do(EPA.prp=epa.prop(.)) %>% 
@@ -332,7 +336,7 @@ ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, 
 head(epa.prp)
 ```       
     
-
+####DHA
 ```{r DHA}
 ntbl.DHA <- ntbl %>%
   filter(!is.na(Abs_lat)) %>% 
@@ -358,6 +362,27 @@ dha.prp <- ntbl.DHA%>%
   arrange(mean.percent.RDI)
 
 ggplot(dha.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+```
+
+#### Calcium
+```{r}
+CA.prop <- function(df) {
+  (CA.RDI <- df %>%
+  mutate(RDI = ifelse(CA_mg > 250, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(CA_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+CA.prp <- ntbl.CA%>%
+  do(CA.prp=CA.prop(.)) %>% 
+    unnest(CA.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(CA.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for calcium")
 ```
 
 
@@ -408,10 +433,32 @@ Here I tried to apply this function to all taxa individually, but couldn't figur
 OK, now we've seen that some fish species' traits (i.e. body size, latitude) are related to nutritional profile. But what if I want to uncover which traits vary with nutritional profile in a more systematic way? I could create a set of models which contain different subsets of the variables I think might influence nutritional profile, and then compare how to models fit the data. Here I write out two such candiate models. 
 ```{r warning= FALSE}
 library(MuMIn)
-EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
-EPA.2 <- lm(log(EPA_g) ~ log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
 
-model.sel(EPA.1, EPA.2)
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA, na.action = "na.fail")
+
+dredge(EPA.1)
+
+EPA.r1 <- lm(log(EPA_g) ~ Abs_lat + Habitat, data=ntbl.EPA, na.action = "na.fail")
+EPA.r2 <- lm(log(EPA_g) ~ Abs_lat + Habitat + TL, data=ntbl.EPA, na.action = "na.fail")
+EPA.r3 <- lm(log(EPA_g) ~ Abs_lat + Habitat + log(max_size), data=ntbl.EPA, na.action = "na.fail")
+
+
+AIC.table <- function(mod1, mod2, mod3) {
+  model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
+  return((msTable <- model.average$msTable))
+  }
+
+(AIC.table(EPA.r1, EPA.r2, EPA.r3))
+model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
+summary(model.average)
 ```
 
 This function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
@@ -422,6 +469,5 @@ AIC.table <- function(mod1, mod2) {
   return((msTable <- model.average$msTable))
   }
 
-(AIC.table(EPA.1, EPA.2))
 ```
 

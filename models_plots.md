@@ -58,7 +58,7 @@ ntbl <- ntbl %>%
   mutate(max_size = (lwA * (max_length^lwB)/1000))
 ```
 
-Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Here I'll create two tbl_dfs which I'll call on later. One will be for calcium (a nutrient essential for bone formation and ion regulation in fish), and EPA, an omega-3 fatty acid. 
+Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Side note: I'd prefer to NOT have to do this kind of thing, and I can run some models without doing this, but not all. Any tips on dealing with lots of NAs would be great. 
 
 ```r
 ntbl.CA <- ntbl %>%
@@ -103,6 +103,8 @@ str(ntbl.HG)
 
 
 First, I'll write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna)? So, I'll fit a model of calcium content as a function of body size. 
+
+
 
 
 Here is a function that will allow me to run a lm for any set of variables:
@@ -462,6 +464,8 @@ epa.prop <- function(df) {
 
 Here it is applied to my dataset, grouped by taxon, and unnested, summarised etc. The final output that I want is the percentage of fish species in each taxon that reaches a threshold of 25% of RDI in one portion.
 
+####EPA
+
 ```r
 epa.prp <- ntbl.EPA %>%
   do(EPA.prp=epa.prop(.)) %>% 
@@ -497,7 +501,7 @@ head(epa.prp)
 ## 6                          Oysters       0                0
 ```
     
-
+####DHA
 
 ```r
 ntbl.DHA <- ntbl %>%
@@ -536,6 +540,30 @@ ggplot(dha.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, 
 
 ![](models_plots_files/figure-html/DHA-2.png) 
 
+#### Calcium
+
+```r
+CA.prop <- function(df) {
+  (CA.RDI <- df %>%
+  mutate(RDI = ifelse(CA_mg > 250, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(CA_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+CA.prp <- ntbl.CA%>%
+  do(CA.prp=CA.prop(.)) %>% 
+    unnest(CA.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(CA.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for calcium")
+```
+
+![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
+
 
 Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
 
@@ -547,7 +575,7 @@ p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
 
 
 Here I apply my EPA RDI function to the whole dataset and arrange the results by decreasing latitude. 
@@ -566,7 +594,7 @@ This figure shows the percentage of each taxon that reaches RDI, as arranged by 
 ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
    
 Here I tried to apply this function to all taxa individually, but couldn't figure out. See below for where I was getting errors.     
 
@@ -591,21 +619,174 @@ OK, now we've seen that some fish species' traits (i.e. body size, latitude) are
 
 ```r
 library(MuMIn)
-EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
-EPA.2 <- lm(log(EPA_g) ~ log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA)
 
-model.sel(EPA.1, EPA.2)
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA, na.action = "na.fail")
+
+dredge(EPA.1)
 ```
 
 ```
+## Fixed term is "(Intercept)"
+```
+
+```
+## Global model call: lm(formula = log(EPA_g) ~ log(max_size) * TL + log(max_size) * 
+##     Abs_lat + log(max_size) * Habitat, data = ntbl.EPA, na.action = "na.fail")
+## ---
 ## Model selection table 
-##        (Int) Abs_lat Hbt log(max_siz)      TL Abs_lat:log(max_siz)
-## EPA.2 -1.253 0.01606   +     -0.02843                    0.0003885
-## EPA.1 -1.268 0.01671   +      0.23830 0.03674            0.0001372
-##       Hbt:log(max_siz) log(max_siz):TL df   logLik   AICc delta weight
-## EPA.2                +                  8 -702.914 1422.2  0.00  0.652
-## EPA.1                +        -0.07451 10 -701.447 1423.4  1.25  0.348
+##       (Int) Abs_lat Hbt log(max_siz)       TL Abs_lat:log(max_siz)
+## 4   -1.2200 0.01656   +                                           
+## 12  -1.0320 0.01693   +              -0.06720                     
+## 8   -1.2480 0.01666   +   -0.0070190                              
+## 80  -1.2520 0.01706   +    0.2325000  0.03530                     
+## 16  -1.0240 0.01693   +    0.0009166 -0.06879                     
+## 40  -1.2610 0.01655   +   -0.0119100                              
+## 24  -1.2510 0.01674   +   -0.0043450                    -0.0000704
+## 112 -1.2730 0.01688   +    0.2452000  0.03743                     
+## 96  -1.2750 0.01768   +    0.2622000  0.03848           -0.0005241
+## 48  -1.0240 0.01681   +   -0.0042240 -0.07329                     
+## 32  -1.0270 0.01705   +    0.0047950 -0.06901           -0.0001014
+## 56  -1.2530 0.01606   +   -0.0284300                     0.0003885
+## 128 -1.2680 0.01671   +    0.2383000  0.03674            0.0001372
+## 64  -1.0130 0.01629   +   -0.0219400 -0.07387            0.0004181
+## 3   -0.6291           +                                           
+## 11  -0.5859           +              -0.01440                     
+## 7   -0.6215           +    0.0022060                              
+## 39  -0.6513           +   -0.0064280                              
+## 15  -0.5432           +    0.0049070 -0.02299                     
+## 79  -0.7529           +    0.2218000  0.07483                     
+## 111 -0.7879           +    0.2390000  0.07712                     
+## 47  -0.5485           +   -0.0031890 -0.03054                     
+## 6   -3.2950 0.02161       -0.0393000                              
+## 2   -3.3150 0.02129                                               
+## 78  -3.8690 0.02133        0.2223000  0.18290                     
+## 14  -3.5080 0.02124       -0.0461000  0.06474                     
+## 22  -3.3020 0.02180       -0.0329400                    -0.0001671
+## 10  -3.2790 0.02136                  -0.01078                     
+## 94  -3.9050 0.02206        0.2575000  0.18640           -0.0006223
+## 30  -3.5130 0.02140       -0.0409200  0.06443           -0.0001354
+## 1   -2.5430                                                       
+## 77  -3.3760                0.2091000  0.26110                     
+## 5   -2.5170               -0.0328200                              
+## 13  -3.0320               -0.0485500  0.14730                     
+## 9   -2.7880                           0.06826                     
+##     Hbt:log(max_siz) log(max_siz):TL df   logLik   AICc delta weight
+## 4                                     5 -703.054 1416.2  0.00  0.357
+## 12                                    6 -702.811 1417.8  1.57  0.162
+## 8                                     6 -703.014 1418.2  1.98  0.133
+## 80                          -0.06858  8 -701.721 1419.8  3.54  0.061
+## 16                                    7 -702.811 1419.9  3.64  0.058
+## 40                 +                  7 -702.936 1420.1  3.89  0.051
+## 24                                    7 -703.013 1420.3  4.04  0.047
+## 112                +        -0.07485  9 -701.450 1421.3  5.08  0.028
+## 96                          -0.07144  9 -701.664 1421.8  5.51  0.023
+## 48                 +                  8 -702.707 1421.8  5.51  0.023
+## 32                                    8 -702.809 1422.0  5.71  0.021
+## 56                 +                  8 -702.914 1422.2  5.92  0.018
+## 128                +        -0.07451 10 -701.447 1423.4  7.17  0.010
+## 64                 +                  9 -702.682 1423.8  7.55  0.008
+## 3                                     4 -711.320 1430.7 14.48  0.000
+## 11                                    5 -711.309 1432.8 16.51  0.000
+## 7                                     5 -711.316 1432.8 16.52  0.000
+## 39                 +                  6 -711.087 1434.4 18.13  0.000
+## 15                                    6 -711.294 1434.8 18.54  0.000
+## 79                          -0.06422  7 -710.375 1435.0 18.77  0.000
+## 111                +        -0.07266  8 -709.910 1436.2 19.91  0.000
+## 47                 +                  7 -711.049 1436.4 20.12  0.000
+## 6                                     4 -719.948 1448.0 31.74  0.000
+## 2                                     3 -721.155 1448.4 32.12  0.000
+## 78                          -0.07931  6 -718.419 1449.0 32.79  0.000
+## 14                                    5 -719.774 1449.7 33.44  0.000
+## 22                                    5 -719.943 1450.0 33.78  0.000
+## 10                                    4 -721.149 1450.4 34.14  0.000
+## 94                          -0.08268  7 -718.344 1451.0 34.71  0.000
+## 30                                    6 -719.770 1451.7 35.49  0.000
+## 1                                     2 -734.079 1472.2 55.94  0.000
+## 77                          -0.07614  5 -731.240 1472.6 56.37  0.000
+## 5                                     3 -733.286 1472.6 56.38  0.000
+## 13                                    4 -732.417 1472.9 56.68  0.000
+## 9                                     3 -733.854 1473.8 57.52  0.000
 ## Models ranked by AICc(x)
+```
+
+```r
+EPA.r1 <- lm(log(EPA_g) ~ Abs_lat + Habitat, data=ntbl.EPA, na.action = "na.fail")
+EPA.r2 <- lm(log(EPA_g) ~ Abs_lat + Habitat + TL, data=ntbl.EPA, na.action = "na.fail")
+EPA.r3 <- lm(log(EPA_g) ~ Abs_lat + Habitat + log(max_size), data=ntbl.EPA, na.action = "na.fail")
+
+
+AIC.table <- function(mod1, mod2, mod3) {
+  model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
+  return((msTable <- model.average$msTable))
+  }
+
+(AIC.table(EPA.r1, EPA.r2, EPA.r3))
+```
+
+```
+##     df    logLik     AICc    delta    weight
+## 12   5 -703.0535 1416.250 0.000000 0.5472239
+## 124  6 -702.8113 1417.823 1.572918 0.2492356
+## 123  6 -703.0138 1418.228 1.977986 0.2035405
+```
+
+```r
+model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
+summary(model.average)
+```
+
+```
+## 
+## Call:
+## model.avg.default(object = EPA.r1, EPA.r2, EPA.r3)
+## 
+## Component model call: 
+## lm(formula = <3 unique values>, data = ntbl.EPA, na.action = 
+##      na.fail)
+## 
+## Component models: 
+##     df  logLik    AICc delta weight
+## 12   5 -703.05 1416.25  0.00   0.55
+## 124  6 -702.81 1417.82  1.57   0.25
+## 123  6 -703.01 1418.23  1.98   0.20
+## 
+## Term codes: 
+##       Abs_lat       Habitat log(max_size)            TL 
+##             1             2             3             4 
+## 
+## Model-averaged coefficients:  
+## (full average) 
+##                    Estimate Std. Error Adjusted SE z value Pr(>|z|)    
+## (Intercept)       -1.179190   1.281083    1.284746   0.918   0.3587    
+## Abs_lat            0.016674   0.004069    0.004081   4.086 4.39e-05 ***
+## Habitatfreshwater -2.451949   1.268244    1.271886   1.928   0.0539 .  
+## Habitatmarine     -1.658787   1.265409    1.269043   1.307   0.1912    
+## TL                -0.016748   0.056512    0.056632   0.296   0.7674    
+## log(max_size)     -0.001429   0.011645    0.011677   0.122   0.9026    
+##  
+## (conditional average) 
+##                    Estimate Std. Error Adjusted SE z value Pr(>|z|)    
+## (Intercept)       -1.179190   1.281083    1.284746   0.918   0.3587    
+## Abs_lat            0.016674   0.004069    0.004081   4.086 4.39e-05 ***
+## Habitatfreshwater -2.451949   1.268244    1.271886   1.928   0.0539 .  
+## Habitatmarine     -1.658787   1.265409    1.269043   1.307   0.1912    
+## TL                -0.067197   0.097076    0.097355   0.690   0.4900    
+## log(max_size)     -0.007019   0.025041    0.025113   0.280   0.7799    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Relative variable importance: 
+##                      Abs_lat Habitat TL   log(max_size)
+## Importance:          1.00    1.00    0.25 0.20         
+## N containing models:    3       3       1    1
 ```
 
 This function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
@@ -616,13 +797,5 @@ AIC.table <- function(mod1, mod2) {
   model.average <-  model.avg(mod1, mod2)
   return((msTable <- model.average$msTable))
   }
-
-(AIC.table(EPA.1, EPA.2))
-```
-
-```
-##         df    logLik     AICc    delta    weight
-## 12356    8 -702.9139 1422.172 0.000000 0.6515007
-## 1234567 10 -701.4473 1423.424 1.251284 0.3484993
 ```
 
