@@ -789,6 +789,201 @@ summary(model.average)
 ## N containing models:    3       3       1    1
 ```
 
+####DHA
+
+```r
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+DHA.1 <- lm(log(DHA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.DHA, na.action = "na.fail")
+
+summary(DHA.1)
+```
+
+```
+## 
+## Call:
+## lm(formula = log(DHA_g) ~ log(max_size) * TL + log(max_size) * 
+##     Abs_lat + log(max_size) * Habitat, data = ntbl.DHA, na.action = "na.fail")
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -3.09536 -0.74552 -0.05655  0.69559  3.13863 
+## 
+## Coefficients:
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                 -3.2256460  0.4097905  -7.871 3.10e-14 ***
+## log(max_size)                0.3284891  0.1677749   1.958   0.0509 .  
+## TL                           0.2627060  0.1174500   2.237   0.0258 *  
+## Abs_lat                      0.0084467  0.0041943   2.014   0.0447 *  
+## Habitatmarine                0.6481359  0.1543682   4.199 3.29e-05 ***
+## log(max_size):TL            -0.0920541  0.0426203  -2.160   0.0314 *  
+## log(max_size):Abs_lat       -0.0009445  0.0016463  -0.574   0.5665    
+## log(max_size):Habitatmarine  0.0599986  0.0666591   0.900   0.3686    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.111 on 414 degrees of freedom
+## Multiple R-squared:  0.1273,	Adjusted R-squared:  0.1125 
+## F-statistic: 8.626 on 7 and 414 DF,  p-value: 6.853e-10
+```
+
+```r
+dredge(DHA.1)
+```
+
+```
+## Fixed term is "(Intercept)"
+```
+
+```
+## Global model call: lm(formula = log(DHA_g) ~ log(max_size) * TL + log(max_size) * 
+##     Abs_lat + log(max_size) * Habitat, data = ntbl.DHA, na.action = "na.fail")
+## ---
+## Model selection table 
+##      (Int)  Abs_lat Hbt log(max_siz)     TL Abs_lat:log(max_siz)
+## 80  -3.245 0.007120   +    0.3522000 0.2610                     
+## 112 -3.191 0.007250   +    0.3005000 0.2572                     
+## 79  -3.065            +    0.3436000 0.2735                     
+## 96  -3.255 0.007297   +    0.3608000 0.2621           -0.0001481
+## 8   -2.432 0.007188   +    0.0434900                            
+## 12  -2.941 0.006969   +              0.1683                     
+## 16  -2.794 0.006805   +    0.0304500 0.1139                     
+## 128 -3.226 0.008447   +    0.3285000 0.2627           -0.0009445
+## 40  -2.370 0.007430   +   -0.0025600                            
+## 111 -3.016            +    0.2992000 0.2705                     
+## 48  -2.752 0.007041   +   -0.0205800 0.1221                     
+## 11  -2.787            +              0.1884                     
+## 4   -2.386 0.007811   +                                         
+## 7   -2.207            +    0.0473300                            
+## 24  -2.414 0.006677   +    0.0268900                   0.0004359
+## 15  -2.635            +    0.0321500 0.1305                     
+## 32  -2.776 0.006261   +    0.0127600 0.1145            0.0004626
+## 56  -2.379 0.008077   +    0.0077270                  -0.0005106
+## 39  -2.146            +    0.0071660                            
+## 47  -2.593            +   -0.0138300 0.1384                     
+## 64  -2.765 0.007759   +   -0.0092410 0.1231           -0.0005699
+## 3   -2.135            +                                         
+## 78  -3.363 0.010920        0.3487000 0.4065                     
+## 94  -3.381 0.011230        0.3640000 0.4085           -0.0002625
+## 10  -2.805 0.010660                  0.2266                     
+## 14  -2.861 0.010640       -0.0110200 0.2450                     
+## 30  -2.845 0.010150       -0.0271500 0.2455            0.0004215
+## 2   -2.041 0.012000                                             
+## 77  -3.089                 0.3347000 0.4401                     
+## 6   -2.048 0.011890        0.0144100                            
+## 9   -2.550                           0.2636                     
+## 22  -2.033 0.011470        0.0007987                   0.0003571
+## 13  -2.611                -0.0119800 0.2835                     
+## 1   -1.604                                                      
+## 5   -1.618                 0.0178700                            
+##     Hbt:log(max_siz) log(max_siz):TL df   logLik   AICc delta weight
+## 80                          -0.09526  7 -639.665 1293.6  0.00  0.222
+## 112                +        -0.08948  8 -639.415 1295.2  1.58  0.101
+## 79                          -0.09218  6 -641.609 1295.4  1.82  0.090
+## 96                          -0.09614  8 -639.659 1295.7  2.07  0.079
+## 8                                     5 -643.000 1296.1  2.54  0.062
+## 12                                    5 -643.078 1296.3  2.70  0.058
+## 16                                    6 -642.319 1296.8  3.24  0.044
+## 128                +        -0.09205  9 -639.247 1296.9  3.33  0.042
+## 40                 +                  6 -642.452 1297.1  3.51  0.039
+## 111                +        -0.08718  7 -641.427 1297.1  3.52  0.038
+## 48                 +                  7 -641.672 1297.6  4.01  0.030
+## 11                                    4 -644.916 1297.9  4.33  0.026
+## 4                                     4 -644.934 1298.0  4.36  0.025
+## 7                                     4 -644.969 1298.0  4.43  0.024
+## 24                                    6 -642.949 1298.1  4.50  0.023
+## 15                                    5 -644.076 1298.3  4.70  0.021
+## 32                                    7 -642.261 1298.8  5.19  0.017
+## 56                 +                  7 -642.404 1299.1  5.48  0.014
+## 39                 +                  5 -644.552 1299.2  5.65  0.013
+## 47                 +                  6 -643.552 1299.3  5.71  0.013
+## 64                 +                  8 -641.611 1299.6  5.97  0.011
+## 3                                     3 -647.253 1300.6  6.96  0.007
+## 78                          -0.10630  6 -656.494 1325.2 31.59  0.000
+## 94                          -0.10780  7 -656.477 1327.2 33.62  0.000
+## 10                                    4 -659.646 1327.4 33.79  0.000
+## 14                                    5 -659.547 1329.2 35.64  0.000
+## 30                                    6 -659.502 1331.2 37.61  0.000
+## 2                                     3 -662.790 1331.6 38.04  0.000
+## 77                          -0.10240  5 -660.829 1331.8 38.20  0.000
+## 6                                     4 -662.587 1333.3 39.67  0.000
+## 9                                     3 -663.727 1333.5 39.91  0.000
+## 22                                    5 -662.555 1335.3 41.65  0.000
+## 13                                    4 -663.611 1335.3 41.72  0.000
+## 1                                     2 -667.974 1340.0 46.38  0.000
+## 5                                     3 -667.669 1341.4 47.79  0.000
+## Models ranked by AICc(x)
+```
+
+#####Zinc
+
+
+```r
+library(visreg)
+ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size)) %>% 
+  ggplot(., aes(x=log(max_size), y=log(ZN_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+```
+
+![](models_plots_files/figure-html/unnamed-chunk-26-1.png) 
+
+```r
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+ZN.1 <- lm(log(ZN_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.ZN, na.action = "na.fail")
+ZN.size <- lm(log(ZN_mg) ~ log(max_size), data=ntbl.ZN)
+summary(ZN.1)
+```
+
+```
+## 
+## Call:
+## lm(formula = log(ZN_mg) ~ log(max_size) * TL + log(max_size) * 
+##     Abs_lat + log(max_size) * Habitat, data = ntbl.ZN, na.action = "na.fail")
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5238 -0.3381 -0.0940  0.3604  1.7107 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                      0.236777   0.835323   0.283    0.777    
+## log(max_size)                   -0.189963   0.164406  -1.155    0.250    
+## TL                              -0.074063   0.121310  -0.611    0.542    
+## Abs_lat                         -0.028970   0.004575  -6.332 2.74e-09 ***
+## Habitatfreshwater                0.854533   0.744765   1.147    0.253    
+## Habitatmarine                    0.950729   0.754953   1.259    0.210    
+## log(max_size):TL                 0.016889   0.041274   0.409    0.683    
+## log(max_size):Abs_lat            0.001204   0.001800   0.669    0.505    
+## log(max_size):Habitatfreshwater  0.075806   0.060771   1.247    0.214    
+## log(max_size):Habitatmarine            NA         NA      NA       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7294 on 148 degrees of freedom
+## Multiple R-squared:  0.3041,	Adjusted R-squared:  0.2665 
+## F-statistic: 8.084 on 8 and 148 DF,  p-value: 5.037e-09
+```
+
+
+
 This function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
 
 

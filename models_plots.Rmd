@@ -461,6 +461,52 @@ model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
 summary(model.average)
 ```
 
+####DHA
+```{r}
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+DHA.1 <- lm(log(DHA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.DHA, na.action = "na.fail")
+
+summary(DHA.1)
+dredge(DHA.1)
+
+```
+
+#####Zinc
+
+```{r}
+library(visreg)
+ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size)) %>% 
+  ggplot(., aes(x=log(max_size), y=log(ZN_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+ZN.1 <- lm(log(ZN_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.ZN, na.action = "na.fail")
+ZN.size <- lm(log(ZN_mg) ~ log(max_size), data=ntbl.ZN)
+summary(ZN.1)
+
+```
+
+
+
 This function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
 
 ```{r warning= FALSE}
