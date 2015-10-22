@@ -52,7 +52,7 @@ Pull out variables we will use in this analysis.
 
 ```{r select variables of interest}
 ntbl <- ntbl %>%
-  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, FE_mg, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
 
 ```
 
@@ -385,6 +385,59 @@ CA.prp <- ntbl.CA%>%
 ggplot(CA.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for calcium")
 ```
 
+#### Zinc
+```{r}
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon))
+
+
+ZN.prop <- function(df) {
+  (ZN.RDI <- df %>%
+  mutate(RDI = ifelse(ZN_mg > (11/4), 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(ZN_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+ZN.prp <- ntbl.ZN%>%
+  do(ZN.prp=ZN.prop(.)) %>% 
+    unnest(ZN.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(ZN.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for zinc")
+```
+
+#### Iron
+```{r}
+ntbl.FE <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon))
+
+
+FE.prop <- function(df) {
+  (FE.RDI <- df %>%
+  mutate(RDI = ifelse(FE_mg > (18/4), 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(FE_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+FE.prp <- ntbl.FE%>%
+  do(FE.prp=FE.prop(.)) %>% 
+    unnest(FE.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(FE.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for iron")
+```
 
 Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
 

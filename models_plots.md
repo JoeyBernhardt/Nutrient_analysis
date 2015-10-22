@@ -48,7 +48,7 @@ Pull out variables we will use in this analysis.
 
 ```r
 ntbl <- ntbl %>%
-  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, FE_mg, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
 ```
 
 Convert max length to max body size using length-weight conversion (W = a × L^b). For more information about this conversion approach, see this [explanation](http://www.fishbase.ca/manual/FishBaseThe_LENGTH_WEIGHT_Table.htm) on FishBase. 
@@ -80,7 +80,7 @@ str(ntbl.HG)
 ```
 
 ```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	100 obs. of  15 variables:
+## Classes 'tbl_df', 'tbl' and 'data.frame':	100 obs. of  16 variables:
 ##  $ species   : Factor w/ 433 levels "Abramis brama",..: 1 1 9 15 23 31 31 45 53 53 ...
 ##  $ taxon     : Factor w/ 29 levels " Clams, cockles, arkshells",..: 8 8 6 18 1 8 8 5 8 8 ...
 ##  $ max_length: num  82 82 62 150 11 120 120 61 64 64 ...
@@ -88,6 +88,7 @@ str(ntbl.HG)
 ##  $ CA_mg     : num  53 52 14.4 6.8 62.9 70 70 8.8 59 57 ...
 ##  $ EPA_g     : num  NA NA NA NA NA NA NA NA NA NA ...
 ##  $ DHA_g     : num  NA NA NA NA NA NA NA NA NA NA ...
+##  $ FE_mg     : num  0.6 0.7 0.94 0.15 5.3 0.9 1 0.29 0.9 0.8 ...
 ##  $ ZN_mg     : num  1 0.9 0.379 0.78 0.84 ...
 ##  $ HG_mcg    : num  60 24 54 25 8 68 64 14 68 68 ...
 ##  $ lwA       : num  0.00871 0.00871 0.0065 0.00347 0.02301 ...
@@ -564,6 +565,65 @@ ggplot(CA.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, c
 
 ![](models_plots_files/figure-html/unnamed-chunk-19-1.png) 
 
+#### Zinc
+
+```r
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon))
+
+
+ZN.prop <- function(df) {
+  (ZN.RDI <- df %>%
+  mutate(RDI = ifelse(ZN_mg > (11/4), 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(ZN_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+ZN.prp <- ntbl.ZN%>%
+  do(ZN.prp=ZN.prop(.)) %>% 
+    unnest(ZN.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(ZN.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for zinc")
+```
+
+![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
+
+#### Iron
+
+```r
+ntbl.FE <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon))
+
+
+FE.prop <- function(df) {
+  (FE.RDI <- df %>%
+  mutate(RDI = ifelse(FE_mg > (18/4), 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(FE_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+FE.prp <- ntbl.FE%>%
+  do(FE.prp=FE.prop(.)) %>% 
+    unnest(FE.prp) %>%
+  group_by(taxon) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(FE.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for iron")
+```
+
+![](models_plots_files/figure-html/unnamed-chunk-21-1.png) 
 
 Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
 
@@ -575,7 +635,7 @@ p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
 p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-20-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
 
 
 Here I apply my EPA RDI function to the whole dataset and arrange the results by decreasing latitude. 
@@ -594,7 +654,7 @@ This figure shows the percentage of each taxon that reaches RDI, as arranged by 
 ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-22-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-24-1.png) 
    
 Here I tried to apply this function to all taxa individually, but couldn't figure out. See below for where I was getting errors.     
 
@@ -936,7 +996,7 @@ ntbl %>%
   ggplot(., aes(x=log(max_size), y=log(ZN_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
 ```
 
-![](models_plots_files/figure-html/unnamed-chunk-26-1.png) 
+![](models_plots_files/figure-html/unnamed-chunk-28-1.png) 
 
 ```r
 ntbl.ZN <- ntbl %>%
