@@ -30,8 +30,17 @@ suppressPackageStartupMessages(library(Hmisc))
 suppressPackageStartupMessages(library(robustbase))
 library(tidyr)
 library(MuMIn)
+library(readr)
+library(FD)
+library(plyr)
 
-nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
+nut <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
+
+nut <- read_csv("~/Desktop/Nutrient_databases/nut_dec3.csv",  na = c("",".","NA"),  col_names = TRUE)
+
+
+nut$ASFIS.Scientific.name
+
 ntbl <- tbl_df(nut)
 
 ```
@@ -41,11 +50,27 @@ ntbl <- tbl_df(nut)
 Let's change variable names to more intuitive names.
 
 ```{r warning= FALSE}
+unique(ntbl$species)
+
  ntbl <- ntbl %>%
   mutate(HG_mcg = as.numeric(HG_mcg)) %>% 
    rename(species = ASFIS.Scientific.name,
          taxon = ISSCAAP_cat,
-         max_length = SLMAX) 
+         max_length = SLMAX)
+ 
+ntbl <- ntbl %>%
+  mutate(species = revalue(species,
+                               c("Oreochromis _=Tilapia spp" = "Tilapia spp",
+                                 "Tilapia\x86zillii\x86\x86" = "Tilapia zillii",
+                                 "Thaleichthys\x86pacificus" = "Thaleichthys pacificus", 
+                                 "Zungaro\x86zungaro" = "Zungaro zungaro",
+                                 "Pinirampus\x86pirinampu\x86" = "Pinirampus pirinampu",
+                                 "Platichthys\x86stellatus" = "Platichthys stellatus",
+                                 "Parambassis\x86wolffii" = "Parambassis wolffii",
+                                 "Oncorhynchus\x86mykiss" = "Oncorhynchus mykiss",
+                                 "Oncorhynchus\x86tshawytscha" = "Oncorhynchus tshawytscha",
+                                 "Oncorhynchus\x86keta" = "Oncorhynchus keta",
+                                 "Oncorhynchus\x86nerka\x86" = "Oncorhynchus nerka")))
 
 ```
 
@@ -61,6 +86,8 @@ Convert max length to max body size using length-weight conversion (W = a × L^b
 ```{r warning= FALSE}
 ntbl <- ntbl %>%
   mutate(max_size = (lwA * (max_length^lwB)/1000))
+write_csv(ntbl, "ntbl.csv")
+
 ```
 
 Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Side note: I'd prefer to NOT have to do this kind of thing, and I can run some models without doing this, but not all. Any tips on dealing with lots of NAs would be great. 
@@ -79,6 +106,32 @@ ntbl.HG <- ntbl %>%
   filter(!is.na(Abs_lat)) %>% 
   filter(!is.na(HG_mcg)) %>% 
   filter(!is.na(taxon))
+
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.FE <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
 
 str(ntbl.HG)
 
@@ -181,10 +234,12 @@ ntbl %>%
   facet_wrap(~nutrient) + scale_x_continuous(limits=c(-2, 2))
                                                               
 ggsave("slope_estimates.png")
-
+?droplevels
 #' now for trophic level subset(dftm, C!="Foo")
 ntbl %>% 
-  filter(taxon!= "Miscellaneous diadromous fishes") %>% 
+  filter(taxon!= " Miscellaneous diadromous fishes") %>% 
+  droplevels() %>% 
+  str()
   gather("nutrient", "value", CA_mg:HG_mcg) %>% 
   group_by(taxon, nutrient) %>% 
   mutate(lognutr = log(value)) %>% 
@@ -324,7 +379,7 @@ Here it is applied to my dataset, grouped by taxon, and unnested, summarised etc
 epa.prp <- ntbl.EPA %>%
   do(EPA.prp=epa.prop(.)) %>% 
     unnest(EPA.prp) %>%
-  group_by(taxon) %>% 
+  group_by(species) %>% 
   summarise(meanRDI = mean(mean.per.RDI)) %>% 
   mutate(mean.percent.RDI = meanRDI * 100) %>% 
   arrange(mean.percent.RDI)
@@ -332,7 +387,7 @@ epa.prp <- ntbl.EPA %>%
 
 And this graph shows these percentages ordered by increasing percentage. Yahoo! Success!
 ```{r warning= FALSE}
-ggplot(epa.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+ggplot(epa.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 
 head(epa.prp)
 ```       
@@ -357,19 +412,85 @@ dha.prop <- function(df) {
 dha.prp <- ntbl.DHA%>%
   do(DHA.prp=dha.prop(.)) %>% 
     unnest(DHA.prp) %>%
-  group_by(taxon) %>% 
+  group_by(species) %>% 
   summarise(meanRDI = mean(mean.per.RDI)) %>% 
   mutate(mean.percent.RDI = meanRDI * 100) %>% 
   arrange(mean.percent.RDI)
 
-ggplot(dha.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+ggplot(dha.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
 ```
+
+df <- data.frame(species = c("a","b","a","c","b"), mg = c(NA,5,8,10,3), logic1 = c(FALSE, TRUE, FALSE, TRUE, TRUE), logic2 = c(FALSE, FALSE, FALSE, TRUE, TRUE))
 
 #### Calcium
 ```{r}
+
+ntbl.CA.mean <- df %>% 
+  group_by(species) %>% 
+  #summarise(mean.mg = mean(mg, na.rm = TRUE)) %>% 
+  mutate(logic.tot = sum(logic1, logic2))
+
+View(ntbl.CA.mean)
+
+View(ntbl)
+View(ntbl.CA)
+ntbl.RDI <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > -1)) %>% 
+  mutate(RDI.EPA = (mean.EPA > -1)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.tot = sum(RDI.CA, RDI.FE, RDI.ZN, RDI.EPA, RDI.DHA)) 
+
+ntbl.RDI <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE), 
+            mean.size = mean(max_size, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
+  mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.tot = rowSums(.[8:12])) %>% 
+  filter(!is.na(RDI.tot)) %>%
+    ggplot(., aes(x = reorder(species, RDI.tot), y = RDI.tot, na.rm = TRUE)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none")
+ggsave("RDI.tot.png")
+
+library(cati)
+ntbl.matrix <- data.matrix(ntbl.RDI[, 2:6])
+rownames(ntbl.matrix) <- ntbl.RDI$species
+
+ntbl.matrix
+
+mydist <- function(x) dist(x, method = "euclidian")
+myhclust <- function(x) hclust(x, method = "average")
+
+tree <- myhclust(mydist(ntbl.matrix))
+plot(tree)
+rect.hclust(tree, k = 5)
+
+#'SumBL(ntbl.matrix, gower.dist = TRUE, method.hclust = "average", 
+	#'scale.tr = TRUE, method.dist = "euclidian")
+
+FD <- dbFD(ntbl.matrix)
+FD
+
+ggplot(ntbl.RDI, aes(x = mean.size, y = RDI.tot)) + geom_point(size = 3) 
+ggplot(ntbl.RDI, aes(x = RDI.tot)) + geom_histogram(binwidth = .5, origin = 0)  + scale_x_continuous(breaks=0:2)
+
 CA.prop <- function(df) {
   (CA.RDI <- df %>%
-  mutate(RDI = ifelse(CA_mg > 250, 1, 0)) %>% 
+  mutate(RDI = (CA_mg > 250)) %>% 
   group_by(species) %>% 
  mutate(per.RDI = sum(RDI)/n_distinct(CA_mg)) %>% 
   mutate(mean.per.RDI= mean(per.RDI))) 
@@ -378,19 +499,34 @@ CA.prop <- function(df) {
 CA.prp <- ntbl.CA%>%
   do(CA.prp=CA.prop(.)) %>% 
     unnest(CA.prp) %>%
-  group_by(taxon) %>% 
+  group_by(species) %>% 
   summarise(meanRDI = mean(mean.per.RDI)) %>% 
   mutate(mean.percent.RDI = meanRDI * 100) %>% 
   arrange(mean.percent.RDI)
 
-ggplot(CA.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for calcium")
+ggplot(CA.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for calcium")
+
+
+CA.percent <- function(df) {
+  (CA.RDI <- df %>%
+  mutate(percent = ((CA_mg / (1000)))*100) %>% 
+  group_by(species))
+}
+
+CA.per <- ntbl.CA%>%
+  do(CA.per=CA.percent(.)) %>% 
+    unnest(CA.per) %>%
+  group_by(species)
+
+hist(CA.per$percent, breaks = 5000, xlim = c(0, 100))
+abline(v = 25, col = "red")
 ```
 
 #### Zinc
 ```{r}
 ntbl.ZN <- ntbl %>%
-  filter(!is.na(max_size)) %>% 
   filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(max_size)) %>% 
   filter(!is.na(taxon))
 
 
@@ -405,39 +541,73 @@ ZN.prop <- function(df) {
 ZN.prp <- ntbl.ZN%>%
   do(ZN.prp=ZN.prop(.)) %>% 
     unnest(ZN.prp) %>%
-  group_by(taxon) %>% 
+  group_by(species) %>% 
   summarise(meanRDI = mean(mean.per.RDI)) %>% 
   mutate(mean.percent.RDI = meanRDI * 100) %>% 
   arrange(mean.percent.RDI)
 
-ggplot(ZN.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for zinc")
+p <- ggplot(ZN.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for zinc")
+ggsave("zinc.percent.png", p)
+
+
+ZN.percent <- function(df) {
+  (ZN.RDI <- df %>%
+  mutate(percent = ((ZN_mg / (11/4)))*100) %>% 
+  group_by(species))
+}
+
+ZN.per <- ntbl.ZN%>%
+  do(ZN.per=ZN.percent(.)) %>% 
+    unnest(ZN.per) %>%
+  group_by(species)
+
+hist(ZN.per$percent, breaks = 5000, xlim = c(0, 100))
+abline(v = 25, col = "red")
+
 ```
+
+ ![](/Documents/Nutrient_Analysis/zinc.percent.png)
 
 #### Iron
 ```{r}
 ntbl.FE <- ntbl %>%
-  filter(!is.na(max_size)) %>% 
-  filter(!is.na(FE_mg)) %>% 
-  filter(!is.na(taxon))
+  filter(!is.na(FE_mg))
 
 
 FE.prop <- function(df) {
   (FE.RDI <- df %>%
-  mutate(RDI = ifelse(FE_mg > (18/4), 1, 0)) %>% 
+  mutate(RDI = (FE_mg > (18/4))) %>% 
   group_by(species) %>% 
  mutate(per.RDI = sum(RDI)/n_distinct(FE_mg)) %>% 
   mutate(mean.per.RDI= mean(per.RDI))) 
 }
 
+
+FE.percent <- function(df) {
+  (FE.RDI <- df %>%
+  mutate(percent = ((FE_mg / (18/4)))*100) %>% 
+  group_by(species))
+}
+
+FE.per <- ntbl.FE%>%
+  do(FE.per=FE.percent(.)) %>% 
+    unnest(FE.per) %>%
+  group_by(species)
+
+hist(FE.per$percent, breaks = 5000, xlim = c(0, 100))
+abline(v = 25)
+
 FE.prp <- ntbl.FE%>%
   do(FE.prp=FE.prop(.)) %>% 
     unnest(FE.prp) %>%
-  group_by(taxon) %>% 
+  group_by(species) %>% 
   summarise(meanRDI = mean(mean.per.RDI)) %>% 
   mutate(mean.percent.RDI = meanRDI * 100) %>% 
   arrange(mean.percent.RDI)
 
-ggplot(FE.prp, aes(x = reorder(taxon, mean.percent.RDI), y = mean.percent.RDI, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for iron")
+FE.prp
+
+ggplot(FE.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for iron")
 
 
 ntbl %>%
@@ -554,15 +724,15 @@ ntbl.DHA <- ntbl %>%
 
 DHA.1 <- lm(log(DHA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.DHA, na.action = "na.fail")
 
-summary(DHA.1)
+confint(DHA.1)
 dredge(DHA.1)
+summary(DHA.1)
 
 ```
 
 #####Zinc
 
 ```{r}
-library(visreg)
 ntbl %>%
   filter(!is.na(Abs_lat)) %>% 
   filter(!is.na(ZN_mg)) %>% 
@@ -588,12 +758,13 @@ ZN.R1 <- lm(log(ZN_mg) ~ Abs_lat + log(max_size), data=ntbl.ZN, na.action = "na.
 
 ZN.R2 <- lm(log(ZN_mg) ~ Abs_lat + log(max_size) + TL, data=ntbl.ZN, na.action = "na.fail")
 
-ZN.avg <- model.avg(ZN.R1, ZN.R2)
+ZN.avg <- confint(model.avg(ZN.R1, ZN.R2))
 
-summary(ZN.avg)
+
+ZN.avg
 
 ZN.size <- lm(log(ZN_mg) ~ log(max_size), data=ntbl.ZN)
-summary(ZN.1)
+summary(ZN.size)
 
 ```
 
@@ -605,7 +776,9 @@ This function allows me to average the top models and then prints out a table wi
 AIC.table <- function(mod1, mod2) {
   model.average <-  model.avg(mod1, mod2)
   return((msTable <- model.average$msTable))
-  }
+}
+
+
 
 ```
 
