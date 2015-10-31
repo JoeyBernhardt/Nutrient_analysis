@@ -24,6 +24,7 @@ library(ggplot2)
 library(plotrix)
 library(broom)
 library(ggthemes)
+library(plyr)
 suppressPackageStartupMessages(library(dplyr))
 library(knitr)
 suppressPackageStartupMessages(library(Hmisc))
@@ -32,17 +33,13 @@ library(tidyr)
 library(MuMIn)
 library(readr)
 library(FD)
-library(plyr)
+
 
 nut <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
 
-nut <- read_csv("~/Desktop/Nutrient_databases/nut_dec3.csv",  na = c("",".","NA"),  col_names = TRUE)
-
-
-nut$ASFIS.Scientific.name
-
 ntbl <- tbl_df(nut)
-
+str(ntbl)
+View(ntbl)
 ```
 
 #### Data cleaning and wrangling
@@ -50,9 +47,8 @@ ntbl <- tbl_df(nut)
 Let's change variable names to more intuitive names.
 
 ```{r warning= FALSE}
-unique(ntbl$species)
 
- ntbl <- ntbl %>%
+ntbl <- ntbl %>%
   mutate(HG_mcg = as.numeric(HG_mcg)) %>% 
    rename(species = ASFIS.Scientific.name,
          taxon = ISSCAAP_cat,
@@ -239,7 +235,6 @@ ggsave("slope_estimates.png")
 ntbl %>% 
   filter(taxon!= " Miscellaneous diadromous fishes") %>% 
   droplevels() %>% 
-  str()
   gather("nutrient", "value", CA_mg:HG_mcg) %>% 
   group_by(taxon, nutrient) %>% 
   mutate(lognutr = log(value)) %>% 
@@ -448,6 +443,7 @@ ntbl.RDI <- ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.tot = sum(RDI.CA, RDI.FE, RDI.ZN, RDI.EPA, RDI.DHA)) 
 
+View(ntbl.RDI)
 ntbl.RDI <- ntbl %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),

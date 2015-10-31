@@ -1,0 +1,128 @@
+# FD
+
+Hi Mary!
+
+Load packages
+
+```r
+library(ggplot2)
+library(broom)
+library(plyr)
+suppressPackageStartupMessages(library(dplyr))
+library(knitr)
+library(tidyr)
+library(readr)
+```
+
+Import and clean data
+
+
+```r
+nut_dec3 <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#")
+ntbl <- tbl_df(nut_dec3)
+ntbl <- ntbl %>%
+  mutate(HG_mcg = as.numeric(HG_mcg)) %>% 
+  mutate(PROTCNT_g = as.numeric(PROTCNT_g)) %>% 
+   rename(species = ASFIS.Scientific.name,
+         taxon = ISSCAAP_cat,
+         max_length = SLMAX,
+         FAT = FAT.g.) %>% 
+   mutate(max_size = (lwA * (max_length^lwB)/1000)) %>% 
+            mutate(species = revalue(species,
+                               c("Oreochromis _=Tilapia spp" = "Tilapia spp",
+                                 "Tilapia\x86zillii\x86\x86" = "Tilapia zillii",
+                                 "Thaleichthys\x86pacificus" = "Thaleichthys pacificus", 
+                                 "Zungaro\x86zungaro" = "Zungaro zungaro",
+                                 "Pinirampus\x86pirinampu\x86" = "Pinirampus pirinampu",
+                                 "Platichthys\x86stellatus" = "Platichthys stellatus",
+                                 "Parambassis\x86wolffii" = "Parambassis wolffii",
+                                 "Oncorhynchus\x86mykiss" = "Oncorhynchus mykiss",
+                                 "Oncorhynchus\x86tshawytscha" = "Oncorhynchus tshawytscha",
+                                 "Oncorhynchus\x86keta" = "Oncorhynchus keta",
+                                 "Oncorhynchus\x86nerka\x86" = "Oncorhynchus nerka"))) %>%
+  select(species, taxon, max_size, max_length, TL, CA_mg, EPA_g, DHA_g, FE_mg, ZN_mg, HG_mcg, FAT, PROTCNT_g, lwA, lwB, Habitat, Subgroup, Abs_lat)
+```
+
+
+```r
+ntbl.RDI.mac <- ntbl%>% 
+  group_by(species) %>% 
+    summarise(mean.FAT = mean(FAT, na.rm = TRUE),
+              mean.PRO = mean(PROTCNT_g, na.rm = TRUE)) %>% 
+  mutate(RDI.FAT = (mean.FAT > 7)) %>% 
+  mutate(RDI.PRO = (mean.PRO > 5)) %>% 
+  mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
+  filter(!is.na(RDI.macro.tot)) %>% 
+ggplot(., aes(x = reorder(species, RDI.macro.tot), y = RDI.macro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none")
+ggsave("RDI.tot.mac.png")
+```
+
+```
+## Saving 7 x 5 in image
+```
+
+```r
+ntbl.RDI.mic <- ntbl %>% 
+  group_by(species) %>% 
+    summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
+  mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.tot)) %>%
+    ggplot(., aes(x = reorder(species, RDI.tot), y = RDI.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none")
+ggsave("RDI.tot.mic.png")
+```
+
+```
+## Saving 7 x 5 in image
+```
+
+![](RDI.tot.mic.png)
+![](RDI.tot.mac.png)
+
+
+```r
+library(FD)
+```
+
+```
+## Loading required package: ade4
+## Loading required package: ape
+## Loading required package: geometry
+## Loading required package: magic
+## Loading required package: abind
+## Loading required package: vegan
+## Loading required package: permute
+## Loading required package: lattice
+## This is vegan 2.3-1
+## 
+## Attaching package: 'vegan'
+## 
+## The following object is masked from 'package:ade4':
+## 
+##     cca
+```
+
+```r
+# ntbl.RDI.mic
+# ntbl.matrix.mic <- data.matrix(ntbl.RDI.mic[, 2:6])
+# rownames(ntbl.matrix.mic) <- ntbl.RDI.mic$species
+# 
+# FD.mic <- dbFD(ntbl.matrix.mic)
+# FD.mic
+# 
+# 
+# ntbl.mac.matrix <- data.matrix(ntbl.RDI.mac[, 2:3])
+# rownames(ntbl.mac.matrix) <- ntbl.RDI.mac$species
+# 
+# FD.mac <- dbFD(ntbl.mac.matrix)
+# (as.data.frame(FD.mac))
+# (as.data.frame(FD.mic))
+```
