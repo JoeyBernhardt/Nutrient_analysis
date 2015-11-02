@@ -110,8 +110,7 @@ ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
-  filter(RDI.micro.tot >= 0) %>% 
-  View()
+  filter(RDI.micro.tot >= 0)
 
 #' 2 hit 3/5 of RDI micronutrient targets, 7 hit 2/5 targets, 16 hit 1/5 targets  #' (out of 55)
 ```
