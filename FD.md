@@ -53,7 +53,7 @@ ntbl.RDI.mac <- ntbl%>%
   mutate(RDI.PRO = (mean.PRO > 5)) %>% 
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
-ggplot(., aes(x = reorder(species, RDI.macro.tot), y = RDI.macro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none")
+ggplot(., aes(x = reorder(species, RDI.macro.tot), y = RDI.macro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylim(0,2)
 ggsave("RDI.tot.mac.png")
 ```
 
@@ -91,28 +91,99 @@ ggsave("RDI.tot.mic.png")
 How many species reach RDI targets for macro vs. micronutrients?
 
 ```r
-ntbl%>% 
+macro.100 <- ntbl%>% 
   group_by(species) %>% 
     summarise(mean.FAT = mean(FAT, na.rm = TRUE),
               mean.PRO = mean(PROTCNT_g, na.rm = TRUE)) %>% 
+              # mean.size = mean(max_size, na.rm = TRUE)) %>% 
   mutate(RDI.FAT = (mean.FAT > 7)) %>% 
   mutate(RDI.PRO = (mean.PRO > 5)) %>% 
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
-  filter(RDI.macro.tot == 1) %>% #' 15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
-  tally()
+  filter(RDI.macro.tot == 2) #' 15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
+ 
+macro.species <- macro.100$species %>% droplevels()
+
+
+intersect(macro.100$species, ntbl$species)
 ```
 
 ```
-## Source: local data frame [1 x 1]
-## 
-##       n
-##   (int)
-## 1    98
+##  [1] "Alosa alosa"               "Ariomma bondi"            
+##  [3] "Belone belone"             "Brevoortia spp"           
+##  [5] "Clupeonella cultriventris" "Cyclopterus lumpus"       
+##  [7] "Engraulis encrasicolus"    "Merlangius merlangus"     
+##  [9] "Pinirampus pirinampu"      "Sarda sarda"              
+## [11] "Sorubim lima"              "Spicara smaris"           
+## [13] "Sprattus sprattus"         "Xiphias gladius"          
+## [15] "Zungaro zungaro"
 ```
 
 ```r
-ntbl %>% 
+macro.species
+```
+
+```
+##  [1] Alosa alosa               Ariomma bondi            
+##  [3] Belone belone             Brevoortia spp           
+##  [5] Clupeonella cultriventris Cyclopterus lumpus       
+##  [7] Engraulis encrasicolus    Merlangius merlangus     
+##  [9] Pinirampus pirinampu      Sarda sarda              
+## [11] Sorubim lima              Spicara smaris           
+## [13] Sprattus sprattus         Xiphias gladius          
+## [15] Zungaro zungaro          
+## 15 Levels: Alosa alosa Ariomma bondi Belone belone ... Zungaro zungaro
+```
+
+```r
+ntbl.macro <- ntbl %>% 
+  filter(species %in% c("Alosa alosa", "Ariomma bondi", "Belone belone", "Brevoortia spp", "Clupeonella cultriventris", "Cyclopterus lumpus", "Engraulis encrasicolus", "Merlangius merlangus", "Pinirampus pirinampu", "Sarda sarda", "Sorubim lima", "Spicara smaris", "Sprattus sprattus", "Xiphias gladius", "Zungaro zungaro"))
+
+
+summary(ntbl.macro$max_size)
+```
+
+```
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+##    0.0293    0.0767    5.4180   59.2200    8.3570 2533.0000
+```
+
+```r
+summary(ntbl$max_size)
+```
+
+```
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+##    0.000    0.680    2.997   30.280    9.862 6077.000      205
+```
+
+```r
+ntbl$species <- macro.species[ntbl$species]
+
+
+
+
+
+# inner_join(ntbl,macro.species)
+# macro.100per <- ntbl %>%
+#     filter(grepl(macro.species, ntbl$species))
+
+
+
+subset(ntbl, species == c("macro.species"))
+```
+
+```
+## Source: local data frame [0 x 18]
+## 
+## Variables not shown: species (fctr), taxon (fctr), max_size (dbl),
+##   max_length (dbl), TL (dbl), CA_mg (dbl), EPA_g (dbl), DHA_g (dbl), FE_mg
+##   (dbl), ZN_mg (dbl), HG_mcg (dbl), FAT (dbl), PROTCNT_g (dbl), lwA (dbl),
+##   lwB (dbl), Habitat (fctr), Subgroup (fctr), Abs_lat (dbl)
+```
+
+```r
+ntbl.micro <- ntbl %>% 
   group_by(species) %>% 
     summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
             mean.EPA = mean(EPA_g, na.rm = TRUE), 
@@ -126,30 +197,55 @@ ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
-  filter(RDI.micro.tot >= 0)
+  filter(RDI.micro.tot == 3) 
+
+  ntbl.micro.species <- ntbl.micro[, 1]
+
+ntbl %>% filter(species == "ntbl.micro.species")
 ```
 
 ```
-## Source: local data frame [55 x 12]
+## Source: local data frame [0 x 18]
 ## 
-##                      species    mean.CA    mean.EPA    mean.DHA   mean.ZN
-##                       (fctr)      (dbl)       (dbl)       (dbl)     (dbl)
-## 1              Abramis brama   26.84833 0.093220000 0.120870000 0.5675133
-## 2           Anarhichas lupus    6.80000 0.161041269 0.148577180 0.7800000
-## 3            Aphanopus carbo   12.95000 0.045188150 0.131603375 0.3850000
-## 4        Carassius carassius   58.00000 0.075390000 0.050260000 0.5500000
-## 5           Chamelea gallina  218.70000 0.143604026 0.129164672 1.2560000
-## 6             Channa striata   71.00000 0.005620824 0.084197352 0.7000000
-## 7         Chondrostoma nasus   55.00000 0.064194000 0.096291000 0.5000000
-## 8  Cipangopaludina chinensis 1200.00000 0.003342480 0.003676728 8.1000000
-## 9          Clarias batrachus  299.00000 0.053120000 0.039840000 0.9000000
-## 10        Clarias gariepinus  832.00000 0.076306630 0.221978699 8.0000000
-## ..                       ...        ...         ...         ...       ...
-## Variables not shown: mean.FE (dbl), RDI.CA (lgl), RDI.FE (lgl), RDI.ZN
-##   (lgl), RDI.EPA (lgl), RDI.DHA (lgl), RDI.micro.tot (dbl)
+## Variables not shown: species (fctr), taxon (fctr), max_size (dbl),
+##   max_length (dbl), TL (dbl), CA_mg (dbl), EPA_g (dbl), DHA_g (dbl), FE_mg
+##   (dbl), ZN_mg (dbl), HG_mcg (dbl), FAT (dbl), PROTCNT_g (dbl), lwA (dbl),
+##   lwB (dbl), Habitat (fctr), Subgroup (fctr), Abs_lat (dbl)
 ```
 
 ```r
+(ntbl.micro.species)
+```
+
+```
+## Source: local data frame [0 x 1]
+## 
+## Variables not shown: species (fctr)
+```
+
+```r
+ntbl.micro.2 <- ntbl %>% filter(species %in% c("Cipangopaludina chinensis", "Clarias gariepinus", "Cyclopterus lumpus", "Oncorhynchus tshawytscha", "Oreochromis niloticus", "Sarda sarda", "Thunnus alalunga"))
+
+summary(ntbl.micro.2$max_size)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+##   6.763   6.763   6.763   6.763   6.763   6.763       1
+```
+
+```r
+summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"))
+```
+
+```
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+##    0.000    0.680    2.997   30.280    9.862 6077.000      205
+```
+
+```r
+# mean size of species that reach 3/5 nutrients' RDI is 30.28, mean size of those that reach 2 of RDI is 13.88
+
 #' 2 hit 3/5 of RDI micronutrient targets, 7 hit 2/5 targets, 16 hit 1/5 targets  #' (out of 55)
 ```
 
@@ -172,3 +268,19 @@ ntbl %>%
 # (as.data.frame(FD.mac))
 # (as.data.frame(FD.mic))
 ```
+
+
+```r
+# ntbl.mic.matrix <- data.matrix(ntbl.RDI.mic[, 2:6])
+# rownames(ntbl.mic.matrix) <- ntbl.RDI.mic$species
+# 
+# ntbl.mic.matrix
+# 
+# mydist <- function(x) dist(x, method = "euclidian")
+# myhclust <- function(x) hclust(x, method = "average")
+# 
+# tree <- myhclust(mydist(ntbl.mic.matrix))
+# plot(tree)
+# rect.hclust(tree, k = 7)
+```
+
