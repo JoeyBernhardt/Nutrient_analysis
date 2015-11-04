@@ -151,8 +151,10 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 #' 2 hit 3/5 of RDI micronutrient targets, 7 hit 2/5 targets, 16 hit 1/5 targets  #' (out of 55)
 ```
 
+
+##### Functional diversity
 ```{r warning = FALSE}
-# ?FD
+
 # library(FD)
 # ntbl.RDI.mic
 # ntbl.matrix.mic <- data.matrix(ntbl.RDI.mic[, 2:6])
@@ -166,8 +168,24 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 # rownames(ntbl.mac.matrix) <- ntbl.RDI.mac$species
 # 
 # FD.mac <- dbFD(ntbl.mac.matrix)
-# (as.data.frame(FD.mac))
-# (as.data.frame(FD.mic))
+# knitr::kable(as.data.frame(FD.mac))
+# knitr::kable(as.data.frame(FD.mic))
+# 
+# 
+# > knitr::kable(as.data.frame(FD.mic))
+# 
+# 
+# |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|     FDis|     RaoQ| CWM.mean.CA| CWM.mean.EPA| CWM.mean.DHA| CWM.mean.ZN| CWM.mean.FE|
+# |:----------|----:|-------:|--------:|---------:|---------:|---------:|--------:|--------:|-----------:|------------:|------------:|-----------:|-----------:|
+# |Community1 |   55|      55| 54.39447|         1| 0.4758244| 0.6539231| 1.495851| 4.909091|     137.922|    0.1287276|    0.2247737|    1.466093|    2.481542|
+# > knitr::kable(as.data.frame(FD.mac))
+# 
+# 
+# |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|    FDis|     RaoQ| CWM.mean.FAT| CWM.mean.PRO|
+# |:----------|----:|-------:|--------:|---------:|---------:|---------:|-------:|--------:|------------:|------------:|
+# |Community1 |  113|     113| 16.67488|         1| 0.5896522| 0.7651128| 1.18096| 1.982301|     3.370509|     139.4703|
+# > 
+
 ```
 
 ```{r}

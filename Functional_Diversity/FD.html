@@ -975,8 +975,9 @@ summary(ntbl.micro.2$max_size)</code></pre>
 <pre class="r"><code># mean size of species that reach 3/5 nutrients' RDI is 30.28, mean size of those that reach 2 of RDI is 13.88
 
 #' 2 hit 3/5 of RDI micronutrient targets, 7 hit 2/5 targets, 16 hit 1/5 targets  #' (out of 55)</code></pre>
-<pre class="r"><code># ?FD
-# library(FD)
+<div id="functional-diversity" class="section level5">
+<h5>Functional diversity</h5>
+<pre class="r"><code># library(FD)
 # ntbl.RDI.mic
 # ntbl.matrix.mic &lt;- data.matrix(ntbl.RDI.mic[, 2:6])
 # rownames(ntbl.matrix.mic) &lt;- ntbl.RDI.mic$species
@@ -989,8 +990,23 @@ summary(ntbl.micro.2$max_size)</code></pre>
 # rownames(ntbl.mac.matrix) &lt;- ntbl.RDI.mac$species
 # 
 # FD.mac &lt;- dbFD(ntbl.mac.matrix)
-# (as.data.frame(FD.mac))
-# (as.data.frame(FD.mic))</code></pre>
+# knitr::kable(as.data.frame(FD.mac))
+# knitr::kable(as.data.frame(FD.mic))
+# 
+# 
+# &gt; knitr::kable(as.data.frame(FD.mic))
+# 
+# 
+# |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|     FDis|     RaoQ| CWM.mean.CA| CWM.mean.EPA| CWM.mean.DHA| CWM.mean.ZN| CWM.mean.FE|
+# |:----------|----:|-------:|--------:|---------:|---------:|---------:|--------:|--------:|-----------:|------------:|------------:|-----------:|-----------:|
+# |Community1 |   55|      55| 54.39447|         1| 0.4758244| 0.6539231| 1.495851| 4.909091|     137.922|    0.1287276|    0.2247737|    1.466093|    2.481542|
+# &gt; knitr::kable(as.data.frame(FD.mac))
+# 
+# 
+# |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|    FDis|     RaoQ| CWM.mean.FAT| CWM.mean.PRO|
+# |:----------|----:|-------:|--------:|---------:|---------:|---------:|-------:|--------:|------------:|------------:|
+# |Community1 |  113|     113| 16.67488|         1| 0.5896522| 0.7651128| 1.18096| 1.982301|     3.370509|     139.4703|
+# &gt; </code></pre>
 <pre class="r"><code># ntbl.mic.matrix &lt;- data.matrix(ntbl.RDI.mic[, 2:6])
 # rownames(ntbl.mic.matrix) &lt;- ntbl.RDI.mic$species
 # 
@@ -1002,6 +1018,7 @@ summary(ntbl.micro.2$max_size)</code></pre>
 # tree &lt;- myhclust(mydist(ntbl.mic.matrix))
 # plot(tree)
 # rect.hclust(tree, k = 7)</code></pre>
+</div>
 
 
 </div>
