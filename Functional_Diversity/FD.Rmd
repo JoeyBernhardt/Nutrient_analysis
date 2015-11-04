@@ -97,7 +97,7 @@ macro.RDI <- ntbl%>%
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
   arrange(desc(RDI.macro.tot)) 
-  knitr::kable(macro.RDI)
+  knitr::kable(macro.RDI, align = 'c', format = 'markdown', digits = 2)
 ```
   
 15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
@@ -138,7 +138,7 @@ ntbl.micro <- ntbl %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(desc(RDI.micro.tot))
-  knitr::kable(ntbl.micro)
+  knitr::kable(ntbl.micro, align = 'c', format = 'markdown', digits = 2)
 
 ntbl.micro.2 <- ntbl %>% filter(species %in% c("Cipangopaludina chinensis", "Clarias gariepinus", "Cyclopterus lumpus", "Oncorhynchus tshawytscha", "Oreochromis niloticus", "Sarda sarda", "Thunnus alalunga"))
 
