@@ -139,12 +139,12 @@ ntbl.micro <- ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
-  filter(RDI.micro.tot == 3) 
+  filter(RDI.micro.tot == 1) 
 
   ntbl.micro.species <- ntbl.micro[, 1]
 
 ntbl %>% filter(species == "ntbl.micro.species")
-(ntbl.micro.species)
+(ntbl.micro)
 
 ntbl.micro.2 <- ntbl %>% filter(species %in% c("Cipangopaludina chinensis", "Clarias gariepinus", "Cyclopterus lumpus", "Oncorhynchus tshawytscha", "Oreochromis niloticus", "Sarda sarda", "Thunnus alalunga"))
 
