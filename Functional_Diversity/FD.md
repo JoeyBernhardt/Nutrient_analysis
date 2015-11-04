@@ -93,7 +93,7 @@ ggsave("RDI.tot.mic.png")
 How many species reach RDI targets for macro vs. micronutrients?
 
 ```r
-ntbl%>% 
+macro.RDI <- ntbl%>% 
   group_by(species) %>% 
     summarise(mean.FAT = mean(FAT, na.rm = TRUE),
               mean.PRO = mean(PROTCNT_g, na.rm = TRUE)) %>% 
@@ -101,8 +101,8 @@ ntbl%>%
   mutate(RDI.PRO = (mean.PRO > 5)) %>% 
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
-  arrange(desc(RDI.macro.tot)) %>% 
-  knitr::kable()
+  arrange(desc(RDI.macro.tot)) 
+  knitr::kable(macro.RDI)
 ```
 
 
@@ -261,9 +261,71 @@ ntbl.micro <- ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
-  arrange(desc(RDI.micro.tot)) %>% 
-  knitr::kable()
+  arrange(desc(RDI.micro.tot))
+  knitr::kable(ntbl.micro)
+```
 
+
+
+species                          mean.CA    mean.EPA    mean.DHA      mean.ZN      mean.FE  RDI.CA   RDI.FE   RDI.ZN   RDI.EPA   RDI.DHA    RDI.micro.tot
+--------------------------  ------------  ----------  ----------  -----------  -----------  -------  -------  -------  --------  --------  --------------
+Rapana spp                    628.000000   0.0006685   0.0007103    9.4500000   75.0000000  TRUE     TRUE     TRUE     FALSE     FALSE                  3
+Trachurus trachurus           272.036667   0.2782049   0.5692811    2.2530583    7.2991667  FALSE    TRUE     FALSE    TRUE      TRUE                   3
+Cipangopaludina chinensis    1200.000000   0.0033425   0.0036767    8.1000000    4.3000000  TRUE     FALSE    TRUE     FALSE     FALSE                  2
+Clarias gariepinus            832.000000   0.0763066   0.2219787    8.0000000    3.0000000  TRUE     FALSE    TRUE     FALSE     FALSE                  2
+Cyclopterus lumpus              7.900000   1.6074610   1.6662046    0.6100000    0.4600000  FALSE    FALSE    FALSE    TRUE      TRUE                   2
+Oncorhynchus tshawytscha       26.000000   0.4400000   0.5500000    0.4400000    0.3000000  FALSE    FALSE    FALSE    TRUE      TRUE                   2
+Oreochromis niloticus         883.000000   0.0360158   0.1443437    7.0000000    3.0000000  TRUE     FALSE    TRUE     FALSE     FALSE                  2
+Sarda sarda                    47.815833   0.3209793   0.1521186    0.9820833    6.1841667  FALSE    TRUE     FALSE    TRUE      FALSE                  2
+Thunnus alalunga               18.000000   0.2939300   0.8591800    0.5000000    0.6000000  FALSE    FALSE    FALSE    TRUE      TRUE                   2
+Chamelea gallina              218.700000   0.1436040   0.1291647    1.2560000    7.6760000  FALSE    TRUE     FALSE    FALSE     FALSE                  1
+Coregonus clupeaformis          5.666667   0.0766667   0.3000000    0.4666667    0.2433333  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Crassostrea rhizophorae        13.140000   0.1128395   0.0619544   11.8710630    2.3900000  FALSE    FALSE    TRUE     FALSE     FALSE                  1
+Cyprinidae                    753.335000   0.0150339   0.0662677    2.5424678    3.3475000  TRUE     FALSE    FALSE    FALSE     FALSE                  1
+Dentex spp                    249.290000   0.1397982   0.4284139    0.6116600    0.7100000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Gasterochisma melampus         11.000000   0.0878730   0.3273700    0.5000000    0.9000000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Lamna nasus                    10.000000   0.0310271   0.2888730    0.4000000    1.8000000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Liza aurata                     6.900000   0.2674729   0.0659872    0.1930320    0.1600000  FALSE    FALSE    FALSE    TRUE      FALSE                  1
+Tilapia spp                   621.600000   0.0391667   0.1331668    1.3209000    0.8300000  TRUE     FALSE    FALSE    FALSE     FALSE                  1
+Patagonotothen ramsayi          8.635000   0.0971383   0.2635418    0.6825000    0.3265000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Pollachius virens              10.000000   0.0718836   0.2541632    0.3800000    0.2500000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Salvelinus fontinalis           7.900000   0.1600000   0.4150000    0.8000000    0.2550000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Salvelinus namaycush            3.000000   0.1400000   0.3000000    0.5000000    0.2000000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Sardinella spp                398.520000   0.0040562   0.0326811    1.5670200    1.8300000  TRUE     FALSE    FALSE    FALSE     FALSE                  1
+Sebastes marinus               13.000000   0.1911752   0.3138082    0.3100000    0.2000000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Xiphias gladius                39.000000   0.2431660   1.3263600    1.3000000    1.2000000  FALSE    FALSE    FALSE    FALSE     TRUE                   1
+Abramis brama                  26.848333   0.0932200   0.1208700    0.5675133    0.3416667  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Anarhichas lupus                6.800000   0.1610413   0.1485772    0.7800000    0.1500000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Aphanopus carbo                12.950000   0.0451881   0.1316034    0.3850000    0.1000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Carassius carassius            58.000000   0.0753900   0.0502600    0.5500000    0.8500000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Channa striata                 71.000000   0.0056208   0.0841974    0.7000000    0.3000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Chondrostoma nasus             55.000000   0.0641940   0.0962910    0.5000000    0.9500000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Clarias batrachus             299.000000   0.0531200   0.0398400    0.9000000    0.6000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Coregonus lavaretus            33.520000   0.1861477   0.1785328    0.6088333    0.3633333  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Cyprinus carpio                47.483333   0.0742065   0.0569135    0.8037920    0.4933333  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Esox lucius                     9.600000   0.0495096   0.2119175    0.8992122    0.1000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Gadus macrocephalus            11.800000   0.0546799   0.1440613    0.3839333    0.1800000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Gadus morhua                    8.700000   0.0510784   0.1285803    0.3400000    0.1200000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Isurus oxyrinchus              12.000000   0.0253916   0.2050860    0.4000000    1.2000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Lampris guttatus                6.000000   0.0300200   0.1659000    0.3000000    1.0000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Leuciscus cephalus             61.500000   0.0748930   0.0641940    0.5000000    0.6000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Leuciscus idus                 60.000000   0.1282310   0.0674900    0.5500000    0.5500000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Melanogrammus aeglefinus        7.800000   0.0541585   0.1236772    0.2900000    0.1100000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Merluccius productus            9.800000   0.0694674   0.1188103    0.3510500    0.2500000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Microstomus pacificus          14.533333   0.0800000   0.0900000    0.3887667    0.2133333  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Nephrops norvegicus            90.666667   0.0372172   0.0446645    1.5100000    2.2166667  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Pagellus bogaraveo             57.333333   0.0180000   0.2173333    0.2916667    0.1600000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Perca flavescens                2.990000   0.0003849   0.0565033    0.1353880    0.0900000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Perca fluviatilis              32.470000   0.0411597   0.1432096    0.5200358    0.1425000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Pleuronectes platessa          28.000000   0.1740541   0.1581016    0.4800000    0.1900000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Portunus pelagicus            113.500000   0.0891160   0.0739906    2.4500000    0.3750000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Rutilus frisii                  7.590000   0.2273698   0.1271335    0.1069980    0.3400000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Sander lucioperca              55.520000   0.0231288   0.0483198    0.7144137    0.3940000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Silurus glanis                 25.500000   0.1299152   0.2142431    0.7033333    0.6000000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Theragra chalcogramma          12.366667   0.0491900   0.1064163    0.3887000    0.1933333  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+Tinca tinca                    63.000000   0.0371159   0.0715898    1.1000000    0.8500000  FALSE    FALSE    FALSE    FALSE     FALSE                  0
+
+```r
 ntbl.micro.2 <- ntbl %>% filter(species %in% c("Cipangopaludina chinensis", "Clarias gariepinus", "Cyclopterus lumpus", "Oncorhynchus tshawytscha", "Oreochromis niloticus", "Sarda sarda", "Thunnus alalunga"))
 
 summary(ntbl.micro.2$max_size)

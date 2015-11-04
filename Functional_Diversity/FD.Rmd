@@ -88,7 +88,7 @@ ggsave("RDI.tot.mic.png")
 How many species reach RDI targets for macro vs. micronutrients?
 ```{r}
 
-ntbl%>% 
+macro.RDI <- ntbl%>% 
   group_by(species) %>% 
     summarise(mean.FAT = mean(FAT, na.rm = TRUE),
               mean.PRO = mean(PROTCNT_g, na.rm = TRUE)) %>% 
@@ -96,8 +96,8 @@ ntbl%>%
   mutate(RDI.PRO = (mean.PRO > 5)) %>% 
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
-  arrange(desc(RDI.macro.tot)) %>% 
-  knitr::kable()
+  arrange(desc(RDI.macro.tot)) 
+  knitr::kable(macro.RDI)
 ```
   
 15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
@@ -137,8 +137,8 @@ ntbl.micro <- ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
-  arrange(desc(RDI.micro.tot)) %>% 
-  knitr::kable()
+  arrange(desc(RDI.micro.tot))
+  knitr::kable(ntbl.micro)
 
 ntbl.micro.2 <- ntbl %>% filter(species %in% c("Cipangopaludina chinensis", "Clarias gariepinus", "Cyclopterus lumpus", "Oncorhynchus tshawytscha", "Oreochromis niloticus", "Sarda sarda", "Thunnus alalunga"))
 
