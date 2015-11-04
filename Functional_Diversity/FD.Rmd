@@ -47,6 +47,8 @@ ntbl <- ntbl %>%
 
 ```
 
+
+Out of the species for which we have the full suite of micronutrient data (i.e. 5 micronutrients), how many RDI targets do they reach?
 ```{r macronutrients}
 
 ntbl.RDI.mac <- ntbl%>% 
@@ -57,7 +59,7 @@ ntbl.RDI.mac <- ntbl%>%
   mutate(RDI.PRO = (mean.PRO > 5)) %>% 
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
-ggplot(., aes(x = reorder(species, RDI.macro.tot), y = RDI.macro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylim(0,2)
+ggplot(., aes(x = reorder(species, RDI.macro.tot), y = RDI.macro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylim(0,2) + ylab("number of macronutrient RDI targets reached") + xlab("species")
 ggsave("RDI.tot.mac.png")
 
 ntbl.RDI.mic <- ntbl %>% 
@@ -74,7 +76,7 @@ ntbl.RDI.mic <- ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>%
-    ggplot(., aes(x = reorder(species, RDI.micro.tot), y = RDI.micro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none") + ylim(0,5)
+    ggplot(., aes(x = reorder(species, RDI.micro.tot), y = RDI.micro.tot, na.rm = TRUE, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none") + ylim(0,5) + ylab("number of micronutrient RDI targets reached") + xlab("species")
 ggsave("RDI.tot.mic.png")
 
 ```
@@ -86,45 +88,41 @@ ggsave("RDI.tot.mic.png")
 How many species reach RDI targets for macro vs. micronutrients?
 ```{r}
 
-macro.100 <- ntbl%>% 
+ntbl%>% 
   group_by(species) %>% 
     summarise(mean.FAT = mean(FAT, na.rm = TRUE),
               mean.PRO = mean(PROTCNT_g, na.rm = TRUE)) %>% 
-              # mean.size = mean(max_size, na.rm = TRUE)) %>% 
   mutate(RDI.FAT = (mean.FAT > 7)) %>% 
   mutate(RDI.PRO = (mean.PRO > 5)) %>% 
   mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
   filter(!is.na(RDI.macro.tot)) %>% 
-  filter(RDI.macro.tot == 2) #' 15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
- 
+  arrange(desc(RDI.macro.tot)) %>% 
+  knitr::kable()
+```
+  
+15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
 macro.species <- macro.100$species %>% droplevels()
-
-
 intersect(macro.100$species, ntbl$species)
 
-
-macro.species
-
+```{r}
 ntbl.macro <- ntbl %>% 
   filter(species %in% c("Alosa alosa", "Ariomma bondi", "Belone belone", "Brevoortia spp", "Clupeonella cultriventris", "Cyclopterus lumpus", "Engraulis encrasicolus", "Merlangius merlangus", "Pinirampus pirinampu", "Sarda sarda", "Sorubim lima", "Spicara smaris", "Sprattus sprattus", "Xiphias gladius", "Zungaro zungaro"))
 
-
-summary(ntbl.macro$max_size)
-summary(ntbl$max_size)
-
-ntbl$species <- macro.species[ntbl$species]
-
-
-
+# 
+# summary(ntbl.macro$max_size)
+# summary(ntbl$max_size)
+# 
+# ntbl$species <- macro.species[ntbl$species]
 
 
 # inner_join(ntbl,macro.species)
 # macro.100per <- ntbl %>%
 #     filter(grepl(macro.species, ntbl$species))
+# 
+# subset(ntbl, species == c("macro.species"))
 
 
 
-subset(ntbl, species == c("macro.species"))
 ntbl.micro <- ntbl %>% 
   group_by(species) %>% 
     summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -139,12 +137,8 @@ ntbl.micro <- ntbl %>%
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
-  filter(RDI.micro.tot == 1) 
-
-  ntbl.micro.species <- ntbl.micro[, 1]
-
-ntbl %>% filter(species == "ntbl.micro.species")
-(ntbl.micro)
+  arrange(desc(RDI.micro.tot)) %>% 
+  knitr::kable()
 
 ntbl.micro.2 <- ntbl %>% filter(species %in% c("Cipangopaludina chinensis", "Clarias gariepinus", "Cyclopterus lumpus", "Oncorhynchus tshawytscha", "Oreochromis niloticus", "Sarda sarda", "Thunnus alalunga"))
 
