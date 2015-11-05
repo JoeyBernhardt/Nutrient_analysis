@@ -489,5 +489,14 @@ cam.RDI.micro <- ntbl %>%
 # |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|     FDis|     RaoQ| CWM.mean.CA| CWM.mean.EPA| CWM.mean.DHA| CWM.mean.ZN| CWM.mean.FE|
 # |:----------|----:|-------:|--------:|---------:|---------:|---------:|--------:|--------:|-----------:|------------:|------------:|-----------:|-----------:|
 # |Community1 |   55|      55| 54.39447|         1| 0.4758244| 0.6539231| 1.495851| 4.909091|     137.922|    0.1287276|    0.2247737|    1.466093|    2.481542|
+
+
+# And USA species?
+# > (USA.FD.mic)
+#            nbsp sing.sp     FRic qual.FRic      FEve      FDiv     FDis     RaoQ CWM.mean.CA
+# Community1   29      29 7.179277         1 0.4502677 0.6243078 1.468984 4.827586    61.02158
+#            CWM.mean.EPA CWM.mean.DHA CWM.mean.ZN CWM.mean.FE
+# Community1    0.1521608    0.2846802   0.7996209   0.7374655
+# > 
 ```
 
