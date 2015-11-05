@@ -1,9 +1,12 @@
+## Checking out rfishbase
+## November 2015
 
 
 require(XML)
 require(RCurl)
 library(devtools)
 library(rfishbase)
+library(ggplot2)
 
 ## set rcurl timeout
 # RCurl::curlSetOpt(timeout = 60)
@@ -14,12 +17,14 @@ suppressPackageStartupMessages(library(dplyr))
 library(knitr)
 library(tidyr)
 library(readr)
-library(rfishbase)
+library(ggthemes)
 
 ###### import and clean data
 nut_dec3 <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#")
-ntbl <- tbl_df(nut_dec3)
-ntbl <- ntbl %>%
+ntbl_raw <- tbl_df(nut_dec3) 
+View(ntbl_raw)
+
+ntbl <- ntbl_raw %>%
   mutate(HG_mcg = as.numeric(HG_mcg)) %>% 
   mutate(PROTCNT_g = as.numeric(PROTCNT_g)) %>% 
   rename(species = ASFIS.Scientific.name,
@@ -39,43 +44,131 @@ ntbl <- ntbl %>%
                              "Oncorhynchus\x86tshawytscha" = "Oncorhynchus tshawytscha",
                              "Oncorhynchus\x86keta" = "Oncorhynchus keta",
                              "Oncorhynchus\x86nerka\x86" = "Oncorhynchus nerka"))) %>%
-  select(species, taxon, max_size, max_length, TL, CA_mg, EPA_g, DHA_g, FE_mg, ZN_mg, HG_mcg, FAT, PROTCNT_g, lwA, lwB, Habitat, Subgroup, Abs_lat)
+  select(species, taxon, max_size, max_length, TL, CA_mg, EPA_g, DHA_g,
+         FE_mg, ZN_mg, HG_mcg, FAT, PROTCNT_g, lwA, lwB, Habitat, Subgroup, Abs_lat) %>% 
+  filter(Subgroup == "Finfish")
+  View(ntbl)
 
-
-View(ntbl$species)
+View(ntbl)
 nspecies <- unique(ntbl$species)
 str(nspecies)
 str(FishSpecies)
 
-validate_names(nspecies)
+# validate_names(nspecies) ## really slow
 
 GenusSpecies <- unite(fishbase, GenusSpecies, Genus, Species, sep = " ")
 
 FishSpecies <- as.factor(GenusSpecies$GenusSpecies)
-View(nspecies)
+# View(nspecies)
 
 ntbl.fb.species <- intersect(nspecies,FishSpecies)
+ntbl.nfb.species <- setdiff(nspecies,FishSpecies)
 
-head(ntbl.fb.species)
+## investigate on problem fish
+missing.fishbase.species <- as.data.frame(ntbl.nfb.species)
+write_csv(missing.fishbase.species, "FB-missing-species.csv")
+
+ntbl.nfb.species[7] #Ageneiosus brevifilis not in fishbase
+fishbase.genus <- fishbase$Genus
+
+
+joey_syn <- ntbl.nfb.species %>% 
+  .[1:20] %>% 
+  data_frame(joey_sp = .) %>% 
+  group_by(joey_sp) %>% 
+  do(synonyms(.$joey_sp))
+
+syn <- synonyms(ntbl.nfb.species[1:20])
+spec.code <- syn["SpecCode"]
+spec.code
+# syn[["SpecCode"]] ## get the raw code
+glimpse(fishbase)
+
+length(spec.code[[1]])
+View(semi_join(x = fishbase, y = spec.code))
+FishSpecies["Oncorhyncus nerka"]
 
 #### Playing around with rfishbase functions
 
+#View(species_fields("Abramis brama"))
 
-View(species_fields("Abramis brama"))
+#View(stocks("Abramis brama", c("TempMin", "TempMax", "StockDefs")))
 
-View(stocks("Abramis brama", c("TempMin", "TempMax", "StockDefs")))
-?"rfishbase"
+## Use stocks to get the temp min and temp max
+stocks("Oreochromis niloticus")
+stocks("Oreochromis niloticus")
+?stocks
+temps.fb <- stocks(ntbl.fb.species, c("TempMin", "TempMax", "StockDefs"))
+str(temps.fb)
+
+# ?heartbeat
+# 
+# resp <- heartbeat()
+# resp$times
+
+mintemp.fb <- temps.fb %>% 
+  filter(!is.na(TempMin)) %>% 
+  rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
+
+str(mintemp.fb)
+str(ntbl)
+
+ntbl.temps <- inner_join(ntbl, mintemp.fb, by = "species")
+View(ntbl.temps)
+
+library(broom)
+EPA.temp <- ntbl.temps %>% 
+  group_by(species) %>% 
+  lm(log(DHA_g) ~ TempMax, data = .) %>% 
+  tidy(., conf.int = TRUE) %>% 
+  View()
+summary(.)
+
+library(visreg)
+visreg(EPA.temp, xvar = TempMin)
+
+p <- ggplot(ntbl.temps, aes(x = TempMax, y=log(DHA_g)))
+p + stat_summary(aes(y = log(DHA_g)), fun.y=mean, geom = "point", color = species) +
+  geom_hline(aes(yintercept=log(0.5))) +
+  stat_smooth(method = "lm") +
+  theme_pander() +
+  xlab("TempMax") + 
+  ylab("log DHA content, g/100g portion")
+
+#### weird, I seem to get getting results for the fatty acids that are opposite from what I would have expected!
 
 View(diet("Oreochromis niloticus"))
 
-getSize("Ageneiosus brevifilis")
-
-
-ecology(c("Oreochromis niloticus", "Salmo trutta"),
+ntbl.diet <- ecology(ntbl.fb.species,
         fields=c("SpecCode", "FoodTroph", "FoodSeTroph", "DietTroph", "DietSeTroph"))
+View(ntbl.diet)
 
+ntbl.diet <- ntbl.diet %>% 
+  rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
+
+diet <- inner_join(ntbl, ntbl.diet, by = "species")
+View(diet)
+write.csv(ecn, file = "ntbl.diet.csv")
+
+diet %>% filter(HG_mcg > 1) 
+  
+  ggplot(diet, aes(x = FoodTroph, y= HG_mcg) + geom_point())
+
+p <- ggplot(diet, aes(x = FoodTroph, y= HG_mcg)) +geom_point()
+p + stat_summary(aes(y = HG_mcg, fun.y= mean, geom = "point", color = species)) +
+  # geom_hline(aes(yintercept=log(0.5))) +
+  stat_smooth(method = "lm") +
+  theme_pander() +
+  xlab("FoodTroph") + 
+  ylab("log HG content, mg/100g portion")
+
+
+
+#### Here I explore all of the possible fields relating to diet info.
 ?fooditems
-
+list_fields("Diet")
 View(fooditems("Oreochromis niloticus"))
 
 tables <- docs()
@@ -84,6 +177,67 @@ dplyr::filter(tables, table == "diet")$description
 species_fields()
 
 str(ecosystem("Oreochromis niloticus"))
+View(diet("Oreochromis niloticus"))
+View(ecology("Oreochromis niloticus"))
+
+##### Here I pull out the 'ecology' tables for all the ntbl species in fb.
+ecology.ntbl <- ecology(ntbl.fb.species)
+
+write.csv(ecology.ntbl, file = "FB.ecology.csv")
+
+str(ecology.ntbl)
+
+### Rename the sciname to species in fd ecology data
+ecology.fb <- ecology.ntbl %>% 
+  rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
+
+str(ecology.fb)
+str(ntbl)
+
+#### join the ecology data from fb and ntbl
+ecn <- inner_join(ntbl, ecology.fb, by = "species")
+View(ecn)
+write.csv(ecn, file = "ntbl.ecology.csv")
+
+
+#### Herbivory 2
+ecology.ntbl$Herbivory2 <- as.factor(ecology.ntbl$Herbivory2)
+levels(ecology.ntbl$Herbivory2)
+summary(ecology.ntbl$Herbivory2)
+
+##### FeedingType
+str(ecology.ntbl$FeedingType)
+ecology.ntbl$FeedingType <- as.factor(ecology.ntbl$FeedingType)
+summary(ecology.ntbl$FeedingType)
+
+##### DietTroph
+summary(ecology.ntbl$DietTroph)
+hist(ecology.ntbl$DietTroph)
+
+##### FoodTroph
+summary(ecn$FoodTroph)
+hist(ecn$FoodTroph)
+
+p <- ggplot(ecn, aes(x = FoodTroph, y= HG_mcg))
+p + stat_summary(aes(y = HG_mcg, fun.y= mean, geom = "point", color = species)) +
+  # geom_hline(aes(yintercept=log(0.5))) +
+  stat_smooth(method = "lm") +
+  theme_pander() +
+  xlab("FoodTrop") + 
+  ylab("log HG content, mg/100g portion")
+
+
+p <- ggplot(ecn, aes(x = FoodTroph, y=log(HG_mcg)))
+p + stat_summary(aes(y = log(HG_mcg)), fun.y=mean, geom = "point", color = species)
+  + # geom_hline(aes(yintercept=log(0.5))) +
+  + stat_smooth(method = "lm")
+  + theme_pander()
+  + xlab("FoodTrop")
+  + ylab("log HG content, mg/100g portion")
+
+
+summary(ecn$HG_mcg)
 
 species()species_fields(c("Labroides bicolor", "Bolbometopon muricatum"))
 species(c("Labroides bicolor", "Bolbometopon muricatum"), fields = species_fields$Weight)
