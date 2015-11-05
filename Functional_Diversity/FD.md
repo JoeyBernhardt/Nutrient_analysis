@@ -401,7 +401,7 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 # 
 # tree <- myhclust(mydist(ntbl.mic.matrix))
 # png('micro.tree.png')
-# plot(tree, main = "micronutrients")
+# plot(tree, main = "micronutrients", width=7, height=5)
 # rect.hclust(tree, k = 7)
 # dev.off()
 ```
@@ -419,7 +419,7 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 # 
 # tree <- myhclust(mydist(ntbl.mac.matrix))
 # png('macro.tree.png')
-# plot(tree, main = "macronutrients")
+# plot(tree, main = "macronutrients", width=7, height=5)
 # rect.hclust(tree, k = 7)
 # dev.off()
 ```
