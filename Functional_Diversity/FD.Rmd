@@ -188,6 +188,8 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 
 ```
 
+
+##### Micronutrients
 ```{r}
 # ntbl.mic.matrix <- data.matrix(ntbl.RDI.mic[, 2:6])
 # rownames(ntbl.mic.matrix) <- ntbl.RDI.mic$species
@@ -198,7 +200,27 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 # myhclust <- function(x) hclust(x, method = "average")
 # 
 # tree <- myhclust(mydist(ntbl.mic.matrix))
-# plot(tree)
+# png('micro.tree.png')
+# plot(tree, main = "micronutrients")
 # rect.hclust(tree, k = 7)
+# dev.off()
 ```
 
+![](micro.tree.png)
+
+##### Macronutrients
+```{r}
+# ntbl.mac.matrix <- data.matrix(ntbl.RDI.mac[, 2:3])
+# rownames(ntbl.mac.matrix) <- ntbl.RDI.mac$species
+# 
+# mydist <- function(x) dist(x, method = "euclidian")
+# myhclust <- function(x) hclust(x, method = "average")
+# 
+# tree <- myhclust(mydist(ntbl.mac.matrix))
+# png('macro.tree.png')
+# plot(tree, main = "macronutrients")
+# rect.hclust(tree, k = 7)
+# dev.off()
+```
+
+![](macro.tree.png)
