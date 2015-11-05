@@ -16,7 +16,7 @@ library(tidyr)
 library(readr)
 library(rfishbase)
 
-
+###### import and clean data
 nut_dec3 <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#")
 ntbl <- tbl_df(nut_dec3)
 ntbl <- ntbl %>%
@@ -149,8 +149,40 @@ rownames(cam.matrix.mic) <- cam.RDI.micro$species
  (cam.FD.mic)
 
 
+#### USA species
+
+USA.spp <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/USAspp.csv")
+
+ntbl.USA.spp <- c(intersect(nspecies,USA.spp$Species))
+str(ntbl.USA.spp)
+class(ntbl.USA.spp)
+
+USA.RDI.micro <- ntbl %>% 
+  filter(species %in% ntbl.USA.spp) %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
+  mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot))
+
+
+USA.matrix.mic <- data.matrix(USA.RDI.micro[, 2:6])
+rownames(USA.matrix.mic) <- USA.RDI.micro$species
+View(USA.RDI.micro)
+
+
+USA.FD.mic <- as.data.frame(dbFD(USA.matrix.mic))
+(USA.FD.mic)
   
-  ##### FD on all species in ntbl
+##### FD on all species in ntbl
  
   
   ntbl.RDI.mic <- ntbl %>% 
