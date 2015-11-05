@@ -182,6 +182,13 @@ View(USA.RDI.micro)
 USA.FD.mic <- as.data.frame(dbFD(USA.matrix.mic))
 (USA.FD.mic)
   
+# 
+# > (USA.FD.mic)
+# nbsp sing.sp     FRic qual.FRic      FEve      FDiv     FDis     RaoQ CWM.mean.CA
+# Community1   29      29 7.179277         1 0.4502677 0.6243078 1.468984 4.827586    61.02158
+# CWM.mean.EPA CWM.mean.DHA CWM.mean.ZN CWM.mean.FE
+# Community1    0.1521608    0.2846802   0.7996209   0.7374655
+# > 
 ##### FD on all species in ntbl
  
   
