@@ -225,8 +225,7 @@ macro.RDI <- ntbl%>%
 |    Trichiurus lepturus     |   2.75   |  164.00  |  FALSE  |  TRUE   |       1       |
   
 15 out of 113 hit 2/2 RDI targets for protein and fat, and 98 out of 113 hit the protein RDI target.
-macro.species <- macro.100$species %>% droplevels()
-intersect(macro.100$species, ntbl$species)
+
 
 
 ```r
