@@ -425,3 +425,69 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 ```
 
 ![](macro.tree.png)
+
+##### Country-specific functional diversity
+
+
+```r
+####### Import Cambodia spp
+
+cambodia.spp <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/cambodia.spp.csv")
+
+
+nspecies <- unique(ntbl$species)
+ntbl.cambodia.spp <- list(c(intersect(nspecies,cambodia.spp$Species)))
+cam.spp <- c("Anabas testudineus", "Anguilla bicolor", "Anguilla japonica", "Channa marulius", "Channa micropeltes", "Channa striata")
+
+cam.spp <- c("Anabas testudineus", "Anguilla bicolor", "Anguilla japonica", "Channa marulius", "Channa micropeltes", "Channa striata", "Clarias gariepinus", "Clarias macrocephalus", "Clupeoides borneensis", "Cyclocheilichthys apogon", "Cyprinus carpio", "Henicorhynchus siamensis", "Lates calcarifer", "Lutjanus argentimaculatus", "Monopterus albus", "Mastacembelus armatus", "Nandus nandus", "Notopterus notopterus", "Oreochromis niloticus", "Parambassis wolffii", "Plotosus canius", "Puntioplites proctozystron", "Rasbora tornieri", "Sillago sihama", "Thynnichthys thynnoides", "Xenentodon cancila") 
+
+
+#### FD on cambodia spp
+
+cam.RDI.micro <- ntbl %>% 
+  filter(species %in% cam.spp) %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
+  mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot))
+ 
+#   
+# cam.matrix.mic <- data.matrix(cam.RDI.micro[, 2:6])
+# rownames(cam.matrix.mic) <- cam.RDI.micro$species
+#   
+# cam.FD.mic <- as.data.frame(dbFD(cam.matrix.mic))
+# knitr::kable(cam.FD.mic)
+
+#### How does FDis differ between the entire dataset and just the Cambodian species?
+# # > (FD.mic)
+#   nbsp sing.sp     FRic qual.FRic      FEve      FDiv     FDis     RaoQ CWM.mean.CA
+#   Community1   55      55 54.39447         1 0.4758244 0.6539231 1.495851 4.909091     137.922
+#   CWM.mean.EPA CWM.mean.DHA CWM.mean.ZN CWM.mean.FE
+#   Community1    0.1287276    0.2247737    1.466092    2.481542
+#   > 
+  
+# 
+# > knitr::kable(cam.FD.mic)
+# 
+# 
+# |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|     FDis| RaoQ| CWM.mean.CA| CWM.mean.EPA| CWM.mean.DHA| CWM.mean.ZN| CWM.mean.FE|
+# |:----------|----:|-------:|--------:|---------:|---------:|---------:|--------:|----:|-----------:|------------:|------------:|-----------:|-----------:|
+# |Community1 |    4|       4| 1.300584|         1| 0.8004751| 0.9047908| 1.920415| 3.75|    458.3708|    0.0480374|    0.1268583|    4.125948|    1.698333|
+
+#  > knitr::kable(as.data.frame(FD.mic))
+# 
+# 
+# |           | nbsp| sing.sp|     FRic| qual.FRic|      FEve|      FDiv|     FDis|     RaoQ| CWM.mean.CA| CWM.mean.EPA| CWM.mean.DHA| CWM.mean.ZN| CWM.mean.FE|
+# |:----------|----:|-------:|--------:|---------:|---------:|---------:|--------:|--------:|-----------:|------------:|------------:|-----------:|-----------:|
+# |Community1 |   55|      55| 54.39447|         1| 0.4758244| 0.6539231| 1.495851| 4.909091|     137.922|    0.1287276|    0.2247737|    1.466093|    2.481542|
+```
+
