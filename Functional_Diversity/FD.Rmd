@@ -3,11 +3,13 @@ title: "FD"
 output: 
   html_document: 
     keep_md: yes
+    number_sections: yes
+    toc: yes
 ---
 
 Hi Mary!
 
-Load packages
+#### Load packages
 ```{r}
 library(ggplot2)
 library(broom)
@@ -18,7 +20,7 @@ library(tidyr)
 library(readr)
 ```
 
-Import and clean data
+#### Import and clean data
 
 ```{r}
 nut_dec3 <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#")
@@ -47,6 +49,7 @@ ntbl <- ntbl %>%
 
 ```
 
+#### RDI targets
 
 Out of the species for which we have the full suite of micronutrient data (i.e. 5 micronutrients), how many RDI targets do they reach?
 ```{r macronutrients}

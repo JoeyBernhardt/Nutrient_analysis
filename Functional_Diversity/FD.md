@@ -2,7 +2,7 @@
 
 Hi Mary!
 
-Load packages
+#### Load packages
 
 ```r
 library(ggplot2)
@@ -14,7 +14,7 @@ library(tidyr)
 library(readr)
 ```
 
-Import and clean data
+#### Import and clean data
 
 
 ```r
@@ -43,6 +43,7 @@ ntbl <- ntbl %>%
   select(species, taxon, max_size, max_length, TL, CA_mg, EPA_g, DHA_g, FE_mg, ZN_mg, HG_mcg, FAT, PROTCNT_g, lwA, lwB, Habitat, Subgroup, Abs_lat)
 ```
 
+#### RDI targets
 
 Out of the species for which we have the full suite of micronutrient data (i.e. 5 micronutrients), how many RDI targets do they reach?
 
