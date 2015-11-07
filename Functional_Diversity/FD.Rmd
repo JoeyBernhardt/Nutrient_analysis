@@ -16,6 +16,7 @@ suppressPackageStartupMessages(library(dplyr))
 library(knitr)
 library(tidyr)
 library(readr)
+library(FD)
 ```
 
 #### Import and clean data
@@ -322,7 +323,14 @@ for(i in 1:length(comm[,1])){
 
 #Do the same for random null model but X10K
 
+fdiv.obs <- vector()
+for(i in 1:50){
+  #subset of ntbl for species in country[i]
+  randsp.data <- ntbl.matrix.mic[,] #which species occur in country[i]
+  #calculate FDiv
+  #store it fdiv.obs[i] <- your fdiv
 
+}
 randsp <- sample(row.names(ntbl.matrix.mic), 5, replace = FALSE)
 randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), replace = FALSE), ]
 randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 5, replace = FALSE)]
@@ -336,17 +344,13 @@ for (i in 1:10) {
 
 View(rand.fd)
 
-fdiv.obs <- vector()
-for (i in 1:10) {
-  
-  randsp.data[i] <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
-rand.fd <- dbFD(randsp.data)
-rand.fd$FDiv
-  
+fdiv.exp <- vector()
+for (i in 1:1000) {
+randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+fdiv.obs[i] <- dbFD(randsp.data)$FDiv
 }
 
-
-fdiv.obs
+hist(fdiv.exp)
 
 randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
 rand.fd <- dbFD(randsp.data)

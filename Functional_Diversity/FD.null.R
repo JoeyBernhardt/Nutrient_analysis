@@ -43,5 +43,14 @@ rand.fd$FDiv
 
 #### repeat this subsampling process many times...to generate a mean expected FD value.
 
+fdiv.exp <- vector()
+for (i in 1:1000) {
+  randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+  fdiv.obs[i] <- dbFD(randsp.data)$FDiv
+}
+
+hist(fdiv.exp)
+
+
 #### Step 6. 
 # Take the mean FDiv value, and compare my observed FDiv value to mean expected value.
