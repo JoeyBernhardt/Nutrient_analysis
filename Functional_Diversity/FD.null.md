@@ -1,11 +1,7 @@
----
-title: "FD.null"
-output: 
-  html_document: 
-    keep_md: yes
----
+# FD.null
 
-```{r warning = FALSE}
+
+```r
 #### Load packages
 suppressPackageStartupMessages(library(FD))
 library(ggplot2)
@@ -46,7 +42,14 @@ randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, 
 ### Step 5. Run the functional diversity function on the random subset
 rand.fd <- dbFD(randsp.data, messages = FALSE)
 rand.fd$FDiv
+```
 
+```
+## Community1 
+##  0.6417152
+```
+
+```r
 #### repeat this subsampling process many times...to generate a mean expected FD value.
 
 fdiv.exp <- vector()
@@ -56,12 +59,22 @@ for (i in 1:1000) {
 }
 
 hist(fdiv.exp)
+```
+
+![](FD.null_files/figure-html/unnamed-chunk-1-1.png) 
+
+```r
 # abline(v = 0.4502677, col = "red") #this is the value of FDiv I calculated for the US species
 
 mean(fdiv.exp)
+```
 
+```
+## [1] 0.6417245
+```
+
+```r
 #### Step 6. 
 # Take the mean FDiv value, and compare my observed FDiv value to mean expected value.
-
 ```
 
