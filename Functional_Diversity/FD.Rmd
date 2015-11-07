@@ -155,23 +155,35 @@ summary(ntbl$max_size, subset = species == c("Rapana spp", "Trachurus trachurus"
 ##### Functional diversity
 ```{r warning = FALSE}
 
-# library(FD)
-# ntbl.RDI.mic
-# ntbl.matrix.mic <- data.matrix(ntbl.RDI.mic[, 2:6])
-# rownames(ntbl.matrix.mic) <- ntbl.RDI.mic$species
-# 
-# FD.mic <- dbFD(ntbl.matrix.mic)
-# FD.mic
-# 
-# 
-# ntbl.mac.matrix <- data.matrix(ntbl.RDI.mac[, 2:3])
-# rownames(ntbl.mac.matrix) <- ntbl.RDI.mac$species
-# 
-# FD.mac <- dbFD(ntbl.mac.matrix)
-# knitr::kable(as.data.frame(FD.mac))
-# knitr::kable(as.data.frame(FD.mic))
-# 
-# 
+library(FD)
+ntbl.RDI.mic
+ntbl.matrix.mic <- data.matrix(ntbl.RDI.mic[, 2:6])
+rownames(ntbl.matrix.mic) <- ntbl.RDI.mic$species
+
+write.csv(ntbl.matrix.mic, "RDI.mic.csv")
+
+View(ntbl.matrix.mic)
+
+comm <- matrix(data= c(1,0,0,1,0,1,1,1,0,1,1,0,1,0,0,0,1,0,0,1),nrow = 4, ncol = 5)
+row.names(comm) <- c("Spain", "Colombia", "France", "Cambodia")
+colnames(comm) <- c("Sp1", "Sp2", "Sp3", "Sp4", "Sp5")
+
+
+
+
+FD.mic <- dbFD(ntbl.matrix.mic)
+FD.mic
+
+
+ntbl.mac.matrix <- data.matrix(ntbl.RDI.mac[, 2:3])
+rownames(ntbl.mac.matrix) <- ntbl.RDI.mac$species
+
+View(ntbl.mac.matrix)
+FD.mac <- dbFD(ntbl.mac.matrix)
+knitr::kable(as.data.frame(FD.mac))
+knitr::kable(as.data.frame(FD.mic))
+FD.mac$FDiv
+
 # > knitr::kable(as.data.frame(FD.mic))
 # 
 # 
@@ -298,3 +310,87 @@ cam.RDI.micro <- ntbl %>%
 # > 
 ```
 
+```{r random draws}
+fdiv.obs <- vector()
+for(i in 1:length(comm[,1])){
+  #subset of ntbl for species in country[i]
+  randsp.data <- ntbl.matrix.mic[,] #which species occur in country[i]
+  #calculate FDiv
+  #store it fdiv.obs[i] <- your fdiv
+
+}
+
+#Do the same for random null model but X10K
+
+
+randsp <- sample(row.names(ntbl.matrix.mic), 5, replace = FALSE)
+randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), replace = FALSE), ]
+randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 5, replace = FALSE)]
+
+rand.fd = NULL
+for (i in 1:10) {
+  
+  rand.fd[i] =  ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+}
+
+
+View(rand.fd)
+
+fdiv.obs <- vector()
+for (i in 1:10) {
+  
+  randsp.data[i] <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+rand.fd <- dbFD(randsp.data)
+rand.fd$FDiv
+  
+}
+
+
+fdiv.obs
+
+randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+rand.fd <- dbFD(randsp.data)
+rand.fd$FDiv
+
+
+
+View(randsp.data)
+qrand.29 <-dbFD(randsp.data)
+rand.29$FDiv
+
+rand.fd <- dbFD(ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), size = 55, replace = FALSE),])
+rand.fd$FDiv
+
+
+rand.fd = NULL
+for(i in 1:2){
+  rand.fd[i] = dbFD(ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 55, replace = FALSE),])
+}
+
+fill.abun <- function(x, y) {
+    set <- sample(1:length(x), size = y)
+      x[set] <- rlnorm(length(set))
+      return(x)
+}
+
+fill.abun(row.names(ntbl.matrix.mic), 29)
+abun <- mapply(fill.abun, abun, nb.sp,)
+  abun <- t(abun)
+values <- dbFD(traits, abun, calc.FDiv = T, w.abun = w.abun, 
+    messages = F, calc.CWM = F)
+  results <- cbind(nb.sp, values$FDis, values$FRic, values$FEve, 
+    values$FDiv, values$RaoQ)
+
+View(rand.fd)
+?FD
+
+fd.5 <- dbFD(randsp.data)
+fd.6 <- dbFD(randsp.data)
+View(randsp.data)
+fd.5$FDiv
+
+ex1 <- simul.dbFD(s = c(10, 20, 30, 40, 50), r = 5, p = 55, tr.method = "lnorm")
+View(ex1)
+ex1$results
+
+```
