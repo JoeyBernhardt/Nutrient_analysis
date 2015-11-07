@@ -46,14 +46,14 @@ rand.fd$FDiv
 
 ```
 ## Community1 
-##  0.6417152
+##  0.6187113
 ```
 
 ```r
 #### repeat this subsampling process many times...to generate a mean expected FD value.
 
 fdiv.exp <- vector()
-for (i in 1:1000) {
+for (i in 1:5000) {
   randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
   fdiv.exp[i] <- dbFD(randsp.data, messages = FALSE)$FDiv
 }
@@ -70,7 +70,7 @@ mean(fdiv.exp)
 ```
 
 ```
-## [1] 0.6417245
+## [1] 0.6428197
 ```
 
 ```r
