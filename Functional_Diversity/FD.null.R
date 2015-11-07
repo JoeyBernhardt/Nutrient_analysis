@@ -41,5 +41,7 @@ randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, 
 rand.fd <- dbFD(randsp.data)
 rand.fd$FDiv
 
+#### repeat this subsampling process many times...to generate a mean expected FD value.
+
 #### Step 6. 
 # Take the mean FDiv value, and compare my observed FDiv value to mean expected value.
