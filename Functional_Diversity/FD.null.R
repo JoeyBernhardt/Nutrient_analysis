@@ -46,7 +46,7 @@ rand.fd$FDiv
 fdiv.exp <- vector()
 for (i in 1:1000) {
   randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
-  fdiv.obs[i] <- dbFD(randsp.data)$FDiv
+  fdiv.exp[i] <- dbFD(randsp.data)$FDiv
 }
 
 hist(fdiv.exp)
