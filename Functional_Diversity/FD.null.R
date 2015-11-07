@@ -10,6 +10,8 @@ library(readr)
 #### Step 1. Import the data
 
 ntbl <- read_csv("ntbl.csv")
+str(ntbl)
+
 
 #### Step 2. Create RDI profiles
 ntbl.RDI.mic <- ntbl %>% 
@@ -38,3 +40,6 @@ randsp.data <- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, 
 ### Step 5. Run the functional diversity function on the random subset
 rand.fd <- dbFD(randsp.data)
 rand.fd$FDiv
+
+#### Step 6. 
+# Take the mean FDiv value, and compare my observed FDiv value to mean expected value.
