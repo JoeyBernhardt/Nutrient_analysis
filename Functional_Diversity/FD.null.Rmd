@@ -49,16 +49,25 @@ rand.fd$FDiv
 
 #### repeat this subsampling process many times...to generate a mean expected FD value.
 
-fdiv.exp <- vector()
-for (i in 1:5000) {
-  randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
-  fdiv.exp[i] <- dbFD(randsp.data, messages = FALSE)$FDiv
+# fdiv.exp <- vector()
+# for (i in 1:5000) {
+#   randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+#   fdiv.exp[i] <- dbFD(randsp.data, messages = FALSE)$FDiv
+# }
+
+## Alternative to the for loop, using the replicate function:
+fd.exp <- function(mat, n) {
+  randsp.data<- mat[sample(1:length(row.names(mat)), n, replace = FALSE),]
+  fdiv.exp<- dbFD(randsp.data, messages = FALSE)$FDiv
 }
 
-hist(fdiv.exp)
+fd.null <- as.vector(replicate(1000, fd.exp(ntbl.matrix.mic, 29)))
+str(fd.null)
+hist(fd.null)
+
 # abline(v = 0.4502677, col = "red") #this is the value of FDiv I calculated for the US species
 
-mean(fdiv.exp)
+mean(fd.null)
 
 #### Step 6. 
 # Take the mean FDiv value, and compare my observed FDiv value to mean expected value.

@@ -46,19 +46,34 @@ rand.fd$FDiv
 
 ```
 ## Community1 
-##  0.6187113
+##  0.6479548
 ```
 
 ```r
 #### repeat this subsampling process many times...to generate a mean expected FD value.
 
-fdiv.exp <- vector()
-for (i in 1:5000) {
-  randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
-  fdiv.exp[i] <- dbFD(randsp.data, messages = FALSE)$FDiv
+# fdiv.exp <- vector()
+# for (i in 1:5000) {
+#   randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 29, replace = FALSE),]
+#   fdiv.exp[i] <- dbFD(randsp.data, messages = FALSE)$FDiv
+# }
+
+## Alternative to the for loop, using the replicate function:
+fd.exp <- function(mat, n) {
+  randsp.data<- mat[sample(1:length(row.names(mat)), n, replace = FALSE),]
+  fdiv.exp<- dbFD(randsp.data, messages = FALSE)$FDiv
 }
 
-hist(fdiv.exp)
+fd.null <- as.vector(replicate(1000, fd.exp(ntbl.matrix.mic, 29)))
+str(fd.null)
+```
+
+```
+##  num [1:1000] 0.694 0.66 0.627 0.631 0.629 ...
+```
+
+```r
+hist(fd.null)
 ```
 
 ![](FD.null_files/figure-html/unnamed-chunk-1-1.png) 
@@ -66,11 +81,11 @@ hist(fdiv.exp)
 ```r
 # abline(v = 0.4502677, col = "red") #this is the value of FDiv I calculated for the US species
 
-mean(fdiv.exp)
+mean(fd.null)
 ```
 
 ```
-## [1] 0.6428197
+## [1] 0.6414726
 ```
 
 ```r
