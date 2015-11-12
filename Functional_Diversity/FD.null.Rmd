@@ -61,13 +61,34 @@ fd.exp <- function(mat, n) {
   fdiv.exp<- dbFD(randsp.data, messages = FALSE)$FDiv
 }
 
-fd.null <- as.vector(replicate(1000, fd.exp(ntbl.matrix.mic, 29)))
+fd.null <- as.vector(replicate(10000, fd.exp(ntbl.matrix.mic, 29)))
+fd.null <- as.data.frame(fd.null)
+write_csv(fd.null, "fd.null.csv")
 str(fd.null)
 hist(fd.null)
-
-# abline(v = 0.4502677, col = "red") #this is the value of FDiv I calculated for the US species
-
 mean(fd.null)
+
+t.test(fd.null, mu = 0.6243078)
+
+
+fd.null.50 <- as.vector(replicate(50, fd.exp(ntbl.matrix.mic, 29)))
+hist(fd.null.50)
+abline(v = 0.6243078, col = "red") #this is the value of FDiv I calculated for the US species
+
+t.test(fd.null.50, mu = 0.6243078)
+
+sd(fd.null)
+
+
+summary(fd.null)
+2*(sd(fd.null))
+
+###Cambodia, which has 4 species
+
+fd.null.cam <- as.vector(replicate(100, fd.exp(ntbl.matrix.mic, 4)))
+mean(fd.null.cam)
+
+t.test(fd.null.cam, mu = 0.9047908)
 
 #### Step 6. 
 # Take the mean FDiv value, and compare my observed FDiv value to mean expected value.

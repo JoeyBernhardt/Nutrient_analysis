@@ -49,9 +49,13 @@ ntbl <- ntbl_raw %>%
   filter(Subgroup == "Finfish")
   View(ntbl)
 
+  
+  ntbl <- read_csv("ntbl.csv")  
 View(ntbl)
 nspecies <- unique(ntbl$species)
 str(nspecies)
+
+fishbase
 str(FishSpecies)
 
 # validate_names(nspecies) ## really slow
@@ -334,7 +338,7 @@ View(USA.RDI.micro)
 
 
 USA.FD.mic <- as.data.frame(dbFD(USA.matrix.mic))
-(USA.FD.mic)
+View(USA.FD.mic)
   
 # 
 # > (USA.FD.mic)
