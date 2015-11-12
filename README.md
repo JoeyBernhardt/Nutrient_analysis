@@ -5,6 +5,8 @@ Hi Mary!
 
 For our Nov 13 meeting, please check out:
 
+* My [code](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/Functional_Diversity/FD.null.md) for generating the null distribution of FD values. The main thing I'd like your feedback on here, is: sample WITH or WITHOUT replacement?
+
 * This [blog post](http://www.r-bloggers.com/on-functional-diversity-metrics/), which compares different FD approaches.
 
 * Owen Petchey's [advice](http://www.thetrophiclink.org/resources/calculating-fd/) and [code](https://github.com/opetchey/ttl-resources/tree/master/functional_diversity) for calculating FD.
