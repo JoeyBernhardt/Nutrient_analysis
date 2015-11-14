@@ -10,7 +10,9 @@ The main gist of what I did to get the figures you see at the bottom on this doc
 
 * create my 'species abundances' columns using the individual micronutrients, and the values in each row correspond to whether a species reaches 25% of RDI for that nutrient (so it's all 0s or 1s)
 
-* so the 'species accumulation curves' below answer the question: how many fish species do you need to sample before you reach X number of RDI targets (so # of RDIs is on the y axis, and number of species is on the x axis) 
+* so the 'species accumulation curves' below answer the question: how many fish species do you need to sample before you reach X number of RDI targets (so # of RDIs is on the y axis, and number of species is on the x axis)
+
+* as such, since the number of micronutrients I have is 5, the max number of RDI targets reached is 5.
 
 
 ```r
@@ -142,12 +144,12 @@ Below was my attempt to make a SAC with the nutrient quantitative values as spec
 # RDI.rare <- rarefaction(RDI.um)
 
 RDI.rare <- rarefy(ntbl.RDI, 2, MARGIN = 2)
-RDI.rare
+plot(RDI.rare)
 ```
 
 ```
-##  RDI.CA  RDI.FE  RDI.ZN RDI.EPA RDI.DHA 
-##       2       2       2       2       2 
-## attr(,"Subsample")
-## [1] 2
+## Warning in plot.window(...): relative range of values = 23 * EPS, is small
+## (axis 2)
 ```
+
+![](rarefaction_practice_files/figure-html/unnamed-chunk-9-1.png) 
