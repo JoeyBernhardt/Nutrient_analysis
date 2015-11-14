@@ -8,7 +8,7 @@ library(readr)
 suppressPackageStartupMessages(library(vegan))
 ```
 
-Examples from Jenna Jacob's website
+Examples from Jenna Jacob's website (can skip below to my nutrient data if wanted!)
 
 ```r
 # ##### Examples from Jenna Jacob's website:
