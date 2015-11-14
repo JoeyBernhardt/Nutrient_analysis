@@ -1,9 +1,21 @@
 ---
-title: "rarefaction_practice"
+title: "rarefaction practice"
 output: 
   html_document: 
     keep_md: yes
 ---
+
+Hi Mary,
+
+Thanks for taking a look at this!
+
+The main gist of what I did to get the figures you see at the bottom on this doc is to:
+
+* treat each species as a 'plot'
+
+* create my 'species abundances' columns using the individual micronutrients, and the values in each row correspond to whether a species reaches 25% of RDI for that nutrient (so it's all 0s or 1s)
+
+* so the 'species accumulation curves' below answer the question: how many fish species do you need to sample before you reach X number of RDI targets (so # of RDIs is on the y axis, and number of species is on the x axis) 
 
 ```{r}
 ###Rarefaction
