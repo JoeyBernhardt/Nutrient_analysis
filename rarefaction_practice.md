@@ -40,6 +40,7 @@ suppressPackageStartupMessages(library(vegan))
 # # #### My data
 ntbl <- read_csv("ntbl.csv")
 
+## create RDI target matrix, unordered
 ntbl.RDI <- ntbl %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -57,7 +58,7 @@ ntbl.RDI <- ntbl %>%
   arrange(., RDI.micro.tot) %>% 
   select(., 7:11)
 
-
+## create RDI target matrix, ordered
 ntbl.RDI.no <- ntbl %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -75,6 +76,8 @@ ntbl.RDI.no <- ntbl %>%
   # arrange(., RDI.micro.tot) %>% 
   select(., 7:11)
 
+
+## Create SACs
 ##SAC method = random
 spa.rand <- specaccum(ntbl.RDI, method = "random")
 plot(spa.rand, ylim = c(0,6))
