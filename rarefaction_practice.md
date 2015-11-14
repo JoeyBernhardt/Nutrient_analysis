@@ -72,11 +72,28 @@ ntbl.RDI <- ntbl %>%
             mean.DHA = mean(DHA_g, na.rm = TRUE), 
             mean.ZN = mean(ZN_mg, na.rm = TRUE), 
             mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
   mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
   mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>% 
   mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
   mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) %>% 
+  select(., 7:11)
+
+ntbl.10RDI <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 100, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.5, 1, 0)) %>% 
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.1, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.1, 1, 0)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) %>% 
@@ -93,7 +110,7 @@ ntbl.RDI.no <- ntbl %>%
             mean.DHA = mean(DHA_g, na.rm = TRUE), 
             mean.ZN = mean(ZN_mg, na.rm = TRUE), 
             mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
   mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
   mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>% 
   mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
@@ -109,10 +126,17 @@ Option 1: SAC method = random
 
 ```r
 spa.rand <- specaccum(ntbl.RDI, method = "random")
-plot(spa.rand, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached")
+plot(spa.rand, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
 ```
 
 ![](rarefaction_practice_files/figure-html/unnamed-chunk-6-1.png) 
+
+```r
+spa.rand10 <- specaccum(ntbl.10RDI, method = "random")
+plot(spa.rand10, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "10% RDI targets")
+```
+
+![](rarefaction_practice_files/figure-html/unnamed-chunk-6-2.png) 
 
 Option 2: SAC method = collector, adding species arranged in ascending order of total number of RDI targets reached. 
 
@@ -148,7 +172,7 @@ plot(RDI.rare)
 ```
 
 ```
-## Warning in plot.window(...): relative range of values = 23 * EPS, is small
+## Warning in plot.window(...): relative range of values = 31 * EPS, is small
 ## (axis 2)
 ```
 
