@@ -6,9 +6,11 @@
 suppressPackageStartupMessages(library(dplyr))
 library(readr)
 suppressPackageStartupMessages(library(vegan))
+```
 
+Examples from Jenna Jacob's website
 
-
+```r
 # ##### Examples from Jenna Jacob's website:
 # # source("http://www.jennajacobs.org/R/rarefaction.txt")
 # #Try this example dataset from Work et al (2010):
@@ -36,11 +38,19 @@ suppressPackageStartupMessages(library(vegan))
 # # You can then use these files to create pretty graphs in R or if you must you can export then with
 # # 
 # # write.csv(emend.rare$richness, file="EMENDrichness.csv")
-# # 
-# # #### My data
-ntbl <- read_csv("ntbl.csv")
+```
 
-## create RDI target matrix, unordered
+### With my data now:
+Load the data (which is posted in the Nutrient_Analysis repo)
+
+```r
+ntbl <- read_csv("ntbl.csv")
+```
+
+
+Step 1. create RDI target matrix, unordered in terms of increasing number of RDI targets reached.
+
+```r
 ntbl.RDI <- ntbl %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -57,8 +67,11 @@ ntbl.RDI <- ntbl %>%
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) %>% 
   select(., 7:11)
+```
 
-## create RDI target matrix, ordered
+Step 2. create RDI target matrix, ordered
+
+```r
 ntbl.RDI.no <- ntbl %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -75,48 +88,40 @@ ntbl.RDI.no <- ntbl %>%
   filter(!is.na(RDI.micro.tot)) %>% 
   # arrange(., RDI.micro.tot) %>% 
   select(., 7:11)
+```
 
+### Create SACs
+Option 1: SAC method = random
 
-## Create SACs
-##SAC method = random
+```r
 spa.rand <- specaccum(ntbl.RDI, method = "random")
 plot(spa.rand, ylim = c(0,6))
 ```
 
-![](rarefaction_practice_files/figure-html/unnamed-chunk-1-1.png) 
+![](rarefaction_practice_files/figure-html/unnamed-chunk-6-1.png) 
+
+Option 2: SAC method = collector, adding species arranged in ascending order of total number of RDI targets reached. 
 
 ```r
-##SAC method = collector, adding species arranged in ascending order of total number of RDI targets reached. 
 spa.coll <- specaccum(ntbl.RDI, method = "collector")
-plot(spa.coll, ylim = c(0,6))
-```
-
-![](rarefaction_practice_files/figure-html/unnamed-chunk-1-2.png) 
-
-```r
 plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6)) #males a prettier plot
 ```
 
-![](rarefaction_practice_files/figure-html/unnamed-chunk-1-3.png) 
+![](rarefaction_practice_files/figure-html/unnamed-chunk-7-1.png) 
+
+Option 3: SAC method = collector, adding species arranged in alphabetical order.
 
 ```r
-##SAC method = collector, adding species arranged in ascending order of total number of RDI targets reached. 
 spa.coll <- specaccum(ntbl.RDI.no, method = "collector")
-plot(spa.coll, ylim = c(0,6))
-```
-
-![](rarefaction_practice_files/figure-html/unnamed-chunk-1-4.png) 
-
-```r
 plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6)) #males a prettier plot
 ```
 
-![](rarefaction_practice_files/figure-html/unnamed-chunk-1-5.png) 
+![](rarefaction_practice_files/figure-html/unnamed-chunk-8-1.png) 
+
+Below was my attempt to make a SAC with the nutrient quantitative values as species
+
 
 ```r
-### Below was my attempt to make a SAC with the nutrient quantitative values as species
-####
-
 # ### turn the RDI matrix into integer values in micrograms
 # RDI.um <- RDI.mat %>% 
 #   mutate_each(funs(um = .*1000)) %>% 
