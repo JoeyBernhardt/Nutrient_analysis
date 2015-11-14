@@ -107,7 +107,7 @@ Option 1: SAC method = random
 
 ```r
 spa.rand <- specaccum(ntbl.RDI, method = "random")
-plot(spa.rand, ylim = c(0,6))
+plot(spa.rand, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached")
 ```
 
 ![](rarefaction_practice_files/figure-html/unnamed-chunk-6-1.png) 
@@ -116,7 +116,7 @@ Option 2: SAC method = collector, adding species arranged in ascending order of 
 
 ```r
 spa.coll <- specaccum(ntbl.RDI, method = "collector")
-plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6)) #males a prettier plot
+plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached") #males a prettier plot
 ```
 
 ![](rarefaction_practice_files/figure-html/unnamed-chunk-7-1.png) 
@@ -125,7 +125,7 @@ Option 3: SAC method = collector, adding species arranged in alphabetical order.
 
 ```r
 spa.coll <- specaccum(ntbl.RDI.no, method = "collector")
-plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6)) #males a prettier plot
+plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached") #males a prettier plot
 ```
 
 ![](rarefaction_practice_files/figure-html/unnamed-chunk-8-1.png) 
