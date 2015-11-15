@@ -17,13 +17,21 @@ library(readr)
 #### Step 1. Import the data
 
 ntbl <- read_csv("ntbl.csv")
+ntbl <- tbl_df(ntbl)
+str(ntbl)
 fd.null <- read_csv("fd.null.csv")
 fd.null <- as.vector(fd.null)
 
 
+ntbl.cambgang <- ntbl %>% 
+  filter(species %in% c("Labeo rohita", "Cirrhinus mrigala", "Channa punctata", "Cyprinidae", "Rasbora tawarensis", "Channa marulius", "Channa micropeltes", "Amblypharyngodon mola", "Macrognathus aculeatus", "Ambassidae", "Esomus danricus", "Corica soborna", "Cirrhinus cirrhosus", "Puntius sophore", "Hypophthalmichthys molitrix"))
+
+unique(ntbl.cambgang$species)
+
+
 #### Step 2. Create RDI profiles
 ntbl.RDI.mic <- ntbl %>% 
-  group_by(species) %>% 
+  group_by(species) %>%
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
             mean.EPA = mean(EPA_g, na.rm = TRUE), 
             mean.DHA = mean(DHA_g, na.rm = TRUE), 
@@ -33,9 +41,9 @@ ntbl.RDI.mic <- ntbl %>%
   mutate(RDI.FE = (mean.FE > 4.5)) %>% 
   mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
   mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
-  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
-  filter(!is.na(RDI.micro.tot)) 
+  filter(!is.na(RDI.micro.tot))
 
 ntbl.RDI <- ntbl %>% 
   group_by(species) %>% 
@@ -114,3 +122,53 @@ abline(v = 0.6243078, col = "red") #this is the value of FDiv I calculated for t
 
 ```
 
+
+##### Beta-diversity attempts!
+```{r}
+library(betapart)
+library(picante)
+library(vegan)
+
+ntbl.mic.um <- ntbl.raw %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg*1000, na.rm = TRUE),
+            mean.EPA = mean(EPA_g*1000, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g*1000, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg*1000, na.rm = TRUE), 
+            mean.FE = mean(FE_mg*1000, na.rm = TRUE)) %>%
+  filter(!is.na(mean.CA)) %>%
+  filter(!is.na(mean.EPA)) %>%
+  filter(!is.na(mean.DHA)) %>%
+  filter(!is.na(mean.ZN)) %>%
+  filter(!is.na(mean.FE))
+
+matrix.mic <- data.matrix(ntbl.mic.um[, 2:6])
+rownames(matrix.mic) <- ntbl.mic.um$species 
+
+b <- vegdist(matrix.mic, method = "bray", binary = FALSE)
+summary(b)
+
+###replicate the bray-curtis calcs
+bd.exp <- function(mat, n) {
+  randsp.data<- mat[sample(1:length(row.names(mat)), n, replace = FALSE),]
+  bdiv.exp<- mean(vegdist(randsp.data, method = "bray", binary = FALSE))
+}
+
+bd.null <- as.vector(replicate(10000, bd.exp(matrix.mic, 29)))
+
+##plot the null BC values
+hist(bd.null)
+
+## find the 5% and 95% quantiles
+quantile(bd.null, c(.05, .95))
+
+##plot the quantiles and the calculated BC value for the whole fish dataset
+abline(v = 0.5906185, col = "red")
+abline(v = 0.5431548)
+abline(v = 0.6334351)
+
+
+# RDI.um <- RDI.mat %>% 
+#   mutate_each(funs(um = .*1000)) %>% 
+#   mutate_each(funs(um = as.integer(.)))
+```

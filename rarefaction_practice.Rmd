@@ -24,6 +24,7 @@ The main gist of what I did to get the figures you see at the bottom on this doc
 suppressPackageStartupMessages(library(dplyr))
 library(readr)
 suppressPackageStartupMessages(library(vegan))
+library(broom)
 ```
 
 Examples from Jenna Jacob's website (can skip below to my nutrient data if wanted!)
@@ -81,7 +82,14 @@ ntbl.RDI <- ntbl %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) %>% 
-  select(., 7:11)
+  # select(., 7:11) %>%
+
+ntbl.matrix.mic <- data.matrix(ntbl.RDI[, 7:11])
+rownames(ntbl.matrix.mic) <- ntbl.RDI$species
+ntbl.matrix.mic <- as.data.frame(ntbl.matrix.mic)
+View(ntbl.matrix.mic)
+
+write_csv(ntbl.matrix.mic, "nutcomm.csv")
 
 ntbl.10RDI <- ntbl %>% 
   group_by(species) %>% 
@@ -126,9 +134,14 @@ ntbl.RDI.no <- ntbl %>%
 Option 1: SAC method = random
 ```{r}
 spa.rand <- specaccum(ntbl.RDI, method = "random")
-plot(spa.rand, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+plot(spa.rand, ci.type = "bar", ci.col = "cadetblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
 spa.rand10 <- specaccum(ntbl.10RDI, method = "random")
 plot(spa.rand10, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "10% RDI targets")
+
+summary(spa.rand) ###What I don't understand from the figures and this summary is how do you get a max value of 5 nutrients, if in the actual dataset you only have a max of 3?
+as.data.frame(summary(spa.rand))
+View(as.data.frame(summary(spa.rand)))
+boxplot(spa.rand)
 ```
 
 Option 2: SAC method = collector, adding species arranged in ascending order of total number of RDI targets reached. 

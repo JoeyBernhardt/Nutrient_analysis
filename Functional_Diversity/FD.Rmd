@@ -250,13 +250,15 @@ nspecies <- unique(ntbl$species)
 ntbl.cambodia.spp <- list(c(intersect(nspecies,cambodia.spp$Species)))
 cam.spp <- c("Anabas testudineus", "Anguilla bicolor", "Anguilla japonica", "Channa marulius", "Channa micropeltes", "Channa striata")
 
-cam.spp <- c("Anabas testudineus", "Anguilla bicolor", "Anguilla japonica", "Channa marulius", "Channa micropeltes", "Channa striata", "Clarias gariepinus", "Clarias macrocephalus", "Clupeoides borneensis", "Cyclocheilichthys apogon", "Cyprinus carpio", "Henicorhynchus siamensis", "Lates calcarifer", "Lutjanus argentimaculatus", "Monopterus albus", "Mastacembelus armatus", "Nandus nandus", "Notopterus notopterus", "Oreochromis niloticus", "Parambassis wolffii", "Plotosus canius", "Puntioplites proctozystron", "Rasbora tornieri", "Sillago sihama", "Thynnichthys thynnoides", "Xenentodon cancila") 
+cam.spp <- c("Anabas testudineus", "Anguilla bicolor", "Anguilla japonica", "Channa marulius", "Channa micropeltes", "Channa striata", "Clarias gariepinus", "Clarias macrocephalus", "Clupeoides borneensis", "Cyclocheilichthys apogon", "Cyprinus carpio", "Henicorhynchus siamensis", "Lates calcarifer", "Lutjanus argentimaculatus", "Monopterus albus", "Mastacembelus armatus", "Nandus nandus", "Notopterus notopterus", "Oreochromis niloticus", "Parambassis wolffii", "Plotosus canius", "Puntioplites proctozystron", "Rasbora tornieri", "Sillago sihama", "Thynnichthys thynnoides", "Xenentodon cancila", "Labeo rohita", "Cirrhinus mrigala", "Channa punctata", "Cyprinidae", "Rasbora tawarensis", "Channa marulius", "Channa micropeltes", "Amblypharyngodon mola", "Macrognathus aculeatus", "Ambassidae", "Esomus danricus", "Corica soborna", "Cirrhinus cirrhosus", "Puntius sophore", "Hypophthalmichthys molitrix") 
 
-
+cam.spp <- unique(cam.spp)
 #### FD on cambodia spp
-
-cam.RDI.micro <- ntbl %>% 
-  filter(species %in% cam.spp) %>% 
+ntbl.raw <- read_csv("ntbl.csv")
+str(ntbl.raw)
+View(ntbl.raw)
+cam.RDI.micro <- ntbl.raw %>% 
+  # filter(species %in% cam.spp) %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
             mean.EPA = mean(EPA_g, na.rm = TRUE), 
@@ -269,14 +271,31 @@ cam.RDI.micro <- ntbl %>%
   mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
   mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
-  filter(!is.na(RDI.micro.tot))
+  filter(!is.na(RDI.micro.tot)) 
+
+View(cam.RDI.micro)
+ntbl.raw <- read_csv("ntbl.csv")
+###Now just the elements (Ca, Fe, Zinc)
+cam.RDI.elements <- ntbl.raw %>% 
+  filter(species %in% cam.spp) %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > 2.75)) %>%
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) 
+
+View(cam.RDI.elements)
  
-#   
-# cam.matrix.mic <- data.matrix(cam.RDI.micro[, 2:6])
-# rownames(cam.matrix.mic) <- cam.RDI.micro$species
-#   
-# cam.FD.mic <- as.data.frame(dbFD(cam.matrix.mic))
-# knitr::kable(cam.FD.mic)
+  
+cam.matrix.mic <- data.matrix(cam.RDI.micro[, 2:6])
+rownames(cam.matrix.mic) <- cam.RDI.micro$species
+  
+cam.FD.mic <- as.data.frame(dbFD(cam.matrix.mic))
+knitr::kable(cam.FD.mic)
 
 #### How does FDis differ between the entire dataset and just the Cambodian species?
 # # > (FD.mic)
