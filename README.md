@@ -7,7 +7,7 @@ For our Nov 17 meeting:
 
 * [Slides](https://docs.google.com/presentation/d/1yBjuN8BPX3dm4EXpsVULtySWWB433Re6pppF3uW3OOU/edit#slide=id.gd3e5c3894_0_194) (draft!!) and plan for committee meeting on Friday.
 
-* [Navigating the multiple meanings of beta diversity](http://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2010.01552.x/abstract)
+* [Navigating the multiple meanings of beta diversity](http://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2010.01552.x/abstract). This paper is helping me understand how to think about using beta diversity to measure the variability among species (i.e. vs. turnover etc)
 
 * This vegan [tutorial](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf), in particular, the section on using the slope (z) of the species accumulation curve to measure beta diversity?
 
