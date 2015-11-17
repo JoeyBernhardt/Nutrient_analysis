@@ -11,6 +11,8 @@ For our Nov 17 meeting:
 
 * This vegan [tutorial](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf), in particular, the section on using the slope (z) of the species accumulation curve to measure beta diversity?
 
+* Should I standardize the trait values???
+
 * How to assess the signifiance of BC values among species? PERMANOVA? How?? Compare to null distribution? Again, how??
 
 * For functional diversity, group by taxon/country?

@@ -8,10 +8,11 @@ library(devtools)
 library(ggtree)
 library(ggdendro)
 
+### Load data
 rdimat <- read.csv("RDImat.csv")
 ntbl.raw <- read.csv("ntbl.csv")
-View(rdimat)
 
+### Create RDI matrix, for trait analysis
 ntbl.mic.um <- ntbl.raw %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg*1000, na.rm = TRUE),
@@ -27,7 +28,7 @@ ntbl.mic.um <- ntbl.raw %>%
   matrix.mic <- data.matrix(ntbl.mic.um[, 2:6])
 rownames(matrix.mic) <- ntbl.mic.um$species 
 
-  
+ ### Create matrices with grouping variables 
   ntbl.env <- ntbl.raw %>% 
   group_by(species) %>% 
   # select(taxon, TL, Habitat, Subgroup, Abs_lat, max_size) %>%
@@ -57,8 +58,14 @@ View(ntbl.all)
 ntbl.env <- data.matrix(ntbl.all[, 7:12])
 rownames(ntbl.env) <- ntbl.all$species 
 
+###Create subgroup list
+ntbl.subgroup <- ntbl.all$Subgroup
+
+###Standardize the trait values??
 cent.matrix.mic <- scale(matrix.mic) ### standardize the traits 
 
+
+#### Create and plot dendrogram
 mydist <- function(x) dist(x, method = "euclidian")
 myhclust <- function(x) hclust(x, method = "average")
 tree <- myhclust(mydist(matrix.mic))
@@ -67,34 +74,63 @@ ggdendrogram(tree, rotate = FALSE, size = 2, theme_dendro = TRUE) + geom_text(co
 ggsave("standard.nut.dendro.png")
 
 
-View(matrix.mic)
-View(ntbl.env)
+########## Calculate beta diversity
 
 
 # calculate Bray-Curtis distance among samples
 comm.bc.dist <- vegdist(matrix.mic, method = "bray")
+
 # cluster communities using average-linkage algorithm
 comm.bc.clust <- hclust(comm.bc.dist, method = "average")
+
 # plot cluster diagram
 plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 png(filename = "BC.dendro.png", width = 6, height = 4, units = 'in', res = 300)
 ggdendrogram(comm.bc.clust, rotate = FALSE, size = 2, theme_dendro = TRUE) + geom_text(colour = "purple")
 dev.off()
+
+### Convert dengrogram to phylo tree, so can use ggtree to plot
 treephylo <- as.phylo(comm.bc.clust)
 sum(treephylo$edge.length)
 summary(treephylo)
 treeheight(treephylo)
 
 
-###Betadiver
-z <- betadiver(matrix.mic, "z")
-quantile(z)
+### Use betadisper to test the significance of the multivariate groups
+mod <- betadisper(comm.bc.dist, ntbl.subgroup)
 
-z <- betadiver(comm.bc.dist, "z")
-quantile(z)
-mod <- with(ntbl.all, betadisper(z, Subgroup))
-mod
+## Perform test
+anova(mod)
 
+## Permutation test for F
+permutest(mod, pairwise = TRUE, permutations = 99)
+
+## Tukey's Honest Significant Differences
+(mod.HSD <- TukeyHSD(mod))
+plot(mod.HSD)
+boxplot(mod)
+
+
+## Using group centroids
+mod3 <- betadisper(comm.bc.dist, ntbl.subgroup, type = "centroid", bias.adjust = TRUE)
+mod3
+permutest(mod3, permutations = 99)
+anova(mod3)
+plot(mod3)
+boxplot(mod3)
+plot(TukeyHSD(mod3))
+
+
+# ### steepness of curve--can't get this work, but inspired by this vignette, page 8: https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf
+# z <- betadiver(matrix.mic, "z")
+# str(z)
+# betadis <- betadisper(z)
+# 
+# z <- betadiver(comm.bc.dist, "z")
+# quantile(z)
+# mod <- with(ntbl.subgroup, betadisper(z))
+# mod
+# ?betadiver
 
 
 The metaMDS function automatically transforms data and checks solution
@@ -130,7 +166,7 @@ comm.sesmpd.traits <- ses.mpd(matrix.mic, ntbl.env, null.model = "richness", abu
 plot(comm.sesmpd.traits$mpd.obs.z ~ metadata$habitat, xlab = "Habitat", ylab = "Trait SES(MPD)")
 abline(h = 0, col = "gray")
 
-
+#####From vegan package vignette
 ## There is no data set on species properties yet, and therefore
 ## the example uses taxonomy 
 data(dune.env)
