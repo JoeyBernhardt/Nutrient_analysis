@@ -63,7 +63,7 @@ ntbl.RDI <- ntbl %>%
   select(., 7:11)
 
 
-View(ntbl.RDI)
+
 write_csv(ntbl.RDI, "RDImat.csv")
 
 #### Step 3. Turn RDI df into a matrix
@@ -128,8 +128,11 @@ abline(v = 0.6243078, col = "red") #this is the value of FDiv I calculated for t
 library(betapart)
 library(picante)
 library(vegan)
+library(dplyr)
 
-ntbl.mic.um <- ntbl.raw %>% 
+?betadiver
+
+ntbl.mic.um <- ntbl %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg*1000, na.rm = TRUE),
             mean.EPA = mean(EPA_g*1000, na.rm = TRUE), 
@@ -146,7 +149,11 @@ matrix.mic <- data.matrix(ntbl.mic.um[, 2:6])
 rownames(matrix.mic) <- ntbl.mic.um$species 
 
 b <- vegdist(matrix.mic, method = "bray", binary = FALSE)
+str(b)
 summary(b)
+betadiv <- betadiver(b)
+summary(betadiv)
+plot(betadiv)
 
 ###replicate the bray-curtis calcs
 bd.exp <- function(mat, n) {
@@ -156,17 +163,18 @@ bd.exp <- function(mat, n) {
 
 bd.null <- as.vector(replicate(10000, bd.exp(matrix.mic, 29)))
 
-##plot the null BC values
-hist(bd.null)
+
 
 ## find the 5% and 95% quantiles
 quantile(bd.null, c(.05, .95))
 
 ##plot the quantiles and the calculated BC value for the whole fish dataset
-abline(v = 0.5906185, col = "red")
-abline(v = 0.5431548)
-abline(v = 0.6334351)
-
+png("bc.null.png", width = 6, height = 4, units = 'in', res = 300)
+hist(bd.null)
+abline(v = 0.5906185, col = "red", lwd = 3)
+abline(v = 0.5431548, col = "cadetblue", lty = 3, lwd = 3)
+abline(v = 0.6334351, col = "cadetblue", lty = 3, lwd = 3)
+dev.off()
 
 # RDI.um <- RDI.mat %>% 
 #   mutate_each(funs(um = .*1000)) %>% 

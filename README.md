@@ -3,6 +3,18 @@
 Hi Mary!
 
 
+For our Nov 17 meeting:
+
+* [Slides](https://docs.google.com/presentation/d/1yBjuN8BPX3dm4EXpsVULtySWWB433Re6pppF3uW3OOU/edit#slide=id.gd3e5c3894_0_194) (draft!!) and plan for committee meeting on Friday.
+
+* [Navigating the multiple meanings of beta diversity](http://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2010.01552.x/abstract)
+
+* This vegan [tutorial](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf)
+
+* How to assess the signifiance of BC values among species? PERMANOVA? How?? Compare to null distribution? Again, how??
+
+* For functional diversity, group by taxon/country?
+
 For our Nov 13 meeting, please check out:
 
 * My [code](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/Functional_Diversity/FD.null.Rmd) for generating the null distribution of FD values. The main thing I'd like your feedback on here, is: sample WITH or WITHOUT replacement? Oh, and also how to compare my observed FD values to the null distribution...if something falls outside the 95% percentile it's different from the null?
