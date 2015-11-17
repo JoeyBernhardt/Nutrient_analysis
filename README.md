@@ -9,7 +9,7 @@ For our Nov 17 meeting:
 
 * [Navigating the multiple meanings of beta diversity](http://onlinelibrary.wiley.com/doi/10.1111/j.1461-0248.2010.01552.x/abstract)
 
-* This vegan [tutorial](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf)
+* This vegan [tutorial](https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf), in particular, the section on using the slope (z) of the species accumulation curve to measure beta diversity?
 
 * How to assess the signifiance of BC values among species? PERMANOVA? How?? Compare to null distribution? Again, how??
 
