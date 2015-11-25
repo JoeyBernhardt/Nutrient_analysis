@@ -109,6 +109,7 @@ mean(fd.null.cam)
 hist(fd.null.cam)
 abline(v = 0.9047908, col = "red") #this is the value of FDiv I calculated for the Cambodia species
 abline(v = 0.8944811, col = "blue") #95% quantile
+abline(v = 0.7021020, col = "blue") # 5% quantile
 quantile(fd.null.cam, c(.05, .95))
 
 
@@ -116,10 +117,13 @@ quantile(fd.null.cam, c(.05, .95))
 # Take the mean FDiv value, and compare my observed FDiv value to mean expected value.
 
 summary(fd.null)
-quantile(fd.null, c(.05, .95))
-hist(fd.null)
+View(fd.null)
+fd.null$fd.null <- as.numeric(fd.null$fd.null)
+quantile(fd.null$fd.null, c(.05, .95))
+hist(fd.null$fd.null)
 abline(v = 0.6243078, col = "red") #this is the value of FDiv I calculated for the US species
-
+abline(v = 0.5915841, col = "blue")
+abline(v = 0.6947158, col = "blue")
 ```
 
 

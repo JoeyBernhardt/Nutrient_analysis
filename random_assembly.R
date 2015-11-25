@@ -24,9 +24,11 @@ ntbl.mic.um <- ntbl.raw %>%
   filter(!is.na(mean.EPA)) %>%
   filter(!is.na(mean.DHA)) %>%
   filter(!is.na(mean.ZN)) %>%
-  filter(!is.na(mean.FE)) %>% View
+  filter(!is.na(mean.FE)) 
+# ?complete.cases
   matrix.mic <- data.matrix(ntbl.mic.um[, 2:6])
 rownames(matrix.mic) <- ntbl.mic.um$species 
+View(matrix.mic)
 
  ### Create matrices with grouping variables 
   ntbl.env <- ntbl.raw %>% 
@@ -53,11 +55,13 @@ ntbl.taxon <- ntbl.raw %>%
 
 ntbl.all <- left_join(ntbl.env, ntbl.taxon, by = "species") %>%
   select(Subgroup, Habitat, taxon)
+rownames(ntbl.all) <- ntbl.env$species 
 View(ntbl.all)
 
-ntbl.env <- data.matrix(ntbl.all[, 7:12])
+ntbl.env <- data.matrix(ntbl.all)
 rownames(ntbl.env) <- ntbl.all$species 
 
+View(ntbl.env)
 ###Create subgroup list
 ntbl.subgroup <- ntbl.all$Subgroup
 
@@ -74,11 +78,38 @@ ggdendrogram(tree, rotate = FALSE, size = 2, theme_dendro = TRUE) + geom_text(co
 ggsave("standard.nut.dendro.png")
 
 
-########## Calculate beta diversity
+#### Following Katie's code
+
+ord.mine <- metaMDS(matrix.mic,distance="euclidean",trymax=100)
+plot(ord.mine, type = "n",cex=.25)
+site.scaling <- as.data.frame(ord.mine$points)
+points(site.scaling,pch=16)
+
+ef2 <- envfit(ord.mine, ntbl.all)
+ef2
+plot(ef2, p.max = 0.05,cex=.55)
+
+site.scaling$nfi_plot <- row.names(site.scaling)
+ntbl.all$nfi_plot <- row.names(ntbl.all)
+
+View(site.scaling)
+View(ntbl.all)
+new.compiled <- merge(site.scaling, ntbl.all, by=c("nfi_plot"))
+View(new.compiled)
+
+##now replot ordination, with sites colour-coded##
+png(filename = "subgroupMDS.png", width = 10, height = 8, units = 'in', res = 300)
+plot(ord.mine, type = "n", cex=1.5)
+points(new.compiled$MDS1,new.compiled$MDS2, col=new.compiled$Subgroup, pch= 16, cex = 1.5)
+dev.off()
+points(new.compiled$MDS1,new.compiled$MDS2, col= c("cadetblue", "sienna", "sienna"), pch= 16, cex = 1.5)
+
+########## Calculate beta diversity ####
 
 
 # calculate Bray-Curtis distance among samples
 comm.bc.dist <- vegdist(matrix.mic, method = "bray")
+hist(comm.bc.dist)
 
 # cluster communities using average-linkage algorithm
 comm.bc.clust <- hclust(comm.bc.dist, method = "average")
@@ -98,6 +129,7 @@ treeheight(treephylo)
 
 ### Use betadisper to test the significance of the multivariate groups
 mod <- betadisper(comm.bc.dist, ntbl.subgroup)
+?betadisper
 
 ## Perform test
 anova(mod)
@@ -110,9 +142,9 @@ permutest(mod, pairwise = TRUE, permutations = 99)
 plot(mod.HSD)
 boxplot(mod)
 
-
+?betadisper
 ## Using group centroids
-mod3 <- betadisper(comm.bc.dist, ntbl.subgroup, type = "centroid", bias.adjust = TRUE)
+mod3 <- betadisper(comm.bc.dist, ntbl.subgroup, bias.adjust = TRUE)
 mod3
 permutest(mod3, permutations = 99)
 anova(mod3)
@@ -120,6 +152,12 @@ plot(mod3)
 boxplot(mod3)
 plot(TukeyHSD(mod3))
 
+?adonis
+
+#### Use adonis to ask whether the group means in multivariate space are different from each other ####
+ntbl.subgroup %>% 
+  data_frame(subgrp = .) %>% 
+  adonis(comm.bc.dist ~ subgrp, data = .)
 
 # ### steepness of curve--can't get this work, but inspired by this vignette, page 8: https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf
 # z <- betadiver(matrix.mic, "z")

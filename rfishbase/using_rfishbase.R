@@ -1,164 +1,130 @@
 ## Checking out rfishbase
 ## November 2015
 
-
-require(XML)
-require(RCurl)
 library(devtools)
 library(rfishbase)
 library(ggplot2)
-
-## set rcurl timeout
-# RCurl::curlSetOpt(timeout = 60)
-
-#####
-library(plyr)
 suppressPackageStartupMessages(library(dplyr))
+library(plyr)
 library(knitr)
 library(tidyr)
 library(readr)
 library(ggthemes)
 
 ###### import and clean data
-nut_dec3 <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#")
-ntbl_raw <- tbl_df(nut_dec3) 
-View(ntbl_raw)
-
-ntbl <- ntbl_raw %>%
-  mutate(HG_mcg = as.numeric(HG_mcg)) %>% 
-  mutate(PROTCNT_g = as.numeric(PROTCNT_g)) %>% 
-  rename(species = ASFIS.Scientific.name,
-         taxon = ISSCAAP_cat,
-         max_length = SLMAX,
-         FAT = FAT.g.) %>% 
-  mutate(max_size = (lwA * (max_length^lwB)/1000)) %>% 
-  mutate(species = revalue(species,
-                           c("Oreochromis _=Tilapia spp" = "Tilapia spp",
-                             "Tilapia\x86zillii\x86\x86" = "Tilapia zillii",
-                             "Thaleichthys\x86pacificus" = "Thaleichthys pacificus", 
-                             "Zungaro\x86zungaro" = "Zungaro zungaro",
-                             "Pinirampus\x86pirinampu\x86" = "Pinirampus pirinampu",
-                             "Platichthys\x86stellatus" = "Platichthys stellatus",
-                             "Parambassis\x86wolffii" = "Parambassis wolffii",
-                             "Oncorhynchus\x86mykiss" = "Oncorhynchus mykiss",
-                             "Oncorhynchus\x86tshawytscha" = "Oncorhynchus tshawytscha",
-                             "Oncorhynchus\x86keta" = "Oncorhynchus keta",
-                             "Oncorhynchus\x86nerka\x86" = "Oncorhynchus nerka"))) %>%
-  select(species, taxon, max_size, max_length, TL, CA_mg, EPA_g, DHA_g,
-         FE_mg, ZN_mg, HG_mcg, FAT, PROTCNT_g, lwA, lwB, Habitat, Subgroup, Abs_lat) %>% 
-  filter(Subgroup == "Finfish")
-  View(ntbl)
-
-  
-  ntbl <- read_csv("ntbl.csv")  
-View(ntbl)
+ntbl <- read_csv("ntbl.csv") 
+ntbl <- tbl_df(ntbl)
+ntbl <- ntbl %>% filter(Subgroup == "Finfish") ## take out finfish only, since that's what in fb
 nspecies <- unique(ntbl$species)
-str(nspecies)
-
-fishbase
-str(FishSpecies)
-
-# validate_names(nspecies) ## really slow
-
+(nspecies)
+#  Find matching and unmatching species in fb, I tried using validate_names(nspecies) ## really slow
+fishbase ## loads the fishbase data
 GenusSpecies <- unite(fishbase, GenusSpecies, Genus, Species, sep = " ")
-
 FishSpecies <- as.factor(GenusSpecies$GenusSpecies)
-# View(nspecies)
 
-ntbl.fb.species <- intersect(nspecies,FishSpecies)
-ntbl.nfb.species <- setdiff(nspecies,FishSpecies)
+ntbl.fb.species <- intersect(nspecies,FishSpecies) ## find matching species
+ntbl.nfb.species <- setdiff(nspecies,FishSpecies) ## find unmatched species (there are about 71)
+View(as.data.frame(ntbl.nfb.species))
 
-## investigate on problem fish
+## investigate on problem fish, export as csv and do some googling to find alternate names (i.e. the ones in FB for the unmatched species)
 missing.fishbase.species <- as.data.frame(ntbl.nfb.species)
 write_csv(missing.fishbase.species, "FB-missing-species.csv")
 
-ntbl.nfb.species[7] #Ageneiosus brevifilis not in fishbase
-fishbase.genus <- fishbase$Genus
+View(missing.fishbase.species)
+View(as.data.frame(ntbl.fb.species))
+
+### After googling, import new csv with all the re-matches
+
+fb.names <- read_csv("ntbl.FB.renames.csv")
+
+#### Renaming to match fb names ####
+  oldvalues <- as.vector(fb.names$ntbl.nfb.species)
+  newvalues <- as.vector(fb.names$fishbase.names) 
+  length(oldvalues)
+  length(newvalues)
+#   ntbl$species <- newvalues[ match(ntbl$species, oldvalues) ] ## replace old species names with new FB matches, this doesn't work
+#   data  
+  ## try with mapvalues
+  ntbl$species <- mapvalues(ntbl$species, oldvalues, newvalues) ## change names in ntbl to match FB names
+  View(as.data.frame(ntbl))
+  write_csv(ntbl, "ntbl_FBrenames.csv")
+  
+  #### import new fb matches ####
+  ntbl.fb <- read_csv("ntbl_FBrenames.csv") ## this is ntbl with names matched to fb
+  View(ntbl.fb)
 
 
-joey_syn <- ntbl.nfb.species %>% 
-  .[1:20] %>% 
-  data_frame(joey_sp = .) %>% 
-  group_by(joey_sp) %>% 
-  do(synonyms(.$joey_sp))
+## Use stocks function to get the temp min and temp max
+nspecies <- unique(ntbl.fb$species)
 
-syn <- synonyms(ntbl.nfb.species[1:20])
-spec.code <- syn["SpecCode"]
-spec.code
-# syn[["SpecCode"]] ## get the raw code
-glimpse(fishbase)
+length(nspecies)
+temps.fb <- stocks(nspecies, c("TempMin", "TempMax", "StockDefs"))
+write_csv(temps.fb, "temps.fb.csv")
 
-length(spec.code[[1]])
-View(semi_join(x = fishbase, y = spec.code))
-FishSpecies["Oncorhyncus nerka"]
-
-#### Playing around with rfishbase functions
-
-#View(species_fields("Abramis brama"))
-
-#View(stocks("Abramis brama", c("TempMin", "TempMax", "StockDefs")))
-
-## Use stocks to get the temp min and temp max
-stocks("Oreochromis niloticus")
-stocks("Oreochromis niloticus")
-?stocks
-temps.fb <- stocks(ntbl.fb.species, c("TempMin", "TempMax", "StockDefs"))
 str(temps.fb)
 
-# ?heartbeat
-# 
-# resp <- heartbeat()
-# resp$times
-
 mintemp.fb <- temps.fb %>% 
-  filter(!is.na(TempMin)) %>% 
-  rename(species = sciname) %>% 
+  filter(!is.na(TempMin)) %>%
+  dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
 
 str(mintemp.fb)
 str(ntbl)
 
-ntbl.temps <- inner_join(ntbl, mintemp.fb, by = "species")
+ntbl.temps <- inner_join(ntbl.fb, mintemp.fb, by = "species")
 View(ntbl.temps)
 
 library(broom)
 EPA.temp <- ntbl.temps %>% 
   group_by(species) %>% 
-  lm(log(DHA_g) ~ TempMax, data = .) %>% 
-  tidy(., conf.int = TRUE) %>% 
-  View()
-summary(.)
+  lm(log(EPA_g) ~ TempMin, data = .) %>% 
+  tidy(., conf.int = TRUE) %>% View
+summary(EPA.temp)
 
+EPA.temp <- lm(log(EPA_g) ~ TempMin, data = ntbl.temps)
+View(ntbl.temps)
+?visreg
 library(visreg)
-visreg(EPA.temp, xvar = TempMin)
+library(ggplot2)
+visreg(EPA.temp, xvar = "TempMin")
 
-p <- ggplot(ntbl.temps, aes(x = TempMax, y=log(DHA_g)))
-p + stat_summary(aes(y = log(DHA_g)), fun.y=mean, geom = "point", color = species) +
+p <- ggplot(ntbl.temps, aes(x = TempMax, y=log(EPA_g)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point", color = species) +
   geom_hline(aes(yintercept=log(0.5))) +
   stat_smooth(method = "lm") +
   theme_pander() +
-  xlab("TempMax") + 
-  ylab("log DHA content, g/100g portion")
+  xlab("TempMin") + 
+  ylab("log EPA content, g/100g portion")
 
 #### weird, I seem to get getting results for the fatty acids that are opposite from what I would have expected!
 
 View(diet("Oreochromis niloticus"))
 
-ntbl.diet <- ecology(ntbl.fb.species,
+ntbl.diet <- ecology(nspecies,
         fields=c("SpecCode", "FoodTroph", "FoodSeTroph", "DietTroph", "DietSeTroph"))
 View(ntbl.diet)
 
 ntbl.diet <- ntbl.diet %>% 
-  rename(species = sciname) %>% 
+  dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
 
-diet <- inner_join(ntbl, ntbl.diet, by = "species")
+diet <- inner_join(ntbl.fb, ntbl.diet, by = "species")
 View(diet)
 write.csv(ecn, file = "ntbl.diet.csv")
 
-diet %>% filter(HG_mcg > 1) 
+diet <- diet %>% filter(HG_mcg > 1) 
   
-  ggplot(diet, aes(x = FoodTroph, y= HG_mcg) + geom_point())
+hg.diet <- lm(HG_mcg ~ FoodTroph, data = diet)
+summary(hg.diet)
+
+hg.diet <- diet %>% 
+  group_by(species) %>% 
+  lm(HG_mcg ~ FoodTroph, data = .) %>% 
+  tidy(., conf.int = TRUE) %>% View
+
+visreg(hg.diet, xvar = "FoodTroph")
+
+  ggplot(diet, aes(x = FoodTroph, y= HG_mcg)) + geom_point()
 
 p <- ggplot(diet, aes(x = FoodTroph, y= HG_mcg)) +geom_point()
 p + stat_summary(aes(y = HG_mcg, fun.y= mean, geom = "point", color = species)) +
@@ -182,10 +148,10 @@ species_fields()
 
 str(ecosystem("Oreochromis niloticus"))
 View(diet("Oreochromis niloticus"))
-View(ecology("Oreochromis niloticus"))
+View(species("Oreochromis niloticus"))
 
 ##### Here I pull out the 'ecology' tables for all the ntbl species in fb.
-ecology.ntbl <- ecology(ntbl.fb.species)
+ecology.ntbl <- ecology(nspecies)
 
 write.csv(ecology.ntbl, file = "FB.ecology.csv")
 
@@ -193,31 +159,43 @@ str(ecology.ntbl)
 
 ### Rename the sciname to species in fd ecology data
 ecology.fb <- ecology.ntbl %>% 
-  rename(species = sciname) %>% 
+  dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
 
 str(ecology.fb)
 str(ntbl)
 
 #### join the ecology data from fb and ntbl
-ecn <- inner_join(ntbl, ecology.fb, by = "species")
+ecn <- inner_join(ntbl.fb, ecology.fb, by = "species")
 View(ecn)
 write.csv(ecn, file = "ntbl.ecology.csv")
 
 
 #### Herbivory 2
-ecology.ntbl$Herbivory2 <- as.factor(ecology.ntbl$Herbivory2)
-levels(ecology.ntbl$Herbivory2)
-summary(ecology.ntbl$Herbivory2)
+ecn$Herbivory2 <- as.factor(ecn$Herbivory2)
+levels(ecn$Herbivory2)
+summary(ecn$Herbivory2)
+
+hg.herb <- lm(HG_mcg ~ Herbivory2, data = ecn)
+summary(hg.herb)
+
 
 ##### FeedingType
-str(ecology.ntbl$FeedingType)
-ecology.ntbl$FeedingType <- as.factor(ecology.ntbl$FeedingType)
-summary(ecology.ntbl$FeedingType)
+str(ecn$FeedingType)
+ecn$FeedingType <- as.factor(ecn$FeedingType)
+summary(ecn$FeedingType)
+ca.feed <- lm(log(CA_mg) ~ FeedingType, data = ecn)
+summary(ca.feed)
+
 
 ##### DietTroph
 summary(ecology.ntbl$DietTroph)
 hist(ecology.ntbl$DietTroph)
+
+hg.diet <- lm(HG_mcg ~ DietTroph, data = ecn)
+summary(hg.diet)
+
+visreg(hg.diet, xvar = "DietTroph")
 
 ##### FoodTroph
 summary(ecn$FoodTroph)
@@ -240,27 +218,40 @@ p + stat_summary(aes(y = log(HG_mcg)), fun.y=mean, geom = "point", color = speci
   + xlab("FoodTrop")
   + ylab("log HG content, mg/100g portion")
 
+#### body size ####
+info <-species(nspecies)
+View(info)
+
+info.fb <- info %>% 
+  dplyr::rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
+
+#### join the ecology data from fb and ntbl
+fb.basic <- inner_join(ntbl.fb, info.fb, by = "species")
+write_csv(fb.basic, "fb_basic_traits.csv")
+summary((fb.basic$max_size))
+
+CA.weight <- lm(log(CA_mg) ~ Weight, data = fb.basic)
+summary(CA.weight)
+
+CA.size <- lm(log(CA_mg) ~ Length, data = fb.basic)
+CA.size <- lm(log(CA_mg) ~ max_length, data = fb.basic)
+summary(CA.size)
+
+summary(fb.basic$max_length)
+summary(fb.basic$Length)
+
+CA.size <- ntbl %>% 
+  group_by(species) %>% 
+  lm(log(CA_mg) ~ max_size, data = .) %>% 
+  tidy(., conf.int = TRUE) %>% View
+summary(CA.size)
 
 summary(ecn$HG_mcg)
-
-species()species_fields(c("Labroides bicolor", "Bolbometopon muricatum"))
-species(c("Labroides bicolor", "Bolbometopon muricatum"), fields = species_fields$Weight)
-View(stocks(common_to_sci("trout")))
-trout.temp <- (stocks(common_to_sci("trout"), c("TempMin", "TempMax", "StockDefs")))
-trout.temp
 
 # I thought this would be a good alternative to the stocks function to get the temp data, but it threw a bunch of errors.
 # trout.temp.2 <- length_freq(common_to_sci("trout"), c("TempMin", "TempMax"))
 # View(trout.temp.2)
-
-
-
-View(length_freq("Oreochromis niloticus"))
-
-trout.temp %>% 
-  group_by(sciname) %>% 
-  summarize_each_(., "mean", c("TempMin", "TempMax")) %>% 
-  View()
 
 
 ####### Import Cambodia spp
