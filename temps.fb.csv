@@ -1,0 +1,622 @@
+sciname,StockDefs,TempMin,TempMax,SpecCode
+Abramis brama,"Europe and  Asia:  most European drainages from Adour (France) to Pechora (White Sea basin); Aegean Sea basin, in Lake Volvi and Struma and Maritza drainages.  Naturally absent from Iberian Peninsula, Adriatic basin, Italy, Scotland, Scandinavia north of Bergen (Norway) and 67°N (Finland).  Locally introduced in Ireland, Spain and northeastern Italy.  In Asia, from Marmara basin (Turkey) and eastward to Aral basin.  Introduced in Lake Baikal and upper Ob and Yenisei drainages.",10,24,268
+Ageneiosus inermis,"South America:  Argentina, Bolivia, Brazil, Colombia, Ecuador, French Guiana, Guyana, Paraguay, Suriname, and Venezuela (Ref. 37098).  Reported from Uruguay (Ref. 54736).",22,24,47969
+Albatrossia pectoralis,"North Pacific:  northern Japan to the Okhotsk and Bering seas, east to the Gulf of Alaska, south to northern Baja California in Mexico.",NA,NA,8435
+Alectis alexandrina,"Eastern Atlantic:  off Morocco to Angola (Ref. 4225, 57392), including southern parts of the Mediterranean (Ref. 4225).",NA,NA,1888
+Alepocephalus bairdii,"Eastern Atlantic:  Greenland and Iceland southward to 17°N.  Western Atlantic:  Greenland to Grand Banks and 29°52'N, 77°09'W.",NA,NA,230
+Alepocephalus australis,Circumglobal:  In tropical to temperate waters.  Eastern Central Atlantic:  possibly widely distributed from the Gulf of Guinea to South Africa.  Western Atlantic:  At about 39° to 10°N.  Southwest Pacific.,NA,NA,9172
+Alosa alosa,"Eastern Atlantic: from southern Norway and along the coasts of Europe to northern Mauritania (Refs. 188, 51442), including the Western Baltic Sea up to the Kaliningrad Oblast (Refs. 12801, 26334) and the Western Mediterranean Sea (Ref. 188). Outside France this species is rare (Ref. 89646).
+Listed in Appendix III of the Bern Convention (2002). 
+Listed in Annex II and V of the EC Habitats Directive (2007). 
+",NA,NA,101
+Alosa sapidissima,"North America:  Newfoundland (Ref. 1998), the St. Lawrence River, and Nova Scotia southward to central Florida.  Due to introductions into the Sacramento and Columbia Rivers, this species is now found from Cook Inlet, Alaska (Ref. 1998) to Baja California in Mexico and the Kamchatka Peninsula.",NA,NA,1584
+Aluterus monoceros,"Circumtropical.  Western Atlantic:  Massachusetts, USA to Argentina (Ref. 36453).  Eastern Atlantic:  west coast of tropical Africa (Ref. 3592).  Eastern Pacific:  Guatemala to Chile (Ref. 9068); probably in Mexico (Ref. 9318).  Western Indian Ocean:  Mozambique and South Africa (Ref. 4421).  Recently recorded from Reunion (Ref. 53568).",NA,NA,4274
+Parambassis wolffii,"Asia:  discontinuous distribution in mainland and insular southeast Asia: Chao Phraya and Mekong basins; islands of Sumatra and Borneo (Ref. 10429).  Reported from the river systems of Maeklong, Peninsular and Southeast Thailand (Ref. 26336).",18,25,16235
+Amblypharyngodon mola,"Asia:  Pakistan, India, Bangladesh and Myanmar (Ref. 4832).  Reported from Afghanistan (Ref. 39701).",NA,NA,24301
+Anabas testudineus,Asia:  India to Wallace line including China.  May have been distributed in more areas than were commonly reported.,22,30,495
+Anarhichas lupus,"Northeast Atlantic:  Spitsbergen southward to White Sea, Scandinavian coasts, North Sea, the British Isles, also Iceland and south-eastern coasts of Greenland.  Northwest Atlantic:  southern Labrador in Canada and western Greenland to Cape Cod in Massachusetts, USA; rarely to New Jersey, USA (Ref. 7251). Elsewhere in the Baltic Sea (east to Rügen and Bornholm Islands), Bay of Biscay and northwestern Mediterranean (Gulf of Genoa) (Ref. 57932).",NA,NA,2501
+Anchoa hepsetus,"Western Atlantic:  Massachusetts, USA perhaps occasionally straying north to Maine or even Nova Scotia (Canada), south to Fort Pierce, Florida (but not Florida Keys) and at least northern Gulf of Mexico; also from Gulf of Venezuela south to Uruguay.  Replaced by <i>Anchoa colonensis</i> in the West Indies.",NA,NA,1133
+Anguilla anguilla,"Atlantic Ocean: Atlantic coast from Scandinavia to Morocco; Baltic, Black and Mediterranean Seas; rivers of North Atlantic, Baltic and Mediterranean seas (Ref. 172, Ref. 51442). Continuous introductions to Asia and South and Central America. Spawning area in western Atlantic (Sargasso Sea). At least one country reports adverse ecological impact after introduction. Recent genomic DNA studies show that the European eel exhibits isolation by distance, implying that non-random mating and restricted gene flow among eels from different location exists (Ref. 43723). The existence of 3 genetically distinct sub-populations is suggested: a Northern European subpopulation (consisting mainly of the Icelandic stocks); a Western European subpopulation (including the Baltic, the Mediterranean and Black Sea); a Southern sub-population (including stocks of Morocco) (Ref. 43723, 89139). International trade restricted (CITES Appendix II, since 13.5.2009). ",4,20,35
+Anguilla anguilla,Northeast Atlantic,NA,NA,35
+Anguilla bicolor,Indo-Pacific:  widespread in the tropical Indian Ocean and western Pacific.  Known in Australia only from streams in the Kimberley regions of northern western Australia.  Africa:  widespread but relatively uncommon along east and southeast African coast and Madagascar (Ref. 7248).  Mozambique; Lower Zambezi River (Ref. 39494).  Most easily confused with <i>Anguilla obscura</i> and the surest way to distinguish them is by the count of vertebrae (Ref. 9828).,NA,NA,1274
+Anguilla japonica,"Asia:  Japan to the East China Sea, Taiwan, Korea, China and northern Philippines.  Spawning grounds of this species are presumed to be in the western Mariana Islands, at a salinity front near 15°N and 140°E (Ref. 54488). Most expensive food fish in Japan.  Introduced elsewhere.",4,27,295
+Anguilla rostrata,"Northwest to western Central Atlantic:  Greenland south along the Atlantic coast of Canada and the USA to Panama, and throughout much of the West Indies south to Trinidad.",4,25,296
+Anoplopoma fimbria,"North Pacific:  Bering Sea coasts of Kamchatka, Russia and Alaska southward to Hatsu Shima Island, southern Japan and Cedros Island, central Baja California, Mexico.",NA,NA,512
+Aphanopus carbo,North Atlantic:  on both sides and at underwater rises from Denmark Strait to about 30°N.,NA,NA,646
+Aphanopus carbo,Bay of Biscay and Western Iberian Sea(ICES Subareas VIII and IX),NA,NA,646
+Aphanopus carbo,Northeast Atlantic,NA,NA,646
+Aphanopus carbo,"Northeastern Arctic, North Sea, Iceland, Greenland, Skagerrak (ICES Subareas I, II, IV,
+X, XIV and Divisions IIIa, Va)",NA,NA,646
+Aphanopus carbo,"West of Scotland,West of Ireland, Celtic Sea, Faroe, (ICES Subareas VI, VII, and Divisions
+Vb, XIIb)",NA,NA,646
+Ariomma bondi,"Western Atlantic:  Canada (Ref. 5951) to Maine, USA and northern Gulf of Mexico to Uruguay.  Eastern Atlantic:  Senegal to Angola (Ref. 5512).",NA,NA,961
+Arius arius,"Indo-West Pacific:  India through neighboring coastal states (Pakistan, India, Bangladesh and Myanmar, Ref. 4833) to Singapore, South China Sea.",NA,NA,1285
+Arnoglossus laterna,Eastern Atlantic:  Norway to Angola.  Also known from the Mediterranean and Black Sea.,NA,NA,41
+Arripis trutta,"Southwest Pacific:  southern Australia (including Tasmania, Lord Howe Island and Norfolk Island), usually Brisbane to Western Victoria, rarely to Western Australia; and New Zealand (including Chatham and Kermadec Islands).",NA,NA,5048
+Chelidonichthys cuculus,Eastern Atlantic:  British Isles (occasionally Norway) to Mauritania (including Madeira and Azores).  Also known throughout the Mediterranean and possibly in the Black Sea.,NA,NA,44
+Leuciscus aspius,"Europe and Asia:  large rivers draining to North Sea (Weser, Elbe), Baltic Sea (southern tributaries, Norway east of Oslo, southern Sweden, Kokemären drainage in southern Finland), Black Sea, Sea of Azov and Caspian Sea; Aegean Sea basin, from Maritza to Lake Volvi drainages. Absent in Black Sea basin south of Danube and Rioni (Georgia) drainages, but present in Turkey west of Ankara.  Introduced in Rhine, Northern Dvina and Lake Balkhash (Asia) (Ref. 59043). Appendix III of the Bern Convention (protected fauna).  The subspecies <i>Aspius aspius iblioides</i> was previously recognized by authors for the Aral Sea (Ref. 13403).",4,20,4783
+Atheresthes stomias,"North Pacific:  Bering Sea coasts of Russia and Alaska to San Simeon, California, USA.  The San Pedro, California, USA record for this species in Miller and Lea 1972 (Ref. 6792) is based on a misidentification of <i>Eopsetta exilis</i>.",NA,NA,517
+Atherina boyeri,"Eastern Atlantic:  Portugal and Spain to Nouadhibou in Mauritania and Madeira, and throughout the Mediterranean and Black Sea.  Isolated populations on coasts of England and the Netherlands (Ref. 5980).  Previously, two subspecies were recognized in Russian waters:  <i>Atherina boyeri pontica</i> (Eichwald, 1838) from the Black Sea and the Sea of Azov and <i>Atherina boyeri caspia</i> (Eichwald, 1838) from the Caspian Sea (Ref. 26334).",NA,NA,1696
+Atherina hepsetus,"Eastern Atlantic:  coasts of Spain and Morocco including Madeira and the Canary Islands.  Also in the western Mediterranean, Adriatic Sea and Black Sea.",NA,NA,1697
+Atrobucca nibe,"Indo-West Pacific:  Mozambique and Natal, South Africa (Ref. 12484), India (Ref. 4373); China, Japan, Philippines, Indonesia, and off northern Australia.",NA,NA,941
+Auxis rochei,"Atlantic, Indian and Pacific (Western):  including the Mediterranean Sea.  The eastern Pacific population is recognized as subspecies <i>Auxis rochei eudorax</i> (Ref. 32349).  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",NA,27.8999996185303,93
+Auxis thazard,"Atlantic, Indian and Pacific (Western Central).  Eastern Pacific population recognized as  subspecies <i>Auxis thazard brachydorax</i> (Ref. 32349).  
+Many authors have used the name <i>Auxis thazard</i> as including <i>Auxis rochei</i> in the belief that there was only a single worldwide species of <i>Auxis</i>.  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",27,27.8999996185303,94
+Bagrus docmak,"Africa: widely distributed throughout the Nile, Tchad, Niger, Volta, Senegal, Mono and Oueme Rivers, as well as the Rift Valley Lakes Edward, George, Albert, Victoria and Tanganyika (Ref. 81641). In the Lukuga River (Lake Tanganyika outflow), known up to the Kisimba-Kilia rapids (Ref. 93587).  Also present in Cameroon (Ref. 81641). Not present in Lake Kivu, where it was introduced in 1959 and 1960, apparently without success.",21,25,6519
+Balistes vetula,"Eastern Atlantic:  Ascension, Cape Verde, and Azores (Ref. 7348); ranges south to southern Angola (Ref. 4420).  Western Atlantic:  Canada (Ref. 5951) to Massachusetts, USA and northern Gulf of Mexico to southeastern Brazil (Ref. 7251).",28,NA,19
+Barbonymus gonionotus,"Asia:  Mekong and Chao Phraya basins, Malay Peninsula, Sumatra and Java (Ref. 27732).  Occurs throughout the whole stretch on the Mekong, from the delta around the saline intrusion zone to Chiang Khong in Thailand (Ref. 37770).",22,28,286
+Belone belone,"Eastern Atlantic and Mediterranean Sea.  Three subspecies were recognized by Collette and Parin (1970, Ref. 34977)  <i>Belone belone belone</i> (Linnaeus, 1761) (Northeast Atlantic); <i>Belone belone euxini</i> Günther, 1866 (Black Sea and Sea of Azov); <i>Belone belone acus</i> Risso, 1827 (Mediterranean Sea and adjacent parts of Atlantic Ocean, Madeira, Canary Islands, Azores, and south to Cape Verde (Ref. 50279); subspecies <i>Belone belone gracilis</i> Lowe, 1839 (France to the Canary Islands including the Mediterranean) in Collette & Parin, 1990 (Ref. 5757).",NA,NA,47
+Boops boops,"Eastern Atlantic:  Norway to Angola, including the Canary Islands, Cape Verde, and the Sao Tome-Principe Islands.  Common from Bay of Biscay to Gibraltar (Ref. 4781).  Also found in the Mediterranean and the Black Sea.",NA,NA,203
+Bothus podas,"Eastern Atlantic:  Mediterranean and the Adriatic Sea (Ref. 12382); Mauritania to Angola, including Madeira, Cape Verde and the Canary Islands (Ref. 5979).",NA,NA,207
+Brama japonica,"Pacific Ocean:  Japan to Bering Sea, and south to Peru.   Reported from the Philippines (Ref. 6956) and Taiwan (Ref. 5193).  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",9,21,3555
+Branchiostegus semifasciatus,"Eastern Atlantic:  Casablanca, Morocco to Baia dos Tigres, Angola.  Rare north of Dakar, Senegal.",NA,NA,4935
+Brevoortia aurea,"Southwest Atlantic:  Rio de Janeiro, Brazil probably to mouth of Rio de la Plata, Argentina (needs confirmation).",NA,NA,1587
+Brevoortia patronus,"Western Central Atlantic:  Gulf of Mexico (Florida Bay, Gulf of Campeche, Mexico), but no certain records from Caribbean.",NA,NA,1589
+Brosme brosme,"Northwest Atlantic:  New Jersey to the Strait of Belle Isle and on the Grand Banks of Newfoundland.  Rare at the southern tip of Greenland.  Northeast Atlantic:  off Iceland, in the northern North Sea, and along the coast of Scandinavia to the Murmansk Coast and at Spitzbergen.",NA,NA,51
+Brosme brosme,Atlantic around Iceland and off Greenland (ICES Division Va and Subarea XIV),NA,NA,51
+Brosme brosme,in all areas,NA,NA,51
+Brosme brosme,Mid-Atlantic Ridge (ICES subarea XII excluding XIIb),NA,NA,51
+Brosme brosme,"North Sea, Skagerrak, Kattegat, West of Scotland, Irish Sea, Celtic Sea, Channel, Bay of Biscay, Western Iberian Seas, Faroe Islands, (ICES Divisions IIIa, Vb, VIa XIIb and Subareas IV,
+VII, VIII, IX)",NA,NA,51
+Brosme brosme,Northeast Arctic (ICES subareas I and II),NA,NA,51
+Brosme brosme,Rockall (ICES division VIb),NA,NA,51
+Brycon orbignyanus,South America:  La Plata basin.,NA,NA,48557
+Caranx crysos,"Eastern Atlantic:  Senegal to Angola (Ref. 4225, 13121, 57392), including the western Mediterranean, St. Paul's Rocks (Ref. 13121), and Ascension Island.  Reported from Mauritania (Ref. 55783).  Western Atlantic:  Nova Scotia, Canada to Brazil (Ref. 7251), including the Gulf of Mexico (Ref. 9626) and the Caribbean.  Also found in Argentina (Ref. 59355). In the tropical Eastern Pacific, it is replaced by <i>Caranx caballus</i> Günther 1869, which may be conspecific.",NA,NA,1933
+Carassius carassius,"Eurasia:  North, Baltic, White, Barents, Black and Caspian Sea basins; Aegean Sea basin only in Maritza drainage; eastward to Kolyma drainage (Siberia); westward to Rhine and eastern drainages of England.  Absent from North Sea basin in Sweden and Norway.  In Baltic basin north to about 66°N.  Widely introduced to Italy, England and France but possibly often confused with <i>Carassius gibelio</i> (Ref. 59043). At least one country reports adverse ecological impact after introduction.",2,22,270
+Carassius carassius,European subpopulation.,NA,NA,270
+Carcharhinus limbatus,"Cosmopolitan.  Western Atlantic:  Nova Scotia, Canada to Brazil (Ref. 26340).  Eastern Atlantic:  Senegal to Democratic Republic of the Congo, Madeira, the Canary Islands, and Mediterranean.  Indo-Pacific:  Red Sea, Madagascar and South Africa to China, Australia, Tahiti, Marquesas, and Hawaii.  Eastern Pacific:  Baja California, Mexico to Peru, including the Galapagos Islands.",NA,NA,874
+Carcharhinus limbatus,Northwest Atlantic subpopulation.,NA,NA,874
+Catostomus commersonii,"North America:  throughout most of Canada to the Atlantic Coast, south through North Carolina to New Mexico in the USA, becoming less common in the southern High Plains.",0,29.2999992370605,2965
+Centrophorus squamosus,"Eastern Atlantic:  Iceland and Atlantic slope to Senegal, Faeroes, Madeira, Azores, Gabon to Democratic Republic of the Congo, Namibia, western Cape of Good Hope (South Africa).  Western Indian Ocean:  off Natal, South Africa (Ref. 5578), Aldabra Islands and Arabian Sea (Ref.85183). Western Pacific:  Japan, Philippines, southeastern Australia and New Zealand.",NA,NA,653
+Centrophorus squamosus,Northeast Atlantic,NA,NA,653
+Centroscyllium fabricii,"Northwest Atlantic:  South Baffin Island and Greenland to Virginia, USA and possibly the Gulf of Mexico.  Eastern Atlantic:  Iceland along Atlantic slope to Senegal; Guinea to Sierra Leone; Namibia to Quoin Point, South Africa (Ref. 5578).  Southwest Atlantic:  Uruguay to Argentina (Ref. 58839).",NA,NA,656
+Centroscymnus coelolepis,"Western Atlantic:  Grand Banks to Delaware, USA; Cuba (Ref. 26340).  Eastern Atlantic:  Iceland south along Atlantic slope to the southwestern Cape coast of South Africa; also western Mediterranean.  Western Pacific:  off Japan, New Zealand, and Australia (Ref. 6871, 31367).  Western Indian Ocean:  Seychelles (Ref. 76802).",5,13,662
+Centroscymnus coelolepis,Northeast Atlantic,NA,NA,662
+Cephalopholis taeniops,"Eastern Atlantic:  Western Sahara to Angola, including Cape Verde and the Sao Tome and Principe islands.  Also recorded from the Mediterranean.",NA,NA,4936
+Chaenocephalus aceratus,"Southern Ocean:  in the vicinity of Bouvet Island, Scotia Sea, and northern part of the Antarctic Peninsula.",NA,NA,473
+Champsocephalus gunnari,"Southern Ocean:  Islands of the Scotia Sea, including the northern part of Antarctic Peninsula; Kerguelen, Heard and Bouvet islands; in the South Atlantic, near the South Georgia.  Also in near the South Orkneys and South Shetland islands.",NA,NA,474
+Chanda nama,"Asia:  Pakistan, India, Nepal, Bangladesh, and Myanmar.",NA,NA,10132
+Channa marulius,"Asia:  India to China, south to Thailand and Cambodia (Ref. 12693) and Pakistan (Ref. 4833).",24,28,5144
+Channa micropeltes,"Asia:  Mekong and Chao Phraya basins; the Malay Peninsula, and the islands of Sumatra and Borneo.  Material from India usually referred to as this species actually represents a distinct species.",25,28,344
+Channa punctata,"Asia:  Afghanistan, Pakistan, India, Sri Lanka, Nepal, Bangladesh, Myanmar and Yunnan in China.",22,28,5147
+Channa striata,Asia:  Pakistan to Thailand and south China.  Several countries report adverse ecological impact after introduction.,23,27,343
+Charax gibbosus,"South America:  Essequibo River basin, Guyana and coastal rivers of Suriname.",24,27,12346
+Chela cachius,"Asia:  Pakistan, India, Bangladesh and Myanmar.",22,26,13220
+Chelidonichthys lucerna,Eastern Atlantic:  Norway to Cape Blanc (along the African coast); not recorded at Madeira and the Azores.  Also in the Mediterranean and Black seas.,8,24,1366
+Chelon labrosus,Eastern Atlantic:  Scandinavia and Iceland (Ref. 4537) south to Senegal and Cape Verde.  Also Mediterranean Sea; southwestern Black Sea (Ref. 2058).,NA,NA,2499
+Chirocentrus dorab,"Indo-Pacific:  probably throughout the warmer coastal waters, from the Red Sea and East Africa to the Solomon Islands, north to southern Japan, south to northern Australia.  Recently reported from Tonga (Ref. 53797).",NA,NA,6358
+Chondrostoma nasus,"Europe:  Basins of Black (Danube, Dniestr, South Bug and Dniepr drainages), southern Baltic (Nieman, Odra, Vistula) and southern North Seas (westward to Meuse).  Invasive or introduced in Rhône, Loire, Hérault, Seine (France) and Soca (Italy, Slovenia) drainages.  Reports from the Drin drainage including Lakes Ohrid and Skadar represent a distinct species.  In Appendix III of the Bern Convention (protected fauna).  Asia:  Turkey.",NA,NA,4878
+Clarias batrachus,"Asia:  Java, Indonesia.  Clarias aff. batrachus from Indochina and Clarias aff. batrachus
+from Sundaland have been misidentified as <i>Clarias batrachus</i> from Java. Introduced elsewhere.  Several countries report adverse ecological impact after introduction.",10,28,3054
+Clarias gariepinus,"Africa:  almost Pan-Africa, absent from Maghreb, the upper and lower Guinea and the Cape province and probably also Nogal province.  Asia:  Jordan, Israel, Lebanon, Syria and southern Turkey.  Widely introduced to other parts of Africa, Europe and Asia.  Several countries report adverse ecological impact after introduction.",8,35,1934
+Clarias macrocephalus,"Asia:  Thailand to Viet Nam.  Introduced to China, Malaysia, Guam and the Philippines.",NA,NA,4805
+Clupea harengus,"North Atlantic: in the west, it ranges from southwestern Greenland and Labrador southward to South Carolina, USA. In the east, it ranges from Iceland and southern Greenland southward to the northern Bay of Biscay and eastward to Spitsbergen and Novaya Zemlya in Russia, including the Baltic Sea (Ref. 188).",1,18,24
+Clupea harengus,Northeast Atlantic: Irish Sea North of 52º 30 N (ICES division VIIa),NA,NA,24
+Clupea harengus,"Northeast Atlantic:  Baltic Sea main basin excluding Gulf of Riga (ICES subdivisions 25-29 and 32, excluding 28.1).",NA,NA,24
+Clupea harengus,Northeast Atlantic:  Bothnian Sea (ICES subdivision 30).,NA,NA,24
+Clupea harengus,"Northeast Atlantic:  Celtic Sea, Irish Sea (South of 52° 30’ N) and South of Ireland (ICES divisions VIIa and VIIj).",NA,NA,24
+Clupea harengus,Northeast Atlantic:  Gulf of Riga (ICES subdivision 28.1).,NA,NA,24
+Clupea harengus,Northeast Atlantic:  Icelandic summer-spawning herring (ICES division Va).,NA,NA,24
+Clupea harengus,"Northeast Atlantic:  North Sea, Eastern Channel, Skagerrak (ICES divisions IV, VIId, IIIa West) (autumn-spawners).",NA,NA,24
+Clupea harengus,Northeast Atlantic:  Norwegian spring-spawning herrings.,NA,NA,24
+Clupea harengus,"Northeast Atlantic:  Skagerrak, Western Baltic (ICES divisions IIIa, 22-24) (Western Baltic spring spawners).",NA,NA,24
+Clupea harengus,Northeast Atlantic:  West of Scotland North (ICES division Via North).,NA,NA,24
+Clupea harengus,Northeast Atlantic: Bothnian Bay (ICES subdivision 31),NA,NA,24
+Clupea harengus,Northwest Atlantic: East and southeast Newfoundland (3KLPs).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Georges Bank (5Zceu and 6BC).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Gulf of Maine (5YZw).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Gulf of St Lawrence spring spawners (4STVn stocks).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Gulf of St. Lawrence fall spawners (4STVn stocks).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Scotia-Fundy (4VWX stock complex).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Western Newfoundland fall spawners (4R stocks).,NA,NA,24
+Clupea harengus,Northwest Atlantic: Western Newfoundland spring spawners (4R stocks).,NA,NA,24
+Clupea harengus,"Some authors consider the eastern Baltic population as valid subspecies <i>Clupea harengus membras</i>.  North Atlantic:  eastern part of the Baltic Sea east of the line passing from the southern extremity of Oland Island to the Bay of Danzig, as well as the Gulfs of Finland and Bothnia.",NA,NA,24
+Clupea harengus,"Northeast Atlantic:  West of Scotland South (ICES division VIa South) and West of Ireland (ICES division VIIb, c)",NA,NA,24
+Clupea pallasii pallasii,"Arctic:  White Sea eastward to Ob inlet.  Western Pacific:  Anadyr Bay, eastern coasts of Kamchatka, possibly the Aleutian Islands southward to Japan and west coast of Korea.  Eastern Pacific:  Kent Peninsula at 107°W and Beaufort Sea southward to northern Baja California, Mexico.",NA,NA,1520
+Clupea pallasii pallasii,Eastern North Pacific: British Columbia..,NA,NA,1520
+Clupea pallasii pallasii,Eastern North Pacific: California.,NA,NA,1520
+Clupea pallasii pallasii,Eastern North Pacific: Central Alaska.,NA,NA,1520
+Clupea pallasii pallasii,"Eastern North Pacific: Puget Sound herring stocks, Washington.",NA,NA,1520
+Clupea pallasii pallasii,Eastern North Pacific: Southeast Alaska.,NA,NA,1520
+Clupea pallasii pallasii,Eastern North Pacific: Western Alaska (Bering Sea).,NA,NA,1520
+Clupea pallasii pallasii,"Western North Pacific: Dekastri herring, Russia.",NA,NA,1520
+Clupea pallasii pallasii,Western North Pacific: Gizhiga-Kamchatka herring (Gizhiga coast in the Okhotsk Sea to the southeast coast of Kamchatka peninsula).,NA,NA,1520
+Clupea pallasii pallasii,Western North Pacific: Hokkaido-Sakhalin herring (Sakhalin east coast from northern tip south to northeastern coast of Hokkaido and the Kuril Islands and Sea of Japan from southwest coast of Sakhalin south to  to Niigata Prefecture).,NA,NA,1520
+Clupea pallasii pallasii,Western North Pacific: Korf-Karagin herring (Russian coast of the Bering Sea).,NA,NA,1520
+Clupea pallasii pallasii,Western North Pacific: Peter the Great Bay herring.,NA,NA,1520
+Clupea pallasii pallasii,Western North Pacific: Sea of Okhotsk herring.,NA,NA,1520
+Clupea pallasii pallasii,Western North Pacific: Yellow Sea herring.,NA,NA,1520
+Clupeoides borneensis,"Asia:  Chao Phraya basin and Mekong basin in Laos, Thailand, Cambodia and Viet Nam; also from southern Borneo.",NA,NA,1561
+Clupeonella cultriventris,"Eurasia:  Black Sea (northwestern parts), Sea of Azov and Caspian Sea, also most of the affluent rivers of the area, reaching as far as 60 km inland.  Also, Lake Palaeostomi (Bulgaria) and in Bay of Feodosiya (Romania), also Lake Apolyont (Turkey) (Ref. 188).  Previously, two subspecies were recognized by some: <i>Clupeonella cultriventris cultriventris</i> (Nordmann, 1840) from the Black Sea and the Sea of Azov and <i>Clupeonella cultriventris caspia</i> (Svetovidov, 1941) from the Caspian Sea (Ref. 26334, 39702).",NA,NA,1470
+Trichogaster fasciata,"Asia:  Pakistan, India, Nepal, Bangladesh and upper Myanmar.  Widely transported around the world (Ref. 1739).",22,28,4770
+Trichogaster lalius,"Asia:  Pakistan, India and Bangladesh.  This is the smallest and most popular of the small gouramis which have been widely distributed outside its native range (Ref. 1739).",25,28,4774
+Coregonus albula,"Europe:  Baltic basin, lakes of upper Volga drainage (Seliger, Vseluga, Perejaslavskoe), some lakes of White sea basin and North Sea basin east of Elbe drainage.  Anadromous in Gulf of Finland and marine in northernmost freshened part of Gulf of Bothnia; north to about 69° N in Lake Inari, northern Finland; lower Rhine (now extirpated).  Frequently stocked in lakes and reservoirs in Germany and Poland. Appendix III of the Bern Convention (protected fauna).",NA,NA,231
+Coregonus clupeaformis,"North America:  throughout Alaska and most of Canada south into New England, the Great Lakes basin, and central Minnesota.  This species was stocked into high Andean lakes in two countries in southern Latin America (Ref. 1739).  Probably conspecific with <i>Coregonus lavaretus</i> (Ref. 7506).  Belongs to <i>Coregonus clupeaformis</i> complex (Ref. 27547).",NA,NA,234
+Coregonus lavaretus,"Europe:  Native to Lake Bourget (France) and Geneva (Switzerland, France). Population of Lake Aiguebelette (France) apparently introduced, but a 'lavaret' had already been recorded from there in the 17th century (Ref. 59043).  Other authors assume it to be a superspecies occurring in Great Britain and Alpine areas of Central Europe.  Has been stocked into many other places in Europe outside its native range.  There are many parallel and wrong scientific names for this species in use because of the problems in classifying the genus <i>Coregonus</i> (Ref. 7495).  Appendix III of the Bern Convention (protected fauna).  Asia:  introduced to Iran (Ref. 39702).",4,16,232
+Coregonus macrophthalmus,"Europe:  Lake Constance (Germany, Switzerland and Austria).",NA,NA,28065
+Corica soborna,"Asia:  Indonesia, Brunei, Malaysia and India.  Occurrence in the Bangpakong River in Thailand (Ref. 1632), Mekong (Ref. 12975) and Bangladesh (Ref. 1479) need confirmation.",NA,NA,1566
+Cyclocheilichthys apogon,Asia:  Myanmar to Indonesia.,24,26,10313
+Cyclopterus lumpus,"Western Atlantic:  Nunavut, Hudson Bay to James Bay and Labrador in Canada to New Jersey in USA; rarely to Chesapeake Bay in USA and Bermuda.  Eastern Atlantic:  Barents Sea, Iceland and Greenland to Spain (Ref. 4701).",NA,NA,62
+Cynoglossus arel,"Indo-West Pacific:  Persian Gulf to Sri Lanka and Indonesia, north to southern Japan.  Reported occurrence of this species from Niue (Ref. 3804) should be verified.",NA,NA,7523
+Cynoscion arenarius,"Western Atlantic:  Florida, USA and Gulf of Mexico to Bay of Campeche, Mexico.",NA,NA,1170
+Cynoscion jamaicensis,Western Atlantic:  Panama and the Greater Antilles to Argentina.  Including Lesser Antilles (Ref. 26938).  Also reported in Nicaragua (Ref. 13613).,NA,NA,1171
+Cynoscion nothus,Western Atlantic:  Maryland to northeastern Florida in the USA and throughout Gulf of Mexico.  Reported from Campeche Bank in Mexico (Ref. 5733).  Often misidentified as <i>Cynoscion regalis</i> (Ref. 3702).,NA,NA,1175
+Cyprinus carpio,"Asia:  Hong Kong strain ('Dor-70') introduced from the Fish and Aquaculture Research Station, Dor, Israel to the Agriculture Fisheries Department, Hong Kong in August 1977.  Founding stock was 600 fry.",NA,NA,1450
+Cyprinus carpio,Asia:  Israel-Hong Kong strain ('Big belly') introduced to Israel from Hong Kong by the Mekoroth Water Company.,NA,NA,1450
+Cyprinus carpio,Asia:  Israel-Taiwan 1970 strain ('Big belly') introduced to Israel from Taiwan in 1970.,NA,NA,1450
+Cyprinus carpio,"Asia:  Punten strain (scale carp) of West Java, Indonesia.",NA,NA,1450
+Cyprinus carpio,Asia:  Taiwan-China strain ('Big belly') introduced to Taiwan from China.,NA,NA,1450
+Cyprinus carpio,Asia:  Viet Nam strain (cultured at the Research Institute for Aquaculture in Hanoi).,NA,NA,1450
+Cyprinus carpio,"Asia: Asagi strain (scale carp) of Nagano Prefecture, Japan.",NA,NA,1450
+Cyprinus carpio,Asia: 'Big belly' (scale carp) of Chinese race.  A collective name for Chinese common carp.  Introduced in most of Southeast Asian countries.,NA,NA,1450
+Cyprinus carpio,"Asia: 'Dor-70' strain (mirror carp) was a result of the genetic improvement program at the Fish and Aquaculture Research Station, Dor, Israel.",NA,NA,1450
+Cyprinus carpio,Asia: Hong Kong strain ('Big belly') introduced to Hong Kong from China.,NA,NA,1450
+Cyprinus carpio,"Asia: Katjera Domas strain of West Java, Indonesia.",NA,NA,1450
+Cyprinus carpio,Asia: Kursk strain (mirror carp) of Russian race.,NA,NA,1450
+Cyprinus carpio,"Asia: Majalayan strain (scale carp) of Sukabumi, West Java, Indonesia.",NA,NA,1450
+Cyprinus carpio,"Asia: Sinyonya strain (scale carp) of West Java, Indonesia.",NA,NA,1450
+Cyprinus carpio,Europe and Asia:  Nivchan strain (scale carp) of Russian race.,NA,NA,1450
+Cyprinus carpio,"Europe and Asia: German strain.  Introduced in the flatland temperate waters of Kashmir, India about three decades ago.",NA,NA,1450
+Cyprinus carpio,"Europe and Asia: Nasice strain (mirror carp) of Nasice fish farm, Croatia.  Introduced to Israel from Nasice, Croatia in 1970.",NA,NA,1450
+Cyprinus carpio,"Europe: Aischgrunder strain (mirror carp) was developed in Aischgrund, Bavaria, Germany during the past 300 years.",NA,NA,1450
+Cyprinus carpio,"Europe: Bohemian strain (leather carp), Bohemia, Czech Republic.",NA,NA,1450
+Cyprinus carpio,"Europe: Galician strain (mirror carp), Galicia, Poland.  These were bred by A. Gasch in 1900 (see Ref. 4561).",NA,NA,1450
+Cyprinus carpio,"Europe: Lausitzer strain (scale carp), Lausitzer area, eastern Germany.",NA,NA,1450
+Cyprinus carpio,"Japan: Yamato strain (scale carp) of Nagano Prefecture, Japan.  Widely cultivated in Japan.",NA,NA,1450
+Cyprinus carpio,Asia: Hong Kong wild strain x `Dor-70' hybrid.  Produced by crossing wild strain female with `Dor-70' male in 1979 and 1980.,NA,NA,1450
+Cyprinus carpio,"Europe and Asia: Dinnyés strain (mirror carp), Hungary.  A hybrid of Hungarian, Israeli and Yugoslavian stocks.  Has also been introduced to Bangladesh.",NA,NA,1450
+Cyprinus carpio,Europe and Asia: Ropsha strain (mirror carp) of Russian race.  Hybrid produced between Amur wild carp and Galician carp.,NA,NA,1450
+Cyprinus carpio,"Europe to Asia:  Black, Caspian and Aral Sea basins.  Introduced throughout the world.  Wild stocks are only present naturally in rivers draining to the Black, Caspian and Aral Sea (Ref. 59043).  A reophilic wild population in the Danube is assumed to be the origin of the European species; this population is now under threat (Ref. 13696).",3,35,1450
+Cyprinus carpio,"<i>Cyprinus carpio haematopterus</i>	:  Asia:  Amur-Chinese region or Far Eastern region.  Amur basin from the Onon and Argun' to the mouth of the Amur;  Sungari, Ussuri, Lake Khanka (Ref. 1441).  Stocks have lower counts of dorsal fin rays and gill rakers compared to carps from various Central-Asian origins.  Known to be more resistant to low temperatures.",NA,NA,1450
+Cyprinus carpio,Asia:  Wild strain scale carp of Central and East Asia.,NA,NA,1450
+Cyprinus carpio,"Europe: 'Wild strain' (scale carp) from Europe.  The European wild carp is now extremely rare and highly endangered.  It is probably extinct in its pure form (Ref. 10926).  Critically endangered in River Danube (Austria, Bulgaria, Croatia, Hungary, Montenegro, Romania, Serbia, Slovakia, Slovenia) (Ref. 72481).",NA,NA,1450
+Danio dangila,"Asia:  India, Bangladesh, Nepal and Myanmar (Ref. 4832).  Reported from Bhutan (Ref. 40882).",NA,NA,24381
+Dasyatis americana,"Western Atlantic:  New Jersey, USA and northern Gulf of Mexico to southern Brazil, including the Antilles (Ref. 3168).",NA,NA,1247
+Dasyatis sabina,Western Atlantic:  Chesapeake Bay to southern Florida in the USA and the Gulf of Mexico.  Records from South America doubtful (Ref. 7251).,NA,NA,2574
+Deania calcea,"Eastern Atlantic:  Iceland along Atlantic slope to Algoa Bay, South Africa (Ref. 247, 5578).  Western Pacific:  southern Honshu in Japan, southern Australia, New Zealand.  Occurrence in the Western Central Pacific uncertain (Ref. 31367).  Eastern Pacific:  southern Chile to northern Peru (Ref. 38549).",NA,NA,670
+Decapterus punctatus,"Western Atlantic:  Nova Scotia, Canada (Ref. 7251) southward through the Gulf of Mexico and the Caribbean to Rio de Janeiro, Brazil.  Eastern Atlantic:  Morocco to South Africa, including the Madeira, Canary, Cape Verde, Ascension and St. Helena islands (Ref. 7097).",NA,NA,994
+Dentex dentex,"Eastern Atlantic:  British Isles to Cape Blanc, Mauritania; (exceptionally further south) Senegal and around the Canary Islands and Madeira.  Common south of 40°N (Spain, North Africa) in the Mediterranean (Ref. 4781).",NA,NA,439
+Dentex maroccanus,"Eastern Atlantic:  Bay of Biscay (occasionally further north) and southwestern Mediterranean to the Strait of Gibraltar and the Gulf of Guinea, possibly even further south.",NA,NA,4538
+Dicentrarchus labrax,"Eastern Atlantic:  Norway to Morocco, the Canary Islands and Senegal.  Also known from the Mediterranean and Black Sea.  Absent from White, Barents, Baltic and Caspian Seas (Ref. 59043).",8,24,63
+Diplodus annularis,"Eastern Atlantic:  Canary islands, also found along the coast of Portugal northward to the Bay of Biscay, Mediterranean, Black Sea and Sea of Azov (Ref. 4781).",NA,NA,1752
+Diplodus puntazzo,"Eastern Atlantic:  Bay of Biscay (rare) to Sierra Leone, the Canary Islands, and Cape Verde, including the Mediterranean and Strait of Gibraltar and Black Sea (Ref. 4781).  Also off South Africa.",NA,NA,1749
+Diplodus sargus sargus,Eastern Atlantic:  Mediterranean and Black Sea.  Eastern Central Atlantic:  Madeira Island (Ref. 74541).,NA,NA,1753
+Diplodus vulgaris,Eastern Atlantic:  Bay of Biscay to Cape Verde and the Canary Islands including the Mediterranean and Black Sea (off Bulgaria); also from Angola to South Africa.,NA,NA,1754
+Echelus myrus,"Eastern Atlantic:  Bay of Biscay to Pointe Noire, Congo including the Mediterranean.",NA,NA,1713
+Eleutheronema tetradactylum,"Indo-West Pacific:  Persian Gulf to Papua New Guinea and northern Australia.  Replaced by <i>Eleutheronema rhadinum</i> (Jordan & Evermann, 1902), in East Asia (Japan, China, Viet Nam).",NA,NA,340
+Elops saurus,"Western Atlantic:  Cape Cod (USA), Bermuda, and northern Gulf of Mexico to southern Brazil.  Questionable occurrence records in the China (Ref. 52360), Taiwan (47843), and Vietnam (Ref. 9706, 46452).",NA,NA,175
+Engraulis encrasicolus,"Eastern Atlantic:  Bergen, Norway to East London, South Africa (perhaps reaching Durban) (Ref. 10000).  Also all of Mediterranean, Black and Azov seas, with stray individuals in Suez Canal and Gulf of Suez; also recorded from St. Helena (Ref. 189).  Reported from Estonia (Ref. 33247).",NA,NA,66
+Engraulis encrasicolus,Northeast Atlantic:  Bay of Biscay (ICES division VIII).,NA,NA,66
+Engraulis encrasicolus,Northeast Atlantic:  Western Iberian Seas (ICES Division Ixa).,NA,NA,66
+Epinephelus aeneus,"Eastern Atlantic:  along the west coast of Africa to southern Angola (Ref. 5222, 57293), including the southern Mediterranean (Ref. 5222).  First record from Corsica, France in 2012 (Ref. 95839).  Records from the Canary Islands and Cape Verde are unsubstantiated (Ref. 5222).",NA,NA,426
+Epinephelus coioides,"Indo-West Pacific:  Red Sea south to at least Durban, South Africa and eastward to Palau and Fiji, north to the Ryukyu Islands, south to the Arafura Sea (Ref. 9819) and  Australia.  Recently reported from the Mediterranean coast of  Israel (Ref. 5222).  Frequently misidentified as <i>Epinephelus tauvina</i> or <i>Epinephelus malabaricus</i> (Ref. 27362).",NA,NA,6465
+Epinephelus sexfasciatus,"Western Central Pacific:  known only from tropical waters, from Thailand and the Philippines to northern Australia.",NA,NA,4825
+Esomus danricus,"Asia:  Pakistan, India, Nepal, Bangladesh (Ref. 41236), Afghanistan (Ref. 41034), Sri Lanka (Ref. 6028)  and Myanmar (Ref. 43640).",22,NA,5150
+Esox lucius,"Circumpolar in fresh water.  North America:  Atlantic, Arctic, Pacific, Great Lakes and Mississippi River basins from Labrador to Alaska and south to Pennsylvania, Missouri and Nebraska, USA (Ref. 5723).  Eurasia:  Caspian, Black, Baltic, White, Barents, Arctic, North and Aral Seas and Atlantic basins, southwest to Adour drainage; Mediterranean basin in Rhône drainage and northern Italy.  Widely distributed in central Asia and Siberia easward to Anadyr drainage (Bering Sea basin).  Historically absent from Iberian Peninsula, Mediterranean France, central Italy, southern and western Greece, eastern Adriatic basin, Iceland, western Norway and northern Scotland. Widely introduced and translocated throughout Europe (Ref. 59043).  Several countries report adverse ecological impact after introduction (Ref. 1739).",10,28,258
+Etmopterus princeps,"Northwest Atlantic:  Nova Scotia, Canada to New Jersey, USA.  Northeast Atlantic:  southern Iceland along Atlantic slope to Faeroes, Hebrides, UK, English Channel, Bay of Biscay and Gibraltar, Mauritania.  Nominally recorded from New Caledonia in the Western Central Pacific, but its status there needs clarification - other large species of lanternsharks (<i>Etmopterus baxteri</i> and <i>Etmopterus unicolor</i>) may be involved (Ref. 31367).",NA,NA,683
+Etrumeus sadina,Restricted to the northwestern Atlantic:  from the Bay of Fundy to the Gulf of Mexico.,NA,NA,1455
+Euthynnus alletteratus,"Atlantic Ocean:  in tropical and subtropical waters, including the Mediterranean, Black Sea, Caribbean Sea and Gulf of Mexico.  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",NA,NA,97
+Eutrigla gurnardus,"Eastern Atlantic:  Norway to Morocco, Madeira, and Iceland.  Also known from the Mediterranean and Black Sea (Ref. 4697).",NA,NA,68
+Gadus macrocephalus,"North Pacific:  Yellow Sea to the Bering Strait, along the Aleutians, and south to about Los Angeles, USA.  Rare in the southern part of its range.",6,9,308
+Gadus morhua,North Atlantic and Arctic: Ungava Bay in Canada along the North American coast to Cape Hatteras; North Carolina in the western Atlantic. East and west coast of Greenland; around Iceland; from Barents Sea including the region around Bear Island along the European coast to Bay of Biscay (Ref. 88171).,0,15,69
+Gadus morhua,Northeast Atlantic:  Faroe Bank (ICES Division Vb2),NA,NA,69
+Gadus morhua,Greenland (ICES Subarea XIV and NAFO Subarea 1),NA,NA,69
+Gadus morhua,Northeast Atlantic: Kattegat (ICES division Division IIIa East),NA,NA,69
+Gadus morhua,Northeast Atlantic:  Celtic Sea (ICES division VIIe-k).,NA,NA,69
+Gadus morhua,"Northeast Atlantic:  Central and Eastern Baltic, ICES subdivisions 25-32, including Bothnian Sea, Bothnian Bay and Gulf of Finland.",NA,NA,69
+Gadus morhua,Northeast Atlantic:  Faroe Plateau (ICES Subdivision Vb1).,NA,NA,69
+Gadus morhua,Northeast Atlantic:  Iceland (ICES division Va).,NA,NA,69
+Gadus morhua,Northeast Atlantic:  Irish Sea (ICES division VIIa).,NA,NA,69
+Gadus morhua,Northeast Atlantic:  North East Arctic - Barents Sea and Norwegian Sea (ICES subareas I and II).,NA,NA,69
+Gadus morhua,"Northeast Atlantic:  North Sea, Eastern Channel, Skagerrak (ICES divisions IV, VIId, IIIa West).",NA,NA,69
+Gadus morhua,Northeast Atlantic:  West of Scotland (ICES division VIa).,NA,NA,69
+Gadus morhua,"Northeast Atlantic:  Western Baltic, ICES subdivisions 22 and 24, consisting of the Belt Sea and Kiel and Mecklenburg Bay and the Arkona Sea.",NA,NA,69
+Gadus morhua,Northwest Atlantic: Eastern Scotian Shelf (NAFO Div. 4VsW).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Flemish Cap (NAFO Div. 3M).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Georges Bank (NAFO Div. 5Z-6).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Gulf of Maine (NAFO Div. 5Y).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Northern Gulf of St. Lawrence ( NAFO Div. 3Pn4RS).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Northern Labrador (NAFO Div. 2GH).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Southern Grand Bank (NAFO Div. 3NO).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Southern Gulf of St. Lawrence (NAFO Div. 4TVn).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Southern Labrador-Eastern Newfoundland  (NAFO Div. 2J3KL).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Southern Newfoundland (NAFO Div. 3Ps).,NA,NA,69
+Gadus morhua,Northwest Atlantic: Western Scotian Shelf (NAFO Div. 4X).,NA,NA,69
+Gadus morhua,North Atlantic:  Norwegian Coastal Waters (in ICES subareas I and II),NA,NA,69
+Gadus morhua,Rockall (ICES division VIb),NA,NA,69
+Gasterochisma melampus,Circumglobal in southern temperate waters.,8,14.5,100
+Gudusia chapra,Asia:  rivers of India and Bangladesh affluent to the Bay of Bengal (chiefly the Ganges and Brahmaputra systems and the Mahanadi River of Orissa).  Reported from Nepal (Ref. 9496) and Pakistan (Ref. 41236).,NA,NA,1601
+Mugil cephalus,"Cosmopolitan in coastal waters of the tropical, subtropical and temperate zones of all seas.  Eastern Pacific:  California, USA to Chile (Ref. 2850).  Western Pacific:  Japan to Australia (Ref. 9812).  Western Indian Ocean:  from India to South Africa (Ref. 4393).   Western Atlantic:  Nova Scotia, Canada to Brazil (Ref. 7251); Cape Cod to southern Gulf of Mexico (Ref. 26938);  absent in the Bahamas and most of West Indies and Caribbean (Ref. 7251, 9761).  Eastern Atlantic:  Bay of Biscay to South Africa, including the Mediterranean Sea and Black Sea (Ref. 7399).  Reported in Sea of Okhotsk (Ref. 50550).",8,24,785
+Helicolenus dactylopterus,"Western Atlantic:  Nova Scotia, Canada to Venezuela.  Eastern Atlantic:  Iceland (Ref. 12462) and Norway to the Mediterranean and the Gulf of Guinea, including Madeira, the Azores, and the Canary Islands; also Walvis Bay, Namibia to Natal, South Africa (Ref. 4313).",NA,NA,76
+Helostoma temminkii,Asia:  Thailand to Indonesia.,22,28,500
+Hyporhamphus unifasciatus,"Western Atlantic:  south Florida (USA), through the Caribbean and along the coasts of Central and South America to Uruguay.",NA,NA,1060
+Hemiramphus brasiliensis,"Western Atlantic:  Massachusetts, USA and northern Gulf of Mexico to Brazil, including the Caribbean Sea (Ref. 3723); absent in Bermuda.  Eastern Atlantic:  Cape Verde and Dakar, Senegal to Luanda, Angola (Ref. 4497).",NA,NA,1059
+Hemisorubim platyrhynchos,"South America:  Amazon, Maroni, Orinoco, and Paraná River basins.",20,22,13261
+Henicorhynchus siamensis,Asia:  Mekong and Chao Phraya basins.,NA,NA,55277
+Heteropneustes fossilis,Asia:  Pakistan and Sri Lanka to Myanmar.,21,25,4885
+Hippoglossus hippoglossus,"Eastern Atlantic:  Bay of Biscay to Spitsbergen, Barents Sea, Iceland and eastern Greenland.  Western Atlantic:  southwestern Greenland and Labrador in Canada to Virginia in USA (Ref. 7251).",NA,NA,1371
+Huso huso,"Eurasia:  Caspian, Black, Azov and Adriatic Sea basins.  Considered critically endangered (Ref. 59043).  Appendix III of the Bern Convention (protected fauna).  International trade restricted (<b>CITES</b> II, since 1.4.98; <b>CMS</b> Appendix II).",10,20,2067
+Huso huso,Mediterranean Sea:  Adriatic Sea (Italy).,NA,NA,2067
+Huso huso,"Black Sea:  Hungary, Romania, Russia, Serbia, Ukraine.",NA,NA,2067
+Huso huso,"Caspian Sea (Azerbaijan, Iran, Kazakhstan, Russia, Turkmenistan).",NA,NA,2067
+Huso huso,Sea of Azov (Russia).,NA,NA,2067
+Hydrolagus affinis,"Northeast Atlantic:  Rockall Trough along Ireland, northern Bay of Biscay and off Portugal.  Reported from Iceland (Ref. 12462).  Southwest Atlantic:  Uruguay (Ref. 58839).  Northwest Atlantic:  Newfoundland in Canada to Cape Cod in USA.  Probably has a much wider distribution.  Possibly occurring off the Cape in South Africa and off Mozambique (Ref. 11228).",NA,NA,5441
+Hyperoglyphe antarctica,Southwest Atlantic:  Argentina.  Southeast Atlantic and Western Indian Ocean:   South Africa.  Southwest Pacific:  New Zealand and Australia (including Western Australia).,NA,NA,496
+Hypomesus pretiosus,"Eastern Pacific:  Prince William Sound, Gulf of Alaska to Long Beach, southern California, USA.  Reports from the western Pacific are misidentifications of <i>Hypomesus japonicus</i>.",NA,NA,255
+Hyporhamphus ihi,"Southwest Pacific:  restricted to New Zealand, including the Chatham Islands.",NA,NA,13135
+Ictalurus punctatus,North America:  Central drainages of the United States to southern Canada and northern Mexico.,10,31.6000003814697,290
+Isopsetta isolepis,"Eastern Pacific:  Bristol Bay in the southeastern Bering Sea and Amchitka Island (Aleutian Islands) to Ventura, California, USA.",NA,NA,4242
+Isurus oxyrinchus,"Cosmopolitan in temperate and tropical seas (Ref. 6871, 11230).  Western Atlantic:  Gulf of Maine to southern Brazil and Argentina (Ref. 58839), including the Gulf of Mexico and Caribbean.  Eastern Atlantic:  Norway to South Africa, including the Mediterranean.  Indo-Pacific:  East Africa to Hawaii, north to Primorskiy Kray (Russian Federation), south to Australia and New Zealand.  Eastern Pacific:  south of Aleutian Islands and from southern California, USA to Chile.",16,NA,752
+Katsuwonus pelamis,"Cosmopolitan in tropical and warm-temperate waters.  Not found in the Black Sea.  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",14.6999998092651,30,107
+Lagocephalus lagocephalus,Circumglobal:  tropical to temperate seas.,NA,NA,4292
+Lamna nasus,"Circumglobal, amphitemperature with centers of distribution in the North Atlantic and temperate water of the southern hemisphere; not in equatorial seas.  Appendix III (Mediterranean) of the Bern Convention (2002).  Appendix II of the Bonn Convention (2009).",1,18,88
+Lamna nasus,Mediterranean subpopulation.,NA,NA,88
+Lamna nasus,Northeast Atlantic subpopulation.,NA,NA,88
+Lamna nasus,Northwest Atlantic subpopulation.,NA,NA,88
+Lampris guttatus,"Worldwide in tropical to temperate waters (Ref. 57923).  Western Atlantic:  Grand Banks and Nova Scotia (Canada) to Florida (USA), Gulf of Mexico and the West Indies (Ref. 7251) up to Argentina (Ref. 47377).  Eastern Atlantic:  Norway and Greenland to Senegal (Ref. 6737) and south of Angola (Ref. 6476) also Mediterranean.  Eastern Pacific:  Gulf of Alaska to south of southern California (Ref. 265).  A single capture in South Georgia marks an incidental occurrence in Southern Ocean.",NA,NA,1072
+Lates angustifrons,"Africa: widely distributed in Lake Tanganyika (Ref. 2216, 36901) and present in the Malagarazi River delta (Ref. 54847). ",22,28,4497
+Lates calcarifer,"Indo-West Pacific:  eastern edge of the Persian Gulf to China, Taiwan and southern Japan, southward to southern Papua New Guinea and northern Australia.",15,28,346
+Lates niloticus,"Africa:  widespread throughout the Ethiopian Region of Africa, occurring commonly in all major river basins including the Nile, Chad, Senegal, Volta and Congo (Ref. 3636). Found almost everywhere in West Africa, except in Gambia (Ref. 81285). Present in the brackish waters of Lake Mariout, near Alexandria; exists in Lakes Albert, Rudolph and Tana (Ref. 3636).  Several countries report adverse ecological impact after introduction.",NA,NA,347
+Lepidopsetta bilineata,North Pacific:  Baja California to the eastern Aleutian Islands and extreme southeastern Bering Sea.,NA,NA,24237
+Lepidorhombus whiffiagonis,"Northeast Atlantic:  Iceland southward to Cape Bojador (26°N), West Sahara and in the western Mediterranean.",NA,NA,28
+Lepidorhombus whiffiagonis,"North Sea, West of Scotland and Rockall (ICES subareas IV and VI)",NA,NA,28
+Lepidorhombus whiffiagonis,"Northeast Atlantic:  West of Ireland, Celtic Sea, Bay of Biscay(ICES Divisions VIIb k and VIIIa,b,d)",NA,NA,28
+Lepidorhombus whiffiagonis,Northeast Atlantic:  Southern Bay of Biscay and Western Iberian Seas (ICES divisions VIIIc and IXa).,NA,NA,28
+Leptomelanosoma indicum,Indo-West Pacific:  known with certainty from Pakistan to Papua New Guinea.  Reports from the east coast of Africa need to be verified (Ref. 57343).,NA,NA,4469
+Squalius cephalus,"Eurasia:  North, Baltic, northern Black, White, Barents and Caspian Sea basins, Atlatinc basins southward to Adour drainages (France), Great Britain north to 56°C, Scandinavia:  southern Finland, Sweden north to abut Stockholm.  Mediterranean basin from Var to Hérault (possibly Aude) (France) drainages.  Introduced elsewhere, Naturally absent from Italy and Adriatic basin.",4,20,4482
+Leuciscus idus,"Europe and Asia:  Baltic, Black, northern Caspian and North Sea basins, Atlantic basin southward to Seine and lower Loire drainages (France).  Absent in Scandinavia north of 69°N.  In Asia, eastward to Lena drainage and Aral basin.  Introduced to Great Britain and northern Italy (Ref. 59043).  Transported to several countries in Europe and the United States for ornament (Ref. 4537).",4,20,2801
+Limanda aspera,"North Pacific:  Korea and the Sea of Japan to the Sea of Okhotsk, Bering Sea, and Barkley Sound, Canada.  Reported from the Alaskan Beaufort Sea (Ref. 28503).",NA,NA,520
+Limnothrissa miodon,"Africa:  endemic to Lake Tanganyika (Ref. 28136), but introduced into several other lakes (Lake Kivu, Lake Kariba, and Cabora Bassa reservoir) (Ref. 188, 28136).",21,29,1550
+Lithognathus mormyrus,"Eastern Atlantic:  Bay of Biscay, Strait of Gibraltar and Mediterranean, Black, and Azov seas to Cape of Good Hope, South Africa and the Mozambique Channel.  Also found around the Canary Islands, Cape Verde (Ref. 4781) and Madeira Is (Ref. 74541).  Western Indian Ocean:  Red Sea; southern Mozambique to the Cape of Good Hope; not found in tropical east Africa (Ref. 3198).",NA,NA,706
+Liza aurata,"Eastern Atlantic:  Scotland to Cape Verde; in the Mediterranean and Black Sea.  Also in coastal waters from southern Norway to Morocco, rare off Mauritania (Ref. 3573).  Records from the lagoon of Accra are probably misidentifications.",NA,NA,1735
+Liza ramada,"Eastern Atlantic:  from the coasts of southern Norway to Morocco, including the Mediterranean and the Black Sea (Ref. 2804, Ref. 51442).  Records of its occurrence in tropical waters are based on misidentifications (Ref. 3573).",NA,NA,4583
+Liza saliens,"Eastern Atlantic:  Mediterranean Sea, the Black Sea, Sea of Azov and Atlantic coasts from Morocco to France.  Introduced to Iran and is now naturally occurring in the Caspian Sea basin (Ref. 50218).",NA,NA,1736
+Lophius budegassa,"Eastern Atlantic:  British Isles to Senegal, including the Mediterranean.",NA,NA,5094
+Lophius budegassa,Southern Bay of Biscay and Western Iberian Seas (ICES divisions VIIIc and Ixa),NA,NA,5094
+Lophius piscatorius,Eastern Atlantic:  south-western Barents Sea to Strait of Gibraltar including the Mediterranean and Black Sea.  Reported from Iceland (Ref. 4712) and Mauritania (Ref. 5377).  North Atlantic specimens attain larger sizes than those collected off West Africa and they also occur in shallower depths.,NA,NA,716
+Lophius piscatorius,Southern Bay of Biscay and Western Iberian Seas (ICES divisions VIIIc and Ixa),NA,NA,716
+Lota lota,"Circumarctic in freshwater (Ref. 1371).  Europe:  Loire drainage, France eastward to White, Barents and Arctic Sea basins; upper Volga drainage; western Caspian basin; rivers draining to Black Sea; Rhône drainage (France); in Italy native only in Po drainage; eastrward England (now extirpated).  In Siberia eastward to River Lena. Reported that populations from eastern Siberia and North America belong to a different species, <i>Lota maculosa</i> (Ref. 59043).",4,18,310
+Lutjanus argentimaculatus,"Indo-West Pacific:  East Africa to Samoa and the Line Islands, north to the Ryukyu Islands, south to Australia.  Has dispersed into the eastern Mediterranean (off Lebanon) via the Suez Canal but not well established there.",16,30,1407
+Lutjanus johnii,"Indo-West Pacific:  East Africa to Fiji, north to the Ryukyu Islands, south to Australia.",NA,NA,264
+Lutjanus malabaricus,"Indo-West Pacific:  Persian Gulf and Arabian Sea to Fiji, north to southern Japan, south to Australia.  This species has been frequently misidentified as <i>Lutjanus sanguineus</i> (Ref. 55).  There are unsubstantiated reports of this species from off East Africa.",NA,NA,162
+Macrodon ancylodon,Western Atlantic:  Venezuela to northern Argentina.,NA,NA,417
+Macrognathus aculeatus,"Asia:  Thailand, Malay Peninsula, Borneo and Indonesia.  Reported from Bangladesh (Ref. 1479) and Nepal (Ref. 9496); India (Ref. 43634); Viet Nam (Ref. 89724).",23,28,5152
+Macrourus berglax,"North Atlantic:  Norfolk Canyon and George Bank north to Labrador, Davis Strait, eastern and western Greenland, Iceland, and from the Irish Atlantic slope north to Faeroe Islands, Norwegian coast, to Spitzbergen, and to the Barents Sea.",NA,NA,331
+Mallotus villosus,"Circumpolar in the Arctic.  North Atlantic:  Barents Sea up to Bear Island, in the White and Norwegian seas, off the coast of Greenland up to 74°N and from Hudson Bay in Canada to Gulf of Maine, USA.  North Pacific:  south to Korea and Juan de Fuca Strait, Canada.",NA,NA,252
+Mallotus villosus,"North Atlantic:  Barents Sea (ICES subareas I and II, excluding Division IIa west of 5°W).",NA,NA,252
+Mallotus villosus,Northeast Atlantic:  Iceland-East Greenland-Jan Mayen area (ICES Subareas V and XIV and Division IIa west of 5°W).,NA,NA,252
+Megalaspis cordyla,Indo-West Pacific:  East Africa to Japan and Australia.,NA,NA,384
+Melanogrammus aeglefinus,"Northeast Atlantic:  Bay of Biscay to Spitzbergen; in the Barents Sea to Novaya Zemlya; around Iceland; rare at the southern Greenland.  Northwest Atlantic:  Cape May, New Jersey to the Strait of Belle Isle.",NA,NA,1381
+Melanogrammus aeglefinus,Irish Sea (ICES division VIIa),NA,NA,1381
+Melanogrammus aeglefinus,Northeast Atlantic:  Faroe Island (ICES Division Vb).,NA,NA,1381
+Melanogrammus aeglefinus,Northeast Atlantic:  Iceland (ICES division Va).,NA,NA,1381
+Melanogrammus aeglefinus,Northeast Atlantic:  North East Arctic - Barents Sea and Norwegian Sea (ICES subareas I and II).,NA,NA,1381
+Melanogrammus aeglefinus,"Northeast Atlantic:  North Sea, Skagerrak (ICES subarea IV and Division IIIa). This stock occupy the northern and central North Sea and Skagerrak and are possibly linked to the Division VIa stock on the West of Scotland (Ref. 92286).",NA,NA,1381
+Melanogrammus aeglefinus,Northeast Atlantic:  Rockall (ICES division VIb).  This stock is an entirely separate stock from that on the continental shelf of the British Isles.,NA,NA,1381
+Melanogrammus aeglefinus,"Northeast Atlantic:  West of Ireland and Celtic Sea (ICES divisions VIIb-k).  Adults are continuously distributed from the north of Biscay along thte Irish coasts and the west of Scotland into the North Sea. However, this stock may not be distinct from those in the surrounding areas from the present distribution (Ref. 92240).",NA,NA,1381
+Melanogrammus aeglefinus,Northeast Atlantic:  West of Scotland (ICES division VIa).,NA,NA,1381
+Melanogrammus aeglefinus,Northwest Atlantic: Eastern Scotian Shelf and Southern Gulf of St. Lawrence (NAFO Div. 4TVW).,NA,NA,1381
+Melanogrammus aeglefinus,Northwest Atlantic: Georges Bank (NAFO Div. 5Zjm - Canada; Div. 5Z - USA).,NA,NA,1381
+Melanogrammus aeglefinus,Northwest Atlantic: Grand Banks (NAFO Div. 3LNO).,NA,NA,1381
+Melanogrammus aeglefinus,Northwest Atlantic: Gulf of Maine (NAFO Div. 5Y).,NA,NA,1381
+Melanogrammus aeglefinus,Northwest Atlantic: St. Pierre Bank (NAFO Div. 3Ps).,NA,NA,1381
+Melanogrammus aeglefinus,Northwest Atlantic: Western Scotian Shelf (NAFO Div. 4X).,NA,NA,1381
+Menticirrhus americanus,"Western Atlantic:  New York to Texas, USA and Bay of Campeche to Buenos Aires, Argentina; absent in southern Florida and the Antilles.",NA,NA,409
+Merlangius merlangus,"Northeast Atlantic:  southeastern Barents Sea and Iceland to Portugal, also in the Black Sea, Aegean Sea, Adriatic Sea and adjacent areas.  Rare in the northwestern Mediterranean.",NA,NA,29
+Merlangius merlangus,Irish Sea (ICES division VIIa),NA,NA,29
+Merlangius merlangus,"Northeast Atlantic:  North Sea and Eastern Channel (ICES subarea IV, division VIId).",NA,NA,29
+Merlangius merlangus,Northeast Atlantic:  Western Channel (ICES division VIIe) and Celtic Sea (ICES divisions VIIf-k).,NA,NA,29
+Merlangius merlangus,Rockall (ICES division VIb),NA,NA,29
+Merlangius merlangus,Northeast Atlantic:  Skagerrak Kattegat (ICES division IIIa),NA,NA,29
+Merlangius merlangus,Northeast Atlantic:  West of Scotland (ICES division VIa),NA,NA,29
+Merluccius hubbsi,Southwest Atlantic:  off southern Brazil to Argentina and the Falkland Islands up to 54°S (Ref. 47377).,3.79999995231628,6.5,325
+Merluccius merluccius,"Eastern Atlantic:  Norway and Iceland, southward to Mauritania.  Also in the Mediterranean Sea and along the southern coast of the Black Sea.",NA,NA,30
+Merluccius merluccius,"North Sea, Skagerrak, Kattegat, West of Scotland, Irish Sea, Celtic Sea, Channel, Northern and Eastern Bay of Biscay (ICES Division IIIa, Subareas IV, VI, and VII, and Divisions VIIIa,b,d).",NA,NA,30
+Merluccius merluccius,Southern Bay of Biscay and Western Iberian Seas (ICES divisions VIIIc and Ixa).,NA,NA,30
+Merluccius productus,"Eastern Pacific:  northern Vancouver Island, Canada to northern part of the Gulf of California.  A record from the Gulf of Alaska is doubtful.",NA,NA,326
+Micropogonias furnieri,Western Atlantic:  Greater Antilles and from Costa Rica to Argentina (Ref. 9626).  Also reported in Nicaragua (Ref. 13613).,NA,NA,7620
+Micromesistius poutassou,"Northeast Atlantic:  Barents Sea south through the eastern Norwegian Sea, around Iceland, then in the western Mediterranean, and south along the African coast to Cape Bojador.  Northwest Atlantic:  southern Greenland and off southeast Canada and the northeastern coast of the USA.",NA,NA,31
+Micromesistius poutassou,"Northeast Atlantic:  combined stock  in (ICES Subareas I-IX, XII, and XIV).",NA,NA,31
+Microstomus kitt,Northeast Atlantic:  Bay of Biscay to the White Sea and off Iceland.,NA,NA,1382
+Microstomus pacificus,"Eastern Pacific:  Navarin Canyon in the Bering Sea to Stalemate Bank in the Aleutian Islands and San Cristobal Bay, Baja California, Mexico.",NA,NA,4247
+Molva dypterygia,"Northeast Atlantic:  southwestern Barents Sea, sometimes north to Spitsbergen, southeastern Greenland, southern coast of Iceland, around the British Isles and south to Morocco and into the Mediterranean.  Northwest Atlantic:  Newfoundland.",NA,NA,1383
+Molva dypterygia,"Northeast Atlantic:  Faroe Islands, West of Scotland, Irish Sea, Celtic Sea, Western Channel (ICES Subdivision Vb, and Subareas VI, and VII)",NA,NA,1383
+Molva dypterygia,"Iceland and 
+Reykjanes ridge (ICES Division Va and Subarea XIV)",NA,NA,1383
+Molva dypterygia,Northeast Atlantic,NA,NA,1383
+Molva dypterygia,"Northeast Atlantic: Skagerrak, Kattegat, Northern North Sea, Northeast Arctic, Bay of Biscay, Western Iberian Sea, Atlantic South of Iceland (ICES Divisions IIIa, and IVa and Subareas I, II,
+VIII, IX, and XII)",NA,NA,1383
+Molva molva,Northwest Atlantic:  off southern Greenland and Canada.  Northeast Atlantic:  Barents Sea and Iceland to Morocco.  Mediterranean Sea:  northwestern Mediterranean only.,NA,NA,33
+Molva molva,around Faroe (ICES division Vb),NA,NA,33
+Molva molva,around Iceland (ICES division Va),NA,NA,33
+Molva molva,Northeast Arctic (ICES subareas I and II),NA,NA,33
+Molva molva,Northeast Atlantic,NA,NA,33
+Molva molva,"Northern North Sea, Skagerrak, Kattegat, West of Scotland, Irish Sea, Celtic Sea, Channel, Bay of Biscay, Western Iberian Sea, Greenland shelf (ICES Divisions IIIa and IVa, and in Subareas VI, VII,
+VIII, IX, XII, and XIV)",NA,NA,33
+Monopterus albus,"Asia:  India to China, Japan, Malaysia and Indonesia.  Probably occurring in Bangladesh.",25,28,4663
+Mora moro,"Eastern Atlantic:  Iceland and Faeroes to Cape Bojador, West Africa, and including Azores, Madeira, and western Mediterranean.  Also known from the Walvis and Vavilov ridges (Ref. 45011).  Reported from Mauritania (Ref. 55783).  Western Indian Ocean:  in the region south of Madagascar.  Pacific Ocean:  temperate Australia, New Zealand, and between Valparaiso, Chile and the Juan Fernandez Islands.",NA,NA,1734
+Mormyrus rume,"Africa:  Gambia, Senegal, Niger, Volta and Chad basins.  Sahelo-Soudanian basins and the coastal basins of the rivers Cavally, Bandama, Sassandra, Comoé, Mono, Ouémé, Ogun and Culufi.  Two subspecies exist:  <i>Mormyrus rume rume</i>	: West Africa, Chad System; <i>Mormyrus rume proboscirostris</i>:  Congo River.",NA,NA,2397
+Mormyrus rume,"<i>Mormyrus rume proboscirostris</i>	:  Africa:  middle and upper Congo River basin in Democratic Republic of the Congo, Republic of Congo and Angola (Ref. 42505).",22,24,2397
+Morone saxatilis,Western Atlantic:  St. Lawrence River in Canada to St. John's River in northern Florida and northern Gulf of Mexico; from fresh and brackish tributaries  of western Florida to Louisiana in the USA.  Introduced to other countries.,8,25,353
+Mugil liza,"Western Atlantic:  Bermuda, Florida (USA), Bahamas, and throughout the Caribbean Sea to Argentina.",NA,NA,1090
+Mullus barbatus barbatus,"Eastern Atlantic:  British Isles (occasionally Scandinavia) to Dakar, Senegal, Canary Islands, Mediterranean and Black Sea.  Also known from the Azores (Ref. 4845).",NA,NA,790
+Mullus surmuletus,"Eastern Atlantic:  Western Norway, English Channel (rare in North Sea) to Dakar, Senegal and the Canary Islands, including the Mediterranean and the Black Sea.",NA,NA,1327
+Mustelus lenticulatus,Southwest Pacific:  Kermadec Islands (Ref. 8879) and New Zealand; reported from southern Australia (Ref. 9258).,NA,NA,5933
+Mycteroperca acutirostris,Western Atlantic:  Bermuda and northwestern Gulf of Mexico to Brazil.  Report of this species (as <i>Serranus acutirostris</i>) from the Canary Islands is probably a misidentification of <i>Mycteroperca fusca</i>.,NA,NA,9386
+Mycteroperca rubra,"Eastern Atlantic:  Portugal to southern Angola; reports from islands require confirmation.  Specimens from Madeira, Azores, Canary Islands, and Cape Verde have been examined by Heemstra (1991, Ref. 6512) and are identified to be <i>Mycteroperca fusca</i>.  Replaced by <i>Mycteroperca acutirostris</i> in the western Atlantic.",NA,NA,1214
+Mystus mysticetus,Asia:  Mekong and Chao Phraya basins (Ref. 27732).  Reported from the Maeklong River (Ref. 26336).,NA,NA,26715
+Mystus vittatus,"Asia:  Indian subcontinent, including Pakistan, India, Sri Lanka, Nepal, Bangladesh and probably Myanmar.  Reported from Malaysia (Ref. 4835), Laos (Ref. 4792), Bhutan (Ref. 9418), Viet Nam (Ref. 36625) and Cambodia (Ref. 36654).  May have been confused with other <i>Mystus</i>.",22,28,5137
+Mastacembelus armatus,Asia:  Pakistan to Viet Nam and Indonesia.,22,28,10140
+Lepidocephalichthys guntea,"Asia:  Pakistan, northern India, Bangladesh, Nepal, Myanmar and Thailand.  Known from the Salween basin (Ref. 12041).",NA,NA,5336
+Nandus nandus,Asia:  Pakistan to Thailand.,22,26,10260
+Nemipterus japonicus,"Indo-Pacific.  A Red Sea immigrant into the Mediterranean reported from Haifa Bay (2005) (Ref. 72453, 72484).  A record of this species from northwestern Australia is unfounded.",NA,NA,4559
+Notopterus notopterus,"Asia:  Indus, Ganges-Brahmaputra, Mahanadi, Krishna, Cauvery, and other river basins in southern India; Irrawaddy, and Salween; Meklong, Chao Phraya, Mekong and virtually all coastal river basins of peninsular Thailand and Malaysia; Sumatra and  Java.  Has never been reported in Borneo and is not present in the Red River basin of Tonkin (North Viet Nam).",24,28,7990
+Gobionotothen gibberifrons,"Southern Ocean:  Scotia Arc and Heard Island.  Also distributed in the South Atlantic, near the southern Shetland, southern Sandwich, southern Orkney Islands, and near South Georgia Island (Ref. 4883).",NA,NA,7041
+Notothenia neglecta,"Southern Ocean:  coast of the Antarctic continent, Antarctic Peninsula, South Georgia, South Shetland, South Orkney Islands and Peter I Island.",NA,NA,58010
+Oblada melanura,"Eastern Atlantic:  Bay of Biscay, the Mediterranean, and from the Strait of Gibraltar  to Angola.  Also known from Madeira, Cape Verde and the Canary Islands.",NA,NA,850
+Odax pullus,Southwest Pacific:  New Zealand and probably Australia.,NA,NA,12840
+Oncorhynchus gorbuscha,"Arctic and Pacific drainages from Mackenzie River delta, Northwest Territories, Canada to Sacramento River drainage, in California, USA; occasionally as far as La Jolla, southern California; also in northeast Asia (Ref. 5723).  On Asia side, from North Korea to Jana and Lena drainages in Artic Russia.  In Bering Sea north of about 40°N and from Bering Strait northeast to Point Barrow and northwest to Lena estuary (Ref. 59043).  Introduced elsewhere.  Occasionally hybridizes with <i>Oncorhynchus keta</i> producing fertile offspring (Ref. 28983).",NA,21,240
+Oncorhynchus kisutch,"North Pacific: distributed from the Anadyr River in Russia south towards Hokkaido, Japan, and from Point Hope in Alaska southwards to Chamalu Bay in Baja California, Mexico.",0,24.7999992370605,245
+Oncorhynchus mykiss,"Native to Pacific Slope from Kuskokwim River, Alaska to (at least) Rio Santa Domingo, Baja California, Mexico; upper Mackenzie River drainage (Arctic basin), Alberta and British Columbia in Canada; endorheic basins of southern Oregon, USA.  Widely introduced in cold waters elsewhere in North America and rest of the world (Ref. 5723).  Eastern Pacific:  Kamchatkan Peninsula and have been recorded from the Commander Islands east of Kamchatka and sporadically in the Sea of Okhotsk as far south as the mouth of the Amur River along the mainland.  The records outside Kamchatka probably represent migrating or straying Kamchatkan steelhead (<i>penshinensis</i>) rather than the established native population (Reg.  50080). Several countries report adverse ecological impact after introduction.",10,24,239
+Oncorhynchus tshawytscha,"Arctic, Northwest to Northeast Pacific:  drainages from Point Hope, Alaska to Ventura River, California, USA; occasionally strays south to San Diego in California, USA.  Also in Honshu, Japan (Ref. 6793), Sea of Japan (Ref. 1998),  Bering Sea (Ref. 2850) and Sea of Okhotsk (Ref. 1998).  Found in Coppermine River in the Arctic.  Several countries report adverse ecological impact after introduction.",0,24.8999996185303,244
+Oncorhynchus keta,"North Pacific:  Korea , Japan, Okhotsk and Bering Sea (Ref. 1998), Arctic Alaska south to San Diego, California, USA.  Asia:  Iran (Ref. 39702).",0,23.7000007629395,241
+Oncorhynchus nerka,"North Pacific:  northern Japan to Bering Sea and to Los Angeles, California, USA (Ref. 2850).  Landlocked populations in Alaska, Yukon Territory and British Columbia in Canada, and Washington and Oregon in USA.",0,24.8999996185303,243
+Ophiodon elongatus,"Northeast Pacific:  Shumagin Islands in the western Gulf of Alaska to Ensenada, Baja California, Mexico.  Possibly occurring in the Bering Sea (Ref. 6793).",NA,NA,509
+Opisthonema oglinum,"Western Atlantic:  Gulf of Maine (USA), Bermuda, throughout the Gulf of Mexico, Caribbean and West Indies southward to Santa Catarina, Brazil.  The Colombian form is possibly a subspecies, <i>Opisthonema oglinum captivai</i>. Also found in Uruguay (Ref. 54736) and Argentina (Ref. 2806).",NA,NA,1486
+Oreochromis niloticus," <i>Oreochromis niloticus filoa</i>: Israel strain.  Introduced to the Gan Shmuel hatchery, Israel from Kajansi Fish Culture Station, Uganda by Pruginin in 1969.  Founding stock consisted of 120 fry and a further sample (?) in 1970.",NA,NA,2
+Oreochromis niloticus," <i>Oreochromis niloticus filoa</i>: Uganda strain.  Introduced to the Kajansi Fish Culture Station, Uganda from Lake George.  Year of introduction and size of founding stock are unknown.",NA,NA,2
+Oreochromis niloticus,"<i>Oreohromis n. vulcani</i>:  Mombasa-Kenya 1976 strain.  Introduced to the Baobab Farm, Mombasa, Kenya from Lake Baringo in 1976.  Founder stock is unknown.",NA,NA,2
+Oreochromis niloticus,"<i>Oreohromis niloticus vulcani</i>:  DOR-Kenya 1966 strain.  Introduced to Dor, Israel from Lake Turkana, Kenya in 1966.  Founder stock consisted of fry collected from the mouth of a single female by Pruginin.",NA,NA,2
+Oreochromis niloticus,"<i>Oreohromis niloticus vulcani</i>:  Mombasa-Kenya 1978 strain.  Introduced to the Baobab Farm, Mombasa, Kenya from El Molo Bay at Lake Turkana in 1978.  Founder stock is unknown.",NA,NA,2
+Oreochromis niloticus,"Auburn-Egypt 1982 strain. Introduced to Auburn University, Alabama from Egypt in May 1982. Founder stock of 66 females and 20 males were collected from Ismailia Canal one of the distributaries of the Nile River, about 0.75 km northeast of Cairo, Egypt.",NA,NA,2
+Oreochromis niloticus,"Auburn-Israel 1982 strain.  Introduced to the Auburn University, Alabama, USA from the Fish and Aquaculture Research Station, DOR, Israel in 1982.  Founder stock consisted of 200 individuals.",NA,NA,2
+Oreochromis niloticus,"Bangkok-Japan 1965 strain.  Introduced to Bangkok, Thailand from Japan in 1965 with a founder stock of 50 fish.  However, the number of fish that survived to breed is still unclear.",NA,NA,2
+Oreochromis niloticus,Bouaké-Burkina Faso 1957 strain.  Originated from a waterhole called 'la mare aux hippos' in Burkina Faso (formerly Upper Volta).  Introduced in 1957 with a founder stock of 200 individuals.,NA,NA,2
+Oreochromis niloticus,"CLSU strain.  Different Philippine strains like the 'Taiwan', 'Israel' and 'Singapore' strains held at the Central Luzon State University, Muñoz, Nueva Ecija were combined to create a founder population for experimental purposes.",NA,NA,2
+Oreochromis niloticus,"CLSU-Egypt 1988 strain.  Introduced to the National Freshwater Fisheries Technology Research Center of the Bureau of Fisheries and Aquatic Resources in CLSU, Nueva Ecija, Philippines from Egypt in May, 1988 (1st collection) and in August 1989 (2nd collection).  Collected from rivers, canals and lakes in Egypt.",NA,NA,2
+Oreochromis niloticus,"CLSU-Ghana 1988 strain.  Introduced to the National Freshwater Fisheries Technology Research Center of BFAR in Central Luzon State University, Nueva Ecija, Philippines from Ghana in October 1988.  Founder stock of 220 fingerlings were collected from the Akosombo and Kpong dams (Kpong headpond) in the Volta River.",NA,NA,2
+Oreochromis niloticus,"CLSU-Israel 1979 strain.  Introduced in the Philippines through the collaborative project between the Freshwater Aquaculture Center of the Central Luzon State University (CLSU), Nueva Ecija and ICLARM in 1982 with 30 females and 10 males as founder stocks.  This came from the original introduction in 1979 from Israel.",NA,NA,2
+Oreochromis niloticus,"CLSU-Kenya 1988 strain.  Introduced to the Bureau of Fisheries and Aquatic Resources, Nueva Ecija, Philippines in August, 1989 with a founder stock of 800 fingerlings.  Stock was collected from the first generation progeny of a founder stock collected in Lake Turkana, Kenya in August, 1988.",NA,NA,2
+Oreochromis niloticus,"CLSU-Senegal 1988 strain.  Introduced to the Bureau of Fisheries and Aquatic Resources in Central Luzon State University, Nueva Ecija, Philippines in October, 1988.  Founder stocks were collected from floodplains of Dagana (120 breeders), Dakar-Bangos (40 breeders) and Mbane (40 fingerlings) in Senegal.",NA,NA,2
+Oreochromis niloticus,"CLSU-Taiwan 1983 strain.  Introduced to the Bureau of Fisheries and Aquatic Resources in Central Luzon State University, Nueva Ecija, Philippines from Taiwan in May 1983 with a founder stock of 150 females and 50 males.  In May 1984, another batch of founder stock was introduced with 16 females and 24 males.",NA,NA,2
+Oreochromis niloticus,"CLSU-Thailand 1972 strain.  Introduced to the National Freshwater Fisheries Technology Research Center of the Bureau of Fisheries and Aquatic Resources in Central Luzon State University (CLSU), Nueva Ecija, Philippines from Thailand in 1972.  Founding stock is unknown.",NA,NA,2
+Oreochromis niloticus,"DOR-Brazil 1977 strain.  Introduced to Dor, Israel from Fortaleza, Brazil in 1977.  Founder stock was 125 fingerlings.",NA,NA,2
+Oreochromis niloticus,"DOR-Egypt 1982 strain.  Introduced to Dor, Israel from Ismailia Canal, one of the distributaries of the Nile River in 1982.  Founder stock consisted of 60 females and 20 males.",NA,NA,2
+Oreochromis niloticus,"DOR-Ghana 1974 strain.  Introduced to the Fish and Aquaculture Research Station, DOR, Israel from the drainage system of Lake Volta, in the vicinity of Accra, Ghana in 1974.  Founder stock included nine females and two males.",NA,NA,2
+Oreochromis niloticus,"DOR-United Kingdom 1984 strain.  Introduced to Dor, Israel from the University of Stirling, UK in 1984.  Founder stock included 300 fingerlings.",NA,NA,2
+Oreochromis niloticus,"Fortaleza-Côte d'Ivoire 1971 strain.  Introduced to the Experimental Fish Culture Unit of Pentecosta Ceará, Fortaleza, Brazil from Bouaké, Côte d'Ivoire in 1971.  Founding stock was 60 juveniles.",NA,NA,2
+Oreochromis niloticus,GIFT strain.,NA,NA,2
+Oreochromis niloticus,"Japan-Egypt 1962 strain.  Introduced to Japan from Cairo, Egypt in 1962.  Founding stock was 120 individuals.",NA,NA,2
+Oreochromis niloticus,"King Abdul-aziz strain.  Introduced to the King Abdul-aziz City for Science and Technology Fish Culture Project, Riyadh, Saudi Arabia.  Year of introduction and size of founding stock are unknown.",NA,NA,2
+Oreochromis niloticus,"Rwanda-USA 1984 strain.  Introduced to Rwanda from Alabama, USA in 1984.  Founder stock was 22 females and 18 males.",NA,NA,2
+Oreochromis niloticus,"SEAFDEC-Singapore 1979 strain.  Introduced to the Freshwater Fisheries Station of the Southeast Asian Fisheries Development Center (SEAFDEC), Philippines from Singapore in 1979.  Founding stock is unknown.",NA,NA,2
+Oreochromis niloticus,"Singapore-Israel strain.  Introduced to Singapore from Dor, Israel.  The year of introduction and size of founding stock are unknown.",NA,NA,2
+Oreochromis niloticus,"Stirling-Egypt strain.  Introduced to the Institute of Aquaculture, Stirling University, UK from Lake Manzallah in Egypt.  Year of introduction and size of founder stock are unknown.",NA,NA,2
+Oreochromis niloticus,"Auburn-Brazil 1974 strain.  Introduced to Auburn University, Alabama, USA from Brazil in 1974 with a founding stock of 100 fry.",NA,NA,2
+Oreochromis niloticus,Taiwan-Japan 1966 strain.  Introduced to Taiwan from Japan in 1966.  Founder stock consisted of 56 individuals.,NA,NA,2
+Oreochromis niloticus,"The China-Sudan 1978 strain was introduced to Hubei Province, China from Nile River, Sudan in 1978.  Founder stock was 61 individuals.",NA,NA,2
+Oreochromis niloticus,"Africa:  naturally occurring in coastal rivers of Israel (Ref. 5166), Nile basin (including lake Albert, Edward and Tana), Jebel Marra, Lake Kivu, Lake Tanganyika, Awash River, various Ethiopian lakes, Omo River system, Lake Turkana, Suguta River and Lake Baringo (Ref. 2). In West Africa natural distribution covers the basins of the Senegal, Gambia, Volta, Niger, Benue and Chad, with introduced specimens reported from various coastal basins (Ref. 53405). Widely introduced for aquaculture, with many existing strains. Several countries report adverse ecological impact after introduction. The following subspecies were previously recognized: <i>Oreochromis niloticus baringoensis</i>, <i>Oreochromis niloticus cancellatus</i>, <i>Oreochromis niloticus eduardianus</i>, <i>Oreochromis niloticus filoa</i>, <i>Oreochromis niloticus niloticus</i>, <i>Oreochromis niloticus sugutae</i>, <i>Oreohromis niloticus tana</i> and <i>Oreohromis niloticus vulcani</i>.",13.5,33,2
+Oreochromis niloticus,<i>Oreochromis niloticus filoa</i>: Africa:  Awash system excluding Lake Beseka; possibly also in Lake Akaki.,NA,NA,2
+Oreochromis niloticus,<i>Oreochromis niloticus sugutae</i>:  Africa:  Sugata River and its tributary the Kinyang or Kapedo in the neighborhood of the hot springs that feed it in Kenya.,NA,NA,2
+Oreochromis niloticus,"<i>Oreochromis niloticus baringoensis</i>: Africa:  endemic to Lake Baringo, Kenya.",24,28,2
+Oreochromis niloticus,"<i>Oreochromis niloticus cancellatus</i>: Africa:  Lakes of the Ethiopian Rift Valley, Lake Beseka and the Awash system, but absent from Lake Turkana and Lake Tana.",NA,NA,2
+Oreochromis niloticus,"<i>Oreochromis niloticus eduardianus</i>:  Africa:  Albert Nile; Lakes Albert, Edward, George, Kivu; River Ruzizi and Lake Tanganyika.  (Introduced into Lakes Victoria and Kyoga and many small lakes and dams in Uganda and Rwanda).",24,28,2
+Oreochromis niloticus,"<i>Oreohromis niloticus tana</i>: Africa:  restricted to Lake Tana, Ethiopia.",NA,NA,2
+Oreochromis niloticus,<i>Oreohromis niloticus vulcani</i>:  Africa:  Lake Rudolf (Turkana) and its affluent streams (except the Omo river ?); Crater lakes on Central Island.,NA,NA,2
+Oreochromis macrochir,"Madagascar strain.  Introduced to Madagascar from Lubumbashi, Democratic Republic of the Congo in 1955.  Founder stock is unknown.",NA,NA,1396
+Oreochromis macrochir,"Democratic Republic of the Congo strain.  Introduced to the Parc Heenan Reproduction Centre, Lubumbashi, Democratic Republic of the Congo from Lake Mweru in 1945.  Founding stock was 10 individuals.",NA,NA,1396
+Oreochromis macrochir,"Africa:  Kafue, upper Zambezi, and Congo River systems; introduced elsewhere in Africa and in Hawaiian Islands Also in the Okavango and Ngami region, Cunene basin, Chambezi and Bangweulu region (Ref. 5166).",18,35,1396
+Osteochilus vittatus,"Asia:  Mekong and Chao Phraya basins, Malay Peninsula, Sumatra, Java and Borneo (Ref. 27732).  Reported from Salween and Maeklong basins (Ref. 26336); China (Ref. 9671); and lower Myanmar (Ref. 4832).",22,26,277
+Pagellus erythrinus,"Eastern Atlantic:  Norway and the Mediterranean to Guinea-Bissau (Ref. 26999), including Cape Verde, Madeira and the Canary Islands.  Rarely recorded in Scandinavia (Ref. 4781).",NA,NA,893
+Pagellus bogaraveo,"Eastern Atlantic:  Norway, Strait of Gibraltar  to Cape Blanc in Mauritania, Madeira, Canary Islands, and  western Mediterranean (rare beyond the Sicilian Strait).  Reported from Iceland (Ref. 12462).",NA,NA,890
+Pagellus bogaraveo,Azores (ICES subarea X),NA,NA,890
+Pagellus bogaraveo,Northeast Atlantic,NA,NA,890
+Pagellus bogaraveo,"Northeast Atlantic:  West of Scotland, Irish Sea, Celtic Sea, Channel, Bay of Biscay(ICES Subareas VI, VII, and
+VIII)",NA,NA,890
+Pagellus bogaraveo,West of the Iberian Peninsula (ICES Subarea IX),NA,NA,890
+Pagrus auratus,"Indo-Pacific:  widely occurring off New Zealand, Australia, Philippines, Indonesia, China, Taiwan, and Japan.  Populations in the northern and southern hemispheres are independent and isolated but were similar enough to be declared one and the same species (Ref. 28569, 28591).",NA,NA,6426
+Pagrus pagrus,"Eastern Atlantic:  Strait of Gibraltar to 15°N (rare southward 20°N), including Madeira and the Canary Islands; Mediterranean and northward to the British Isles.  Western Atlantic:  New York, USA and northern Gulf of Mexico to Argentina (Ref. 7251), including the continental coast of the Caribbean Sea (Ref. 9626).",NA,NA,1756
+Pampus argenteus,"Indo-West Pacific:  Persian Gulf to Indonesia, north to Hokkaido, Japan.  Extralimital captures have been made from the Adriatic and off Hawaii.  Not recorded from Australasia.  Northeastern Atlantic: 3 reports of capture reported from this area (Ref. 86350).",NA,NA,491
+Pangasianodon hypophthalmus,"Asia:  Mekong, Chao Phraya, and Maeklong basins.  Introduced into additional river basins for aquaculture.",22,26,14154
+Parastromateus niger,Indo-West Pacific:  East Africa to southern Japan and Australia.,NA,NA,1947
+Parona signata,Southwest Atlantic:  southern Brazil to southern Argentina.,NA,NA,386
+Patagonotothen ramsayi,Southwest Atlantic:  restricted to the Patagonian shelf.,NA,NA,10308
+Perca flavescens,"North America:  Atlantic, Arctic, Great Lakes, and Mississippi River basins from Nova Scotia and Quebec west to Great Slave Lake in Northwest Territories in Canada, and south to Ohio, Illinois and Nebraska in the USA; south in Atlantic drainages to Santee River in South Carolina, USA.",0,29.7000007629395,359
+Perca fluviatilis,"Eurasia:  throughout Europe to northernmost extremity of Scandinavia, except Iberian Peninsula, central Italy, and Adriatic basin; Aegean Sea basin in Matriza and from Struma to Aliakmon drainages; Aral Sea basin; Siberia in rivers draining the Arctic Ocean eastward to Kolyma.  Widely introduced.  Several countries report adverse ecological impact after introduction.",10,22,358
+Phycis blennoides,"Eastern Atlantic:  Norway and Iceland to Cape Blanc, West Africa; also the  Mediterranean.",NA,NA,1340
+Phycis blennoides,Northeast Atlantic,NA,NA,1340
+Phycis phycis,"Northeast Atlantic :  Bay of Biscay to Morocco, south to Cape Verde, and including off-lying islands.  Also in the Mediterranean and the Azores.",NA,NA,1747
+Piaractus mesopotamicus,South America:  Paraguay-Paraná River basin.,NA,NA,55383
+Pimelodus argenteus,South America:  Paraná River basin.,NA,NA,62851
+Pimelodus maculatus,South America:  Paraná and São Francisco River basins.,20,24,23451
+Pinirampus pirinampu,"South America:  Amazon, Essequibo, Orinoco, and Paraná basins.",22,28,8688
+Platichthys flesus,"Eastern Atlantic:  coastal and brackish waters of western Europe and from the White Sea to the Mediterranean and the Black Sea (Ref. 4705, Ref. 51442).  Introduced into the USA and Canada accidentally through transport in ballast water (Ref. 1739).  Asia:  Iran (Ref. 39702).",5,25,1341
+Platichthys flesus,Baltic Sea (ICES subdivisions 22-32),NA,NA,1341
+Platichthys flesus,"North Sea, Sub-area IV.",NA,NA,1341
+Platichthys flesus,Western Baltic.  ICES sub-divisions 24 and 25.,NA,NA,1341
+Platichthys stellatus,"North Pacific:  Korea and southern Japan through the Bering Strait and Arctic Alaska (Ref. 2850) to the Coronation Gulf, Northwest Territories, Canada and Santa Barbara, southern California, USA.  Hybridizes with <i>Parophrys vetulus</i> - the hybrid, called <i>Inopsetta ischyra</i>, may be found from the Bering Sea to San Francisco, California, USA.  Also hybridizes with <i>Kareius bicoloratus</i> (Ref. 27547).",NA,NA,4249
+Pleurogrammus monopterygius,"Northeast Pacific:  Yellow Sea Cape Navarin in the Bering Sea and from Stalemate Bank and Bowers Bank in the Aleutian Chain to Icy Bay, Alaska, and rarely to Redondo Beach, California, USA.",NA,NA,4037
+Pleuronectes platessa,"Northern Sea.  Reports from the Mediterranean Sea appear to be misidentifications of 
+<i>P. flesus</i>.  It may have been present in some areas of the Mediterranean in the past, as a result of climatic changes related to the ice age, but at present times seem to be absent (Ref. 89040).",2,15,1342
+Pleuronectes platessa, Skagerrak Kattegat (ICES division IIIa),NA,NA,1342
+Pleuronectes platessa,"Baltic Sea, sub-divisions 24-32.",NA,NA,1342
+Pleuronectes platessa,"Kattegat, Belt and Sounds.",NA,NA,1342
+Pleuronectes platessa,Northeast Atlantic:  Baltic Sea (ICES subdivisions 22-32).,NA,NA,1342
+Pleuronectes platessa,"Northeast Atlantic:  Eastern Celtic Sea (ICES divisions VIIf, g).",NA,NA,1342
+Pleuronectes platessa,Northeast Atlantic:  Eastern Channel (ICES division VIId).,NA,NA,1342
+Pleuronectes platessa,Northeast Atlantic:  Irish Sea (ICES division VIIa).,NA,NA,1342
+Pleuronectes platessa,Northeast Atlantic:  North Sea (ICES subarea IV).,NA,NA,1342
+Pleuronectes platessa,Northeast Atlantic:  Western Channel (ICES division VIIe).,NA,NA,1342
+Pleuronectes platessa,"Northeast Atlantic:  West of Ireland (ICES divisions VIIb, c)",NA,NA,1342
+Pleuronectes platessa,Northeast Atlantic:  Western Celtic Sea (ICES divisions VIIh-k),NA,NA,1342
+Parophrys vetulus,"Eastern Pacific:  Bering Sea to Bahia San Cristobal, central Baja California, Mexico (Ref. 27436).  Hybridizes with <i>Platichthys stellatus</i> - the hybrid, called <i>Inopsetta ischyra</i>, may be found from the Bering Sea to San Francisco, California, USA.",NA,NA,4248
+Plotosus canius,"Indo-West Pacific:  west and south coasts of India and off Sri Lanka eastward along the coasts of Bangladesh and Myanmar, through the Indo-Australian Archipelago and the Philippines as far as Papua New Guinea.",NA,NA,8167
+Pogonias cromis,"Western Atlantic:  Nova Scotia (Ref. 7251) to Florida, Gulf of Mexico, the Antilles (uncommon), and the southern Caribbean coast; also from the Orinoco delta to Argentina.",NA,NA,425
+Pollachius pollachius,"Northeast Atlantic: Iceland, the Faeroes  and Norway to the Bay of Biscay (Ref. 1371); also southern Baltic Sea (Ref. 89342) with records from Poland, Latvia and Estonia (Refs. 36252, 52079).",NA,NA,34
+Pollachius virens,"Eastern Atlantic:  Barents Sea, Spitsbergen to Bay of Biscay, around Iceland.  Western Atlantic:  southwest Greenland, Hudson Strait to North Carolina, although rare at the extremes of the range.  Migrations for spawning are known to occur.  Also long-distance north-south migrations for Europe and the US.",NA,NA,1343
+Pollachius virens,Northeast Atlantic:  Faroe Island (ICES Division Vb).,NA,NA,1343
+Pollachius virens,Northeast Atlantic:  Iceland (ICES division Va).,NA,NA,1343
+Pollachius virens,Northeast Atlantic:  North East Arctic - Barents Sea and Norwegian Sea (ICES subareas I and II).,NA,NA,1343
+Pollachius virens,"Northeast Atlantic:  North Sea, Skagerrak, West of Scotland and Rockall (ICES subarea IV, division IIIa and subarea VI).",NA,NA,1343
+Polyprion oxygeneios,"Circumglobal in southern waters:  (Ref. 7300):  South Africa,  Australia, New Zealand, Kermadec I., Desventuradas Is., Juan Fernandez Is., Chile, north to southern Brazil,Tristan da Cunha.",NA,NA,350
+Pomatomus saltatrix,"Circumglobal:  In tropical to subtropical waters;  except the eastern Pacific (Ref. 33390).  Eastern Atlantic:  Portugal to South Africa, including the Mediterranean and Black Sea, Madeira, and the Canary Islands.  Western Atlantic:  Canada and Bermuda to Argentina (Ref. 7251).  Indian Ocean:  along the coast of East Africa, Madagascar, southern Oman, southwest India, the Malay Peninsula, and Western Australia (Ref. 11441).  Southwest Pacific:  Australia except the Northern Territory, and New Zealand (Ref. 11441).  Absent from eastern Pacific and northwest Pacific.  Barely entering the  Western Central Pacific region.  Records from the Northern Territory, Australia and from Indonesia appear to be erroneous (Ref. 9860).  Occurrence in Taiwan (Ref. 5193) and Hawaii (Ref. 4517) need verification.",NA,NA,364
+Pomoxis nigromaculatus,"North America:  widely introduced throughout USA that native range is difficult to determine; presumably Atlantic Slope from Virginia to Florida, Gulf Slope west to Texas in the USA, St. Lawrence-Great Lakes and Mississippi River basins from Quebec to Manitoba in Canada south to Gulf of Mexico.",NA,30.6000003814697,3388
+Prochilodus reticulatus,South America:  Lake Maracaibo basin (Ref. 37057).  Reported from Argentina (Ref. 9086).,NA,NA,5491
+Protopterus aethiopicus,"Africa:  Nile; Lakes Albert, Edward, Victoria, Nabugabo, Tanganyika, Kyoga and No. Three subspecies exist:  <i>Protopterus aethiopicus aethiopicus</i>:  Nile River, Lake Victoria, Lake Tanganyika; <i>Protopterus aethiopicus congicus</i>:  middle and upper Congo River; and <i>Protopterus aethiopicus mesmaekersi</i>:  lower Congo River.",25,30,8734
+Protopterus aethiopicus,"<i>Protopterus aethiopicus congicus</i>:  Africa:  Congo basin, from Upper Lualaba to Kinshasa (Ref. 3498).",NA,NA,8734
+Protopterus aethiopicus,<i>Protopterus aethiopicus mesmaekersi</i>	:  Africa: Lower Congo River basin (Ref. 3498).,NA,NA,8734
+Protopterus annectens,"Africa: The subspecies <i>Protopterus annectens annectens</i> is known from the large Sahelian basins, Comoé River, Bandama River and some basins of Sierra Leone and Guinea (Ref. 2834, 81261); this includes Senegal, Niger, Gambia, Volta and Chad basins, with also the temporary tributaries of Chari River in western Sudan (Ref. 3498). The subspecies <i>Protopterus annectens brieni</i> is known from the upper Congo River basin (Ref. 40587), Lake Rukwa drainage (Ref. 40587), coastal plain of Mozambique from the lower Zambezi to the Incomati, extending up to middle Zambezi Valley (Ref. 52193), and Okavango basin (Ref. 3498).",25,30,2384
+Protopterus annectens," <i>Protopterus annectens brieni</i>:  Africa:  Upper Congo River (Luapula River and Upper Lualaba River), Middle and Lower Zambezi basin and all east coast rivers south to the Limpopo River (Ref. 3498, Ref. 13337). Also in Lake Rukwa (Ref. 13337). Has been translocated to additional sites in the Kruger National Park in South Africa (Ref. 52193). Reports from Upper Cubango and Okavango system (Ref. 11970) need confirmation; not present in this region according to Ref. 52193.",NA,NA,2384
+Scophthalmus maximus,Northeast Atlantic:  throughout the Mediterranean and along the European coasts to Arctic Circle; also found in most of the Baltic Sea.  Subspecies <i>Psetta maxima maeotica</i> in the Black Sea.,NA,NA,1348
+Scophthalmus maximus,Northeast Atlantic:  Baltic Sea (ICES subdivisions 22-32),NA,NA,1348
+Scophthalmus maximus,North Sea,NA,NA,1348
+Pseudoplatystoma corruscans,South America:  São Francisco and Paraná River basins.,NA,NA,8674
+Pseudoplatystoma fasciatum,"South America:  Amazon, Corantijn, Essequibo, Orinoco and Paraná River basins.",24,28,6410
+Puntioplites proctozystron,"Asia:  Maeklong, Chao Phraya and Mekong basins and Malay Peninsula.",NA,NA,16203
+Puntius sophore,"Asia:  Pakistan, India, Nepal, Bangladesh, Myanmar and Yunnan, China (Ref. 4832), Bhutan (Ref. 40882) and Afghanistan (Ref. 41034)",22,NA,10137
+Puntius semifasciolatus,"Asia:  Red River basin, southwestern China, including Hainan (Ref. 43281).  Widely transported around the world (Ref. 1739).",18,24,4677
+Pethia ticto,"Asia:  Pakistan, India, Nepal, Sri Lanka, Bangladesh, Myanmar and Thailand (Ref. 4832).  Occurs in the upper Mekong, Salween, Irrawaddy, Meklong and upper Chao Phraya basins (Ref. 43281).",14,22,4815
+Rasbora tornieri,"Asia:  Indochina (Ref. 12693, 30857), Malaysia and Indonesia.",NA,NA,22832
+Rastrelliger brachysoma,"Pacific Ocean:  Andaman Sea to Thailand, Indonesia, Papua New Guinea, Philippines, Solomon Islands and Fiji.",20,30,109
+Rastrelliger kanagurta,"Indo-West Pacific:  Red Sea and East Africa to Indonesia, north to the Ryukyu Islands and China, south to Australia, Melanesia and Samoa.  Entered the eastern Mediterranean Sea through the Suez Canal.",17,NA,111
+Rastrineobola argentea,"Africa:  Lakes Victoria and Kyoga, the Victoria Nile.",22,26,281
+Reinhardtius hippoglossoides,"Circumglobal: In arctic and temperate waters; northern hemisphere.  Sea of Japan off Honshu north to Shishmaref, Alaska in the Chukchi Sea, throughout the Aleutian Islands, and southeast to northern Baja California, Mexico.  North Atlantic:  New Jersey, USA to Spitsbergen (Svalbard Islands) and the Barents Sea south to Ireland.  Northwest Atlantic:  Canada (Ref. 5951).",-1,4,516
+Reinhardtius hippoglossoides,"Greenland, Iceland, West of Scotland (ICES Subareas V, VI, XII, and XIV)",NA,NA,516
+Reinhardtius hippoglossoides,North East Arctic - Barents Sea and Norwegian Sea (ICES subareas I and II),NA,NA,516
+Rhizoprionodon terraenovae,"Western Atlantic:  New Brunswick, Canada to the Gulf of Mexico.  Southwest Atlantic:  coasts of Brazil.",NA,NA,905
+Rutilus frisii,"Eurasia:  Black and Azov Sea basins, absent from Danube and Kuban drainages; landloacked populations in Don, resulting from dam construction; Caspian basin from Terek to Atrek drainages, very rarely in northern Caspian basin (Volga [earlier up to Perm], Ural); Lake Iznik in Sea of Marmara basin in Anatolia.",NA,NA,8416
+Rutilus rutilus,"Europe:  north to Pyrenees and Alps, eastward to Ural and Eya drainages (Caspian basin); Aegean basin in Pinios, Vardar, Vegoritis, Kastoria, Struma and Maritza drainages.  Asia: Marmara basin and lower Sakarya in Anatolia, Aral basin, and Siberia from Ob eastward to Lena drainages.  Naturally absent from Iberian Peninsula, Adriatic basin, Italy, Great Britain north of 56 N, Scandinavia north of 69° N.  Locally introduced in Spain; introduced and invasive in northeastern Italy.  At least one country reports adverse ecological impact after introduction.",10,20,272
+Salmo salar,"North Atlantic Ocean:  temperate and arctic zones in northern hemisphere (Ref. 51442).
+In the western Atlantic, it ranges from western Greenland and the coastal drainages of Quebec, Canada, to Connecticut, USA  (Ref. 5723). Landlocked stocks are present in North America (Ref. 1998). In the eastern Atlantic, it ranges from the White and Barents Sea basins through northeastern Europe to the Baltic and North Sea basins, including Iceland (Ref. 59043). Introduced to New Zealand, Chile, southern Argentina (Ref. 59043) and Australia (Ref. 6390).
+Listed in Appendix III of the Bern Convention (2002) (freshwater only).
+Listed in Annex II (freshwater only; excluding Finnish population) and V (freshwater only) of the EC Habitats Directive (2007).",2,9,236
+Salmo salar,Northeast Atlantic:  Baltic Sea Main Basin and Gulf of Bothnia (ICES subdivisions 22-31).,NA,NA,236
+Salmo salar,Northeast Atlantic:  Gulf of Finland (ICES subdivion 32).,NA,NA,236
+Salvelinus fontinalis,"North America:  most of eastern Canada from Newfoundland to western side of Hudson Bay; south in Atlantic, Great Lakes, and Mississippi River basins to Minnesota and northern Georgia in USA.  South America:  Argentina (Ref. 9086).  Widely introduced in temperate regions of other continents.  Several countries report adverse ecological impact after introduction.",0,25.2999992370605,246
+Salvelinus namaycush,"North America:  Widely distributed from northern Canada and Alaska south to New England in USA and Great Lakes basin in Canada-USA.  Introduced widely to many areas outside its native range.  Splakes (hybrid between <i>Salvelinus namaycush</i> and <i>Salvelinus fontinalis</i>) have also been successfully introduced to many areas of North America.  The three observed phenotypes existing in Lake Superior (lean, siscowet and humper or paperbelly) are under some genetic control and not merely expressions of environmental adaptation (Ref. 40529).",NA,NA,248
+Sander lucioperca,"Europe and Asia:  Caspian, Baltic, Black and Aral Sea basins; Elbe (North Sea basin) and Maritza (Aegean basin) drainages.  North to about 65° N in Finland. Introduced widely (Ref. 59043).  Several countries report adverse ecological impact after introduction (Ref. 1739).",6,22,360
+Sander vitreus,"North America:  St. Lawrence-Great Lakes, Arctic, and Mississippi River basins from Quebec to Northwest Territories in Canada, south to Alabama and Arkansas in the USA.  Widely introduced elsewhere in the USA, including Atlantic, Gulf, and Pacific drainages.  Rarely found in brackish waters of North America (Ref. 1998).",NA,29,3516
+Sarda orientalis,"Indo-Pacific:  widespread but with many gaps in its known distribution.  Eastern Pacific:  Hawaiian Islands and Pacific coast of USA to southern tip of Baja California and Tres Marias Islands extending to Cabo Blanco, Peru (especially during El Niño events), the Galapagos Islands and Gulf of Guayaquil.",13.5,23,114
+Sarda sarda,"Eastern Atlantic:  Oslo, Norway to Port Elizabeth, South Africa.  Also known from the Mediterranean and Black Sea.  Western Atlantic:  Nova Scotia, Canada to Florida, USA and northern Gulf of Mexico; then from Colombia, Venezuela, and south of the Amazon River to northern Argentina; apparently absent from most of the Caribbean Sea.",12,27,115
+Sardina pilchardus,"Northeast Atlantic:  Iceland (rare) and North Sea, southward to Bay de Gorée, Senegal.  Mediterranean (common in the western part and in Adriatic Sea, rare in the eastern part), Sea of Marmara and Black Sea.",NA,NA,1350
+Sardina pilchardus,Northeast Atlantic:  Southern Bay of Biscay and Western Iberian Seas (ICES divisions VIIIc and Ixa).,NA,NA,1350
+Sardinella aurita,"Eastern Atlantic:  Gibraltar to Saldanha Bay, South Africa.  Also known from the Mediterranean and Black Sea.  Western Atlantic:  Cape Cod, USA to Argentina.  Bahamas, Antilles, Gulf of Mexico and Caribbean coast (Ref. 26938).",24,NA,1043
+Sardinella brasiliensis,"Western Atlantic:  Gulf of Mexico, Caribbean, West Indies southward to Brazil and northern Uruguay (identifications are not always reliable).",NA,NA,1505
+Sardinella fimbriata,"Indo-West Pacific:  southern India and Bay of Bengal to the Philippines, also eastern tip of Papua New Guinea.  Often confused with <i>Sardinella gibbosa</i> in Indian waters.",NA,NA,1507
+Sardinella maderensis,"Eastern Atlantic:  Gibraltar to Angola; single specimen recorded from Walvis Bay, Namibia.  Also known from the Mediterranean (southern and eastern parts, also penetrating Suez Canal).",24,NA,1047
+Sardinella gibbosa,"Indo-West Pacific:  Persian Gulf, East Africa and Madagascar to Indonesia, north to Taiwan and Korea south to the Arafura Sea (Ref. 9819) and northern Australia.  Often confused with <i>Sardinella fimbriata</i> in Indian waters.",NA,NA,1508
+Sardinops sagax,"Indo-Pacific:  southern Africa to the eastern Pacific (Ref. 27267).  Three lineages were confirmed through cluster and parsimony analyses of haplotypic divergences:  southern Africa (<i>ocellatus</i>) and Australia (<i>neopilchardus</i>); Chile (<i>sagax</i>) and California (<i>caeruleus</i>); and, Japan (<i>melanostictus</i>) (Ref. 36641).",9,21,1477
+Sarpa salpa,"Eastern Atlantic:  Bay of Biscay and Strait of Gibraltar to Sierra Leone, including Madeira, the Canary Islands, and Cape Verde; Congo to South Africa.  Also present in the Mediterranean.",NA,NA,204
+Saurida undosquamis,"Eastern Indian Ocean, Malay Peninsula, southern Philippines, northern Java, Arafura Sea, Louisiade Archipelago, and northern half and southwestern Australia.  Reports of Introduction in the Mediterranean are questionable.  Confirmed and questionable reports of its occurrence (and references) are discussed in Inoue & Nakabo 2006 (Ref. 57869:385-6).",NA,NA,1055
+Scardinius erythrophthalmus,"Eurasia:  Most European rivers north of Pyrenees and Alps, eastward to Ural and Eya drainages, Aral and White Sea basins; Black Sea basin in Europe and northern Asia Minor.  Naturally absent from Iberian Peninsula, Adriatic basin, Italy, Greece south of Pinios drainage, Great Britain north of 54 N, Ireland and Scandinavia north of 62° N (Ref. 59043).  Definitely absent in Siberia.  Reports from this area arose from the confusion between the rudd and the roach (Ref. 1441).   Introduced to several countries.  Several countries report adverse ecological impact after introduction (Ref. 1739).",2,22,2951
+Sciaena umbra,"Eastern Atlantic:  English Channel to Mauritania, occasionally southwards to Senegal.  Also throughout the Mediterranean and Black seas.  Records from Ghana (Ref. 6810) and Gabon (Ref. 5516) are questionable.",NA,NA,1707
+Scomber japonicus,"Indo-Pacific:  anti-tropical, absent from the Indian Ocean except for South Africa, KZN to Western Cape (58304).  Replaced by <i>Scomber colias</i> Gmelin 1789 in the Atlantic.  <i>Scomber australasicus</i> is found in the Red Sea and the northern Indian Ocean (Ref. 27328).",10,27,117
+Scomber scombrus,North Atlantic: inlcuding the Mediterranean.,NA,NA,118
+Scomber scombrus,"Northeast Atlantic:  combined Southern, Western, and North Sea spawning components.",NA,NA,118
+Scomberomorus commerson,"Indo-West Pacific:  Red Sea and South Africa to Southeast Asia, north to China and Japan and south to southeast Australia, and to Fiji (Ref. 6390).  Immigrant to the eastern Mediterranean Sea by way of the Suez Canal.  Southeast Atlantic:  St. Helena.",NA,NA,121
+Scomberomorus guttatus,"Indo-West Pacific:  Persian Gulf, India and Sri Lanka (Ref. 9684) to southeast Asia, north to Hong Kong and Wakasa Bay, Sea of Japan.",NA,NA,123
+Scophthalmus rhombus,Eastern Atlantic:  68°N to Morocco.  Reported from Iceland (Ref. 12462). Also known throughout the Mediterranean and Black Sea.,NA,NA,529
+Scophthalmus rhombus,Northeast Atlantic:  Baltic Sea (ICES subdivisions 22-32),NA,NA,529
+Scorpaena porcus,"Eastern Atlantic:  British Isles to the Azores, and the Canary Islands, including Morocco, the Mediterranean Sea and the Black Sea.",NA,NA,1758
+Scorpaena scrofa,"Eastern Atlantic:  British Isles (rare) to Senegal including Madeira, the Canary Islands, and Cape Verde.  Also throughout the Mediterranean except Black Sea.  South African species thought to be the same as population in the northeast Atlantic (Ref. 4313).",NA,NA,1759
+Sebastes flavidus,"Northeast Pacific:  Unalaska Island, Alaska to San Diego, California, USA.",NA,NA,503
+Sebastes norvegicus,"Eastern Atlantic:  Kattegat and North Sea, northward to Spitsbergen, southern part of Barents Sea eastward to Kanin Banks and Novaya Zemlya, rare in White Sea, Iceland and eastern Greenland.  Western Atlantic:  Greenland and southeastern Labrador in Canada to New Jersey in USA (Ref. 7251).",3,7,501
+Sebastes norvegicus,Northeast Atlantic:  Barents Sea and Norwegian Sea (ICES subareas I and II),NA,NA,501
+Sebastes norvegicus,"Greenland, Iceland, West of Scotland (ICES Subareas V, VI, XII, and XIV)",NA,NA,501
+Sebastes melanops,"Eastern Pacific:  Amchitka Island, Aleutian Islands, Alaska to Paradise Cove, Baja California, Mexico.",NA,NA,3979
+Sebastes mentella,"Eastern Atlantic:  Norwegian Sea from Lofoten Island northward to the western and northern coasts of Spitsbergen; southern part of the Barents Sea rarely to 35°E , on the Iceland-Faroes Ridge, Iceland and Greenland.  Western Atlantic:  Baffin Bay to Nova Scotia in Canada (Ref. 7251).",NA,NA,505
+Sebastes mentella,"Atlantic around Iceland, West of Ireland and Celtic Sea and of Iberian Peninsula (ICES Subareas V, XII, XIV and NAFO
+Subareas 1+2 (Deep Pelagic stock > 500 m))",NA,NA,505
+Sebastes mentella,"Atlantic around Iceland, West of Ireland and Celtic Sea and of Iberian Peninsula (ICES Subareas V, XII, XIV and NAFO
+Subareas 1+2 (Shallow Pelagic stock < 500 m))",NA,NA,505
+Sebastes mentella,Iceland and icelandic slope (ICES Division Va and Subarea XIV),NA,NA,505
+Sebastes mentella,North East Arctic - Barents Sea and Norwegian Sea (ICES subareas I and II),NA,NA,505
+Sebastes mentella,southeast Greenland (ICES Subarea XIVb),NA,NA,505
+Sebastes pinniger,"Eastern Pacific:  south of the Shelikof Strait in the Gulf of Alaska to Cape Colnett,  Baja California, Mexico.",NA,NA,3989
+Sebastes ruberrimus,"Eastern Pacific:  Gulf of Alaska to northern Baja California, Mexico.",NA,NA,3996
+Sebastes viviparus,"Northeast Atlantic:  Norwegian coast from Kattegat to Tanafjord in Finnmark, rare off Bear Island, northern part of North Sea, around Shetland Islands, Scotland, northern England, Wales and Ireland, rare in the English Channel; Rockall Bank, common around Faroes and Iceland; sporadic off East Greenland.",NA,NA,1352
+Selaroides leptolepis,"Indo-West Pacific:  Persian Gulf to the Philippines, north to Japan, south to the Arafura Sea (Ref. 9819) and Australia (Ref. 3287).",NA,NA,388
+Selene vomer,"Western Atlantic:  Canada (Ref. 5951) to Maine to Florida, USA (possibly from Nova Scotia, Canada), along coasts of central and south America (Ref. 26938) to Uruguay, including Bermuda and Gulf of Mexico (Ref. 9626).  Rare in Greater Antilles (Ref. 26938).",NA,NA,1004
+Seriolina nigrofasciata,Indo-West Pacific:  Red Sea and East Africa to Japan and Australia.  Southeast Atlantic:  southeast coast of South Africa (Ref. 3197).,NA,NA,1962
+Serranus scriba,"Eastern Atlantic:  Bay of Biscay to Mauritania (Ref. 5377), including the Canary, and Azores.  Also from the Mediterranean and the Black Sea.",NA,NA,1761
+Siganus rivulatus,"Western Indian Ocean:  several localities in East Africa, and from the Red Sea to the eastern Mediterranean via the Suez Canal.",NA,NA,4545
+Sillago sihama,"Indo-West Pacific:  southern Red Sea (Ref. 94953) and Knysna, South Africa to Japan and south to Australia.  Reported from New Caledonia (Ref. 9070).  In Japan, this name has often been misapplied to <i>Sillago japonica</i>; often misidentified as <i>Sillago lutea</i> or <i>Sillago vincenti</i>.",26,29,4544
+Silurus glanis,"Europe and Asia.  North, Baltic, Black, Caspian and Aral Sea basins, as far north as southern Sweden and Finland; Aegean Sea basin in Maritza and from Struma to Sperchios drainages; Turkey.  Absent from the rest of Mediterranean basin.  Now widely introduced and translocated throught Europe and Lake Balkhash basin in Kazakhstan.  Several countries report adverse ecological impact after introduction.  In Appendix III of the Bern Convention (protected fauna).",4,20,289
+Pegusa lascaris,Eastern Atlantic:  northeastern to southeastern Atlantic; perhaps Gulf of Guinea; the Mediterranean Sea and Black Sea; reported from Suez Canal (Ref. 32649); and Sea of Azov (Ref. 4710).,NA,NA,1336
+Solea solea,"Eastern Atlantic:  southward from Trondheim Fjord (including North Sea and western Baltic) and Mediterranean Sea (including Sea of Marmara, Bosporus and southwestern Black Sea).  Elsewhere, southward to Senegal, including Cape Verde (Ref. 5304).",8,24,525
+Solea solea,"Northeast Atlantic:  Eastern Bay of Biscay (ICES division VIIIa, b).",NA,NA,525
+Solea solea,"Northeast Atlantic:  Eastern Celtic Sea (ICES divisions VIIf, g).",NA,NA,525
+Solea solea,Northeast Atlantic:  Eastern Channel (ICES division VIId).,NA,NA,525
+Solea solea,Northeast Atlantic:  Irish Sea (ICES division VIIa).,NA,NA,525
+Solea solea,Northeast Atlantic:  North Sea (ICES subarea IV).,NA,NA,525
+Solea solea,Northeast Atlantic:  Western Channel (ICES division VIIe).,NA,NA,525
+Solea solea,"Northeast Atlantic:  Skagerrak, Kattegat and the Belts (ICES Division IIIa and Subdivision 22-24)",NA,NA,525
+Solea solea,"Northeast Atlantic:  West of Ireland (ICES divisions VIIb, c)",NA,NA,525
+Solea solea,Northeast Atlantic:  Western Celtic Sea (ICES divisions VIIh-k),NA,NA,525
+Sorubim lima,"South America:  Amazon, Orinoco, Paraná and Parnaíba River basins.  Syntopic with <i>S. elongatus</i> in the Orinoco basin and with <i>S. elongatus</i> and <i>S. maniradii</i> in the upper Amazon drainage of Brazil, Ecuador, Peru, and Bolivia (Ref. 57983).",23,30,12144
+Sparisoma cretense,"Eastern Atlantic:  Portugal, Azores and Madeira south to the Canary Islands and Senegal.  Mediterranean Sea:  more common in the eastern and southern coasts.",NA,NA,13025
+Sparus aurata,"Eastern Atlantic:  British Isles, Strait of Gibraltar to Cape Verde and around the Canary Islands; also in the Mediterranean (Ref. 3688).  Reported from the Black Sea (Ref. 12781).  Reports from New Zealand refer to <i>Pagrus auratus</i> (Foster 1801) (Ref. 5755, 9258).",NA,NA,1164
+Sphyraena chrysotaenia,Indo-Pacific. Mediterranean: Lessepsian migrant.,NA,NA,16905
+Sphyraena sphyraena,"Eastern Atlantic:  Bay of Biscay to Mossamedes, Angola, including the Mediterranean and Black Sea, Canary Islands, and Azores.  Western Atlantic:  Bermuda and Brazil.",NA,NA,1765
+Spicara maena,"Eastern Atlantic:  Portugal, Morocco, and Canary Islands including the Mediterranean and Black Sea.",NA,NA,4887
+Spicara smaris,"Eastern Atlantic:  entire Mediterranean, the Black Sea, southern Sea of Azov, and Atlantic coasts from Portugal to Morocco, including the Canary Islands and Madeira (Ref. 7349).",NA,NA,1766
+Spondyliosoma cantharus,"Eastern Atlantic:  Scandinavia to northern Namibia (Ref. 11228), including the Strait of Gibraltar, Mediterranean and the Black Sea, Madeira, Canary Islands, and Cape Verde.",NA,NA,1356
+Sprattus sprattus,"Northeast Atlantic:  North Sea and adjacent waters as far north as the Lofoten Area and the west of the British Isles, and Baltic Sea south to Morocco; also in northern Mediterranean (Gulf of Lion and the Adriatic Sea) and Black Sea.",NA,NA,1357
+Sprattus sprattus,"Channel (ICES divisions VIId, e)",NA,NA,1357
+Sprattus sprattus,North Sea (ICES subarea IV),NA,NA,1357
+Sprattus sprattus,Northeast Atlantic:  Baltic Sea (ICES subdivisions 22-32). From southern Skagerrak and Mecklenburg and Kiel Bays to Kvarken in the Gulf of Bothnia and to Kornstadt in the Gulf of Finland (Ref. 12801). Some authors consider the eastern Baltic population as valid subspecies <i>Sprattus sprattus balticus</i>.,NA,NA,1357
+Sprattus sprattus,Northeast Atlantic:  Skagerrak Kattegat (ICES division IIIa),NA,NA,1357
+Squalus acanthias,"Western Atlantic:  Greenland to Argentina; Eastern Atlantic: Iceland and and the Barents Sea to Western Sahara and the Canary Islands; Angola to South Africa. Indo-Pacific; the Mediterranean and Black Seas (Ref. 247)  Reports from off New Guinea are doubtful (Ref. 6871).  All records from North Pacific refer to <i>Squalus suckleyi</i> (Girard, 1855) (Ref. 85328). Appendix II (northern hemisphere populations) of the Bonn Convention (2009).",7,15,139
+Squalus acanthias,Australasia subpopulation.,NA,NA,139
+Squalus acanthias,Black Sea subpopulation.,NA,NA,139
+Squalus acanthias,Mediterranean subpopulation.,NA,NA,139
+Squalus acanthias,Northeast Atlantic subpopulation.,NA,NA,139
+Squalus acanthias,Northwest Atlantic subpopulation.,NA,NA,139
+Squalus acanthias,South American subpopulation.,NA,NA,139
+Squalus acanthias,Southern African subpopulation.,NA,NA,139
+Stolothrissa tanganicae,Africa:  endemic to Lake Tanganyika (Ref. 28136); in the Lukuga River (connecting the lake with the Lualaba River) known up to Kisimba-Kilia Falls (Ref. 93587).,NA,NA,1549
+Syacium gunteri,"Western Atlantic:  northeastern Florida (USA), Gulf of  Mexico, and the Antilles to Guyana.",NA,NA,4231
+Synodus synodus,"Eastern Atlantic:  Madeira, Canary Islands, and St. Helena Island (Ref. 4472); range extending to São Tomé Island (Ref. 34088).  Western Atlantic:  Florida, USA and southwestern Gulf of Mexico to Uruguay (Ref. 7251), including the Caribbean (Ref. 4472).  Northwest Atlantic:  Canada (Ref. 5951).",NA,NA,2723
+Synodontis multipunctatus,"Africa: Lake Tanganyika (Ref. 59365, 82238).",21,25,9596
+Tenualosa ilisha,"Indian Ocean:  Persian Gulf eastward to Myanmar, including western and eastern coasts of India.  Reported from the Gulf of Tonkin, Viet Nam (Ref. 9706).  Reported in Tigris River basin and probably other rivers of southern Iran (Ref. 39702).",NA,NA,1596
+Tenualosa macrura,"Western Central Pacific:  Malaysia, Indonesia (Java Sea and Sarawak, also affluent rivers) and Thailand (southern tip).",NA,NA,1597
+Thaleichthys pacificus,"North Pacific:  west of Saint Matthew Island and Kuskokwim Bay in the Bering Sea, and Bowers Bank in the Aleutian Islands to Monterey Bay, California, USA.  Populations from northern British Columbia are separate from those in the Fraser River (Ref. 10276).",NA,NA,256
+Theragra chalcogramma,"North Pacific: from Kivalina, Alaska, to the southern Sea of Japan and to Carmel, California, USA.  The occurrence off the northern part of Baja California (Mexico), as reported from Quast and Hall, (1972) (Ref. 6876) is apparently erroneous.",NA,NA,318
+Thunnus alalunga,"Cosmopolitan in tropical and temperate waters of all oceans including the Mediterranean Sea but not at the surface between 10°N and 10°S.  Western Pacific:  range extend in a broad band between 40°N and 40°S (Ref. 9684).  Often confused with juvenile <i>Thunnus obesus</i> which also have very long pectorals but with rounded tips.  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",9.5,25.2000007629395,142
+Thunnus alalunga,"North Atlantic stock (northeast, eastern central, northwest and western central).",NA,NA,142
+Thunnus alalunga,"South Atlantic stock (Antarctic, southeast and southwest).",NA,NA,142
+Thunnus orientalis,"North Pacific:  Gulf of Alaska to southern California and Baja California and from Sakhalin Island in the southern Sea of Okhotsk south to northern Philippines.  There are four substantiated records of this subspecies in the southern hemisphere:  off Western Australia, southeast Pacific (37°11'S, 114°41'W) and Gulf of Papua (Ref. 10997).  The species occurs mainly in the northern Pacific but ventures into New Zealand waters for at least three months during spring and early summer (Ref. 83312).",NA,NA,14290
+Thunnus thynnus,"Western Atlantic:  Labrador and Newfoundland to Gulf of Mexico, and Caribbean Sea to Venezuela and Brazil.  Eastern Atlantic:   Lofoten Islands off Norway to Canary Islands, including the Mediterranean and the southern part of the Black Sea (Ref. 6769).  Reported from Mauritania (Ref. 5377).  There is a subpopulation off South Africa.  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).",3,30,147
+Thunnus thynnus,Eastern Atlantic stock (eastern central).,NA,NA,147
+Thunnus thynnus,Western Atlantic stock (western central).,NA,NA,147
+Thymallus arcticus,"North America:  widespread in Arctic drainages from Hudson Bay, Canada to Alaska and in Arctic and Pacific drainages to central Alberta and British Columbia in Canada; upper Missouri River drainage in Montana, USA.  Formerly in Great Lakes basin in Michigan, USA (Ref. 5723).  Arctic Ocean basin in Siberia from Ob to Yenisei drainages and in Europe in some tributaries of Pechora (Usa, Kosyu, Kozhim), Korotaikha and Kara (Ref. 59043).",NA,NA,2693
+Thynnichthys thynnoides,"Asia:  Mekong and Chao Phraya basins, Malay Peninsula, Sumatra, Borneo (Ref. 43281).  Reported from the Maeklong river (Ref. 26336).",NA,NA,16209
+Tilapia rendalli,"Africa:  Kasai drainage (middle Congo River basin), throughout upper Congo River drainage, Lake Tanganyika, Lake Malawi, Zambesi, coastal areas from Zambesi Delta to Natal, Okavango and Cunene (Ref. 5163). Also in the Limpopo (Ref. 55074). Introduced elsewhere usually for weed control and aquaculture.  Several countries report adverse ecological impact after introduction.",24,28,1397
+Tilapia zillii,Israel.,NA,NA,1390
+Tilapia zillii,Japan strain.  Introduced to Japan from Egypt in 1962.  Founding stock consisted of two females and one male.,NA,NA,1390
+Tilapia zillii,"Africa and Eurasia:  South Morocco, Sahara, Niger-Benue system, rivers Senegal, Sassandra, Bandama, Boubo, Mé, Comoé, Bia, Ogun and Oshun, Volta system, Chad-Shari system (Ref. 5163), middle Congo River basin in the Ubangi, Uele, Ituri and Itimbiri (Democratic Republic of the Congo), Lakes Albert  (Ref. 55074) and Turkana, Nile system and the Jordan system (Ref. 5163).  Several countries report adverse ecological impact after introduction.",10.5,36,1390
+Tilapia zillii,Israel.,NA,NA,1390
+Tilapia zillii,Lake Maryut (Mariout).,NA,NA,1390
+Tinca tinca,"Eurasia:  hypothesized as native in most Europe, naturally absent only in Ireland, Scandinavia north of 61°30'N, eastern Adriatic basin and western and southern Greece where it is now introduced.  In Asia, native eastward to western Yenisei drainage south of 60° N.  Introduced elsewhere.",4,24,269
+Trachinotus blochii,"Indo-Pacific:  Red Sea and East Africa (Ref. 3287) to the Marshall Islands and Samoa, north to southern Japan, south to Australia.",NA,NA,1963
+Trachinotus ovatus,"Eastern Atlantic:  Bay of Biscay, British and Scandinavian waters (rare vagrant) to Angola, including the Mediterranean Sea and offshore islands.",NA,NA,1773
+Trachinus draco,"Eastern Atlantic:  Norway to Morocco, Madeira and Canary Islands, including the Mediterranean and the Black Sea (Ref. 6790).  Reported from Mauritania (Ref. 55783).",NA,NA,1363
+Trachurus lathami,"Western Atlantic:  Canada (Ref. 5951) to Maine, USA and northern Gulf of Mexico to northern Argentina; apparently rare in the West Indies.",NA,NA,369
+Trachurus mediterraneus,"Eastern Atlantic:  Bay of Biscay to Mauritania including the Mediterranean Sea.  The subspecies <i>Trachurus mediterraneus ponticus</i> occurs in the Marmara and Black seas, southern and western parts of the Azov Sea.",NA,NA,1278
+Trachurus trachurus,"Mediterranean Sea and eastern Atlantic:  Norway to South Africa, round the coast to Maputo.",NA,NA,1365
+Trachurus trachurus,"North Sea, Eastern Channel, Skagerrak (ICES divisions IVb,c, VIId, IIIa)",NA,NA,1365
+Trachurus trachurus,"Northeast Atlantic:  Southern Norwegian Sea, Northern North Sea, around Faroe Islands, West of Scotland, Irish Sea, West of Ireland, Celtic Sea, Bay of Biscay (ICES Divisions IIa, IIIa (Western part), IVa, Vb, VIa, VIIa-c, VIIe-k, VIIIa-e).",NA,NA,1365
+Trachurus trachurus,Northeast Atlantic:  Western Iberian Seas (ICES division IXa).,NA,NA,1365
+Triakis scyllium,Northwest Pacific:  southern Siberia to Taiwan (Ref. 244).  Nominal records from the Philippines (Ref. 13563).,NA,NA,5949
+Trichiurus lepturus,Circumtropical and temperate waters of the world.  <i>Trichiurus japonicus</i> which was originally described from Japan as <i>Trichiurus lepturus japonicus</i> was synonymized with <i>Trichiurus lepturus</i>.  Another nominal species synonymized with <i>Trichiurus lepturus</i> is <i>Trichiurus nitens</i> from the eastern Pacific Ocean (California to Peru).,NA,NA,1288
+Trichogaster chuna,Asia:  India and Bangladesh.,22,28,11201
+Trigla lyra,"Eastern Atlantic:  north of British Isles and North Sea to Walvis Bay, Namibia, including Madeira and the Mediterranean (excluding the Black Sea).",NA,NA,5038
+Trisopterus minutus,Northeastern Atlantic:  Trondheim Fjord and the Faeroe Islands to Portugal and along the Atlantic coast of Morocco (Ref. 1371).  Not present in the Mediterranean (Ref. 90172).,NA,NA,481
+Umbrina cirrosa,"Eastern Atlantic:  Bay of Biscay and Gibraltar to southern Morocco, including the Mediterranean, Black Sea and Sea of Azov.  Records south of Morocco have not been supported with descriptions.",NA,NA,1306
+Upeneus moluccensis,Indo-West Pacific:  Red Sea to New Caledonia; north to Japan. Invaded the eastern Mediterranean from the Red Sea through the Suez Canal.,NA,NA,4444
+Upeneus parvus,"Western Atlantic:  North Carolina, USA and Puerto Rico to Santa Catarina, Brazil (Ref. 57756).  Absent in the Bahamas, Bermuda, and the western Caribbean (Ref. 26938).",NA,NA,1095
+Xenentodon cancila,Asia:  Sri Lanka and India eastward to the Mekong.,22,28,10124
+Xiphias gladius,"Atlantic, Indian and Pacific:  tropical and temperate and sometimes cold waters, including the Mediterranean Sea, the Sea of Marmara, the Black Sea, and the Sea of Azov.  Highly migratory species, Annex I of the 1982 Convention on the Law of the Sea (Ref. 26139).  Mt DNA restriction analysis reveal that genetic differentiation occurs between populations inhabiting the Mediterranean Sea and the tropical Atlantic ocean, indicating little genetic exchange occurring between the two (Ref. 12784).",5,27,226
+Xiphias gladius,North Atlantic stock.,NA,NA,226
+Zeus faber,"Worldwide in distribution.  Eastern Atlantic:  Norway to South Africa, also the Mediterranean and Black Sea.  Western Pacific:  Japan, Korea, Australia and New Zealand.  Also known from the Indian Ocean.",NA,NA,1370
+Zungaro zungaro,South America:  Amazon and Orinoco River basins.,20,24,47756
