@@ -61,6 +61,8 @@ length(nspecies)
 temps.fb <- stocks(nspecies, c("TempMin", "TempMax", "StockDefs"))
 write_csv(temps.fb, "temps.fb.csv")
 
+temps.fb <- read_csv("temps.fb.csv")
+
 str(temps.fb)
 
 mintemp.fb <- temps.fb %>% 
@@ -77,13 +79,14 @@ View(ntbl.temps)
 library(broom)
 EPA.temp <- ntbl.temps %>% 
   group_by(species) %>% 
-  lm(log(EPA_g) ~ TempMin, data = .) %>% 
-  tidy(., conf.int = TRUE) %>% View
-summary(EPA.temp)
+  # lm(log(EPA_g) ~ TempMin, data = .) %>% 
+  # tidy(., conf.int = TRUE) %>% 
+  ggplot(., aes(x = TempMax, y=log(EPA_g), geom = "point"))
+
 
 EPA.temp <- lm(log(EPA_g) ~ TempMin, data = ntbl.temps)
-View(ntbl.temps)
-?visreg
+summary(EPA.temp)
+
 library(visreg)
 library(ggplot2)
 visreg(EPA.temp, xvar = "TempMin")
@@ -108,9 +111,12 @@ ntbl.diet <- ntbl.diet %>%
   dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
 
-diet <- inner_join(ntbl.fb, ntbl.diet, by = "species")
-View(diet)
-write.csv(ecn, file = "ntbl.diet.csv")
+ndiet <- inner_join(ntbl.fb, ntbl.diet, by = "species")
+View(ndiet)
+write.csv(ndiet, file = "ntbl.diet.csv")
+
+ndiet <- read_csv("ntbl.diet.csv")
+
 
 diet <- diet %>% filter(HG_mcg > 1) 
   
@@ -144,11 +150,6 @@ View(fooditems("Oreochromis niloticus"))
 tables <- docs()
 # Describe the diet table
 dplyr::filter(tables, table == "diet")$description
-species_fields()
-
-str(ecosystem("Oreochromis niloticus"))
-View(diet("Oreochromis niloticus"))
-View(species("Oreochromis niloticus"))
 
 ##### Here I pull out the 'ecology' tables for all the ntbl species in fb.
 ecology.ntbl <- ecology(nspecies)
@@ -169,12 +170,15 @@ str(ntbl)
 ecn <- inner_join(ntbl.fb, ecology.fb, by = "species")
 View(ecn)
 write.csv(ecn, file = "ntbl.ecology.csv")
-
+n.ecology <- read_csv("ntbl.ecology.csv")
+?rfishbase
 
 #### Herbivory 2
-ecn$Herbivory2 <- as.factor(ecn$Herbivory2)
-levels(ecn$Herbivory2)
-summary(ecn$Herbivory2)
+n.ecology$Herbivory2 <- as.factor(n.ecology$Herbivory2)
+levels(n.ecology$Herbivory2)
+summary(n.ecology$Herbivory2)
+table(n.ecology$Herbivory2)
+
 
 hg.herb <- lm(HG_mcg ~ Herbivory2, data = ecn)
 summary(hg.herb)
@@ -218,7 +222,7 @@ p + stat_summary(aes(y = log(HG_mcg)), fun.y=mean, geom = "point", color = speci
   + xlab("FoodTrop")
   + ylab("log HG content, mg/100g portion")
 
-#### body size ####
+#### body size and basic FB trait data ####
 info <-species(nspecies)
 View(info)
 
@@ -228,17 +232,32 @@ info.fb <- info %>%
 
 #### join the ecology data from fb and ntbl
 fb.basic <- inner_join(ntbl.fb, info.fb, by = "species")
-write_csv(fb.basic, "fb_basic_traits.csv")
-summary((fb.basic$max_size))
+write_csv(fb.basic, "fb_basic_traits.csv") ### save basic trait data 
+summary((fb.basic$max_length))
+
+####combine diet data with basic trait data ####
+fb.traits <- inner_join(fb.basic, ntbl.diet, by = "species")
+fb.all <- inner_join(fb.traits, ecology.fb, by = "species")
+
+write_csv(fb.all, "fb.all.csv")
 
 CA.weight <- lm(log(CA_mg) ~ Weight, data = fb.basic)
 summary(CA.weight)
 
+#### models to test trait associations ####
+table(fb.all$Herbivory2)
+
 CA.size <- lm(log(CA_mg) ~ Length, data = fb.basic)
-CA.size <- lm(log(CA_mg) ~ max_length, data = fb.basic)
+CA.size <- lm(log(CA_mg) ~ max_size + DemersPelag + FoodTroph.x + Herbivory2 + taxon + Abs_lat, data = fb.all)
+tidy.fits.lm <- (tidy(CA.size, conf.int = TRUE)) %>% View()
 summary(CA.size)
 
-summary(fb.basic$max_length)
+
+
+summary(fb.basic$DemersPelag)
+
+fb.basic$DemersPelag <- as.factor(fb.basic$DemersPelag)
+
 summary(fb.basic$Length)
 
 CA.size <- ntbl %>% 
@@ -248,6 +267,12 @@ CA.size <- ntbl %>%
 summary(CA.size)
 
 summary(ecn$HG_mcg)
+#### fishbase species summary ####
+
+
+
+
+View(species("Oreochromis niloticus"))
 
 # I thought this would be a good alternative to the stocks function to get the temp data, but it threw a bunch of errors.
 # trout.temp.2 <- length_freq(common_to_sci("trout"), c("TempMin", "TempMax"))
@@ -270,7 +295,6 @@ cam.spp <- c("Anabas testudineus", "Anguilla bicolor", "Anguilla japonica", "Cha
 (ntbl.cambodia.spp)
 
 #### FD on cambodia spp
-
 library(FD)
 ?FD
 
