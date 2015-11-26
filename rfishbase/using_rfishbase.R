@@ -1,6 +1,8 @@
 ## Checking out rfishbase
 ## November 2015
 
+
+#### Load packages ####
 library(devtools)
 library(rfishbase)
 library(ggplot2)
@@ -11,7 +13,7 @@ library(tidyr)
 library(readr)
 library(ggthemes)
 
-###### import and clean data
+#### import and clean data ####
 ntbl <- read_csv("ntbl.csv") 
 ntbl <- tbl_df(ntbl)
 ntbl <- ntbl %>% filter(Subgroup == "Finfish") ## take out finfish only, since that's what in fb
@@ -22,6 +24,7 @@ fishbase ## loads the fishbase data
 GenusSpecies <- unite(fishbase, GenusSpecies, Genus, Species, sep = " ")
 FishSpecies <- as.factor(GenusSpecies$GenusSpecies)
 
+#### FB species matching ####
 ntbl.fb.species <- intersect(nspecies,FishSpecies) ## find matching species
 ntbl.nfb.species <- setdiff(nspecies,FishSpecies) ## find unmatched species (there are about 71)
 View(as.data.frame(ntbl.nfb.species))
@@ -33,7 +36,7 @@ write_csv(missing.fishbase.species, "FB-missing-species.csv")
 View(missing.fishbase.species)
 View(as.data.frame(ntbl.fb.species))
 
-### After googling, import new csv with all the re-matches
+### After googling, import new csv with all the re-matches ####
 
 fb.names <- read_csv("ntbl.FB.renames.csv")
 
@@ -54,7 +57,7 @@ fb.names <- read_csv("ntbl.FB.renames.csv")
   View(ntbl.fb)
 
 
-## Use stocks function to get the temp min and temp max
+#### Use stocks function to get the temp min and temp max ####
 nspecies <- unique(ntbl.fb$species)
 
 length(nspecies)
@@ -101,6 +104,8 @@ p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point", color = specie
 
 #### weird, I seem to get getting results for the fatty acids that are opposite from what I would have expected!
 
+
+#### Explore diet data ####
 View(diet("Oreochromis niloticus"))
 
 ntbl.diet <- ecology(nspecies,
@@ -142,23 +147,18 @@ p + stat_summary(aes(y = HG_mcg, fun.y= mean, geom = "point", color = species)) 
 
 
 
-#### Here I explore all of the possible fields relating to diet info.
-?fooditems
-list_fields("Diet")
-View(fooditems("Oreochromis niloticus"))
-
 tables <- docs()
 # Describe the diet table
 dplyr::filter(tables, table == "diet")$description
 
-##### Here I pull out the 'ecology' tables for all the ntbl species in fb.
+##### Here I pull out the 'ecology' tables for all the ntbl species in fb. ####
 ecology.ntbl <- ecology(nspecies)
 
 write.csv(ecology.ntbl, file = "FB.ecology.csv")
 
 str(ecology.ntbl)
 
-### Rename the sciname to species in fd ecology data
+### Rename the sciname to species in fd ecology data ####
 ecology.fb <- ecology.ntbl %>% 
   dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
@@ -166,14 +166,14 @@ ecology.fb <- ecology.ntbl %>%
 str(ecology.fb)
 str(ntbl)
 
-#### join the ecology data from fb and ntbl
+#### join the ecology data from fb and ntbl ####
 ecn <- inner_join(ntbl.fb, ecology.fb, by = "species")
 View(ecn)
 write.csv(ecn, file = "ntbl.ecology.csv")
 n.ecology <- read_csv("ntbl.ecology.csv")
 ?rfishbase
 
-#### Herbivory 2
+#### Herbivory 2 ####
 n.ecology$Herbivory2 <- as.factor(n.ecology$Herbivory2)
 levels(n.ecology$Herbivory2)
 summary(n.ecology$Herbivory2)
@@ -184,7 +184,7 @@ hg.herb <- lm(HG_mcg ~ Herbivory2, data = ecn)
 summary(hg.herb)
 
 
-##### FeedingType
+##### FeedingType ####
 str(ecn$FeedingType)
 ecn$FeedingType <- as.factor(ecn$FeedingType)
 summary(ecn$FeedingType)
@@ -230,7 +230,7 @@ info.fb <- info %>%
   dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
 
-#### join the ecology data from fb and ntbl
+#### join the ecology data from fb and ntbl ####
 fb.basic <- inner_join(ntbl.fb, info.fb, by = "species")
 write_csv(fb.basic, "fb_basic_traits.csv") ### save basic trait data 
 summary((fb.basic$max_length))
@@ -240,6 +240,10 @@ fb.traits <- inner_join(fb.basic, ntbl.diet, by = "species")
 fb.all <- inner_join(fb.traits, ecology.fb, by = "species")
 
 write_csv(fb.all, "fb.all.csv")
+
+fb.all <- read_csv("fb.all.csv")
+
+names(fb.all)
 
 CA.weight <- lm(log(CA_mg) ~ Weight, data = fb.basic)
 summary(CA.weight)

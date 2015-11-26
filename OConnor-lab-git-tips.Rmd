@@ -1,0 +1,11 @@
+---
+title: "O’Connor-lab-git-tips"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+http://nicercode.github.io/blog/2013-04-05-projects/
+http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002303#pbio.1002303.ref015
+
+http://www.carlboettiger.info/2012/05/06/research-workflow.html

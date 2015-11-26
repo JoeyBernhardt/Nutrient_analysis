@@ -1,0 +1,49 @@
+---
+title: "rfishbase-models"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+Load packages
+```{r warnings = FALSE}
+library(devtools)
+library(rfishbase)
+library(ggplot2)
+suppressPackageStartupMessages(library(dplyr))
+library(plyr)
+library(knitr)
+library(tidyr)
+library(readr)
+library(ggthemes)
+library(MuMIn)
+```
+
+Load the data
+```{r}
+fb.all <- read_csv("fb.all.csv")
+```
+
+```{r}
+
+options(na.action = "na.fail")
+
+fb.all <- fb.all %>% filter(!is.na(ZN_mg), !is.na(max_size), !is.na(DemersPelag), !is.na(TL), !is.na(Habitat), !is.na(FoodTroph.x), !is.na(Herbivory2), !is.na(taxon), !is.na(Abs_lat))
+summary(fb.all$CA_mg)
+
+CA.all <- lm(log(ZN_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2 + taxon, data = fb.all)
+
+dd <- dredge(CA.all)
+subset(dd, delta < 4)
+par(mar = c(3,5,6,4))
+plot(dd, labAsExpr = TRUE)
+
+
+# Model average models with delta AICc < 4
+model.avg(dd, subset = delta < 4)
+
+#or as a 95% confidence set:
+model.avg(dd, subset = cumsum(weight) <= .95) # get averaged coefficients
+
+#'Best' model
+summary(get.models(dd, 1)[[1]])
