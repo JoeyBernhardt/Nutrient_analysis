@@ -100,7 +100,7 @@ View(new.compiled)
 ##now replot ordination, with sites colour-coded##
 png(filename = "subgroupMDS.png", width = 10, height = 8, units = 'in', res = 300)
 plot(ord.mine, type = "n", cex=1.5)
-points(new.compiled$MDS1,new.compiled$MDS2, col=new.compiled$Subgroup, pch= 16, cex = 1.5)
+points(new.compiled$MDS1, new.compiled$MDS2, col=new.compiled$Subgroup, pch= 16, cex = 1.5)
 dev.off()
 points(new.compiled$MDS1,new.compiled$MDS2, col= c("cadetblue", "sienna", "sienna"), pch= 16, cex = 1.5)
 

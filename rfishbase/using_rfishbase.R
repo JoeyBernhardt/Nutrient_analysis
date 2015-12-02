@@ -17,6 +17,7 @@ library(ggthemes)
 ntbl <- read_csv("ntbl.csv") 
 ntbl <- tbl_df(ntbl)
 ntbl <- ntbl %>% filter(Subgroup == "Finfish") ## take out finfish only, since that's what in fb
+length(unique(ntbl$species))
 nspecies <- unique(ntbl$species)
 (nspecies)
 #  Find matching and unmatching species in fb, I tried using validate_names(nspecies) ## really slow
@@ -39,6 +40,7 @@ View(as.data.frame(ntbl.fb.species))
 ### After googling, import new csv with all the re-matches ####
 
 fb.names <- read_csv("ntbl.FB.renames.csv")
+View(fb.names)
 
 #### Renaming to match fb names ####
   oldvalues <- as.vector(fb.names$ntbl.nfb.species)
@@ -55,7 +57,8 @@ fb.names <- read_csv("ntbl.FB.renames.csv")
   #### import new fb matches ####
   ntbl.fb <- read_csv("ntbl_FBrenames.csv") ## this is ntbl with names matched to fb
   View(ntbl.fb)
-
+length(unique(ntbl.fb$species))
+table(ntbl.fb$Subgroup)
 
 #### Use stocks function to get the temp min and temp max ####
 nspecies <- unique(ntbl.fb$species)
@@ -70,7 +73,7 @@ str(temps.fb)
 
 mintemp.fb <- temps.fb %>% 
   filter(!is.na(TempMin)) %>%
-  dplyr::rename(species = sciname) %>% 
+  # dplyr::rename(species = sciname) %>% 
   mutate(species = as.factor(species))
 
 str(mintemp.fb)
@@ -153,7 +156,7 @@ dplyr::filter(tables, table == "diet")$description
 
 ##### Here I pull out the 'ecology' tables for all the ntbl species in fb. ####
 ecology.ntbl <- ecology(nspecies)
-
+ecology("Salmo trutta")
 write.csv(ecology.ntbl, file = "FB.ecology.csv")
 
 str(ecology.ntbl)
@@ -248,6 +251,19 @@ names(fb.all)
 CA.weight <- lm(log(CA_mg) ~ Weight, data = fb.basic)
 summary(CA.weight)
 
+
+#### SeaLifeBase ####
+options(FISHBASE_API = "http://fishbase.ropensci.org/sealifebase")
+View(sealifebase)
+kingcrab <- common_to_sci("king crab")
+kingcrab
+species("Mytilus edulis")
+ecology(kingcrab)
+options(FISHBASE_API = "http://fishbase.ropensci.org")
+ecology("Salmo trutta")
+
+data(sealifebase)
+sealifebase
 #### models to test trait associations ####
 table(fb.all$Herbivory2)
 

@@ -10,34 +10,81 @@ Load packages
 library(devtools)
 library(rfishbase)
 library(ggplot2)
-suppressPackageStartupMessages(library(dplyr))
 library(plyr)
+suppressPackageStartupMessages(library(dplyr))
 library(knitr)
 library(tidyr)
 library(readr)
 library(ggthemes)
 library(MuMIn)
+library(visreg)
+?fishbase
 ```
 
 Load the data
 ```{r}
 fb.all <- read_csv("fb.all.csv")
+length(unique(fb.all$species))
+names(fb.all)
+temps.fb <- read_csv("temps.fb.csv")
+temps.fb <- select(temps.fb, -SpecCode)
+temps.fb <- temps.fb %>% 
+  dplyr::rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
+fb.temps <- inner_join(fb.all, temps.fb, by = "species")
+names(fb.temps)
+str(fb.temps)
+ntbl <- read_csv("ntbl.csv")
+table(fb.all$Herbivory2)
 ```
 
 ```{r}
-
+?MuMIn
 options(na.action = "na.fail")
+fb.all <- read_csv("fb.all.csv")
+fb.all <- fb.all %>% filter(!is.na(CA_mg),
+                            !is.na(max_size),
+                            !is.na(DemersPelag),
+                            !is.na(TL),
+                            !is.na(Habitat),
+                            !is.na(FoodTroph.x),
+                            !is.na(Herbivory2),
+                            !is.na(taxon),
+                            !is.na(Abs_lat))
+length(unique(fb.all$species))
 
-fb.all <- fb.all %>% filter(!is.na(ZN_mg), !is.na(max_size), !is.na(DemersPelag), !is.na(TL), !is.na(Habitat), !is.na(FoodTroph.x), !is.na(Herbivory2), !is.na(taxon), !is.na(Abs_lat))
+fb.all <- fb.all %>% 
+  filter(!is.na(ZN_mg),
+         !is.na(max_size), 
+         !is.na(DemersPelag),
+         !is.na(TL),
+         !is.na(Habitat),
+         !is.na(FoodTroph.x),
+         !is.na(taxon),
+         !is.na(Abs_lat))
 summary(fb.all$CA_mg)
 
-CA.all <- lm(log(ZN_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2 + taxon, data = fb.all)
+### this model contains all the traits I'm considering: body size, ocean zone use (DemersPelag), trophic level, habitat (marine/freshwater), trophic level of diet, herbivory, 
+ZN.all <- lm(log(ZN_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2, data = fb.all)
+CA.all <- lm(log(CA_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2, data = fb.all)
 
-dd <- dredge(CA.all)
+summary(CA.all)
+
+dd <- dredge(CA.all, m.lim = c(NA, 1), extra = list(
+    "R^2", "*" = function(x) {
+        s <- summary(x)
+        c(Rsq = s$r.squared, adjRsq = s$adj.r.squared,
+            F = s$fstatistic[[1]])
+    })
+)
+
+dd
+
 subset(dd, delta < 4)
 par(mar = c(3,5,6,4))
 plot(dd, labAsExpr = TRUE)
 
+model.sel(dd)
 
 # Model average models with delta AICc < 4
 model.avg(dd, subset = delta < 4)
@@ -47,3 +94,29 @@ model.avg(dd, subset = cumsum(weight) <= .95) # get averaged coefficients
 
 #'Best' model
 summary(get.models(dd, 1)[[1]])
+
+
+#### Calcium models ####
+CA_old <- read_csv("/Users/Joey/Desktop/Nutrient_databases/nutmassCA_Feb24.csv")
+CA_old2 <- read_csv("/Users/Joey/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv")
+CA_old3 <- read.csv("/Users/Joey/Desktop/Nutrient_databases/nut_mass_feb10_ff.csv")
+
+options(na.action = "na.omit")
+CA.lat <- lm(log(CA_mg) ~ Abs_lat, data = fb.all)
+CA.size <- lm(log(CA_mg) ~ log(mass), data = CA_old3)
+summary(CA.size)
+
+fb.CA.temps <- fb.temps %>%
+  group_by(species) %>% 
+    summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+              mean.temp = mean(TempMin, na.rm = TRUE))
+
+  
+CA.temp <- lm(log(mean.CA) ~ mean.temp, data = fb.CA.temps)
+visreg(CA.lat, xvar = "Abs_lat")
+visreg(CA.size, xvar = "logmass")
+visreg(CA.temp, xvar = "mean.temp")
+summary(CA.temp)
+?visreg
+length(unique(fb.all$species))
+
