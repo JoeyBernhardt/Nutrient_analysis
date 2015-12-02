@@ -9,7 +9,7 @@ library(readr)
 
 #### Step 1. Import the data
 
-ntbl <- read_csv("ntbl.csv")
+ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
 str(ntbl)
 
 
@@ -20,12 +20,12 @@ ntbl.RDI.mic <- ntbl %>%
             mean.EPA = mean(EPA_g, na.rm = TRUE), 
             mean.DHA = mean(DHA_g, na.rm = TRUE), 
             mean.ZN = mean(ZN_mg, na.rm = TRUE), 
-            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>%
   mutate(RDI.CA = (mean.CA > 300)) %>% 
   mutate(RDI.FE = (mean.FE > 4.5)) %>% 
   mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
   mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
-  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% View
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) 
 

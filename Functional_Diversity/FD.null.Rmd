@@ -16,10 +16,10 @@ library(readr)
 
 #### Step 1. Import the data
 
-ntbl <- read_csv("ntbl.csv")
+ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
 ntbl <- tbl_df(ntbl)
 str(ntbl)
-fd.null <- read_csv("fd.null.csv")
+fd.null <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fd.null.csv")
 fd.null <- as.vector(fd.null)
 
 
@@ -45,20 +45,21 @@ ntbl.RDI.mic <- ntbl %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot))
 
+ntbl$species <- as.factor(ntbl$species)
 ntbl.RDI <- ntbl %>% 
-  group_by(species) %>% 
+  group_by(species) %>%
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
             mean.EPA = mean(EPA_g, na.rm = TRUE), 
             mean.DHA = mean(DHA_g, na.rm = TRUE), 
             mean.ZN = mean(ZN_mg, na.rm = TRUE), 
-            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>%
   mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
   mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
   mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>% 
   mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
-  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
-  filter(!is.na(RDI.micro.tot)) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% View
   arrange(., RDI.micro.tot) %>% 
   select(., 7:11)
 

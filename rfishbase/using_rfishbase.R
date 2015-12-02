@@ -14,7 +14,7 @@ library(readr)
 library(ggthemes)
 
 #### import and clean data ####
-ntbl <- read_csv("ntbl.csv") 
+ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv") 
 ntbl <- tbl_df(ntbl)
 ntbl <- ntbl %>% filter(Subgroup == "Finfish") ## take out finfish only, since that's what in fb
 length(unique(ntbl$species))
