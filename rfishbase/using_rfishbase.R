@@ -252,18 +252,7 @@ CA.weight <- lm(log(CA_mg) ~ Weight, data = fb.basic)
 summary(CA.weight)
 
 
-#### SeaLifeBase ####
-options(FISHBASE_API = "http://fishbase.ropensci.org/sealifebase")
-View(sealifebase)
-kingcrab <- common_to_sci("king crab")
-kingcrab
-species("Mytilus edulis")
-ecology(kingcrab)
-options(FISHBASE_API = "http://fishbase.ropensci.org")
-ecology("Salmo trutta")
 
-data(sealifebase)
-sealifebase
 #### models to test trait associations ####
 table(fb.all$Herbivory2)
 
@@ -287,12 +276,74 @@ CA.size <- ntbl %>%
 summary(CA.size)
 
 summary(ecn$HG_mcg)
-#### fishbase species summary ####
+#### SeaLifeBase ####
+options(FISHBASE_API = "http://fishbase.ropensci.org/sealifebase")
+intbl <- ntbl %>% filter(Subgroup != "Finfish") # get all non-finfish to search from SLB
+View(intbl)
+length(unique(intbl$species))
+inspecies <- unique(intbl$species)
+
+#  Find matching and unmatching species in slb
+sealifebase ## loads the slb data
+GenusSpecies <- unite(sealifebase, GenusSpecies, Genus, Species, sep = " ")
+InvSpecies <- as.factor(GenusSpecies$GenusSpecies)
+
+#### SLB species matching ####
+intbl.slb.species <- intersect(inspecies,InvSpecies) ## find matching species
+intbl.nslb.species <- setdiff(inspecies,InvSpecies) ## find unmatched species (there are about 71)
+View(as.data.frame(intbl.slb.species))
+length(unique(intbl.slb.species))
+
+## investigate on problem fish, export as csv and do some googling to find alternate names (i.e. the ones in FB for the unmatched species)
+missing.SLB.species <- as.data.frame(intbl.nslb.species)
+write_csv(missing.SLB.species, "/Users/Joey/Documents/Nutrient_Analysis/data/SLB-missing-species.csv")
 
 
 
+SLB.basic <- species(intbl.slb.species) %>%
+  dplyr::rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
 
-View(species("Oreochromis niloticus"))
+write_csv(SLB.basic, "/Users/Joey/Documents/Nutrient_Analysis/data/SLB.basic.csv")
+
+SLB.ecology <- ecology(intbl.slb.species)
+SLB.ecology <- ecology(intbl.slb.species) %>%
+  dplyr::rename(species = sciname) %>% 
+  mutate(species = as.factor(species))
+
+write_csv(SLB.ecology, "/Users/Joey/Documents/Nutrient_Analysis/data/SLB.ecology.csv")
+View(SLB.basic)
+length(unique(SLB.basic$sciname))
+hist(SLB.basic$TS)
+
+
+intbl.basic <- inner_join(intbl, SLB.basic, by = "species")
+intbl.ecology <- inner_join(intbl, SLB.ecology, by = "species")
+write_csv(intbl.ecology, "/Users/Joey/Documents/Nutrient_Analysis/data/intbl.ecology.csv")
+
+write_csv(intbl.basic, "/Users/Joey/Documents/Nutrient_Analysis/data/intbl.basic.csv")
+View(intbl.basic)
+
+### Join intbl.ecology and intbl.basic to have all invert data together
+intbl.all <- inner_join(intbl.basic, intbl.ecology, by = "species")
+write_csv(intbl.all, "/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+
+intbl.CA <- intbl.basic %>% filter(!is.na(CA_mg), !is.na(Length))
+length(intbl.CA$species)
+
+CA.length <- lm(log(CA_mg) ~ max_length, data = intbl.basic)
+visreg(CA.length, xvar = "max_length")
+CA.length <- lm(log(CA_mg) ~ Length, data = intbl.basic)
+visreg(CA.length, xvar = "Length")
+str(intbl.basic$Length)
+
+CA.TL <- lm(log(CA_mg) ~ TL, data = intbl.basic)
+library(visreg)
+
+visreg(CA.TL, xvar = "TL")
+summary(CA.TL)
+
+options(FISHBASE_API = "http://fishbase.ropensci.org")
 
 # I thought this would be a good alternative to the stocks function to get the temp data, but it threw a bunch of errors.
 # trout.temp.2 <- length_freq(common_to_sci("trout"), c("TempMin", "TempMax"))

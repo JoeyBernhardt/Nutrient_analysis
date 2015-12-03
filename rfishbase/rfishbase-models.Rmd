@@ -18,15 +18,14 @@ library(readr)
 library(ggthemes)
 library(MuMIn)
 library(visreg)
-?fishbase
 ```
 
 Load the data
 ```{r}
-fb.all <- read_csv("fb.all.csv")
+fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
 length(unique(fb.all$species))
 names(fb.all)
-temps.fb <- read_csv("temps.fb.csv")
+temps.fb <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/temps.fb.csv")
 temps.fb <- select(temps.fb, -SpecCode)
 temps.fb <- temps.fb %>% 
   dplyr::rename(species = sciname) %>% 
@@ -34,14 +33,14 @@ temps.fb <- temps.fb %>%
 fb.temps <- inner_join(fb.all, temps.fb, by = "species")
 names(fb.temps)
 str(fb.temps)
-ntbl <- read_csv("ntbl.csv")
+ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
 table(fb.all$Herbivory2)
 ```
 
 ```{r}
 ?MuMIn
 options(na.action = "na.fail")
-fb.all <- read_csv("fb.all.csv")
+fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
 fb.all <- fb.all %>% filter(!is.na(CA_mg),
                             !is.na(max_size),
                             !is.na(DemersPelag),
@@ -100,11 +99,14 @@ summary(get.models(dd, 1)[[1]])
 CA_old <- read_csv("/Users/Joey/Desktop/Nutrient_databases/nutmassCA_Feb24.csv")
 CA_old2 <- read_csv("/Users/Joey/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv")
 CA_old3 <- read.csv("/Users/Joey/Desktop/Nutrient_databases/nut_mass_feb10_ff.csv")
+ntbl <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
 
 options(na.action = "na.omit")
 CA.lat <- lm(log(CA_mg) ~ Abs_lat, data = fb.all)
-CA.size <- lm(log(CA_mg) ~ log(mass), data = CA_old3)
-summary(CA.size)
+CA.size1 <- lm(log(CA_mg) ~ Length, data = fb.all)
+CA.size2 <- lm(log(CA_mg) ~ max_length, data = fb.all)
+CA.size3 <- lm(log(CA_mg) ~ log(max_size), data = ntbl)
+summary(CA.size1)
 
 fb.CA.temps <- fb.temps %>%
   group_by(species) %>% 
@@ -114,9 +116,34 @@ fb.CA.temps <- fb.temps %>%
   
 CA.temp <- lm(log(mean.CA) ~ mean.temp, data = fb.CA.temps)
 visreg(CA.lat, xvar = "Abs_lat")
-visreg(CA.size, xvar = "logmass")
+visreg(CA.size3, xvar = "max_size", xtrans = log)
 visreg(CA.temp, xvar = "mean.temp")
 summary(CA.temp)
 ?visreg
 length(unique(fb.all$species))
 
+#### merge FB and SLB basic info ####
+intbl.basic <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.basic.csv")
+fb.length <- fb.all %>% 
+  select(species, CA_mg, ZN_mg, FE_mg, EPA_g, DHA_g, Length, max_length, Subgroup, Habitat) %>% filter(Habitat != "brackish")
+
+slb.length <- intbl.basic %>% 
+  select(species, CA_mg, ZN_mg, FE_mg, EPA_g, DHA_g, Length, max_length, Subgroup, Habitat)
+
+length.CA <- dplyr::bind_rows(fb.length, slb.length)
+CA.length <- lm(log(CA_mg) ~ log(Length), data = length.CA) 
+summary(CA.length)
+visreg(CA.length, xvar = "Length", xtrans = log)
+ggplot(length.CA, aes(x = Length, y = log(DHA_g), color = Subgroup, shape = Habitat)) + stat_summary(fun.y= "mean", geom = "point") + scale_x_log10() + geom_smooth(method = 'lm')
+
+#### inverts ecology ####
+intbl.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+
+length(unique(intbl.all$species))
+CA.inverts <- lm(log(FE_mg.x) ~ log(Length) + FoodTroph + Subgroup.x, data = intbl.all)
+
+CA.inverts.size <- lm(log(FE_mg.x) ~ log(Length), data = intbl.all)
+visreg(CA.inverts.size, xvar = "Length", xtrans = log)
+visreg(CA.inverts, xvar = "Length", xtrans = log)
+summary(CA.inverts.size)
+summary(CA.inverts)
