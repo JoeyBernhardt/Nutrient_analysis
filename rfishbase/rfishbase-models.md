@@ -14,111 +14,14 @@ library(readr)
 library(ggthemes)
 library(MuMIn)
 library(visreg)
+library(broom)
 ```
 
 Load the data
 
 ```r
 fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
-length(unique(fb.all$species))
-```
 
-```
-## [1] 281
-```
-
-```r
-names(fb.all)
-```
-
-```
-##   [1] "species"              "taxon"                "max_size"            
-##   [4] "max_length"           "TL"                   "CA_mg"               
-##   [7] "EPA_g"                "DHA_g"                "FE_mg"               
-##  [10] "ZN_mg"                "HG_mcg"               "FAT"                 
-##  [13] "PROTCNT_g"            "lwA"                  "lwB"                 
-##  [16] "Habitat"              "Subgroup"             "Abs_lat"             
-##  [19] "Genus"                "Species"              "SpeciesRefNo"        
-##  [22] "Author"               "FBname"               "PicPreferredName"    
-##  [25] "PicPreferredNameM"    "PicPreferredNameF"    "PicPreferredNameJ"   
-##  [28] "FamCode"              "Subfamily"            "GenCode"             
-##  [31] "SubGenCode"           "BodyShapeI"           "Source"              
-##  [34] "AuthorRef"            "Remark"               "TaxIssue"            
-##  [37] "Fresh"                "Brack"                "Saltwater"           
-##  [40] "DemersPelag"          "AnaCat"               "MigratRef"           
-##  [43] "DepthRangeShallow"    "DepthRangeDeep"       "DepthRangeRef"       
-##  [46] "DepthRangeComShallow" "DepthRangeComDeep"    "DepthComRef"         
-##  [49] "LongevityWild"        "LongevityWildRef"     "LongevityCaptive"    
-##  [52] "LongevityCapRef"      "Vulnerability"        "Length"              
-##  [55] "LTypeMaxM"            "LengthFemale"         "LTypeMaxF"           
-##  [58] "MaxLengthRef"         "CommonLength"         "LTypeComM"           
-##  [61] "CommonLengthF"        "LTypeComF"            "CommonLengthRef"     
-##  [64] "Weight"               "WeightFemale"         "MaxWeightRef"        
-##  [67] "Pic"                  "PictureFemale"        "LarvaPic"            
-##  [70] "EggPic"               "ImportanceRef"        "Importance"          
-##  [73] "PriceCateg"           "PriceReliability"     "Remarks7"            
-##  [76] "LandingStatistics"    "Landings"             "MainCatchingMethod"  
-##  [79] "II"                   "MSeines"              "MGillnets"           
-##  [82] "MCastnets"            "MTraps"               "MSpears"             
-##  [85] "MTrawls"              "MDredges"             "MLiftnets"           
-##  [88] "MHooksLines"          "MOther"               "UsedforAquaculture"  
-##  [91] "LifeCycle"            "AquacultureRef"       "UsedasBait"          
-##  [94] "BaitRef"              "Aquarium"             "AquariumFishII"      
-##  [97] "AquariumRef"          "GameFish"             "GameRef"             
-## [100] "Dangerous"            "DangerousRef"         "Electrogenic"        
-## [103] "ElectroRef"           "Complete"             "GoogleImage"         
-## [106] "Comments"             "Profile"              "PD50"                
-## [109] "Emblematic"           "Entered.x"            "DateEntered"         
-## [112] "Modified.x"           "DateModified"         "Expert.x"            
-## [115] "DateChecked"          "TS.x"                 "SpecCode.x"          
-## [118] "StockCode.x"          "DietTroph.x"          "DietSeTroph.x"       
-## [121] "FoodTroph.x"          "FoodSeTroph.x"        "SpecCode.y"          
-## [124] "autoctr"              "StockCode.y"          "EcologyRefNo"        
-## [127] "HabitatsRef"          "Neritic"              "SupraLittoralZone"   
-## [130] "Saltmarshes"          "LittoralZone"         "TidePools"           
-## [133] "Intertidal"           "SubLittoral"          "Caves"               
-## [136] "Oceanic"              "Epipelagic"           "Mesopelagic"         
-## [139] "Bathypelagic"         "Abyssopelagic"        "Hadopelagic"         
-## [142] "Estuaries"            "Mangroves"            "MarshesSwamps"       
-## [145] "CaveAnchialine"       "Stream"               "Lakes"               
-## [148] "Cave"                 "Cave2"                "Herbivory2"          
-## [151] "HerbivoryRef"         "FeedingType"          "FeedingTypeRef"      
-## [154] "DietTroph.y"          "DietSeTroph.y"        "DietTLu"             
-## [157] "DietseTLu"            "DietRemark"           "DietRef"             
-## [160] "FoodTroph.y"          "FoodSeTroph.y"        "FoodRemark"          
-## [163] "FoodRef"              "AddRems"              "AssociationRef"      
-## [166] "Parasitism"           "Solitary"             "Symbiosis"           
-## [169] "Symphorism"           "Commensalism"         "Mutualism"           
-## [172] "Epiphytic"            "Schooling"            "SchoolingFrequency"  
-## [175] "SchoolingLifestage"   "Shoaling"             "ShoalingFrequency"   
-## [178] "ShoalingLifestage"    "SchoolShoalRef"       "AssociationsWith"    
-## [181] "AssociationsRemarks"  "OutsideHost"          "OHRemarks"           
-## [184] "InsideHost"           "IHRemarks"            "SubstrateRef"        
-## [187] "Benthic"              "Sessile"              "Mobile"              
-## [190] "Demersal"             "Endofauna"            "Pelagic"             
-## [193] "Megabenthos"          "Macrobenthos"         "Meiobenthos"         
-## [196] "SoftBottom"           "Sand"                 "Coarse"              
-## [199] "Fine"                 "Level"                "Sloping"             
-## [202] "Silt"                 "Mud"                  "Ooze"                
-## [205] "Detritus"             "Organic"              "HardBottom"          
-## [208] "Rocky"                "Rubble"               "SpecialHabitatRef"   
-## [211] "Macrophyte"           "BedsBivalve"          "BedsRock"            
-## [214] "SeaGrassBeds"         "BedsOthers"           "CoralReefs"          
-## [217] "ReefExclusive"        "DropOffs"             "ReefFlats"           
-## [220] "Lagoons"              "Burrows"              "Tunnels"             
-## [223] "Crevices"             "Vents"                "Seamounts"           
-## [226] "DeepWaterCorals"      "Vegetation"           "Leaves"              
-## [229] "Stems"                "Roots"                "Driftwood"           
-## [232] "OInverterbrates"      "OIRemarks"            "Verterbrates"        
-## [235] "VRemarks"             "Pilings"              "BoatHulls"           
-## [238] "Corals"               "SoftCorals"           "OnPolyp"             
-## [241] "BetweenPolyps"        "HardCorals"           "OnExoskeleton"       
-## [244] "InterstitialSpaces"   "Entered.y"            "Dateentered"         
-## [247] "Modified.y"           "Datemodified"         "Expert.y"            
-## [250] "Datechecked"          "TS.y"                 "SpecCode"
-```
-
-```r
 temps.fb <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/temps.fb.csv")
 temps.fb <- select(temps.fb, -SpecCode)
 temps.fb <- temps.fb %>% 
@@ -130,206 +33,6 @@ fb.temps <- inner_join(fb.all, temps.fb, by = "species")
 ```
 ## Warning in inner_join_impl(x, y, by$x, by$y): joining character vector and
 ## factor, coercing into character vector
-```
-
-```r
-names(fb.temps)
-```
-
-```
-##   [1] "species"              "taxon"                "max_size"            
-##   [4] "max_length"           "TL"                   "CA_mg"               
-##   [7] "EPA_g"                "DHA_g"                "FE_mg"               
-##  [10] "ZN_mg"                "HG_mcg"               "FAT"                 
-##  [13] "PROTCNT_g"            "lwA"                  "lwB"                 
-##  [16] "Habitat"              "Subgroup"             "Abs_lat"             
-##  [19] "Genus"                "Species"              "SpeciesRefNo"        
-##  [22] "Author"               "FBname"               "PicPreferredName"    
-##  [25] "PicPreferredNameM"    "PicPreferredNameF"    "PicPreferredNameJ"   
-##  [28] "FamCode"              "Subfamily"            "GenCode"             
-##  [31] "SubGenCode"           "BodyShapeI"           "Source"              
-##  [34] "AuthorRef"            "Remark"               "TaxIssue"            
-##  [37] "Fresh"                "Brack"                "Saltwater"           
-##  [40] "DemersPelag"          "AnaCat"               "MigratRef"           
-##  [43] "DepthRangeShallow"    "DepthRangeDeep"       "DepthRangeRef"       
-##  [46] "DepthRangeComShallow" "DepthRangeComDeep"    "DepthComRef"         
-##  [49] "LongevityWild"        "LongevityWildRef"     "LongevityCaptive"    
-##  [52] "LongevityCapRef"      "Vulnerability"        "Length"              
-##  [55] "LTypeMaxM"            "LengthFemale"         "LTypeMaxF"           
-##  [58] "MaxLengthRef"         "CommonLength"         "LTypeComM"           
-##  [61] "CommonLengthF"        "LTypeComF"            "CommonLengthRef"     
-##  [64] "Weight"               "WeightFemale"         "MaxWeightRef"        
-##  [67] "Pic"                  "PictureFemale"        "LarvaPic"            
-##  [70] "EggPic"               "ImportanceRef"        "Importance"          
-##  [73] "PriceCateg"           "PriceReliability"     "Remarks7"            
-##  [76] "LandingStatistics"    "Landings"             "MainCatchingMethod"  
-##  [79] "II"                   "MSeines"              "MGillnets"           
-##  [82] "MCastnets"            "MTraps"               "MSpears"             
-##  [85] "MTrawls"              "MDredges"             "MLiftnets"           
-##  [88] "MHooksLines"          "MOther"               "UsedforAquaculture"  
-##  [91] "LifeCycle"            "AquacultureRef"       "UsedasBait"          
-##  [94] "BaitRef"              "Aquarium"             "AquariumFishII"      
-##  [97] "AquariumRef"          "GameFish"             "GameRef"             
-## [100] "Dangerous"            "DangerousRef"         "Electrogenic"        
-## [103] "ElectroRef"           "Complete"             "GoogleImage"         
-## [106] "Comments"             "Profile"              "PD50"                
-## [109] "Emblematic"           "Entered.x"            "DateEntered"         
-## [112] "Modified.x"           "DateModified"         "Expert.x"            
-## [115] "DateChecked"          "TS.x"                 "SpecCode.x"          
-## [118] "StockCode.x"          "DietTroph.x"          "DietSeTroph.x"       
-## [121] "FoodTroph.x"          "FoodSeTroph.x"        "SpecCode.y"          
-## [124] "autoctr"              "StockCode.y"          "EcologyRefNo"        
-## [127] "HabitatsRef"          "Neritic"              "SupraLittoralZone"   
-## [130] "Saltmarshes"          "LittoralZone"         "TidePools"           
-## [133] "Intertidal"           "SubLittoral"          "Caves"               
-## [136] "Oceanic"              "Epipelagic"           "Mesopelagic"         
-## [139] "Bathypelagic"         "Abyssopelagic"        "Hadopelagic"         
-## [142] "Estuaries"            "Mangroves"            "MarshesSwamps"       
-## [145] "CaveAnchialine"       "Stream"               "Lakes"               
-## [148] "Cave"                 "Cave2"                "Herbivory2"          
-## [151] "HerbivoryRef"         "FeedingType"          "FeedingTypeRef"      
-## [154] "DietTroph.y"          "DietSeTroph.y"        "DietTLu"             
-## [157] "DietseTLu"            "DietRemark"           "DietRef"             
-## [160] "FoodTroph.y"          "FoodSeTroph.y"        "FoodRemark"          
-## [163] "FoodRef"              "AddRems"              "AssociationRef"      
-## [166] "Parasitism"           "Solitary"             "Symbiosis"           
-## [169] "Symphorism"           "Commensalism"         "Mutualism"           
-## [172] "Epiphytic"            "Schooling"            "SchoolingFrequency"  
-## [175] "SchoolingLifestage"   "Shoaling"             "ShoalingFrequency"   
-## [178] "ShoalingLifestage"    "SchoolShoalRef"       "AssociationsWith"    
-## [181] "AssociationsRemarks"  "OutsideHost"          "OHRemarks"           
-## [184] "InsideHost"           "IHRemarks"            "SubstrateRef"        
-## [187] "Benthic"              "Sessile"              "Mobile"              
-## [190] "Demersal"             "Endofauna"            "Pelagic"             
-## [193] "Megabenthos"          "Macrobenthos"         "Meiobenthos"         
-## [196] "SoftBottom"           "Sand"                 "Coarse"              
-## [199] "Fine"                 "Level"                "Sloping"             
-## [202] "Silt"                 "Mud"                  "Ooze"                
-## [205] "Detritus"             "Organic"              "HardBottom"          
-## [208] "Rocky"                "Rubble"               "SpecialHabitatRef"   
-## [211] "Macrophyte"           "BedsBivalve"          "BedsRock"            
-## [214] "SeaGrassBeds"         "BedsOthers"           "CoralReefs"          
-## [217] "ReefExclusive"        "DropOffs"             "ReefFlats"           
-## [220] "Lagoons"              "Burrows"              "Tunnels"             
-## [223] "Crevices"             "Vents"                "Seamounts"           
-## [226] "DeepWaterCorals"      "Vegetation"           "Leaves"              
-## [229] "Stems"                "Roots"                "Driftwood"           
-## [232] "OInverterbrates"      "OIRemarks"            "Verterbrates"        
-## [235] "VRemarks"             "Pilings"              "BoatHulls"           
-## [238] "Corals"               "SoftCorals"           "OnPolyp"             
-## [241] "BetweenPolyps"        "HardCorals"           "OnExoskeleton"       
-## [244] "InterstitialSpaces"   "Entered.y"            "Dateentered"         
-## [247] "Modified.y"           "Datemodified"         "Expert.y"            
-## [250] "Datechecked"          "TS.y"                 "SpecCode"            
-## [253] "StockDefs"            "TempMin"              "TempMax"
-```
-
-```r
-str(fb.temps)
-```
-
-```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	3460 obs. of  255 variables:
-##  $ species             : chr  "Abramis brama" "Abramis brama" "Abramis brama" "Abramis brama" ...
-##  $ taxon               : chr  "Carps, barbels and other cyprinids" "Carps, barbels and other cyprinids" "Carps, barbels and other cyprinids" "Carps, barbels and other cyprinids" ...
-##  $ max_size            : num  8.9 8.9 8.9 8.9 8.9 ...
-##  $ max_length          : num  82 82 82 82 82 82 82 82 82 210 ...
-##  $ TL                  : num  2.9 2.9 2.9 2.9 2.9 2.9 2.9 2.9 2.9 4.3 ...
-##  $ CA_mg               : num  NA 11.6 53 20.9 11.5 ...
-##  $ EPA_g               : num  NA NA NA NA NA ...
-##  $ DHA_g               : num  NA NA NA NA NA ...
-##  $ FE_mg               : num  NA 0.17 0.6 0.21 0.18 0.19 0.7 NA NA NA ...
-##  $ ZN_mg               : num  NA 0.393 1 0.373 0.373 ...
-##  $ HG_mcg              : int  NA NA 61 NA NA NA 25 NA NA NA ...
-##  $ FAT                 : num  NA NA NA NA NA NA NA 1 NA NA ...
-##  $ PROTCNT_g           : int  NA NA 138 NA NA NA 180 NA NA NA ...
-##  $ lwA                 : num  0.00871 0.00871 0.00871 0.00871 0.00871 0.00871 0.00871 0.00871 0.00871 0.00102 ...
-##  $ lwB                 : num  3.14 3.14 3.14 3.14 3.14 3.14 3.14 3.14 3.14 3.25 ...
-##  $ Habitat             : chr  "marine" "freshwater" "freshwater" "freshwater" ...
-##  $ Subgroup            : chr  "Finfish" "Finfish" "Finfish" "Finfish" ...
-##  $ Abs_lat             : num  53.9 54.1 41.5 54 54.1 ...
-##  $ Genus               : chr  "Abramis" "Abramis" "Abramis" "Abramis" ...
-##  $ Species             : chr  "brama" "brama" "brama" "brama" ...
-##  $ SpeciesRefNo        : int  59043 59043 59043 59043 59043 59043 59043 59043 59043 1371 ...
-##  $ Author              : chr  "(Linnaeus, 1758)" "(Linnaeus, 1758)" "(Linnaeus, 1758)" "(Linnaeus, 1758)" ...
-##  $ FBname              : chr  "Freshwater bream" "Freshwater bream" "Freshwater bream" "Freshwater bream" ...
-##  $ PicPreferredName    : chr  "Abbra_ue.jpg" "Abbra_ue.jpg" "Abbra_ue.jpg" "Abbra_ue.jpg" ...
-##  $ PicPreferredNameM   : chr  NA NA NA NA ...
-##  $ PicPreferredNameF   : chr  NA NA NA NA ...
-##  $ PicPreferredNameJ   : chr  NA NA NA NA ...
-##  $ FamCode             : int  122 122 122 122 122 122 122 122 122 185 ...
-##  $ Subfamily           : chr  "Leuciscinae" "Leuciscinae" "Leuciscinae" "Leuciscinae" ...
-##  $ GenCode             : int  50 50 50 50 50 50 50 50 50 4776 ...
-##  $ SubGenCode          : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ BodyShapeI          : chr  "fusiform / normal" "fusiform / normal" "fusiform / normal" "fusiform / normal" ...
-##  $ Source              : chr  "O" "O" "O" "O" ...
-##  $ AuthorRef           : chr  NA NA NA NA ...
-##  $ Remark              : chr  NA NA NA NA ...
-##  $ TaxIssue            : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ Fresh               : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ Brack               : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ Saltwater           : int  0 0 0 0 0 0 0 0 0 -1 ...
-##  $ DemersPelag         : chr  "benthopelagic" "benthopelagic" "benthopelagic" "benthopelagic" ...
-##  $ AnaCat              : chr  "potamodromous" "potamodromous" "potamodromous" "potamodromous" ...
-##  $ MigratRef           : int  51243 51243 51243 51243 51243 51243 51243 51243 51243 NA ...
-##  $ DepthRangeShallow   : int  1 1 1 1 1 1 1 1 1 140 ...
-##  $ DepthRangeDeep      : int  NA NA NA NA NA NA NA NA NA 3500 ...
-##  $ DepthRangeRef       : int  9696 9696 9696 9696 9696 9696 9696 9696 9696 50550 ...
-##  $ DepthRangeComShallow: int  NA NA NA NA NA NA NA NA NA 700 ...
-##  $ DepthRangeComDeep   : int  NA NA NA NA NA NA NA NA NA 1100 ...
-##  $ DepthComRef         : int  NA NA NA NA NA NA NA NA NA 56476 ...
-##  $ LongevityWild       : num  23 23 23 23 23 23 23 23 23 56 ...
-##  $ LongevityWildRef    : int  796 796 796 796 796 796 796 796 796 39270 ...
-##  $ LongevityCaptive    : num  17 17 17 17 17 17 17 17 17 NA ...
-##  $ LongevityCapRef     : int  72462 72462 72462 72462 72462 72462 72462 72462 72462 NA ...
-##  $ Vulnerability       : num  61.9 61.9 61.9 61.9 61.9 ...
-##  $ Length              : num  82 82 82 82 82 82 82 82 82 210 ...
-##  $ LTypeMaxM           : chr  "TL" "TL" "TL" "TL" ...
-##  $ LengthFemale        : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ LTypeMaxF           : chr  NA NA NA NA ...
-##  $ MaxLengthRef        : int  6114 6114 6114 6114 6114 6114 6114 6114 6114 56527 ...
-##  $ CommonLength        : num  25 25 25 25 25 25 25 25 25 85 ...
-##  $ LTypeComM           : chr  "TL" "TL" "TL" "TL" ...
-##  $ CommonLengthF       : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ LTypeComF           : chr  NA NA NA NA ...
-##  $ CommonLengthRef     : int  3561 3561 3561 3561 3561 3561 3561 3561 3561 56527 ...
-##  $ Weight              : num  6010 6010 6010 6010 6010 6010 6010 6010 6010 86000 ...
-##  $ WeightFemale        : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ MaxWeightRef        : int  4699 4699 4699 4699 4699 4699 4699 4699 4699 56527 ...
-##  $ Pic                 : chr  "ABBRA_U0" "ABBRA_U0" "ABBRA_U0" "ABBRA_U0" ...
-##  $ PictureFemale       : chr  NA NA NA NA ...
-##  $ LarvaPic            : chr  NA NA NA NA ...
-##  $ EggPic              : chr  NA NA NA NA ...
-##  $ ImportanceRef       : int  4931 4931 4931 4931 4931 4931 4931 4931 4931 1371 ...
-##  $ Importance          : chr  "highly commercial" "highly commercial" "highly commercial" "highly commercial" ...
-##  $ PriceCateg          : chr  "unknown" "unknown" "unknown" "unknown" ...
-##  $ PriceReliability    : chr  NA NA NA NA ...
-##  $ Remarks7            : chr  NA NA NA NA ...
-##  $ LandingStatistics   : chr  "from 50,000 to 100,000" "from 50,000 to 100,000" "from 50,000 to 100,000" "from 50,000 to 100,000" ...
-##  $ Landings            : chr  "Russia (Ref. 9988)" "Russia (Ref. 9988)" "Russia (Ref. 9988)" "Russia (Ref. 9988)" ...
-##  $ MainCatchingMethod  : chr  "seines" "seines" "seines" "seines" ...
-##  $ II                  : chr  NA NA NA NA ...
-##  $ MSeines             : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ MGillnets           : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ MCastnets           : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ MTraps              : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ MSpears             : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ MTrawls             : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ MDredges            : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ MLiftnets           : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ MHooksLines         : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 ...
-##  $ MOther              : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ UsedforAquaculture  : chr  "commercial" "commercial" "commercial" "commercial" ...
-##  $ LifeCycle           : chr  NA NA NA NA ...
-##  $ AquacultureRef      : int  12108 12108 12108 12108 12108 12108 12108 12108 12108 NA ...
-##  $ UsedasBait          : chr  "usually" "usually" "usually" "usually" ...
-##  $ BaitRef             : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ Aquarium            : chr  "never/rarely" "never/rarely" "never/rarely" "never/rarely" ...
-##  $ AquariumFishII      : chr  NA NA NA NA ...
-##  $ AquariumRef         : int  274 274 274 274 274 274 274 274 274 NA ...
-##  $ GameFish            : int  -1 -1 -1 -1 -1 -1 -1 -1 -1 0 ...
-##  $ GameRef             : int  4699 4699 4699 4699 4699 4699 4699 4699 4699 NA ...
-##   [list output truncated]
 ```
 
 ```r
@@ -348,8 +51,8 @@ table(fb.all$Herbivory2)
 ```
 
 
+
 ```r
-?MuMIn
 options(na.action = "na.fail")
 fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
 fb.all <- fb.all %>% filter(!is.na(CA_mg),
@@ -369,7 +72,7 @@ length(unique(fb.all$species))
 ```
 
 ```r
-fb.all <- fb.all %>% 
+fb.all.ZN <- fb.all %>% 
   filter(!is.na(ZN_mg),
          !is.na(max_size), 
          !is.na(DemersPelag),
@@ -378,70 +81,36 @@ fb.all <- fb.all %>%
          !is.na(FoodTroph.x),
          !is.na(taxon),
          !is.na(Abs_lat))
-summary(fb.all$CA_mg)
-```
 
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2.99   11.60   24.00  136.00   71.00 1306.00
-```
-
-```r
 ### this model contains all the traits I'm considering: body size, ocean zone use (DemersPelag), trophic level, habitat (marine/freshwater), trophic level of diet, herbivory, 
-ZN.all <- lm(log(ZN_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2, data = fb.all)
-CA.all <- lm(log(CA_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2, data = fb.all)
+ZN.all <- lm(log(ZN_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2, data = fb.all.ZN)
+CA.all.lat <- lm(log(CA_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2 + Abs_lat,  data = fb.all) 
 
-summary(CA.all)
+tidy(CA.all.lat, conf.int = TRUE) %>% kable()
 ```
 
-```
-## 
-## Call:
-## lm(formula = log(CA_mg) ~ max_length + DemersPelag + TL + Habitat + 
-##     FoodTroph.x + Herbivory2, data = fb.all)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -3.6085 -0.8813 -0.0334  0.5985  4.2781 
-## 
-## Coefficients:
-##                                                       Estimate Std. Error
-## (Intercept)                                          3.0579779  2.0506063
-## max_length                                          -0.0003644  0.0020197
-## DemersPelagbenthopelagic                             0.3249195  0.8081130
-## DemersPelagdemersal                                  0.1323556  0.7907755
-## DemersPelagpelagic                                   0.9428658  1.0001876
-## DemersPelagpelagic-neritic                           1.8350524  0.7546885
-## DemersPelagpelagic-oceanic                           0.1705766  0.9125912
-## TL                                                   0.0071413  0.4248327
-## Habitatfreshwater                                    2.1661632  1.4831194
-## Habitatmarine                                        1.7615567  1.4675663
-## FoodTroph.x                                         -0.5688595  0.5829525
-## Herbivory2mainly plants/detritus (troph. 2-2.19)     0.9073486  0.9337678
-## Herbivory2plants/detritus+animals (troph. 2.2-2.79)  0.5046910  0.4875450
-##                                                     t value Pr(>|t|)  
-## (Intercept)                                           1.491   0.1385  
-## max_length                                           -0.180   0.8571  
-## DemersPelagbenthopelagic                              0.402   0.6883  
-## DemersPelagdemersal                                   0.167   0.8674  
-## DemersPelagpelagic                                    0.943   0.3477  
-## DemersPelagpelagic-neritic                            2.432   0.0165 *
-## DemersPelagpelagic-oceanic                            0.187   0.8520  
-## TL                                                    0.017   0.9866  
-## Habitatfreshwater                                     1.461   0.1468  
-## Habitatmarine                                         1.200   0.2324  
-## FoodTroph.x                                          -0.976   0.3311  
-## Herbivory2mainly plants/detritus (troph. 2-2.19)      0.972   0.3332  
-## Herbivory2plants/detritus+animals (troph. 2.2-2.79)   1.035   0.3027  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 1.391 on 120 degrees of freedom
-## Multiple R-squared:  0.2335,	Adjusted R-squared:  0.1568 
-## F-statistic: 3.046 on 12 and 120 DF,  p-value: 0.0009022
-```
+
+
+term                                                     estimate   std.error     statistic     p.value     conf.low    conf.high
+----------------------------------------------------  -----------  ----------  ------------  ----------  -----------  -----------
+(Intercept)                                             6.2109613   1.2169489     5.1037158   0.0000011    3.8038835    8.6180390
+max_length                                             -0.0009084   0.0012903    -0.7040113   0.4826565   -0.0034606    0.0016438
+DemersPelagbenthopelagic                                0.9791905   0.5194810     1.8849401   0.0616198   -0.0483227    2.0067037
+DemersPelagdemersal                                     0.8597959   0.5068176     1.6964604   0.0921380   -0.1426696    1.8622615
+DemersPelagpelagic                                      1.2331216   0.6411822     1.9232002   0.0565921   -0.0351118    2.5013551
+DemersPelagpelagic-neritic                              1.6682198   0.4841814     3.4454437   0.0007633    0.7105277    2.6259118
+DemersPelagpelagic-oceanic                              0.0601393   0.5844533     0.1028984   0.9181986   -1.0958866    1.2161653
+TL                                                      0.0572072   0.2679636     0.2134888   0.8312726   -0.4728144    0.5872289
+Habitatfreshwater                                       1.0910531   0.5185147     2.1041892   0.0372442    0.0654511    2.1166551
+Habitatmarine                                           1.3848200   0.4877871     2.8389844   0.0052367    0.4199960    2.3496440
+FoodTroph.x                                            -0.4421666   0.3509217    -1.2600150   0.2098703   -1.1362762    0.2519429
+Herbivory2mainly plants/detritus (troph. 2-2.19)       -0.8450775   0.5035984    -1.6780782   0.0956801   -1.8411756    0.1510206
+Herbivory2plants/detritus+animals (troph. 2.2-2.79)    -0.1427037   0.3111402    -0.4586475   0.6472359   -0.7581270    0.4727196
+Abs_lat                                                -0.0785206   0.0061209   -12.8283075   0.0000000   -0.0906274   -0.0664137
 
 ```r
+CA.all<- lm(log(CA_mg) ~ max_length + DemersPelag + TL + Habitat + FoodTroph.x + Herbivory2,  data = fb.all) 
+
 dd <- dredge(CA.all, m.lim = c(NA, 1), extra = list(
     "R^2", "*" = function(x) {
         s <- summary(x)
@@ -464,22 +133,22 @@ dd
 ##     FoodTroph.x + Herbivory2, data = fb.all)
 ## ---
 ## Model selection table 
-##    (Int) DmP   FdT.x Hbt Hr2   max_lng      TL      R^2    *.Rsq  *.adjRsq
-## 33 5.823                               -0.6112 0.068110 0.068110  0.060990
-## 2  2.348   +                                   0.127000 0.127000  0.092660
-## 9  3.454                   +                   0.080230 0.080230  0.066080
-## 3  5.972     -0.6493                           0.060950 0.060950  0.053780
-## 17 3.949                     -0.003583         0.032210 0.032210  0.024830
-## 1  3.619                                       0.000000 0.000000  0.000000
-## 5  3.186               +                       0.008828 0.008828 -0.006421
+##    (Int) DmP   FdT.x Hbt Hr2   max_lng      TL     R^2   *.Rsq  *.adjRsq
+## 2  2.348   +                                   0.13000 0.13000  0.099150
+## 33 5.302                               -0.4764 0.06327 0.06327  0.056810
+## 3  5.749     -0.5907                           0.06028 0.06028  0.053800
+## 9  3.451                   +                   0.06668 0.06668  0.053720
+## 17 3.974                     -0.003663         0.03402 0.03402  0.027350
+## 1  3.647                                       0.00000 0.00000  0.000000
+## 5  3.987               +                       0.01256 0.01256 -0.001156
 ##       *.F df   logLik  AICc delta weight
-## 33 9.5740  3 -238.736 483.7  0.00  0.284
-## 2  3.6960  7 -234.393 483.7  0.02  0.280
-## 9  5.6700  4 -237.865 484.0  0.38  0.234
-## 3  8.5020  3 -239.245 484.7  1.02  0.170
-## 17 4.3610  3 -241.249 488.7  5.03  0.023
-## 1          2 -243.427 490.9  7.29  0.007
-## 5  0.5789  4 -242.837 494.0 10.33  0.002
+## 2  4.2140  7 -252.165 519.1  0.00  0.561
+## 33 9.7930  3 -257.597 521.4  2.23  0.184
+## 3  9.3010  3 -257.831 521.8  2.69  0.146
+## 9  5.1440  4 -257.329 522.9  3.80  0.084
+## 17 5.1060  3 -259.857 525.9  6.75  0.019
+## 1          2 -262.401 528.9  9.75  0.004
+## 5  0.9157  4 -261.472 531.2 12.09  0.001
 ## Models ranked by AICc(x)
 ```
 
@@ -493,15 +162,15 @@ subset(dd, delta < 4)
 ## ---
 ## Model selection table 
 ##    (Int) DmP   FdT.x Hr2      TL     R^2   *.Rsq *.adjRsq   *.F df
-## 33 5.823                 -0.6112 0.06811 0.06811  0.06099 9.574  3
-## 2  2.348   +                     0.12700 0.12700  0.09266 3.696  7
-## 9  3.454               +         0.08023 0.08023  0.06608 5.670  4
-## 3  5.972     -0.6493             0.06095 0.06095  0.05378 8.502  3
+## 2  2.348   +                     0.13000 0.13000  0.09915 4.214  7
+## 33 5.302                 -0.4764 0.06327 0.06327  0.05681 9.793  3
+## 3  5.749     -0.5907             0.06028 0.06028  0.05380 9.301  3
+## 9  3.451               +         0.06668 0.06668  0.05372 5.144  4
 ##      logLik  AICc delta weight
-## 33 -238.736 483.7  0.00  0.293
-## 2  -234.393 483.7  0.02  0.289
-## 9  -237.865 484.0  0.38  0.242
-## 3  -239.245 484.7  1.02  0.176
+## 2  -252.165 519.1  0.00  0.575
+## 33 -257.597 521.4  2.23  0.189
+## 3  -257.831 521.8  2.69  0.150
+## 9  -257.329 522.9  3.80  0.086
 ## Models ranked by AICc(x)
 ```
 
@@ -521,22 +190,22 @@ model.sel(dd)
 ##     FoodTroph.x + Herbivory2, data = fb.all)
 ## ---
 ## Model selection table 
-##    (Int) DmP   FdT.x Hbt Hr2   max_lng      TL      R^2    *.Rsq  *.adjRsq
-## 33 5.823                               -0.6112 0.068110 0.068110  0.060990
-## 2  2.348   +                                   0.127000 0.127000  0.092660
-## 9  3.454                   +                   0.080230 0.080230  0.066080
-## 3  5.972     -0.6493                           0.060950 0.060950  0.053780
-## 17 3.949                     -0.003583         0.032210 0.032210  0.024830
-## 1  3.619                                       0.000000 0.000000  0.000000
-## 5  3.186               +                       0.008828 0.008828 -0.006421
+##    (Int) DmP   FdT.x Hbt Hr2   max_lng      TL     R^2   *.Rsq  *.adjRsq
+## 2  2.348   +                                   0.13000 0.13000  0.099150
+## 33 5.302                               -0.4764 0.06327 0.06327  0.056810
+## 3  5.749     -0.5907                           0.06028 0.06028  0.053800
+## 9  3.451                   +                   0.06668 0.06668  0.053720
+## 17 3.974                     -0.003663         0.03402 0.03402  0.027350
+## 1  3.647                                       0.00000 0.00000  0.000000
+## 5  3.987               +                       0.01256 0.01256 -0.001156
 ##       *.F df   logLik  AICc delta weight
-## 33 9.5740  3 -238.736 483.7  0.00  0.284
-## 2  3.6960  7 -234.393 483.7  0.02  0.280
-## 9  5.6700  4 -237.865 484.0  0.38  0.234
-## 3  8.5020  3 -239.245 484.7  1.02  0.170
-## 17 4.3610  3 -241.249 488.7  5.03  0.023
-## 1          2 -243.427 490.9  7.29  0.007
-## 5  0.5789  4 -242.837 494.0 10.33  0.002
+## 2  4.2140  7 -252.165 519.1  0.00  0.561
+## 33 9.7930  3 -257.597 521.4  2.23  0.184
+## 3  9.3010  3 -257.831 521.8  2.69  0.146
+## 9  5.1440  4 -257.329 522.9  3.80  0.084
+## 17 5.1060  3 -259.857 525.9  6.75  0.019
+## 1          2 -262.401 528.9  9.75  0.004
+## 5  0.9157  4 -261.472 531.2 12.09  0.001
 ## Models ranked by AICc(x)
 ```
 
@@ -551,24 +220,24 @@ model.avg(dd, subset = delta < 4)
 ## model.avg.model.selection(object = dd, subset = delta < 4)
 ## 
 ## Component models: 
-## '4' '1' '3' '2'
+## '1' '4' '2' '3'
 ## 
 ## Coefficients: 
-##        (Intercept)         TL DemersPelagbenthopelagic DemersPelagdemersal
-## full      4.270985 -0.1790195                0.4237416           0.2436840
-## subset    4.270985 -0.6112455                1.4639248           0.8418694
+##        (Intercept) DemersPelagbenthopelagic DemersPelagdemersal
+## full      3.510137                0.8321219           0.4845094
+## subset    3.510137                1.4462197           0.8420726
 ##        DemersPelagpelagic DemersPelagpelagic-neritic
-## full             0.438530                  0.5811804
-## subset           1.515015                  2.0078378
-##        DemersPelagpelagic-oceanic
-## full                   0.06784547
-## subset                 0.23438970
+## full            0.8717051                   1.101690
+## subset          1.5150150                   1.914726
+##        DemersPelagpelagic-oceanic          TL FoodTroph.x
+## full                    0.1348625 -0.09007687 -0.08838173
+## subset                  0.2343897 -0.47643703 -0.59072122
 ##        Herbivory2mainly plants/detritus (troph. 2-2.19)
-## full                                          0.4478713
-## subset                                        1.8535343
-##        Herbivory2plants/detritus+animals (troph. 2.2-2.79) FoodTroph.x
-## full                                             0.2350244  -0.1143006
-## subset                                           0.9726583  -0.6493004
+## full                                         0.07147169
+## subset                                       0.83162155
+##        Herbivory2plants/detritus+animals (troph. 2.2-2.79)
+## full                                            0.08378334
+## subset                                          0.97487595
 ```
 
 ```r
@@ -583,24 +252,18 @@ model.avg(dd, subset = cumsum(weight) <= .95) # get averaged coefficients
 ##     0.95)
 ## 
 ## Component models: 
-## '3' '1' '2'
+## '1' '3' '2'
 ## 
 ## Coefficients: 
-##        (Intercept)         TL DemersPelagbenthopelagic DemersPelagdemersal
-## full      3.907505 -0.2172663                0.5142724           0.2957462
-## subset    3.907505 -0.6112455                1.4639248           0.8418694
+##        (Intercept) DemersPelagbenthopelagic DemersPelagdemersal
+## full      3.515652                0.9103606           0.5300645
+## subset    3.515652                1.4462197           0.8420726
 ##        DemersPelagpelagic DemersPelagpelagic-neritic
-## full            0.5322202                  0.7053474
-## subset          1.5150150                  2.0078378
-##        DemersPelagpelagic-oceanic
-## full                    0.0823404
-## subset                  0.2343897
-##        Herbivory2mainly plants/detritus (troph. 2-2.19)
-## full                                          0.5435573
-## subset                                        1.8535343
-##        Herbivory2plants/detritus+animals (troph. 2.2-2.79)
-## full                                             0.2852364
-## subset                                           0.9726583
+## full            0.9536656                   1.205274
+## subset          1.5150150                   1.914726
+##        DemersPelagpelagic-oceanic          TL FoodTroph.x
+## full                    0.1475427 -0.09854618 -0.09669166
+## subset                  0.2343897 -0.47643703 -0.59072122
 ```
 
 ```r
@@ -611,22 +274,26 @@ summary(get.models(dd, 1)[[1]])
 ```
 ## 
 ## Call:
-## lm(formula = log(CA_mg) ~ TL + 1, data = fb.all)
+## lm(formula = log(CA_mg) ~ DemersPelag + 1, data = fb.all)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.7969 -1.0611 -0.2983  0.9999  4.1025 
+## -2.6990 -0.8588 -0.1787  0.4565  3.9428 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   5.8231     0.7236   8.048 4.45e-13 ***
-## TL           -0.6112     0.1975  -3.094  0.00241 ** 
+##                            Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                  2.3481     0.6867   3.419 0.000821 ***
+## DemersPelagbenthopelagic     1.4462     0.7142   2.025 0.044758 *  
+## DemersPelagdemersal          0.8421     0.7179   1.173 0.242815    
+## DemersPelagpelagic           1.5150     0.9213   1.644 0.102323    
+## DemersPelagpelagic-neritic   1.9147     0.7211   2.655 0.008833 ** 
+## DemersPelagpelagic-oceanic   0.2344     0.8608   0.272 0.785805    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.468 on 131 degrees of freedom
-## Multiple R-squared:  0.06811,	Adjusted R-squared:  0.06099 
-## F-statistic: 9.574 on 1 and 131 DF,  p-value: 0.002413
+## Residual standard error: 1.373 on 141 degrees of freedom
+## Multiple R-squared:   0.13,	Adjusted R-squared:  0.09915 
+## F-statistic: 4.214 on 5 and 141 DF,  p-value: 0.001338
 ```
 
 ```r
@@ -651,18 +318,18 @@ summary(CA.size1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.6506 -1.1794 -0.3839  0.7067  3.7711 
+## -2.6743 -1.1655 -0.0523  0.6104  3.7622 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  3.874401   0.215256  17.999   <2e-16 ***
-## Length      -0.002571   0.001722  -1.493    0.138    
+## (Intercept)  3.903643   0.195189  19.999   <2e-16 ***
+## Length      -0.002682   0.001621  -1.655      0.1    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.508 on 131 degrees of freedom
-## Multiple R-squared:  0.01672,	Adjusted R-squared:  0.009215 
-## F-statistic: 2.228 on 1 and 131 DF,  p-value: 0.138
+## Residual standard error: 1.438 on 145 degrees of freedom
+## Multiple R-squared:  0.01854,	Adjusted R-squared:  0.01177 
+## F-statistic: 2.739 on 1 and 145 DF,  p-value: 0.1001
 ```
 
 ```r
@@ -722,7 +389,7 @@ length(unique(fb.all$species))
 ```
 
 ```
-## [1] 58
+## [1] 61
 ```
 
 ```r
@@ -746,19 +413,19 @@ summary(CA.length)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.7365 -1.0824 -0.2075  0.6504  3.8949 
+## -2.7228 -1.0898 -0.2071  0.6099  3.8931 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   5.4952     0.7053   7.792 1.07e-12 ***
-## log(Length)  -0.4252     0.1634  -2.603   0.0102 *  
+## (Intercept)   5.4346     0.6970   7.797 9.84e-13 ***
+## log(Length)  -0.4132     0.1616  -2.557   0.0115 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.423 on 148 degrees of freedom
+## Residual standard error: 1.417 on 150 degrees of freedom
 ##   (118 observations deleted due to missingness)
-## Multiple R-squared:  0.04376,	Adjusted R-squared:  0.0373 
-## F-statistic: 6.773 on 1 and 148 DF,  p-value: 0.01019
+## Multiple R-squared:  0.04178,	Adjusted R-squared:  0.03539 
+## F-statistic:  6.54 on 1 and 150 DF,  p-value: 0.01154
 ```
 
 ```r
@@ -772,7 +439,7 @@ ggplot(length.CA, aes(x = Length, y = log(DHA_g), color = Subgroup, shape = Habi
 ```
 
 ```
-## Warning: Removed 187 rows containing missing values (stat_summary).
+## Warning: Removed 189 rows containing missing values (stat_summary).
 ```
 
 ```
@@ -784,7 +451,7 @@ ggplot(length.CA, aes(x = Length, y = log(DHA_g), color = Subgroup, shape = Habi
 ```
 
 ```
-## Warning: Removed 54 rows containing missing values (stat_smooth).
+## Warning: Removed 56 rows containing missing values (stat_smooth).
 ```
 
 ```

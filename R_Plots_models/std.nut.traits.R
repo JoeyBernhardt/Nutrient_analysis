@@ -121,7 +121,7 @@ coefplot(DHA.1, main="DHA coefficients", cex.pts=1.5)
 summary(DHA.1)
 
 ###CA models
-
+nutmassCA_Feb24 <- read.csv("/Users/Joey/Desktop/Nutrient_databases/nutmassCA_Feb24.csv")
 CA.1 <- lm(log(CA_mg) ~ logmass*TL + logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmassCA_Feb24)
 CA.2 <- lm(log(CA_mg) ~ logmass*Abs_lat + logmass*Habitat, na.action="na.fail", data=nutmassCA_Feb24)
 CA.3 <- lm(log(CA_mg) ~ logmass*TL + logmass*Habitat, na.action="na.fail", data=nutmassCA_Feb24)
@@ -175,7 +175,8 @@ coefplot(CA.8)
 coefplot(CA.8b, main="CA coefficients", cex.pts=1.5)
 summary(CA.8b)
 summary(CA.8)
-
+nut.CA <- nutmassCA_Feb24
+summary(nut.CA$logmass)
 
 ##ZN models
 

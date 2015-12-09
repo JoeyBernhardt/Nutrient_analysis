@@ -9,8 +9,10 @@ library(ggtree)
 library(ggdendro)
 
 ### Load data
-rdimat <- read.csv("RDImat.csv")
-ntbl.raw <- read.csv("ntbl.csv")
+rdimat <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDImat.csv")
+ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
+
+
 
 ### Create RDI matrix, for trait analysis
 ntbl.mic.um <- ntbl.raw %>% 

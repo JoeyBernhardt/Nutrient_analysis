@@ -328,6 +328,8 @@ View(intbl.basic)
 intbl.all <- inner_join(intbl.basic, intbl.ecology, by = "species")
 write_csv(intbl.all, "/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
 
+names(intbl.all$Length)
+
 intbl.CA <- intbl.basic %>% filter(!is.na(CA_mg), !is.na(Length))
 length(intbl.CA$species)
 
