@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/132900/ad104a88c57c48fea72e131f23802842
+url: http://rpubs.com/jbernhar/132900
+when: 1449160491.5318
