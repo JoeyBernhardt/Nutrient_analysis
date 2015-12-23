@@ -16,7 +16,7 @@ ntbl.minerals <- ntbl.raw %>%
 table(ntbl.minerals$Subgroup)
 
 inverts.minerals <- inverts.new %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg) %>% 
+  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
   # filter(Subgroup != "Echinoderm") 
 
 minerals <- bind_rows(ntbl.minerals, inverts.minerals)
@@ -117,7 +117,7 @@ n.long %>%
   ggplot(., aes(x = nutrient, y = log(RDI.per), fill = bones.body, geom = "boxplot")) +
  geom_boxplot() +
   theme_minimal() +
-  geom_hline(yintercept=log(.10)) +
+  geom_hline(yintercept=log(.15)) +
   ylab("percentage of RDI in edible portion, log scale")
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
 

@@ -266,7 +266,6 @@ permutest(mod, pairwise = TRUE, permutations = 99)
 plot(mod.HSD)
 boxplot(mod)
 
-?betadisper
 ## Using group centroids
 mod3 <- betadisper(comm.bc.dist, min.subgroup, bias.adjust = TRUE)
 mod3
@@ -281,4 +280,24 @@ plot(TukeyHSD(mod3))
 min.subgroup %>% 
   data_frame(subgrp = .) %>% 
   adonis(comm.bc.dist ~ subgrp, data = .)
+```
+How many species reach RDI for each nutrient?
+10% RDI: calcium: 28/99, zinc: 39/101, iron: 23/104, EPA: 117/238, DHA: 168/235, Fat: 47/277, Protein: 251/251  
+```{r}
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+str(n.long)
+n.long$species <- as.factor(n.long$species)
+
+n.long %>% 
+  filter(nutrient == "PROTEIN") %>% 
+  filter(!is.na(concentration)) %>%
+  distinct(species) %>% 
+  count()
+
+n.long %>% 
+  filter(nutrient == "PROTEIN") %>%
+  mutate(RDI.10 = (concentration > (RDI/10))) %>% 
+    filter(RDI.10 == "TRUE") %>% 
+  distinct(species) %>% 
+  count()
 ```

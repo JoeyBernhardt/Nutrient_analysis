@@ -61,7 +61,7 @@ Examples from Jenna Jacob's website (can skip below to my nutrient data if wante
 ### With my data now:
 Load the data (which is posted in the Nutrient_Analysis repo)
 ```{r}
-ntbl <- read_csv("ntbl.csv")
+ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
 View(ntbl)
 ```
 
@@ -160,9 +160,9 @@ ntbl.RDI.above2.5 <- ntbl %>%
   arrange(., RDI.micro.tot) %>% 
   select(., 7:11)
 
-spa.rand <- specaccum(ntbl.RDI, method = "random")
-png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
-plot(spa.rand, col = "cadetblue", lwd = 2, ci = 0, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+spa.rand <- specaccum(ntbl.RDI.no, method = "random")
+png(filename = "/Users/Joey/Documents/Nutrient_Analysis/figures/sac.full.vs.noMoll1.png", width = 10, height = 8, units = 'in', res = 300)
+plot(spa.rand, col = "cadetblue", lwd = 3, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients and fatty acids: 25% RDI targets")
 abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
 dev.off()
