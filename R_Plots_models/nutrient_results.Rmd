@@ -10,7 +10,7 @@ output:
 Load packages and data
 ```{r}
 library(plyr)
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 library(vegan)
 library(readr)
 library(ggplot2)
@@ -360,7 +360,7 @@ ntbl.RDI.noMoll <- minerals %>%
   select(., 5:7)
 ```
 
-#Create the species/nutrient accumulation curve
+####Create the species/nutrient accumulation curve
 ```{r}
 spa.rand <- specaccum(ntbl.RDI, method = "random")
 # png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
@@ -378,4 +378,42 @@ plot(spa.rand, col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.
 plot(spa.rand.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "darkgrey", ylim = c(0,3.5), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
 # dev.off()
 legend('bottomright', legend = c("full", "no molluscs"), lty=c(1,1), lwd=c(4.4), col=c('black', 'darkgrey')) # gives the legend lines the correct color and width))
+
+summary(spa.rand.noMoll)
+
+## Results from random nutrient accumulation:
+## Need to sample from 14 species to get a median of all three minerals, and need to sample from 8 species to get a median of 3 minerals when molluscs are included. 
+```
+
+Result 3.	Few species contain reach DRI targets for multiple nutrients. 
+
+Now let's find out how many species reach more than one mineral RDI target
+```{r}
+
+ntbl.RDI.tot <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) 
+
+table(ntbl.RDI.tot$RDI.micro.tot)
+
+RDI.freq <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDI.freq.csv")
+RDI.freq <- read.csv("~/Documents/Nutrient_Analysis/data/RDI.freq.csv")
+str(RDI.freq)
+
+
+ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 10% RDI targets reached") + theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=14,face="bold"))
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
+
+
+#' for the 25% RDI targets, for the 106 species for which we have data for all 3 minerals, 65 spp reach 0 targets, 30 reach 1 target, 9 reach 2 targets, and 2 reach all 3 targets. In other words, 41 reach 1 or more targets, 39 reach two or more targets and 2 reach all three targets.  
+#' for the 10% RDI targets,  56 reach 0 targets, 9 reach 1 target, 26 reach 2 targets and 15 reach all 3 targets. Or, in other words, 50 reach one or more targets, 41 reach 2 or more targets, and 15 reach all three targets. 
 ```
