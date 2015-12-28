@@ -153,6 +153,7 @@ ntbl %>%
   arrange(desc(mean.protein)) %>%
   kable(.)
 ``` 
+
 Fat
 ```{r}
 hist(ntbl$FAT)
@@ -300,4 +301,77 @@ n.long %>%
     filter(RDI.10 == "TRUE") %>% 
   distinct(species) %>% 
   count()
+```
+
+How important is functional diversity?
+
+```{r}
+ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
+inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+
+#create a df that is just the minerals and the species info
+ntbl.minerals <- ntbl.raw %>% 
+  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
+
+
+inverts.minerals <- inverts.new %>% 
+  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
+  # filter(Subgroup != "Echinoderm") 
+
+#join the new old ntbl data with the new inverts mineral data
+minerals <- bind_rows(ntbl.minerals, inverts.minerals)
+```
+
+
+#### SAC
+```{r}
+#step 1. create a matrix with just 0 and 1 for whether a given species reaches RDI
+ntbl.RDI <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  # arrange(., RDI.micro.tot) %>% 
+  # select(., c(1,5:7))
+  select(., 5:7)
+
+#step 2. create the same matrix, but this time remove the molluscs
+ntbl.RDI.noMoll <- minerals %>% 
+  group_by(species) %>% 
+  filter(Subgroup != "Molluscs") %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  # arrange(., RDI.micro.tot) %>% 
+  # select(., c(1,5:7))
+  select(., 5:7)
+```
+#Create the species/nutrient accumulation curve
+```{r}
+spa.rand <- specaccum(ntbl.RDI, method = "random")
+# png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
+plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,4), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+abline( v= 15, col = "cadetblue")
+abline( v = 26, col = "pink")
+# dev.off()
+summary(spa.rand)
+
+#Now create the analagous curve for the no mollusc dataset, and plot both curves on the same axis (question to self...is it a fair comparison to compare against the full dataset? should I also remove the same amount of finfish from the full dataset to make a fair comparison?)
+
+# png(filename = "/Users/Joey/Documents/Nutrient_Analysis/figures/sac.full.vs.noMoll.png", width = 10, height = 8, units = 'in', res = 300)
+spa.rand.noMoll <- specaccum(ntbl.RDI.noMoll, method = "random")
+plot(spa.rand, col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "blue", ylim = c(0,3.5), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients: 25% RDI targets")
+plot(spa.rand.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "darkgrey", ylim = c(0,3.5), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+# dev.off()
+legend('bottomright', legend = c("full", "no molluscs"), lty=c(1,1), lwd=c(4.4), col=c('black', 'darkgrey')) # gives the legend lines the correct color and width))
 ```
