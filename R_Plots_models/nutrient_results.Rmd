@@ -1,6 +1,8 @@
 ---
 title: "nutrient_results"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 #### Script for the results section of the Nutritional diversity paper
@@ -282,6 +284,7 @@ min.subgroup %>%
   data_frame(subgrp = .) %>% 
   adonis(comm.bc.dist ~ subgrp, data = .)
 ```
+
 How many species reach RDI for each nutrient?
 10% RDI: calcium: 28/99, zinc: 39/101, iron: 23/104, EPA: 117/238, DHA: 168/235, Fat: 47/277, Protein: 251/251  
 ```{r}
@@ -356,6 +359,7 @@ ntbl.RDI.noMoll <- minerals %>%
   # select(., c(1,5:7))
   select(., 5:7)
 ```
+
 #Create the species/nutrient accumulation curve
 ```{r}
 spa.rand <- specaccum(ntbl.RDI, method = "random")
