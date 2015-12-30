@@ -6,64 +6,15 @@ Load packages and data
 
 ```r
 library(plyr)
-library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:plyr':
-## 
-##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-##     summarize
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
-library(vegan)
-```
-
-```
-## Loading required package: permute
-## Loading required package: lattice
-## This is vegan 2.3-1
-```
-
-```r
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(vegan))
 library(readr)
 library(ggplot2)
 library(tidyr)
 library(ggthemes)
 library(knitr)
-library(ggtree)
-```
+suppressPackageStartupMessages(library(ggtree))
 
-```
-## 
-## Attaching package: 'ggtree'
-## 
-## The following object is masked from 'package:tidyr':
-## 
-##     expand
-## 
-## The following object is masked from 'package:dplyr':
-## 
-##     collapse
-## 
-## The following object is masked from 'package:plyr':
-## 
-##     .
-```
-
-```r
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 str(ntbl)
 ```
@@ -93,8 +44,11 @@ str(ntbl)
 ##  $ max_length_study: num  30 36 NA 33.2 31.6 38 50.5 NA NA 39 ...
 ```
 
+
+#### Result 1. There is considerable variability in nutritional profile among aquatic taxa.
+
 Find the min and max for each nutrient.
-Start with calcium
+#### Calcium ####
 
 ```r
 hist(ntbl$CA_mg)
@@ -173,7 +127,7 @@ Sharks, rays, chimaeras                11.00000    2
 Cods, hakes, haddocks                  10.78182    6
 Miscellaneous demersal fishes          10.60500    6
 
-Then zinc:
+#### Then zinc: ####
 
 ```r
 hist(ntbl$ZN_mg)
@@ -253,7 +207,7 @@ Sharks, rays, chimaeras                0.4000000    2
 Cods, hakes, haddocks                  0.3663636    6
 Pearls, mother-of-pearl, shells        0.0297900    1
 
-Then iron:
+#### Then iron: ####
 
 ```r
 hist(ntbl$FE_mg)
@@ -326,7 +280,7 @@ Salmons, trouts, smelts                0.2754545    5
 Miscellaneous demersal fishes          0.2310833    6
 Cods, hakes, haddocks                  0.1909091    6
 
-EPA
+#### EPA ####
 
 ```r
 hist(ntbl$EPA_g)
@@ -401,7 +355,7 @@ Tilapias and other cichlids           0.0276115    5
 Krill, planktonic crustaceans         0.0269600    1
 Sharks, rays, chimaeras               0.0163765    9
 
-DHA
+#### DHA
 
 ```r
 hist(ntbl$DHA_g)
@@ -476,7 +430,7 @@ Oysters                               0.0619544    1
 King crabs, squat-lobsters            0.0360585    2
 Krill, planktonic crustaceans         0.0128700    1
 
-Protein
+#### Protein
 
 ```r
 hist(ntbl$PROTEIN)
@@ -550,7 +504,7 @@ Clams, cockles, arkshells                 10.68000    4
 Oysters                                    7.73500    3
 Freshwater molluscs                        6.60000    1
 
-Fat
+#### Fat
 
 ```r
 hist(ntbl$FAT)
@@ -626,7 +580,7 @@ Sharks, rays, chimaeras                1.0840000   13
 Lobsters, spiny-rock lobsters          0.9281818    2
 King crabs, squat-lobsters             0.6050000    2
 
-Results point 2: Functional groups have distinct multi-nutrient profiles (mds plot with finfish/crustaceans/molluscs color coded).
+#### Result 2: Functional groups have distinct multi-nutrient profiles (mds plot with finfish/crustaceans/molluscs color coded).
 
 
 ```r
@@ -679,11 +633,10 @@ ord.mine <- metaMDS(matrix.min, distance="bray", trymax=100)
 ## Square root transformation
 ## Wisconsin double standardization
 ## Run 0 stress 0.03068208 
-## Run 1 stress 0.1050141 
-## Run 2 stress 0.07529058 
-## Run 3 stress 0.03068202 
-## ... New best solution
-## ... procrustes: rmse 2.706349e-05  max resid 0.0002037624 
+## Run 1 stress 0.07531408 
+## Run 2 stress 0.07529057 
+## Run 3 stress 0.03068217 
+## ... procrustes: rmse 6.888487e-05  max resid 0.0005390904 
 ## *** Solution reached
 ```
 
@@ -692,7 +645,7 @@ ord.mine$stress
 ```
 
 ```
-## [1] 0.03068202
+## [1] 0.03068208
 ```
 
 ```r
@@ -746,7 +699,7 @@ plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 ### Use betadisper to test the significance of the multivariate groups
 min.subgroup <- min.env$Subgroup
 mod <- betadisper(comm.bc.dist, min.subgroup)
-?betadisper
+
 
 ## Perform test
 anova(mod)
@@ -775,17 +728,17 @@ permutest(mod, pairwise = TRUE, permutations = 99)
 ## Number of permutations: 99
 ## 
 ## Response: Distances
-##            Df Sum Sq  Mean Sq      F N.Perm Pr(>F)   
-## Groups      2 0.3434 0.171725 3.8359     99   0.01 **
-## Residuals 102 4.5663 0.044768                        
+##            Df Sum Sq  Mean Sq      F N.Perm Pr(>F)  
+## Groups      2 0.3434 0.171725 3.8359     99   0.07 .
+## Residuals 102 4.5663 0.044768                       
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Pairwise comparisons:
 ## (Observed p-value below diagonal, permuted p-value above diagonal)
 ##            Crustacean   Finfish Molluscs
-## Crustacean            0.2800000     0.63
-## Finfish     0.2429916               0.01
+## Crustacean            0.3000000     0.67
+## Finfish     0.2429916               0.03
 ## Molluscs    0.6351261 0.0092403
 ```
 
@@ -856,7 +809,7 @@ permutest(mod3, permutations = 99)
 ## 
 ## Response: Distances
 ##            Df Sum Sq  Mean Sq      F N.Perm Pr(>F)  
-## Groups      2 0.2992 0.149621 3.2356     99   0.06 .
+## Groups      2 0.2992 0.149621 3.2356     99   0.04 *
 ## Residuals 102 4.7167 0.046242                       
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -919,6 +872,193 @@ min.subgroup %>%
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+#### Result 3.	Few species contain reach DRI targets for multiple nutrients. 
+
+Now let's find out how many species reach more than one mineral RDI target
+
+```r
+ntbl.RDI.tot <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) 
+
+table(ntbl.RDI.tot$RDI.micro.tot)
+```
+
+```
+## 
+##  0  1  2  3 
+## 66 29  8  2
+```
+
+```r
+RDI.freq <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDI.freq.csv")
+RDI.freq <- read.csv("~/Documents/Nutrient_Analysis/data/RDI.freq.csv")
+str(RDI.freq)
+```
+
+```
+## 'data.frame':	8 obs. of  3 variables:
+##  $ number_targets: Factor w/ 4 levels "none","one or more",..: 1 2 4 3 1 2 4 3
+##  $ target        : Factor w/ 2 levels "10 percent","25 percent": 1 1 1 1 2 2 2 2
+##  $ frequency     : int  56 50 41 15 66 40 5 2
+```
+
+```r
+ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 10% RDI targets reached") + theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=14,face="bold"))
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-10-1.png) 
+
+```r
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
+```
+
+```
+## Saving 7 x 5 in image
+```
+
+```r
+#' for the 25% RDI targets, for the 106 species for which we have data for all 3 minerals, 65 spp reach 0 targets, 30 reach 1 target, 9 reach 2 targets, and 2 reach all 3 targets. In other words, 41 reach 1 or more targets, 39 reach two or more targets and 2 reach all three targets.  
+#' for the 10% RDI targets,  56 reach 0 targets, 9 reach 1 target, 26 reach 2 targets and 15 reach all 3 targets. Or, in other words, 50 reach one or more targets, 41 reach 2 or more targets, and 15 reach all three targets. 
+```
+
+#### How many species reach RDI, for each nutrient invidually?
+
+
+```r
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+```
+
+```
+## Warning: 1188 parsing failures.
+##  row col   expected actual
+## 5941 RDI an integer HG_mcg
+## 5942 RDI an integer HG_mcg
+## 5943 RDI an integer HG_mcg
+## 5944 RDI an integer HG_mcg
+## 5945 RDI an integer HG_mcg
+## .... ... .......... ......
+## .See problems(...) for more details.
+```
+
+```r
+n.long <- n.long %>% 
+  mutate(RDI.25per = (concentration/(RDI/4)),
+         RDI.per = (concentration/RDI),
+         RDI.20per = (concentration/(RDI/5)),
+         RDI.15per = (concentration/(RDI/6)),
+         RDI.target = (concentration > (RDI/10)))
+
+#### body.prop: If max size is less than 100g, gets whole, if not, gets part. bones.body is a combo of fish less than 100g and those from Cambodia where study noted that bones were eaten.
+
+n.long <- n.long %>% 
+  mutate(body.whole = (max_size < 0.1),
+         eat.bones = (Abs_lat == 12.265754 | Abs_lat == 11.066667),
+         bones.body = (max_size < 0.1 | Abs_lat == 12.265754 | Abs_lat == 11.066667),
+         bones.body.invert = (max_size < 0.1 | Abs_lat == 12.265754 | Abs_lat == 11.066667 | Subgroup != "Finfish"))
+
+
+### this code gets me the results of what percentage of observations reach 10% RDI for whole body or just part
+n.long %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  select(nutrient, RDI.target, bones.body) %>% 
+  table()
+```
+
+```
+## , , bones.body = FALSE
+## 
+##          RDI.target
+## nutrient  FALSE TRUE
+##   CA_mg     131   15
+##   DHA_g     105  287
+##   EPA_g     238  158
+##   FAT       398   75
+##   FE_mg     115   23
+##   HG_mcg      0    0
+##   PROTEIN     0  360
+##   ZN_mg     116   26
+## 
+## , , bones.body = TRUE
+## 
+##          RDI.target
+## nutrient  FALSE TRUE
+##   CA_mg       6   20
+##   DHA_g      13   17
+##   EPA_g      13   18
+##   FAT        29    7
+##   FE_mg      15   11
+##   HG_mcg      0    0
+##   PROTEIN     0   31
+##   ZN_mg       3   23
+```
+
+```r
+table <- n.long %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  select(RDI.target, bones.body) %>% 
+  table()
+
+mosaicplot(table)
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-11-1.png) 
+
+```r
+n.long %>% 
+  filter(nutrient == "PROTEIN",
+         bones.body.invert == FALSE) %>% 
+  select(RDI.target) %>% 
+table()
+```
+
+```
+## .
+## TRUE 
+##  359
+```
+
+```r
+n.long %>% 
+  filter(!is.na(bones.body)) %>% 
+  # arrange(desc(nutrient)) %>% 
+  ggplot(., aes(x = nutrient, y = log(RDI.per), fill = bones.body, geom = "boxplot")) +
+ geom_boxplot() +
+  theme_minimal() +
+  geom_hline(yintercept=log(.10)) +
+  ylab("percentage of RDI in edible portion, log scale")
+```
+
+```
+## Warning: Removed 5539 rows containing non-finite values (stat_boxplot).
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-11-2.png) 
+
+```r
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
+```
+
+```
+## Saving 7 x 5 in image
+```
+
+```
+## Warning: Removed 5539 rows containing non-finite values (stat_boxplot).
+```
+
+
+####Result 4. Few species reach DRI for multiple nutrients.
 
 How many species reach RDI for each nutrient?
 10% RDI: calcium: 28/99, zinc: 39/101, iron: 23/104, EPA: 117/238, DHA: 168/235, Fat: 47/277, Protein: 251/251  
@@ -1003,7 +1143,9 @@ n.long %>%
 ## 1   251
 ```
 
-How important is functional diversity?
+#### Result 5.	Functional group diversity enhances dietary nutritional diversity and nutritional benefits that human communities may derive from seafood assemblages. (nutrient accumulation curve). 
+
+#####How important is functional diversity?
 
 
 ```r
@@ -1059,7 +1201,7 @@ ntbl.RDI.noMoll <- minerals %>%
   select(., 5:7)
 ```
 
-#Create the species/nutrient accumulation curve
+#####Create the species/nutrient accumulation curve
 
 ```r
 spa.rand <- specaccum(ntbl.RDI, method = "random")
@@ -1069,157 +1211,12 @@ abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-13-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-15-1.png) 
 
 ```r
 # dev.off()
-summary(spa.rand)
-```
+# summary(spa.rand)
 
-```
-##  1 sites        2 sites        3 sites        4 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.00   1st Qu.:1.00  
-##  Median :0.00   Median :1.00   Median :1.00   Median :2.00  
-##  Mean   :0.58   Mean   :0.91   Mean   :1.29   Mean   :1.72  
-##  3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  5 sites        6 sites        7 sites        8 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :1.00  
-##  1st Qu.:1.00   1st Qu.:1.75   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :2.00   Median :2.00   Median :2.00   Median :3.00  
-##  Mean   :1.91   Mean   :2.09   Mean   :2.22   Mean   :2.41  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  9 sites        10 sites       11 sites       12 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.53   Mean   :2.63   Mean   :2.66   Mean   :2.71  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  13 sites       14 sites       15 sites       16 sites      17 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :2.00   Min.   :2.0   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.0   Median :3.00  
-##  Mean   :2.79   Mean   :2.85   Mean   :2.89   Mean   :2.9   Mean   :2.92  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.00  
-##  18 sites       19 sites       20 sites       21 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.94   Mean   :2.97   Mean   :2.97   Mean   :2.97  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  22 sites       23 sites       24 sites       25 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.99   Mean   :2.99   Mean   :2.99   Mean   :2.99  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  26 sites       27 sites    28 sites    29 sites    30 sites   
-##  Min.   :2.00   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3.00   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3.00   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :2.99   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3.00   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3.00   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  31 sites    32 sites    33 sites    34 sites    35 sites    36 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  37 sites    38 sites    39 sites    40 sites    41 sites    42 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  43 sites    44 sites    45 sites    46 sites    47 sites    48 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  49 sites    50 sites    51 sites    52 sites    53 sites    54 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  55 sites    56 sites    57 sites    58 sites    59 sites    60 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  61 sites    62 sites    63 sites    64 sites    65 sites    66 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  67 sites    68 sites    69 sites    70 sites    71 sites    72 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  73 sites    74 sites    75 sites    76 sites    77 sites    78 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  79 sites    80 sites    81 sites    82 sites    83 sites    84 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  85 sites    86 sites    87 sites    88 sites    89 sites    90 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  91 sites    92 sites    93 sites    94 sites    95 sites    96 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  97 sites    98 sites    99 sites    100 sites   101 sites   102 sites  
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  103 sites   104 sites   105 sites   106 sites  
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3
-```
-
-```r
 #Now create the analagous curve for the no mollusc dataset, and plot both curves on the same axis (question to self...is it a fair comparison to compare against the full dataset? should I also remove the same amount of finfish from the full dataset to make a fair comparison?)
 
 # png(filename = "/Users/Joey/Documents/Nutrient_Analysis/figures/sac.full.vs.noMoll.png", width = 10, height = 8, units = 'in', res = 300)
@@ -1230,215 +1227,13 @@ plot(spa.rand.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "
 legend('bottomright', legend = c("full", "no molluscs"), lty=c(1,1), lwd=c(4.4), col=c('black', 'darkgrey')) # gives the legend lines the correct color and width))
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-13-2.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-15-2.png) 
 
 ```r
-summary(spa.rand.noMoll)
-```
+# summary(spa.rand.noMoll)
 
-```
-##  1 sites        2 sites        3 sites        4 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00  
-##  Median :0.00   Median :0.00   Median :1.00   Median :1.00  
-##  Mean   :0.29   Mean   :0.58   Mean   :0.96   Mean   :1.14  
-##  3rd Qu.:0.00   3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:2.00  
-##  Max.   :2.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  5 sites        6 sites        7 sites        8 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:1.00   1st Qu.:1.00   1st Qu.:1.00   1st Qu.:1.00  
-##  Median :1.00   Median :2.00   Median :2.00   Median :2.00  
-##  Mean   :1.36   Mean   :1.59   Mean   :1.73   Mean   :1.83  
-##  3rd Qu.:2.00   3rd Qu.:2.00   3rd Qu.:2.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  9 sites        10 sites       11 sites       12 sites      
-##  Min.   :0.00   Min.   :0.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:1.00   1st Qu.:1.00   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :2.00   Median :2.00   Median :2.00   Median :2.00  
-##  Mean   :1.96   Mean   :2.06   Mean   :2.15   Mean   :2.21  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  13 sites       14 sites       15 sites       16 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :2.00   Median :2.00   Median :3.00   Median :3.00  
-##  Mean   :2.29   Mean   :2.33   Mean   :2.39   Mean   :2.42  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  17 sites       18 sites       19 sites      20 sites       21 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :1.0   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.0   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :3.00   Median :3.00   Median :3.0   Median :3.00   Median :3.00  
-##  Mean   :2.45   Mean   :2.47   Mean   :2.5   Mean   :2.56   Mean   :2.63  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00  
-##  22 sites       23 sites       24 sites       25 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:2.75   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.69   Mean   :2.74   Mean   :2.76   Mean   :2.78  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  26 sites       27 sites       28 sites       29 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.79   Mean   :2.81   Mean   :2.83   Mean   :2.83  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  30 sites       31 sites       32 sites       33 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.86   Mean   :2.86   Mean   :2.87   Mean   :2.87  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  34 sites       35 sites       36 sites       37 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.88   Mean   :2.88   Mean   :2.89   Mean   :2.91  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  38 sites       39 sites       40 sites       41 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.92   Mean   :2.93   Mean   :2.93   Mean   :2.93  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  42 sites       43 sites       44 sites       45 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.94   Mean   :2.95   Mean   :2.95   Mean   :2.95  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  46 sites       47 sites       48 sites       49 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.95   Mean   :2.95   Mean   :2.95   Mean   :2.95  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  50 sites       51 sites       52 sites       53 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.96   Mean   :2.96   Mean   :2.96   Mean   :2.97  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  54 sites       55 sites       56 sites       57 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.98   Mean   :2.98   Mean   :2.99   Mean   :2.99  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  58 sites       59 sites       60 sites       61 sites    62 sites   
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :3   Min.   :3  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3   1st Qu.:3  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3   Median :3  
-##  Mean   :2.99   Mean   :2.99   Mean   :2.99   Mean   :3   Mean   :3  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3   Max.   :3  
-##  63 sites    64 sites    65 sites    66 sites    67 sites    68 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  69 sites    70 sites    71 sites    72 sites    73 sites    74 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  75 sites    76 sites    77 sites    78 sites    79 sites    80 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  81 sites    82 sites    83 sites    84 sites    85 sites    86 sites   
-##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  87 sites    88 sites   
-##  Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3  
-##  Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3
-```
-
-```r
 ## Results from random nutrient accumulation:
 ## Need to sample from 14 species to get a median of all three minerals, and need to sample from 8 species to get a median of 3 minerals when molluscs are included. 
 ```
 
-Result 3.	Few species contain reach DRI targets for multiple nutrients. 
 
-Now let's find out how many species reach more than one mineral RDI target
-
-```r
-ntbl.RDI.tot <- minerals %>% 
-  group_by(species) %>% 
-  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
-            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
-            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
-  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
-  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
-  filter(!is.na(RDI.micro.tot)) %>% 
-  arrange(., RDI.micro.tot) 
-
-table(ntbl.RDI.tot$RDI.micro.tot)
-```
-
-```
-## 
-##  0  1  2  3 
-## 66 30  8  2
-```
-
-```r
-RDI.freq <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDI.freq.csv")
-RDI.freq <- read.csv("~/Documents/Nutrient_Analysis/data/RDI.freq.csv")
-str(RDI.freq)
-```
-
-```
-## 'data.frame':	8 obs. of  3 variables:
-##  $ number_targets: Factor w/ 4 levels "none","one or more",..: 1 2 4 3 1 2 4 3
-##  $ target        : Factor w/ 2 levels "10 percent","25 percent": 1 1 1 1 2 2 2 2
-##  $ frequency     : int  56 50 41 15 66 40 5 2
-```
-
-```r
-ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 10% RDI targets reached") + theme(axis.text=element_text(size=14),
-        axis.title=element_text(size=14,face="bold"))
-```
-
-![](nutrient_results_files/figure-html/unnamed-chunk-14-1.png) 
-
-```r
-ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
-```
-
-```
-## Saving 7 x 5 in image
-```
-
-```r
-#' for the 25% RDI targets, for the 106 species for which we have data for all 3 minerals, 65 spp reach 0 targets, 30 reach 1 target, 9 reach 2 targets, and 2 reach all 3 targets. In other words, 41 reach 1 or more targets, 39 reach two or more targets and 2 reach all three targets.  
-#' for the 10% RDI targets,  56 reach 0 targets, 9 reach 1 target, 26 reach 2 targets and 15 reach all 3 targets. Or, in other words, 50 reach one or more targets, 41 reach 2 or more targets, and 15 reach all three targets. 
-```

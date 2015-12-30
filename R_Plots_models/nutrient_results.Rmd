@@ -11,20 +11,23 @@ Load packages and data
 ```{r}
 library(plyr)
 suppressPackageStartupMessages(library(dplyr))
-library(vegan)
+suppressPackageStartupMessages(library(vegan))
 library(readr)
 library(ggplot2)
 library(tidyr)
 library(ggthemes)
 library(knitr)
-library(ggtree)
+suppressPackageStartupMessages(library(ggtree))
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 str(ntbl)
 ```
 
+
+#### Result 1. There is considerable variability in nutritional profile among aquatic taxa.
+
 Find the min and max for each nutrient.
-Start with calcium
+#### Calcium ####
 ```{r}
 hist(ntbl$CA_mg)
 summary(ntbl$CA_mg)
@@ -46,7 +49,7 @@ ntbl %>%
   kable(.)
 ```
 
-Then zinc:
+#### Then zinc: ####
 ```{r}
 hist(ntbl$ZN_mg)
 summary(ntbl$ZN_mg)
@@ -68,7 +71,7 @@ ntbl %>%
   kable(.)
 ```
 
-Then iron:
+#### Then iron: ####
 ```{r}
 hist(ntbl$FE_mg)
 summary(ntbl$FE_mg)
@@ -90,7 +93,7 @@ ntbl %>%
   kable(.)
 ```
 
-EPA
+#### EPA ####
 ```{r}
 hist(ntbl$EPA_g)
 summary(ntbl$EPA_g)
@@ -112,7 +115,7 @@ ntbl %>%
   kable(.)
 ```
 
-DHA
+#### DHA
 ```{r}
 hist(ntbl$DHA_g)
 summary(ntbl$DHA_g)
@@ -134,7 +137,7 @@ ntbl %>%
   kable(.)
 ``` 
 
-Protein
+#### Protein
 ```{r}
 hist(ntbl$PROTEIN)
 summary(ntbl$PROTEIN)
@@ -156,7 +159,7 @@ ntbl %>%
   kable(.)
 ``` 
 
-Fat
+#### Fat
 ```{r}
 hist(ntbl$FAT)
 summary(ntbl$FAT)
@@ -178,7 +181,7 @@ ntbl %>%
   kable(.)
 ``` 
 
-Results point 2: Functional groups have distinct multi-nutrient profiles (mds plot with finfish/crustaceans/molluscs color coded).
+#### Result 2: Functional groups have distinct multi-nutrient profiles (mds plot with finfish/crustaceans/molluscs color coded).
 
 ```{r}
 ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
@@ -256,7 +259,7 @@ plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 ### Use betadisper to test the significance of the multivariate groups
 min.subgroup <- min.env$Subgroup
 mod <- betadisper(comm.bc.dist, min.subgroup)
-?betadisper
+
 
 ## Perform test
 anova(mod)
@@ -285,6 +288,95 @@ min.subgroup %>%
   adonis(comm.bc.dist ~ subgrp, data = .)
 ```
 
+#### Result 3.	Few species contain reach DRI targets for multiple nutrients. 
+
+Now let's find out how many species reach more than one mineral RDI target
+```{r}
+
+ntbl.RDI.tot <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) 
+
+table(ntbl.RDI.tot$RDI.micro.tot)
+
+RDI.freq <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDI.freq.csv")
+RDI.freq <- read.csv("~/Documents/Nutrient_Analysis/data/RDI.freq.csv")
+str(RDI.freq)
+
+
+ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 10% RDI targets reached") + theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=14,face="bold"))
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
+
+
+#' for the 25% RDI targets, for the 106 species for which we have data for all 3 minerals, 65 spp reach 0 targets, 30 reach 1 target, 9 reach 2 targets, and 2 reach all 3 targets. In other words, 41 reach 1 or more targets, 39 reach two or more targets and 2 reach all three targets.  
+#' for the 10% RDI targets,  56 reach 0 targets, 9 reach 1 target, 26 reach 2 targets and 15 reach all 3 targets. Or, in other words, 50 reach one or more targets, 41 reach 2 or more targets, and 15 reach all three targets. 
+```
+
+#### How many species reach RDI, for each nutrient invidually?
+
+```{r}
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+n.long <- n.long %>% 
+  mutate(RDI.25per = (concentration/(RDI/4)),
+         RDI.per = (concentration/RDI),
+         RDI.20per = (concentration/(RDI/5)),
+         RDI.15per = (concentration/(RDI/6)),
+         RDI.target = (concentration > (RDI/10)))
+
+#### body.prop: If max size is less than 100g, gets whole, if not, gets part. bones.body is a combo of fish less than 100g and those from Cambodia where study noted that bones were eaten.
+
+n.long <- n.long %>% 
+  mutate(body.whole = (max_size < 0.1),
+         eat.bones = (Abs_lat == 12.265754 | Abs_lat == 11.066667),
+         bones.body = (max_size < 0.1 | Abs_lat == 12.265754 | Abs_lat == 11.066667),
+         bones.body.invert = (max_size < 0.1 | Abs_lat == 12.265754 | Abs_lat == 11.066667 | Subgroup != "Finfish"))
+
+
+### this code gets me the results of what percentage of observations reach 10% RDI for whole body or just part
+n.long %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  select(nutrient, RDI.target, bones.body) %>% 
+  table()
+
+table <- n.long %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  select(RDI.target, bones.body) %>% 
+  table()
+
+mosaicplot(table)
+
+n.long %>% 
+  filter(nutrient == "PROTEIN",
+         bones.body.invert == FALSE) %>% 
+  select(RDI.target) %>% 
+table()
+
+
+
+
+n.long %>% 
+  filter(!is.na(bones.body)) %>% 
+  # arrange(desc(nutrient)) %>% 
+  ggplot(., aes(x = nutrient, y = log(RDI.per), fill = bones.body, geom = "boxplot")) +
+ geom_boxplot() +
+  theme_minimal() +
+  geom_hline(yintercept=log(.10)) +
+  ylab("percentage of RDI in edible portion, log scale")
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
+```
+
+
+####Result 4. Few species reach DRI for multiple nutrients.
+
 How many species reach RDI for each nutrient?
 10% RDI: calcium: 28/99, zinc: 39/101, iron: 23/104, EPA: 117/238, DHA: 168/235, Fat: 47/277, Protein: 251/251  
 ```{r}
@@ -306,7 +398,9 @@ n.long %>%
   count()
 ```
 
-How important is functional diversity?
+#### Result 5.	Functional group diversity enhances dietary nutritional diversity and nutritional benefits that human communities may derive from seafood assemblages. (nutrient accumulation curve). 
+
+#####How important is functional diversity?
 
 ```{r}
 ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
@@ -360,7 +454,7 @@ ntbl.RDI.noMoll <- minerals %>%
   select(., 5:7)
 ```
 
-####Create the species/nutrient accumulation curve
+#####Create the species/nutrient accumulation curve
 ```{r}
 spa.rand <- specaccum(ntbl.RDI, method = "random")
 # png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
@@ -368,7 +462,7 @@ plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3, 
 abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
 # dev.off()
-summary(spa.rand)
+# summary(spa.rand)
 
 #Now create the analagous curve for the no mollusc dataset, and plot both curves on the same axis (question to self...is it a fair comparison to compare against the full dataset? should I also remove the same amount of finfish from the full dataset to make a fair comparison?)
 
@@ -379,41 +473,10 @@ plot(spa.rand.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "
 # dev.off()
 legend('bottomright', legend = c("full", "no molluscs"), lty=c(1,1), lwd=c(4.4), col=c('black', 'darkgrey')) # gives the legend lines the correct color and width))
 
-summary(spa.rand.noMoll)
+# summary(spa.rand.noMoll)
 
 ## Results from random nutrient accumulation:
 ## Need to sample from 14 species to get a median of all three minerals, and need to sample from 8 species to get a median of 3 minerals when molluscs are included. 
 ```
 
-Result 3.	Few species contain reach DRI targets for multiple nutrients. 
 
-Now let's find out how many species reach more than one mineral RDI target
-```{r}
-
-ntbl.RDI.tot <- minerals %>% 
-  group_by(species) %>% 
-  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
-            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
-            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
-  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
-  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
-  filter(!is.na(RDI.micro.tot)) %>% 
-  arrange(., RDI.micro.tot) 
-
-table(ntbl.RDI.tot$RDI.micro.tot)
-
-RDI.freq <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDI.freq.csv")
-RDI.freq <- read.csv("~/Documents/Nutrient_Analysis/data/RDI.freq.csv")
-str(RDI.freq)
-
-
-ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 10% RDI targets reached") + theme(axis.text=element_text(size=14),
-        axis.title=element_text(size=14,face="bold"))
-ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
-
-
-#' for the 25% RDI targets, for the 106 species for which we have data for all 3 minerals, 65 spp reach 0 targets, 30 reach 1 target, 9 reach 2 targets, and 2 reach all 3 targets. In other words, 41 reach 1 or more targets, 39 reach two or more targets and 2 reach all three targets.  
-#' for the 10% RDI targets,  56 reach 0 targets, 9 reach 1 target, 26 reach 2 targets and 15 reach all 3 targets. Or, in other words, 50 reach one or more targets, 41 reach 2 or more targets, and 15 reach all three targets. 
-```
