@@ -20,7 +20,7 @@ library(knitr)
 suppressPackageStartupMessages(library(ggtree))
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
-str(ntbl)
+
 ```
 
 
@@ -402,6 +402,7 @@ n.long %>%
 
 #####How important is functional diversity?
 
+Here we look at the three minerals. 
 ```{r}
 ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
@@ -428,7 +429,7 @@ ntbl.RDI <- minerals %>%
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
             mean.ZN = mean(ZN_mg, na.rm = TRUE), 
             mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
   mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
   mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
   mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
@@ -444,7 +445,7 @@ ntbl.RDI.noMoll <- minerals %>%
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
             mean.ZN = mean(ZN_mg, na.rm = TRUE), 
             mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
   mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
   mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
   mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
@@ -462,7 +463,7 @@ plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3, 
 abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
 # dev.off()
-# summary(spa.rand)
+summary(spa.rand)
 
 #Now create the analagous curve for the no mollusc dataset, and plot both curves on the same axis (question to self...is it a fair comparison to compare against the full dataset? should I also remove the same amount of finfish from the full dataset to make a fair comparison?)
 
@@ -473,10 +474,67 @@ plot(spa.rand.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "
 # dev.off()
 legend('bottomright', legend = c("full", "no molluscs"), lty=c(1,1), lwd=c(4.4), col=c('black', 'darkgrey')) # gives the legend lines the correct color and width))
 
-# summary(spa.rand.noMoll)
+summary(spa.rand.noMoll)
 
 ## Results from random nutrient accumulation:
-## Need to sample from 14 species to get a median of all three minerals, and need to sample from 8 species to get a median of 3 minerals when molluscs are included. 
+## Need to sample from 14 species to get a median of all three minerals without molluscs, and need to sample from 8 species to get a median of 3 minerals when molluscs are included. 
 ```
 
+#### All micronutrients accumulation ####
+Now repeat the same process, but now include the three minerals plus the two fatty acids.
+```{r}
+ntbl.micronuts <- ntbl.raw %>% 
+  select(Subgroup, species, CA_mg, FE_mg, ZN_mg, EPA_g, DHA_g)
 
+#step 1. create a matrix with just 0 and 1 for whether a given species reaches RDI
+ntbl.RDI.all <- ntbl.micronuts %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE),
+            mean.DHA = mean(DHA_g, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  # arrange(., RDI.micro.tot) %>% 
+  # select(., c(1,5:7))
+  select(., 7:11)
+
+ntbl.RDI.all.noMoll <- ntbl.micronuts %>% 
+  group_by(species) %>% 
+  filter(Subgroup != "Molluscs") %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE),
+            mean.DHA = mean(DHA_g, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  # arrange(., RDI.micro.tot) %>% 
+  # select(., c(1,5:7))
+  select(., 7:11)
+
+## Create the sac
+
+spa.rand.all <- specaccum(ntbl.RDI.all, method = "random")
+spa.rand.all.noMoll <- specaccum(ntbl.RDI.all.noMoll, method = "random")
+# png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
+plot(spa.rand.all, col = "cadetblue", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,6), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+plot(spa.rand.all.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "darkgrey", ylim = c(0,6), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+summary(spa.rand.all)
+
+summary(spa.rand.all.noMoll)
+
+
+### Result, need to sample from 15 species to reach a median of all 5 micronutrient targets (when molluscs are included), need to sample from 22 species when molluscs are excluded. 
+```
