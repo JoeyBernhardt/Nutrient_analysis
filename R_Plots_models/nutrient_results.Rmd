@@ -3,6 +3,7 @@ title: "nutrient_results"
 output: 
   html_document: 
     keep_md: yes
+    toc: yes
 ---
 
 #### Script for the results section of the Nutritional diversity paper
@@ -18,6 +19,9 @@ library(tidyr)
 library(ggthemes)
 library(knitr)
 suppressPackageStartupMessages(library(ggtree))
+library(arm)
+library(broom)
+library(coefplot)
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 
@@ -25,6 +29,8 @@ ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 
 
 #### Result 1. There is considerable variability in nutritional profile among aquatic taxa.
+
+
 
 Find the min and max for each nutrient.
 #### Calcium ####
@@ -134,7 +140,7 @@ ntbl %>%
   summarise(mean.DHA = mean(DHA_g),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.DHA)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ``` 
 
 #### Protein
@@ -184,17 +190,24 @@ ntbl %>%
 #### Result 2: Functional groups have distinct multi-nutrient profiles (mds plot with finfish/crustaceans/molluscs color coded).
 
 ```{r}
-ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
-inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+ntbl.raw <- read.csv("~/Documents/Nutrient_Analysis/data/ntbl2.csv")
+inverts.new <- read.csv("~/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+str(ntbl.raw)
+ntbl.raw <- tbl_df(ntbl.raw)
+```
 
-#### What I did here was to run the same multivariate analysis using the new inverts data, just for CA, FE and ZN.
+What I did here was to run the same multivariate analysis using the new inverts data, just for CA, FE and ZN.
+```{r}
 ntbl.minerals <- ntbl.raw %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
-
+  dplyr::select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
+```
+```{r}
 inverts.minerals <- inverts.new %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg) %>% 
+  dplyr::select(Subgroup, species, CA_mg, FE_mg, ZN_mg) %>% 
   filter(Subgroup != "Echinoderm") 
+```
 
+```{r}
 minerals <- bind_rows(ntbl.minerals, inverts.minerals)
 
 min.mat <- minerals %>% 
@@ -208,18 +221,24 @@ min.mat <- minerals %>%
 
 matrix.min <- data.matrix(min.mat[, 2:4])
 rownames(matrix.min) <- min.mat$species 
+```
+```{r}
+names(minerals)
+minerals$Subgroup <- as.factor(minerals$Subgroup)
+minerals$species <- as.factor(minerals$species)
 
-
+str(minerals)
 min.taxon <- minerals %>% 
-  group_by(species) %>% 
-  select(Subgroup) %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::select(Subgroup) %>% 
   distinct(species)
 
 min.env <- semi_join(min.taxon, min.mat, by = "species")
 rownames(min.env) <- min.env$species 
 dim(min.env)
-
-### ordination
+```
+##### ordination
+```{r}
 ord.mine <- metaMDS(matrix.min, distance="bray", trymax=100)
 ord.mine$stress
 plot(ord.mine, type = "t",cex=.5)
@@ -232,20 +251,23 @@ min.env$nfi_plot <- row.names(min.env)
 
 new.compiled <- merge(site.scaling, min.env, by=c("nfi_plot"))
 new.compiled$Subgroup <- as.factor(new.compiled$Subgroup)
+```
 
-
-##now replot ordination, with sites colour-coded##
+####now replot ordination, with sites colour-coded##
+```{r}
 plot(ord.mine, type = "n", cex=1)
 points(new.compiled$MDS1, new.compiled$MDS2, pch= as.integer(new.compiled$Subgroup), cex = 1)
 points(new.compiled$MDS1, new.compiled$MDS2, col = (as.integer(new.compiled$Subgroup)), pch= as.integer(new.compiled$Subgroup), cex = 1)
 
-# add confidence ellipses around subgroups
+## add confidence ellipses around subgroups
+
 ordiellipse(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
 ordispider(ord.mine, new.compiled$Subgroup,col="grey")
 legend('topleft', legend = levels(new.compiled$Subgroup), col = 1:3, pch = 16, cex = 0.8)
+```
 
-
-# calculate Bray-Curtis distance among samples
+calculate Bray-Curtis distance among samples
+```{r}
 comm.bc.dist <- vegdist(matrix.min, method = "bray")
 hist(comm.bc.dist)
 
@@ -254,12 +276,12 @@ comm.bc.clust <- hclust(comm.bc.dist, method = "average")
 
 # plot cluster diagram
 plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
+```
 
-
-### Use betadisper to test the significance of the multivariate groups
+Use betadisper to test the significance of the multivariate groups
+```{r}
 min.subgroup <- min.env$Subgroup
 mod <- betadisper(comm.bc.dist, min.subgroup)
-
 
 ## Perform test
 anova(mod)
@@ -280,9 +302,10 @@ anova(mod3)
 plot(mod3)
 boxplot(mod3)
 plot(TukeyHSD(mod3))
-
+```
 
 #### Use adonis to ask whether the group means in multivariate space are different from each other ####
+```{r}
 min.subgroup %>% 
   data_frame(subgrp = .) %>% 
   adonis(comm.bc.dist ~ subgrp, data = .)
@@ -332,8 +355,13 @@ n.long <- n.long %>%
          RDI.15per = (concentration/(RDI/6)),
          RDI.target = (concentration > (RDI/10)))
 
-#### body.prop: If max size is less than 100g, gets whole, if not, gets part. bones.body is a combo of fish less than 100g and those from Cambodia where study noted that bones were eaten.
-
+# RDI.prop <- lm(log(mean.RDI) ~ log(max_size), data = n.long)
+# summary(RDI.prop)
+# confint(RDI.prop)
+# visreg::visreg(RDI.prop, xtrans = log)
+```
+body.prop: If max size is less than 100g, gets whole, if not, gets part. bones.body is a combo of fish less than 100g and those from Cambodia where study noted that bones were eaten.
+```{r}
 n.long <- n.long %>% 
   mutate(body.whole = (max_size < 0.1),
          eat.bones = (Abs_lat == 12.265754 | Abs_lat == 11.066667),
@@ -344,12 +372,12 @@ n.long <- n.long %>%
 ### this code gets me the results of what percentage of observations reach 10% RDI for whole body or just part
 n.long %>% 
   # filter(nutrient == "CA_mg") %>% 
-  select(nutrient, RDI.target, bones.body) %>% 
+  dplyr::select(nutrient, RDI.target, bones.body) %>% 
   table()
 
 table <- n.long %>% 
   # filter(nutrient == "CA_mg") %>% 
-  select(RDI.target, bones.body) %>% 
+  dplyr::select(RDI.target, bones.body) %>% 
   table()
 
 mosaicplot(table)
@@ -357,12 +385,11 @@ mosaicplot(table)
 n.long %>% 
   filter(nutrient == "PROTEIN",
          bones.body.invert == FALSE) %>% 
-  select(RDI.target) %>% 
+  dplyr::select(RDI.target) %>% 
 table()
+```
 
-
-
-
+```{r}
 n.long %>% 
   filter(!is.na(bones.body)) %>% 
   # arrange(desc(nutrient)) %>% 
@@ -398,7 +425,150 @@ n.long %>%
   count()
 ```
 
-#### Result 5.	Functional group diversity enhances dietary nutritional diversity and nutritional benefits that human communities may derive from seafood assemblages. (nutrient accumulation curve). 
+#### Result 5. Within functional groups, some traits such body size and latitude are strongly associated with nutritional profile ####
+
+```{r}
+fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
+fb.length <- fb.all %>% 
+   dplyr::select(species, CA_mg, ZN_mg, FE_mg, EPA_g, DHA_g, Length, max_length, Subgroup, Habitat, TL, FoodTroph.x, Herbivory2, Abs_lat, DemersPelag, taxon, max_size) %>% 
+  rename(FoodTroph = FoodTroph.x) %>% 
+  mutate(species = as.factor(species))
+
+table(fb.length$Subgroup)
+
+ZN.all <- standardize(lm(log(ZN_mg) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.ZN.all <- tidy(ZN.all, conf.int =TRUE)
+summary(ZN.all)
+
+
+test.ZN.all$term <- factor(test.ZN.all$term, levels=unique(test.ZN.all$term))
+ggplot(test.ZN.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
+  geom_pointrange() + 
+  coord_flip() + 
+  geom_hline(aes(x=0), lty=2) +
+  xlab('term ZN') +
+  ylab('Regression Coefficient') + theme(legend.position="none")
+
+CA.all <- standardize(lm(log(CA_mg) ~ log(max_size) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.CA.all <- tidy(CA.all, conf.int =TRUE) 
+
+test.CA.all$term <- factor(test.CA.all$term, levels=unique(test.CA.all$term))
+ggplot(test.CA.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
+  geom_pointrange() + 
+  coord_flip() + 
+  geom_hline(aes(x=0), lty=2) +
+  xlab('term CA') +
+  ylab('Regression Coefficient') + theme(legend.position="none")
+coefplot(CA.all, innerCI = 2, intercept = FALSE)
+
+ZN.all <- standardize(lm(log(ZN_mg) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.ZN.all <- tidy(ZN.all, conf.int =TRUE) 
+
+CA.all <- standardize(lm(log(CA_mg) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.CA.all <- tidy(CA.all, conf.int =TRUE)
+
+FE.all <- standardize(lm(log(FE_mg) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.FE.all <- tidy(FE.all, conf.int =TRUE) 
+
+EPA.all <- standardize(lm(log(EPA_g) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.EPA.all <- tidy(EPA.all, conf.int =TRUE)
+
+DHA.all <- standardize(lm(log(DHA_g) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
+test.DHA.all <- tidy(DHA.all, conf.int =TRUE) 
+
+multiplot(ZN.all, CA.all, FE.all, EPA.all, DHA.all, innerCI = 2, intercept = FALSE)
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/coefplot.png")
+```
+
+Inverts traits
+```{r}
+intbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+intbl <- intbl %>% 
+  mutate(Subgroup = as.factor(Subgroup),
+         DemersPelag = as.factor(DemersPelag),
+         taxon = as.factor(taxon),
+         Habitat = as.factor(Habitat))
+
+table(intbl$DemersPelag)
+hist(intbl$Weight)
+
+class(intbl$Weight)
+summary(intbl$FoodTroph)
+
+intbl$Weight <- as.numeric(intbl$Weight)
+
+inv.length <- lm(log(CA_mg) ~ log(Length) + FoodTroph, data = intbl)
+inv.size <- lm(log(CA_mg) ~ log(Length), data = intbl)
+summary(inv.length)
+summary(inv.size)
+confint(inv.size)
+coefplot::coefplot(inv.length, innerCI = 2, intercept = FALSE)
+length(!is.na(intbl$taxon))
+
+### merge the inverts and verts
+fb <- fb.all %>% 
+   dplyr::select(species, CA_mg, ZN_mg, FE_mg, EPA_g, DHA_g, Length, max_length, Subgroup, Habitat, TL, FoodTroph.x, Herbivory2, Abs_lat, DemersPelag, taxon, max_size, Weight) %>% 
+  rename(FoodTroph = FoodTroph.x) %>% 
+  mutate(species = as.factor(species))
+sb <- intbl %>% 
+   dplyr::select(species, CA_mg, ZN_mg, FE_mg, EPA_g, DHA_g, Length, max_length, Subgroup, Habitat, TL, FoodTroph, Herbivory2, Abs_lat, DemersPelag, taxon, max_size, Weight) %>% 
+  mutate(species = as.factor(species))
+
+ntbl <- bind_rows(fb, sb)
+
+class(ntbl$FoodTroph)
+ntbl <- ntbl %>% 
+  mutate(Subgroup = as.factor(Subgroup),
+         DemersPelag = as.factor(DemersPelag),
+         taxon = as.factor(taxon),
+         Habitat = as.factor(Habitat))
+
+ntbl.CA <- ntbl %>% 
+  filter(!is.na(CA_mg),
+         !is.na(max_size),
+         !is.na(Abs_lat),
+         !is.na(Subgroup),
+         !is.na(taxon),
+         !is.na(Habitat),
+         !is.na(DemersPelag))
+
+ntbl.CA$Subgroup <- droplevels(ntbl.CA$Subgroup)
+
+ntbl.CA <- ntbl.CA %>% 
+  mutate(Subgroup = droplevels(Subgroup),
+         Habitat = droplevels(Habitat),
+         DemersPelag = droplevels(DemersPelag),
+         taxon = droplevels(taxon))
+
+mod1 <- lm(log(CA_mg) ~ log(max_size) + FoodTroph + Subgroup + taxon + Habitat + Abs_lat, data = ntbl)
+mod2 <- lm(log(CA_mg) ~ log(Length) + FoodTroph + Habitat + Abs_lat + Subgroup, data = ntbl)
+# mod2 <- standardize(lm(log(CA_mg) ~ log(max_size) + FoodTroph + Habitat + Abs_lat + Subgroup, data = ntbl))
+# mod1 <- standardize(lm(log(CA_mg) ~ log(max_size) + FoodTroph + Subgroup + DemersPelag + taxon + Habitat + Abs_lat, data = ntbl.CA))
+# mod1.tidy <- tidy(mod1, conf.int = TRUE)
+summary(mod2)
+coefs <- buildModelCI(mod1) 
+confint(mod2)
+
+mod2 <- lm(log(CA_mg) ~ log(Weight), data = ntbl)
+coefplot(mod2, innerCI = 2, intercept = FALSE)
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/CA_length_coefplot.png")
+
+modZN <- lm(log(ZN_mg) ~ log(max_size) + FoodTroph + Habitat + Abs_lat, data = ntbl)
+summary(modZN)
+confint(modZN)
+
+modFE <- lm(log(FE_mg) ~ log(max_size) + FoodTroph + Habitat + Abs_lat, data = ntbl)
+summary(modFE)
+confint(modFE)
+
+
+length(unique(ntbl$Weight))
+visreg::visreg(mod2, xtrans = log)
+hist(ntbl$Weight)
+
+```
+
+#### Result 6.	Functional group diversity enhances dietary nutritional diversity and nutritional benefits that human communities may derive from seafood assemblages. (nutrient accumulation curve). 
 
 #####How important is functional diversity?
 
@@ -409,11 +579,11 @@ inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_in
 
 #create a df that is just the minerals and the species info
 ntbl.minerals <- ntbl.raw %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
+  dplyr::select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
 
 
 inverts.minerals <- inverts.new %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
+  dplyr::select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
   # filter(Subgroup != "Echinoderm") 
 
 #join the new old ntbl data with the new inverts mineral data
@@ -436,7 +606,7 @@ ntbl.RDI <- minerals %>%
   filter(!is.na(RDI.micro.tot)) %>% 
   # arrange(., RDI.micro.tot) %>% 
   # select(., c(1,5:7))
-  select(., 5:7)
+  dplyr::select(., 5:7)
 
 #step 2. create the same matrix, but this time remove the molluscs
 ntbl.RDI.noMoll <- minerals %>% 
@@ -452,7 +622,7 @@ ntbl.RDI.noMoll <- minerals %>%
   filter(!is.na(RDI.micro.tot)) %>% 
   # arrange(., RDI.micro.tot) %>% 
   # select(., c(1,5:7))
-  select(., 5:7)
+  dplyr::select(., 5:7)
 ```
 
 #####Create the species/nutrient accumulation curve
@@ -484,7 +654,7 @@ summary(spa.rand.noMoll)
 Now repeat the same process, but now include the three minerals plus the two fatty acids.
 ```{r}
 ntbl.micronuts <- ntbl.raw %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg, EPA_g, DHA_g)
+  dplyr::select(Subgroup, species, CA_mg, FE_mg, ZN_mg, EPA_g, DHA_g)
 
 #step 1. create a matrix with just 0 and 1 for whether a given species reaches RDI
 ntbl.RDI.all <- ntbl.micronuts %>% 
@@ -502,8 +672,8 @@ ntbl.RDI.all <- ntbl.micronuts %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
   # arrange(., RDI.micro.tot) %>% 
-  # select(., c(1,5:7))
-  select(., 7:11)
+  # dplyr::select(., c(1,5:7))
+  dplyr::select(., 7:11)
 
 ntbl.RDI.all.noMoll <- ntbl.micronuts %>% 
   group_by(species) %>% 
@@ -521,8 +691,8 @@ ntbl.RDI.all.noMoll <- ntbl.micronuts %>%
   mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
   # arrange(., RDI.micro.tot) %>% 
-  # select(., c(1,5:7))
-  select(., 7:11)
+  # dplyr::select(., c(1,5:7))
+  dplyr::select(., 7:11)
 
 ## Create the sac
 
@@ -538,3 +708,5 @@ summary(spa.rand.all.noMoll)
 
 ### Result, need to sample from 15 species to reach a median of all 5 micronutrient targets (when molluscs are included), need to sample from 22 species when molluscs are excluded. 
 ```
+
+

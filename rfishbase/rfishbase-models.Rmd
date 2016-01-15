@@ -19,6 +19,7 @@ library(ggthemes)
 library(MuMIn)
 library(visreg)
 library(broom)
+library(arm)
 ```
 
 Load the data
@@ -170,15 +171,37 @@ str(fb.all.DHA)
 ### this model contains all the traits I'm considering: body size, ocean zone use (DemersPelag), trophic level, habitat (marine/freshwater), trophic level of diet, herbivory, 
 
 #### Zinc ####
-
-table(fb.all.ZN$Subgroup)
+library(coefplot)
+table(slb.ZN$Subgroup)
 ZN.slb <- lm(log(ZN_mg) ~ log(Length) + DemersPelag + Abs_lat, data = slb.ZN, na.action = "na.omit")
-ZN.slb.length <- lm(log(ZN_mg) ~ log(Length), data = slb.length, na.action = "na.omit")
-ZN.all <- (lm(log(ZN_mg) ~ log(Length) + DemersPelag + TL + Habitat + FoodTroph + Abs_lat, data = fb.all.ZN, na.action = "na.omit"))
+ZN.slb.length <- lm(log(ZN_mg) ~ log(Length), data = slb.length, na.action = "na.omit") %>% summary()
+ZN.all <- standardize(lm(log(ZN_mg) ~ log(Length) + TL + Habitat + FoodTroph + Abs_lat + DemersPelag, data = fb.all.ZN, na.action = "na.omit"))
+ZN.slb <- standardize(lm(log(ZN_mg) ~ log(Length) + TL + FoodTroph + Abs_lat + DemersPelag, data = slb.ZN, na.action = "na.omit"))
 summary(ZN.slb, conf.int = TRUE)
 kable(tidy(ZN.all))
 alias(ZN.slb)
 test.ZN.slb <- tidy(ZN.slb, conf.int =TRUE)
+test.ZN.all <- tidy(ZN.all, conf.int =TRUE)
+View(test.ZN.all)
+
+
+summary(ZN.all)
+coefplot(ZN.all, innerCI = 2, intercept = FALSE)
+arm::coefplot(ZN.all)
+??coefplot2
+
+
+test.ZN.all$term <- factor(test.ZN.all$term, levels=unique(test.ZN.all$term))
+ggplot(test.ZN.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
+  geom_pointrange() + 
+  coord_flip() + 
+  geom_hline(aes(x=0), lty=2) +
+  xlab('term ZN') +
+  ylab('Regression Coefficient') + theme(legend.position="none")
+
+
+
+
 test.ZN.slb$term <- factor(test.ZN.slb$term, levels=unique(test.ZN.slb$term))
 ggplot(test.ZN.slb, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
   geom_pointrange() + 
@@ -236,7 +259,7 @@ fb.all.FE <- fb.all.FE %>% filter(taxon != "Crabs, sea-spiders",
 levels(fb.all.FE$taxon)
 ?alias
 
-FE.all <- standardize(lm(log(FE_mg) ~ log(Length) + DemersPelag + TL + Habitat + FoodTroph+ Herbivory2, data = fb.all.FE, na.action = "na.omit"))
+FE.all <- standardize(lm(log(FE_mg) ~ log(Length) + TL + Habitat + FoodTroph, data = fb.all.FE, na.action = "na.omit"))
 test.FE <- tidy(FE.all, conf.int =TRUE)
 test.FE$term <- factor(test.FE$term, levels=unique(test.FE$term))
 ggplot(test.FE, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
@@ -246,6 +269,9 @@ ggplot(test.FE, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
   xlab('term FE') +
   ylab('Regression Coefficient') + theme(legend.position="none")
 
+coefplot(FE.all, innerCI = 2, intercept = FALSE)
+
+FE.herb <- lm(log(FE_mg) ~ Herbivory2, data = fb.all.FE) %>% summary()
 
 View(alias(FE.all))
 confint(FE.all)
@@ -303,7 +329,7 @@ hist(inverts.new$length.reported_cm)
 CA.new <- lm(log(CA_mg) ~ length.reported_cm, data = inverts.new)
 summary(CA.new)
 str(inverts.new)
-visreg(CA.new, xvar = "length.reported_cm")
+visreg(CA.new, xvar = "length.reported_cm", xtrans = log)
 
 CA.all <- standardize(lm(log(CA_mg) ~ log(Length) + DemersPelag + TL + FoodTroph + Herbivory2 + Habitat + Abs_lat, data = all.CA, na.action = "na.omit"))
 

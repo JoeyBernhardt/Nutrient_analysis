@@ -7,8 +7,10 @@ library(ggplot2)
 library(tidyr)
 library(ggthemes)
 
-ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
+ntbl.raw <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+str(ntbl.raw)
+ntbl.raw <- tbl_df(ntbl.raw)
 
 #### What I did here was to run the same multivariate analysis using the new inverts data, just for CA, FE and ZN.
 ntbl.minerals <- ntbl.raw %>% 
@@ -18,6 +20,8 @@ table(ntbl.minerals$Subgroup)
 inverts.minerals <- inverts.new %>% 
   select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
   # filter(Subgroup != "Echinoderm") 
+
+length(unique(inverts.minerals$FE_mg))
 
 minerals <- bind_rows(ntbl.minerals, inverts.minerals)
 
