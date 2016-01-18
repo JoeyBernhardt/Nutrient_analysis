@@ -61,21 +61,104 @@ library(coefplot)
 
 ```r
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+```
+
+```
+## Warning: 1188 parsing failures.
+##  row col   expected actual
+## 5941 RDI an integer HG_mcg
+## 5942 RDI an integer HG_mcg
+## 5943 RDI an integer HG_mcg
+## 5944 RDI an integer HG_mcg
+## 5945 RDI an integer HG_mcg
+## .... ... .......... ......
+## .See problems(...) for more details.
 ```
 
 
 #### Result 1. There is considerable variability in nutritional profile among aquatic taxa.
 
 
+```r
+# facetted histograms for the nutrient ranges
+g <- ggplot(n.long, aes(log(concentration))) + geom_histogram()
+g + facet_grid(nutrient ~ .) + theme_bw()
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-2-1.png) 
+
+```r
+n.micro <- n.long %>% 
+  filter(nutrient %in% c("CA_mg", "ZN_mg", "FE_mg", "DHA_g", "EPA_g")) 
+
+#now just for micronutrients
+g <- ggplot(n.micro, aes(concentration)) + geom_histogram(binwidth = 0.07)
+g + facet_grid(nutrient ~ .) + theme_bw() + scale_x_log10()
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-2-2.png) 
+
+```r
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/nut-hist.png")
+```
+
+```
+## Saving 7 x 5 in image
+```
+
+```r
+#an alternative
+ggplot(n.micro, aes(x = concentration, fill=nutrient)) + geom_density(alpha=.3) + scale_x_log10()
+```
+
+```
+## Warning: Removed 986 rows containing non-finite values (stat_density).
+```
+
+```
+## Warning: Removed 672 rows containing non-finite values (stat_density).
+```
+
+```
+## Warning: Removed 666 rows containing non-finite values (stat_density).
+```
+
+```
+## Warning: Removed 987 rows containing non-finite values (stat_density).
+```
+
+```
+## Warning: Removed 992 rows containing non-finite values (stat_density).
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-2-3.png) 
 
 Find the min and max for each nutrient.
 #### Calcium ####
 
 ```r
+hist(log(ntbl$CA_mg))
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-3-1.png) 
+
+```r
 hist(ntbl$CA_mg)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-2-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-3-2.png) 
 
 ```r
 summary(ntbl$CA_mg)
@@ -93,6 +176,16 @@ length(!is.na(ntbl$CA_mg))
 ```
 ## [1] 1188
 ```
+
+```r
+ggplot(ntbl, aes(CA_mg)) + geom_histogram()
+```
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-3-3.png) 
 
 ```r
 #" How many species do we have calcium data for? 99 species.
@@ -154,7 +247,7 @@ Miscellaneous demersal fishes          10.60500    6
 hist(ntbl$ZN_mg)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-3-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-4-1.png) 
 
 ```r
 summary(ntbl$ZN_mg)
@@ -234,7 +327,7 @@ Pearls, mother-of-pearl, shells        0.0297900    1
 hist(ntbl$FE_mg)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-4-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-5-1.png) 
 
 ```r
 summary(ntbl$FE_mg)
@@ -307,7 +400,7 @@ Cods, hakes, haddocks                  0.1909091    6
 hist(ntbl$EPA_g)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-5-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-6-1.png) 
 
 ```r
 summary(ntbl$EPA_g)
@@ -382,7 +475,7 @@ Sharks, rays, chimaeras               0.0163765    9
 hist(ntbl$DHA_g)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-6-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-7-1.png) 
 
 ```r
 summary(ntbl$DHA_g)
@@ -457,7 +550,7 @@ ntbl %>%
 hist(ntbl$PROTEIN)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-7-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-8-1.png) 
 
 ```r
 summary(ntbl$PROTEIN)
@@ -531,7 +624,7 @@ Freshwater molluscs                        6.60000    1
 hist(ntbl$FAT)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-8-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-9-1.png) 
 
 ```r
 summary(ntbl$FAT)
@@ -735,13 +828,8 @@ ord.mine <- metaMDS(matrix.min, distance="bray", trymax=100)
 ## Square root transformation
 ## Wisconsin double standardization
 ## Run 0 stress 0.02858309 
-## Run 1 stress 0.07378775 
-## Run 2 stress 0.097374 
-## Run 3 stress 0.07378705 
-## Run 4 stress 0.09381203 
-## Run 5 stress 0.02858281 
-## ... New best solution
-## ... procrustes: rmse 8.424828e-05  max resid 0.0007799359 
+## Run 1 stress 0.02861079 
+## ... procrustes: rmse 0.0006808349  max resid 0.005929378 
 ## *** Solution reached
 ```
 
@@ -750,7 +838,7 @@ ord.mine$stress
 ```
 
 ```
-## [1] 0.02858281
+## [1] 0.02858309
 ```
 
 ```r
@@ -759,7 +847,7 @@ site.scaling <- as.data.frame(ord.mine$points)
 points(site.scaling,pch=16)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-14-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-15-1.png) 
 
 ```r
 site.scaling$nfi_plot <- row.names(site.scaling)
@@ -783,7 +871,7 @@ ordispider(ord.mine, new.compiled$Subgroup,col="grey")
 legend('topleft', legend = levels(new.compiled$Subgroup), col = 1:3, pch = 16, cex = 0.8)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-15-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-16-1.png) 
 
 calculate Bray-Curtis distance among samples
 
@@ -792,7 +880,7 @@ comm.bc.dist <- vegdist(matrix.min, method = "bray")
 hist(comm.bc.dist)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-16-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-17-1.png) 
 
 ```r
 # cluster communities using average-linkage algorithm
@@ -802,7 +890,7 @@ comm.bc.clust <- hclust(comm.bc.dist, method = "average")
 plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-16-2.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-17-2.png) 
 
 Use betadisper to test the significance of the multivariate groups
 
@@ -836,14 +924,14 @@ permutest(mod, pairwise = TRUE, permutations = 99)
 ## 
 ## Response: Distances
 ##            Df Sum Sq  Mean Sq      F N.Perm Pr(>F)
-## Groups      2 0.0543 0.027132 0.6514     99   0.52
+## Groups      2 0.0543 0.027132 0.6514     99   0.58
 ## Residuals 103 4.2899 0.041650                     
 ## 
 ## Pairwise comparisons:
 ## (Observed p-value below diagonal, permuted p-value above diagonal)
 ##            Crustacean Finfish Molluscs
-## Crustacean            0.34000     0.79
-## Finfish       0.30013             0.58
+## Crustacean            0.36000     0.84
+## Finfish       0.30013             0.59
 ## Molluscs      0.76419 0.55174
 ```
 
@@ -869,13 +957,13 @@ permutest(mod, pairwise = TRUE, permutations = 99)
 plot(mod.HSD)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-17-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-18-1.png) 
 
 ```r
 boxplot(mod)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-17-2.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-18-2.png) 
 
 ```r
 ## Using group centroids
@@ -914,7 +1002,7 @@ permutest(mod3, permutations = 99)
 ## 
 ## Response: Distances
 ##            Df Sum Sq  Mean Sq      F N.Perm Pr(>F)
-## Groups      2 0.0319 0.015956 0.3721     99   0.68
+## Groups      2 0.0319 0.015956 0.3721     99   0.77
 ## Residuals 103 4.4167 0.042881
 ```
 
@@ -935,19 +1023,19 @@ anova(mod3)
 plot(mod3)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-17-3.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-18-3.png) 
 
 ```r
 boxplot(mod3)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-17-4.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-18-4.png) 
 
 ```r
 plot(TukeyHSD(mod3))
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-17-5.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-18-5.png) 
 
 #### Use adonis to ask whether the group means in multivariate space are different from each other ####
 
@@ -968,7 +1056,7 @@ min.subgroup %>%
 ## Terms added sequentially (first to last)
 ## 
 ##            Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)   
-## subgrp      2    1.5935 0.79676  3.4299 0.06244  0.006 **
+## subgrp      2    1.5935 0.79676  3.4299 0.06244  0.004 **
 ## Residuals 103   23.9272 0.23230         0.93756          
 ## Total     105   25.5207                 1.00000          
 ## ---
@@ -1019,7 +1107,7 @@ ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets,
         axis.title=element_text(size=14,face="bold"))
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-19-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-20-1.png) 
 
 ```r
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
@@ -1120,7 +1208,7 @@ table <- n.long %>%
 mosaicplot(table)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-21-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-22-1.png) 
 
 ```r
 n.long %>% 
@@ -1152,7 +1240,7 @@ n.long %>%
 ## Warning: Removed 5539 rows containing non-finite values (stat_boxplot).
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-22-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-23-1.png) 
 
 ```r
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
@@ -1320,7 +1408,7 @@ ggplot(test.ZN.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
   ylab('Regression Coefficient') + theme(legend.position="none")
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-24-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-25-1.png) 
 
 ```r
 CA.all <- standardize(lm(log(CA_mg) ~ log(max_size) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
@@ -1342,13 +1430,13 @@ ggplot(test.CA.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
   ylab('Regression Coefficient') + theme(legend.position="none")
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-24-2.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-25-2.png) 
 
 ```r
 coefplot(CA.all, innerCI = 2, intercept = FALSE)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-24-3.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-25-3.png) 
 
 ```r
 ZN.all <- standardize(lm(log(ZN_mg) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
@@ -1404,7 +1492,7 @@ test.DHA.all <- tidy(DHA.all, conf.int =TRUE)
 multiplot(ZN.all, CA.all, FE.all, EPA.all, DHA.all, innerCI = 2, intercept = FALSE)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-24-4.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-25-4.png) 
 
 ```r
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/coefplot.png")
@@ -1439,7 +1527,7 @@ table(intbl$DemersPelag)
 hist(intbl$Weight)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-25-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-26-1.png) 
 
 ```r
 class(intbl$Weight)
@@ -1529,7 +1617,7 @@ confint(inv.size)
 coefplot::coefplot(inv.length, innerCI = 2, intercept = FALSE)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-25-2.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-26-2.png) 
 
 ```r
 length(!is.na(intbl$taxon))
@@ -1647,7 +1735,7 @@ mod2 <- lm(log(CA_mg) ~ log(Weight), data = ntbl)
 coefplot(mod2, innerCI = 2, intercept = FALSE)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-25-3.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-26-3.png) 
 
 ```r
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/CA_length_coefplot.png")
@@ -1761,13 +1849,13 @@ length(unique(ntbl$Weight))
 visreg::visreg(mod2, xtrans = log)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-25-4.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-26-4.png) 
 
 ```r
 hist(ntbl$Weight)
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-25-5.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-26-5.png) 
 
 #### Result 6.	Functional group diversity enhances dietary nutritional diversity and nutritional benefits that human communities may derive from seafood assemblages. (nutrient accumulation curve). 
 
@@ -1838,7 +1926,7 @@ abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-28-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-29-1.png) 
 
 ```r
 # dev.off()
@@ -1846,146 +1934,146 @@ summary(spa.rand)
 ```
 
 ```
-##  1 sites        2 sites        3 sites        4 sites       
+##  1 sites        2 sites        3 sites       4 sites        5 sites       
+##  Min.   :0.00   Min.   :0.00   Min.   :0.0   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.0   1st Qu.:1.00   1st Qu.:1.00  
+##  Median :0.00   Median :1.00   Median :1.0   Median :2.00   Median :2.00  
+##  Mean   :0.56   Mean   :1.05   Mean   :1.3   Mean   :1.62   Mean   :1.85  
+##  3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:2.0   3rd Qu.:3.00   3rd Qu.:3.00  
+##  Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00  
+##  6 sites        7 sites        8 sites        9 sites       
 ##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.75   1st Qu.:1.00  
-##  Median :0.00   Median :1.00   Median :1.00   Median :2.00  
-##  Mean   :0.44   Mean   :0.84   Mean   :1.23   Mean   :1.61  
-##  3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:2.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  5 sites        6 sites        7 sites        8 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:1.00   1st Qu.:1.00   1st Qu.:1.75   1st Qu.:2.00  
-##  Median :2.00   Median :2.00   Median :2.00   Median :2.50  
-##  Mean   :1.82   Mean   :2.03   Mean   :2.17   Mean   :2.31  
+##  1st Qu.:1.00   1st Qu.:1.00   1st Qu.:2.00   1st Qu.:2.00  
+##  Median :2.00   Median :2.00   Median :3.00   Median :3.00  
+##  Mean   :2.02   Mean   :2.15   Mean   :2.27   Mean   :2.39  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  9 sites        10 sites      11 sites      12 sites       13 sites      
-##  Min.   :0.00   Min.   :0.0   Min.   :0.0   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:2.00   1st Qu.:2.0   1st Qu.:2.0   1st Qu.:2.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.0   Median :3.0   Median :3.00   Median :3.00  
-##  Mean   :2.41   Mean   :2.5   Mean   :2.6   Mean   :2.68   Mean   :2.73  
-##  3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.0   Max.   :3.0   Max.   :3.00   Max.   :3.00  
-##  14 sites       15 sites       16 sites       17 sites      18 sites     
-##  Min.   :1.00   Min.   :1.00   Min.   :2.00   Min.   :2.0   Min.   :2.0  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.0  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.0   Median :3.0  
-##  Mean   :2.79   Mean   :2.83   Mean   :2.89   Mean   :2.9   Mean   :2.9  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.0  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.0  
+##  10 sites       11 sites       12 sites       13 sites      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:3.00  
+##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
+##  Mean   :2.52   Mean   :2.61   Mean   :2.65   Mean   :2.71  
+##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
+##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
+##  14 sites       15 sites      16 sites       17 sites       18 sites      
+##  Min.   :1.00   Min.   :1.0   Min.   :1.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
+##  Median :3.00   Median :3.0   Median :3.00   Median :3.00   Median :3.00  
+##  Mean   :2.76   Mean   :2.8   Mean   :2.84   Mean   :2.85   Mean   :2.91  
+##  3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
+##  Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00   Max.   :3.00  
 ##  19 sites       20 sites       21 sites       22 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
+##  Min.   :1.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
 ##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
 ##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.93   Mean   :2.93   Mean   :2.94   Mean   :2.97  
+##  Mean   :2.93   Mean   :2.94   Mean   :2.97   Mean   :2.98  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  23 sites       24 sites       25 sites       26 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.97   Mean   :2.97   Mean   :2.97   Mean   :2.98  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  27 sites       28 sites       29 sites       30 sites       31 sites   
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :3  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00   Median :3  
-##  Mean   :2.98   Mean   :2.98   Mean   :2.99   Mean   :2.99   Mean   :3  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3  
-##  32 sites    33 sites    34 sites    35 sites    36 sites    37 sites   
+##  23 sites       24 sites       25 sites    26 sites    27 sites   
+##  Min.   :2.00   Min.   :2.00   Min.   :3   Min.   :3   Min.   :3  
+##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3   1st Qu.:3   1st Qu.:3  
+##  Median :3.00   Median :3.00   Median :3   Median :3   Median :3  
+##  Mean   :2.99   Mean   :2.99   Mean   :3   Mean   :3   Mean   :3  
+##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
+##  Max.   :3.00   Max.   :3.00   Max.   :3   Max.   :3   Max.   :3  
+##  28 sites    29 sites    30 sites    31 sites    32 sites    33 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  38 sites    39 sites    40 sites    41 sites    42 sites    43 sites   
+##  34 sites    35 sites    36 sites    37 sites    38 sites    39 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  44 sites    45 sites    46 sites    47 sites    48 sites    49 sites   
+##  40 sites    41 sites    42 sites    43 sites    44 sites    45 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  50 sites    51 sites    52 sites    53 sites    54 sites    55 sites   
+##  46 sites    47 sites    48 sites    49 sites    50 sites    51 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  56 sites    57 sites    58 sites    59 sites    60 sites    61 sites   
+##  52 sites    53 sites    54 sites    55 sites    56 sites    57 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  62 sites    63 sites    64 sites    65 sites    66 sites    67 sites   
+##  58 sites    59 sites    60 sites    61 sites    62 sites    63 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  68 sites    69 sites    70 sites    71 sites    72 sites    73 sites   
+##  64 sites    65 sites    66 sites    67 sites    68 sites    69 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  74 sites    75 sites    76 sites    77 sites    78 sites    79 sites   
+##  70 sites    71 sites    72 sites    73 sites    74 sites    75 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  80 sites    81 sites    82 sites    83 sites    84 sites    85 sites   
+##  76 sites    77 sites    78 sites    79 sites    80 sites    81 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  86 sites    87 sites    88 sites    89 sites    90 sites    91 sites   
+##  82 sites    83 sites    84 sites    85 sites    86 sites    87 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  92 sites    93 sites    94 sites    95 sites    96 sites    97 sites   
+##  88 sites    89 sites    90 sites    91 sites    92 sites    93 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  98 sites    99 sites    100 sites   101 sites   102 sites   103 sites  
+##  94 sites    95 sites    96 sites    97 sites    98 sites    99 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  104 sites   105 sites   106 sites  
-##  Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3
+##  100 sites   101 sites   102 sites   103 sites   104 sites   105 sites  
+##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
+##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
+##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
+##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
+##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
+##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
+##  106 sites  
+##  Min.   :3  
+##  1st Qu.:3  
+##  Median :3  
+##  Mean   :3  
+##  3rd Qu.:3  
+##  Max.   :3
 ```
 
 ```r
@@ -1999,153 +2087,146 @@ plot(spa.rand.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "
 legend('bottomright', legend = c("full", "no molluscs"), lty=c(1,1), lwd=c(4.4), col=c('black', 'darkgrey')) # gives the legend lines the correct color and width))
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-28-2.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-29-2.png) 
 
 ```r
 summary(spa.rand.noMoll)
 ```
 
 ```
-##  1 sites        2 sites        3 sites        4 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.00  
-##  Median :0.00   Median :1.00   Median :1.00   Median :1.00  
-##  Mean   :0.37   Mean   :0.74   Mean   :0.93   Mean   :1.18  
-##  3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:2.00  
-##  Max.   :2.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  5 sites        6 sites        7 sites        8 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:1.00   1st Qu.:1.00   1st Qu.:1.00   1st Qu.:1.00  
-##  Median :1.00   Median :2.00   Median :2.00   Median :2.00  
-##  Mean   :1.39   Mean   :1.59   Mean   :1.79   Mean   :1.89  
-##  3rd Qu.:2.00   3rd Qu.:2.00   3rd Qu.:2.00   3rd Qu.:2.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  9 sites        10 sites       11 sites       12 sites      13 sites      
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :1.0   Min.   :1.00  
-##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.0   1st Qu.:2.00  
+##  1 sites       2 sites        3 sites        4 sites        5 sites       
+##  Min.   :0.0   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.00   1st Qu.:1.00  
+##  Median :0.0   Median :1.00   Median :1.00   Median :1.00   Median :1.00  
+##  Mean   :0.4   Mean   :0.75   Mean   :0.98   Mean   :1.17   Mean   :1.33  
+##  3rd Qu.:1.0   3rd Qu.:1.00   3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:2.00  
+##  Max.   :2.0   Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
+##  6 sites       7 sites        8 sites       9 sites        10 sites      
+##  Min.   :0.0   Min.   :0.00   Min.   :0.0   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:1.0   1st Qu.:1.00   1st Qu.:1.0   1st Qu.:1.00   1st Qu.:1.00  
+##  Median :1.0   Median :1.50   Median :2.0   Median :2.00   Median :2.00  
+##  Mean   :1.5   Mean   :1.61   Mean   :1.7   Mean   :1.81   Mean   :1.92  
+##  3rd Qu.:2.0   3rd Qu.:2.00   3rd Qu.:2.0   3rd Qu.:2.00   3rd Qu.:3.00  
+##  Max.   :3.0   Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00  
+##  11 sites       12 sites       13 sites       14 sites      15 sites      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.0   Min.   :1.00  
+##  1st Qu.:1.75   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.0   1st Qu.:2.00  
 ##  Median :2.00   Median :2.00   Median :2.00   Median :2.0   Median :2.00  
-##  Mean   :2.01   Mean   :2.08   Mean   :2.19   Mean   :2.3   Mean   :2.37  
+##  Mean   :2.05   Mean   :2.17   Mean   :2.24   Mean   :2.3   Mean   :2.37  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.00  
-##  14 sites       15 sites       16 sites      17 sites       18 sites      
+##  16 sites       17 sites       18 sites      19 sites       20 sites      
 ##  Min.   :1.00   Min.   :1.00   Min.   :1.0   Min.   :1.00   Min.   :1.00  
 ##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.0   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :3.00   Median :3.00   Median :3.0   Median :3.00   Median :3.00  
-##  Mean   :2.49   Mean   :2.54   Mean   :2.6   Mean   :2.63   Mean   :2.66  
+##  Median :2.00   Median :2.00   Median :3.0   Median :3.00   Median :3.00  
+##  Mean   :2.41   Mean   :2.44   Mean   :2.5   Mean   :2.57   Mean   :2.64  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00  
-##  19 sites       20 sites       21 sites       22 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.75   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.69   Mean   :2.72   Mean   :2.73   Mean   :2.76  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  23 sites       24 sites      25 sites      26 sites       27 sites      
-##  Min.   :1.00   Min.   :1.0   Min.   :1.0   Min.   :1.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.0   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.0   Median :3.0   Median :3.00   Median :3.00  
-##  Mean   :2.78   Mean   :2.8   Mean   :2.8   Mean   :2.82   Mean   :2.85  
-##  3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.0   Max.   :3.0   Max.   :3.00   Max.   :3.00  
-##  28 sites       29 sites       30 sites      31 sites      32 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.0   Min.   :2.0   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.0   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.0   Median :3.0   Median :3.00  
-##  Mean   :2.87   Mean   :2.88   Mean   :2.9   Mean   :2.9   Mean   :2.91  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.0   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.0   Max.   :3.0   Max.   :3.00  
-##  33 sites       34 sites       35 sites       36 sites      
+##  21 sites       22 sites      23 sites       24 sites       25 sites     
+##  Min.   :1.00   Min.   :1.0   Min.   :2.00   Min.   :2.00   Min.   :2.0  
+##  1st Qu.:2.00   1st Qu.:2.0   1st Qu.:2.00   1st Qu.:3.00   1st Qu.:3.0  
+##  Median :3.00   Median :3.0   Median :3.00   Median :3.00   Median :3.0  
+##  Mean   :2.68   Mean   :2.7   Mean   :2.74   Mean   :2.76   Mean   :2.8  
+##  3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.0  
+##  Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00   Max.   :3.0  
+##  26 sites       27 sites       28 sites       29 sites      
 ##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
 ##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
 ##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.91   Mean   :2.92   Mean   :2.93   Mean   :2.94  
+##  Mean   :2.81   Mean   :2.83   Mean   :2.84   Mean   :2.86  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  37 sites       38 sites       39 sites       40 sites      
+##  30 sites       31 sites      32 sites       33 sites       34 sites      
+##  Min.   :2.00   Min.   :2.0   Min.   :2.00   Min.   :2.00   Min.   :2.00  
+##  1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
+##  Median :3.00   Median :3.0   Median :3.00   Median :3.00   Median :3.00  
+##  Mean   :2.87   Mean   :2.9   Mean   :2.91   Mean   :2.91   Mean   :2.93  
+##  3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
+##  Max.   :3.00   Max.   :3.0   Max.   :3.00   Max.   :3.00   Max.   :3.00  
+##  35 sites       36 sites       37 sites       38 sites      
 ##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
 ##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
 ##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.96   Mean   :2.97   Mean   :2.97   Mean   :2.97  
+##  Mean   :2.93   Mean   :2.93   Mean   :2.94   Mean   :2.96  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  41 sites       42 sites       43 sites       44 sites      
+##  39 sites       40 sites       41 sites       42 sites      
 ##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
 ##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
 ##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
 ##  Mean   :2.97   Mean   :2.97   Mean   :2.97   Mean   :2.97  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  45 sites       46 sites       47 sites       48 sites      
+##  43 sites       44 sites       45 sites       46 sites      
 ##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
 ##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
 ##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.97   Mean   :2.98   Mean   :2.99   Mean   :2.99  
+##  Mean   :2.97   Mean   :2.97   Mean   :2.97   Mean   :2.97  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  49 sites       50 sites       51 sites       52 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.99   Mean   :2.99   Mean   :2.99   Mean   :2.99  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  53 sites       54 sites       55 sites       56 sites      
+##  47 sites       48 sites       49 sites       50 sites      
 ##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
 ##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
 ##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
 ##  Mean   :2.99   Mean   :2.99   Mean   :2.99   Mean   :2.99  
 ##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
 ##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
-##  57 sites       58 sites    59 sites    60 sites    61 sites   
+##  51 sites       52 sites       53 sites       54 sites      
+##  Min.   :2.00   Min.   :2.00   Min.   :2.00   Min.   :2.00  
+##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
+##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
+##  Mean   :2.99   Mean   :2.99   Mean   :2.99   Mean   :2.99  
+##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
+##  Max.   :3.00   Max.   :3.00   Max.   :3.00   Max.   :3.00  
+##  55 sites       56 sites    57 sites    58 sites    59 sites   
 ##  Min.   :2.00   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3.00   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3.00   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :2.99   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3.00   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3.00   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  62 sites    63 sites    64 sites    65 sites    66 sites    67 sites   
+##  60 sites    61 sites    62 sites    63 sites    64 sites    65 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  68 sites    69 sites    70 sites    71 sites    72 sites    73 sites   
+##  66 sites    67 sites    68 sites    69 sites    70 sites    71 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  74 sites    75 sites    76 sites    77 sites    78 sites    79 sites   
+##  72 sites    73 sites    74 sites    75 sites    76 sites    77 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  80 sites    81 sites    82 sites    83 sites    84 sites    85 sites   
+##  78 sites    79 sites    80 sites    81 sites    82 sites    83 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  86 sites    87 sites    88 sites    89 sites    90 sites    91 sites   
+##  84 sites    85 sites    86 sites    87 sites    88 sites    89 sites   
 ##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
 ##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
 ##  Median :3   Median :3   Median :3   Median :3   Median :3   Median :3  
 ##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
 ##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
 ##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3  
-##  92 sites    93 sites    94 sites   
-##  Min.   :3   Min.   :3   Min.   :3  
-##  1st Qu.:3   1st Qu.:3   1st Qu.:3  
-##  Median :3   Median :3   Median :3  
-##  Mean   :3   Mean   :3   Mean   :3  
-##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
-##  Max.   :3   Max.   :3   Max.   :3
+##  90 sites    91 sites    92 sites    93 sites    94 sites   
+##  Min.   :3   Min.   :3   Min.   :3   Min.   :3   Min.   :3  
+##  1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3   1st Qu.:3  
+##  Median :3   Median :3   Median :3   Median :3   Median :3  
+##  Mean   :3   Mean   :3   Mean   :3   Mean   :3   Mean   :3  
+##  3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3   3rd Qu.:3  
+##  Max.   :3   Max.   :3   Max.   :3   Max.   :3   Max.   :3
 ```
 
 ```r
@@ -2207,7 +2288,7 @@ plot(spa.rand.all, col = "cadetblue", lwd = 4, ci = 1, ci.type = "bar", ci.lty =
 plot(spa.rand.all.noMoll, add = TRUE, col = "darkgrey", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "darkgrey", ylim = c(0,6), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-29-1.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-30-1.png) 
 
 ```r
 summary(spa.rand.all)
@@ -2217,87 +2298,87 @@ summary(spa.rand.all)
 ##  1 sites        2 sites        3 sites        4 sites       
 ##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
 ##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.00   1st Qu.:1.00  
-##  Median :0.00   Median :1.00   Median :1.50   Median :2.00  
-##  Mean   :0.51   Mean   :0.99   Mean   :1.63   Mean   :2.03  
-##  3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:2.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :4.00   Max.   :4.00   Max.   :5.00  
-##  5 sites        6 sites        7 sites     8 sites        9 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:1.75   1st Qu.:2.00   1st Qu.:2   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :2.00   Median :3.00   Median :3   Median :3.00   Median :3.50  
-##  Mean   :2.40   Mean   :2.77   Mean   :3   Mean   :3.23   Mean   :3.45  
-##  3rd Qu.:3.00   3rd Qu.:4.00   3rd Qu.:4   3rd Qu.:4.25   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5   Max.   :5.00   Max.   :5.00  
-##  10 sites      11 sites       12 sites       13 sites       14 sites      
-##  Min.   :1.0   Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:3.0   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.75   1st Qu.:4.00  
-##  Median :4.0   Median :4.00   Median :4.00   Median :4.00   Median :5.00  
-##  Mean   :3.7   Mean   :3.91   Mean   :4.04   Mean   :4.13   Mean   :4.29  
-##  3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.0   Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  15 sites      16 sites      17 sites       18 sites       19 sites      
-##  Min.   :2.0   Min.   :2.0   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:4.0   1st Qu.:4.0   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00  
-##  Median :5.0   Median :5.0   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.4   Mean   :4.5   Mean   :4.57   Mean   :4.62   Mean   :4.64  
-##  3rd Qu.:5.0   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.0   Max.   :5.0   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  20 sites       21 sites      22 sites       23 sites       24 sites      
-##  Min.   :2.00   Min.   :2.0   Min.   :2.00   Min.   :2.00   Min.   :2.00  
-##  1st Qu.:4.75   1st Qu.:5.0   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.00   Median :5.0   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.67   Mean   :4.7   Mean   :4.73   Mean   :4.77   Mean   :4.83  
+##  Median :0.00   Median :1.00   Median :2.00   Median :2.00  
+##  Mean   :0.62   Mean   :1.32   Mean   :1.85   Mean   :2.18  
+##  3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:3.00   3rd Qu.:3.00  
+##  Max.   :3.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  5 sites        6 sites        7 sites        8 sites       
+##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :1.00  
+##  1st Qu.:1.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:3.00  
+##  Median :2.50   Median :3.00   Median :3.00   Median :3.00  
+##  Mean   :2.45   Mean   :2.74   Mean   :3.12   Mean   :3.31  
+##  3rd Qu.:3.00   3rd Qu.:4.00   3rd Qu.:4.00   3rd Qu.:4.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  9 sites        10 sites       11 sites       12 sites      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
+##  Median :3.00   Median :4.00   Median :4.00   Median :4.00  
+##  Mean   :3.53   Mean   :3.69   Mean   :3.79   Mean   :3.96  
+##  3rd Qu.:4.25   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  13 sites       14 sites      15 sites       16 sites       17 sites      
+##  Min.   :1.00   Min.   :1.0   Min.   :1.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:3.00   1st Qu.:3.0   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00  
+##  Median :4.00   Median :4.0   Median :4.00   Median :4.00   Median :4.50  
+##  Mean   :4.06   Mean   :4.1   Mean   :4.21   Mean   :4.27   Mean   :4.31  
 ##  3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
 ##  Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  25 sites       26 sites       27 sites      28 sites       29 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :3.0   Min.   :4.00   Min.   :4.00  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.0   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.00   Median :5.00   Median :5.0   Median :5.00   Median :5.00  
-##  Mean   :4.85   Mean   :4.85   Mean   :4.9   Mean   :4.93   Mean   :4.94  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.00  
-##  30 sites       31 sites       32 sites       33 sites      
+##  18 sites       19 sites       20 sites       21 sites      22 sites      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.0   Min.   :1.00  
+##  1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.0   1st Qu.:4.00  
+##  Median :5.00   Median :5.00   Median :5.00   Median :5.0   Median :5.00  
+##  Mean   :4.35   Mean   :4.42   Mean   :4.49   Mean   :4.5   Mean   :4.55  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.0   Max.   :5.00  
+##  23 sites       24 sites       25 sites       26 sites      
+##  Min.   :3.00   Min.   :3.00   Min.   :3.00   Min.   :3.00  
+##  1st Qu.:4.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
+##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
+##  Mean   :4.69   Mean   :4.73   Mean   :4.74   Mean   :4.76  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  27 sites       28 sites       29 sites      30 sites      31 sites      
+##  Min.   :4.00   Min.   :4.00   Min.   :4.0   Min.   :4.0   Min.   :4.00  
+##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.0   1st Qu.:5.0   1st Qu.:5.00  
+##  Median :5.00   Median :5.00   Median :5.0   Median :5.0   Median :5.00  
+##  Mean   :4.83   Mean   :4.88   Mean   :4.9   Mean   :4.9   Mean   :4.92  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.0   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.0   Max.   :5.0   Max.   :5.00  
+##  32 sites       33 sites       34 sites       35 sites      
 ##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00  
 ##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
 ##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.94   Mean   :4.96   Mean   :4.96   Mean   :4.98  
+##  Mean   :4.93   Mean   :4.94   Mean   :4.95   Mean   :4.96  
 ##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
 ##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  34 sites       35 sites       36 sites       37 sites      
-##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.99   Mean   :4.99   Mean   :4.99   Mean   :4.99  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  38 sites       39 sites       40 sites       41 sites      
-##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.99   Mean   :4.99   Mean   :4.99   Mean   :4.99  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  42 sites       43 sites       44 sites       45 sites      
-##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.99   Mean   :4.99   Mean   :4.99   Mean   :4.99  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  46 sites       47 sites       48 sites    49 sites    50 sites   
-##  Min.   :4.00   Min.   :4.00   Min.   :5   Min.   :5   Min.   :5  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5   1st Qu.:5   1st Qu.:5  
-##  Median :5.00   Median :5.00   Median :5   Median :5   Median :5  
-##  Mean   :4.99   Mean   :4.99   Mean   :5   Mean   :5   Mean   :5  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5  
-##  Max.   :5.00   Max.   :5.00   Max.   :5   Max.   :5   Max.   :5  
-##  51 sites    52 sites    53 sites    54 sites    55 sites   
-##  Min.   :5   Min.   :5   Min.   :5   Min.   :5   Min.   :5  
-##  1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5  
-##  Median :5   Median :5   Median :5   Median :5   Median :5  
-##  Mean   :5   Mean   :5   Mean   :5   Mean   :5   Mean   :5  
-##  3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5  
-##  Max.   :5   Max.   :5   Max.   :5   Max.   :5   Max.   :5
+##  36 sites       37 sites       38 sites       39 sites       40 sites   
+##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :5  
+##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5  
+##  Median :5.00   Median :5.00   Median :5.00   Median :5.00   Median :5  
+##  Mean   :4.97   Mean   :4.98   Mean   :4.99   Mean   :4.99   Mean   :5  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5  
+##  41 sites    42 sites    43 sites    44 sites    45 sites    46 sites   
+##  Min.   :5   Min.   :5   Min.   :5   Min.   :5   Min.   :5   Min.   :5  
+##  1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5  
+##  Median :5   Median :5   Median :5   Median :5   Median :5   Median :5  
+##  Mean   :5   Mean   :5   Mean   :5   Mean   :5   Mean   :5   Mean   :5  
+##  3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5  
+##  Max.   :5   Max.   :5   Max.   :5   Max.   :5   Max.   :5   Max.   :5  
+##  47 sites    48 sites    49 sites    50 sites    51 sites    52 sites   
+##  Min.   :5   Min.   :5   Min.   :5   Min.   :5   Min.   :5   Min.   :5  
+##  1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5   1st Qu.:5  
+##  Median :5   Median :5   Median :5   Median :5   Median :5   Median :5  
+##  Mean   :5   Mean   :5   Mean   :5   Mean   :5   Mean   :5   Mean   :5  
+##  3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5   3rd Qu.:5  
+##  Max.   :5   Max.   :5   Max.   :5   Max.   :5   Max.   :5   Max.   :5  
+##  53 sites    54 sites    55 sites   
+##  Min.   :5   Min.   :5   Min.   :5  
+##  1st Qu.:5   1st Qu.:5   1st Qu.:5  
+##  Median :5   Median :5   Median :5  
+##  Mean   :5   Mean   :5   Mean   :5  
+##  3rd Qu.:5   3rd Qu.:5   3rd Qu.:5  
+##  Max.   :5   Max.   :5   Max.   :5
 ```
 
 ```r
@@ -2309,86 +2390,86 @@ summary(spa.rand.all.noMoll)
 ##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
 ##  1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.00   1st Qu.:1.00  
 ##  Median :0.00   Median :1.00   Median :1.00   Median :2.00  
-##  Mean   :0.54   Mean   :1.13   Mean   :1.54   Mean   :1.84  
+##  Mean   :0.51   Mean   :1.07   Mean   :1.37   Mean   :1.85  
 ##  3rd Qu.:1.00   3rd Qu.:2.00   3rd Qu.:2.00   3rd Qu.:3.00  
-##  Max.   :3.00   Max.   :3.00   Max.   :5.00   Max.   :5.00  
-##  5 sites        6 sites        7 sites        8 sites       
-##  Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00  
-##  1st Qu.:1.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00  
-##  Median :2.00   Median :2.00   Median :3.00   Median :3.00  
-##  Mean   :2.05   Mean   :2.33   Mean   :2.51   Mean   :2.67  
-##  3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:3.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  9 sites        10 sites       11 sites       12 sites      
-##  Min.   :0.00   Min.   :0.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:3.00  
-##  Median :3.00   Median :3.00   Median :3.00   Median :3.00  
-##  Mean   :2.82   Mean   :2.89   Mean   :3.08   Mean   :3.29  
-##  3rd Qu.:3.00   3rd Qu.:3.25   3rd Qu.:4.00   3rd Qu.:4.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  13 sites       14 sites      15 sites       16 sites       17 sites      
-##  Min.   :1.00   Min.   :1.0   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:3.00   1st Qu.:3.0   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
-##  Median :3.50   Median :4.0   Median :4.00   Median :4.00   Median :4.00  
-##  Mean   :3.45   Mean   :3.6   Mean   :3.74   Mean   :3.85   Mean   :3.94  
-##  3rd Qu.:4.00   3rd Qu.:4.0   3rd Qu.:4.00   3rd Qu.:4.25   3rd Qu.:5.00  
+##  Max.   :3.00   Max.   :4.00   Max.   :4.00   Max.   :5.00  
+##  5 sites        6 sites       7 sites        8 sites        9 sites       
+##  Min.   :0.00   Min.   :0.0   Min.   :0.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:1.00   1st Qu.:2.0   1st Qu.:2.00   1st Qu.:2.00   1st Qu.:2.00  
+##  Median :2.00   Median :2.0   Median :3.00   Median :3.00   Median :3.00  
+##  Mean   :2.13   Mean   :2.4   Mean   :2.68   Mean   :2.82   Mean   :2.98  
+##  3rd Qu.:3.00   3rd Qu.:3.0   3rd Qu.:3.00   3rd Qu.:3.00   3rd Qu.:4.00  
 ##  Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  10 sites       11 sites       12 sites       13 sites      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:2.75   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00  
+##  Median :3.00   Median :3.00   Median :4.00   Median :4.00  
+##  Mean   :3.18   Mean   :3.39   Mean   :3.56   Mean   :3.66  
+##  3rd Qu.:4.00   3rd Qu.:4.00   3rd Qu.:4.00   3rd Qu.:4.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  14 sites       15 sites       16 sites       17 sites      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
+##  1st Qu.:3.00   1st Qu.:3.00   1st Qu.:3.00   1st Qu.:4.00  
+##  Median :4.00   Median :4.00   Median :4.00   Median :4.00  
+##  Mean   :3.71   Mean   :3.84   Mean   :3.89   Mean   :3.99  
+##  3rd Qu.:4.00   3rd Qu.:4.00   3rd Qu.:4.00   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
 ##  18 sites       19 sites       20 sites       21 sites      
 ##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
-##  1st Qu.:3.75   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00  
+##  1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00  
 ##  Median :4.00   Median :4.00   Median :4.00   Median :4.00  
-##  Mean   :4.01   Mean   :4.08   Mean   :4.15   Mean   :4.23  
+##  Mean   :4.03   Mean   :4.08   Mean   :4.14   Mean   :4.22  
 ##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
 ##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
 ##  22 sites       23 sites       24 sites       25 sites      
-##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :2.00  
+##  Min.   :1.00   Min.   :1.00   Min.   :1.00   Min.   :1.00  
 ##  1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00  
-##  Median :4.00   Median :4.00   Median :5.00   Median :5.00  
-##  Mean   :4.26   Mean   :4.31   Mean   :4.37   Mean   :4.44  
+##  Median :4.00   Median :4.00   Median :4.00   Median :5.00  
+##  Mean   :4.27   Mean   :4.29   Mean   :4.37   Mean   :4.48  
 ##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
 ##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  26 sites       27 sites       28 sites       29 sites      
-##  Min.   :2.00   Min.   :2.00   Min.   :3.00   Min.   :3.00  
-##  1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.00  
+##  26 sites       27 sites       28 sites      29 sites       30 sites     
+##  Min.   :1.00   Min.   :3.00   Min.   :3.0   Min.   :3.00   Min.   :3.0  
+##  1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.0   1st Qu.:4.00   1st Qu.:4.0  
+##  Median :5.00   Median :5.00   Median :5.0   Median :5.00   Median :5.0  
+##  Mean   :4.56   Mean   :4.59   Mean   :4.6   Mean   :4.66   Mean   :4.7  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.0  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.0  
+##  31 sites       32 sites       33 sites       34 sites      
+##  Min.   :3.00   Min.   :3.00   Min.   :3.00   Min.   :4.00  
+##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
 ##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.47   Mean   :4.52   Mean   :4.57   Mean   :4.62  
+##  Mean   :4.74   Mean   :4.81   Mean   :4.83   Mean   :4.86  
 ##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
 ##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  30 sites       31 sites       32 sites      33 sites       34 sites      
-##  Min.   :3.00   Min.   :3.00   Min.   :3.0   Min.   :3.00   Min.   :3.00  
-##  1st Qu.:4.00   1st Qu.:4.00   1st Qu.:4.0   1st Qu.:4.75   1st Qu.:5.00  
-##  Median :5.00   Median :5.00   Median :5.0   Median :5.00   Median :5.00  
-##  Mean   :4.63   Mean   :4.68   Mean   :4.7   Mean   :4.71   Mean   :4.75  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.00  
-##  35 sites       36 sites       37 sites      38 sites       39 sites      
-##  Min.   :3.00   Min.   :3.00   Min.   :3.0   Min.   :3.00   Min.   :4.00  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.0   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.00   Median :5.00   Median :5.0   Median :5.00   Median :5.00  
-##  Mean   :4.76   Mean   :4.78   Mean   :4.8   Mean   :4.82   Mean   :4.87  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.00  
-##  40 sites      41 sites       42 sites       43 sites       44 sites      
-##  Min.   :4.0   Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00  
-##  1st Qu.:5.0   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
-##  Median :5.0   Median :5.00   Median :5.00   Median :5.00   Median :5.00  
-##  Mean   :4.9   Mean   :4.91   Mean   :4.92   Mean   :4.93   Mean   :4.95  
-##  3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
-##  Max.   :5.0   Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
-##  45 sites       46 sites       47 sites       48 sites       49 sites   
-##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :5  
-##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5  
-##  Median :5.00   Median :5.00   Median :5.00   Median :5.00   Median :5  
-##  Mean   :4.96   Mean   :4.96   Mean   :4.97   Mean   :4.98   Mean   :5  
-##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5  
-##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5  
-##  50 sites    51 sites   
-##  Min.   :5   Min.   :5  
-##  1st Qu.:5   1st Qu.:5  
-##  Median :5   Median :5  
-##  Mean   :5   Mean   :5  
-##  3rd Qu.:5   3rd Qu.:5  
-##  Max.   :5   Max.   :5
+##  35 sites       36 sites      37 sites       38 sites       39 sites      
+##  Min.   :4.00   Min.   :4.0   Min.   :4.00   Min.   :4.00   Min.   :4.00  
+##  1st Qu.:5.00   1st Qu.:5.0   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
+##  Median :5.00   Median :5.0   Median :5.00   Median :5.00   Median :5.00  
+##  Mean   :4.88   Mean   :4.9   Mean   :4.92   Mean   :4.92   Mean   :4.92  
+##  3rd Qu.:5.00   3rd Qu.:5.0   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.0   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  40 sites       41 sites       42 sites       43 sites      
+##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :4.00  
+##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00  
+##  Median :5.00   Median :5.00   Median :5.00   Median :5.00  
+##  Mean   :4.93   Mean   :4.95   Mean   :4.96   Mean   :4.98  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5.00  
+##  44 sites       45 sites       46 sites       47 sites    48 sites   
+##  Min.   :4.00   Min.   :4.00   Min.   :4.00   Min.   :5   Min.   :5  
+##  1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5.00   1st Qu.:5   1st Qu.:5  
+##  Median :5.00   Median :5.00   Median :5.00   Median :5   Median :5  
+##  Mean   :4.98   Mean   :4.98   Mean   :4.99   Mean   :5   Mean   :5  
+##  3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5.00   3rd Qu.:5   3rd Qu.:5  
+##  Max.   :5.00   Max.   :5.00   Max.   :5.00   Max.   :5   Max.   :5  
+##  49 sites    50 sites    51 sites   
+##  Min.   :5   Min.   :5   Min.   :5  
+##  1st Qu.:5   1st Qu.:5   1st Qu.:5  
+##  Median :5   Median :5   Median :5  
+##  Mean   :5   Mean   :5   Mean   :5  
+##  3rd Qu.:5   3rd Qu.:5   3rd Qu.:5  
+##  Max.   :5   Max.   :5   Max.   :5
 ```
 
 ```r
