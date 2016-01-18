@@ -24,20 +24,41 @@ library(broom)
 library(coefplot)
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
 
 ```
 
 
 #### Result 1. There is considerable variability in nutritional profile among aquatic taxa.
 
+```{r}
+# facetted histograms for the nutrient ranges
+g <- ggplot(n.long, aes(log(concentration))) + geom_histogram()
+g + facet_grid(nutrient ~ .) + theme_bw()
 
+
+n.micro <- n.long %>% 
+  filter(nutrient %in% c("CA_mg", "ZN_mg", "FE_mg", "DHA_g", "EPA_g")) 
+
+#now just for micronutrients
+g <- ggplot(n.micro, aes(concentration)) + geom_histogram(binwidth = 0.07)
+g + facet_grid(nutrient ~ .) + theme_bw() + scale_x_log10()
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/nut-hist.png")
+
+#an alternative
+ggplot(n.micro, aes(x = concentration, fill=nutrient)) + geom_density(alpha=.3) + scale_x_log10()
+
+```
 
 Find the min and max for each nutrient.
 #### Calcium ####
 ```{r}
+hist(log(ntbl$CA_mg))
 hist(ntbl$CA_mg)
 summary(ntbl$CA_mg)
 length(!is.na(ntbl$CA_mg))
+
+ggplot(ntbl, aes(CA_mg)) + geom_histogram()
 
 #" How many species do we have calcium data for? 99 species.
 ntbl %>% 
