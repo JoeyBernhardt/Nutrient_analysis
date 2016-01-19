@@ -351,12 +351,35 @@ ntbl.RDI.tot <- minerals %>%
 
 table(ntbl.RDI.tot$RDI.micro.tot)
 
+ntbl.RDI.sub <- inner_join(ntbl.RDI.tot, ntbl.raw, by = "species")
+qplot(factor(Subgroup), data = ntbl.RDI.sub, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.stacked.barchart.png")
+ggplot(ntbl.RDI.sub, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png")
+
+
+  ntbl.RDI.tot <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) 
+
+table(ntbl.RDI.tot$RDI.micro.tot)
+
+
+
 RDI.freq <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDI.freq.csv")
 RDI.freq <- read.csv("~/Documents/Nutrient_Analysis/data/RDI.freq.csv")
 str(RDI.freq)
 
 
-ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 10% RDI targets reached") + theme(axis.text=element_text(size=14),
+ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets, -frequency), y = frequency)) +  geom_bar(stat = "identity", width = 0.5) + xlab("number of 25% RDI targets reached") + theme(axis.text=element_text(size=14),
         axis.title=element_text(size=14,face="bold"))
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
 
@@ -370,11 +393,20 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.
 ```{r}
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
 n.long <- n.long %>% 
-  mutate(RDI.25per = (concentration/(RDI/4)),
+  group_by(Subgroup) %>% 
+  mutate(RDI.25per = (concentration > (RDI/4)),
          RDI.per = (concentration/RDI),
          RDI.20per = (concentration/(RDI/5)),
          RDI.15per = (concentration/(RDI/6)),
          RDI.target = (concentration > (RDI/10)))
+
+n.long.RDI <- n.long %>% 
+  filter(!is.na(RDI.25per))
+## try to make bar chart with number of RDI hits, grouped by Subgroup
+qplot(factor(Subgroup), data = n.long.RDI, geom = "bar", fill = factor(RDI.25per))
+
+
+
 
 # RDI.prop <- lm(log(mean.RDI) ~ log(max_size), data = n.long)
 # summary(RDI.prop)
@@ -428,13 +460,18 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
 How many species reach RDI for each nutrient?
 10% RDI: calcium: 28/99, zinc: 39/101, iron: 23/104, EPA: 117/238, DHA: 168/235, Fat: 47/277, Protein: 251/251  
 ```{r}
-n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv", col_names = TRUE, na = c("", "NA"))
 str(n.long)
+
+## arrgh, I couldn't figure out the arguments to read_csv, so I'm converting to factor here:
 n.long$species <- as.factor(n.long$species)
+n.long$nutrient <- as.factor(n.long$nutrient)
+n.long$Subgroup <- as.factor(n.long$Subgroup)
+
 
 n.long %>% 
   filter(nutrient == "PROTEIN") %>% 
-  filter(!is.na(concentration)) %>%
+  filter(!is.na(concentration)) %>% 
   distinct(species) %>% 
   count()
 
@@ -442,7 +479,7 @@ n.long %>%
   filter(nutrient == "PROTEIN") %>%
   mutate(RDI.10 = (concentration > (RDI/10))) %>% 
     filter(RDI.10 == "TRUE") %>% 
-  distinct(species) %>% 
+  distinct(species) %>%
   count()
 ```
 
@@ -536,6 +573,7 @@ sb <- intbl %>%
   mutate(species = as.factor(species))
 
 ntbl <- bind_rows(fb, sb)
+write.csv(ntbl, "/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.int.csv")
 
 class(ntbl$FoodTroph)
 ntbl <- ntbl %>% 
@@ -545,23 +583,39 @@ ntbl <- ntbl %>%
          Habitat = as.factor(Habitat))
 
 ntbl.CA <- ntbl %>% 
-  filter(!is.na(CA_mg),
-         !is.na(max_size),
-         !is.na(Abs_lat),
-         !is.na(Subgroup),
-         !is.na(taxon),
-         !is.na(Habitat),
-         !is.na(DemersPelag))
+  filter(!is.na(CA_mg))
+#          !is.na(max_size),
+#          # !is.na(Abs_lat),
+#          !is.na(Subgroup),
+#          # !is.na(taxon),
+#          # !is.na(Habitat),
+#          # !is.na(DemersPelag))
 
 ntbl.CA$Subgroup <- droplevels(ntbl.CA$Subgroup)
+
+library(gdata)
 
 ntbl.CA <- ntbl.CA %>% 
   mutate(Subgroup = droplevels(Subgroup),
          Habitat = droplevels(Habitat),
          DemersPelag = droplevels(DemersPelag),
          taxon = droplevels(taxon))
+str(ntbl.CA)
+
+ntbl.CA <- drop.levels(ntbl.CA)
+table(ntbl.CA$Subgroup)
 
 mod1 <- lm(log(CA_mg) ~ log(max_size) + FoodTroph + Subgroup + taxon + Habitat + Abs_lat, data = ntbl)
+summary(mod1)
+
+mod1s <- standardize(lm(log(CA_mg) ~ log(max_size) + FoodTroph + taxon + Habitat + Abs_lat, na.action = na.omit, data = ntbl))
+coefplot(mod1s, innerCI = 2, intercept = FALSE)
+summary(mod1s)
+confint(mod1s)
+summary(ntbl.CA$Abs_lat)
+
+
+
 mod2 <- lm(log(CA_mg) ~ log(Length) + FoodTroph + Habitat + Abs_lat + Subgroup, data = ntbl)
 # mod2 <- standardize(lm(log(CA_mg) ~ log(max_size) + FoodTroph + Habitat + Abs_lat + Subgroup, data = ntbl))
 # mod1 <- standardize(lm(log(CA_mg) ~ log(max_size) + FoodTroph + Subgroup + DemersPelag + taxon + Habitat + Abs_lat, data = ntbl.CA))
