@@ -230,6 +230,9 @@ inverts.minerals <- inverts.new %>%
 
 ```{r}
 minerals <- bind_rows(ntbl.minerals, inverts.minerals)
+minerals$Subgroup <- as.factor(minerals$Subgroup)
+minerals$species <- as.factor(minerals$species)
+
 
 min.mat <- minerals %>% 
   group_by(species) %>% 
@@ -245,8 +248,6 @@ rownames(matrix.min) <- min.mat$species
 ```
 ```{r}
 names(minerals)
-minerals$Subgroup <- as.factor(minerals$Subgroup)
-minerals$species <- as.factor(minerals$species)
 
 str(minerals)
 min.taxon <- minerals %>% 
@@ -351,12 +352,27 @@ ntbl.RDI.tot <- minerals %>%
 
 table(ntbl.RDI.tot$RDI.micro.tot)
 
+
+### code for figure 
 ntbl.RDI.sub <- inner_join(ntbl.RDI.tot, ntbl.raw, by = "species")
 qplot(factor(Subgroup), data = ntbl.RDI.sub, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.stacked.barchart.png")
 ggplot(ntbl.RDI.sub, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png")
 
+### What percentage of each groups reaches at least one RDI target?
+
+ntbl.RDI.sub %>% 
+  dplyr::filter(Subgroup == "Crustacean") %>% 
+  distinct(species) %>% 
+  count()
+  dplyr::filter(RDI.micro.tot > 0) %>% 
+  dplyr::distinct(species) %>% 
+  count()
+  
+  table(ntbl.RDI.sub$Subgroup)
+
+### eight out of 10 Molluscs reach at least one RDI target, 21 out of 80 finfish reach at least one RDI target, 3 out of 7 crustacean species reach at least one RDI target. 
 
   ntbl.RDI.tot <- minerals %>% 
   group_by(species) %>% 
@@ -370,7 +386,7 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) 
 
-table(ntbl.RDI.tot$RDI.micro.tot)
+table(ntbl.RDI.tot$Subgroup)
 
 
 
