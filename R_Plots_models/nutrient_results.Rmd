@@ -8,9 +8,21 @@ output:
 
 #### Script for the results section of the Nutritional diversity paper
 
+
+```{r include=FALSE}
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+
 Load packages and data
 ```{r}
-library(plyr)
+library(arm)
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(vegan))
 library(readr)
@@ -18,8 +30,6 @@ library(ggplot2)
 library(tidyr)
 library(ggthemes)
 library(knitr)
-suppressPackageStartupMessages(library(ggtree))
-library(arm)
 library(broom)
 library(coefplot)
 
@@ -73,7 +83,7 @@ ntbl %>%
   summarise(mean.CA = mean(CA_mg),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.CA)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ```
 
 #### Then zinc: ####
@@ -95,7 +105,7 @@ ntbl %>%
   summarise(mean.ZN = mean(ZN_mg),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.ZN)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ```
 
 #### Then iron: ####
@@ -117,7 +127,7 @@ ntbl %>%
   summarise(mean.FE = mean(FE_mg),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.FE)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ```
 
 #### EPA ####
@@ -139,7 +149,7 @@ ntbl %>%
   summarise(mean.EPA = mean(EPA_g),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.EPA)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ```
 
 #### DHA
@@ -183,7 +193,7 @@ ntbl %>%
   summarise(mean.protein = mean(PROTEIN),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.protein)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ``` 
 
 #### Fat
@@ -205,7 +215,7 @@ ntbl %>%
   summarise(mean.FAT = mean(FAT),
             n = n_distinct(species)) %>% 
   arrange(desc(mean.FAT)) %>%
-  kable(.)
+  knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ``` 
 
 #### Result 2: Functional groups have distinct multi-nutrient profiles (mds plot with finfish/crustaceans/molluscs color coded).
@@ -365,16 +375,13 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png
 ntbl.RDI.sub %>% 
   dplyr::filter(Subgroup == "Crustacean") %>% 
   distinct(species) %>% 
-  count()
   dplyr::filter(RDI.micro.tot > 0) %>% 
   dplyr::distinct(species) %>% 
   count()
   
   table(ntbl.RDI.sub$Subgroup)
 
-  ntbl.RDI.sub %>% 
-    dplyr::filter(RDI.CA == "1") %>% View()
-    table(.$Subgroup)
+
   
   
 ### eight out of 10 Molluscs reach at least one RDI target, 21 out of 80 finfish reach at least one RDI target, 3 out of 7 crustacean species reach at least one RDI target. 
@@ -391,7 +398,7 @@ ntbl.RDI.sub %>%
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) 
 
-table(ntbl.RDI.tot$Subgroup)
+
 
 
 
