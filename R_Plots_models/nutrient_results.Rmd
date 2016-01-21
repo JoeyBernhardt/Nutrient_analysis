@@ -372,6 +372,11 @@ ntbl.RDI.sub %>%
   
   table(ntbl.RDI.sub$Subgroup)
 
+  ntbl.RDI.sub %>% 
+    dplyr::filter(RDI.CA == "1") %>% View()
+    table(.$Subgroup)
+  
+  
 ### eight out of 10 Molluscs reach at least one RDI target, 21 out of 80 finfish reach at least one RDI target, 3 out of 7 crustacean species reach at least one RDI target. 
 
   ntbl.RDI.tot <- minerals %>% 
