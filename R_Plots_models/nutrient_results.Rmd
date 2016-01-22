@@ -223,7 +223,7 @@ ntbl %>%
 ```{r}
 ntbl.raw <- read.csv("~/Documents/Nutrient_Analysis/data/ntbl2.csv")
 inverts.new <- read.csv("~/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
-str(ntbl.raw)
+
 ntbl.raw <- tbl_df(ntbl.raw)
 ```
 
@@ -285,7 +285,7 @@ new.compiled <- merge(site.scaling, min.env, by=c("nfi_plot"))
 new.compiled$Subgroup <- as.factor(new.compiled$Subgroup)
 ```
 
-####now replot ordination, with sites colour-coded##
+####now replot ordination, with groups colour-coded##
 ```{r}
 plot(ord.mine, type = "n", cex=1)
 points(new.compiled$MDS1, new.compiled$MDS2, pch= as.integer(new.compiled$Subgroup), cex = 1)
@@ -295,7 +295,7 @@ points(new.compiled$MDS1, new.compiled$MDS2, col = (as.integer(new.compiled$Subg
 
 ordiellipse(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
 ordihull(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
-ordicluster(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
+# ordicluster(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
 ordispider(ord.mine, new.compiled$Subgroup,col="grey")
 legend('topleft', legend = levels(new.compiled$Subgroup), col = 1:3, pch = 16, cex = 0.8)
 ```
