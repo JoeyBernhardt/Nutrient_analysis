@@ -294,6 +294,8 @@ points(new.compiled$MDS1, new.compiled$MDS2, col = (as.integer(new.compiled$Subg
 ## add confidence ellipses around subgroups
 
 ordiellipse(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
+ordihull(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
+ordicluster(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
 ordispider(ord.mine, new.compiled$Subgroup,col="grey")
 legend('topleft', legend = levels(new.compiled$Subgroup), col = 1:3, pch = 16, cex = 0.8)
 ```
