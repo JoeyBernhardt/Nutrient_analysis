@@ -734,6 +734,7 @@ ntbl.RDI.noMoll <- minerals %>%
 ```{r}
 spa.rand <- specaccum(ntbl.RDI, method = "random")
 # png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
+spa.rand$sites
 plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,4), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
 abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
