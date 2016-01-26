@@ -2,6 +2,7 @@
 library(readr)
 library(plyr)
 library(dplyr)
+library(tidyr)
 #### Data cleaning ####
 ## Hi Joey, as of Dec 22 2015, ntbl2.csv is the most current data file :) See below for notes on cleaning. 
 
@@ -44,3 +45,41 @@ ntbl$FAT
 
 library(ggplot2)
 ggplot(ntbl.FATS)
+
+#### Jan 24
+
+ntbl.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+intbl.all <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+
+
+names(intbl.all)
+intbl.all$Food.Item.ID
+
+
+## Next step is to make intbl.all into long format and then merge it to ntbl.long
+
+cols <- names(ntbl.long)
+cols
+names(intbl.all)
+
+### first make intbl.all into long format using reshape2
+
+intbl.long <- intbl.all %>%
+  gather(nutrient, concentration, 253:259)
+
+
+intbl.select <- intbl.long %>% 
+  select(Food.Item.ID, species, taxon, max_size, max_length, TL, Habitat, Subgroup, Abs_lat, Latitude, max_length_study, nutrient, concentration)
+  
+names(intbl.select)
+names(ntbl.long)
+
+aq.long <- bind_rows(ntbl.long, intbl.select)
+  
+str(aq.long)
+
+aq.long$taxon <- as.factor(aq.long$taxon)
+aq.long$Habitat <- as.factor(aq.long$Habitat)
+aq.long$species <- as.factor(aq.long$species)
+
+write.csv(aq.long, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")

@@ -35,7 +35,7 @@ library(coefplot)
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
-
+n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
 ```
 
 
@@ -43,8 +43,8 @@ n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
 
 ```{r}
 # facetted histograms for the nutrient ranges
-g <- ggplot(n.long, aes(log(concentration))) + geom_histogram()
-g + facet_grid(nutrient ~ .) + theme_bw()
+g <- ggplot(n.long, aes(concentration)) + geom_histogram(binwidth = 0.07)
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
 
 
 n.micro <- n.long %>% 
@@ -52,7 +52,7 @@ n.micro <- n.long %>%
 
 #now just for micronutrients
 g <- ggplot(n.micro, aes(concentration)) + geom_histogram(binwidth = 0.07)
-g + facet_grid(nutrient ~ .) + theme_bw() + scale_x_log10()
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/nut-hist.png")
 
 #an alternative
@@ -61,7 +61,8 @@ ggplot(n.micro, aes(x = concentration, fill=nutrient)) + geom_density(alpha=.3) 
 ```
 
 Find the min and max for each nutrient.
-#### Calcium ####
+
+Calcium 
 ```{r}
 hist(log(ntbl$CA_mg))
 hist(ntbl$CA_mg)
@@ -86,7 +87,7 @@ ntbl %>%
   knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ```
 
-#### Then zinc: ####
+Zinc
 ```{r}
 hist(ntbl$ZN_mg)
 summary(ntbl$ZN_mg)
@@ -108,7 +109,7 @@ ntbl %>%
   knitr::kable(., align = 'c', format = 'markdown', digits = 2)
 ```
 
-#### Then iron: ####
+Iron
 ```{r}
 hist(ntbl$FE_mg)
 summary(ntbl$FE_mg)
@@ -350,6 +351,23 @@ min.subgroup %>%
 Now let's find out how many species reach more than one mineral RDI target
 ```{r}
 
+## sidebar: let's take aq.long and turn it into wide format
+
+aq.wide <- spread(n.long, nutrient, concentration)
+aq.wide$species <- as.factor(aq.wide$species)
+write.csv(aq.wide, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+aq.wide <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+
+
+aq.wide$species <- as.factor(aq.wide$species)
+
+sp.subgroup <- aq.wide %>%
+  group_by(species) %>% 
+  select(Subgroup, species) %>% 
+  distinct(species)
+
+length(is.na(aq.wide$CA_mg))
+
 ntbl.RDI.tot <- minerals %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -362,14 +380,55 @@ ntbl.RDI.tot <- minerals %>%
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) 
 
+ntbl.RDI.tot.10 <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot)
+
+
+# ##now the same thing, but using the aq.wide
+# 
+# aq.wide.CA <- aq.wide %>% 
+#   group_by(species) %>% 
+#   summarise(mean.CA = mean(CA_mg, na.rm = TRUE))
+# 
+# hist(aq.wide.CA$mean.CA)
+#   
+
+
+ntbl.RDI.tot.aq <- aq.wide %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>%
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) 
+
 table(ntbl.RDI.tot$RDI.micro.tot)
 
 
-### code for figure 
+### first, get the subgroup column back into the RDI matrix
 ntbl.RDI.sub <- inner_join(ntbl.RDI.tot, ntbl.raw, by = "species")
-qplot(factor(Subgroup), data = ntbl.RDI.sub, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
+ntbl.RDI.sub10 <- inner_join(ntbl.RDI.tot.10, ntbl.raw, by = "species")
+ntbl.RDI.subaq <- inner_join(ntbl.RDI.tot.aq, aq.wide, by = "species")
+
+
+ntbl.RDI.sub4 <- dplyr::left_join(ntbl.RDI.tot, ntbl.raw, by = "species") 
+
+qplot(factor(Subgroup), data = ntbl.RDI.sub10, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.stacked.barchart.png")
-ggplot(ntbl.RDI.sub, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
+ggplot(ntbl.RDI.sub10, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png")
 
 ### What percentage of each groups reaches at least one RDI target?
