@@ -426,16 +426,23 @@ ntbl.RDI.subaq <- inner_join(ntbl.RDI.tot.aq, aq.wide, by = "species")
 
 ntbl.RDI.sub4 <- dplyr::left_join(ntbl.RDI.tot, ntbl.raw, by = "species") 
 
+ntbl.RDI.sub %>% 
+  group_by(Subgroup, RDI.micro.tot) %>% 
+  summarise(n = n()) %>% 
+  mutate(cum.RDI = cumsum(n)) %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = cum.RDI)) + geom_bar(stat = "identity") + facet_wrap(~ Subgroup, scales = "free_y")  
+
+
 qplot(factor(Subgroup), data = ntbl.RDI.sub10, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.stacked.barchart.png")
-ggplot(ntbl.RDI.sub10, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
+ggplot(ntbl.RDI.subaq, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png")
 
 ### What percentage of each groups reaches at least one RDI target?
 
 ntbl.RDI.sub %>% 
-  dplyr::filter(Subgroup == "Crustacean") %>% 
-  distinct(species) %>% 
+  dplyr::filter(Subgroup == "Molluscs") %>% 
+  # distinct(species) %>% 
   dplyr::filter(RDI.micro.tot > 0) %>% 
   dplyr::distinct(species) %>% 
   count()

@@ -50,7 +50,7 @@ ggplot(ntbl.FATS)
 
 ntbl.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
 intbl.all <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
-
+table(ntbl.long$Subgroup)
 
 names(intbl.all)
 intbl.all$Food.Item.ID
@@ -83,3 +83,14 @@ aq.long$Habitat <- as.factor(aq.long$Habitat)
 aq.long$species <- as.factor(aq.long$species)
 
 write.csv(aq.long, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
+
+names(aq.long)
+names(aq.wide)
+
+##now let's make aq long into wide form.
+aq.wide <- spread(aq.long, nutrient, concentration)
+aq.wide$species <- as.factor(aq.wide$species)
+write.csv(aq.wide, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+aq.wide <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+
+      
