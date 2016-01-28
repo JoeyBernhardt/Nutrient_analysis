@@ -1,5 +1,9 @@
 ## result 5 trait analysis
 aq.wide <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+aq.wide2 <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide2.csv")
+
+
+
 
 fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
 fb.length <- fb.all %>% 
@@ -10,9 +14,9 @@ fb.length <- fb.all %>%
 table(fb.length$Subgroup)
 
 ZN.all <- standardize(lm(log(ZN_mg) ~ log(Length) + TL + Habitat + Abs_lat, data = fb.length, na.action = "na.omit"))
-test.ZN.all <- tidy(ZN.all, conf.int =TRUE)
+test.ZN.all <- tidy(ZN.all, conf.int =TRUE) %>% View()
 summary(ZN.all)
-
+?broom
 
 test.ZN.all$term <- factor(test.ZN.all$term, levels=unique(test.ZN.all$term))
 ggplot(test.ZN.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
@@ -22,8 +26,16 @@ ggplot(test.ZN.all, aes(x=term, y=estimate, ymin=conf.low, ymax=conf.high)) +
   xlab('term ZN') +
   ylab('Regression Coefficient') + theme(legend.position="none")
 
-CA.all <- standardize(lm(log(CA_mg) ~ log(max_size) + TL + Habitat + Abs_lat, data = aq.wide, subset = Subgroup == "Finfish", na.action = "na.omit"))
-CA.all <- (lm(log(CA_mg) ~ log(max_size) + TL + Habitat + Abs_lat, data = aq.wide, subset = Subgroup == "Finfish", na.action = "na.omit"))
+CA.all <- standardize(lm(log(CA_mg) ~ log(max_length) + TL + Habitat + Abs_lat, data = aq.wide2, subset = Subgroup == "Finfish", na.action = "na.omit"))
+CA.all <- (lm(log(CA_mg) ~ log(max_length) + TL + Abs_lat, data = aq.wide2, na.action = "na.omit"))
+confint(CA.all)
+coefplot::coefplot(CA.all, intercept = FALSE)
+summary(CA.all)
+
+CA.all <- (lm(log(CA_mg) ~ log(max_length), data = aq.wide2, na.action = "na.omit"))
+visreg::visreg(CA.all, xvar = "max_length", xtrans = log)
+
+
 
 test.CA.all <- tidy(CA.all, conf.int =TRUE) %>% View
 

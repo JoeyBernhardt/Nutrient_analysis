@@ -109,4 +109,18 @@ intbl.all %>%
   group_by(Subgroup) %>% 
   summarise(., meanCA = mean(CA_mg)) %>% View
 
+ecology("Ostrea edulis", fields = c("FoodTroph", "SpecCode"))
+species("Ostrea edulis", fields = c("Length", "SpecCode"))
 
+### extract, from aq.wide, the inverts that don't have length data 
+  no.length <- aq.wide %>% 
+    filter(Subgroup != "Finfish") %>% 
+    filter(is.na(max_length)) %>% 
+    select(species) %>% 
+    distinct(species)
+  
+class(no.length)
+
+dat <- ecology(no.length, fields = c("FoodTroph", "SpecCode"))
+  
+  

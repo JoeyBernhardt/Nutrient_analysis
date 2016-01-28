@@ -22,6 +22,7 @@ library(coefplot)
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
 ```
 
 
@@ -30,8 +31,8 @@ n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
 
 ```r
 # facetted histograms for the nutrient ranges
-g <- ggplot(n.long, aes(log(concentration))) + geom_histogram()
-g + facet_grid(nutrient ~ .) + theme_bw()
+g <- ggplot(n.long, aes(concentration)) + geom_histogram(binwidth = 0.07)
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
 ```
 
 ![](nutrient_results_files/figure-html/unnamed-chunk-3-1.png) 
@@ -42,7 +43,7 @@ n.micro <- n.long %>%
 
 #now just for micronutrients
 g <- ggplot(n.micro, aes(concentration)) + geom_histogram(binwidth = 0.07)
-g + facet_grid(nutrient ~ .) + theme_bw() + scale_x_log10()
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
 ```
 
 ![](nutrient_results_files/figure-html/unnamed-chunk-3-2.png) 
@@ -57,7 +58,8 @@ ggplot(n.micro, aes(x = concentration, fill=nutrient)) + geom_density(alpha=.3) 
 ![](nutrient_results_files/figure-html/unnamed-chunk-3-3.png) 
 
 Find the min and max for each nutrient.
-#### Calcium ####
+
+Calcium 
 
 ```r
 hist(log(ntbl$CA_mg))
@@ -148,7 +150,7 @@ ntbl %>%
 |       Cods, hakes, haddocks        |  10.78  | 6  |
 |   Miscellaneous demersal fishes    |  10.61  | 6  |
 
-#### Then zinc: ####
+Zinc
 
 ```r
 hist(ntbl$ZN_mg)
@@ -228,7 +230,7 @@ ntbl %>%
 |       Cods, hakes, haddocks        |  0.37   | 6  |
 |  Pearls, mother-of-pearl, shells   |  0.03   | 1  |
 
-#### Then iron: ####
+Iron
 
 ```r
 hist(ntbl$FE_mg)
@@ -901,6 +903,588 @@ plot(TukeyHSD(mod3))
 
 ![](nutrient_results_files/figure-html/unnamed-chunk-19-5.png) 
 
+```r
+temp <- capscale(comm.bc.dist ~ min.subgroup)
+plot(temp)
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-19-6.png) 
+
+```r
+plot(temp, choices=c(2,3))
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-19-7.png) 
+
+```r
+summary(temp)
+```
+
+```
+#  
+#  Call:
+#  capscale(formula = comm.bc.dist ~ min.subgroup) 
+#  
+#  Partitioning of squared Bray distance:
+#                Inertia Proportion
+#  Total          26.589    1.00000
+#  Constrained     1.632    0.06139
+#  Unconstrained  24.957    0.93861
+#  
+#  Eigenvalues, and their contribution to the squared Bray distance 
+#  
+#  Importance of components:
+#                           CAP1    CAP2    MDS1   MDS2    MDS3    MDS4
+#  Eigenvalue            1.33382 0.29858 13.3616 6.2908 1.64202 1.00198
+#  Proportion Explained  0.05016 0.01123  0.5025 0.2366 0.06176 0.03768
+#  Cumulative Proportion 0.05016 0.06139  0.5639 0.8005 0.86226 0.89994
+#                          MDS5    MDS6    MDS7    MDS8    MDS9   MDS10
+#  Eigenvalue            0.6886 0.51170 0.37801 0.31171 0.16865 0.13433
+#  Proportion Explained  0.0259 0.01924 0.01422 0.01172 0.00634 0.00505
+#  Cumulative Proportion 0.9258 0.94509 0.95930 0.97103 0.97737 0.98242
+#                          MDS11   MDS12   MDS13   MDS14   MDS15   MDS16
+#  Eigenvalue            0.08542 0.06721 0.06492 0.04724 0.03835 0.03113
+#  Proportion Explained  0.00321 0.00253 0.00244 0.00178 0.00144 0.00117
+#  Cumulative Proportion 0.98563 0.98816 0.99060 0.99238 0.99382 0.99499
+#                          MDS17   MDS18   MDS19   MDS20   MDS21    MDS22
+#  Eigenvalue            0.02188 0.01874 0.01719 0.01366 0.01045 0.009101
+#  Proportion Explained  0.00082 0.00070 0.00065 0.00051 0.00039 0.000340
+#  Cumulative Proportion 0.99582 0.99652 0.99717 0.99768 0.99807 0.998420
+#                           MDS23    MDS24   MDS25    MDS26    MDS27    MDS28
+#  Eigenvalue            0.006718 0.005192 0.00504 0.004455 0.004069 0.003204
+#  Proportion Explained  0.000250 0.000200 0.00019 0.000170 0.000150 0.000120
+#  Cumulative Proportion 0.998670 0.998860 0.99905 0.999220 0.999370 0.999490
+#                           MDS29    MDS30    MDS31    MDS32    MDS33
+#  Eigenvalue            0.002899 0.002334 0.001759 0.001675 0.001289
+#  Proportion Explained  0.000110 0.000090 0.000070 0.000060 0.000050
+#  Cumulative Proportion 0.999600 0.999690 0.999760 0.999820 0.999870
+#                            MDS34     MDS35     MDS36     MDS37     MDS38
+#  Eigenvalue            0.0009979 0.0005419 0.0004754 0.0003814 0.0003397
+#  Proportion Explained  0.0000400 0.0000200 0.0000200 0.0000100 0.0000100
+#  Cumulative Proportion 0.9999100 0.9999300 0.9999500 0.9999600 0.9999700
+#                            MDS39     MDS40     MDS41    MDS42     MDS43
+#  Eigenvalue            0.0002942 0.0001561 0.0001279 8.16e-05 6.786e-05
+#  Proportion Explained  0.0000100 0.0000100 0.0000000 0.00e+00 0.000e+00
+#  Cumulative Proportion 0.9999800 0.9999900 0.9999900 1.00e+00 1.000e+00
+#                            MDS44   MDS45
+#  Eigenvalue            1.109e-05 1.3e-06
+#  Proportion Explained  0.000e+00 0.0e+00
+#  Cumulative Proportion 1.000e+00 1.0e+00
+#  
+#  Accumulated constrained eigenvalues
+#  Importance of components:
+#                          CAP1   CAP2
+#  Eigenvalue            1.3338 0.2986
+#  Proportion Explained  0.8171 0.1829
+#  Cumulative Proportion 0.8171 1.0000
+#  
+#  Scaling 2 for species and site scores
+#  * Species are scaled proportional to eigenvalues
+#  * Sites are unscaled: weighted dispersion equal on all dimensions
+#  * General scaling constant of scores:  7.194829 
+#  
+#  
+#  Species scores
+#  
+#        CAP1 CAP2 MDS1 MDS2 MDS3 MDS4
+#  Dim1                               
+#  Dim2                               
+#  Dim3                               
+#  Dim4                               
+#  Dim5                               
+#  Dim6                               
+#  Dim7                               
+#  Dim8                               
+#  Dim9                               
+#  Dim10                              
+#  Dim11                              
+#  Dim12                              
+#  Dim13                              
+#  Dim14                              
+#  Dim15                              
+#  Dim16                              
+#  Dim17                              
+#  Dim18                              
+#  Dim19                              
+#  Dim20                              
+#  Dim21                              
+#  Dim22                              
+#  Dim23                              
+#  Dim24                              
+#  Dim25                              
+#  Dim26                              
+#  Dim27                              
+#  Dim28                              
+#  Dim29                              
+#  Dim30                              
+#  Dim31                              
+#  Dim32                              
+#  Dim33                              
+#  Dim34                              
+#  Dim35                              
+#  Dim36                              
+#  Dim37                              
+#  Dim38                              
+#  Dim39                              
+#  Dim40                              
+#  Dim41                              
+#  Dim42                              
+#  Dim43                              
+#  Dim44                              
+#  Dim45                              
+#  
+#  
+#  Site scores (weighted sums of species scores)
+#  
+#                                     CAP1    CAP2     MDS1      MDS2
+#  Abramis brama                -0.0929447 -1.7061 -0.46945 -0.570334
+#  Alosa sapidissima             0.4219989 -3.7383 -0.63814  0.182160
+#  Anarhichas lupus              1.1205496 -4.7883 -0.60825  0.866759
+#  Aphanopus carbo               0.7792432 -3.7851 -0.65310  0.320904
+#  Arctica islandica            -1.4533573  1.6899 -0.14759 -0.746480
+#  Aspius aspius                -0.8249756  2.3753  0.06495 -1.207870
+#  Brama japonica                1.0826032 -4.5882 -0.64864  0.701187
+#  Carassius carassius          -0.7260936  1.7130 -0.05515 -1.169747
+#  Chamelea gallina             -1.0086416  4.6321  0.54127 -0.346937
+#  Channa marulius               1.1472731  5.7105  1.21263  0.569755
+#  Channa micropeltes            1.1024140  5.9104  1.23577  0.510317
+#  Channa striata               -0.7346871  2.5475  0.07494 -1.217347
+#  Chondrostoma nasus           -0.7121356  1.4891 -0.08801 -1.149110
+#  Cipangopaludina chinensis     1.0247144  5.8455  1.06232  0.967981
+#  Clarias batrachus            -0.0003516  5.5383  0.95919 -0.392464
+#  Clarias gariepinus            0.8579138  6.1329  1.24005  0.396184
+#  Clupeonella cultriventris     0.0635713 -2.0442 -0.51018 -0.450992
+#  Coregonus albula              0.6459381 -3.8383 -0.65149  0.280574
+#  Coregonus clupeaformis        1.2929389 -4.5899 -0.57153  0.961120
+#  Coregonus lavaretus          -0.3008680 -0.7371 -0.36779 -0.805743
+#  Crassostrea rhizophorae      -0.9298816 -2.5812 -0.64574  0.623851
+#  Cyclocheilichthys apogon      1.1208668  5.8802  1.23229  0.525531
+#  Cyclopterus lumpus            1.0126170 -4.7978 -0.63620  0.761413
+#  Cyprinidae                    0.8135179  6.0908  1.23458  0.335009
+#  Cyprinus carpio              -0.6020988  0.8792 -0.17732 -1.077644
+#  Danio dangila                 0.9956035  6.0061  1.24307  0.443348
+#  Dentex spp                   -0.1901031  5.3078  0.86698 -0.555449
+#  Eriocheir sinensis           -0.0738239 -4.6044 -0.44938  0.546750
+#  Esox lucius                   0.8734237 -4.6231 -0.65166  0.618566
+#  Gadus macrocephalus           0.8647684 -4.0474 -0.65875  0.422941
+#  Gadus morhua                  1.1489180 -4.5377 -0.64555  0.719604
+#  Gasterochisma melampus        0.6605263 -4.4250 -0.65653  0.472516
+#  Haliotis cracherodii         -0.9213874 -1.5247 -0.54284 -0.296095
+#  Helostoma temminckii          1.1246075  5.7772  1.22223  0.551486
+#  Hemiramphus spp               1.0396665  5.9076  1.23594  0.507081
+#  Isurus oxyrinchus             0.4967976 -4.2771 -0.65161  0.385058
+#  Lamna nasus                   0.4062279 -4.8349 -0.64500  0.561548
+#  Lampris guttatus              0.9717836 -4.8802 -0.57899  0.915565
+#  Leuciscus cephalus           -0.6998734  2.0107 -0.01808 -1.192448
+#  Leuciscus idus               -0.6882752  1.9109 -0.03389 -1.185260
+#  Litopenaeus schmitti         -1.0216025 -4.9870 -0.36258  0.789943
+#  Litopenaeus vannamei         -1.6516574 -5.0337 -0.04051  0.977166
+#  Liza aurata                   1.3334759 -4.5213 -0.60576  0.883649
+#  Lota lota                     0.7415258 -4.2254 -0.65712  0.433081
+#  Maja brachydactyla           -0.0964418 -4.0341 -0.37689  0.794936
+#  Melanogrammus aeglefinus      1.2480404 -4.5591 -0.62954  0.804112
+#  Meretrix lusoria             -1.8571475 -2.3030 -0.59586  0.278615
+#  Merluccius productus          1.0224381 -4.4206 -0.65650  0.608838
+#  Metacarcinus magister        -1.1154538  5.1096  0.99709 -0.351649
+#  Metapenaeus monoceros        -2.0172935  1.2487  0.27836 -0.289342
+#  Microstomus pacificus         0.6358091 -3.5422 -0.64171  0.183338
+#  Monopterus albus              0.5794360  6.0410  1.17176  0.088046
+#  Mormyrus rume                 0.0659604  5.7975  1.04069 -0.212946
+#  Mytilus chilensis            -2.8244521  0.1524 -0.17974  0.790211
+#  Mytilus edulis               -1.1126618 -2.3863 -0.59851 -0.108761
+#  Mytilus spp                  -2.2420104  3.0505  0.02655 -0.681388
+#  Nephrops norvegicus          -1.1546929  2.9013  0.41984 -0.975727
+#  Oncorhynchus keta            -0.5512103  0.5440 -0.22159 -1.029580
+#  Oncorhynchus kisutch         -0.3639371 -0.6618 -0.35519 -0.826910
+#  Oncorhynchus mykiss          -0.7251016  0.2465 -0.23089 -1.003508
+#  Oncorhynchus nerka           -0.7286134  1.1808 -0.12197 -1.120297
+#  Oncorhynchus tshawytscha     -0.0267045 -1.7844 -0.48290 -0.534539
+#  Oreochromis niloticus         0.9053788  6.0926  1.24185  0.425336
+#  Osteochilus hasselti          1.1053697  5.8941  1.23439  0.516497
+#  Pagellus bogaraveo           -0.5825058  1.9150 -0.05801 -1.185860
+#  Parambassis wolffii           1.1288116  5.7512  1.21909  0.558101
+#  Patagonotothen ramsayi        0.9702506 -4.7342 -0.64693  0.700878
+#  Penaeus brasiliensis         -0.6656419 -2.7069 -0.31574 -0.191572
+#  Penaeus monodon              -0.8045990 -2.6356 -0.29943 -0.241423
+#  Penaeus semisulcatus         -1.5090188 -1.4547 -0.15470 -0.547126
+#  Perca flavescens              1.3537904 -3.8149 -0.35693  1.068194
+#  Perca fluviatilis            -0.2239492 -0.8023 -0.38230 -0.780732
+#  Platichthys stellatus         0.3387128 -3.0193 -0.60215 -0.083175
+#  Pleurogrammus monopterygius   0.5196913 -3.7483 -0.64378  0.206948
+#  Pleuronectes platessa        -0.0876002 -1.4666 -0.45128 -0.620757
+#  Pollachius virens             0.9988847 -4.3959 -0.65779  0.588691
+#  Portunus pelagicus           -0.8937194  3.8178  0.57021 -0.910696
+#  Portunus trituberculatus     -1.0111058 -2.9547 -0.31683 -0.128572
+#  Puntioplites proctozystron    0.9842045  6.0764  1.24287  0.402145
+#  Rapana spp                    0.3117432  6.2164  1.04073  0.689855
+#  Rasbora tornieri              0.9480218  6.1236  1.24109  0.378769
+#  Reinhardtius hippoglossoides  1.3804974 -4.4676 -0.57319  0.960531
+#  Rutilus frisii                1.2308589 -4.5861 -0.62266  0.817724
+#  Rutilus rutilus               0.3586488 -3.1782 -0.61106 -0.027458
+#  Salvelinus fontinalis         1.0026820 -4.8166 -0.63463  0.768182
+#  Salvelinus namaycush          1.2433630 -4.2303 -0.39344  1.061931
+#  Sander lucioperca            -0.6526238  1.5900 -0.08263 -1.157586
+#  Sarda sarda                  -1.5129440  0.5645 -0.14004 -1.057982
+#  Sardinella spp                0.2231273  5.7572  1.08202 -0.135393
+#  Saxidomus gigantea           -2.0230534  1.0996 -0.26989 -0.617694
+#  Scardinius erythrophthalmus  -0.6922616  1.8637 -0.03930 -1.181792
+#  Scylla paramamosain          -1.6469399 -2.6170 -0.27665 -0.008906
+#  Sebastes marinus              0.7712612 -3.7808 -0.65319  0.316753
+#  Sebastes mentella             0.8806753 -3.9604 -0.65667  0.408212
+#  Sebastes ruberrimus          -0.1913246 -0.8368 -0.38919 -0.767992
+#  Silurus glanis               -0.1348631 -2.0000 -0.48845 -0.509899
+#  Soleidae                      1.0795011  5.9506  1.23946  0.490817
+#  Theragra chalcogramma         0.8103986 -3.9417 -0.65697  0.371355
+#  Thunnus alalunga              0.2626650 -3.0816 -0.60044 -0.087129
+#  Tilapia spp                   0.7573731  6.1387  1.21006  0.211235
+#  Tinca tinca                  -0.8567578  1.9103 -0.00138 -1.186573
+#  Trachurus trachurus          -0.5438322  5.2428  0.91021 -0.455206
+#  Trichogaster spp              1.1323965  5.5117  1.18593  0.602473
+#  Velesunio ambiguus           -1.8116463  4.2858  0.30930 -0.553157
+#  Xiphias gladius              -0.7400378 -0.3236 -0.28118 -0.924740
+#  Xiphopenaeus kroyeri         -3.3605732 -0.4675  0.32720  0.536219
+#                                   MDS3      MDS4
+#  Abramis brama                -0.71353 -0.025195
+#  Alosa sapidissima            -0.44539  0.291812
+#  Anarhichas lupus              0.76654 -0.074773
+#  Aphanopus carbo              -0.32169  0.516877
+#  Arctica islandica             0.26952  0.231911
+#  Aspius aspius                 0.57571 -0.277633
+#  Brama japonica                0.33941  0.294400
+#  Carassius carassius           0.24986 -0.352078
+#  Chamelea gallina              1.38537  1.389541
+#  Channa marulius              -0.93473 -0.530178
+#  Channa micropeltes           -0.73820 -0.281329
+#  Channa striata                0.60400 -0.208642
+#  Chondrostoma nasus            0.15804 -0.374826
+#  Cipangopaludina chinensis    -1.02795  0.670729
+#  Clarias batrachus             1.30093  0.946866
+#  Clarias gariepinus           -0.37665  0.009371
+#  Clupeonella cultriventris    -0.76642  0.114308
+#  Coregonus albula             -0.33890  0.408804
+#  Coregonus clupeaformis        1.04830 -0.262132
+#  Coregonus lavaretus          -0.55103 -0.202000
+#  Crassostrea rhizophorae      -0.72613  0.642174
+#  Cyclocheilichthys apogon     -0.78560 -0.331030
+#  Cyclopterus lumpus            0.51125  0.068951
+#  Cyprinidae                   -0.20746  0.161954
+#  Cyprinus carpio              -0.08190 -0.371031
+#  Danio dangila                -0.52874 -0.080772
+#  Dentex spp                    1.47497  0.923641
+#  Eriocheir sinensis           -0.43830  1.093343
+#  Esox lucius                   0.17913  0.280962
+#  Gadus macrocephalus          -0.16710  0.482963
+#  Gadus morhua                  0.36426  0.335843
+#  Gasterochisma melampus       -0.04996  0.242664
+#  Haliotis cracherodii         -0.75768  0.476251
+#  Helostoma temminckii         -0.87358 -0.449960
+#  Hemiramphus spp              -0.72867 -0.302961
+#  Isurus oxyrinchus            -0.20206  0.237863
+#  Lamna nasus                   0.07692  0.016984
+#  Lampris guttatus              0.92970 -0.360722
+#  Leuciscus cephalus            0.35161 -0.300572
+#  Leuciscus idus                0.30897 -0.308479
+#  Litopenaeus schmitti          0.14309 -0.192951
+#  Litopenaeus vannamei          0.80416 -1.558492
+#  Liza aurata                   0.77875  0.091179
+#  Lota lota                    -0.13652  0.381446
+#  Maja brachydactyla           -0.04078  0.908217
+#  Melanogrammus aeglefinus      0.56243  0.236016
+#  Meretrix lusoria             -0.75703 -0.440765
+#  Merluccius productus          0.15116  0.391660
+#  Metacarcinus magister         1.51333  0.925249
+#  Metapenaeus monoceros        -0.33985 -1.402459
+#  Microstomus pacificus        -0.46356  0.455254
+#  Monopterus albus              0.43143  0.638052
+#  Mormyrus rume                 1.04228  0.835893
+#  Mytilus chilensis             0.43241 -2.640369
+#  Mytilus edulis               -0.84700  0.347156
+#  Mytilus spp                   0.84746 -1.143376
+#  Nephrops norvegicus           0.77399  0.949289
+#  Oncorhynchus keta            -0.20165 -0.360883
+#  Oncorhynchus kisutch         -0.52235 -0.247466
+#  Oncorhynchus mykiss          -0.23081 -0.475415
+#  Oncorhynchus nerka            0.06737 -0.407524
+#  Oncorhynchus tshawytscha     -0.73834  0.034386
+#  Oreochromis niloticus        -0.46557 -0.061301
+#  Osteochilus hasselti         -0.75749 -0.303426
+#  Pagellus bogaraveo            0.22111 -0.270380
+#  Parambassis wolffii          -0.89564 -0.479568
+#  Patagonotothen ramsayi        0.36396  0.180178
+#  Penaeus brasiliensis         -0.92115  0.799615
+#  Penaeus monodon              -0.89670  0.640646
+#  Penaeus semisulcatus         -0.71674 -0.058911
+#  Perca flavescens              1.76214 -1.052394
+#  Perca fluviatilis            -0.60157 -0.145420
+#  Platichthys stellatus        -0.66711  0.293557
+#  Pleurogrammus monopterygius  -0.41070  0.334692
+#  Pleuronectes platessa        -0.70892 -0.028564
+#  Pollachius virens             0.11578  0.396040
+#  Portunus pelagicus            1.08608  1.350676
+#  Portunus trituberculatus     -0.86781  0.387710
+#  Puntioplites proctozystron   -0.40077  0.055011
+#  Rapana spp                   -0.01602  0.999861
+#  Rasbora tornieri             -0.32742  0.119242
+#  Reinhardtius hippoglossoides  1.02447 -0.139257
+#  Rutilus frisii                0.60416  0.187983
+#  Rutilus rutilus              -0.62958  0.303045
+#  Salvelinus fontinalis         0.51575  0.077825
+#  Salvelinus namaycush          1.66614 -1.043328
+#  Sander lucioperca             0.17618 -0.329973
+#  Sarda sarda                   0.01142 -1.204228
+#  Sardinella spp                0.88972  0.807959
+#  Saxidomus gigantea           -0.08913 -0.843903
+#  Scardinius erythrophthalmus   0.29495 -0.315274
+#  Scylla paramamosain          -0.78594 -0.343959
+#  Sebastes marinus             -0.32182  0.507904
+#  Sebastes mentella            -0.20568  0.533962
+#  Sebastes ruberrimus          -0.62536 -0.114556
+#  Silurus glanis               -0.71954 -0.046471
+#  Soleidae                     -0.67539 -0.213308
+#  Theragra chalcogramma        -0.24073  0.485390
+#  Thunnus alalunga             -0.65655  0.226722
+#  Tilapia spp                   0.13235  0.470900
+#  Tinca tinca                   0.39563 -0.375795
+#  Trachurus trachurus           1.37168  0.532053
+#  Trichogaster spp             -1.04510 -0.715977
+#  Velesunio ambiguus            1.28618  0.310791
+#  Xiphias gladius              -0.35870 -0.485786
+#  Xiphopenaeus kroyeri          0.68663 -3.497974
+#  
+#  
+#  Site constraints (linear combinations of constraining variables)
+#  
+#                                  CAP1      CAP2     MDS1      MDS2     MDS3
+#  Abramis brama                 0.3984  0.003015 -0.46945 -0.570334 -0.71353
+#  Alosa sapidissima             0.3984  0.003015 -0.63814  0.182160 -0.44539
+#  Anarhichas lupus              0.3984  0.003015 -0.60825  0.866759  0.76654
+#  Aphanopus carbo               0.3984  0.003015 -0.65310  0.320904 -0.32169
+#  Arctica islandica            -1.2373  1.514759 -0.14759 -0.746480  0.26952
+#  Aspius aspius                 0.3984  0.003015  0.06495 -1.207870  0.57571
+#  Brama japonica                0.3984  0.003015 -0.64864  0.701187  0.33941
+#  Carassius carassius           0.3984  0.003015 -0.05515 -1.169747  0.24986
+#  Chamelea gallina             -1.2373  1.514759  0.54127 -0.346937  1.38537
+#  Channa marulius               0.3984  0.003015  1.21263  0.569755 -0.93473
+#  Channa micropeltes            0.3984  0.003015  1.23577  0.510317 -0.73820
+#  Channa striata                0.3984  0.003015  0.07494 -1.217347  0.60400
+#  Chondrostoma nasus            0.3984  0.003015 -0.08801 -1.149110  0.15804
+#  Cipangopaludina chinensis    -1.2373  1.514759  1.06232  0.967981 -1.02795
+#  Clarias batrachus             0.3984  0.003015  0.95919 -0.392464  1.30093
+#  Clarias gariepinus            0.3984  0.003015  1.24005  0.396184 -0.37665
+#  Clupeonella cultriventris     0.3984  0.003015 -0.51018 -0.450992 -0.76642
+#  Coregonus albula              0.3984  0.003015 -0.65149  0.280574 -0.33890
+#  Coregonus clupeaformis        0.3984  0.003015 -0.57153  0.961120  1.04830
+#  Coregonus lavaretus           0.3984  0.003015 -0.36779 -0.805743 -0.55103
+#  Crassostrea rhizophorae      -1.2373  1.514759 -0.64574  0.623851 -0.72613
+#  Cyclocheilichthys apogon      0.3984  0.003015  1.23229  0.525531 -0.78560
+#  Cyclopterus lumpus            0.3984  0.003015 -0.63620  0.761413  0.51125
+#  Cyprinidae                    0.3984  0.003015  1.23458  0.335009 -0.20746
+#  Cyprinus carpio               0.3984  0.003015 -0.17732 -1.077644 -0.08190
+#  Danio dangila                 0.3984  0.003015  1.24307  0.443348 -0.52874
+#  Dentex spp                    0.3984  0.003015  0.86698 -0.555449  1.47497
+#  Eriocheir sinensis           -1.2159 -1.315591 -0.44938  0.546750 -0.43830
+#  Esox lucius                   0.3984  0.003015 -0.65166  0.618566  0.17913
+#  Gadus macrocephalus           0.3984  0.003015 -0.65875  0.422941 -0.16710
+#  Gadus morhua                  0.3984  0.003015 -0.64555  0.719604  0.36426
+#  Gasterochisma melampus        0.3984  0.003015 -0.65653  0.472516 -0.04996
+#  Haliotis cracherodii         -1.2373  1.514759 -0.54284 -0.296095 -0.75768
+#  Helostoma temminckii          0.3984  0.003015  1.22223  0.551486 -0.87358
+#  Hemiramphus spp               0.3984  0.003015  1.23594  0.507081 -0.72867
+#  Isurus oxyrinchus             0.3984  0.003015 -0.65161  0.385058 -0.20206
+#  Lamna nasus                   0.3984  0.003015 -0.64500  0.561548  0.07692
+#  Lampris guttatus              0.3984  0.003015 -0.57899  0.915565  0.92970
+#  Leuciscus cephalus            0.3984  0.003015 -0.01808 -1.192448  0.35161
+#  Leuciscus idus                0.3984  0.003015 -0.03389 -1.185260  0.30897
+#  Litopenaeus schmitti         -1.2159 -1.315591 -0.36258  0.789943  0.14309
+#  Litopenaeus vannamei         -1.2159 -1.315591 -0.04051  0.977166  0.80416
+#  Liza aurata                   0.3984  0.003015 -0.60576  0.883649  0.77875
+#  Lota lota                     0.3984  0.003015 -0.65712  0.433081 -0.13652
+#  Maja brachydactyla           -1.2159 -1.315591 -0.37689  0.794936 -0.04078
+#  Melanogrammus aeglefinus      0.3984  0.003015 -0.62954  0.804112  0.56243
+#  Meretrix lusoria             -1.2373  1.514759 -0.59586  0.278615 -0.75703
+#  Merluccius productus          0.3984  0.003015 -0.65650  0.608838  0.15116
+#  Metacarcinus magister        -1.2159 -1.315591  0.99709 -0.351649  1.51333
+#  Metapenaeus monoceros        -1.2159 -1.315591  0.27836 -0.289342 -0.33985
+#  Microstomus pacificus         0.3984  0.003015 -0.64171  0.183338 -0.46356
+#  Monopterus albus              0.3984  0.003015  1.17176  0.088046  0.43143
+#  Mormyrus rume                 0.3984  0.003015  1.04069 -0.212946  1.04228
+#  Mytilus chilensis            -1.2373  1.514759 -0.17974  0.790211  0.43241
+#  Mytilus edulis               -1.2373  1.514759 -0.59851 -0.108761 -0.84700
+#  Mytilus spp                  -1.2373  1.514759  0.02655 -0.681388  0.84746
+#  Nephrops norvegicus          -1.2159 -1.315591  0.41984 -0.975727  0.77399
+#  Oncorhynchus keta             0.3984  0.003015 -0.22159 -1.029580 -0.20165
+#  Oncorhynchus kisutch          0.3984  0.003015 -0.35519 -0.826910 -0.52235
+#  Oncorhynchus mykiss           0.3984  0.003015 -0.23089 -1.003508 -0.23081
+#  Oncorhynchus nerka            0.3984  0.003015 -0.12197 -1.120297  0.06737
+#  Oncorhynchus tshawytscha      0.3984  0.003015 -0.48290 -0.534539 -0.73834
+#  Oreochromis niloticus         0.3984  0.003015  1.24185  0.425336 -0.46557
+#  Osteochilus hasselti          0.3984  0.003015  1.23439  0.516497 -0.75749
+#  Pagellus bogaraveo            0.3984  0.003015 -0.05801 -1.185860  0.22111
+#  Parambassis wolffii           0.3984  0.003015  1.21909  0.558101 -0.89564
+#  Patagonotothen ramsayi        0.3984  0.003015 -0.64693  0.700878  0.36396
+#  Penaeus brasiliensis         -1.2159 -1.315591 -0.31574 -0.191572 -0.92115
+#  Penaeus monodon              -1.2159 -1.315591 -0.29943 -0.241423 -0.89670
+#  Penaeus semisulcatus         -1.2159 -1.315591 -0.15470 -0.547126 -0.71674
+#  Perca flavescens              0.3984  0.003015 -0.35693  1.068194  1.76214
+#  Perca fluviatilis             0.3984  0.003015 -0.38230 -0.780732 -0.60157
+#  Platichthys stellatus         0.3984  0.003015 -0.60215 -0.083175 -0.66711
+#  Pleurogrammus monopterygius   0.3984  0.003015 -0.64378  0.206948 -0.41070
+#  Pleuronectes platessa         0.3984  0.003015 -0.45128 -0.620757 -0.70892
+#  Pollachius virens             0.3984  0.003015 -0.65779  0.588691  0.11578
+#  Portunus pelagicus           -1.2159 -1.315591  0.57021 -0.910696  1.08608
+#  Portunus trituberculatus     -1.2159 -1.315591 -0.31683 -0.128572 -0.86781
+#  Puntioplites proctozystron    0.3984  0.003015  1.24287  0.402145 -0.40077
+#  Rapana spp                   -1.2373  1.514759  1.04073  0.689855 -0.01602
+#  Rasbora tornieri              0.3984  0.003015  1.24109  0.378769 -0.32742
+#  Reinhardtius hippoglossoides  0.3984  0.003015 -0.57319  0.960531  1.02447
+#  Rutilus frisii                0.3984  0.003015 -0.62266  0.817724  0.60416
+#  Rutilus rutilus               0.3984  0.003015 -0.61106 -0.027458 -0.62958
+#  Salvelinus fontinalis         0.3984  0.003015 -0.63463  0.768182  0.51575
+#  Salvelinus namaycush          0.3984  0.003015 -0.39344  1.061931  1.66614
+#  Sander lucioperca             0.3984  0.003015 -0.08263 -1.157586  0.17618
+#  Sarda sarda                   0.3984  0.003015 -0.14004 -1.057982  0.01142
+#  Sardinella spp                0.3984  0.003015  1.08202 -0.135393  0.88972
+#  Saxidomus gigantea           -1.2373  1.514759 -0.26989 -0.617694 -0.08913
+#  Scardinius erythrophthalmus   0.3984  0.003015 -0.03930 -1.181792  0.29495
+#  Scylla paramamosain          -1.2159 -1.315591 -0.27665 -0.008906 -0.78594
+#  Sebastes marinus              0.3984  0.003015 -0.65319  0.316753 -0.32182
+#  Sebastes mentella             0.3984  0.003015 -0.65667  0.408212 -0.20568
+#  Sebastes ruberrimus           0.3984  0.003015 -0.38919 -0.767992 -0.62536
+#  Silurus glanis                0.3984  0.003015 -0.48845 -0.509899 -0.71954
+#  Soleidae                      0.3984  0.003015  1.23946  0.490817 -0.67539
+#  Theragra chalcogramma         0.3984  0.003015 -0.65697  0.371355 -0.24073
+#  Thunnus alalunga              0.3984  0.003015 -0.60044 -0.087129 -0.65655
+#  Tilapia spp                   0.3984  0.003015  1.21006  0.211235  0.13235
+#  Tinca tinca                   0.3984  0.003015 -0.00138 -1.186573  0.39563
+#  Trachurus trachurus           0.3984  0.003015  0.91021 -0.455206  1.37168
+#  Trichogaster spp              0.3984  0.003015  1.18593  0.602473 -1.04510
+#  Velesunio ambiguus           -1.2373  1.514759  0.30930 -0.553157  1.28618
+#  Xiphias gladius               0.3984  0.003015 -0.28118 -0.924740 -0.35870
+#  Xiphopenaeus kroyeri         -1.2159 -1.315591  0.32720  0.536219  0.68663
+#                                    MDS4
+#  Abramis brama                -0.025195
+#  Alosa sapidissima             0.291812
+#  Anarhichas lupus             -0.074773
+#  Aphanopus carbo               0.516877
+#  Arctica islandica             0.231911
+#  Aspius aspius                -0.277633
+#  Brama japonica                0.294400
+#  Carassius carassius          -0.352078
+#  Chamelea gallina              1.389541
+#  Channa marulius              -0.530178
+#  Channa micropeltes           -0.281329
+#  Channa striata               -0.208642
+#  Chondrostoma nasus           -0.374826
+#  Cipangopaludina chinensis     0.670729
+#  Clarias batrachus             0.946866
+#  Clarias gariepinus            0.009371
+#  Clupeonella cultriventris     0.114308
+#  Coregonus albula              0.408804
+#  Coregonus clupeaformis       -0.262132
+#  Coregonus lavaretus          -0.202000
+#  Crassostrea rhizophorae       0.642174
+#  Cyclocheilichthys apogon     -0.331030
+#  Cyclopterus lumpus            0.068951
+#  Cyprinidae                    0.161954
+#  Cyprinus carpio              -0.371031
+#  Danio dangila                -0.080772
+#  Dentex spp                    0.923641
+#  Eriocheir sinensis            1.093343
+#  Esox lucius                   0.280962
+#  Gadus macrocephalus           0.482963
+#  Gadus morhua                  0.335843
+#  Gasterochisma melampus        0.242664
+#  Haliotis cracherodii          0.476251
+#  Helostoma temminckii         -0.449960
+#  Hemiramphus spp              -0.302961
+#  Isurus oxyrinchus             0.237863
+#  Lamna nasus                   0.016984
+#  Lampris guttatus             -0.360722
+#  Leuciscus cephalus           -0.300572
+#  Leuciscus idus               -0.308479
+#  Litopenaeus schmitti         -0.192951
+#  Litopenaeus vannamei         -1.558492
+#  Liza aurata                   0.091179
+#  Lota lota                     0.381446
+#  Maja brachydactyla            0.908217
+#  Melanogrammus aeglefinus      0.236016
+#  Meretrix lusoria             -0.440765
+#  Merluccius productus          0.391660
+#  Metacarcinus magister         0.925249
+#  Metapenaeus monoceros        -1.402459
+#  Microstomus pacificus         0.455254
+#  Monopterus albus              0.638052
+#  Mormyrus rume                 0.835893
+#  Mytilus chilensis            -2.640369
+#  Mytilus edulis                0.347156
+#  Mytilus spp                  -1.143376
+#  Nephrops norvegicus           0.949289
+#  Oncorhynchus keta            -0.360883
+#  Oncorhynchus kisutch         -0.247466
+#  Oncorhynchus mykiss          -0.475415
+#  Oncorhynchus nerka           -0.407524
+#  Oncorhynchus tshawytscha      0.034386
+#  Oreochromis niloticus        -0.061301
+#  Osteochilus hasselti         -0.303426
+#  Pagellus bogaraveo           -0.270380
+#  Parambassis wolffii          -0.479568
+#  Patagonotothen ramsayi        0.180178
+#  Penaeus brasiliensis          0.799615
+#  Penaeus monodon               0.640646
+#  Penaeus semisulcatus         -0.058911
+#  Perca flavescens             -1.052394
+#  Perca fluviatilis            -0.145420
+#  Platichthys stellatus         0.293557
+#  Pleurogrammus monopterygius   0.334692
+#  Pleuronectes platessa        -0.028564
+#  Pollachius virens             0.396040
+#  Portunus pelagicus            1.350676
+#  Portunus trituberculatus      0.387710
+#  Puntioplites proctozystron    0.055011
+#  Rapana spp                    0.999861
+#  Rasbora tornieri              0.119242
+#  Reinhardtius hippoglossoides -0.139257
+#  Rutilus frisii                0.187983
+#  Rutilus rutilus               0.303045
+#  Salvelinus fontinalis         0.077825
+#  Salvelinus namaycush         -1.043328
+#  Sander lucioperca            -0.329973
+#  Sarda sarda                  -1.204228
+#  Sardinella spp                0.807959
+#  Saxidomus gigantea           -0.843903
+#  Scardinius erythrophthalmus  -0.315274
+#  Scylla paramamosain          -0.343959
+#  Sebastes marinus              0.507904
+#  Sebastes mentella             0.533962
+#  Sebastes ruberrimus          -0.114556
+#  Silurus glanis               -0.046471
+#  Soleidae                     -0.213308
+#  Theragra chalcogramma         0.485390
+#  Thunnus alalunga              0.226722
+#  Tilapia spp                   0.470900
+#  Tinca tinca                  -0.375795
+#  Trachurus trachurus           0.532053
+#  Trichogaster spp             -0.715977
+#  Velesunio ambiguus            0.310791
+#  Xiphias gladius              -0.485786
+#  Xiphopenaeus kroyeri         -3.497974
+#  
+#  
+#  Biplot scores for constraining variables
+#  
+#                          CAP1     CAP2 MDS1 MDS2 MDS3 MDS4
+#  min.subgroupFinfish   1.0000 0.007567    0    0    0    0
+#  min.subgroupMolluscs -0.6326 0.774466    0    0    0    0
+#  
+#  
+#  Centroids for factor constraints
+#  
+#                            CAP1      CAP2 MDS1 MDS2 MDS3 MDS4
+#  min.subgroupCrustacean -1.2159 -1.315591    0    0    0    0
+#  min.subgroupFinfish     0.3984  0.003015    0    0    0    0
+#  min.subgroupMolluscs   -1.2373  1.514759    0    0    0    0
+```
+
 #### Use adonis to ask whether the group means in multivariate space are different from each other ####
 
 ```r
@@ -932,6 +1516,29 @@ min.subgroup %>%
 Now let's find out how many species reach more than one mineral RDI target
 
 ```r
+## sidebar: let's take aq.long and turn it into wide format
+
+aq.wide <- spread(n.long, nutrient, concentration)
+aq.wide$species <- as.factor(aq.wide$species)
+write.csv(aq.wide, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+aq.wide <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
+
+
+aq.wide$species <- as.factor(aq.wide$species)
+
+sp.subgroup <- aq.wide %>%
+  group_by(species) %>% 
+  dplyr::select(Subgroup, species) %>% 
+  distinct(species)
+
+length(is.na(aq.wide$CA_mg))
+```
+
+```
+#  [1] 10799
+```
+
+```r
 ntbl.RDI.tot <- minerals %>% 
   group_by(species) %>% 
   summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
@@ -940,6 +1547,41 @@ ntbl.RDI.tot <- minerals %>%
   mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
   mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
   mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) 
+
+ntbl.RDI.tot.10 <- minerals %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>%
+  mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot)
+
+
+# ##now the same thing, but using the aq.wide
+# 
+# aq.wide.CA <- aq.wide %>% 
+#   group_by(species) %>% 
+#   summarise(mean.CA = mean(CA_mg, na.rm = TRUE))
+# 
+# hist(aq.wide.CA$mean.CA)
+#   
+
+
+ntbl.RDI.tot.aq <- aq.wide %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>%
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>%
   mutate(RDI.micro.tot = rowSums(.[5:7])) %>% 
   filter(!is.na(RDI.micro.tot)) %>% 
   arrange(., RDI.micro.tot) 
@@ -954,19 +1596,35 @@ table(ntbl.RDI.tot$RDI.micro.tot)
 ```
 
 ```r
-### code for figure 
+### first, get the subgroup column back into the RDI matrix
 ntbl.RDI.sub <- inner_join(ntbl.RDI.tot, ntbl.raw, by = "species")
-qplot(factor(Subgroup), data = ntbl.RDI.sub, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
+ntbl.RDI.sub10 <- inner_join(ntbl.RDI.tot.10, ntbl.raw, by = "species")
+ntbl.RDI.subaq <- inner_join(ntbl.RDI.tot.aq, aq.wide, by = "species")
+
+
+ntbl.RDI.sub4 <- dplyr::left_join(ntbl.RDI.tot, ntbl.raw, by = "species") 
+
+ntbl.RDI.subaq %>% 
+  group_by(Subgroup, RDI.micro.tot) %>% 
+  summarise(n = n()) %>% 
+  mutate(cum.RDI = cumsum(n)) %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = cum.RDI)) + geom_bar(stat = "identity") + facet_wrap(~ Subgroup, scales = "free_y")  
 ```
 
 ![](nutrient_results_files/figure-html/unnamed-chunk-21-1.png) 
 
 ```r
-ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.stacked.barchart.png")
-ggplot(ntbl.RDI.sub, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
+qplot(factor(Subgroup), data = ntbl.RDI.sub10, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
 ```
 
 ![](nutrient_results_files/figure-html/unnamed-chunk-21-2.png) 
+
+```r
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.stacked.barchart.png")
+ggplot(ntbl.RDI.subaq, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ Subgroup, scales = "free_y")  
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-21-3.png) 
 
 ```r
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png")
@@ -974,8 +1632,8 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.targets.barchart.png
 ### What percentage of each groups reaches at least one RDI target?
 
 ntbl.RDI.sub %>% 
-  dplyr::filter(Subgroup == "Crustacean") %>% 
-  distinct(species) %>% 
+  dplyr::filter(Subgroup == "Molluscs") %>% 
+  # distinct(species) %>% 
   dplyr::filter(RDI.micro.tot > 0) %>% 
   dplyr::distinct(species) %>% 
   count()
@@ -986,7 +1644,7 @@ ntbl.RDI.sub %>%
 #  
 #        n
 #    (int)
-#  1     3
+#  1     8
 ```
 
 ```r
@@ -1035,7 +1693,7 @@ ggplot(subset(RDI.freq, target == "25 percent"), aes(x = reorder(number_targets,
         axis.title=element_text(size=14,face="bold"))
 ```
 
-![](nutrient_results_files/figure-html/unnamed-chunk-21-3.png) 
+![](nutrient_results_files/figure-html/unnamed-chunk-21-4.png) 
 
 ```r
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.png")
@@ -1050,6 +1708,7 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.
 
 ```r
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## update as of Jan 28
 n.long <- n.long %>% 
   group_by(Subgroup) %>% 
   mutate(RDI.25per = (concentration > (RDI/4)),
@@ -1157,13 +1816,29 @@ n.long %>%
  geom_boxplot() +
   theme_minimal() +
   geom_hline(yintercept=log(.10)) +
-  ylab("percentage of RDI in edible portion, log scale")
+  ylab("percentage of RDI in edible portion, log scale") +
+  facet_wrap( ~ Subgroup) 
 ```
 
 ![](nutrient_results_files/figure-html/unnamed-chunk-24-1.png) 
 
 ```r
-ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
+n.long %>% 
+  # filter(!is.na(bones.body)) %>% 
+  # arrange(desc(nutrient)) %>% 
+  ggplot(., aes(x = nutrient, y = 100*RDI.per, fill = nutrient, geom = "boxplot")) +
+ geom_boxplot() +
+  theme_bw() +
+  geom_hline(yintercept=10) +
+  ylab("percentage of RDI in edible portion, log scale") +
+  scale_y_log10() +
+  facet_wrap( ~ Subgroup) 
+```
+
+![](nutrient_results_files/figure-html/unnamed-chunk-24-2.png) 
+
+```r
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/subgroup-RDI-boxplot.png")
 ```
 
 
@@ -1946,6 +2621,20 @@ ntbl.RDI.noMoll <- minerals %>%
 ```r
 spa.rand <- specaccum(ntbl.RDI, method = "random")
 # png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
+spa.rand$sites
+```
+
+```
+#    [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+#   [18]  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34
+#   [35]  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+#   [52]  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68
+#   [69]  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85
+#   [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102
+#  [103] 103 104 105 106
+```
+
+```r
 plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,4), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
 abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")

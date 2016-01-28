@@ -337,6 +337,11 @@ anova(mod3)
 plot(mod3)
 boxplot(mod3)
 plot(TukeyHSD(mod3))
+
+temp <- capscale(comm.bc.dist ~ min.subgroup)
+plot(temp)
+plot(temp, choices=c(2,3))
+summary(temp)
 ```
 
 #### Use adonis to ask whether the group means in multivariate space are different from each other ####
@@ -363,7 +368,7 @@ aq.wide$species <- as.factor(aq.wide$species)
 
 sp.subgroup <- aq.wide %>%
   group_by(species) %>% 
-  select(Subgroup, species) %>% 
+  dplyr::select(Subgroup, species) %>% 
   distinct(species)
 
 length(is.na(aq.wide$CA_mg))
@@ -426,7 +431,7 @@ ntbl.RDI.subaq <- inner_join(ntbl.RDI.tot.aq, aq.wide, by = "species")
 
 ntbl.RDI.sub4 <- dplyr::left_join(ntbl.RDI.tot, ntbl.raw, by = "species") 
 
-ntbl.RDI.sub %>% 
+ntbl.RDI.subaq %>% 
   group_by(Subgroup, RDI.micro.tot) %>% 
   summarise(n = n()) %>% 
   mutate(cum.RDI = cumsum(n)) %>% 
@@ -488,6 +493,7 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.
 
 ```{r}
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
+n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## update as of Jan 28
 n.long <- n.long %>% 
   group_by(Subgroup) %>% 
   mutate(RDI.25per = (concentration > (RDI/4)),
@@ -546,8 +552,24 @@ n.long %>%
  geom_boxplot() +
   theme_minimal() +
   geom_hline(yintercept=log(.10)) +
-  ylab("percentage of RDI in edible portion, log scale")
-ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/bones.body-RDI.png")
+  ylab("percentage of RDI in edible portion, log scale") 
+
+
+n.long %>% 
+  # filter(!is.na(bones.body)) %>% 
+  # arrange(desc(nutrient)) %>% 
+  ggplot(., aes(x = nutrient, y = 100*RDI.per, fill = nutrient, geom = "boxplot")) +
+  scale_fill_grey()+
+ geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold")) +
+  geom_hline(yintercept=10) +
+  ylab("percentage of RDI in edible portion, log scale") +
+  scale_y_log10() +
+  facet_wrap( ~ Subgroup) 
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/subgroup-RDI-boxplot.png")
 ```
 
 
