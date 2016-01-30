@@ -426,15 +426,17 @@ table(ntbl.RDI.tot$RDI.micro.tot)
 ### first, get the subgroup column back into the RDI matrix
 ntbl.RDI.sub <- inner_join(ntbl.RDI.tot, ntbl.raw, by = "species")
 ntbl.RDI.sub10 <- inner_join(ntbl.RDI.tot.10, ntbl.raw, by = "species")
-ntbl.RDI.subaq <- inner_join(ntbl.RDI.tot.aq, aq.wide, by = "species")
+ntbl.RDI.subaq <- left_join(ntbl.RDI.tot.aq, aq.wide, by = "species")
 
 
 ntbl.RDI.sub4 <- dplyr::left_join(ntbl.RDI.tot, ntbl.raw, by = "species") 
 
 ntbl.RDI.subaq %>% 
+  # group_by(species) %>% 
+  # mutate(meanRDI = mean(RDI.micro.tot)) %>%
   group_by(Subgroup, RDI.micro.tot) %>% 
   summarise(n = n()) %>% 
-  mutate(cum.RDI = cumsum(n)) %>% 
+  mutate(cum.RDI = cumsum(n)) %>%
   ggplot(., aes(x = RDI.micro.tot, y = cum.RDI)) + geom_bar(stat = "identity") + facet_wrap(~ Subgroup, scales = "free_y")  
 
 
@@ -503,7 +505,30 @@ n.long <- n.long %>%
          RDI.target = (concentration > (RDI/10)))
 
 n.long.RDI <- n.long %>% 
-  filter(!is.na(RDI.25per))
+  filter(nutrient %in% c("ZN_mg", "FE_mg")) %>% 
+  dplyr::select(Subgroup, RDI.target) %>%
+  filter(!is.na(RDI.target)) %>%
+  table()
+  mutate(n = n()) %>% View
+
+  #### This is work from Jan 28 ####
+  n.long.RDI <- n.long %>% 
+    group_by(nutrient, species) %>% 
+    filter(nutrient == "ZN_mg") %>% 
+    filter(!is.na(concentration)) %>% 
+    mutate(mean.nut = mean(concentration)) %>%
+    group_by(Subgroup) %>%
+  dplyr::select(Subgroup, RDI.target) %>% 
+    mutate(n = n()) %>% table()
+  View
+  # filter(!is.na(RDI.target)) %>%
+    table()
+    distinct(species) %>% 
+    count()
+  table()
+
+
+
 ## try to make bar chart with number of RDI hits, grouped by Subgroup
 qplot(factor(Subgroup), data = n.long.RDI, geom = "bar", fill = factor(RDI.25per))
 
@@ -559,7 +584,7 @@ n.long %>%
   # filter(!is.na(bones.body)) %>% 
   # arrange(desc(nutrient)) %>% 
   ggplot(., aes(x = nutrient, y = 100*RDI.per, fill = nutrient, geom = "boxplot")) +
-  scale_fill_grey()+
+  # scale_fill_grey()+
  geom_boxplot() +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
