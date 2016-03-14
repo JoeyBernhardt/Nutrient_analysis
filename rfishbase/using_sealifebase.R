@@ -28,7 +28,7 @@ inverts.new$length.reported_cm <- as.numeric(inverts.new$length.reported_cm)
 hist(inverts.new$length.reported_cm)
 
 
-new.spp <- unique(inverts.new$species)
+new.spp <- unique(inverts.new$SLB_species)
 
 new.slb.sp <- intersect(new.spp,InvSpecies) ## find matching species
 non.match <- setdiff(new.spp, InvSpecies) ## finds non matching species
@@ -57,10 +57,13 @@ length(newvalues)
 ## try with mapvalues
 ntbl.inv$species <- mapvalues(ntbl.inv$species, oldvalues, newvalues) ## change names in ntbl to match FB names
 
+length(unique(ntbl.inv$species))
+
 write_csv(ntbl.inv, "/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.inv.csv")
 
 
 ## in excel, I just took the rows from the new inverts file and added them to ntbl inv. Now import new version of ntbl.inv
+## update March 14 2016: this is the most recent version of the ntbl.inv as downloaded from google drive
 ntbl.inv <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.inv.csv")
 
 
@@ -69,48 +72,48 @@ ntbl.inv.spp <- unique(ntbl.inv$species)
 ntbl.inv.spp
 
 ntbl.non.match <- setdiff(ntbl.inv.spp, InvSpecies) ## finds non matching species
+ntbl.non.match
 
-intbl.species <- species(ntbl.slb.sp)
-
-ntbl.inv %>% filter (species != c(ntbl.non.match)) %>% 
-  species(.)
+# ntbl.inv %>% filter (species != c(ntbl.non.match)) 
 
 ntbl.slb.sp <- intersect(ntbl.inv.spp,InvSpecies) ## find matching species
 
 ### get the basic species info for the matching species
-intbl.species <- species(ntbl.slb.sp) %>% 
+intbl.species <- species(ntbl.slb.sp) %>%
   rename(species = sciname)
 
 ### merge the ntbl.inv with the slb basic data ####
 
 ntbl.basic <- inner_join(intbl.species, ntbl.inv, by = "species")
+ntbl.basic <- ntbl.basic[ , !duplicated(colnames(ntbl.basic))] ## to remove duplicated Subgroup column
 names(ntbl.basic)
 
-
-names(ntbl.basic)
 
 intbl.ecology <- ecology(ntbl.slb.sp) %>% 
-  rename(species = sciname)
+  rename(species = sciname) %>% 
+  select(species, StockCode, Herbivory2, DietTroph, FoodTroph, EcoTroph, SpecCode)
 
-intbl.all <- inner_join(intbl.ecology, ntbl.basic, by = "species")
+names(intbl.ecology)
+
+intbl.all <- inner_join(intbl.ecology, ntbl.basic, by = "species") %>% 
+  select(species, Length, Weight, StockCode, Herbivory2, DietTroph, FoodTroph, EcoTroph, SpecCode.x, Food.Item.ID:max_length_study)
+
+str(intbl.all) 
+
 names(intbl.all)
 ### this file contains all the invert data (nutrients, FB ecology and FB species)
 write_csv(intbl.all, "/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+intbl.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
 
-
-inv.length <- lm(log(CA_mg) ~ log(Length) + FoodTroph + Subgroup, data = intbl.all)
-summary(inv.length)
-library(visreg)
-visreg(inv.length, xtrans = log)
-
-class(intbl.all$CA_mg)
+intbl.all$CA_mg <- as.numeric(intbl.all$CA_mg)
+intbl.all$Subgroup <- as.factor(intbl.all$Subgroup)
 
 intbl.all %>% 
-  group_by(Subgroup) %>% 
-  summarise(., meanCA = mean(CA_mg)) %>% View
+  select(`CA_mg`) %>% View
+unique(intbl.all$CA_mg)
 
-ecology("Ostrea edulis", fields = c("FoodTroph", "SpecCode"))
-species("Ostrea edulis", fields = c("Length", "SpecCode"))
+str(intbl.all)
+
 
 ### extract, from aq.wide, the inverts that don't have length data 
   no.length <- aq.wide %>% 

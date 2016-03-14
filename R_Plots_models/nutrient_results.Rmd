@@ -509,7 +509,7 @@ n.long.RDI <- n.long %>%
   dplyr::select(Subgroup, RDI.target) %>%
   filter(!is.na(RDI.target)) %>%
   table()
-  mutate(n = n()) %>% View
+   
 
   #### This is work from Jan 28 ####
   n.long.RDI <- n.long %>% 
@@ -520,12 +520,12 @@ n.long.RDI <- n.long %>%
     group_by(Subgroup) %>%
   dplyr::select(Subgroup, RDI.target) %>% 
     mutate(n = n()) %>% table()
-  View
-  # filter(!is.na(RDI.target)) %>%
-    table()
-    distinct(species) %>% 
-    count()
-  table()
+  
+#   # filter(!is.na(RDI.target)) %>%
+#     table()
+#     distinct(species) %>% 
+#     count()
+
 
 
 
@@ -598,7 +598,7 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/subgroup-RDI-boxplot.png
 ```
 
 
-####Result 4. Few species reach DRI for multiple nutrients.
+#### Result 4. Few species reach DRI for multiple nutrients.
 
 How many species reach RDI for each nutrient?
 10% RDI: calcium: 28/99, zinc: 39/101, iron: 23/104, EPA: 117/238, DHA: 168/235, Fat: 47/277, Protein: 251/251  
@@ -629,6 +629,34 @@ n.long %>%
 #### Result 5. Within functional groups, some traits such body size and latitude are strongly associated with nutritional profile ####
 
 ```{r}
+
+library(broom)
+library(tidyr)
+
+aq.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
+
+
+
+aq.long %>% 
+    # filter(nutrient == "CA_mg") %>% 
+    # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+    group_by(nutrient) %>% 
+    do(fit = tidy(lm(log(.$concentration) ~ log(max_length) + TL + Abs_lat, data = .), conf.int = TRUE)) %>% 
+    unnest(fit) %>% 
+    filter(term != "(Intercept)") %>%
+  knitr::kable(.,  align = 'c', format = 'markdown', digits = 2)
+
+aq.long %>% 
+    # filter(nutrient == "FE_mg") %>% 
+    group_by(nutrient) %>% 
+    # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+    # group_by(nutrient) %>%
+    do(fit = glance(lm(log(.$concentration) ~ log(max_length) + TL + Abs_lat, data = .))) %>%
+    unnest(fit) %>%
+    arrange(desc(adj.r.squared)) %>% 
+  knitr::kable(.,  align = 'c', format = 'markdown', digits = 2)
+
+
 fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
 fb.length <- fb.all %>% 
    dplyr::select(species, CA_mg, ZN_mg, FE_mg, EPA_g, DHA_g, Length, max_length, Subgroup, Habitat, TL, FoodTroph.x, Herbivory2, Abs_lat, DemersPelag, taxon, max_size) %>% 

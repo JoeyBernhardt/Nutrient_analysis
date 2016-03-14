@@ -1,268 +1,319 @@
-Food.Item.ID,species,taxon,max_size,max_length,TL,CA_mg,EPA_g,DHA_g,FE_mg,ZN_mg,HG_mcg,FAT,PROTEIN,lwA,lwB,Habitat,Subgroup,Abs_lat,Latitude,max_length_study
-900550,Tegillarca granosa,"Clams, cockles, arkshells",NA,9,NA,NA,NA,NA,NA,NA,NA,1.93,15.99,NA,NA,marine,Molluscs,3.144341,3.144341,5
-901259,Arctica islandica,"Clams, cockles, arkshells",0.012671945,11,2,62.9,NA,NA,5.3,0.84,1.7,NA,7.3,0.023009,2.632,marine,Molluscs,63.968654,63.968654,NA
-901204,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.030021745,0.057581619,NA,NA,NA,NA,20.31,NA,NA,marine,Crustacean,33.886917,33.886917,NA
-901207,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.034584211,0.07125565,NA,NA,NA,NA,21.86,NA,NA,marine,Crustacean,32.10119,32.10119,NA
-901203,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.023645371,0.043766961,NA,NA,NA,NA,22.02,NA,NA,marine,Crustacean,33.886917,33.886917,NA
-901209,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.022001845,0.041721764,NA,NA,NA,NA,22.23,NA,NA,marine,Crustacean,35.240117,35.240117,NA
-901205,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.037700714,0.070346104,NA,NA,NA,NA,22.37,NA,NA,marine,Crustacean,36.5626,36.5626,NA
-901201,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.039948611,0.071709734,NA,NA,NA,NA,22.66,NA,NA,marine,Crustacean,43.863529,43.863529,NA
-901210,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.033838013,0.065869534,NA,NA,NA,NA,22.86,NA,NA,marine,Crustacean,35.240117,35.240117,NA
-901206,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.030119591,0.056198482,NA,NA,NA,NA,23.92,NA,NA,marine,Crustacean,36.5626,36.5626,NA
-901202,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.037101517,0.064228696,NA,NA,NA,NA,24.03,NA,NA,marine,Crustacean,43.863529,43.863529,NA
-901208,Aristaeomorpha foliacea,"Shrimps, prawns",NA,17.5,NA,NA,0.029671139,0.062500818,NA,NA,NA,NA,24.63,NA,NA,marine,Crustacean,32.10119,32.10119,NA
-900487,Aristeus antennatus,"Shrimps, prawns",5.9e-05,6,3.29,NA,NA,NA,NA,NA,NA,0.4,16,8e-04,2.4,marine,Crustacean,39.019184,39.019184,NA
-900486,Aristeus antennatus,"Shrimps, prawns",5.9e-05,6,3.29,NA,NA,NA,NA,NA,NA,0.2,19,8e-04,2.4,marine,Crustacean,39.019184,39.019184,NA
-900488,Aristeus antennatus,"Shrimps, prawns",5.9e-05,6,3.29,NA,NA,NA,NA,NA,NA,2,19,8e-04,2.4,marine,Crustacean,39.019184,39.019184,NA
-901191,Aristeus antennatus,"Shrimps, prawns",5.9e-05,6,3.29,NA,0.006710598,0.007997562,NA,NA,NA,NA,NA,8e-04,2.4,marine,Crustacean,37.017954,37.017954,3.5
-901192,Aristeus antennatus,"Shrimps, prawns",5.9e-05,6,3.29,NA,0.020545461,0.032266026,NA,NA,NA,NA,NA,8e-04,2.4,marine,Crustacean,37.017954,37.017954,3.5
-900446,Aristeus antennatus,"Shrimps, prawns",5.9e-05,6,3.29,NA,0.1005696,0.111744,NA,NA,NA,NA,NA,8e-04,2.4,marine,Crustacean,39.019184,39.019184,NA
-901168,NA,Mussels,NA,2.3,NA,NA,NA,NA,0.04,0.01579,NA,NA,NA,NA,NA,marine,Molluscs,36.632173,36.632173,1.91
-901198,Callinectes sapidus,"Crabs, sea-spiders",NA,23,4,NA,NA,NA,NA,NA,NA,NA,14.71,NA,NA,marine,Crustacean,36.5,36.5,4.85
-901197,Callinectes sapidus,"Crabs, sea-spiders",NA,23,4,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Crustacean,36.5,36.5,4.85
-901017,Carcinus maenas,"Crabs, sea-spiders",NA,10,NA,NA,0.154,0.115,NA,NA,NA,0.5,16.8,NA,NA,marine,Crustacean,43.133595,43.133595,NA
-901002,NA,"Clams, cockles, arkshells",NA,5,NA,150,0.032793408,0.07957224,6.73,0.91,1.22,0.73,8.55,NA,NA,marine,Molluscs,44.067829,44.067829,NA
-901005,NA,"Clams, cockles, arkshells",NA,5,NA,304,0.05983072,0.10292912,8.2,1.28,1.05,0.84,9.04,NA,NA,marine,Molluscs,44.067829,44.067829,NA
-901182,NA,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,2.13,9.06,NA,NA,marine,Molluscs,40.403611,40.403611,NA
-901180,NA,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,2.94,10.05,NA,NA,marine,Molluscs,40.403611,40.403611,NA
-901003,NA,"Clams, cockles, arkshells",NA,5,NA,327,0.162592,0.14308096,6.44,1.38,1.02,1.16,10.1,NA,NA,marine,Molluscs,44.067829,44.067829,NA
-901001,NA,"Clams, cockles, arkshells",NA,5,NA,245,0.2241162,0.166012,6.31,1.23,1.1,1.55,10.4,NA,NA,marine,Molluscs,44.067829,44.067829,NA
-901181,NA,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,3.13,10.5,NA,NA,marine,Molluscs,40.403611,40.403611,NA
-901004,NA,"Clams, cockles, arkshells",NA,5,NA,67.5,0.2386878,0.15422904,10.7,1.48,1.26,1.59,10.8,NA,NA,marine,Molluscs,44.067829,44.067829,NA
-901183,NA,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,2.84,10.81,NA,NA,marine,Molluscs,40.403611,40.403611,NA
-901022,Chionoecetes opilio,"Crabs, sea-spiders",NA,20,2.3,NA,0.39047856,0.21243016,NA,NA,NA,1.57,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
-901025,Chionoecetes opilio,"Crabs, sea-spiders",NA,14,NA,NA,1.20285898,1.6908252,NA,NA,NA,15.8,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
-901024,Chionoecetes opilio,"Crabs, sea-spiders",NA,14,NA,NA,0.032886527,0.014421351,NA,NA,NA,0.53,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
-901027,Chionoecetes opilio,"Crabs, sea-spiders",NA,14,NA,NA,0.69759552,0.88336824,NA,NA,NA,10.2,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
-901026,Chionoecetes opilio,"Crabs, sea-spiders",NA,14,NA,NA,0.14442624,0.12379392,NA,NA,NA,0.96,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
-900603,Cipangopaludina japonica,"Abalones, winkles, conchs",NA,6.5,NA,1200,0.00334248,0.003676728,4.3,8.1,NA,NA,13,NA,NA,marine,Molluscs,14.903036,14.903036,NA
-901162,Crangon crangon,"Shrimps, prawns",0.008196446,9,3.19,NA,0.07489008,0.05958176,NA,NA,NA,NA,18.47,0.02442,2.647,marine,Crustacean,41.607228,41.607228,5
-900999,Crassostrea gigas,Oysters,0.000234169,12,2,NA,NA,NA,NA,NA,NA,2.85,7.76,0.00019,2.864,marine,Molluscs,46.539543,46.539543,NA
-901155,Crassostrea rhizophorae,Oysters,NA,9,2,13.14,NA,NA,2.39,11.871063,NA,NA,3.22,NA,NA,marine,Molluscs,2.852432,-2.852432,NA
-901132,Crassostrea rhizophorae,Oysters,NA,9,2,NA,0.110386,0.072832,NA,NA,NA,1.5,9.3,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
-901133,Crassostrea rhizophorae,Oysters,NA,9,2,NA,0.164832,0.079184,NA,NA,NA,2,9.6,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
-901131,Crassostrea rhizophorae,Oysters,NA,9,2,NA,0.055512,0.0320736,NA,NA,NA,1.6,9.9,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
-901130,Crassostrea rhizophorae,Oysters,NA,9,2,NA,0.120628,0.063728,NA,NA,NA,1.5,10.2,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
-900794,Crassostrea virginica,Oysters,NA,10,2,NA,NA,NA,NA,NA,NA,NA,5.6,NA,NA,marine,Molluscs,38.343306,38.343306,NA
-900795,Crassostrea virginica,Oysters,NA,10,2,NA,NA,NA,NA,NA,NA,NA,6.3,NA,NA,marine,Molluscs,38.343306,38.343306,NA
-901219,Eledone moschata,"Squids, cuttlefishes, octopuses",NA,19.4,NA,NA,0.041710624,0.080269936,NA,NA,NA,0.68,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901217,Eledone moschata,"Squids, cuttlefishes, octopuses",NA,19.4,NA,NA,0.02181936,0.05826824,NA,NA,NA,0.6,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901218,Eledone moschata,"Squids, cuttlefishes, octopuses",NA,19.4,NA,NA,0.040965608,0.094559208,NA,NA,NA,0.66,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901186,NA,Freshwater crustaceans,NA,7.5,NA,NA,0.20458472,0.08934396,NA,NA,NA,1.64,18.48,NA,NA,freshwater,Crustacean,30.546498,30.546498,NA
-901185,NA,Freshwater crustaceans,NA,7.5,NA,NA,0.1040494,0.10725092,NA,NA,NA,1.96,20.71,NA,NA,freshwater,Crustacean,30.546498,30.546498,NA
-902223,NA,"Krill, planktonic crustaceans",NA,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,NA,NA,NA
-902224,NA,"Krill, planktonic crustaceans",NA,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,NA,NA,NA
-901134,Euphausia superba,"Krill, planktonic crustaceans",NA,6,2.2,NA,0.02696,0.01287,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,32.165622,32.165622,NA
-901014,Ficus subintermedia,"Abalones, winkles, conchs",NA,13,NA,NA,NA,NA,NA,NA,NA,2.83,15.38,NA,NA,marine,Molluscs,22.62389,22.62389,NA
-901012,Ficus subintermedia,"Abalones, winkles, conchs",NA,13,NA,NA,NA,NA,NA,NA,NA,1.38,16.02,NA,NA,marine,Molluscs,22.62389,22.62389,NA
-901013,Ficus subintermedia,"Abalones, winkles, conchs",NA,13,NA,NA,NA,NA,NA,NA,NA,2.33,16.18,NA,NA,marine,Molluscs,22.62389,22.62389,NA
-901177,NA,"Abalones, winkles, conchs",NA,5.5,NA,674.4,0.644600279,0.734312688,8.1,NA,NA,NA,15.75,NA,NA,marine,Molluscs,34.733333,34.733333,NA
-901225,NA,"Abalones, winkles, conchs",NA,5.5,NA,NA,NA,NA,NA,NA,NA,NA,20.1,NA,NA,marine,Molluscs,37.018241,37.018241,NA
-902286,Haliotis cracherodii,NA,NA,29,NA,31,NA,NA,3.2,0.82,NA,0.8,NA,NA,NA,marine,Molluscs,52.372895,52.372895,NA
-900444,Homarus gammarus,"Lobsters, spiny-rock lobsters",NA,65,2.6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,39.019184,39.019184,NA
-900963,Doryteuthis pealeii,"Squids, cuttlefishes, octopuses",NA,50,NA,NA,NA,NA,NA,NA,NA,NA,17.44,NA,NA,marine,Molluscs,19.173773,19.173773,NA
-901066,Doryteuthis pleii,"Squids, cuttlefishes, octopuses",NA,35,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,marine,Molluscs,23.843611,-23.843611,26.8
-900496,Loligo vulgaris,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-901048,Loligo vulgaris,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.318510208,0.705690048,NA,NA,NA,2.22,19.71,NA,NA,marine,Molluscs,39.019184,39.019184,8.8
-901214,Loligo vulgaris,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.11869732,0.3841656,NA,NA,NA,1.34,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901216,Loligo vulgaris,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.212145856,0.559769472,NA,NA,NA,1.92,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901215,Loligo vulgaris,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.194312628,0.488293648,NA,NA,NA,1.73,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-900495,Loligo vulgaris,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.049968,0.01388,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-900224,Macrobrachium nipponense,Freshwater crustaceans,NA,NA,NA,NA,0.053603392,0.043431664,NA,NA,NA,1.13,NA,NA,NA,freshwater,Crustacean,16.277332,16.277332,NA
-902242,NA,Freshwater crustaceans,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,freshwater,Crustacean,24.4333,24.4333,NA
-901056,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901057,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901058,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901059,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901060,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901061,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901062,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901063,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901064,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-901065,Mactra violacea,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
-902290,Metacarcinus magister,NA,NA,22.5,NA,219,NA,NA,46,0.6,NA,0.6,NA,NA,NA,marine,Crustacean,52.372895,52.372895,NA
-900549,Metapenaeus affinis,"Shrimps, prawns",NA,22.2,NA,NA,NA,NA,NA,NA,NA,1.06,19.12,NA,NA,marine,Crustacean,3.144341,3.144341,17
-901231,Metapenaeus dobsoni,"Shrimps, prawns",NA,11.8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
-901044,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,62.4,NA,NA,1.66,NA,NA,NA,21.06,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
-901045,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,60.4,NA,NA,1.55,NA,NA,NA,21.31,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
-901047,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,59.9,NA,NA,1.41,NA,NA,NA,21.91,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
-901046,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,59.1,NA,NA,1.63,NA,NA,NA,22.46,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
-901239,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,16.3
-901237,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,18
-901240,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,17.3
-901238,Metapenaeus monoceros,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,14.4
-901179,NA,"Squids, cuttlefishes, octopuses",NA,94,NA,NA,0.167286,0.385782,NA,NA,NA,1.5,NA,NA,NA,marine,Molluscs,54.620811,-54.620811,NA
-901178,NA,"Squids, cuttlefishes, octopuses",NA,94,NA,NA,0.154768,0.400576,NA,NA,NA,1.5,NA,NA,NA,marine,Molluscs,53.08181,-53.08181,NA
-902284,Mytilus edulis,NA,0.00018578,11,NA,26,NA,NA,4,1.6,NA,2.2,NA,2e-04,2.85,marine,Molluscs,52.372895,52.372895,NA
-900489,Mytilus galloprovincialis,Mussels,NA,7,2,NA,NA,NA,NA,NA,NA,NA,8,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-901050,Mytilus galloprovincialis,Mussels,NA,7,2,NA,0.323660524,0.225269224,NA,NA,NA,2.27,8.89,NA,NA,marine,Molluscs,39.019184,39.019184,5.6
-900491,Mytilus galloprovincialis,Mussels,NA,7,2,NA,NA,NA,NA,NA,NA,NA,11,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-900490,Mytilus galloprovincialis,Mussels,NA,7,2,NA,NA,NA,NA,NA,NA,NA,13,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-900447,Mytilus galloprovincialis,Mussels,NA,7,2,NA,0.195078,0.1170468,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-902226,NA,Mussels,NA,11,NA,67.76,NA,NA,38.48,1.265025,NA,NA,16.09,NA,NA,marine,Molluscs,2.852432,-2.852432,NA
-900485,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,NA,NA,NA,NA,NA,0.2,17,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
-900484,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,NA,NA,NA,NA,NA,0.5,17,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
-901257,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,72,NA,NA,2.66,1.05,6.6,NA,17.6,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
-900483,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,NA,NA,NA,NA,NA,0.2,19,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
-900445,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.01654668,0.03309336,NA,NA,NA,NA,NA,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
-901266,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.032009918,0.035551025,NA,NA,NA,0.5,NA,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
-901267,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.073998792,0.086094436,NA,NA,NA,0.78,NA,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
-901011,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,90,NA,NA,2,1.67,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,NA
-901226,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.065331,0.0787815,NA,NA,NA,0.7,NA,0.02302,0.8935,marine,Crustacean,37.37083333,37.37083333,17.5
-901010,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,110,NA,NA,1.99,1.81,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,NA
-901195,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.006342894,0.009054711,NA,NA,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,2.8
-901196,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.01424853,0.020131794,NA,NA,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,2.8
-901265,Nephrops norvegicus,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.05204254,0.049944343,NA,NA,NA,0.6,NA,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
-900494,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,NA,NA,NA,NA,NA,NA,11,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-900493,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,NA,NA,NA,NA,NA,NA,13,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-900492,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-900451,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,0.0376029,0.04387005,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-901220,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,32,3.55,NA,0.038287273,0.066715065,NA,NA,NA,0.54,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901221,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,32,3.55,NA,0.073702872,0.176151672,NA,NA,NA,0.94,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901222,Octopus vulgaris,"Squids, cuttlefishes, octopuses",NA,32,3.55,NA,0.10157948,0.163680752,NA,NA,NA,0.98,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901223,Orconectes limosus,Freshwater crustaceans,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.43,NA,NA,NA,freshwater,Crustacean,53.116156,53.116156,NA
-901224,Orconectes limosus,Freshwater crustaceans,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.44,NA,NA,NA,freshwater,Crustacean,52.585556,52.585556,NA
-900448,Ostrea edulis,Oysters,NA,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-901127,Palaemon serratus,"Shrimps, prawns",NA,11,2.7,NA,NA,NA,NA,NA,NA,1.11,25.7,NA,NA,marine,Crustacean,5.516667,5.516667,NA
-902188,NA,Freshwater crustaceans,NA,NA,NA,NA,0.004412448,NA,10,3.1,NA,NA,16.3,NA,NA,freshwater,Crustacean,14.903036,14.903036,NA
-902280,Palinurus elephas,"Lobsters, spiny-rock lobsters",NA,15,2.6,NA,NA,NA,NA,NA,NA,1.91,18.11,NA,NA,marine,Crustacean,37.966667,37.966667,NA
-900312,Palinurus elephas,"Lobsters, spiny-rock lobsters",NA,15,2.6,NA,0.259965504,0.10560128,NA,NA,NA,1.91,NA,NA,NA,marine,Crustacean,37.966667,37.966667,NA
-900313,Palinurus elephas,"Lobsters, spiny-rock lobsters",NA,15,2.6,NA,0.195983552,0.162750208,NA,NA,NA,1.91,NA,NA,NA,marine,Crustacean,37.966667,37.966667,NA
-901227,Palinurus elephas,"Lobsters, spiny-rock lobsters",NA,50,NA,NA,0.06658437,0.06431919,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,37.37083333,37.37083333,25.5
-901159,Farfantepenaeus brasiliensis,"Shrimps, prawns",NA,19.1,NA,NA,0.126,0.078,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,20
-901157,Farfantepenaeus brasiliensis,"Shrimps, prawns",NA,19.1,NA,NA,0.124,0.091,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,23.55052,-23.55052,15.8
-901158,Farfantepenaeus brasiliensis,"Shrimps, prawns",NA,19.1,NA,NA,0.1,0.072,NA,NA,NA,0.9,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,16.3
-901038,Pandalus borealis,"Shrimps, prawns",0.35897523,14,2.46,NA,0.021326832,0.02665854,NA,NA,NA,NA,13.4,0.025948,3.613,marine,Crustacean,34.854423,34.854423,11.2
-900990,Pandalus jordani,"Shrimps, prawns",NA,3,3.24,NA,NA,NA,NA,NA,NA,1.51,16.88,NA,NA,marine,Crustacean,46.25,46.25,NA
-900996,Pandalus jordani,"Shrimps, prawns",NA,3,3.24,NA,NA,NA,NA,NA,NA,1.05,17.45,NA,NA,marine,Crustacean,36.778261,36.778261,NA
-900993,Pandalus jordani,"Shrimps, prawns",NA,3,3.24,NA,NA,NA,NA,NA,NA,1.52,18.36,NA,NA,marine,Crustacean,46.25,46.25,NA
-901000,Panopea abrupta,"Clams, cockles, arkshells",NA,17.5,NA,NA,NA,NA,NA,NA,NA,1.95,15.56,NA,NA,marine,Molluscs,47.735928,47.735928,NA
-901018,Paralithodes camtschaticus,"King crabs, squat-lobsters",NA,40,2.82,NA,0.09645976,0.030333648,NA,NA,NA,0.61,NA,NA,NA,marine,Crustacean,52.183333,52.183333,NA
-901020,Paralithodes platypus,"King crabs, squat-lobsters",NA,18,2.82,NA,0.087174,0.0417834,NA,NA,NA,0.6,NA,NA,NA,marine,Crustacean,56.4097,56.4097,NA
-901125,Parapenaeopsis atlantica,"Shrimps, prawns",NA,12,NA,NA,NA,NA,NA,NA,NA,0.91,22.35,NA,NA,marine,Crustacean,6.524379,6.524379,NA
-901232,Parapenaeopsis stylifera,"Shrimps, prawns",NA,14.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
-901193,Parapenaeus longirostris,"Shrimps, prawns",NA,4,3.31,NA,0.013605048,0.015811272,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,37.017954,37.017954,2.5
-901194,Parapenaeus longirostris,"Shrimps, prawns",NA,4,3.31,NA,0.01930446,0.030611358,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,37.017954,37.017954,2.5
-901230,Fenneropenaeus indicus,"Shrimps, prawns",NA,18.4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
-901037,Melicertus kerathurus,"Shrimps, prawns",NA,18,NA,NA,0.1925406,0.2758014,NA,NA,NA,2.1,15.6,NA,NA,marine,Crustacean,40.26691,40.26691,NA
-901228,Melicertus kerathurus,"Shrimps, prawns",NA,18,NA,NA,0.1639872,0.1238445,NA,NA,NA,1.3,NA,NA,NA,marine,Crustacean,40.26691,40.26691,16.7
-901229,Penaeus monodon,"Shrimps, prawns",NA,31,2.6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
-901126,Farfantepenaeus notialis,"Shrimps, prawns",NA,17.5,NA,NA,NA,NA,NA,NA,NA,0.79,24.54,NA,NA,marine,Crustacean,6.524379,6.524379,NA
-901161,Litopenaeus schmitti,"Shrimps, prawns",NA,17.5,NA,NA,0.096,0.07,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,19.2
-901160,Litopenaeus schmitti,"Shrimps, prawns",NA,17.5,NA,NA,0.085,0.062,NA,NA,NA,0.9,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,15.7
-901041,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,60.3,NA,NA,1.58,NA,NA,NA,20.44,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
-901043,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,61.1,NA,NA,1.36,NA,NA,NA,20.48,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
-901040,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,59.5,NA,NA,1.51,NA,NA,NA,20.58,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
-901042,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,60.3,NA,NA,1.46,NA,NA,NA,21.7,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
-901233,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,60.8
-901236,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,68
-901235,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,64.7
-901234,Penaeus semisulcatus,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,65.4
-901169,Perna viridis,Mussels,NA,11,2,NA,NA,NA,NA,1.86,NA,NA,NA,NA,NA,marine,Molluscs,5.262923,5.262923,8.63
-901171,Perna viridis,Mussels,NA,11,2,NA,NA,NA,NA,1.99,NA,NA,NA,NA,NA,marine,Molluscs,5.937638,5.937638,6.46
-901172,Perna viridis,Mussels,NA,11,2,NA,NA,NA,NA,2.19,NA,NA,NA,NA,NA,marine,Molluscs,5.773067,5.773067,6.11
-901170,Perna viridis,Mussels,NA,11,2,NA,NA,NA,NA,1.34,NA,NA,NA,NA,NA,marine,Molluscs,2.189594,2.189594,8.44
-901167,Pinctada radiata,"Pearls, mother-of-pearl, shells",NA,6,NA,NA,NA,NA,0.28,0.02979,NA,NA,NA,NA,NA,marine,Molluscs,36.632173,36.632173,3.51
-901188,Portunus pelagicus,"Crabs, sea-spiders",NA,14,3,NA,0.061272,0.06216,NA,NA,NA,0.75,16.9,NA,NA,marine,Crustacean,20.017378,20.017378,NA
-901187,Portunus pelagicus,"Crabs, sea-spiders",NA,14,3,NA,0.11695992,0.08582124,NA,NA,NA,1.08,18.4,NA,NA,marine,Crustacean,20.017378,20.017378,NA
-901199,Portunus pelagicus,"Crabs, sea-spiders",NA,14,3,NA,NA,NA,NA,NA,NA,NA,21.54,NA,NA,marine,Crustacean,36.5,36.5,6.15
-901200,Portunus pelagicus,"Crabs, sea-spiders",NA,14,3,NA,NA,NA,NA,NA,NA,NA,22.64,NA,NA,marine,Crustacean,36.5,36.5,6.15
-901052,Portunus pelagicus,"Crabs, sea-spiders",NA,14,3,112,NA,NA,0.4,2.6,30,NA,NA,NA,NA,marine,Crustacean,26.0667,26.0667,NA
-901054,Portunus pelagicus,"Crabs, sea-spiders",NA,14,3,115,NA,NA,0.35,2.3,40,NA,NA,NA,NA,marine,Crustacean,26.0667,26.0667,NA
-900790,Procambarus acutus,Freshwater crustaceans,NA,12.7,NA,NA,NA,NA,NA,NA,NA,NA,14.3,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
-900791,Procambarus acutus,Freshwater crustaceans,NA,12.7,NA,NA,NA,NA,NA,NA,NA,NA,16.4,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
-900786,NA,Freshwater crustaceans,NA,11.94,NA,NA,NA,NA,NA,NA,NA,NA,14.3,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
-900787,NA,Freshwater crustaceans,NA,11.94,NA,NA,NA,NA,NA,NA,NA,NA,16.2,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
-900604,NA,"Abalones, winkles, conchs",NA,15,NA,444,0.000668496,0.000710277,48,6.9,NA,NA,11.6,NA,NA,marine,Molluscs,14.903036,14.903036,NA
-902189,NA,"Abalones, winkles, conchs",NA,15,NA,812,NA,NA,102,12,NA,NA,11.8,NA,NA,marine,Molluscs,14.903036,14.903036,NA
-902285,Saxidomus gigantea�,NA,NA,13,NA,46,NA,NA,14,1.37,NA,1,NA,NA,NA,marine,Molluscs,52.372895,52.372895,NA
-900548,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,NA,NA,NA,NA,NA,1.35,13.94,NA,NA,marine,Molluscs,3.144341,3.144341,18
-900449,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,NA,NA,NA,NA,NA,NA,17,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-902281,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,NA,NA,NA,NA,NA,2.38,18.32,NA,NA,marine,Molluscs,37.966667,37.966667,NA
-901212,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.178659328,0.375716864,NA,NA,NA,1.52,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901213,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.151176812,0.289513436,NA,NA,NA,1.29,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-900314,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.137949877,0.228953461,NA,NA,NA,2.38,NA,NA,NA,marine,Molluscs,37.966667,37.966667,NA
-900315,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.201146811,0.297206149,NA,NA,NA,2.38,NA,NA,NA,marine,Molluscs,37.966667,37.966667,NA
-901211,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.107330468,0.220887844,NA,NA,NA,1.01,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
-901176,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.0718074,0.1234674,NA,NA,NA,0.85,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
-901174,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.08397312,0.1554048,NA,NA,NA,0.88,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
-901175,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.0759402,0.152397,NA,NA,NA,0.85,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
-901173,NA,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.08839488,0.14522016,NA,NA,NA,0.86,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
-901241,NA,"Abalones, winkles, conchs",NA,7,NA,NA,NA,NA,0.01,NA,NA,0.54,NA,NA,NA,marine,Molluscs,10.591648,10.591648,7
-901243,NA,"Abalones, winkles, conchs",NA,7,NA,NA,NA,NA,0.01,NA,NA,0.35,NA,NA,NA,marine,Molluscs,10.591648,10.591648,7
-901242,NA,"Abalones, winkles, conchs",NA,8,NA,NA,NA,NA,0.01,NA,NA,0.94,NA,NA,NA,marine,Molluscs,10.591648,10.591648,8
-901244,NA,"Abalones, winkles, conchs",NA,8,NA,NA,NA,NA,0.01,NA,NA,0.91,NA,NA,NA,marine,Molluscs,10.591648,10.591648,8
-901163,Quidnipagus palatam,"Clams, cockles, arkshells",NA,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
-901164,Quidnipagus palatam,"Clams, cockles, arkshells",NA,6,NA,NA,0.024656802,0.029155424,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
-901165,Quidnipagus palatam,"Clams, cockles, arkshells",NA,6,NA,NA,0.036602927,0.02349697,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
-901166,Quidnipagus palatam,"Clams, cockles, arkshells",NA,6,NA,NA,0.019973921,0.009015164,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
-900450,Todarodes sagittatus,"Squids, cuttlefishes, octopuses",NA,75,NA,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Molluscs,39.019184,39.019184,NA
-901039,Trachysalambria curvirostris,"Shrimps, prawns",NA,8.1,NA,NA,0.018201348,0.019580238,NA,NA,NA,NA,14.9,NA,NA,marine,Crustacean,34.854423,34.854423,9
-901298,NA,Freshwater molluscs,NA,10,NA,124,NA,NA,16.6,3.9,NA,1.4,6.6,NA,NA,freshwater,Molluscs,25.274398,-25.274398,NA
-901156,Xiphopenaeus kroyeri,"Shrimps, prawns",NA,14,2.7,NA,0.086,0.097,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,23.55052,-23.55052,10
-1,Acanthina monodon,NA,NA,NA,NA,59.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,18.93
-2,Aristeus antennatus,NA,NA,NA,NA,60.3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,18.93
-3,Aulacomya ater,NA,NA,NA,NA,60.3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,18.93
-4,NA,NA,NA,NA,NA,61.1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,18.93
-5,Donax trunculus,NA,NA,NA,NA,60.28,NA,NA,1.48,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,18.93
-6,NA,NA,NA,NA,NA,60.44,NA,NA,1.55,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,12.67
-7,NA,NA,NA,NA,NA,121,NA,NA,0.9,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-8,NA,NA,NA,NA,NA,NA,NA,NA,2.4,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-9,NA,NA,NA,NA,NA,25.9,8.58,14.9,3.07,1.73,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-10,NA,NA,NA,NA,NA,24.7,9.46,9.99,1.22,1.47,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-11,Fissurella picta,NA,NA,NA,NA,NA,0.086,0.097,NA,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-12,Hexaplex trunculus,NA,NA,NA,NA,NA,0.099,0.073,NA,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-13,Hexaplex trunculus,NA,NA,NA,NA,NA,0.124,0.091,NA,NA,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-14,Macrobrachium rosenbergii,NA,NA,NA,NA,NA,0.1,0.072,NA,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-15,Maja brachydactyla,NA,NA,NA,NA,NA,0.126,0.078,NA,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-16,Maja brachydactyla,NA,NA,NA,NA,NA,0.085,0.062,NA,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-17,Maja brachydactyla,NA,NA,NA,NA,NA,0.096,0.07,NA,NA,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-18,Maja brachydactyla,NA,NA,NA,NA,78.7,NA,NA,1.07,6.28,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,139.9
-19,Meretrix lusoria,NA,NA,NA,NA,390,NA,NA,17.1,5.77,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,139.9
-20,Meretrix lusoria,NA,NA,NA,NA,24,NA,NA,2.97,5.15,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,139.9
-21,Meretrix lusoria,NA,NA,NA,NA,59.9,NA,NA,14.1,0.9,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,139.9
-22,Metapenaeus monoceros,NA,NA,NA,NA,674.4,NA,NA,8.1,112.8,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,4.6
-23,Mytilus chilensis,NA,NA,NA,NA,860,NA,NA,17.8,225.2,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,4.6
-24,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,7.25,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-25,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,8.13,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-26,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,6.73,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-27,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,5.8,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-28,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,6.09,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-29,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,8,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-30,Mytilus chilensis,NA,NA,NA,NA,NA,NA,NA,NA,7.8,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-31,Mytilus galloprovincialis,NA,NA,NA,NA,NA,NA,NA,NA,8.33,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-32,Mytilus galloprovincialis,NA,NA,NA,NA,NA,NA,NA,NA,7.57,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-33,Mytilus galloprovincialis,NA,NA,NA,NA,NA,NA,NA,NA,5.76,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-34,Nacella deaurata,NA,NA,NA,NA,NA,NA,NA,NA,8.47,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-35,Nacella deaurata,NA,NA,NA,NA,NA,NA,NA,NA,7.83,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-36,Nacella deaurata,NA,NA,NA,NA,NA,NA,NA,NA,5.2,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-37,Nacella deaurata,NA,NA,NA,NA,NA,NA,NA,NA,4.73,NA,NA,NA,NA,NA,NA,Molluscs,NA,NA,NA
-38,penaeid and pandalid shrimps,NA,NA,NA,NA,NA,NA,NA,NA,5.6,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-39,Penaeus brasiliensis,NA,NA,NA,NA,40,NA,NA,1,2.3,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,0.77
-40,Penaeus brasiliensis,NA,NA,NA,NA,37,NA,NA,2.1,2,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,0.72
-41,Penaeus brasiliensis,NA,NA,NA,NA,82,NA,NA,2.9,1.76,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,0.54
-42,Penaeus monodon,NA,NA,NA,NA,60,NA,NA,2.88,1.37,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,5.8
-43,Litopenaeus schmitti,NA,NA,NA,NA,130,NA,NA,5.18,1.55,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,4.4
-44,Litopenaeus schmitti,NA,NA,NA,NA,150,NA,NA,8.27,1.28,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,3.5
-45,Penaeus semisulcatus,NA,NA,NA,NA,120,NA,NA,7.25,1.86,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,3.8
-46,Penaeus semisulcatus,NA,NA,NA,NA,180,NA,NA,10.1,2.42,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,2.4
-47,Penaeus semisulcatus,NA,NA,NA,NA,140,NA,NA,8.62,1.84,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,3.4
-48,Penaeus semisulcatus,NA,NA,NA,NA,150,NA,NA,13.1,1.52,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,3.1
-49,Penaeus semisulcatus,NA,NA,NA,NA,150,NA,NA,8.56,2.1,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,2.7
-50,Litopenaeus vannamei,NA,NA,NA,NA,100,NA,NA,4.54,1.43,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,4.3
-51,Perunytitus purpuratus,NA,NA,NA,NA,83,NA,NA,55.1,0.85,NA,NA,NA,NA,NA,NA,Echinoderm,NA,NA,4.01
-52,Perunytitus purpuratus,NA,NA,NA,NA,60,NA,NA,4.32,0.998,NA,NA,NA,NA,NA,NA,Echinoderm,NA,NA,5.36
-53,Perunytitus purpuratus,NA,NA,NA,NA,93,NA,NA,2.52,3.54,NA,NA,NA,NA,NA,NA,Echinoderm,NA,NA,4.95
-54,Perunytitus purpuratus,NA,NA,NA,NA,102,NA,NA,4.62,2.25,NA,NA,NA,NA,NA,NA,Echinoderm,NA,NA,5.45
-55,Perunytitus purpuratus,NA,NA,NA,NA,27,NA,NA,8.11,1.51,NA,NA,NA,NA,NA,NA,Echinoderm,NA,NA,5.33
-56,Portunus trituberculatus,NA,NA,NA,NA,68,NA,NA,7.08,0.785,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,5.22
-57,Portunus trituberculatus,NA,NA,NA,NA,57,NA,NA,2.85,1.15,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,5.5
-58,Portunus trituberculatus,NA,NA,NA,NA,53,NA,NA,1.97,1.02,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,5.11
-59,Portunus trituberculatus,NA,NA,NA,NA,105,NA,NA,8.05,0.793,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,3.64
-60,Portunus trituberculatus,NA,NA,NA,NA,74,NA,NA,4.39,0.862,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,4.05
-61,Scylla paramamosain,NA,NA,NA,NA,63,NA,NA,3.44,0.967,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,4.85
-62,Scylla paramamosain,NA,NA,NA,NA,39.849,NA,NA,3.775,2.126,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-63,Scylla paramamosain,NA,NA,NA,NA,149.199,NA,NA,8.257,0.911,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-64,Scylla paramamosain,NA,NA,NA,NA,95.346,NA,NA,27.613,2.025,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,NA
-65,Scylla paramamosain,NA,NA,NA,NA,NA,NA,NA,10.75505,1.0241,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,24.6
-66,Xiphopenaeus kroyeri,NA,NA,NA,NA,NA,NA,NA,33.55455,1.75985,NA,NA,NA,NA,NA,NA,Crustacean,NA,NA,31.52
+Food.Item.ID,species,Subgroup,taxon,max_size,max_length,TL,CA_mg,EPA_g,DHA_g,FE_mg,ZN_mg,HG_mcg,FAT,PROTEIN,lwA,lwB,Habitat,Subgroup,Abs_lat,Latitude,max_length_study
+900550,Tegillarca granosa,Molluscs,"Clams, cockles, arkshells",NA,9,NA,NA,NA,NA,NA,NA,NA,1.93,15.99,NA,NA,marine,Molluscs,3.144341,3.144341,5
+901259,Arctica islandica,Molluscs,"Clams, cockles, arkshells",0.012671945,11,2,62.9,NA,NA,5.3,0.84,1.7,NA,7.3,0.023009,2.632,marine,Molluscs,63.968654,63.968654,NA
+901204,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.030021745,0.057581619,NA,NA,NA,NA,20.31,NA,NA,marine,Crustacean,33.886917,33.886917,NA
+901207,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.034584211,0.07125565,NA,NA,NA,NA,21.86,NA,NA,marine,Crustacean,32.10119,32.10119,NA
+901203,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.023645371,0.043766961,NA,NA,NA,NA,22.02,NA,NA,marine,Crustacean,33.886917,33.886917,NA
+901209,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.022001845,0.041721764,NA,NA,NA,NA,22.23,NA,NA,marine,Crustacean,35.240117,35.240117,NA
+901205,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.037700714,0.070346104,NA,NA,NA,NA,22.37,NA,NA,marine,Crustacean,36.5626,36.5626,NA
+901201,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.039948611,0.071709734,NA,NA,NA,NA,22.66,NA,NA,marine,Crustacean,43.863529,43.863529,NA
+901210,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.033838013,0.065869534,NA,NA,NA,NA,22.86,NA,NA,marine,Crustacean,35.240117,35.240117,NA
+901206,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.030119591,0.056198482,NA,NA,NA,NA,23.92,NA,NA,marine,Crustacean,36.5626,36.5626,NA
+901202,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.037101517,0.064228696,NA,NA,NA,NA,24.03,NA,NA,marine,Crustacean,43.863529,43.863529,NA
+901208,Aristaeomorpha foliacea,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.029671139,0.062500818,NA,NA,NA,NA,24.63,NA,NA,marine,Crustacean,32.10119,32.10119,NA
+900487,Aristeus antennatus,Crustacean,"Shrimps, prawns",5.90E-05,6,3.29,NA,NA,NA,NA,NA,NA,0.4,16,8.00E-04,2.4,marine,Crustacean,39.019184,39.019184,NA
+900486,Aristeus antennatus,Crustacean,"Shrimps, prawns",5.90E-05,6,3.29,NA,NA,NA,NA,NA,NA,0.2,19,8.00E-04,2.4,marine,Crustacean,39.019184,39.019184,NA
+900488,Aristeus antennatus,Crustacean,"Shrimps, prawns",5.90E-05,6,3.29,NA,NA,NA,NA,NA,NA,2,19,8.00E-04,2.4,marine,Crustacean,39.019184,39.019184,NA
+901191,Aristeus antennatus,Crustacean,"Shrimps, prawns",5.90E-05,6,3.29,NA,0.006710598,0.007997562,NA,NA,NA,NA,NA,8.00E-04,2.4,marine,Crustacean,37.017954,37.017954,3.5
+901192,Aristeus antennatus,Crustacean,"Shrimps, prawns",5.90E-05,6,3.29,NA,0.020545461,0.032266026,NA,NA,NA,NA,NA,8.00E-04,2.4,marine,Crustacean,37.017954,37.017954,3.5
+900446,Aristeus antennatus,Crustacean,"Shrimps, prawns",5.90E-05,6,3.29,NA,0.1005696,0.111744,NA,NA,NA,NA,NA,8.00E-04,2.4,marine,Crustacean,39.019184,39.019184,NA
+901168,NA,Molluscs,Mussels,NA,2.3,NA,NA,NA,NA,0.04,0.01579,NA,NA,NA,NA,NA,marine,Molluscs,36.632173,36.632173,1.91
+901198,Callinectes sapidus,Crustacean,"Crabs, sea-spiders",NA,23,4,NA,NA,NA,NA,NA,NA,NA,14.71,NA,NA,marine,Crustacean,36.5,36.5,4.85
+901197,Callinectes sapidus,Crustacean,"Crabs, sea-spiders",NA,23,4,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Crustacean,36.5,36.5,4.85
+901017,Carcinus maenas,Crustacean,"Crabs, sea-spiders",NA,10,NA,NA,0.154,0.115,NA,NA,NA,0.5,16.8,NA,NA,marine,Crustacean,43.133595,43.133595,NA
+901002,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,150,0.032793408,0.07957224,6.73,0.91,1.22,0.73,8.55,NA,NA,marine,Molluscs,44.067829,44.067829,NA
+901005,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,304,0.05983072,0.10292912,8.2,1.28,1.05,0.84,9.04,NA,NA,marine,Molluscs,44.067829,44.067829,NA
+901182,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,2.13,9.06,NA,NA,marine,Molluscs,40.403611,40.403611,NA
+901180,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,2.94,10.05,NA,NA,marine,Molluscs,40.403611,40.403611,NA
+901003,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,327,0.162592,0.14308096,6.44,1.38,1.02,1.16,10.1,NA,NA,marine,Molluscs,44.067829,44.067829,NA
+901001,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,245,0.2241162,0.166012,6.31,1.23,1.1,1.55,10.4,NA,NA,marine,Molluscs,44.067829,44.067829,NA
+901181,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,3.13,10.5,NA,NA,marine,Molluscs,40.403611,40.403611,NA
+901004,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,67.5,0.2386878,0.15422904,10.7,1.48,1.26,1.59,10.8,NA,NA,marine,Molluscs,44.067829,44.067829,NA
+901183,NA,Molluscs,"Clams, cockles, arkshells",NA,5,NA,NA,NA,NA,NA,NA,NA,2.84,10.81,NA,NA,marine,Molluscs,40.403611,40.403611,NA
+901022,Chionoecetes opilio,Crustacean,"Crabs, sea-spiders",NA,20,2.3,NA,0.39047856,0.21243016,NA,NA,NA,1.57,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
+901025,Chionoecetes opilio,Crustacean,"Crabs, sea-spiders",NA,14,NA,NA,1.20285898,1.6908252,NA,NA,NA,15.8,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
+901024,Chionoecetes opilio,Crustacean,"Crabs, sea-spiders",NA,14,NA,NA,0.032886527,0.014421351,NA,NA,NA,0.53,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
+901027,Chionoecetes opilio,Crustacean,"Crabs, sea-spiders",NA,14,NA,NA,0.69759552,0.88336824,NA,NA,NA,10.2,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
+901026,Chionoecetes opilio,Crustacean,"Crabs, sea-spiders",NA,14,NA,NA,0.14442624,0.12379392,NA,NA,NA,0.96,NA,NA,NA,marine,Crustacean,53.041213,53.041213,NA
+900603,Cipangopaludina japonica,Molluscs,"Abalones, winkles, conchs",NA,6.5,NA,1200,0.00334248,0.003676728,4.3,8.1,NA,NA,13,NA,NA,marine,Molluscs,14.903036,14.903036,NA
+901162,Crangon crangon,Crustacean,"Shrimps, prawns",0.008196446,9,3.19,NA,0.07489008,0.05958176,NA,NA,NA,NA,18.47,0.02442,2.647,marine,Crustacean,41.607228,41.607228,5
+900999,Crassostrea gigas,Molluscs,Oysters,0.000234169,12,2,NA,NA,NA,NA,NA,NA,2.85,7.76,0.00019,2.864,marine,Molluscs,46.539543,46.539543,NA
+901155,Crassostrea rhizophorae,Molluscs,Oysters,NA,9,2,13.14,NA,NA,2.39,11.871063,NA,NA,3.22,NA,NA,marine,Molluscs,2.852432,-2.852432,NA
+901132,Crassostrea rhizophorae,Molluscs,Oysters,NA,9,2,NA,0.110386,0.072832,NA,NA,NA,1.5,9.3,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
+901133,Crassostrea rhizophorae,Molluscs,Oysters,NA,9,2,NA,0.164832,0.079184,NA,NA,NA,2,9.6,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
+901131,Crassostrea rhizophorae,Molluscs,Oysters,NA,9,2,NA,0.055512,0.0320736,NA,NA,NA,1.6,9.9,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
+901130,Crassostrea rhizophorae,Molluscs,Oysters,NA,9,2,NA,0.120628,0.063728,NA,NA,NA,1.5,10.2,NA,NA,marine,Molluscs,23.038433,-23.038433,NA
+900794,Crassostrea virginica,Molluscs,Oysters,NA,10,2,NA,NA,NA,NA,NA,NA,NA,5.6,NA,NA,marine,Molluscs,38.343306,38.343306,NA
+900795,Crassostrea virginica,Molluscs,Oysters,NA,10,2,NA,NA,NA,NA,NA,NA,NA,6.3,NA,NA,marine,Molluscs,38.343306,38.343306,NA
+901219,Eledone moschata,Molluscs,"Squids, cuttlefishes, octopuses",NA,19.4,NA,NA,0.041710624,0.080269936,NA,NA,NA,0.68,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901217,Eledone moschata,Molluscs,"Squids, cuttlefishes, octopuses",NA,19.4,NA,NA,0.02181936,0.05826824,NA,NA,NA,0.6,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901218,Eledone moschata,Molluscs,"Squids, cuttlefishes, octopuses",NA,19.4,NA,NA,0.040965608,0.094559208,NA,NA,NA,0.66,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901186,NA,Crustacean,Freshwater crustaceans,NA,7.5,NA,NA,0.20458472,0.08934396,NA,NA,NA,1.64,18.48,NA,NA,freshwater,Crustacean,30.546498,30.546498,NA
+901185,NA,Crustacean,Freshwater crustaceans,NA,7.5,NA,NA,0.1040494,0.10725092,NA,NA,NA,1.96,20.71,NA,NA,freshwater,Crustacean,30.546498,30.546498,NA
+902223,NA,Crustacean,"Krill, planktonic crustaceans",NA,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,NA,NA,NA
+902224,NA,Crustacean,"Krill, planktonic crustaceans",NA,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,NA,NA,NA
+901134,Euphausia superba,Crustacean,"Krill, planktonic crustaceans",NA,6,2.2,NA,0.02696,0.01287,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,32.165622,32.165622,NA
+901014,Ficus subintermedia,Molluscs,"Abalones, winkles, conchs",NA,13,NA,NA,NA,NA,NA,NA,NA,2.83,15.38,NA,NA,marine,Molluscs,22.62389,22.62389,NA
+901012,Ficus subintermedia,Molluscs,"Abalones, winkles, conchs",NA,13,NA,NA,NA,NA,NA,NA,NA,1.38,16.02,NA,NA,marine,Molluscs,22.62389,22.62389,NA
+901013,Ficus subintermedia,Molluscs,"Abalones, winkles, conchs",NA,13,NA,NA,NA,NA,NA,NA,NA,2.33,16.18,NA,NA,marine,Molluscs,22.62389,22.62389,NA
+901177,NA,Molluscs,"Abalones, winkles, conchs",NA,5.5,NA,674.4,0.644600279,0.734312688,8.1,NA,NA,NA,15.75,NA,NA,marine,Molluscs,34.733333,34.733333,NA
+901225,NA,Molluscs,"Abalones, winkles, conchs",NA,5.5,NA,NA,NA,NA,NA,NA,NA,NA,20.1,NA,NA,marine,Molluscs,37.018241,37.018241,NA
+902286,Haliotis cracherodii,Molluscs,NA,NA,29,NA,31,NA,NA,3.2,0.82,NA,0.8,NA,NA,NA,marine,Molluscs,52.372895,52.372895,NA
+900444,Homarus gammarus,Crustacean,"Lobsters, spiny-rock lobsters",NA,65,2.6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,39.019184,39.019184,NA
+900963,Doryteuthis pealeii,Molluscs,"Squids, cuttlefishes, octopuses",NA,50,NA,NA,NA,NA,NA,NA,NA,NA,17.44,NA,NA,marine,Molluscs,19.173773,19.173773,NA
+901066,Doryteuthis pleii,Molluscs,"Squids, cuttlefishes, octopuses",NA,35,NA,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,marine,Molluscs,23.843611,-23.843611,26.8
+900496,Loligo vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+901048,Loligo vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.318510208,0.705690048,NA,NA,NA,2.22,19.71,NA,NA,marine,Molluscs,39.019184,39.019184,8.8
+901214,Loligo vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.11869732,0.3841656,NA,NA,NA,1.34,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901216,Loligo vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.212145856,0.559769472,NA,NA,NA,1.92,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901215,Loligo vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.194312628,0.488293648,NA,NA,NA,1.73,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+900495,Loligo vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,78,4.1,NA,0.049968,0.01388,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+900224,Macrobrachium nipponense,Crustacean,Freshwater crustaceans,NA,NA,NA,NA,0.053603392,0.043431664,NA,NA,NA,1.13,NA,NA,NA,freshwater,Crustacean,16.277332,16.277332,NA
+902242,NA,Crustacean,Freshwater crustaceans,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,freshwater,Crustacean,24.4333,24.4333,NA
+901056,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901057,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901058,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901059,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901060,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901061,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901062,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901063,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901064,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+901065,Mactra violacea,Molluscs,"Clams, cockles, arkshells",NA,9.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,11.753288,11.753288,NA
+902290,Metacarcinus magister,Crustacean,NA,NA,22.5,NA,219,NA,NA,46,0.6,NA,0.6,NA,NA,NA,marine,Crustacean,52.372895,52.372895,NA
+900549,Metapenaeus affinis,Crustacean,"Shrimps, prawns",NA,22.2,NA,NA,NA,NA,NA,NA,NA,1.06,19.12,NA,NA,marine,Crustacean,3.144341,3.144341,17
+901231,Metapenaeus dobsoni,Crustacean,"Shrimps, prawns",NA,11.8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
+901044,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,62.4,NA,NA,1.66,NA,NA,NA,21.06,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
+901045,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,60.4,NA,NA,1.55,NA,NA,NA,21.31,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
+901047,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,59.9,NA,NA,1.41,NA,NA,NA,21.91,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
+901046,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,59.1,NA,NA,1.63,NA,NA,NA,22.46,NA,NA,marine,Crustacean,36.56945,36.56945,12.67
+901239,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,16.3
+901237,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,18
+901240,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,17.3
+901238,Metapenaeus monoceros,Crustacean,"Shrimps, prawns",NA,18,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,14.4
+901179,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,94,NA,NA,0.167286,0.385782,NA,NA,NA,1.5,NA,NA,NA,marine,Molluscs,54.620811,-54.620811,NA
+901178,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,94,NA,NA,0.154768,0.400576,NA,NA,NA,1.5,NA,NA,NA,marine,Molluscs,53.08181,-53.08181,NA
+902284,Mytilus edulis,Molluscs,NA,0.00018578,11,NA,26,NA,NA,4,1.6,NA,2.2,NA,2.00E-04,2.85,marine,Molluscs,52.372895,52.372895,NA
+900489,Mytilus galloprovincialis,Molluscs,Mussels,NA,7,2,NA,NA,NA,NA,NA,NA,NA,8,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+901050,Mytilus galloprovincialis,Molluscs,Mussels,NA,7,2,NA,0.323660524,0.225269224,NA,NA,NA,2.27,8.89,NA,NA,marine,Molluscs,39.019184,39.019184,5.6
+900491,Mytilus galloprovincialis,Molluscs,Mussels,NA,7,2,NA,NA,NA,NA,NA,NA,NA,11,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+900490,Mytilus galloprovincialis,Molluscs,Mussels,NA,7,2,NA,NA,NA,NA,NA,NA,NA,13,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+900447,Mytilus galloprovincialis,Molluscs,Mussels,NA,7,2,NA,0.195078,0.1170468,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+902226,NA,Molluscs,Mussels,NA,11,NA,67.76,NA,NA,38.48,1.265025,NA,NA,16.09,NA,NA,marine,Molluscs,2.852432,-2.852432,NA
+900485,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,NA,NA,NA,NA,NA,0.2,17,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
+900484,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,NA,NA,NA,NA,NA,0.5,17,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
+901257,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,72,NA,NA,2.66,1.05,6.6,NA,17.6,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
+900483,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,NA,NA,NA,NA,NA,0.2,19,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
+900445,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.01654668,0.03309336,NA,NA,NA,NA,NA,0.02302,0.8935,marine,Crustacean,39.019184,39.019184,NA
+901266,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.032009918,0.035551025,NA,NA,NA,0.5,NA,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
+901267,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.073998792,0.086094436,NA,NA,NA,0.78,NA,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
+901011,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,90,NA,NA,2,1.67,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,NA
+901226,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.065331,0.0787815,NA,NA,NA,0.7,NA,0.02302,0.8935,marine,Crustacean,37.37083333,37.37083333,17.5
+901010,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,110,NA,NA,1.99,1.81,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,NA
+901195,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.006342894,0.009054711,NA,NA,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,2.8
+901196,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.01424853,0.020131794,NA,NA,NA,NA,NA,0.02302,0.8935,marine,Crustacean,37.017954,37.017954,2.8
+901265,Nephrops norvegicus,Crustacean,"Lobsters, spiny-rock lobsters",0.000147576,8,2.88,NA,0.05204254,0.049944343,NA,NA,NA,0.6,NA,0.02302,0.8935,marine,Crustacean,63.968654,63.968654,NA
+900494,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,NA,NA,NA,NA,NA,NA,11,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+900493,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,NA,NA,NA,NA,NA,NA,13,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+900492,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+900451,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,130,NA,NA,0.0376029,0.04387005,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+901220,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,32,3.55,NA,0.038287273,0.066715065,NA,NA,NA,0.54,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901221,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,32,3.55,NA,0.073702872,0.176151672,NA,NA,NA,0.94,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901222,Octopus vulgaris,Molluscs,"Squids, cuttlefishes, octopuses",NA,32,3.55,NA,0.10157948,0.163680752,NA,NA,NA,0.98,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901223,Orconectes limosus,Crustacean,Freshwater crustaceans,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.43,NA,NA,NA,freshwater,Crustacean,53.116156,53.116156,NA
+901224,Orconectes limosus,Crustacean,Freshwater crustaceans,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.44,NA,NA,NA,freshwater,Crustacean,52.585556,52.585556,NA
+900448,Ostrea edulis,Molluscs,Oysters,NA,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+901127,Palaemon serratus,Crustacean,"Shrimps, prawns",NA,11,2.7,NA,NA,NA,NA,NA,NA,1.11,25.7,NA,NA,marine,Crustacean,5.516667,5.516667,NA
+902188,NA,Crustacean,Freshwater crustaceans,NA,NA,NA,NA,0.004412448,NA,10,3.1,NA,NA,16.3,NA,NA,freshwater,Crustacean,14.903036,14.903036,NA
+902280,Palinurus elephas,Crustacean,"Lobsters, spiny-rock lobsters",NA,15,2.6,NA,NA,NA,NA,NA,NA,1.91,18.11,NA,NA,marine,Crustacean,37.966667,37.966667,NA
+900312,Palinurus elephas,Crustacean,"Lobsters, spiny-rock lobsters",NA,15,2.6,NA,0.259965504,0.10560128,NA,NA,NA,1.91,NA,NA,NA,marine,Crustacean,37.966667,37.966667,NA
+900313,Palinurus elephas,Crustacean,"Lobsters, spiny-rock lobsters",NA,15,2.6,NA,0.195983552,0.162750208,NA,NA,NA,1.91,NA,NA,NA,marine,Crustacean,37.966667,37.966667,NA
+901227,Palinurus elephas,Crustacean,"Lobsters, spiny-rock lobsters",NA,50,NA,NA,0.06658437,0.06431919,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,37.37083333,37.37083333,25.5
+901159,Farfantepenaeus brasiliensis,Crustacean,"Shrimps, prawns",NA,19.1,NA,NA,0.126,0.078,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,20
+901157,Farfantepenaeus brasiliensis,Crustacean,"Shrimps, prawns",NA,19.1,NA,NA,0.124,0.091,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,23.55052,-23.55052,15.8
+901158,Farfantepenaeus brasiliensis,Crustacean,"Shrimps, prawns",NA,19.1,NA,NA,0.1,0.072,NA,NA,NA,0.9,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,16.3
+901038,Pandalus borealis,Crustacean,"Shrimps, prawns",0.35897523,14,2.46,NA,0.021326832,0.02665854,NA,NA,NA,NA,13.4,0.025948,3.613,marine,Crustacean,34.854423,34.854423,11.2
+900990,Pandalus jordani,Crustacean,"Shrimps, prawns",NA,3,3.24,NA,NA,NA,NA,NA,NA,1.51,16.88,NA,NA,marine,Crustacean,46.25,46.25,NA
+900996,Pandalus jordani,Crustacean,"Shrimps, prawns",NA,3,3.24,NA,NA,NA,NA,NA,NA,1.05,17.45,NA,NA,marine,Crustacean,36.778261,36.778261,NA
+900993,Pandalus jordani,Crustacean,"Shrimps, prawns",NA,3,3.24,NA,NA,NA,NA,NA,NA,1.52,18.36,NA,NA,marine,Crustacean,46.25,46.25,NA
+901000,Panopea abrupta,Molluscs,"Clams, cockles, arkshells",NA,17.5,NA,NA,NA,NA,NA,NA,NA,1.95,15.56,NA,NA,marine,Molluscs,47.735928,47.735928,NA
+901018,Paralithodes camtschaticus,Crustacean,"King crabs, squat-lobsters",NA,40,2.82,NA,0.09645976,0.030333648,NA,NA,NA,0.61,NA,NA,NA,marine,Crustacean,52.183333,52.183333,NA
+901020,Paralithodes platypus,Crustacean,"King crabs, squat-lobsters",NA,18,2.82,NA,0.087174,0.0417834,NA,NA,NA,0.6,NA,NA,NA,marine,Crustacean,56.4097,56.4097,NA
+901125,Parapenaeopsis atlantica,Crustacean,"Shrimps, prawns",NA,12,NA,NA,NA,NA,NA,NA,NA,0.91,22.35,NA,NA,marine,Crustacean,6.524379,6.524379,NA
+901232,Parapenaeopsis stylifera,Crustacean,"Shrimps, prawns",NA,14.5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
+901193,Parapenaeus longirostris,Crustacean,"Shrimps, prawns",NA,4,3.31,NA,0.013605048,0.015811272,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,37.017954,37.017954,2.5
+901194,Parapenaeus longirostris,Crustacean,"Shrimps, prawns",NA,4,3.31,NA,0.01930446,0.030611358,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,37.017954,37.017954,2.5
+901230,Fenneropenaeus indicus,Crustacean,"Shrimps, prawns",NA,18.4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
+901037,Melicertus kerathurus,Crustacean,"Shrimps, prawns",NA,18,NA,NA,0.1925406,0.2758014,NA,NA,NA,2.1,15.6,NA,NA,marine,Crustacean,40.26691,40.26691,NA
+901228,Melicertus kerathurus,Crustacean,"Shrimps, prawns",NA,18,NA,NA,0.1639872,0.1238445,NA,NA,NA,1.3,NA,NA,NA,marine,Crustacean,40.26691,40.26691,16.7
+901229,Penaeus monodon,Crustacean,"Shrimps, prawns",NA,31,2.6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,11.753288,11.753288,NA
+901126,Farfantepenaeus notialis,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,NA,NA,NA,NA,NA,0.79,24.54,NA,NA,marine,Crustacean,6.524379,6.524379,NA
+901161,Litopenaeus schmitti,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.096,0.07,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,19.2
+901160,Litopenaeus schmitti,Crustacean,"Shrimps, prawns",NA,17.5,NA,NA,0.085,0.062,NA,NA,NA,0.9,NA,NA,NA,marine,Crustacean,27.242339,-27.242339,15.7
+901041,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,60.3,NA,NA,1.58,NA,NA,NA,20.44,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
+901043,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,61.1,NA,NA,1.36,NA,NA,NA,20.48,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
+901040,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,59.5,NA,NA,1.51,NA,NA,NA,20.58,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
+901042,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,60.3,NA,NA,1.46,NA,NA,NA,21.7,NA,NA,marine,Crustacean,36.56945,36.56945,18.93
+901233,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,60.8
+901236,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,68
+901235,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,64.7
+901234,Penaeus semisulcatus,Crustacean,"Shrimps, prawns",NA,6,2.7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Crustacean,36.783922,36.783922,65.4
+901169,Perna viridis,Molluscs,Mussels,NA,11,2,NA,NA,NA,NA,1.86,NA,NA,NA,NA,NA,marine,Molluscs,5.262923,5.262923,8.63
+901171,Perna viridis,Molluscs,Mussels,NA,11,2,NA,NA,NA,NA,1.99,NA,NA,NA,NA,NA,marine,Molluscs,5.937638,5.937638,6.46
+901172,Perna viridis,Molluscs,Mussels,NA,11,2,NA,NA,NA,NA,2.19,NA,NA,NA,NA,NA,marine,Molluscs,5.773067,5.773067,6.11
+901170,Perna viridis,Molluscs,Mussels,NA,11,2,NA,NA,NA,NA,1.34,NA,NA,NA,NA,NA,marine,Molluscs,2.189594,2.189594,8.44
+901167,Pinctada radiata,Molluscs,"Pearls, mother-of-pearl, shells",NA,6,NA,NA,NA,NA,0.28,0.02979,NA,NA,NA,NA,NA,marine,Molluscs,36.632173,36.632173,3.51
+901188,Portunus pelagicus,Crustacean,"Crabs, sea-spiders",NA,14,3,NA,0.061272,0.06216,NA,NA,NA,0.75,16.9,NA,NA,marine,Crustacean,20.017378,20.017378,NA
+901187,Portunus pelagicus,Crustacean,"Crabs, sea-spiders",NA,14,3,NA,0.11695992,0.08582124,NA,NA,NA,1.08,18.4,NA,NA,marine,Crustacean,20.017378,20.017378,NA
+901199,Portunus pelagicus,Crustacean,"Crabs, sea-spiders",NA,14,3,NA,NA,NA,NA,NA,NA,NA,21.54,NA,NA,marine,Crustacean,36.5,36.5,6.15
+901200,Portunus pelagicus,Crustacean,"Crabs, sea-spiders",NA,14,3,NA,NA,NA,NA,NA,NA,NA,22.64,NA,NA,marine,Crustacean,36.5,36.5,6.15
+901052,Portunus pelagicus,Crustacean,"Crabs, sea-spiders",NA,14,3,112,NA,NA,0.4,2.6,30,NA,NA,NA,NA,marine,Crustacean,26.0667,26.0667,NA
+901054,Portunus pelagicus,Crustacean,"Crabs, sea-spiders",NA,14,3,115,NA,NA,0.35,2.3,40,NA,NA,NA,NA,marine,Crustacean,26.0667,26.0667,NA
+900790,Procambarus acutus,Crustacean,Freshwater crustaceans,NA,12.7,NA,NA,NA,NA,NA,NA,NA,NA,14.3,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
+900791,Procambarus acutus,Crustacean,Freshwater crustaceans,NA,12.7,NA,NA,NA,NA,NA,NA,NA,NA,16.4,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
+900786,NA,Crustacean,Freshwater crustaceans,NA,11.94,NA,NA,NA,NA,NA,NA,NA,NA,14.3,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
+900787,NA,Crustacean,Freshwater crustaceans,NA,11.94,NA,NA,NA,NA,NA,NA,NA,NA,16.2,NA,NA,freshwater,Crustacean,30.452385,30.452385,NA
+900604,NA,Molluscs,"Abalones, winkles, conchs",NA,15,NA,444,0.000668496,0.000710277,48,6.9,NA,NA,11.6,NA,NA,marine,Molluscs,14.903036,14.903036,NA
+902189,NA,Molluscs,"Abalones, winkles, conchs",NA,15,NA,812,NA,NA,102,12,NA,NA,11.8,NA,NA,marine,Molluscs,14.903036,14.903036,NA
+902285,Saxidomus giganteaÊ,Molluscs,NA,NA,13,NA,46,NA,NA,14,1.37,NA,1,NA,NA,NA,marine,Molluscs,52.372895,52.372895,NA
+900548,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,NA,NA,NA,NA,NA,1.35,13.94,NA,NA,marine,Molluscs,3.144341,3.144341,18
+900449,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,NA,NA,NA,NA,NA,NA,17,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+902281,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,NA,NA,NA,NA,NA,2.38,18.32,NA,NA,marine,Molluscs,37.966667,37.966667,NA
+901212,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.178659328,0.375716864,NA,NA,NA,1.52,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901213,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.151176812,0.289513436,NA,NA,NA,1.29,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+900314,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.137949877,0.228953461,NA,NA,NA,2.38,NA,NA,NA,marine,Molluscs,37.966667,37.966667,NA
+900315,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.201146811,0.297206149,NA,NA,NA,2.38,NA,NA,NA,marine,Molluscs,37.966667,37.966667,NA
+901211,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.107330468,0.220887844,NA,NA,NA,1.01,NA,NA,NA,marine,Molluscs,34.553128,34.553128,NA
+901176,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.0718074,0.1234674,NA,NA,NA,0.85,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
+901174,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.08397312,0.1554048,NA,NA,NA,0.88,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
+901175,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.0759402,0.152397,NA,NA,NA,0.85,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
+901173,NA,Molluscs,"Squids, cuttlefishes, octopuses",NA,28,3.55,NA,0.08839488,0.14522016,NA,NA,NA,0.86,NA,NA,NA,marine,Molluscs,36.5817,36.5817,NA
+901241,NA,Molluscs,"Abalones, winkles, conchs",NA,7,NA,NA,NA,NA,0.01,NA,NA,0.54,NA,NA,NA,marine,Molluscs,10.591648,10.591648,7
+901243,NA,Molluscs,"Abalones, winkles, conchs",NA,7,NA,NA,NA,NA,0.01,NA,NA,0.35,NA,NA,NA,marine,Molluscs,10.591648,10.591648,7
+901242,NA,Molluscs,"Abalones, winkles, conchs",NA,8,NA,NA,NA,NA,0.01,NA,NA,0.94,NA,NA,NA,marine,Molluscs,10.591648,10.591648,8
+901244,NA,Molluscs,"Abalones, winkles, conchs",NA,8,NA,NA,NA,NA,0.01,NA,NA,0.91,NA,NA,NA,marine,Molluscs,10.591648,10.591648,8
+901163,Quidnipagus palatam,Molluscs,"Clams, cockles, arkshells",NA,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
+901164,Quidnipagus palatam,Molluscs,"Clams, cockles, arkshells",NA,6,NA,NA,0.024656802,0.029155424,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
+901165,Quidnipagus palatam,Molluscs,"Clams, cockles, arkshells",NA,6,NA,NA,0.036602927,0.02349697,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
+901166,Quidnipagus palatam,Molluscs,"Clams, cockles, arkshells",NA,6,NA,NA,0.019973921,0.009015164,NA,NA,NA,NA,NA,NA,NA,marine,Molluscs,26.501301,26.501301,NA
+900450,Todarodes sagittatus,Molluscs,"Squids, cuttlefishes, octopuses",NA,75,NA,NA,NA,NA,NA,NA,NA,NA,15,NA,NA,marine,Molluscs,39.019184,39.019184,NA
+901039,Trachysalambria curvirostris,Crustacean,"Shrimps, prawns",NA,8.1,NA,NA,0.018201348,0.019580238,NA,NA,NA,NA,14.9,NA,NA,marine,Crustacean,34.854423,34.854423,9
+901298,NA,Molluscs,Freshwater molluscs,NA,10,NA,124,NA,NA,16.6,3.9,NA,1.4,6.6,NA,NA,freshwater,Molluscs,25.274398,-25.274398,NA
+901156,Xiphopenaeus kroyeri,Crustacean,"Shrimps, prawns",NA,14,2.7,NA,0.086,0.097,NA,NA,NA,1,NA,NA,NA,marine,Crustacean,23.55052,-23.55052,10
+1,Penaeus semisulcatus,Molluscs,NA,NA,NA,NA,59.5,,,,,,,,NA,NA,NA,Molluscs,NA,NA,18.93
+2,Penaeus semisulcatus,Crustacean,NA,NA,NA,NA,60.3,,,,,,,,NA,NA,NA,Crustacean,NA,NA,18.93
+3,Penaeus semisulcatus,Molluscs,NA,NA,NA,NA,60.3,,,,,,,,NA,NA,NA,Molluscs,NA,NA,18.93
+4,Penaeus semisulcatus,Molluscs,NA,NA,NA,NA,61.1,,,,,,,,NA,NA,NA,Molluscs,NA,NA,18.93
+5,Penaeus semisulcatus,Molluscs,NA,NA,NA,NA,60.28,,,1.48,,,,,NA,NA,NA,Molluscs,NA,NA,18.93
+6,Metapenaeus monoceros ,Crustacean,NA,NA,NA,NA,60.44,,,1.55,,,,,NA,NA,NA,Crustacean,NA,NA,12.67
+7,Aristeus antennatus,Crustacean,NA,NA,NA,NA,121,,,0.9,,,,,NA,NA,NA,Crustacean,NA,NA,NA
+8,penaeid and pandalid shrimps ,Crustacean,NA,NA,NA,NA,,,,2.4,,,,,NA,NA,NA,Crustacean,NA,NA,NA
+9,Penaeus monodon ,Crustacean,NA,NA,NA,NA,25.9,8.58,14.9,3.07,1.73,,,,NA,NA,NA,Crustacean,NA,NA,NA
+10,Litopenaeus vannamei,Crustacean,NA,NA,NA,NA,24.7,9.46,9.99,1.22,1.47,,,,NA,NA,NA,Crustacean,NA,NA,NA
+11,Xiphopenaeus kroyeri,Molluscs,NA,NA,NA,NA,,0.086,0.097,,,,,,NA,NA,NA,Molluscs,NA,NA,NA
+12,Macrobrachium rosenbergii ,Molluscs,NA,NA,NA,NA,,0.099,0.073,,,,,,NA,NA,NA,Molluscs,NA,NA,NA
+13,Farfantepenaeus brasiliensis,Molluscs,NA,NA,NA,NA,,0.124,0.091,,,,,,NA,NA,NA,Molluscs,NA,NA,NA
+14,Farfantepenaeus brasiliensis,Crustacean,NA,NA,NA,NA,,0.1,0.072,,,,,,NA,NA,NA,Crustacean,NA,NA,NA
+15,Farfantepenaeus brasiliensis,Crustacean,NA,NA,NA,NA,,0.126,0.078,,,,,,NA,NA,NA,Crustacean,NA,NA,NA
+16,Litopenaeus schmitti,Crustacean,NA,NA,NA,NA,,0.085,0.062,,,,,,NA,NA,NA,Crustacean,NA,NA,NA
+17,Litopenaeus schmitti,Crustacean,NA,NA,NA,NA,,0.096,0.07,,,,,,NA,NA,NA,Crustacean,NA,NA,NA
+18,Maja brachydactyla ,Crustacean,NA,NA,NA,NA,78.7,,,1.07,6.28,0.01,0.32,15.7,NA,NA,NA,Crustacean,NA,NA,139.9
+19,Maja brachydactyla ,Molluscs,NA,NA,NA,NA,390,,,17.1,5.77,0.01,7.08,13.7,NA,NA,NA,Molluscs,NA,NA,139.9
+20,Maja brachydactyla ,Molluscs,NA,NA,NA,NA,24,,,2.97,5.15,0,1.36,24.1,NA,NA,NA,Molluscs,NA,NA,139.9
+21,Maja brachydactyla ,Molluscs,NA,NA,NA,NA,59.9,,,14.1,0.9,0.01,NA,NA,NA,NA,NA,Molluscs,NA,NA,139.9
+22,Hexaplex trunculus ,Crustacean,NA,NA,NA,NA,674.4,,,8.1,112.8,,,,NA,NA,NA,Crustacean,NA,NA,4.6
+23,Hexaplex trunculus ,Molluscs,NA,NA,NA,NA,860,,,17.8,225.2,,,,NA,NA,NA,Molluscs,NA,NA,4.6
+24,Scylla paramamosain ,Molluscs,NA,NA,NA,NA,,,,,7.25,,,,NA,NA,NA,Molluscs,NA,NA,NA
+25,Scylla paramamosain ,Molluscs,NA,NA,NA,NA,,,,,8.13,,,,NA,NA,NA,Molluscs,NA,NA,NA
+26,Scylla paramamosain ,Molluscs,NA,NA,NA,NA,,,,,6.73,,,,NA,NA,NA,Molluscs,NA,NA,NA
+27,Scylla paramamosain ,Molluscs,NA,NA,NA,NA,,,,,5.8,,,,NA,NA,NA,Molluscs,NA,NA,NA
+28,Scylla paramamosain ,Molluscs,NA,NA,NA,NA,,,,,6.09,,,,NA,NA,NA,Molluscs,NA,NA,NA
+29,Portunus trituberculatus ,Molluscs,NA,NA,NA,NA,,,,,8,,,,NA,NA,NA,Molluscs,NA,NA,NA
+30,Portunus trituberculatus ,Molluscs,NA,NA,NA,NA,,,,,7.8,,,,NA,NA,NA,Molluscs,NA,NA,NA
+31,Portunus trituberculatus ,Molluscs,NA,NA,NA,NA,,,,,8.33,,,,NA,NA,NA,Molluscs,NA,NA,NA
+32,Portunus trituberculatus ,Molluscs,NA,NA,NA,NA,,,,,7.57,,,,NA,NA,NA,Molluscs,NA,NA,NA
+33,Portunus trituberculatus ,Molluscs,NA,NA,NA,NA,,,,,5.76,,,,NA,NA,NA,Molluscs,NA,NA,NA
+34,Eriocheir sinensis ,Molluscs,NA,NA,NA,NA,,,,,8.47,,,,NA,NA,NA,Molluscs,NA,NA,NA
+35,Eriocheir sinensis ,Molluscs,NA,NA,NA,NA,,,,,7.83,,,,NA,NA,NA,Molluscs,NA,NA,NA
+36,Eriocheir sinensis ,Molluscs,NA,NA,NA,NA,,,,,5.2,,,,NA,NA,NA,Molluscs,NA,NA,NA
+37,Eriocheir sinensis ,Molluscs,NA,NA,NA,NA,,,,,4.73,,,,NA,NA,NA,Molluscs,NA,NA,NA
+38,Eriocheir sinensis ,Crustacean,NA,NA,NA,NA,,,,,5.6,,,,NA,NA,NA,Crustacean,NA,NA,NA
+39,Mytilus galloprovincialis,Crustacean,NA,NA,NA,NA,40 ,,,1,2.3,,1.4,10,NA,NA,NA,Crustacean,NA,NA,0.77
+40,Mytilus galloprovincialis,Crustacean,NA,NA,NA,NA,37,,,2.1,2,,1.7,6.5,NA,NA,NA,Crustacean,NA,NA,0.72
+41,Mytilus galloprovincialis,Crustacean,NA,NA,NA,NA,82,,,2.9,1.76,,2.10,10.0,NA,NA,NA,Crustacean,NA,NA,0.54
+42,Mytilus chilensis,Crustacean,NA,NA,NA,NA,60,,,2.88,1.37,,,,NA,NA,NA,Crustacean,NA,NA,5.8
+43,Mytilus chilensis,Crustacean,NA,NA,NA,NA,130,,,5.18,1.55,,,,NA,NA,NA,Crustacean,NA,NA,4.4
+44,Mytilus chilensis,Crustacean,NA,NA,NA,NA,150,,,8.27,1.28,,,,NA,NA,NA,Crustacean,NA,NA,3.5
+45,Mytilus chilensis,Crustacean,NA,NA,NA,NA,120,,,7.25,1.86,,,,NA,NA,NA,Crustacean,NA,NA,3.8
+46,Strongylocentrotus purpuratus,Crustacean,NA,NA,NA,NA,180,,,10.1,2.42,,,,NA,NA,NA,Crustacean,NA,NA,2.4
+47,Strongylocentrotus purpuratus,Crustacean,NA,NA,NA,NA,140,,,8.62,1.84,,,,NA,NA,NA,Crustacean,NA,NA,3.4
+48,Strongylocentrotus purpuratus,Crustacean,NA,NA,NA,NA,150,,,13.1,1.52,,,,NA,NA,NA,Crustacean,NA,NA,3.1
+49,Strongylocentrotus purpuratus,Crustacean,NA,NA,NA,NA,150,,,8.56,2.1,,,,NA,NA,NA,Crustacean,NA,NA,2.7
+50,Strongylocentrotus purpuratus,Crustacean,NA,NA,NA,NA,100,,,4.54,1.43,,,,NA,NA,NA,Crustacean,NA,NA,4.3
+51,Nacella deaurata,Echinoderm,NA,NA,NA,NA,83,,,55.1,0.85,,,,NA,NA,NA,Echinoderm,NA,NA,4.01
+52,Mytilus chilensis,Echinoderm,NA,NA,NA,NA,60,,,4.32,0.998,,,,NA,NA,NA,Echinoderm,NA,NA,5.36
+53,Acanthina monodon,Echinoderm,NA,NA,NA,NA,93,,,2.52,3.54,,,,NA,NA,NA,Echinoderm,NA,NA,4.95
+54,Aulacomya ater,Echinoderm,NA,NA,NA,NA,102,,,4.62,2.25,,,,NA,NA,NA,Echinoderm,NA,NA,5.45
+55,Fissurella picta,Echinoderm,NA,NA,NA,NA,27,,,8.11,1.51,,,,NA,NA,NA,Echinoderm,NA,NA,5.33
+56,Mytilus chilensis,Crustacean,NA,NA,NA,NA,68,,,7.08,0.785,,,,NA,NA,NA,Crustacean,NA,NA,5.22
+57,Mytilus chilensis,Crustacean,NA,NA,NA,NA,57,,,2.85,1.15,,,,NA,NA,NA,Crustacean,NA,NA,5.5
+58,Mytilus chilensis,Crustacean,NA,NA,NA,NA,53,,,1.97,1.02,,,,NA,NA,NA,Crustacean,NA,NA,5.11
+59,Nacella deaurata,Crustacean,NA,NA,NA,NA,105,,,8.05,0.793,,,,NA,NA,NA,Crustacean,NA,NA,3.64
+60,Nacella deaurata,Crustacean,NA,NA,NA,NA,74,,,4.39,0.862,,,,NA,NA,NA,Crustacean,NA,NA,4.05
+61,Nacella deaurata,Crustacean,NA,NA,NA,NA,63,,,3.44,0.967,,,,NA,NA,NA,Crustacean,NA,NA,4.85
+62,Meretrix lyrata,Crustacean,NA,NA,NA,NA,39.849,,,3.775,2.126,,,,NA,NA,NA,Crustacean,NA,NA,NA
+63,Meretrix lyrata,Crustacean,NA,NA,NA,NA,149.199,,,8.257,0.911,,,,NA,NA,NA,Crustacean,NA,NA,NA
+64,Meretrix lyrata,Crustacean,NA,NA,NA,NA,95.346,,,27.613,2.025,,,,NA,NA,NA,Crustacean,NA,NA,NA
+65,Chamelea gallina,Crustacean,NA,NA,NA,NA,,,,10.75505,1.0241,,,,NA,NA,NA,Crustacean,NA,NA,24.6
+66,Donax trunculus,Crustacean,NA,NA,NA,NA,,,,33.55455,1.75985,,,,NA,NA,NA,Crustacean,NA,NA,31.52
+67,Carcinus maenas,Crustacean,,,,,91.55,154,115,0.286,4.296,,,,,,,,,,
+68,Mercenaria mercenaria,Molluscs,,,,,34.4,,,,,,,,,,,,,,
+69,Callinectes sapidus,Crustacean,,,,,32.8,,,0.00246,0.0025,,,,,,,,,,
+70,Crassostrea virginica,Molluscs,,,,,61,,,0.00765,0.08246,,,,,,,,,,
+71,Placopecten magellanicus,Molluscs,,,,,9.2,,,0.1071,1.2187,,,,,,,,,,
+72,Homarus americanus,Crustacean,,,,,,,,0.23,2.9,0.01,,,,,,,,,
+73,Homarus americanus,Crustacean,,,,,,,,2.9,3.1,0.013,,,,,,,,,
+74,Homarus americanus,Crustacean,,,,,,,,1.2,1.7,0.001,,,,,,,,,
+75,Homarus gammarus,Crustacean,,,,,,,,0.18,2.6,0.015,,,,,,,,,
+76,Homarus gammarus,Crustacean,,,,,,,,1.6,4.1,0.009,,,,,,,,,
+77,Homarus gammarus,Crustacean,,,,,,,,1.6,3,0.001,,,,,,,,,
+78,Homarus gammarus,Crustacean,,,,,,,,0.7,3.5,0.001,,,,,,,,,
+79,Callinectes sapidus,Crustacean,,,,,149.2,,,1.04,6.99,,,,,,,,,,
+80,Callinectes sapidus,Crustacean,,,,,64.9,,,1.13,4.7,,,,,,,,,,
+81,Portunus pelagicus,Crustacean,,,,,150.9,,,0.45,4.68,,,,,,,,,,
+82,Portunus pelagicus,Crustacean,,,,,87.6,,,0.68,3.72,,,,,,,,,,
+83,Ostrea edulis,Molluscs,,,,,23.6017,,,1.7316,19.2468,0.0042,2.04,9.28,,,,,,,
+84,Ostrea edulis,Molluscs,,,,,23.3905,,,4.0374,86.2042,0.0384,1.92,9.09,,,,,,,
+85,Ostrea edulis,Molluscs,,,,,25.8339,,,2.1842,58.7299,0.0183,2.4,10.3,,,,,,,
+86,Ostrea edulis,Molluscs,,,,,30.2673,,,5.2411,29.0114,0.0302,5.51,9.74,,,,,,,
+87,Ostrea edulis,Molluscs,,,,,44.7876,,,1.349,41.8197,0.0126,1.47,9.32,,,,,,,
+88,Ostrea edulis,Molluscs,,,,,54.8653,,,3.9096,49.6959,0.0061,2.04,8.71,,,,,,,
+89,Ostrea edulis,Molluscs,,,,,20.1334,,,2.1565,26.9619,0.0052,1.69,6.85,,,,,,,
+90,Pinctada radiata,Molluscs,,,,,58.49844639,,,6.912621359,87.16655918,,,,,,,,,,
+91,Pinctada radiata,Molluscs,,,,,79.8921264,,,2.058252427,47.35744855,,,,,,,,,,
+92,Pinctada radiata,Molluscs,,,,,87.34009498,,,3.902912621,58.66447793,,,,,,,,,,
+93,Pinctada radiata,Molluscs,,,,,64.18197807,,,0.9514563107,23.50612652,,,,,,,,,,
+94,Pinctada radiata,Molluscs,,,,,42.18514393,,,2,54.58404174,,,,,,,,,,
+95,Pinctada radiata,Molluscs,,,,,37.23702879,,,1.126213592,33.74942839,,,,,,,,,,
+96,Mytilus galloprovincialis,Molluscs,,,,,40,,,1,2.3,,1.4,10,,,,,,,
+97,Mytilus galloprovincialis,Molluscs,,,,,37,,,2.1,2,,1.7,6.5,,,,,,,
+98,Mytilus galloprovincialis,Molluscs,,,,,82,,,2.9,1.76,,2.1,10,,,,,,,
+99,Mytilus galloprovincialis,Molluscs,,,,,88,,,10.9,4.69,,1.67,10.73,,,,,,,
+100,Ostrea edulis,Molluscs,,,,,236.8,,,7.79,51,,,,,,,,,,
+101,Ostrea edulis,Molluscs,,,,,91.3,,,4.12,98.5,,,,,,,,,,
+102,Ostrea edulis,Molluscs,,,,,128.3,,,4.76,40.2,,,,,,,,,,
+103,Ostrea edulis,Molluscs,,,,,205.5,,,5.19,92.8,,,,,,,,,,
+104,Ostrea edulis,Molluscs,,,,,133.6,,,4.96,61.2,,,,,,,,,,
+105,Ostrea edulis,Molluscs,,,,,60.6,,,3.78,45.7,,,,,,,,,,
+106,Ostrea edulis,Molluscs,,,,,261.6,,,3.21,101.9,,,,,,,,,,
+107,Ostrea edulis,Molluscs,,,,,126.7,,,2.55,54,,,,,,,,,,
+108,Mytilus galloprovincialis,Molluscs,,,,,53.1,,,3.29,2.07,,,,,,,,,,
+109,Mytilus galloprovincialis,Molluscs,,,,,50.5,,,1.65,3.08,,,,,,,,,,
+110,Mytilus galloprovincialis,Molluscs,,,,,67.3,,,9.41,1.77,,,,,,,,,,
+111,Mytilus galloprovincialis,Molluscs,,,,,44.7,,,1.61,5.28,,,,,,,,,,
+112,Mytilus galloprovincialis,Molluscs,,,,,73.2,,,9.44,2.59,,,,,,,,,,
+113,Mytilus galloprovincialis,Molluscs,,,,,81.1,,,10.9,2.39,,,,,,,,,,
+114,Mytilus galloprovincialis,Molluscs,,,,,43.8,,,3.61,3.5,,,,,,,,,,
+115,Mytilus galloprovincialis,Molluscs,,,,,65.5,,,5.94,2.33,,,,,,,,,,
+116,Mytilus galloprovincialis,Molluscs,,,,,42.9,,,1.64,2.44,,,,,,,,,,
+117,Mytilus galloprovincialis,Molluscs,,,,,78.5,,,2.38,3.2,,,,,,,,,,

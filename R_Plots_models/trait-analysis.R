@@ -1,9 +1,73 @@
+library(readr)
+library(dplyr)
+library(coefplot)
+library(arm)
+library(broom)
+library(tidyr)
+
+
 ## result 5 trait analysis
 aq.wide <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide.csv")
 aq.wide2 <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.wide2.csv")
 
+aq.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
 
+## let's scale the continuous variables in aq.long
 
+aq.long.scale <- scale(aq.long[, c("max_length", "TL", "Abs_lat")])
+
+aq.long %>% 
+  mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% View
+
+aq.long %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+  group_by(nutrient) %>% 
+  do(fit = tidy(lm(log(.$concentration) ~ log(max_length) + TL + Abs_lat, data = .), conf.int = TRUE)) %>% 
+  unnest(fit) %>% 
+  filter(term != "(Intercept)") %>%
+  ggplot(., aes(x= estimate, y = term)) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+  geom_vline() + theme(legend.position="none") + theme_bw() + facet_wrap( ~ nutrient, scales = "free_x")
+  ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/coef_plot_facets.png")
+  
+ 
+  aq.long %>% 
+    # filter(nutrient == "FE_mg") %>% 
+    group_by(nutrient) %>% 
+    # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+    # group_by(nutrient) %>%
+    do(fit = glance(lm(log(.$concentration) ~ log(max_length) + TL + Abs_lat, data = .))) %>%
+    unnest(fit) %>%
+    arrange(desc(adj.r.squared)) %>% View
+#     lm(log(.$concentration) ~ log(max_length) + TL + Abs_lat, data = .) %>% 
+#     glance(.) 
+    
+  summary(CA.fit)
+  fit
+  
+  
+  ### code to get the coefficients table ###
+  
+  aq.long %>% 
+    # filter(nutrient == "CA_mg") %>% 
+    # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+    group_by(nutrient) %>% 
+    do(fit = tidy(lm(log(.$concentration) ~ log(max_length) + TL + Abs_lat, data = .), conf.int = TRUE)) %>% 
+    unnest(fit) %>% 
+    filter(term != "(Intercept)") %>% table (.)
+    table()
+    
+    library(MuMIn)
+  
+    mod.all <- lm(log(concentration) ~ log(max_length) + TL + Habitat + Abs_lat, data = aq.long, subset = nutrient == "CA_mg", na.action = "na.omit")
+    mod1 <- lm(log(concentration) ~ log(max_length) + TL + Habitat + Abs_lat + taxon, data = aq.long, subset = nutrient == "CA_mg", na.action = "na.omit")
+    mod2 <- lm(log(concentration) ~ log(max_length) + TL + Abs_lat, data = aq.long, subset = nutrient == "CA_mg", na.action = "na.omit")
+    
+    model.sel(mod.all, mod1, mod2)
+    
+    
 
 fb.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/fb.all.csv")
 fb.length <- fb.all %>% 

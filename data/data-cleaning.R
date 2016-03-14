@@ -49,7 +49,7 @@ ggplot(ntbl.FATS)
 #### Jan 24
 
 ntbl.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
-intbl.all <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+intbl.all <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
 table(ntbl.long$Subgroup)
 
 names(intbl.all)
@@ -67,22 +67,33 @@ names(intbl.all)
 intbl.long <- intbl.all %>%
   gather(nutrient, concentration, 253:259)
 
+## March 14 version
+intbl.long <- intbl.all %>%
+  gather(nutrient, concentration, 16:23)
+
 
 intbl.select <- intbl.long %>% 
-  select(Food.Item.ID, species, taxon, max_size, max_length, TL, Habitat, Subgroup, Abs_lat, Latitude, max_length_study, nutrient, concentration)
+  select(Food.Item.ID, species, taxon, max_size, max_length, TL, Habitat, Subgroup, Abs_lat, Latitude, max_length_study, nutrient, concentration) %>% 
+  mutate(concentration = as.numeric(concentration))
   
 names(intbl.select)
 names(ntbl.long)
 
-aq.long <- bind_rows(ntbl.long, intbl.select)
+ntbl.select <- ntbl.long %>% 
+  select(-RDI, -lwA, -lwB) %>% 
+  mutate(concentration = as.numeric(concentration))
+
+## as of March 14
+aq.long <- bind_rows(ntbl.select, intbl.select)
   
 str(aq.long)
 
 aq.long$taxon <- as.factor(aq.long$taxon)
 aq.long$Habitat <- as.factor(aq.long$Habitat)
 aq.long$species <- as.factor(aq.long$species)
+aq.long$Subgroup <- as.factor(aq.long$Subgroup)
 
-write.csv(aq.long, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
+write_csv(aq.long, "/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.March14.csv")
 
 names(aq.long)
 names(aq.wide)
