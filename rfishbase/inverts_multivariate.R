@@ -9,6 +9,11 @@ library(ggthemes)
 
 ntbl.raw <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+
+## or update March 14 2016
+inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/intbl.all.csv")
+
+
 str(ntbl.raw)
 ntbl.raw <- tbl_df(ntbl.raw)
 
@@ -18,8 +23,13 @@ ntbl.minerals <- ntbl.raw %>%
 table(ntbl.minerals$Subgroup)
 
 inverts.minerals <- inverts.new %>% 
-  select(Subgroup, species, CA_mg, FE_mg, ZN_mg)
+  select(Subgroup, species, CA_mg, FE_mg, ZN_mg) %>% 
+  mutate(CA_mg = as.numeric(CA_mg))
   # filter(Subgroup != "Echinoderm") 
+
+str(inverts.minerals)
+hist(inverts.minerals$CA_mg)
+hist(ntbl.minerals$CA_mg)
 
 length(unique(inverts.minerals$FE_mg))
 

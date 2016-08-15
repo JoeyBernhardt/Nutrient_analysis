@@ -224,6 +224,8 @@ ntbl %>%
 ```{r}
 ntbl.raw <- read.csv("~/Documents/Nutrient_Analysis/data/ntbl2.csv")
 inverts.new <- read.csv("~/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+## or update March 14 2016 with new inverts data:
+inverts.new <- read.csv("~/Documents/Nutrient_Analysis/data/ntbl.inv.csv")
 
 ntbl.raw <- tbl_df(ntbl.raw)
 ```
@@ -240,10 +242,13 @@ inverts.minerals <- inverts.new %>%
 ```
 
 ```{r}
-minerals <- bind_rows(ntbl.minerals, inverts.minerals)
+minerals <- bind_rows(ntbl.minerals, inverts.minerals) 
 minerals$Subgroup <- as.factor(minerals$Subgroup)
 minerals$species <- as.factor(minerals$species)
+str(minerals)
 
+minerals <- minerals %>% 
+  filter(!is.na(species))
 
 min.mat <- minerals %>% 
   group_by(species) %>% 
@@ -266,9 +271,16 @@ min.taxon <- minerals %>%
   dplyr::select(Subgroup) %>% 
   distinct(species)
 
-min.env <- semi_join(min.taxon, min.mat, by = "species")
+
+min.env <- semi_join(min.taxon, min.mat, by = "species") 
+min.env <- as.data.frame(min.env)
+View(min.env)
+min.env <- min.env %>%
+    dplyr::filter(!is.na(species)) 
 rownames(min.env) <- min.env$species 
 dim(min.env)
+min.env <- as.matrix(min.env)
+View(min.env)
 ```
 ##### ordination
 ```{r}
@@ -278,22 +290,27 @@ plot(ord.mine, type = "t",cex=.5)
 site.scaling <- as.data.frame(ord.mine$points)
 points(site.scaling,pch=16)
 
-
+View(min.env)
 site.scaling$nfi_plot <- row.names(site.scaling)
+site.scaling$species <- row.names(site.scaling)
+View(site.scaling)
 min.env$nfi_plot <- row.names(min.env)
 
 new.compiled <- merge(site.scaling, min.env, by=c("nfi_plot"))
+##new april11
+new.compiled <- merge(site.scaling, min.env, by=c("species"))
 new.compiled$Subgroup <- as.factor(new.compiled$Subgroup)
 ```
 
 ####now replot ordination, with groups colour-coded##
 ```{r}
 plot(ord.mine, type = "n", cex=1)
-points(new.compiled$MDS1, new.compiled$MDS2, pch= as.integer(new.compiled$Subgroup), cex = 1)
-points(new.compiled$MDS1, new.compiled$MDS2, col = (as.integer(new.compiled$Subgroup)), pch= as.integer(new.compiled$Subgroup), cex = 1)
+# points(new.compiled$MDS1, new.compiled$MDS2, pch= as.integer(new.compiled$Subgroup), cex = 1)
+points(new.compiled$MDS1, new.compiled$MDS2, col = (as.integer(new.compiled$Subgroup)), pch= as.integer(new.compiled$Subgroup), cex = 1.2)
 
 ## add confidence ellipses around subgroups
-
+?ordiplot
+ordiplot(ord.mine, type = "text")
 ordiellipse(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
 ordihull(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
 # ordicluster(ord.mine, draw = "polygon", new.compiled$Subgroup, conf = 0.95, label = T)
@@ -822,6 +839,8 @@ Here we look at the three minerals.
 ```{r}
 ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 inverts.new <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+## March 19 update to new inverts data
+inverts.new <- read.csv("~/Documents/Nutrient_Analysis/data/ntbl.inv.csv")
 
 #create a df that is just the minerals and the species info
 ntbl.minerals <- ntbl.raw %>% 
