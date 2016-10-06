@@ -1,3 +1,8 @@
+
+# load libraries ----------------------------------------------------------
+
+library(tidyverse)
+
 ### ntbl data cleaning
 
 nut_dec3 <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#")
