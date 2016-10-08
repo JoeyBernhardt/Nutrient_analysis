@@ -1,0 +1,425 @@
+food_item_id,subgroup,country_region,type_farmed_wild,isscaap,x3_alpha,food_name_in_own_language,food_name_in_english,processing,scientific_name,asfis_english_name,asfis_scientific_name
+901309,Finfish,Unknown (samples from Istanbul local fish market),NA,37,HOM,NA,"Horse mackerel, muscle fillet, raw",r,Trachurus trachurus,Atlantic horse mackerel,Trachurus trachurus
+901339,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,MDI,Barbado,"Flatwhiskered catfish, wild, skinless, boneless fillets, raw",r,Pinirampus pinirampu,Flatwhiskered catfish,Pinirampus pinirampu
+901340,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,11,FCP,Carpa,"Common carp, wild, skinless, boneless fillets, raw",r,Cyprinus carpio,Common carp,Cyprinus carpio
+901341,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,NA,Cascudo abacaxi,"wild, skinless, boneless fillets, raw",r,Megaloancistrus aculeatus,NA,Loricariidae
+901342,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,DPG,Cascudo cachorro,"Granulated catfish, wild, skinless, boneless fillets, raw",r,Pterodoras granulosus,Granulated catfish,Pterodoras granulosus
+901343,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,33,LGQ,Corvina,"South American silver croaker, wild, skinless, boneless fillets, raw",r,Plagioscion squamosissimus,South American silver croaker,Plagioscion squamosissimus
+901344,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,PLL,Curimba,"Streaked prochilod, wild, skinless, boneless fillets, raw",r,Prochilodus lineatus,Streaked prochilod,Prochilodus lineatus
+901345,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,SXU,Dourado,"Dorado, wild, skinless, boneless fillets, raw",r,Salminus maxillosus,Dorado,Salminus maxillosus
+901346,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,HBY,Jurupoca,"wild, skinless, boneless fillets, raw",r,Hemisorubim plathyrhinchos,NA,Hemisorubim platyrhynchos
+901347,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,MDM,Mandi,"wild, skinless, boneless fillets, raw",r,Pimelodus maculatus,NA,NA
+901348,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,CSO,Pacu,"Pirapatinga, wild, skinless, boneless fillets, raw",r,Colossoma mitrei,Pacu,Piaractus mesopotamicus
+901349,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,NA,Piapara,"wild, skinless, boneless fillets, raw",r,Leporinus elongatus,NA,Anostomidae
+901350,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,LPD,Piau,"wild, skinless, boneless fillets, raw",r,Leporinus friderici,NA,Leporinus friderici
+901351,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,UDC,Pintado,"Spotted sorubim, wild, skinless, boneless fillets, raw",r,Pseudoplatystoma corruscans,Spotted sorubim,Pseudoplatystoma corruscans
+901352,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,NA,Piranha,"wild, skinless, boneless fillets, raw",r,Serrasalmus marginatus,NA,Characidae
+901353,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,12,TLN,Tilápia,"Nile tilapia, wild, skinless, boneless fillets, raw",r,Oreochromis niloticus,Nile tilapia,Oreochromis niloticus
+901354,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,13,NA,Traíra,"wild, skinless, boneless fillets, raw",r,Hoplias malabaricus,NA,Erythrinidae
+901355,Finfish,"Brazil (samples from fish markets in Maringá, Paraná, Brazil)",NA,23,TRO,Truta,"wild, skinless, boneless fillets, raw",r,Salmus sp.,Trouts nei,Salmo spp
+901367,Finfish,"Sri Lanka, Ibbagamuwa, Bathalagoda tank",NA,12,TLM,NA,"Tilapia, wild, boneless flesh, raw",r,Oreochromis mossambicus,Mozambique tilapia,Oreochromis mossambicus
+901368,Finfish,"Sri Lanka, Nikaweratiya, Magala tank",NA,13,FSS,Lulla (Sinhala)/Viral (Tamil),"Snakehead, wild, boneless flesh, raw",r,Ophicephalus striatus,Striped snakehead,Channa striata
+901369,Finfish,"Sri Lanka, Ibbagamuwa, Bathalagoda tank",NA,13,GOU,Weligouva (Sinhal)/Uluvai (Tamil),"Goby, wild, boneless flesh, raw",r,Glossogobius giurias,Tank goby,Glossogobius giurias
+901370,Finfish,Unknown (samples obtained from local fish market in Adana),NA,33,GPW,NA,"Waker, muscle tissue, raw",r,Epinephelus aeneus,Waker,Epinephelus aeneus
+901371,Finfish,Unknown (samples obtained from local fish market in Adana),NA,34,GUU,NA,"Tub gurned, muscle tissue, raw",r,Trigla lucerna,Tub gurnard,Chelidonichthys lucerna
+901372,Finfish,Unknown (samples obtained from local fish market in Adana),NA,32,WHG,NA,"Whitting, muscle tissue, raw",r,Merlangius merlangus,Whiting,Merlangius merlangus
+901373,Finfish,Unknown (samples obtained from local fish market in Adana),NA,37,MAC,NA,"Mackerel, muscle tissue, raw",r,Scomber scombrus,Atlantic mackerel,Scomber scombrus
+901374,Finfish,Unknown (samples obtained from local fish market in Adana),NA,37,BLU,NA,"Blue fish, muscle tissue, raw",r,Pomatomus saltator,Bluefish,Pomatomus saltatrix
+901375,Finfish,Unknown (samples obtained from local fish market in Adana),NA,33,SBG,NA,"Sea bream, muscle tissue, raw",r,Sparus auratus,Gilthead seabream,Sparus aurata
+901376,Finfish,Unknown (samples obtained from local fish market in Adana),NA,33,BSS,NA,"Sea bass, muscle tissue, raw",r,Dicentrarchus labrax,European seabass,Dicentrarchus labrax
+901377,Finfish,Unknown (samples obtained from local fish market in Adana),NA,33,SRI,NA,"Marbled spinefoot, muscle tissue, raw",r,Siganus rivulatus,Marbled spinefoot,Siganus rivulatus
+901392,Finfish,Unknown,NA,11,FCP,NA,"Carp, muscle tissue, raw",r,Cyprinus carpio,Common carp,Cyprinus carpio
+901393,Finfish,Unknown,NA,11,BIC,NA,"Bighead carp, muscle tissue, raw",r,Aristichthys nobilis,Bighead carp,Hypophthalmichthys nobilis
+901394,Finfish,Unknown,NA,13,FPI,NA,"Pike, muscle tissue, raw",r,Esox lucius,Northern pike,Esox lucius
+901395,Finfish,New Zealand,W,38,CAH,NA,"Elephant fish, wild, skinless fillet, frozen",r,NA,"Elephantfishes, etc. nei",(Callorhinchidae)
+901398,Finfish,Unknown,NA,11,FCY,Shir-bot,"Barb, fillet, raw",r,Barbus grypsus,NA,Cyprinidae
+901399,Finfish,Unknown,NA,11,FCY,Berzem,"Barb, fillet, raw",r,Barbus barbilus,NA,Cyprinidae
+901400,Finfish,Unknown,NA,11,FCP,Capoor,"Common carp, fillet, raw",r,Cyprinus carpio,Common carp,Cyprinus carpio
+901401,Finfish,Unknown,NA,23,TRS,Ghezel-ala,"Sea trout, fillet, raw",r,Salmo trutta,Sea trout,Salmo trutta
+901402,Finfish,Unknown,NA,35,ANE,NA,"Anchovy, skinless fillet, raw",r,Engraulis encrasicolus,European anchovy,Engraulis encrasicolus
+901403,Finfish,Unknown,NA,32,COD,NA,"Cod, skinless fillet, raw/frozen",r,Gadus morhua,Atlantic cod,Gadus morhua
+901404,Finfish,Unknown,NA,22,ELE,NA,"Eel, skinless fillet, raw",r,Anguilla anguilla,European eel,Anguilla anguilla
+901405,Finfish,Unknown,NA,34,ORY,NA,"Emperor, skinless fillet, raw/frozen",r,Hoplostethus atlanticus,Orange roughy,Hoplostethus atlanticus
+901406,Finfish,Unknown,NA,23,RNG,NA,"Grenadier, skinless fillet, raw/frozen",r,Coryphaenoides rupestris,Roundnose grenadier,Coryphaenoides rupestris
+901407,Finfish,Unknown,NA,32,HAD,NA,"Haddock, skinless fillet, raw",r,Melanogrammus aeglefinus,Haddock,Melanogrammus aeglefinus
+901408,Finfish,Unknown,NA,32,HKE,NA,"Hake, skinless fillet, raw/frozen",r,Merluccius merluccius,European hake,Merluccius merluccius
+901409,Finfish,Unknown,NA,34,JOD,NA,"John dory, skinless fillet, raw/frozen",r,Zeus faber,John dory,Zeus faber
+901410,Finfish,Unknown,NA,37,MAC,NA,"Mackerel, skinless fillet, raw/frozen",r,Scomber scombrus,Atlantic mackerel,Scomber scombrus
+901411,Finfish,Unknown,NA,32,POL,NA,"Pollack, skinless fillet, raw",r,Pollachius pollachius,Pollack,Pollachius pollachius
+901412,Finfish,Unknown,NA,32,POK,NA,"Saithe, skinless fillet, raw/frozen",r,Pollachius virens,Saithe,Pollachius virens
+901413,Finfish,Unknown,NA,23,SAL,NA,"Salmon, skinless fillet, raw/frozen",r,Salmo salar,Atlantic salmon,Salmo salar
+901414,Finfish,Unknown,NA,35,PIL,NA,"Sardine, skin-on fillet, raw",r,Sardina pilchardus,European pilchard,Sardina pilchardus
+901415,Finfish,Unknown,NA,33,BSS,NA,"Seabass, skinless fillet, raw/frozen",r,Dicentrarchus labrax,European seabass,Dicentrarchus labrax
+901416,Finfish,Unknown,NA,31,SOL,NA,"Sole, skinless fillet, raw",r,Solea solea,Common sole,Solea solea
+901417,Finfish,Unknown,NA,36,SWO,NA,"Swordfish, skinless fillet, raw/frozen",r,Xiphias gladius,Swordfish,Xiphias gladius
+901418,Finfish,Unknown,NA,36,BFT,NA,"Tuna, skinless fillet, raw/frozen",r,Thunnus thynnus,Atlantic bluefin tuna,Thunnus thynnus
+901419,Finfish,Unknown,NA,34,ANF,NA,"Angler fish, skinless fillet, raw/frozen",r,Lophius piscatorius/Lophius budegassa,Anglerfishes nei,Lophiidae
+901420,Finfish,Unknown,NA,38,SCL,NA,"Catshark, skinless fillet, raw",r,Scyliorhinus canicula/Scyliorhinus stellaris,"Catsharks, nursehounds nei",Scyliorhinus spp
+901421,Finfish,Unknown,NA,31,PLZ,NA,"Dab, raw, skinless fillet, raw/frozen",r,Limanda limanda/Microstomus kitt,Righteye flounders nei,Pleuronectidae
+901422,Finfish,Unknown,NA,33,MUX,NA,"Goatfish, skinless fillet, raw/frozen",r,Mullus barbattus/Mullus surmuletus,Surmullets(=Red mullets) nei,Mullus spp
+901423,Finfish,Unknown,NA,34,GUX,NA,"Gurnard, skinless fillet, raw/frozen",r,Trigla lucerna/Eurtigla gurnardus/Aspitrigla cuculus,"Gurnards, searobins nei",Triglidae
+901424,Finfish,Unknown,NA,31,PLZ,NA,"Halibut, skinless fillet, raw/frozen",r,Hippoglossus hippoglossus/Reinhardtius hippoglossoides,Righteye flounders nei,Pleuronectidae
+901425,Finfish,Unknown,NA,32,LNZ,NA,"Ling, skinless fillet, raw/frozen",r,Molva molva/Molva dypterygia dypterygia,Lings nei,Molva spp
+901426,Finfish,Unknown,NA,31,PLZ,NA,"Plaice, skinless fillet, raw/frozen",r,Pleuronectes platessa/Glyptocephalus cynoglossus,Righteye flounders nei,Pleuronectidae
+901427,Finfish,Unknown,NA,32,GAD,NA,"Pout, skinless fillet, raw",r,Trisopterus luscus/Trisopterus minutus capelanus,Gadiformes,Gadiformes nei/Gadidae
+901428,Finfish,Unknown,NA,38,SKA,NA,"Ray, skinless fillet, raw/frozen",r,Raja clavata/Raja naevus/Raja circularis,Raja rays nei,Raja spp
+901429,Finfish,Unknown,NA,34,SCO,NA,"Scorpionfish, skinless fillet, raw/frozen",r,Scorpaena porcus/Scorpaena scrofa/Helicolenus dactylopterus,Scorpionfishes nei,Scorpaenidae
+901430,Finfish,Unknown,NA,33,SBX,NA,"Sea bream, skinless fillet, raw",r,Spondyliosoma cantharus/Sparus aurata/Pagellus bogaraveo,"Porgies, seabreams nei",Sparidae
+901431,Finfish,Unknown,NA,32,GAD,NA,"Whiting, skinless fillet, raw/frozen",r,Merlangius merlangus/Micromesistius poutassou,Gadiformes,Gadiformes nei/Gadidae
+901432,Molluscs,Unknown,NA,57,CTC,NA,"Cuttle fish, edible flesh, raw/frozen",r,Sepia officinalis,Common cuttlefish,Sepia officinalis
+901433,Molluscs,Unknown,NA,55,SCE,NA,"Great scallop, edible flesh, raw/frozen",r,Pecten maximus,Great Atlantic scallop,Pecten maximus
+901434,Crustacean,Unknown,NA,43,LBE,NA,"Lobster, edible flesh raw/frozen",r,Homarus gammarus,European lobster,Homarus gammarus
+901436,Molluscs,Unknown,NA,57,OCC,NA,"Octopus, edible flesh raw/frozen",r,Octopus vulgaris,Common octopus,Octopus vulgaris
+901438,Crustacean,Unknown,NA,45,DCP,NA,"Shrimp, edible flesh, raw/frozen",r,Palaemon serratus/Crangon crangon,Natantian decapods nei,"Natantia/Palaemonidae, Crangonidae"
+901439,Molluscs,Unknown,NA,57,SQR,NA,"Squid, edible flesh raw/frozen",r,Loligo vulgaris,European squid,Loligo vulgaris
+901452,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,36,COM,Tenggiri papan,"Spanish mackerel, fillet, raw",r,Scomberomorus commersonii,Narrow-barred Spanish mackerel,Scomberomorus commerson
+901453,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,38,RBY,Pari,"Whiptail stingray, fillet, raw",r,Gymnura spp.,Butterfly rays,Gymnura spp.
+901454,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,33,FOT,Senangin,"Fourfinger threadfin, fillet, raw",r,Eleutheronema tradactylum,Fourfinger threadfin,Eleutheronema tradactylum
+901455,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,33,CAE,Sembilang,"Striped sea catfish, fillet, raw",r,Plotosus spp.,Eeltail catfishes,Plotosus spp.
+901456,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,37,POB,Bawal Hitam,"Black pomfret, fillet, raw",r,Parastromateus niger,Black pomfret,Parastromateus niger
+901457,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,37,SIP,Bawal Putih,"Silver pomfret, fillet, raw",r,Pampus argenteus,Silver pomfret,Pampus argenteus
+901458,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,35,FRS,Tamban,"Fringescale sardine, fillet, raw",r,Clupea fimbriata,Fringescale sardinella,Sardinella fimbriata
+901459,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,37,HAS,Cencaru,"Hardtail pomfret, fillet, raw",r,Magalapsis cordyla,Torpedo scad,Megalapsis cordyla
+901460,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,37,RAG,Kembung,"Indian mackerel, fillet, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901461,Finfish,"Unknown (samples from local fish markets, Malaysia)",NA,37,TRY,Selar Kuning,"Yellow striped scad, fillet, raw",r,Selarides leptolejus,Yellowstripe scad,Selaroides leptolepis
+901470,Finfish,"Unknown (samples from local fish market in Riyadh, Saudi Arabia)",NA,36,SSM,Kanad,"Spanish mackerel, muscle tissue (dorsal fillet), raw",r,Scomberomorus maculatus,Atlantic Spanish mackerel,NA
+901471,Finfish,"Unknown (samples from local fish market in Riyadh, Saudi Arabia)",NA,33,ENI,Hammour,"Grouper, muscle tissue (dorsal fillet), raw",r,Epinephelus coioides,Orange-spotted grouper,Epinephelus coioides
+901472,Finfish,"Unknown (samples from local fish market in Riyadh, Saudi Arabia)",NA,37,NGU,Hammam,"Yellow-spotted trevally, muscle tissue (dorsal fillet), raw",r,Carangoides fulvoguttatus,Yellowspotted trevally,NA
+901481,Finfish,"Unknown (samples from local fish market, India)",NA,11,LRH,NA,"Rohu, meat, raw",r,Labeo rohita,Roho labeo,Labeo rohita
+901482,Finfish,"Unknown (samples from local fish market, India)",NA,11,CTT,NA,"Catla, meat, raw",r,Catla catla,Catla,Catla catla
+901483,Finfish,"Unknown (samples from local fish market, India)",NA,11,CMG,NA,"Mrigal, meat, raw",r,Cirrhinus mrigala,Mrigal carp,Cirrhinus mrigala
+901484,Finfish,"Unknown (samples from local fish market, India)",NA,12,TLM,NA,"Tilapia, meat, raw",r,Oreochromis mossambicus,Mozambique tilapia,Oreochromis mossambicus
+901485,Finfish,"Unknown (samples from local fish market, India)",NA,11,FCP,NA,"Common carp, meat, raw",r,Cyprinus carpio,Common carp,Cyprinus carpio
+901506,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,31,SOL,NA,"Common sole, wild, edible muscle tissue, raw",r,Solea solea,Common sole,Solea solea
+901507,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,31,SOL,NA,"Common sole, wild, edible muscle tissue, raw",r,Solea solea,Common sole,Solea solea
+901508,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,31,SOL,NA,"Common sole, wild, edible muscle tissue, raw",r,Solea solea,Common sole,Solea solea
+901509,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,31,SOL,NA,"Common sole, wild, edible muscle tissue, raw",r,Solea solea,Common sole,Solea solea
+901510,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,33,MUR,NA,"Striped red mullet, wild, edible muscle tissue, raw",r,Mullus surmuletus,Surmullet,Mullus surmuletus
+901511,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,33,MUR,NA,"Striped red mullet, wild, edible muscle tissue, raw",r,Mullus surmuletus,Surmullet,Mullus surmuletus
+901512,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,33,MUR,NA,"Striped red mullet, wild, edible muscle tissue, raw",r,Mullus surmuletus,Surmullet,Mullus surmuletus
+901513,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,33,MUR,NA,"Striped red mullet, wild, edible muscle tissue, raw",r,Mullus surmuletus,Surmullet,Mullus surmuletus
+901514,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,32,WHG,NA,"Whiting, wild, edible muscle tissue, raw",r,Merlangius merlangus,Whiting,Merlangius merlangus
+901515,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,32,WHG,NA,"Whiting, wild, edible muscle tissue, raw",r,Merlangius merlangus,Whiting,Merlangius merlangus
+901516,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,32,WHG,NA,"Whiting, wild, edible muscle tissue, raw",r,Merlangius merlangus,Whiting,Merlangius merlangus
+901517,Finfish,"Unknown (samples from local fish market, Istanbul)",NA,32,WHG,NA,"Whiting, wild, edible muscle tissue, raw",r,Merlangius merlangus,Whiting,Merlangius merlangus
+901523,Finfish,"Unknown (samples from Turkey, Hatay, local fish market)",NA,13,CLZ,NA,"African catfish, fillet, raw",r,Clarias gariepinus,North African catfish,Clarias gariepinus
+901528,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,36,GUT,NA,"Seer, wild, skinless, muscle flesh, raw",r,Scomberomorus guttatus,Indo-Pacific king mackerel,Scomberomorus guttatus
+901529,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,24,HIL,NA,"Hilsa (marine), wild, skinless, muscle flesh, raw",r,Hilsa hilsa,Hilsa shad,Tenualosa ilisha
+901530,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,35,EYP,NA,"Anchovy, wild, skinless, muscle flesh, raw",r,Thryssa purava,Oblique-jaw thryssa,Thryssa purava
+901531,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,37,POB,NA,"Pomfret (Black), wild, skinless, muscle flesh, raw",r,Parastromteur niger,Black pomfret,Parastromateus niger
+901532,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,33,OTI,NA,"Jew fish, wild, skinless, muscle flesh, raw",r,Pseudosciaena diacanthus,Blackspotted croaker,Protonibea diacanthus
+901533,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,33,MUF,NA,"Mullet, wild, skinless, muscle flesh, raw",r,Mugil cephalus,Flathead grey mullet,Mugil cephalus
+901534,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,37,RAG,NA,"Mackerel, wild, skinless, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901535,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,34,PCX,NA,"Conger eel, wild, skinless, muscle flesh, raw",r,Muraenesox talabon,Pike-congers nei,Muraenesox spp
+901536,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,37,SIP,NA,"Pomfret (White), wild, skinless, muscle flesh, raw",r,Pampus argenteus,Silver pomfret,Pampus argenteus
+901537,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,37,TRE,NA,"Trevally, wild, skinless, muscle flesh, raw",r,Caranx sansun,"Jacks, crevalles nei",Caranx spp
+901538,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,33,NNJ,NA,"Pinkperch, wild, skinless, muscle flesh, raw",r,Nemipterus japonicus,Japanese threadfin bream,Nemipterus japonicus
+901539,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,35,FRS,NA,"Lesser sardine, wild, skinless, muscle flesh, raw",r,Sardinella fimbriata,Fringescale sardinella,Sardinella fimbriata
+901540,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,33,OYD,NA,"Thread fins, wild, skinless, muscle flesh, raw",r,Polynemus indicus,Indian threadfin,Leptomelanosoma indicum
+901541,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,33,BUC,NA,"Bombay duck, wild, skinless, muscle flesh, raw",r,Harpodon nehereus,Bombay-duck,Harpadon nehereus
+901542,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,25,GIP,NA,"Giant perch (marine), wild, skinless, muscle flesh, raw",r,Lates calcarifer,Barramundi,Lates calcarifer
+901543,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,38,RSK,NA,"Shark, wild, skinless, muscle flesh, raw",r,Scoliodon sorrakowah,Requiem sharks nei,Carcharhinidae
+901544,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,33,CAX,NA,"Cat fish, wild, skinless, muscle flesh, raw",r,Tachysurus zona,NA,Ariidae
+901545,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,13,KNA,NA,"Murrel, wild, skinless, muscle flesh, raw",r,Ophiocephalus marules,Great snakehead,Channa marulius
+901546,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,11,LRH,NA,"Rohu, wild, skinless, muscle flesh, raw",r,Labeo rohita,Roho labeo,Labeo rohita
+901547,Finfish,"Unknown (samples from local fish market, Hyderabad, India)",NA,11,CTT,NA,"Catla, wild, skinless, muscle flesh, raw",r,Catla catla,Catla,Catla catla
+901548,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,13,FSI,Armadillo,"muscle flesh, skinless, raw",r,Hypostomus watwata,Freshwater siluroids nei,Siluroidei
+901549,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,13,PLR,Bocachico,"Netted prochilod, muscle flesh, skinless, raw",r,Prochilodus reticulatus,Netted prochilod,Prochilodus reticulatus
+901550,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,13,CSM,Cachama,"Cachama, muscle flesh, skinless, raw",r,Colossoma macropomum,Cachama,Colossoma macropomum
+901551,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,33,MOJ,Carpeta,"muscle flesh, skinless, raw",r,Eugerres plumieri,Mojarras(=Silver-biddies) nei,Gerres spp
+901552,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,33,YNA,Corvina,"Acoupa weakfish, muscle flesh, skinless, raw",r,Cynoscion maracaiboensis,Acoupa weakfish,Cynoscion acoupa
+901553,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,33,MGU,Lisa,"White mullet, muscle flesh, skinless, raw",r,Mugil curema,White mullet,Mugil curema
+901554,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,32,HOF,Merluza,"Offshore silver hake, muscle flesh, skinless, raw",r,Merluccius albidus,Offshore silver hake,Merluccius albidus
+901555,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,33,GPN,Mero,"Nassau grouper, muscle flesh, skinless, raw",r,Epinephelus striatus,Nassau grouper,Epinephelus striatus
+901556,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,33,LJU,Pargo,"Blackfin snapper, muscle flesh, skinless, raw",r,Lutjanus buccanella,Blackfin snapper,Lutjanus buccanella
+901557,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,33,SNO,Robalo,"Common snook, muscle flesh, skinless, raw",r,Centropomus undecimalis,Common snook,Centropomus undecimalis
+901558,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,12,TLP,Tilapia,"Tilapia, muscle flesh, skinless, raw",r,Oreochromis sp.,Tilapias nei,Oreochromis (=Tilapia) spp
+901559,Finfish,"Unknown (sampled in Venezuela, Maracaibo, local fish market)",NA,23,TRR,Trucha,"Rainbow trout, muscle flesh, skinless, raw",r,Oncorhynchus mykiss,Rainbow trout,Oncorhynchus mykiss
+901585,Finfish,Unknown,NA,13,BNC,Matrinxã,"Matrinxã, dorsolateral fillet, skin-on, raw",r,Brycon cephalus,NA,Brycon cephalus
+901657,Finfish,"Unknown (samples from fish market, Hangzhou, China)",NA,11,FCG,NA,"Grass carp, skinless, boneless fillet, raw",r,Ctenopharyngodon idellus,Grass carp(=White amur),Ctenopharyngodon idellus
+901694,Finfish,"India, Tamilnadu, Tuticorin fish-landing center",NA,36,SKJ,NA,"Skipjack tuna, wild, steak, raw",r,Katsuwonus pelamis,Skipjack tuna,Katsuwonus pelamis
+901707,Finfish,Unknown,NA,23,COH,Salmón coho,"Salmon, skinless fillet, frozen",r,Oncorhynchus kisutch,Coho(=Silver)salmon,Oncorhynchus kisutch
+901711,Finfish,Unknown (samples from fish market in Mexico City),NA,36,ALB,Albacora,"Albacore, fillet, raw",r,Thunnus alalunga,Albacore,Thunnus alalunga
+901712,Finfish,Unknown (samples from fish market in Mexico City),NA,38,RGM,Aleta mantarraya,"California butterfly ray, fillet, raw",r,Gymnura marmorata,California butterfly ray,Gymnura marmorata
+901713,Finfish,Unknown (samples from fish market in Mexico City),NA,36,BFT,Atún,"Atlantic bluefin tuna, fillet, raw",r,Thunnus thynnus,Atlantic bluefin tuna,Thunnus thynnus
+901714,Finfish,Unknown (samples from fish market in Mexico City),NA,33,BEM,Bagre,"Gafftopsail sea catfish, fillet, raw",r,Bagre marinus,Gafftopsail sea catfish,Bagre marinus
+901715,Finfish,Unknown (samples from fish market in Mexico City),NA,33,RPU,Besuga,"Vermilion snapper, fillet, raw",r,Rhomboplites aurorubens,Vermilion snapper,Rhomboplites aurorubens
+901716,Finfish,Unknown (samples from fish market in Mexico City),NA,38,CCR,Cazón,"Smalltail shark, fillet, raw",r,Carcharhinus porosus,Smalltail shark,Carcharhinus porosus
+901717,Finfish,Unknown (samples from fish market in Mexico City),NA,33,LHT,Cintilla,"Largehead hairtail, fillet, raw",r,Trichiurus lepturus,Largehead hairtail,Trichiurus lepturus
+901718,Finfish,Unknown (samples from fish market in Mexico City),NA,37,RUB,Cojinuda,"Blue runner, fillet, raw",r,Caranx crysus,Blue runner,Caranx crysos
+901719,Finfish,Unknown (samples from fish market in Mexico City),NA,33,SNR,Huachinango golfo,"Northern red snapper, fillet, raw",r,Lutjanus campechanus,Northern red snapper,Lutjanus campechanus
+901720,Finfish,Unknown (samples from fish market in Mexico City),NA,33,LWP,Huachinango pacifico,"Pacific red snapper, fillet, raw",r,Lutjanus peru,Pacific red snapper,Lutjanus peru
+901721,Finfish,Unknown (samples from fish market in Mexico City),NA,37,CVJ,Jurel,"Crevalle jack, fillet, raw",r,Caranx hippos,Crevalle jack,Caranx hippos
+901722,Finfish,Unknown (samples from fish market in Mexico City),NA,33,GPR,Mero,"Red grouper, fillet, raw",r,Epinephelus morio,Red grouper,Epinephelus morio
+901723,Finfish,Unknown (samples from fish market in Mexico City),NA,33,DUX,Mojarra,"Caitipa mojarra, fillet, raw",r,Diapterus rhombeus,NA,Diapterus spp
+901724,Finfish,Unknown (samples from fish market in Mexico City),NA,36,KGM,Peto carito,"King mackerel, fillet, raw",r,Scomberomorus cavalla,King mackerel,Scomberomorus cavalla
+901725,Finfish,Unknown (samples from fish market in Mexico City),NA,33,SNO,Robalo,"Common snook, fillet, raw",r,Centropomus undecimalis,Common snook,Centropomus undecimalis
+901726,Finfish,Unknown (samples from fish market in Mexico City),NA,33,SWF,Trucha,"Spotted weakfish, fillet, raw",r,Cynoscion nebulosus,Spotted weakfish,Cynoscion nebulosus
+901727,Finfish,Unknown (samples from fish market in Mexico City),NA,33,SNL,Villajaiba,"Lane snapper, fillet, raw",r,Lutjanus synagris,Lane snapper,Lutjanus synagris
+901728,Finfish,Unknown (samples from fish market in Mexico City),NA,37,LNM,Jorobado,"Lookdown, fillet, raw",r,Selene vomer,Lookdown,Selene vomer
+901736,Finfish,Unknown,NA,33,SUR,NA,"Yellowfin surgeon fish, muscle flesh, raw",r,Acanthurus xanthopterus,NA,Acanthuridae
+901737,Finfish,Unknown,NA,33,AUJ,NA,"Black fin sea catfish, muscle flesh, raw",r,Arius jella,Blackfin sea catfish,Arius jella
+901738,Finfish,Unknown,NA,33,AUJ,NA,"Black fin sea catfish, muscle flesh, raw",r,Arius jella,Blackfin sea catfish,Arius jella
+901739,Finfish,Unknown,NA,34,DRI,NA,"Indian drift fish, muscle flesh, raw",r,Ariomma indicus,Indian driftfish,Ariomma indica
+901740,Finfish,Unknown,NA,37,SGY,NA,"Spot tail needle fish, muscle flesh, raw",r,Strongylura strongylura,Spottail needlefish,Strongylura strongylura
+901741,Finfish,Unknown,NA,31,UKX,NA,"Flounder, muscle flesh, raw",r,Pseudorhombus sp,NA,Pseudorhombus spp
+901742,Finfish,Unknown,NA,31,UKX,NA,"Flounder, muscle flesh, raw",r,Pseudorhombus sp,NA,Pseudorhombus spp
+901743,Finfish,Unknown,NA,37,HAS,NA,"Torpedo scad, muscle flesh, raw",r,Megalaspis cordyla,Torpedo scad,Megalaspis cordyla
+901744,Finfish,Unknown,NA,37,HAS,NA,"Torpedo scad, skin-on fillet, raw",r,Megalaspis cordyla,Torpedo scad,Megalaspis cordyla
+901745,Finfish,Unknown,NA,37,POP,NA,"Pompano, muscle flesh, raw",r,Trachynotus ovatus,Pompano,Trachinotus ovatus
+901746,Finfish,Unknown,NA,37,CVJ,NA,"Black tailed trevally, muscle flesh, raw",r,Caranx hippos,Crevalle jack,Caranx hippos
+901747,Finfish,Unknown,NA,37,OBJ,NA,"Needle scaled queen fish, muscle flesh, raw",r,Scomberoides tol,Needlescaled queenfish,Scomberoides tol
+901748,Finfish,Unknown,NA,37,POP,NA,"Pompano, muscle flesh, raw",r,Trachynotus ovatus,Pompano,Trachinotus ovatus
+901749,Finfish,Unknown,NA,37,HAS,NA,"Torpedo scad, muscle flesh, raw",r,Megalaspis cordyla,Torpedo scad,Megalaspis cordyla
+901750,Finfish,Unknown,NA,37,POB,NA,"Black pomfret, muscle flesh, raw",r,Parastromateus niger,Black pomfret,Parastromateus niger
+901751,Finfish,Unknown,NA,37,RUS,NA,"Indian scad, muscle flesh, raw",r,Decapterus russelli,Indian scad,Decapterus russelli
+901752,Finfish,Unknown,NA,37,OBJ,NA,"Needle scaled queen fish, muscle flesh, raw",r,Scomberoides tol,Needlescaled queenfish,Scomberoides tol
+901753,Finfish,Unknown,NA,37,HAS,NA,"Torpedo scad, muscle flesh, raw",r,Megalaspis cordyla,Torpedo scad,Megalaspis cordyla
+901754,Finfish,Unknown,NA,37,NGS,NA,"Malabar trevelly, muscle flesh, raw",r,Carangoides malabaricus,Malabar trevally,Carangoides malabaricus
+901755,Finfish,Unknown,NA,37,NGS,NA,"Malabar trevelly, muscle flesh, raw",r,Carangoides malabaricus,Malabar trevally,Carangoides malabaricus
+901756,Finfish,Unknown,NA,37,CVJ,NA,"Black tailed trevally, muscle flesh, raw",r,Caranx hippos,Crevalle jack,Caranx hippos
+901757,Finfish,Unknown,NA,37,TRE,NA,"Banded scad, muscle flesh, raw",r,Caranx para,"Jacks, crevalles nei",Caranx spp
+901758,Finfish,Unknown,NA,37,TUP,NA,"Cleft belly trevally, muscle flesh, raw",r,Atropus atropus female,Cleftbelly trevally,Atropus atropos
+901759,Finfish,Unknown,NA,37,TUP,NA,"Cleft belly trevally, muscle flesh, raw",r,Atropus atropus,Cleftbelly trevally,Atropus atropos
+901760,Finfish,Unknown,NA,25,MIL,NA,"Mikfish, muscle flesh, raw",r,Chanos chanos,Milkfish,Chanos chanos
+901761,Finfish,Unknown,NA,35,DOB,NA,"Silver bar, muscle flesh, raw",r,Chirocentrus dorab,Dorab wolf-herring,Chirocentrus dorab
+901763,Finfish,Unknown,NA,35,CNU,NA,"White fin wolf herring, muscle flesh, raw",r,Chirocentrus nudus,Whitefin wolf-herring,Chirocentrus nudus
+901764,Finfish,Unknown,NA,12,TLM,NA,"Tilapia, female, muscle flesh, raw",r,Oreochromis mossambica,Mozambique tilapia,Oreochromis mossambicus
+901765,Finfish,Unknown,NA,12,ERC,NA,"Orange chromicle, muscle flesh, raw",r,Etroplus maculatus,Orange chromide,Etroplus maculatus
+901766,Finfish,Unknown,NA,24,PHT,NA,"Tardoore, muscle flesh, raw",r,Opisthoptertus tardoor,Tardoore,Opisthopterus tardoore
+901767,Finfish,Unknown,NA,24,PHT,NA,"Tardoore, muscle flesh, raw",r,Opisthoptertus tardoor,Tardoore,Opisthopterus tardoore
+901768,Finfish,Unknown,NA,24,PHT,NA,"Tardoore, muscle flesh, raw",r,Opisthoptertus tardoor,Tardoore,Opisthopterus tardoore
+901769,Finfish,Unknown,NA,35,RAS,NA,"Rainbow sardine, muscle flesh, raw",r,Dussumieria acuta,Rainbow sardine,Dussumieria acuta
+901770,Finfish,Unknown,NA,35,SDM,NA,"Blacktrip sardinella, muscle flesh, raw",r,Sardinella melanura,Blacktip sardinella,Sardinella melanura
+901771,Finfish,Unknown,NA,35,RAL,NA,"Oil sardine, muscle flesh, raw",r,Dussumieria hasselti,Slender rainbow sardine,Dussumieria elopsoides
+901772,Finfish,Unknown,NA,31,YOD,NA,"Carrot tongue sole, muscle flesh, raw",r,Cynoglossus dubius,Carrot tonguesole,Cynoglossus dubius
+901773,Finfish,Unknown,NA,31,YOX,NA,"Flounder, muscle flesh, raw",r,Cynoglossus sp,Tonguesole nei,Cynoglossus spp
+901776,Finfish,Unknown,NA,33,CEV,NA,"Ladyfish, muscle flesh, raw",r,Elops machnata,Tenpounder,Elops machnata
+901777,Finfish,Unknown,NA,35,EYD,NA,"Dussumier's thryssa, muscle flesh, raw",r,Tryssa dusumeri,Dussumier's thryssa,Thryssa dussumieri
+901778,Finfish,Unknown,NA,33,HUO,NA,"Spade fish, muscle flesh, raw",r,Ephippus orbis,Orbfish,Ephippus orbis
+901779,Finfish,Unknown,NA,33,GEF,NA,"Whipfin silver biddy, muscle flesh, raw",r,Gerres filamentoses,Whipfin silver-biddy,Gerres filamentosus
+901780,Finfish,Unknown,NA,34,GEF,NA,"Whipfin silver biddy, muscle flesh, raw",r,Gerres filamentoses,Whipfin silver-biddy,Gerres filamentosus
+901781,Finfish,Unknown,NA,33,BGX,NA,"Grunter, muscle flesh, raw",r,Pomadasys furcatum,NA,Pomadasys spp
+901782,Finfish,Unknown,NA,33,KAH,NA,"Javelin grunter, muscle flesh, raw",r,Pomadasys kaakan,Javelin grunter,Pomadasys kaakan
+901783,Finfish,Unknown,NA,33,BGX,NA,"Grunter, muscle flesh, raw",r,Pomadasys sp,NA,Pomadasys spp
+901784,Finfish,Unknown,NA,37,HAX,NA,"Needle fish, muscle flesh, raw",r,Hemiramphus lutkei,NA,Hemiramphus spp
+901785,Finfish,Unknown,NA,37,TRF,NA,"False trevally, muscle flesh, raw",r,Lactarius lactarius,False trevally,Lactarius lactarius
+901787,Finfish,Unknown,NA,33,LGP,NA,"Splendid ponyfish, muscle flesh, raw",r,Leiognathus splendens,Splendid ponyfish,Leiognathus splendens
+901788,Finfish,Unknown,NA,33,LCV,NA,"Orange fin pony fish, muscle flesh, raw",r,Leiognathus bindus,Orangefin ponyfish,Leiognathus bindus
+901789,Finfish,Unknown,NA,33,LTS,NA,"Emperor, muscle flesh, raw",r,Lethrinus cinerius,Pink ear emperor,Lethrinus lentjan
+901790,Finfish,Unknown,NA,33,LJG,NA,"Humpback red snapper, muscle flesh, raw",r,Lutjanus gibbus,Humpback red snapper,Lutjanus gibbus
+901791,Finfish,Unknown,NA,33,PFM,NA,"Blue spotted job fish, muscle flesh, raw",r,Pristipomoides filamentoses,Crimson jobfish,Pristipomoides filamentosus
+901792,Finfish,Unknown,NA,33,TAI,NA,"Oxeye tarpon, muscle flesh, raw",r,Megalops cyprinoides,Indo-Pacific tarpon,Megalops cyprinoides
+901793,Finfish,Unknown,NA,33,VMC,NA,"Long arm mullet, muscle flesh, raw",r,Vaiamugil cunnesius,Longarm mullet,Valamugil cunnesius
+901794,Finfish,Unknown,NA,33,UPI,NA,"Striped goatfish, muscle flesh, raw",r,Upenus vittatus,Yellowstriped goatfish,Upeneus vittatus
+901795,Finfish,Unknown,NA,34,UPI,NA,"Striped goatfish, muscle flesh, raw",r,Upenus vittatus,Yellowstriped goatfish,Upeneus vittatus
+901796,Finfish,Unknown,NA,38,RYH,NA,"Eagle ray, muscle flesh, raw",r,Myliobatis nieuhofli,Banded eagle ray,Aetomylaeus niehofii
+901797,Finfish,Unknown,NA,33,THB,NA,"Pink perch, muscle flesh, raw",r,Nemipterus bleekeri,Threadfin breams nei,Nemipterus spp
+901798,Finfish,Unknown,NA,33,NNJ,NA,"Pink perch, muscle flesh, raw",r,Nemipterus japonicus,Japanese threadfin bream,Nemipterus japonicus
+901799,Finfish,Unknown,NA,33,THD,NA,"Rosy monacle bream, muscle flesh, raw",r,Parascolopsis eriomma,NA,Nemipteridae
+901800,Finfish,Unknown,NA,33,FOT,NA,"Four finger thread fin, muscle flesh, raw",r,Eleutheronema tetradactylus,Fourfinger threadfin,Eleutheronema tetradactylum
+901801,Finfish,Unknown,NA,33,OAX,NA,"Blackspot threadfin, muscle flesh, raw",r,Polynemus sextarius,Blackspot threadfin,Polydactylus sextarius
+901802,Finfish,Unknown,NA,33,BIG,NA,"Bull eye, muscle flesh, raw",r,Priacanthus sp,Bigeyes nei,Priacanthus spp
+901803,Finfish,Unknown,NA,31,HAI,NA,"Indian tiny turbot, muscle flesh, raw",r,Psettodes erumei,Indian halibut,Psettodes erumei
+901804,Finfish,Unknown,NA,33,NBA,NA,"Bloched croaker, muscle flesh, raw",r,Nibea maculata,Blotched croaker,Nibea maculata
+901805,Finfish,Unknown,NA,33,JOX,NA,"Karut croaker, muscle flesh, raw",r,Johnius carutta,NA,Johnius spp
+901806,Finfish,Unknown,NA,33,JOU,NA,"Sin croaker, muscle flesh, raw",r,Johniops sinai,Sin croaker,Johnius dussumieri
+901807,Finfish,Unknown,NA,33,JOU,NA,"Sin croaker, muscle flesh, raw",r,Johniops sinai,Sin croaker,Johnius dussumieri
+901808,Finfish,Unknown,NA,33,JOX,NA,"Spindle croaker, muscle flesh, raw",r,Johnius elongatus,NA,Johnius spp
+901809,Finfish,Unknown,NA,33,LKR,NA,"Tiger toothed croaker, muscle flesh, raw",r,Otolithus ruber,Tigertooth croaker,Otolithes ruber
+901810,Finfish,Unknown,NA,33,JOU,NA,"Sin croaker, muscle flesh, raw",r,Johniops sina,Sin croaker,Johnius dussumieri
+901811,Finfish,Unknown,NA,37,RAG,NA,"Mackerel, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901812,Finfish,Unknown,NA,37,RAG,NA,"Mackerel, female, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901813,Finfish,Unknown,NA,37,RAG,NA,"Mackerel, male, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901814,Finfish,Unknown,NA,37,RAG,NA,"Mackerel, immature, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901815,Finfish,Unknown,NA,37,RAG,NA,"Mackerel, female, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901816,Finfish,Unknown,NA,13,FSI,NA,"Kadal varal, muscle flesh, raw",r,Elachata nigra,Freshwater siluroids nei,Siluroidei
+901817,Finfish,Unknown,NA,37,RAG,NA,"Mackerel, muscle flesh, raw",r,Rastrelliger kanagurta,Indian mackerel,Rastrelliger kanagurta
+901818,Finfish,Unknown,NA,13,FSI,NA,"Kadal varal, muscle flesh, raw",r,Elachata nigra,Freshwater siluroids nei,Siluroidei
+901819,Finfish,Unknown,NA,33,EES,NA,"Banded grouper, muscle flesh, raw",r,Epinephles latifasciiatus,Striped grouper,Epinephelus latifasciatus
+901820,Finfish,Unknown,NA,33,ILS,NA,"Silver sillago, muscle flesh, raw",r,Sillago sihama,Silver sillago,Sillago sihama
+901821,Finfish,Unknown,NA,33,KBR,NA,"King soldier bream, muscle flesh, raw",r,Argyrops spinifer,King soldier bream,Argyrops spinifer
+901822,Finfish,Unknown,NA,37,YBS,NA,"Big eye barracuda, muscle flesh, raw",r,Sphyraena forsteri,Bigeye barracuda,Sphyraena forsteri
+901823,Finfish,Unknown,NA,37,YRB,NA,"Obtuse barracuda, muscle flesh, raw",r,Sphyraena obtusata,Obtuse barracuda,Sphyraena obtusata
+901824,Finfish,Unknown,NA,37,BAC,NA,"Barracuda, muscle flesh, raw",r,Sphyraena jello,Pickhandle barracuda,Sphyraena jello
+901825,Finfish,Unknown,NA,37,SIP,NA,"Silver pomfret, muscle flesh, raw",r,Pambus argentius,Silver pomfret,Pampus argenteus
+901826,Finfish,Unknown,NA,33,LIB,NA,"Brush tooth lizard fish, muscle flesh, raw",r,Saurida undosquamosis,Brushtooth lizardfish,Saurida undosquamis
+901827,Finfish,Unknown,NA,33,TJB,NA,"Jarbua therapon, muscle flesh, raw",r,Jarbua therapon,Jarbua terapon,Terapon jarbua
+901828,Finfish,Unknown,NA,33,TJB,NA,"Jarbua therapon, muscle flesh, raw",r,Jarbua therapon,Jarbua terapon,Terapon jarbua
+901829,Finfish,Unknown,NA,38,TOF,NA,"Electric ray, muscle flesh, raw",r,Narcine sp,"Electric rays, etc.nei",Torpediniformes/Narcinidae
+901830,Finfish,Unknown,NA,33,LDP,NA,"Rosy grub fish, muscle flesh, raw",r,Percis pulchella,Orange perch,Lepidoperca pulchella
+901831,Finfish,Unknown,NA,34,SVH,NA,"Savalai hair tail, muscle flesh, raw",r,Lepturacanthus savala,Savalai hairtail,Lepturacanthus savala
+901832,Finfish,Unknown,NA,34,URA,NA,"Star gazers, muscle flesh, raw",r,Chanoscopes sp,Stargazers,Uranoscopus spp
+901833,Crustacean,Unknown,NA,45,PNI,NA,"Indian white shrimp, edible flesh, raw",r,Penaeus indicus,Indian white prawn,Penaeus indicus
+901834,Crustacean,Unknown,NA,45,PNI,NA,"Indian white shrimp, edible flesh, raw",r,Penaeus indicus,Indian white prawn,Penaeus indicus
+901835,Crustacean,Unknown,NA,45,MPN,NA,"Speckled shrimp, edible flesh, raw",r,Metapenaeus monoceros,Speckled shrimp,Metapenaeus monoceros
+901836,Crustacean,Unknown,NA,45,MPN,NA,"Speckled shrimp, edible flesh, raw",r,Metapenaeus monoceros,Speckled shrimp,Metapenaeus monoceros
+901837,Crustacean,Unknown,NA,45,GIT,NA,"Giant tiger prawn, edible flesh, raw",r,Penaeus monodon,Giant tiger prawn,Penaeus monodon
+901838,Crustacean,Unknown,NA,45,MPD,NA,"Kadal shrimp, edible flesh, raw",r,Metapenaeus dobsoni,Kadal shrimp,Metapenaeus dobsoni
+901839,Crustacean,Unknown,NA,45,NMY,NA,"Fiddler shrimp, edible flesh, raw",r,Metapenaeopsis stridulens,Fiddler shrimp,Metapenaeopsis stridulans
+901840,Crustacean,Unknown,NA,42,MUD,NA,"Mud crab, edible flesh, raw",r,Scylla seffata,Indo-Pacific swamp crab,Scylla serrata
+901841,Crustacean,Unknown,NA,42,MUD,NA,"Mud crab, claw meat, raw",r,Scylla serrata,Indo-Pacific swamp crab,Scylla serrata
+901842,Crustacean,Unknown,NA,42,UNG,NA,"Red spot crab, edible flesh, raw",r,Portunus sanquinolentus,Threespot swimming crab,Portunus sanguinolentus
+901843,Crustacean,Unknown,NA,42,YBX,NA,"Coral crab, edible flesh, raw",r,Charibdis cruciata,Charybdis crabs nei,Charybdis spp
+901844,Crustacean,Unknown,NA,42,YBX,NA,"Coral crab, edible flesh, raw",r,Charibdis cruciata,Charybdis crabs nei,Charybdis spp
+901845,Crustacean,Unknown,NA,42,SCD,NA,"Sand crab, edible flesh, raw",r,Portunus pelagicus,Blue swimming crab,Portunus pelagicus
+901846,Molluscs,Unknown,NA,57,EJA,NA,"Cuttle fish, edible flesh, raw",r,Sepia aculeate,Needle cuttlefish,Sepia aculeata
+901847,Molluscs,Unknown,NA,57,EJA,NA,"Cuttle fish, edible flesh, raw",r,Sepia aculeata,Needle cuttlefish,Sepia aculeata
+901848,Molluscs,Unknown,NA,57,OJD,NA,"Squid, edible flesh, raw",r,Loligo duvauceli,Indian squid,Loligo duvauceli
+901849,Molluscs,Unknown,NA,57,OJD,NA,"Squid, edible flesh, raw",r,Loligo duvauceli,Indian squid,Loligo duvauceli
+901850,Molluscs,"USA, SE Alaska",NA,52,ABX,NA,"Abalone, edible flesh, raw",r,Haliotis,Abalones nei,Haliotis spp
+901851,Molluscs,"USA, SE Alaska",NA,56,SXI,NA,"Butter clam, edible fleh, raw",r,Saxidomus nuttalli,Common butter clam,Saxidomus nuttalli
+901852,Molluscs,"USA, SE Alaska",NA,56,KCL,NA,"Cockle clam, edible flesh, raw",r,Cardium corbis,Basket cockle,Clinocardium nuttallii
+901853,Molluscs,"USA, SE Alaska",NA,56,PTS,NA,"Little neck clam, edible flesh, raw",r,Protothaca staminea,Pacific littleneck clam,Protothaca staminea
+901854,Finfish,"USA, Alaksa/Washington/Oregon",NA,32,PCO,NA,"Pacific cod, skinless muscle flesh, raw",r,Gadus macrocephalus,Pacific cod,Gadus macrocephalus
+901855,Finfish,"USA, Washington/Oregon",NA,33,CLI,NA,"Lingcod, skinless muscle flesh, raw",r,Ophiodon elongatus,Lingcod,Ophiodon elongatus
+901856,Crustacean,"USA, Washington/Oregon/N California",NA,42,DUN,NA,"Dungeness crab, edible flesh (body), raw",r,Cancer magister,Dungeness crab,Cancer magister
+901857,Crustacean,"USA, Washington/Oregon/N California",NA,42,DUN,NA,"Dungeness crab, edible flesh (leg), raw",r,Cancer magister,Dungeness crab,Cancer magister
+901858,Crustacean,"USA, Kodiak Islands",NA,44,KCD,NA,"King crab, edible flesh (body), raw",r,Paralithodes camschatica,Red king crab,Paralithodes camtschaticus
+901859,Crustacean,"USA, Kodiak Islands",NA,44,KCD,NA,"King crab, edible flesh (leg), raw",r,Paralithodes camschatica,Red king crab,Paralithodes camtschaticus
+901860,Crustacean,"USA, Kodiak Islands",NA,44,KCD,NA,"King crab, edible flesh (composite), raw",r,Paralithodes camschatica,Red king crab,Paralithodes camtschaticus
+901861,Molluscs,"USA, SE Alaska",NA,76,CUX,NA,"Red sea cucumber, edible flesh, raw",r,Stichopus californicus,Sea cucumbers nei,Holothurioidea
+901862,Finfish,"Canada, Straits of Juan de Fuca",NA,38,DGS,NA,"Spiny dogfish, skinless muscle flesh, raw",r,Squalus acanthias,Picked dogfish,Squalus acanthias
+901863,Finfish,"USA, Lower Puget Sound, Washington",NA,38,DGS,NA,"Spiny dogfish, whole, raw",r,Squalus acanthias,Picked dogfish,Squalus acanthias
+901864,Finfish,"USA, Colorado River",NA,23,EUL,NA,"Eulachon, skinless muscle flesh, raw",r,Thaleichthys pacificus,Eulachon,Thaleichthys pacificus
+901865,Finfish,"USA, SE Alaska/Washington/Oregon",NA,31,ARF,NA,"Arrowtooth flounder, skinless muscle flesh, raw",r,Atheresthes stomias,Arrow-tooth flounder,Atheresthes stomias
+901866,Finfish,"USA, SE Alaska/Washington/Oregon/Puget Sound",NA,31,PWQ,NA,"Starry flounder, skinless muscle flesh, raw",r,Platichthys stellatus,Starry flounder,Platichthys stellatus
+901867,Molluscs,"USA, SE Alaska",NA,56,CLX,NA,"Geoduck, syphon, raw",r,Panope generosa,"Clams, etc. nei",Bivalvia/Hiatellidae
+901868,Molluscs,"USA, SE Alaska",NA,56,CLX,NA,"Geoduck, edible muscle flesh (body), raw",r,Panope generosa,NA,Bivalvia/Hiatellidae
+901869,Finfish,"USA, Oregon/Washington/Alaska",NA,31,HAP,NA,"Pacific halibut, skinless muscle flesh, raw",r,Hippoglossus stenolepis,Pacific halibut,Hippoglossus stenolepis
+901870,Finfish,"USA, British Colombia/Puget Sound",NA,35,HEP,NA,"Pacific herring, skinless muscle flesh, raw",r,Clupea harengus pallasi,Atlantic herring,Clupea pallasii
+901871,Finfish,"USA, Kodiak/SE Alaska/British Colombia",NA,35,HER,NA,"Pacific herring, whole, raw",r,Clupea harengus pallasi,Atlantic herring,Clupea harengus
+901872,Molluscs,"USA, SE Alaska",NA,57,OCT,NA,"Octopus, edible flesh, raw",r,Paroctopus hongkongensis,"Octopuses, etc. nei",Octopodidae
+901873,Molluscs,"USA, Alaska",NA,53,OYG,NA,"Japanese oyster, edible flesh, raw",r,Crassostrea gigas,Pacific cupped oyster,Crassostrea gigas
+901874,Molluscs,"USA, SE Alaska",NA,53,OFO,NA,"Native oyster, edible flesh, raw",r,Ostrea lurida,Yaquina oyster,Ostrea lurida
+901875,Finfish,"USA, Bering Sea/NE Pacific Ocean of Alaska",NA,32,ALK,NA,"Walleye pollock, skinless fillet, raw",r,Theragra chalcogramma,Alaska pollock(=Walleye poll.),Theragra chalcogramma
+901876,Finfish,"USA, SE Alaska",NA,38,RAT,NA,"Ratfish, skinless fillet, raw",r,Hydrolagus colliei,Spotted ratfish,Hydrolagus colliei
+901877,Finfish,"USA, SE Alaska",NA,34,RMG,NA,"Black rockfish, skinless fillet, raw",r,Sebastes melanops,Black rockfish,Sebastes melanops
+901878,Finfish,"USA, SE Alaska",NA,34,RFC,NA,"Darkblotched rockfish, skinless fillet, raw",r,Sebastes crameri,Darkblotched rockfish,Sebastes crameri
+901879,Finfish,"USA, SE Alaska",NA,34,SFT,NA,"Rougheye rockfish, skinless fillet, raw",r,Sebastes aleutianus,Rougheye rockfish,Sebastes aleutianus
+901880,Finfish,"USA, Washington",NA,34,SBC,NA,"Bocaccio rockfish, skinless fillet, raw",r,Sebastes paucispinis,Bocaccio rockfish,Sebastes paucispinis
+901881,Finfish,"USA, N California",NA,34,SGO,NA,"Chilipepper rockfish, skinless fillet, raw",r,Sebastes goodei,Chilipepper rockfish,Sebastes goodei
+901882,Finfish,"USA, Washington",NA,34,RED,NA,"Flag rockfish, skinless fillet, raw",r,Sebastes rubrivincuts,Atlantic redfishes nei,Sebastes spp
+901883,Finfish,"USA, Washington/Oregon",NA,34,SFE,NA,"Greenstriped rockfish, skinless fillet, raw",r,Sebastes elongatus,Greenstriped rockfish,Sebastes elongatus
+901884,Finfish,"USA, Washington/Oregon",NA,34,RED,NA,"Shortspine thornyhead rockfish, skinless fillet, raw",r,Sebastes alascanus,Atlantic redfishes nei,Sebastes spp
+901885,Finfish,"USA, SE Alaska/Washington/Oregon",NA,34,SPG,NA,"Canary rockfish, skinless fillet, raw",r,Sebastes pinninger,Canary rockfish,Sebastes pinniger
+901886,Finfish,"USA, Washington/Oregon/N Carolina",NA,34,OPP,NA,"Pacific ocean perch, skinless fillet, raw",r,Sebastes alutus,Pacific ocean perch,Sebastes alutus
+901887,Finfish,"USA, SE Alaska/Washington",NA,34,RRV,NA,"Yelloweye rockfish, skinless fillet, raw",r,Sebastes ruberrimus,Yelloweye rockfish,Sebastes ruberrimus
+901888,Finfish,"USA, Washington",NA,34,SEQ,NA,"Rosy rockfish, skinless fillet, raw",r,Sebastes rosaceus,Rosy rockfish,Sebastes rosaceus
+901889,Finfish,"USA, Washington/Oregon",NA,34,YRO,NA,"Yellowtail rockfish, skinless fillet, raw",r,Sebastes flavidus,Yellowtail rockfish,Sebastes flavidus
+901890,Finfish,"USA, SE Alaska",NA,34,WRO,NA,"Widow rockfish, skinless fillet, raw",r,Sebastes entomelas,Widow rockfish,Sebastes entomelas
+901891,Finfish,"USA, SE Alaska/Washington/Oregon",NA,34,SAB,NA,"Sablefish, skinless fillet, raw",r,Anoplopoma fimbria,Sablefish,Anoplopoma fimbria
+901892,Finfish,"USA, Puget Sound",NA,23,CHU,NA,"Chum salmon, skinless fillet, raw",r,Oncorhynchus keta,Chum(=Keta=Dog)salmon,Oncorhynchus keta
+901893,Finfish,"USA, Oregon/Washington/Alaska",NA,23,CHI,NA,"Chinook salmon, skinless fillet, raw",r,Oncorhynchus tshawytscha,Chinook(=Spring=King)salmon,Oncorhynchus tshawytscha
+901894,Finfish,"USA, SE Alaska/Washington",NA,23,PIN,NA,"Pink salmon, skinless fillet, raw",r,Oncorhynchus gorbuscha,Pink(=Humpback)salmon,Oncorhynchus gorbuscha
+901895,Finfish,"USA, Washington/Oregon/Puget Sound",NA,23,COH,NA,"Coho salmon, skinless fillet, raw",r,Oncorhynchus kisutch,Coho(=Silver)salmon,Oncorhynchus kisutch
+901896,Finfish,"USA, British colombia/Washington/Colorado River/Oregon",NA,23,SOC,NA,"Sockeye salmon, skinless fillet, raw",r,Oncorhynchus nerka,Sockeye(=Red)salmon,Oncorhynchus nerka
+901897,Finfish,"USA, Oregon/Washington/Alaska",NA,24,SAH,NA,"American shad, skinless fillet, raw",r,Alosa sapidissima,American shad,Alosa sapidissima
+901898,Crustacean,"USA, SE Alaska/Washington",NA,45,PRA,NA,"Pink shrimp, edible flesh, raw",r,Pandalus borealis,Northern prawn,Pandalus borealis
+901899,Finfish,USA,NA,38,SKA,NA,"Skate, edible flesh, raw",r,Raja sp.,Raja rays nei,Raja spp
+901900,Finfish,"USA, Washington/Oregon/N California",NA,31,MIP,NA,"Dover sole, skinless fillet, raw",r,Microstomus pacificus,Dover sole,Microstomus pacificus
+901901,Finfish,"USA, Bering Sea/British Colombia/Colorado/Washington/Oregon/Puget Sound",NA,31,RFE,NA,"English sole, skinless fillet, raw",r,Parophrys vetulus,English sole,Pleuronectes vetulus
+901902,Finfish,"USA, Bering Sea/British Colombia/Colorado/Washington/Oregon/Puget Sound",NA,31,FTS,NA,"Flathead sole, skinless fillet, raw",r,Hippoglossoides elassodon,Flathead sole,Hippoglossoides elassodon
+901903,Finfish,"USA, Oregoon",NA,31,EJO,NA,"Petrale sole, skinless fillet, raw",r,Eopsetta jordani,Petrale sole,Eopsetta jordani
+901904,Finfish,"USA, Washington/Oregon",NA,31,GLZ,NA,"Rex sole, skinless fillet, raw",r,Glyptocephalus zaccirus,Rex sole,Glyptocephalus zachirus
+901905,Finfish,"USA, Bering Sea/Puget Sound",NA,31,ROS,NA,"Rock sole, skinless fillet, raw",r,Lepidopsetta bilineata,Rock sole,Lepidopsetta bilineata
+901906,Finfish,"USA, Puget Sound",NA,31,YSE,NA,"Sand sole, , skinless fillet, raw",r,Psettichthys melanostictus,Pacific sand sole,Psettichthys melanostictus
+901907,Finfish,"USA, Bering Sea",NA,31,YES,NA,"Yellowfin sole, skinless fillet, raw",r,Limanda aspera,Yellowfin sole,Limanda aspera
+901908,Molluscs,"USA, SE Alaska",NA,76,STF,NA,"Mottled starfish, edible flesh, raw",r,Evasterias troschelii,Starfishes nei,Asteroidea
+901909,Molluscs,"USA, SE Alaska",NA,76,STF,NA,"Purple starfish, edible flesh, raw",r,Pisaster ochraceus,Starfishes nei,Asteroidea
+901910,Molluscs,"USA, SE Alaska",NA,76,STF,NA,"Sunflower starfish, edible flesh, raw",r,Pycnopodia helianthoides,Starfishes nei,Asteroidea
+901911,Finfish,"USA, Prince of Wales Islands",NA,23,ONC,NA,"Cutthroat trout, skinless fillet, raw",r,Oncorhynchus clarki,Cutthroat trout,Oncorhynchus clarki
+901912,Finfish,"USA, Bristol Bay, Prince of Wales Islands",NA,23,VAR,NA,"Dolly varden trout, skinless fillet,r aw",r,Salvelinus malma,Dolly varden,Salvelinus malma
+901913,Finfish,"USA, SE Alaska",NA,23,TRR,NA,"Steelhead trout, skinless fillet, raw",r,Salmo gairdneri,Rainbow trout,Oncorhynchus mykiss
+901914,Finfish,"USA, Washington/Oregon",NA,36,ALB,NA,"Albacore tuna, light meat, raw",r,Thunnus alalunga,Albacore,Thunnus alalunga
+901915,Finfish,"USA, Washington/Oregon",NA,36,ALB,NA,"Albacore tuna, dark meat, raw",r,Thunnus alalunga,Albacore,Thunnus alalunga
+901916,Finfish,"Brazil, Ceará, Fortaleza",NA,33,SNC,Pargo marinho,"Red sea bream, skinless fillet, frozen",r,Lutjanus purpureus,Southern red snapper,Lutjanus purpureus
+901917,Finfish,"Brazil, Ceará, Fortaleza",NA,12,TLN,Tilápia do Nilo,"Tilapia, skinless fillet, raw",r,Oreochromis niloticus,Nile tilapia,Oreochromis niloticus
+901918,Finfish,"Brazil, Ceará, Fortaleza",NA,13,PRL,Curimatã,"Curimatã, skinless fillet, raw",r,Prochilodus cearensis,Prochilods nei,Prochilodus spp
+901919,Finfish,"Brazil, Ceará, Fortaleza",NA,13,TPU,Sardinha,"Sardine, skinless fillet, raw",r,Triportheus angulatus,NA,Triportheus angulatus
+901920,Crustacean,USA/Canada,NA,43,LBA,NA,"American lobster, muscle tissue (claw, leg, abdomen), raw",r,Homarus americanus,American lobster,Homarus americanus
+901921,Crustacean,USA/Canada,NA,43,LBA,NA,"American lobster, hepatopancreas, raw",r,Homarus americanus,American lobster,Homarus americanus
+901922,Crustacean,USA/Canada,NA,43,LBA,NA,"American lobster, gonads, raw",r,Homarus americanus,American lobster,Homarus americanus
+901923,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European lobster, muscle tissue (claw, leg, abdomen), raw",r,Homarus gammarus,European lobster,Homarus gammarus
+901924,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European lobster, hepatopancreas, raw",r,Homarus gammarus,European lobster,Homarus gammarus
+901925,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European lobster, gonads, raw",r,Homarus gammarus,European lobster,Homarus gammarus
+901926,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European lobster, roe, raw",r,Homarus gammarus,European lobster,Homarus gammarus
+901933,Finfish,"Greece, Aegean Sea (samples from fish markets of Macedonia, Attica or Peloponnese)",NA,37,ATB,Atherina,"Sand smelt, whole, raw",r,Atherina boyeri,Big-scale sand smelt,Atherina boyeri
+901935,Finfish,"Greece, Aegean Sea (samples from fish markets of Macedonia, Attica or Peloponnese)",NA,35,ANE,Gavros,"Anchovy, boneless fillet, raw",r,Engraulis encrasicolus,European anchovy,Engraulis encrasicolus
+901937,Finfish,"Greece, Aegean Sea (samples from fish markets of Macedonia, Attica or Peloponnese)",NA,33,BOG,Gopa,"Bogue, boneless fillet, raw",r,Boops boops,Bogue,Boops boops
+901939,Finfish,"Greece, Aegean Sea (samples from fish markets of Macedonia, Attica or Peloponnese)",NA,33,MUT,Koutsomoura,"Striped mullet, bonless meat (head incl.), raw",r,Mullus barbatus,Red mullet,Mullus barbatus
+901941,Finfish,"Greece, Aegean Sea (samples from fish markets of Macedonia, Attica or Peloponnese)",NA,33,SPC,Marida,"Picarel, gutted, whole, raw",r,Spicara smaris,Picarel,Spicara smaris
+901942,Finfish,"Greece, Aegean Sea (samples from fish markets of Macedonia, Attica or Peloponnese)",NA,37,HOM,Savridi,"Scad, boneless fillet, raw",r,Trachurus trachurus,Atlantic horse mackerel,Trachurus trachurus
+901978,Molluscs,"USA, WA, Gig Harbour",NA,53,OYG,NA,"Pacific oyster, whole body, raw",r,Crasostrea gigas,Pacific cupped oyster,Crassostrea gigas
+901979,Molluscs,"USA, CA coast",NA,57,SQU,NA,"California squid, edible muscle, frozen",r,Loligo opalescens,Opalescent inshore squid,Loligo opalescens
+901980,Molluscs,"USA, MA coast",NA,55,SCX,NA,"Sea scallop, edible muscle, raw",r,Aquapecten grandis,Scallops nei,Pectinidae
+901981,Molluscs,"USA, FL, Gulf of Mexico",NA,55,SCB,NA,"Bay scallop, edible muscle, raw",r,Argopecten irradians,Atlantic bay scallop,Argopecten irradians
+901984,Molluscs,"Italy, Ionian Sea, coastal waters of Gulf of Taranto",W,57,OCC,NA,"Octopus, wild, juvenile, arms, raw",r,Octopus vulgaris,Common octopus,Octopus vulgaris
+901985,Finfish,Bangladesh,NA,13,MRE,Baim/Chikra,"cleaned parts (according to traditional practices), raw",r,Macrognathus aculeatus,NA,Macrognathus aculeatus
+901986,Finfish,Bangladesh,NA,33,AIB,Chanda,"cleaned parts (according to traditional practices), raw",r,Parambassis ranga,Glassfishes,Ambassidae
+901987,Finfish,Bangladesh,NA,11,ESD,Darkina,"Flying barb, cleaned parts (according to traditional practices), raw",r,Esomus danricus,Flying barb,Esomus danricus
+901988,Finfish,Bangladesh,NA,13,CLK,Kachki,"Ganges river sprat, cleaned parts (according to traditional practices), raw",r,Corica soborna,Ganges river sprat,Corica soborna
+901989,Finfish,Bangladesh,NA,11,ABO,Mola,"cleaned parts (according to traditional practices), raw",r,Amblypharyngodon mola,NA,Amblypharyngodon mola
+901990,Finfish,Bangladesh,NA,11,PUR,Puti,"Pool barb, cleaned parts (according to traditional practices), raw",r,Puntius sophore,Pool barb,Puntius sophore
+901991,Finfish,Bangladesh,NA,13,CNP,Taki,"Spotted snakehead, cleaned parts (according to traditional practices), raw",r,Channa punctatus,Spotted snakehead,Channa punctata
+901992,Finfish,Bangladesh,NA,11,CMG,NA,"Mrigal, cleaned parts (according to traditional practices), raw",r,Cirrhinus cirrhosus,NA,Cirrhinus cirrhosus
+901993,Finfish,Bangladesh,NA,11,SVC,NA,"Silver carp, cleaned parts (according to traditional practices), raw",r,Hypophthamichyths molitrix,Silver carp,Hypophthalmichthys molitrix
+901994,Finfish,Cambodia,NA,11,RRZ,Changwe mool,"cleaned parts (according to traditional practices), raw",r,Rasbora torniere,NA,Rasbora tawarensis
+901995,Finfish,Cambodia,NA,11,NA,Chunteas phluk,"cleaned parts (according to traditional practices), raw",r,Parachela siamensis,NA,NA
+901996,Finfish,Cambodia,NA,33,AIB,Kangtrang preng,"cleaned parts (according to traditional practices), raw",r,Parambassis wolffi,Glassfishes,Ambassidae
+901997,Finfish,Cambodia,NA,11,FCY,Trey changwa plieng,"cleaned parts (according to traditional practices), raw",r,Esomus longimanus,Cyprinids nei,Cyprinidae
+901998,Finfish,Cambodia,NA,13,FIS,NA,"Great snakehead, cleaned parts (according to traditional practices), raw",r,Channa micropeltes,Indonesian snakehead,Channa micropeltes
+901999,Finfish,Cambodia,NA,13,KNA,NA,"Giant snakehead, cleaned parts (according to traditional practices), raw",r,Channa marulius,NA,Channa marulius
+902018,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,35,SIX,NA,"Sardine, head cut, eviscerated, fillet, raw",r,Sardinella spp,Sardinellas Nei,Sardinella spp
+902019,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,33,CKM,NA,"Croaker, head cut, eviscerated, fillet, raw",r,Micropogonias furnieri,Whitemouth croaker,Micropogonias furnieri
+902020,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,12,TLP,NA,"Tilápia, head cut, eviscerated, fillet, raw",r,Oreochromis spp.,Tilapias nei,Oreochromis (=Tilapia) spp
+902021,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,13,PRL,NA,"Curimbatá, head cut, eviscerated, fillet, raw",r,Prochilodus spp,Prochilods nei,Prochilodus spp
+902022,Crustacean,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,45,BOB,NA,"Seabob shrimp head cut, shelled, raw",r,Xiphopenaeus kroyeri,Atlantic seabob,Xiphopenaeus kroyeri
+902023,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,35,SIX,NA,"Sardine, head cut, eviscerated, fillet, raw",r,Sardinella spp,Sardinellas Nei,Sardinella spp
+902024,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,33,CKM,NA,"Croaker, head cut, eviscerated, fillet, raw",r,Micropogonias furnieri,Whitemouth croaker,Micropogonias furnieri
+902025,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,12,TLP,NA,"Tilápia, head cut, eviscerated, fillet, raw",r,Oreochromis spp.,Tilapias nei,Oreochromis (=Tilapia) spp
+902026,Finfish,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,13,PRL,NA,"Curimbatá, head cut, eviscerated, fillet, raw",r,Prochilodus spp,Prochilods nei,Prochilodus spp
+902027,Crustacean,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,45,BOB,NA,"Seabob shrimp head cut, shelled, raw",r,Xiphopenaeus kroyeri,Atlantic seabob,Xiphopenaeus kroyeri
+902028,Crustacean,"UK, Scottish coast, English Channel",NA,42,CRA,NA,"Atlantic spider crab, edible tissue, muscle from claws and walking legs, raw",r,Maja brachydactyla,Marine crabs nei,Brachyura
+902029,Crustacean,"UK, Scottish coast, English Channel",NA,42,CRA,NA,"Atlantic spider crab, edible tissue, gonads, raw",r,Maja brachydactyla,Marine crabs nei,Brachyura
+902030,Crustacean,"UK, Scottish coast, English Channel",NA,42,CRA,NA,"Atlantic spider crab, edible tissue, gills, raw",r,Maja brachydactyla,Marine crabs nei,Brachyura
+902031,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European Lobster, female, muscle from claws, raw",r,Homarus gammarus,European Lobster,Homarus gammarus
+902032,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European Lobster, male, muscle from claws, raw",r,Homarus gammarus,European Lobster,Homarus gammarus
+902033,Crustacean,USA/Canada,NA,43,LBA,NA,"American Lobster, female, muscle from claws, raw",r,Homarus americanus,American Lobster,Homarus americanus
+902034,Crustacean,USA/Canada,NA,43,LBA,NA,"American Lobster, male, muscle from claws, raw",r,Homarus americanus,American Lobster,Homarus americanus
+902035,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European Lobster, female, hepatopancreas, raw",r,Homarus gammarus,European Lobster,Homarus gammarus
+902036,Crustacean,"UK, Scotland",NA,43,LBE,NA,"European Lobster, male, hepatopancreas, raw",r,Homarus gammarus,European Lobster,Homarus gammarus
+902037,Crustacean,USA/Canada,NA,43,LBA,NA,"American Lobster, female, hepatopancreas, raw",r,Homarus americanus,American Lobster,Homarus americanus
+902038,Crustacean,USA/Canada,NA,43,LBA,NA,"American Lobster, male, hepatopancreas, raw",r,Homarus americanus,American Lobster,Homarus americanus
+902039,Crustacean,USA/Canada,NA,43,LBA,NA,"American lobster, female, gonads, raw",r,Homarus americanus,American Lobster,Homarus americanus
+902043,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,SVE,NA,"Venerid clam, flesh meat, raw",r,Chamelea gallina,Striped venus,Chamelea gallina
+902044,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,SVE,NA,"Venerid clam, flesh meat, raw",r,Chamelea gallina,Striped venus,Chamelea gallina
+902045,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,SVE,NA,"Venerid clam, flesh meat, raw",r,Chamelea gallina,Striped venus,Chamelea gallina
+902046,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,SVE,NA,"Venerid clam, flesh meat, raw",r,Chamelea gallina,Striped venus,Chamelea gallina
+902047,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,DXL,NA,"Wedge clam, flesh meat, raw",r,Donax trunculus,Truncate donax,Donax trunculus
+902048,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,DXL,NA,"Wedge clam, flesh meat, raw",r,Donax trunculus,Truncate donax,Donax trunculus
+902049,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,DXL,NA,"Wedge clam, flesh meat, raw",r,Donax trunculus,Truncate donax,Donax trunculus
+902050,Molluscs,"Turkey, Kumbag, Marmara Sea",NA,56,DXL,NA,"Wedge clam, flesh meat, raw",r,Donax trunculus,Truncate donax,Donax trunculus
+902051,Molluscs,Unknown,NA,57,OFJ,NA,"Neon flying squid, mantle meat, raw",r,Ommastrephes bartrami,Neon flying squid,Ommastrephes bartrami
+902053,Molluscs,Unknown,NA,57,GIS,NA,"Jumbo squid, mantle meat, raw",r,Dosidicus gigas,Jumbo flying squid,Dosidicus gigas
+902060,Crustacean,"Brazil, Ceará, Camocim",NA,42,UCC,NA,"Crab, claw meat, raw",r,Ucides cordatus,Ghost crab,Ucides cordatus
+902093,Molluscs,"Unknown (samples from market in Calabar, Nigeria)",NA,56,CLX,NA,"Clam, wild, edible flesh, raw",r,Egeria radiata,"Clams, etc. nei",Bivalvia
+902118,Crustacean,"Unknown (samples from markets of City of São Paulo, Brazil)",NA,45,PNB/PPS,NA,"Pink shrimp, flesh (without exosceletron, cephalotorax and intestine), raw",r,Penaeus brasiliensis/Penaeus paulensis,Redspotted shrimp/Sao Paolo shrimp,Penaeus brasiliensis/Penaeus paulensis
+902129,Molluscs,"Costa Rica, Lagarto Pacific",NA,52,TBG,NA,"Cambute, meat, raw",r,Strombus galeatus,Giant Eastern Pacific conch,Strombus galeatus
+902130,Molluscs,"Costa Rica, Bahia Ballena, Pacific",NA,52,TBG,NA,"Cambute, meat, raw",r,Strombus galeatus,Giant Eastern Pacific conch,Strombus galeatus
+902131,Molluscs,"Costa Rica, Golfito, Pacific",NA,52,TBG,NA,"Cambute, meat, raw",r,Strombus galeatus,Giant Eastern Pacific conch,Strombus galeatus
+902132,Molluscs,"Itlay, Venice",NA,56,CLJ,NA,"Manila clam, meat, raw",r,Ruditapes philippinarum,Japanese carpet shell,Ruditapes philippinarum
+902134,Molluscs,"Unknown, North-eastern Atlantic",NA,57,OCC,NA,"Octoupus, edible flesh (mantle, arms), raw",r,Octopus vulgaris,Common octopus,Octopus vulgaris
+902135,Molluscs,"Unknown, North-eastern Atlantic",NA,57,SQR,NA,"Squid, edible flesh (mantle, arms), raw",r,Loligo vulgaris,European squid,Loligo vulgaris
+902136,Molluscs,"Unknown, North-eastern Atlantic",NA,57,CTC,NA,"Cuttlefish, edible flesh (mantle, arms), raw",r,Sepia officinalis,Common cuttlefish,Sepia officinalis
+902137,Finfish,Canada,NA,25,ACH,NA,"Arctic char, flesh, raw",r,Salvelinus alpinus,Arctic char,Salvelinus alpinus
+902138,Finfish,Canada,NA,25,ACH,NA,"Arctic char, flesh, raw",r,Salvelinus alpinus,Arctic char,Salvelinus alpinus
+902139,Finfish,Canada,NA,32,GAD,NA,"Cod, flesh, raw",r,Boreogadus spp./Eleginus spp./Gadus spp./Microgadus spp.,Gadiformes nei,Gadiformes/Gadidae
+902142,Finfish,Canada,NA,23,TLA,NA,"Grayling, flesh, raw",r,Thymallus arcticus,Arctic grayling,Thymallus arcticus
+902143,Finfish,Canada,NA,23,SLZ,NA,"Salmon, eggs, raw",r,Oncorhynchus spp./Salmo spp.,Salmonids nei,Salmonidae
+902145,Finfish,Canada,NA,23,SLZ,NA,"Salmon, flesh, raw",r,Oncorhynchus spp./Salmo spp.,Salmonids nei,Salmonidae
+902149,Finfish,Canada,NA,23,SLZ,NA,"Trout, flesh, raw",r,Salmo spp./Salvelinus spp.,Salmonids nei,Salmonidae
+902150,Finfish,Canada,NA,23,SLZ,NA,"Trout, flesh, raw",r,Salmo spp./Salvelinus spp.,Salmonids nei,Salmonidae
+902154,Finfish,Canada,NA,23,WHF,NA,"Whitefish, flesh, raw",r,Coregonus clupeaformis/Coregonus nasus,Whitefishes nei,Coregonus spp
+902155,Finfish,Canada,NA,23,WHF,NA,"Whitefish, flesh, raw",r,Coregonus clupeaformis/Coregonus nasus,Whitefishes nei,Coregonus spp
+902162,Finfish,"Iceland, North Atlantic",W,34,ZLS,Grásleppuhrognakavíar,"Caviar, lumpsucker, wild, raw",r,NA,(Lumpfishes nei),(Cyclopteridae)
