@@ -151,5 +151,5 @@ setdiff(current_species_2, species_name)
 
 ## write out the modified inf_species_info_copy to file
 
-write_csv(inf_species_info_copy, "inf_species_info_in_progress.csv")
-
+write_csv(inf_species_info_copy, "data-processed/inf_species_info_in_progress.csv")
+write_csv(as.data.frame(species_name), "data-processed/fishbase_species_names.csv") ## write out the fishbase species names list
