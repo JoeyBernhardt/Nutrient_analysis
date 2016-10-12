@@ -12,7 +12,7 @@ library(rfishbase)
 inf_species_raw <- read_csv("data-processed/inf_species_info_in_progress.csv")
 fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
 
-inf_species <- inf_species_raw$asfis_scientific_name
+inf_species <- inf_species_raw$asfis_scientific_name_fishbase_swap
 fb_species <- fishbase_species_list$species_name
 
 

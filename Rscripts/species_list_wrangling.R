@@ -3,6 +3,7 @@
 library(rfishbase)
 library(janitor)
 library(tidyverse)
+library(stringr)
 
 
 # load in the fishbase species data ---------------------------------------
@@ -153,3 +154,37 @@ setdiff(current_species_2, species_name)
 
 write_csv(inf_species_info_copy, "data-processed/inf_species_info_in_progress.csv")
 write_csv(as.data.frame(species_name), "data-processed/fishbase_species_names.csv") ## write out the fishbase species names list
+
+
+
+# oct 11 continuing -------------------------------------------------------
+
+fishbase_list <- read_csv("data-processed/fishbase_species_names.csv")
+dirty_names_match <- read_csv("data-processed/fishbase_names_to_replace.csv")
+inf_species_info <- read_csv("data-processed/inf_species_info_in_progress.csv")
+dirty_names_match <- dirty_names_match %>% 
+  filter(!is.na(clean_fishbase_name))
+
+
+#### Renaming to match fb names ####
+oldvalues2 <- as.vector(dirty_names_match$dirty_inf_name)
+newvalues2 <- as.vector(dirty_names_match$clean_fishbase_name) 
+length(oldvalues2)
+
+## try with mapvalues
+
+inf_species_info_copy <- inf_species_info
+# inf_species_info_copy$asfis_scientific_name <- plyr::mapvalues(inf_species_info_copy$asfis_scientific_name, oldvalues2, newvalues2)
+
+fishbase_list <- fishbase_list$species_name
+
+current_species_2 <- unique(inf_species_info_copy$asfis_scientific_name_fishbase_swap)
+
+setdiff(current_species_2, fishbase_list)
+
+str_subset(fishbase_list, "Hypostomus watwata")
+
+write_csv(inf_species_info_copy, "data-processed/inf_species_info_in_progress.csv")
+
+## OK, we are now down to 14 non matching species -- great progress!!
+length(unique(inf_species_info_copy$asfis_scientific_name_fishbase_swap))

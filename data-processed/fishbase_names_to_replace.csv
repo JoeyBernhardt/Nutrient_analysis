@@ -1,7 +1,9 @@
 dirty_inf_name,clean_fishbase_name
+Acanthuridae,Acanthurus xanthopterus
 Aetomylaeus niehofii,Aetomylaeus nichofii
 Ariomma indica,Ariomma indicum
 Gadiformes/Gadidae,Boreogadus saida
+Callorhinchidae,Callorhinchus capensis
 Chamelea gallina,Chamelea gallina
 Clupea pallasii,Clupea pallasii pallasii
 Ctenopharyngodon idellus,Ctenopharyngodon idella
@@ -11,8 +13,12 @@ Leiognathus splendens,Eubleekeria splendens
 Penaeus brasiliensis,Farfantepenaeus brasiliensis
 Penaeus brasiliensis/Penaeus paulensis,Farfantepenaeus brasiliensis
 Glossogobius giurias,Glossogobius giuris
+Erythrinidae,Hoplias malabaricus
+Anostomidae,Leporinus elongatus
 Strombus galeatus,Lobatus galeatus
+Brachyura,Maja brachydactyla
 Loricariidae,Megalancistrus aculeatus
+Megalancistrus aculeatus,Megalancistrus parananus
 Megalapsis cordyla,Megalaspis cordyla
 Cancer magister,Metacarcinus magister
 Valamugil cunnesius,Moolgarda cunnesius
@@ -21,6 +27,7 @@ Ommastrephes bartrami,Ommastrephes bartramii
 Oncorhynchus clarki,Oncorhynchus clarkii
 Oreochromis =Tilapia spp,Oreochromis niloticus
 "Natantia/Palaemonidae, Crangonidae",Palaemon serratus
+Bivalvia/Hiatellidae,Panopea generosa
 Leiognathus bindus,Photopectoralis bindus
 Pinirampus pinirampu,Pinirampus pirinampu
 Protothaca staminea,Protothaca staminea
@@ -30,6 +37,5 @@ Salvelinus alpinus,Salvelinus alpinus alpinus
 Saxidomus nuttalli,Saxidomus nuttalli
 Sepia aculeata,Sepia aculeata
 Sepia officinalis,Sepia officinalis
+Characidae,Serrasalmus marginatus
 Gadiformes nei/Gadidae,Trisopterus luscus
-Acanthuridae,Acanthurus xanthopterus
-Anostomidae,Leporinus elongatus
