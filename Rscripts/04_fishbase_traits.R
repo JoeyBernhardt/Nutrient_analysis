@@ -22,6 +22,11 @@ inf_fb_species <- intersect(inf_species, fb_species)
 
 inf_species <- unique(inf_fb_species)
 inf_species
+
+
+(length_fields <- list_fields("Length"))
+
+
 #### Use stocks function to get the temp min and temp max ####
 temps <- stocks(inf_species, c("TempMin", "TempMax", "StockDefs"))
 write.csv(temps, "data-processed/inf_temps.csv")
@@ -30,10 +35,15 @@ write.csv(temps, "data-processed/inf_temps.csv")
 
 
 diet <- ecology(inf_species,
-                     fields=c("SpecCode", "FoodTroph", "FoodSeTroph", "DietTroph", "DietSeTroph"))
+                     fields=c("SpecCode", "FoodTroph", "FoodSeTroph", "DietTroph", "DietSeTroph", "FishLength"))
 write.csv(diet, "data-processed/inf_diet.csv")
 
 ##### Here I pull out the 'ecology' tables for all the ntbl species in fb. ####
 ecology_inf <- ecology(inf_species)
 
 write.csv(ecology_inf, "data-processed/inf_ecology.csv")
+
+#### Here I pull out the 'species' table
+
+species_inf <- species(inf_species)
+write_csv(species_inf, "data-processed/species_inf.csv")
