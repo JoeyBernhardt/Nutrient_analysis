@@ -30,17 +30,19 @@ species_name <- unique(fb_species_all$species_name)
 
 inf_fish <- read_csv("data/INF_fish.csv")
 minerals <- read_csv("data-processed/minerals_inf.csv")
-
+fatty_acids <- read_csv("data-processed/fatty_acids_cleaned.csv")
 
 sn_species <- unique(seanuts_species$scientific_name)
 sn_asfis_species <- unique(seanuts_species$asfis_scientific_name)
 
+sn_asfis_species <- unique(fatty_acids$asfis_scientific_name)
 
 fb_species <- intersect(sn_species, species_name) ## find matching species
-nfb_species <- setdiff(minerals_species, species_name) ## find unmatched species (there are about 71)
-nfb_asfis_species <- setdiff(minerals_species, species_name) ## find unmatched species (there are about 71)
 
+nfb_species <- setdiff(sn_asfis_species, species_name) ## find unmatched species (there are about 71)
+nfb_asfis_species <- setdiff(sn_asfis_species, species_name) ## find unmatched species (there are about 71)
 
+nfb_species
 
 
 # rename species that don’t match after googling --------------------------
@@ -59,6 +61,10 @@ fb_matches <- read_csv("data-processed/dirty_species_names_complete.csv")
 ## getting rid of parentheses
 
 inf_species_info <- inf_species_info %>% 
+  mutate(asfis_scientific_name = str_replace(asfis_scientific_name, "[(]", "")) %>% 
+  mutate(asfis_scientific_name = str_replace(asfis_scientific_name, "[)]", ""))
+
+fatty_acids <- fatty_acids %>% 
   mutate(asfis_scientific_name = str_replace(asfis_scientific_name, "[(]", "")) %>% 
   mutate(asfis_scientific_name = str_replace(asfis_scientific_name, "[)]", ""))
 
@@ -188,3 +194,59 @@ write_csv(inf_species_info_copy, "data-processed/inf_species_info_in_progress.cs
 
 ## OK, we are now down to 14 non matching species -- great progress!!
 length(unique(inf_species_info_copy$asfis_scientific_name_fishbase_swap))
+
+
+
+# October 18, now renaming fatty acid data ------------------------------------
+
+inf_species_info <- read_csv("data-processed/all_fish_names.csv")
+fatty_acids <- read_csv("data-processed/fatty_acids_cleaned.csv")
+
+fatty_acid_species <- fatty_acids$asfis_scientific_name ## crappy fatty acid species
+new_species <- inf_species_info$asfis_scientific_name_fishbase_swap ## good fish base swap species
+
+
+oldvalues2 <- as.vector(inf_species_info$original_asfis_scientific_name)
+newvalues2 <- as.vector(inf_species_info$asfis_scientific_name_fishbase_swap) 
+
+
+
+
+fatty_acids$asfis_scientific_name_fishbase_swap <- fatty_acids$asfis_scientific_name
+
+View(fatty_acids)
+
+?plyr::mapvalues
+
+
+fatty_acids$asfis_scientific_name_fishbase_swap <- plyr::mapvalues(fatty_acids$asfis_scientific_name_fishbase_swap, oldvalues2, newvalues2)
+
+
+fishbase_list <- fishbase_list$species_name
+
+current_species_2 <- unique(fatty_acids$asfis_scientific_name_fishbase_swap)
+
+setdiff(current_species_2, fishbase_list)
+
+## write out the new fatty acid data sheet to csv
+
+write_csv(fatty_acids, "data-processed/fatty_acids_cleaned_in_progress.csv")
+
+
+## now read in the new csv, after googling for species matches
+
+fatty_acids_post_google <- read_csv("data-processed/fatty_acids_cleaned_in_progress_googled.csv")
+
+current_species <- unique(fatty_acids_post_google$asfis_scientific_name_fishbase_swap_in_progress)
+
+setdiff(current_species, fishbase_list)
+
+
+
+
+# October 18, renaming inf fish species -----------------------------------
+
+
+
+
+
