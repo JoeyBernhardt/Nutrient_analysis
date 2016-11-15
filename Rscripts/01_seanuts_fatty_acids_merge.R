@@ -63,4 +63,55 @@ all_nuts <- full_join(inf_fatty_acids, inf_nutrients, by = "food_item_id")
 
 write_csv(all_nuts, "data-processed/all_nuts.csv")
 
+names(all_nuts)
 
+
+
+# clean up the giant nutrient data file ----------------------------------
+
+setdiff(all_nuts$fatce_g.y, all_nuts$fatce_g.x) ## this is probably a repeat column, but it looks like there are some differences
+
+
+all_nuts %>% 
+  filter(fatce_g.y == "7.4-17") %>%
+  select(fatce_g.x, fatce_g.y) %>% 
+
+all_nuts2 <- all_nuts %>% 
+  mutate(fatce_g.y = str_replace(fatce_g.y,"[\\[]", "")) %>% 
+  mutate(fatce_g.y = str_replace(fatce_g.y, "[\\]]", "")) %>% 
+  mutate(fatce_g.y = str_replace(fatce_g.y, "7.4-17", "12.2")) %>% 
+  mutate(fatce_g.y = as.numeric(fatce_g.y)) 
+
+setdiff(all_nuts2$fatce_g.y, all_nuts2$fatce_g.x)
+
+all_nuts3 <- all_nuts2 %>% 
+  select(-fatce_g.x) %>% 
+  rename(fatce_g = fatce_g.y)
+
+
+names(all_nuts)
+
+all_nuts3 %>% 
+filter(all_nuts3$faun_g.y != all_nuts3$faun_g.x) %>% 
+select(faun_g.y, faun_g.x, everything()) ### looks like these are essentially the same, so I'm taking one out
+
+
+all_nuts3 %>% 
+  filter(all_nuts3$fapu_g.y != all_nuts3$fapu_g.x) %>% 
+  select(fapu_g.y, fapu_g.x, everything())
+
+
+all_nuts4 <- all_nuts3 %>% 
+  select(- faun_g.y) %>%
+  select(- fapu_g.y) %>%
+  select(- food_name_in_english.y)
+
+names(all_nuts4)
+
+all_nuts4 %>% 
+filter(food_name_in_english.y != food_name_in_english.x) %>% View
+  select(asfis_scientific_name_fishbase_swap.y, asfis_scientific_name_fishbase_swap.x, everything()) %>% View
+
+write_csv(all_nuts4, "data-processed/all_nuts.csv")
+
+unique(all_nuts4$asfis_scientific_name_fishbase_swap.x)
