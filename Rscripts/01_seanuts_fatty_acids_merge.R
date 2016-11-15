@@ -63,10 +63,6 @@ all_nuts <- full_join(inf_fatty_acids, inf_nutrients, by = "food_item_id")
 
 write_csv(all_nuts, "data-processed/all_nuts.csv")
 
-names(all_nuts)
-
-
-
 # clean up the giant nutrient data file ----------------------------------
 
 setdiff(all_nuts$fatce_g.y, all_nuts$fatce_g.x) ## this is probably a repeat column, but it looks like there are some differences

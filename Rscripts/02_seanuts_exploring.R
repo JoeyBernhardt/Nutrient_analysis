@@ -1,14 +1,28 @@
-## playing around with the giant seanuts dataframe
+## Playing around with the giant seanuts dataframe
+## Joey Bernhardt
+## Last updated Nov 15 2016
+
+
+# load libraries ----------------------------------------------------------
+
+
 library(tidyverse)
 library(janitor)
 library(stringr)
 
+
+# read in data ------------------------------------------------------------
+
+
 seanuts <- read_csv("data-processed/all_nuts.csv")
 ntbl2 <- read_csv("data/ntbl2.csv")
 dec19_raw <- read_csv("~/Documents/Nutrient_Analysis/data/nut_dec19.csv")
-inf_fish_raw <- read_csv("data/INF_fish.csv")
+inf_fish_raw <- read_csv("data/INF_fish.csv") ## this is the version that has different data than the dec19 version. Could merge it in?
 anf_raw <- read_csv("/Users/Joey/Desktop/Nutrient_databases/AnFooD1.0_fish.csv") ## I think this is version of infoods that dec_19 is based on
 nutrients_raw <- read_csv("data/Nutrient_data_October2016.csv")
+
+
+# clean up the data a bit -------------------------------------------------
 
 nutrients <- nutrients_raw %>% 
   clean_names()
@@ -148,10 +162,6 @@ dec19_working <- dec19_working %>%
   mutate(food_name_clean = str_replace_all(food_name_clean, "[ ]", "_")) %>% 
   mutate(food_name_clean = str_replace_all(food_name_clean, "__", "_")) %>% 
   mutate(food_name_clean = str_replace_all(food_name_clean, "__", "_")) 
-# dec19foods2 <- str_replace_all(dec19_foods, '[,]', "_") 
-# dec19foods3 <- str_replace_all(dec19foods2, "[ ]", "_") 
-# dec19foods4 <- str_replace_all(dec19foods3, "__", "_") 
-# dec19foods5 <- str_replace_all(dec19foods4, "__", "_") 
 
 nutrients_working <- nutrients4
 
@@ -163,12 +173,6 @@ nutrients_working <- nutrients_working %>%
   mutate(food_name_clean = str_replace_all(food_name_clean, "__", "_")) %>% 
   mutate(food_name_clean = str_replace_all(food_name_clean, "__", "_")) 
   
-  
-# nutrients_foods2 <- str_replace_all(nutrients_foods, '[,]', "_") 
-# nutrients_foods3 <- str_replace_all(nutrients_foods2, '[()]', "_") 
-# nutrients_foods4 <- str_replace_all(nutrients_foods3, '[ ]', "_") 
-# nutrients_foods5 <- str_replace_all(nutrients_foods4, "__", "_")
-# nutrients_foods6 <- str_replace_all(nutrients_foods5, "__", "_") 
 
 
 # now try and join them! --------------------------------------------------
@@ -197,12 +201,38 @@ dec_sel <- dec19_working %>%
 
 anti_join(nuts_sel, dec_sel) %>% View
 
-# all_nuts <- left_join(nutrients_working, dec19_working) having troubles with this. What are the columns I really want to keep from both
 
 all_nuts <- left_join(dec19_working, nuts_sel)
+ 
 
-write_csv(all_nuts, "data-processed/all_nuts.csv")
 
+# write out the latest most complete csv of the db ------------------------
+write_csv(all_nuts, "data-processed/all_nutrients.csv")
+
+
+
+
+
+# Nov 15 2016, now let’s check out that infoods data --------------------------
+
+View(inf_fish_raw)
+
+### pull in the most clean of of the infoods data set
+
+all_nuts_inf <- read_csv("data-processed/all_nuts.csv")
+
+
+### ok, now let's merge them ALLLLL together :) Although at this point we are still missing the rows that were in nutrients_working
+### that didn't make it into the dec19 file (i.e. the ones that weren't in any of the existing databases)
+
+nuts_all <- full_join(all_nuts, all_nuts_inf, by = "food_item_id")
+
+### ok, this is a super messy dataframe, but it's got almost everything we want at this point. Now onto cleaning it in a different file!
+
+write_csv(nuts_all, "data-processed/nuts_all_messy_csv")
+
+
+# extra code, not organized, but maybe useful! ----------------------------
 
 ## checking out the latest full ntbl dataset, which is the dec 19 version
 str(dec19)
