@@ -220,7 +220,8 @@ View(inf_fish_raw)
 ### pull in the most clean of of the infoods data set
 
 all_nuts_inf <- read_csv("data-processed/all_nuts.csv")
-
+class(all_nuts_inf$ca_mg)
+class(all_nuts$ca_mg)
 
 ### ok, now let's merge them ALLLLL together :) Although at this point we are still missing the rows that were in nutrients_working
 ### that didn't make it into the dec19 file (i.e. the ones that weren't in any of the existing databases)
@@ -229,7 +230,7 @@ nuts_all <- full_join(all_nuts, all_nuts_inf, by = "food_item_id")
 
 ### ok, this is a super messy dataframe, but it's got almost everything we want at this point. Now onto cleaning it in a different file!
 
-write_csv(nuts_all, "data-processed/nuts_all_messy_csv")
+write_csv(nuts_all, "data-processed/nuts_all_messy.csv")
 
 
 # extra code, not organized, but maybe useful! ----------------------------
