@@ -131,8 +131,8 @@ all_working9$fat_g[all_working9$fat_g == "0"] <- NA
 
 
 write_csv(all_working9, "data-processed/all_nuts_working9.csv")
-
-a9 <- all_working9
+a9 <- read_csv("data-processed/all_nuts_working9.csv")
+# a9 <- all_working9
 
 summary(a9$epa_g)
 
@@ -148,7 +148,7 @@ a9 %>%
 a10 <- a9 %>% 
   arrange(desc(ca_mg)) %>%
   select(ca_mg, everything()) %>% 
-  filter(ca_mg != 41206.0000) ## this looks like an outlier
+  # filter(ca_mg != "41206.0000") ## this looks like an outlier
 
 hist(a10$zn_mg)
 
@@ -167,3 +167,122 @@ sum(!is.na(a10$dha_g))
 a10 %>% 
   select(contains("fapun3"), contains("3"), epa_g, everything()) %>% View
 
+#### Ok let's try to deal with the two fapun3 columns
+
+a11 <- a10 %>% 
+  unite(fapun3, fapun3_g.x, fapun3_g.y, sep = "_" ) %>% 
+  select(fapun3, everything()) %>%
+  mutate(fapun3 = str_replace_all(fapun3, "NA", "")) %>% 
+  mutate(fapun3 = str_replace_all(fapun3, "_", "")) %>%
+  mutate(fapun3 = as.numeric(fapun3))
+
+
+#### Ok let's try to deal with the two EPA columns
+a12 <- a11 %>% 
+  unite(epa, epa_g, f20d5n3_g, sep = "_" ) %>% 
+  select(epa, everything()) %>%
+  mutate(epa = str_replace_all(epa, "NA", "")) %>% 
+  mutate(epa = str_replace_all(epa, "_", "")) %>% 
+  mutate(epa = as.numeric(epa))
+
+
+#### Ok let's try to deal with the two EPA columns
+a13 <- a12 %>% 
+  unite(dha, dha_g, f22d6n3_g, sep = "_" ) %>% 
+  select(dha, everything()) %>%
+  mutate(dha = str_replace_all(dha, "NA", "")) %>% 
+  mutate(dha = str_replace_all(dha, "_", "")) %>% 
+  mutate(dha = as.numeric(dha))
+
+#### now onto the fapu's (polyunsaturated FAs)
+
+a14 <- a13 %>% 
+  select(-fapu_g_2) %>% 
+  unite(fapun_all_g, fapu_g,fapu_g.x, sep = "_" ) %>% 
+  select(fapun_all_g, everything()) %>% 
+  mutate(fapun_all_g = str_replace_all(fapun_all_g, "NA", "")) %>% 
+  mutate(fapun_all_g = str_replace_all(fapun_all_g, "_", "")) %>% 
+  mutate(fapun_all_g = as.numeric(fapun_all_g))
+
+
+write_csv(a14, "data-processed/all_nuts_working14.csv")
+
+
+names_all <- names(a14)
+
+names_all
+str_subset(names_all, "fapu_")
+
+a14 %>% 
+  select(ca_mg, slmax, everything()) %>% View
+
+a14 %>% 
+  group_by(sci_name, slmax) %>% 
+  summarise(mean_ca = mean(ca_mg)) %>% 
+ggplot(data = ., aes(x = log(slmax), y = log(mean_ca))) + geom_point() +
+  geom_smooth(method = "lm") + geom_jitter(width = 0.30)
+
+
+
+# starting november 16 2016 -----------------------------------------------
+
+a14 <- read_csv("data-processed/all_nuts_working14.csv")
+
+
+#### now onto the proteins
+
+
+names_all <- names(a14)
+
+names_all
+str_subset(names_all, "pro")
+
+## get rid of empty columns with protein in them
+a15 <- a14 %>% 
+  select(- protcnp_g.x) %>% 
+  select(- protcnp_g.y) %>% 
+  select(- npro_g.y) %>% 
+  select(contains("pro"), everything()) 
+
+
+
+names_all <- names(a15)
+str_subset(names_all, "pro")
+
+
+class(a15$prot_g.y)
+
+## this has [ protcnt_g.y
+
+
+a16 <- a15 %>% 
+  mutate(protcnt_g.y = str_replace_all(protcnt_g.y, "[\\[]", "")) %>% 
+  mutate(protcnt_g.y = str_replace(protcnt_g.y, "[\\]]", "")) %>% 
+  mutate(protcnt_g.y = str_replace(protcnt_g.y, "19.4-20.9", "20.15")) ## get rid of the ranges
+
+names_all <- names(a16)
+str_subset(names_all, "pro")
+unique(a16$protcnt_g.y)
+
+a17 <- a16 %>% 
+unite(protein_g, protcnt_g.x, protcnt_g.y, sep = "_" ) %>% 
+  select(protein_g, everything()) %>%
+  mutate(protein_g = str_replace_all(protein_g, "NA", "")) %>% 
+  mutate(protein_g = str_replace_all(protein_g, "_", "")) %>% 
+  mutate(protcnt_g = as.numeric(protein_g)) %>% 
+  select(-protein_g) %>% 
+  unite(protein_g2, prot_g.x, prot_g.y, sep = "_" ) %>% 
+  select(protein_g2, everything()) %>%
+  mutate(protein_g2 = str_replace_all(protein_g2, "NA", "")) %>% 
+  mutate(protein_g2 = str_replace_all(protein_g2, "_", "")) %>%  
+mutate(prot_g = as.numeric(protein_g2)) %>% 
+  select(-protein_g2) %>% 
+  select(prot_g, protcnt_g, everything())
+
+unique(a17$npro_g.x)
+summary(a17$protcnt_g)
+# finished fixing protein, so write out a17 as csv ------------------------
+
+write_csv(a17, "data-processed/all_nuts_working17.csv")
+names_all <- names(a17)
+str_subset(names_all, "pro")
