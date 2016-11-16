@@ -155,3 +155,15 @@ hist(a10$zn_mg)
 write_csv(a10, "data-processed/all_nuts_working10.csv")
 
 sum(!is.na(a10$fat_g))
+
+names_all <- names(a10)
+
+names_all
+str_subset(names_all, "3")
+
+sum(!is.na(a10$dha_g))
+
+#### now let's deal with the EPAs
+a10 %>% 
+  select(contains("fapun3"), contains("3"), epa_g, everything()) %>% View
+
