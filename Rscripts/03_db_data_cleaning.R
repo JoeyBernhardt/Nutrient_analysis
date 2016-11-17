@@ -1,5 +1,6 @@
 #### Cleaning up the horrendously messy all_nuts_messy.csv, which contains all the nutrient data from databases to date
 #### Last updated November 15 2016
+#### Still need to bring in the non database data
 
 
 
@@ -286,3 +287,115 @@ summary(a17$protcnt_g)
 write_csv(a17, "data-processed/all_nuts_working17.csv")
 names_all <- names(a17)
 str_subset(names_all, "pro")
+
+
+
+# now see if we still need to bring in the new fatty acid data ------------
+
+inf_fatty_acids <- read_csv("data-processed/fatty_acids_cleaned_in_progress_googled.csv")
+
+sum(is.na(inf_fatty_acids$food_item_id))
+foods <- unique(inf_fatty_acids$food_item_id)
+foods_a17 <- unique(a17$food_item_id)
+
+intersect(foods, foods_a17) ### ok so it looks like all of the food item ids line up between the inf_fatty_acids and a17, so no need to incorporate it
+
+
+
+# starting again — is there anything major left? --------------------------
+
+a17 <- read_csv("data-processed/all_nuts_working17.csv")
+
+#### before I go too much further, let's create a new uniqueID for a17, in case I go chopping things away in the future
+
+
+a17$seanuts_id <- rownames(a17)
+
+a17 %>% 
+  select(seanuts_id, everything()) %>% View
+
+
+names_a <- names(a17)
+
+str_subset(names_a, "name")
+
+setdiff(unique(a17$asfis_scientific_name_fishbase_swap.x), unique(a17$asfis_scientific_name_fishbase_swap.y))
+sum(is.na(a17$asfis_scientific_name_fishbase_swap.y))
+sum(is.na(a17$asfis_scientific_name_fishbase_swap.x))
+sum(is.na(a17$scientific_name.y))
+
+### let's make a single scientific name that matches with fishbase, call it species_name
+
+a18 <- a17 %>% 
+  # filter(is.na(sci_name)) %>%
+  select(sci_name, asfis_scientific_name_fishbase_swap.x, asfis_scientific_name_fishbase_swap.y, everything()) %>% ### ok, for the time being let's take the asfis_scientific_name_fishbase_swap.x 
+  unite(species_name, sci_name, asfis_scientific_name_fishbase_swap.x) %>% 
+  select(species_name, everything()) %>%
+  mutate(species_name = str_replace(species_name, "NA", "")) %>% 
+  mutate(species_name = str_replace(species_name, "_", "")) 
+
+
+sum(!is.na(a18$species_name))
+
+write_csv(a18, "data-processed/all_nuts_working18.csv")
+a18 <- read_csv( "data-processed/all_nuts_working18.csv")
+
+
+### write out just the species list in order to use it to wrangle the fishbase data
+seanuts_species <- as.data.frame(unique(a18$species_name))
+
+write_csv(seanuts_species, "data-processed/seanuts_species.csv")
+
+
+
+# wrangling the species data ----------------------------------------------
+
+
+seanuts_species <- read_csv("data-processed/seanuts_species.csv") %>% 
+  rename(species_name = `unique(a18$species_name)`)
+
+a18 <- read_csv("data-processed/all_nuts_working18.csv")
+
+seanuts_working %>% 
+  select(seanuts_species)
+
+fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
+fishbase_list <- unique(fishbase_species_list$species_name)
+
+bad_snippet <- anti_join(a18, fishbase_species_list) %>% 
+  select(seanuts_id, everything()) 
+
+str_subset(fishbase_list, "Anadara broughtonii")
+
+### ok going about this in probably not the best way, but here goes nothing. The goal here is create a snippet of a18 that has the mismatches where there is a better match in the inprogress column
+
+
+bad_snippet_corrected <- bad_snippet %>%
+  filter(!is.na(asfis_scientific_name_fishbase_swap_in_progress)) %>% 
+  mutate(species_name = asfis_scientific_name_fishbase_swap_in_progress) ## ok do the bold thing of just swapping out the species names
+
+### ok now let's snip these rows out of seanuts_working!
+
+rows_to_cut <- unique(bad_snippet_corrected$seanuts_id)
+
+a19 <- a18 %>% 
+  filter(!seanuts_id %in% rows_to_cut) 
+
+## now add the written-over rows back in
+
+a20 <- bind_rows(a19, bad_snippet_corrected)
+
+### write out just the species list in order to use it to wrangle the fishbase data
+
+
+
+write_csv(a20, "data-processed/all_nuts_working20.csv")
+
+a20 <- read_csv("data-processed/all_nuts_working20.csv")
+seanuts_species <- as.data.frame(unique(a20$species_name))
+
+write_csv(seanuts_species, "data-processed/seanuts_species.csv")
+
+a20 %>% 
+  filter(species_name == "Helostoma temmincki") %>%
+  select(contains("sci"), everything()) %>% View

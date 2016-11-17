@@ -244,9 +244,27 @@ setdiff(current_species, fishbase_list)
 
 
 
-# October 18, renaming inf fish species -----------------------------------
+# November 16 2016 dealing with the new seanuts data -----------------------------------
 
 
+seanuts_species <- read_csv("data-processed/seanuts_species.csv") %>% 
+  rename(species_name = `unique(a20$species_name)`)
 
+seanuts_species <- unique(seanuts_species$species_name)
+
+
+fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
+fishbase_list <- unique(fishbase_species_list$species_name)
+
+
+setdiff(seanuts_species, fishbase_list)
+
+
+str_subset(fishbase_list, "Helostoma temmincki")
+
+anti_join(seanuts_working, fishbase_species_list) %>% View
+fishbase_list
+
+str_subset(fishbase_list, "Anadara broughtonii")
 
 

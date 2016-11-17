@@ -11,12 +11,21 @@ library(rfishbase)
 
 inf_species_raw <- read_csv("data-processed/inf_species_info_in_progress.csv")
 fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
+seanuts_species <- read_csv("data-processed/seanuts_species.csv") %>% 
+  rename(species_name = `unique(a20$species_name)`)
 
+
+seanuts_species <- seanuts_species$species_name
 inf_species <- inf_species_raw$asfis_scientific_name_fishbase_swap
 fb_species <- fishbase_species_list$species_name
 
 
-inf_fb_species <- intersect(inf_species, fb_species)
+
+### here's where we create our magic list of species we can extract fishbase data for!
+inf_fb_species <- intersect(seanuts_species, fb_species)
+length(inf_fb_species)
+length(setdiff(seanuts_species, fb_species)) ### ok, so there are still 184 species mismatches between fishbase and the seanuts species! ugh.
+
 
 # make a vector of unique species names -----------------------------------
 
