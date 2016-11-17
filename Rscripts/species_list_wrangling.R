@@ -262,9 +262,6 @@ setdiff(seanuts_species, fishbase_list)
 
 str_subset(fishbase_list, "Helostoma temmincki")
 
-anti_join(seanuts_working, fishbase_species_list) %>% View
-fishbase_list
-
 str_subset(fishbase_list, "Anadara broughtonii")
 
 

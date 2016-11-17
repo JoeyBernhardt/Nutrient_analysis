@@ -396,6 +396,22 @@ seanuts_species <- as.data.frame(unique(a20$species_name))
 
 write_csv(seanuts_species, "data-processed/seanuts_species.csv")
 
-a20 %>% 
-  filter(species_name == "Helostoma temmincki") %>%
-  select(contains("sci"), everything()) %>% View
+#### November 17, pick up here after a short stint in the 03b_db_species_names_wrangling.R script, where did a bit more to clean up the species names
+## the product of that file at the moment is data-processed/all_nuts_working21.csv
+
+a21 <- read_csv("data-processed/all_nuts_working21.csv")
+names_all <- names(a21)
+
+### let's get the subgroup column in order!
+str_subset(names_all, "subgroup")
+
+a22 <- a21 %>% 
+  select(contains("subgroup"), everything()) %>% 
+  unite(subgroup, subgroup.x.x, subgroup.y, sep = "_" ) %>% 
+  select(subgroup, everything()) %>% 
+  mutate(subgroup = str_replace_all(subgroup, "NA", "")) %>% 
+  mutate(subgroup = str_replace_all(subgroup, "_", ""))
+
+sum(is.na(a22$subgroup))
+
+write_csv(a22, "data-processed/all_nuts_working22.csv")
