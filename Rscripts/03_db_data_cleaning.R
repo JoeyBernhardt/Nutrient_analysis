@@ -8,6 +8,7 @@
 
 library(tidyverse)
 library(stringr)
+library(janitor)
 
 
 # read in data ------------------------------------------------------------
@@ -415,3 +416,44 @@ a22 <- a21 %>%
 sum(is.na(a22$subgroup))
 
 write_csv(a22, "data-processed/all_nuts_working22.csv")
+
+
+#### November 17 2016
+#### now bringing in the new inverts data from last April
+a22 <- read_csv("data-processed/all_nuts_working22.csv")
+inverts.new <- read_csv("~/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+## or update March 14 2016 with new inverts data:
+inverts.new2 <- read_csv("~/Documents/Nutrient_Analysis/data/ntbl.inv.csv")
+
+names(inverts.new2)
+
+inv <- inverts.new2 %>% 
+  clean_names() %>% 
+  filter(food_item_id < 118)
+
+inv_names <- names(inv)
+a22_names <- names(a22)
+
+setdiff(inv_names, a22_names)
+str_subset(a22_names, "length")
+
+a22 %>% 
+  select(taxonkey) %>% 
+  filter(!is.na(taxonkey))
+
+
+### rename some columns so we get a good line up
+inv2 <- inv %>% 
+  rename(protein_g = protein, 
+         dha = dha_g, 
+         fat_g = fat,
+         epa = epa_g,
+         species_name = species,
+         protein_g = protein) %>% 
+  mutate(ca_mg = as.numeric(ca_mg))
+
+str(inv2)
+
+a23 <- bind_rows(a22, inv2)
+
+write_csv(a23, "data-processed/all_nuts_working23.csv")

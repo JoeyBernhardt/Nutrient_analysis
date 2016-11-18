@@ -16,7 +16,7 @@ suppressPackageStartupMessages(library(vegan))
 
 # read in data ------------------------------------------------------------
 
-a22 <- read_csv("data-processed/all_nuts_working22.csv")
+a22 <- read_csv("data-processed/all_nuts_working23.csv")
 n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## this is latest working version from round 1.
 
 
@@ -73,26 +73,35 @@ minerals <- minerals %>%
   filter(!is.na(species_name))
 
 min.mat <- minerals %>% 
-  group_by(species_name) %>% 
+  mutate(species_name = as.character(species_name)) %>% 
+  group_by(subgroup, species_name) %>% 
   summarise(mean.CA = mean(ca_mg*1000, na.rm = TRUE),
             mean.ZN = mean(zn_mg*1000, na.rm = TRUE), 
             mean.FE = mean(fe_mg*1000, na.rm = TRUE)) %>%
-  filter(!is.na(mean.CA)) %>%
-  filter(!is.na(mean.ZN)) %>%
-  filter(!is.na(mean.FE)) 
+  filter(!is.na(mean.CA), !is.na(mean.ZN), !is.na(mean.FE)) %>%
+  ungroup() %>% 
+  dplyr::distinct(species_name, .keep_all = TRUE)
 
-matrix.min <- data.matrix(min.mat[, 2:4])
+
+matrix.min <- data.matrix(min.mat[, 3:5])
 rownames(matrix.min) <- min.mat$species_name 
 
 min.taxon <- minerals %>% 
   dplyr::distinct(species_name, subgroup) 
   
 
-min.env <- semi_join(min.taxon, min.mat, by = "species_name") 
+min.env <- dplyr::semi_join(min.mat, min.taxon, by = "species_name") 
+
+min.env <- min.mat %>% 
+  select(subgroup, species_name)
+
 min.env <- as.data.frame(min.env)
 
 min.env <- min.env %>%
-  dplyr::filter(!is.na(species_name)) 
+  dplyr::filter(!is.na(species_name)) %>% 
+  dplyr::distinct(species_name)
+
+length(unique(min.env$species_name))
 
 rownames(min.env) <- min.env$species_name 
 dim(min.env)
@@ -112,21 +121,22 @@ site.scaling$nfi_plot <- row.names(site.scaling)
 site.scaling$species_name <- row.names(site.scaling)
 
 min.env$nfi_plot <- row.names(min.env)
+str(min.env)
 
 new.compiled <- full_join(site.scaling, min.env)
 
 
-plot(ord.mine, type = "t", cex=1) ### looks like Metacarcinus magister is an outlier here
+plot(ord.mine, type = "n", cex=1) ### looks like Metacarcinus magister is an outlier here
 # points(new.compiled$MDS1, new.compiled$MDS2, pch= as.integer(new.compiled$Subgroup), cex = 1)
 points(new.compiled$MDS1, new.compiled$MDS2, col = (as.integer(new.compiled$subgroup)), pch= as.integer(new.compiled$subgroup), cex = 1.2)
 legend('topleft', legend = levels(new.compiled$subgroup), col = 1:3, pch = 16, cex = 0.8)
 
-
+str(ord.mine)
 ordiplot(ord.mine, type = "text")
 ordiellipse(ord.mine, draw = "polygon", new.compiled$subgroup, conf = 0.95, label = T)
 ordihull(ord.mine, draw = "polygon", new.compiled$subgroup, conf = 0.95, label = T)
 # ordicluster(ord.mine, draw = "polygon", new.compiled$subgroup, conf = 0.95, label = T)
-ordispider(ord.mine, new.compiled$Subgroup,col="grey")
+ordispider(ord.mine, new.compiled$subgroup,col="grey")
 legend('topleft', legend = levels(new.compiled$subgroup), col = 1:3, pch = 16, cex = 0.8)
 
 
@@ -143,6 +153,10 @@ plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 
 ## Use betadisper to test the significance of the multivariate groups
 min.subgroup <- min.env$subgroup
+min.subgroup <- new.compiled$subgroup
+length(min.subgroup)
+str(comm.bc.dist)
+
 mod <- betadisper(comm.bc.dist, min.subgroup)
 
 ## Perform test
