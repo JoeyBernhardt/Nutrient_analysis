@@ -14,6 +14,7 @@ library(janitor)
 # read in data ------------------------------------------------------------
 
 all <- read_csv("data-processed/nuts_all_messy.csv")
+CINE <- read_csv("data-processed/CINE.csv")
 str(all)
 
 
@@ -21,6 +22,9 @@ str(all)
 # namely the minerals, fats and fatty acids
 
 names_all <- names(all)
+names_all
+str_subset(names_all, "database")
+all$database
 
 # how many columns do we have that have calcium data?
 str_subset(names_all, "ca") ## ca_mg.x, ca_mg.y
@@ -457,3 +461,75 @@ str(inv2)
 a23 <- bind_rows(a22, inv2)
 
 write_csv(a23, "data-processed/all_nuts_working23.csv")
+
+
+
+# adding the CINE data ----------------------------------------------------
+
+CINE <- read_csv("data-processed/CINE.csv")
+a23 <- read_csv("data-processed/all_nuts_working23.csv")
+
+names_CINE <- names(CINE)
+str_subset(names_CINE, "dha")
+
+# get the CINE names to align with the a23 names, so can then bind rows
+
+CINE2 <- CINE %>%
+  rename(species_name = scientific_name,
+         dha = x22_6_n_3_dha_g, 
+         epa = x20_5_n_3_epa, 
+         fapun3 = total_n_3, 
+         max_length = length)
+
+intersect(names(CINE2), names(a23))
+  
+str_subset(names(a23), "length")
+str_subset(names(CINE2), "length")
+
+
+?bind_rows
+
+class(a23$tl)
+class(CINE2$tl)
+
+a24 <- bind_rows(a23, CINE2)
+
+CINE2$tl[CINE2$tl == "."] <- NA
+CINE2$tl_se[CINE2$tl_se == "."] <- NA
+
+unique(CINE2$tl_se)
+
+CINE2$tl_se <- as.numeric(CINE2$tl_se)
+CINE2$tl <- as.numeric(CINE2$tl)
+a24 <- bind_rows(a23, CINE2)
+
+
+unique(CINE2$fe_mg)
+
+CINE2$fe_mg[CINE2$fe_mg == "come back"] <- NA
+CINE2$fe_mg <- as.numeric(CINE2$fe_mg)
+a24 <- bind_rows(a23, CINE2)
+
+unique(CINE2$se_mcg)
+CINE2$se_mcg <- as.numeric(CINE2$se_mcg)
+
+CINE2 <- CINE2 %>% 
+  select(-se_mcg)
+
+a24 <- bind_rows(a23, CINE2)
+unique(CINE2$vitc_mg)
+CINE2$vitc_mg <- as.numeric(CINE2$vitc_mg)
+class(CINE2$vitc_mg)
+a24 <- bind_rows(a23, CINE2)
+
+glimpse(CINE2)
+
+
+CINE3 <- CINE2 %>% 
+  select(1:27, ca_mg, fe_mg, zn_mg, epa, dha)
+
+a24 <- bind_rows(a23, CINE3)
+
+### write out the database with the CINE data
+
+write_csv(a24, "data-processed/all_nuts_working24.csv")

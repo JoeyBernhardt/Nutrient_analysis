@@ -31,6 +31,10 @@ names(nutrients)
 
 length(unique(nutrients$asfis_sci_name))
 
+# explore the ‘nutrients' more --------------------------------------------------
+
+nutrients %>% 
+  filter(database != "INFOODS") %>% View
 
 # cleaning up the micronutrient data --------------------------------------
 
@@ -183,6 +187,7 @@ intersect(nuts_names, dec_names)
 length(nuts_names)
 length(dec_names)
 
+
 nutrients_working$food_item_id <- as.character(nutrients_working$food_item_id)
 dec19_working$food_item_id <- as.character(dec19_working$food_item_id)
 
@@ -231,6 +236,18 @@ nuts_all <- full_join(all_nuts, all_nuts_inf, by = "food_item_id")
 ### ok, this is a super messy dataframe, but it's got almost everything we want at this point. Now onto cleaning it in a different file!
 
 write_csv(nuts_all, "data-processed/nuts_all_messy.csv")
+
+
+
+
+
+# extract the CINE rows from nutrients ------------------------------------
+
+CINE <- nutrients %>% 
+  filter(database == "CINE") %>% 
+  select(1:13, 20:25, 28:111) 
+
+write_csv(CINE, "data-processed/CINE.csv")
 
 
 # extra code, not organized, but maybe useful! ----------------------------
