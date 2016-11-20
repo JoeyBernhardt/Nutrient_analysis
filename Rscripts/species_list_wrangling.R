@@ -249,8 +249,12 @@ setdiff(current_species, fishbase_list)
 
 seanuts_species <- read_csv("data-processed/seanuts_species.csv") %>% 
   rename(species_name = `unique(a20$species_name)`)
+a26 <- read_csv("data-processed/all_nuts_working26.csv")
 
-seanuts_species <- unique(seanuts_species$species_name)
+a26$species_name
+
+
+seanuts_species <- unique(a26$species_name)
 
 
 fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
@@ -258,7 +262,7 @@ fishbase_list <- unique(fishbase_species_list$species_name)
 
 
 setdiff(seanuts_species, fishbase_list)
-
+intersect(seanuts_species, fishbase_list)
 
 str_subset(fishbase_list, "Helostoma temmincki")
 

@@ -533,3 +533,88 @@ a24 <- bind_rows(a23, CINE3)
 ### write out the database with the CINE data
 
 write_csv(a24, "data-processed/all_nuts_working24.csv")
+
+
+
+# fix the missing subgroup data in the CINE data --------------------------
+
+a24 <- read_csv("data-processed/all_nuts_working24.csv")
+
+missing_subgroup <- a24 %>% 
+  filter(is.na(subgroup)) %>% 
+  select(subgroup, species_name) %>%
+  distinct(species_name)
+
+
+miss <- inner_join(missing_subgroup, a24) 
+
+miss %>%
+  select(species_name, subgroup) %>% 
+  ungroup() %>% 
+  distinct(species_name, .keep_all = TRUE) %>% View
+
+### go in an fill in the empty subgroup obs for the CINE missing ones
+
+a24$subgroup[a24$species_name == "Coregonus autumnalis"] <- "Finfish"
+a24$subgroup[a24$species_name == "Stenodus leucichthys"] <- "Finfish"
+a24$subgroup[a24$species_name == "Coregonus nasus"] <- "Finfish"
+a24$subgroup[a24$species_name == "Mya spp"] <- "Molluscs"
+a24$subgroup[a24$species_name == "Myoxocephalus spp"] <- "Finfish"
+a24$subgroup[a24$species_name == "Salvelinus naresi"] <- "Finfish"
+a24$subgroup[a24$species_name == "Coregonus spp"] <- "Finfish"
+a24$subgroup[a24$species_name == "Oncorhyncus spp"] <- "Finfish"
+a24$subgroup[a24$species_name == "Boreogadus saida"] <- "Finfish"
+a24$subgroup[a24$species_name == "Coregonus clupeaformis"] <- "Finfish"
+a24$subgroup[a24$species_name == "Esox lucius"] <- "Finfish"
+a24$subgroup[a24$species_name == "Lota lota"] <- "Finfish"
+a24$subgroup[a24$species_name == "Salvelinus namaycush"] <- "Finfish"
+a24$subgroup[a24$species_name == "Thymallus arcticus"] <- "Finfish"
+a24$subgroup[a24$species_name == "Boreogadus saida"] <- "Finfish"
+a24$subgroup[a24$species_name == "Mytilus edulis"] <- "Molluscs"
+a24$subgroup[a24$species_name == "Boreogadus  saida"] <- "Finfish"
+a24$species_name[a24$species_name == "Boreogadus  saida"] <- "Boreogadus saida"
+
+
+a25 <- a24  ### after filling in the missing subgroup entries
+
+
+write_csv(a25, "data-processed/all_nuts_working25.csv")
+
+
+# more checking -----------------------------------------------------------
+
+a25 <- read_csv("data-processed/all_nuts_working25.csv")
+names(a25)
+
+a25$species_name[a25$asfis_scientific_name.x.x == "Strombus gracilior"] <- "Strombus gracilior"
+
+
+sum(is.na(a25$species_name))
+
+sum(is.na(a25$seanuts_id2))
+
+a25 %>% 
+  select(seanuts_id, everything()) %>%
+  filter(is.na(seanuts_id)) %>% View
+
+a25$seanuts_id2 <- row.names(a25)
+
+a26 <- a25
+
+write_csv(a26, "data-processed/all_nuts_working26.csv")
+
+### now make a subset file, where we just pull out the relevant columns and get rid of extra clutter
+
+a26_subset <- a25 %>% 
+  select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean, prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
+         length_from_study, length_source, abs_lat, latitude,
+         slmax_nov28, slmax_source, lwa, lwb,
+         country_region, isscaap_cat, isscaap,
+         season, asfis_scientific_name_fishbase_swap_in_progress, season, season.x, season.y)
+
+
+
+View(a26_subset)
+
+
+

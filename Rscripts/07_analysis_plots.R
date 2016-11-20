@@ -11,12 +11,13 @@ library(tidyverse)
 library(broom)
 library(coefplot)
 suppressPackageStartupMessages(library(vegan))
+library(purrr)
 
 
 
 # read in data ------------------------------------------------------------
 
-a22 <- read_csv("data-processed/all_nuts_working23.csv")
+a22 <- read_csv("data-processed/all_nuts_working25.csv")
 n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## this is latest working version from round 1.
 
 
@@ -48,6 +49,8 @@ a22 %>%
   select(ca_mg, fe_mg, zn_mg, everything()) %>% 
   arrange(desc(ca_mg)) %>% View
 
+a22 %>% 
+  filter(is.na(subgroup)) %>% View
 
 # onto multivariate stuff -------------------------------------------------
 
@@ -99,7 +102,7 @@ min.env <- as.data.frame(min.env)
 
 min.env <- min.env %>%
   dplyr::filter(!is.na(species_name)) %>% 
-  dplyr::distinct(species_name)
+  dplyr::distinct(species_name, .keep_all = TRUE)
 
 length(unique(min.env$species_name))
 
@@ -171,3 +174,119 @@ permutest(mod, pairwise = TRUE, permutations = 200)
 min.subgroup %>% 
   data_frame(subgrp = .) %>% 
   adonis(comm.bc.dist ~ subgrp, data = .)
+
+
+
+# RDI analysis ------------------------------------------------------------
+
+aq.wide <- a22 %>% 
+  select(species_name, subgroup, prot_g, protcnt_g, epa, dha, fapun3, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id, tl, food_item_id)  
+  
+
+
+### how many micronutrient mineral targets does each species reach?
+RDI_minerals <- aq.wide %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+            mean.ZN = mean(zn_mg, na.rm = TRUE), 
+            mean.FE = mean(fe_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[6:8])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot)
+
+
+RDI_minerals %>% 
+  # group_by(species) %>% 
+  # mutate(meanRDI = mean(RDI.micro.tot)) %>%
+  group_by(subgroup, RDI.micro.tot) %>% 
+  summarise(n = n()) %>% 
+  mutate(cum.RDI = cumsum(n)) %>%
+  ggplot(., aes(x = RDI.micro.tot, y = cum.RDI)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") 
+
+qplot(factor(subgroup), data = RDI_minerals, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
+
+ggplot(RDI_minerals, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ subgroup, scales = "free_y") 
+
+
+RDI_minerals %>% 
+  dplyr::filter(subgroup == "Molluscs") %>% 
+  # distinct(species) %>% 
+  dplyr::filter(RDI.micro.tot > 0) %>% 
+  dplyr::distinct(species_name) %>% 
+  count()
+
+
+#### species accumulation curves
+
+RDIS <- select(RDI_minerals, 6:8)
+
+spa.rand <- specaccum(RDIS, method = "random")
+# png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
+spa.rand$sites
+plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,4), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+abline( v= 15, col = "cadetblue")
+abline( v = 26, col = "pink")
+# dev.off()
+summary(spa.rand)
+
+
+RDI_minerals %>% 
+  filter(subgroup == "Finfish") %>% 
+  select(6:8) %>% 
+specaccum(., method = "random") %>% 
+plot(., col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "blue", ylim = c(0,3.5), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients: 25% RDI targets")
+
+
+spec <- RDI_minerals %>% 
+  filter(subgroup == "Finfish") %>% 
+  select(6:8) %>% 
+  specaccum(., method = "random")
+
+str(spec)
+
+
+spec$richness
+
+sum(spec$richness < 2)
+
+
+#### now the accumulation curves for the all the nutrients
+
+ntbl.RDI.all <- aq.wide %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+            mean.ZN = mean(zn_mg, na.rm = TRUE), 
+            mean.FE = mean(fe_mg, na.rm = TRUE),
+            mean.EPA = mean(epa, na.rm = TRUE),
+            mean.DHA = mean(dha, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
+  filter(!is.na(RDI.micro.tot)) 
+
+### create spa curves for each of the subgroups individually
+subgroup_spa <- ntbl.RDI.all %>%
+  select(-RDI.micro.tot) %>%
+  select(-contains("mean")) %>% 
+  select(-species_name) %>% 
+  split( .$subgroup) %>% 
+  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
+  map(.f = specaccum, method = "random")
+
+
+#### how many species do you need to sample before reaching 3 RDI targets?
+subgroup_spa %>% 
+  map(.f = `[`, "richness") %>% 
+  unlist() %>% 
+  as.data.frame() %>% View
+
+
+
