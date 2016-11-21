@@ -32,6 +32,7 @@ library(ggthemes)
 library(knitr)
 library(broom)
 library(coefplot)
+library(arm)
 
 ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl2.csv")
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")

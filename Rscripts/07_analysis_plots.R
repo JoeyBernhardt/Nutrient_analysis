@@ -12,6 +12,7 @@ library(broom)
 library(coefplot)
 suppressPackageStartupMessages(library(vegan))
 library(purrr)
+library(arm)
 
 
 
@@ -290,3 +291,46 @@ subgroup_spa %>%
 
 
 
+
+# traits section ----------------------------------------------------------
+
+seanuts_ecology <- read_csv("data-processed/seanuts_ecology.csv")
+
+## ok let's just get rid of the one super outlier ca and fe measurement for now
+
+seanuts_ecology$ca_mg[seanuts_ecology$ca_mg == 41206.00000] <- NA
+seanuts_ecology$fe_mg[seanuts_ecology$fe_mg > 40939.00000] <- NA
+
+
+names_seanuts <- names(seanuts_ecology)
+str_subset(names_seanuts, "length")
+str_subset(names_seanuts, "Length")
+str_subset(names_seanuts, "sl")
+
+sum(!is.na(seanuts_ecology$Length))
+sum(!is.na(seanuts_ecology$length_from_study))
+
+n.long <- seanuts_ecology %>% 
+  select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id2, tl, food_item_id_2, Length, abs_lat, foodtroph) %>% 
+  gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
+  filter(!is.na(concentration)) 
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  ggplot(aes(x = log(Length), y = log(concentration))) + geom_point() +
+  geom_smooth(method = "lm")
+
+n.long %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+  group_by(nutrient) %>% 
+  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + tl + abs_lat, data = .), conf.int = TRUE)) %>% 
+  unnest(fit) %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + geom_point() +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
+  facet_wrap( ~ nutrient) + geom_hline(yintercept = 0)
+
+n.long %>% 
+  filter(nutrient == "fe_mg") %>% 
+  ggplot(aes(x = log(foodtroph), y = log(concentration))) + geom_point()

@@ -50,10 +50,10 @@ inf_all <- left_join(inf_all, species_inf, by = c("species_name" = "sciname"))
 
 
 
-inf_nuts_all <- left_join(inf_nuts, inf_all) %>% 
+# inf_nuts_all <- left_join(inf_nuts, inf_all) %>% 
   remove_empty_cols()
 
-write_csv(inf_nuts_all, "data-processed/seanuts_ecology.csv")
+# write_csv(inf_nuts_all, "data-processed/seanuts_ecology.csv")
 write_csv(inf_all, "data-processed/seanuts_ecology.csv")
 
 inf_minerals_all <- left_join(inf_minerals, inf_all) %>% 
