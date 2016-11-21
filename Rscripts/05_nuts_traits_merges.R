@@ -5,6 +5,8 @@
 ## Last updated Nov 16 with the giant, messy seanuts database
 ## Nov 16: "data-processed/seanuts_ecology.csv" is the latest output from this file
 
+## Nov 21, goal is to update with the a26 working file
+
 # load pacakges -----------------------------------------------------------
 
 library(tidyverse)
@@ -38,7 +40,8 @@ inf_nuts <- inf_nuts_raw %>%
 
 ## update Nov 16
 seanuts <- read_csv("data-processed/all_nuts_working18.csv")
-
+## update Nov 21
+seanuts <- read_csv("data-processed/all_nuts_working27_subset.csv")
 
 # begin the joins!! -------------------------------------------------------
 
