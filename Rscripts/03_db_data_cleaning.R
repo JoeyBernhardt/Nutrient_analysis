@@ -434,6 +434,11 @@ names(inverts.new2)
 inv <- inverts.new2 %>% 
   clean_names() %>% 
   filter(food_item_id < 118)
+### update Nov 29
+inv <- inverts.new %>% 
+  clean_names() %>% 
+  filter(food_item_id < 118)
+
 
 inv_names <- names(inv)
 a22_names <- names(a22)
@@ -448,26 +453,32 @@ a22 %>%
 
 ### rename some columns so we get a good line up
 inv2 <- inv %>% 
-  rename(protein_g = protein, 
-         dha = dha_g, 
-         fat_g = fat,
-         epa = epa_g,
-         species_name = species,
-         protein_g = protein) %>% 
+  rename(protein_g = protein_g_100g_ww, 
+         dha = dha_g_100g, 
+         fat_g = fat_g_100g_ww,
+         epa = epa_g_100g,
+         species_name = species) %>% 
   mutate(ca_mg = as.numeric(ca_mg))
 
 str(inv2)
 
 a23 <- bind_rows(a22, inv2)
 
+inv2_selected <- inv2 %>% 
+  select(-p_mg)
+
+##update Nov 29
+a23b <- bind_rows(a22, inv2_selected)
+
 write_csv(a23, "data-processed/all_nuts_working23.csv")
 
-
+write_csv(a23b, "data-processed/all_nuts_working23b.csv")
 
 # adding the CINE data ----------------------------------------------------
 
 CINE <- read_csv("data-processed/CINE.csv")
 a23 <- read_csv("data-processed/all_nuts_working23.csv")
+a23b <- read_csv("data-processed/all_nuts_working23b.csv")
 
 names_CINE <- names(CINE)
 str_subset(names_CINE, "dha")
@@ -492,7 +503,7 @@ str_subset(names(CINE2), "length")
 class(a23$tl)
 class(CINE2$tl)
 
-a24 <- bind_rows(a23, CINE2)
+a24 <- bind_rows(a23b, CINE2)
 
 CINE2$tl[CINE2$tl == "."] <- NA
 CINE2$tl_se[CINE2$tl_se == "."] <- NA
@@ -501,14 +512,14 @@ unique(CINE2$tl_se)
 
 CINE2$tl_se <- as.numeric(CINE2$tl_se)
 CINE2$tl <- as.numeric(CINE2$tl)
-a24 <- bind_rows(a23, CINE2)
+a24 <- bind_rows(a23b, CINE2)
 
 
 unique(CINE2$fe_mg)
 
 CINE2$fe_mg[CINE2$fe_mg == "come back"] <- NA
 CINE2$fe_mg <- as.numeric(CINE2$fe_mg)
-a24 <- bind_rows(a23, CINE2)
+a24 <- bind_rows(a23b, CINE2)
 
 unique(CINE2$se_mcg)
 CINE2$se_mcg <- as.numeric(CINE2$se_mcg)
@@ -528,7 +539,7 @@ glimpse(CINE2)
 CINE3 <- CINE2 %>% 
   select(1:27, ca_mg, fe_mg, zn_mg, epa, dha)
 
-a24 <- bind_rows(a23, CINE3)
+a24 <- bind_rows(a23b, CINE3)
 
 ### write out the database with the CINE data
 
@@ -608,7 +619,7 @@ write_csv(a26, "data-processed/all_nuts_working26.csv")
 a26 <- read_csv("data-processed/all_nuts_working26.csv")
 
 cols26 <- names(a26)
-str_subset(cols26, "fapun")
+str_subset(cols26, "Reference")
 
 a27_subset <- a26 %>% 
   select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean, prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
@@ -616,7 +627,7 @@ a27_subset <- a26 %>%
          slmax, slmax_nov28, slmax_source, lwa, lwb,
          country_region, isscaap_cat, isscaap,
          season, asfis_scientific_name_fishbase_swap_in_progress, season, season.x, season.y,
-         fapun3, fapun_all_g)
+         fapun3, fapun_all_g, reference)
 
 
 
