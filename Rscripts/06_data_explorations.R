@@ -43,7 +43,7 @@ str_subset(cols, "fapun")
 seanuts_select <- seanuts_raw %>% 
   select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean, prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
          length_from_study, length_source, abs_lat, latitude,
-         slmax_nov28, slmax_source, lwa, lwb,
+         slmax, slmax_nov28, slmax_source, lwa, lwb,
          country_region, isscaap_cat, isscaap,
          season, asfis_scientific_name_fishbase_swap_in_progress, season, season.x, season.y,
          fapun3, fapun_all_g, Herbivory2, HerbivoryRef, FeedingType, FeedingTypeRef, FoodTroph, FoodSeTroph, StockCode, SpecCode.x, SpecCode.y,

@@ -27,7 +27,7 @@ species_inf2 <- read_csv("data-processed/species_inf_2.csv")
 
 
 
-ecology2 <- bind_rows(inf_ecology_raw_2, inf_ecology2)
+# ecology2 <- bind_rows(inf_ecology_raw_2, inf_ecology2)
 
 
 ### mods to inf_ecology_* to deal with the merge conflicts
@@ -46,30 +46,30 @@ species_inf_mod <- species_inf %>%
 
 species2 <- bind_rows(species_inf_mod, species_inf2)
 
+write_csv(species2, "data-processed/species2.csv")
+write_csv(ecology2, "data-processed/ecology2.csv")
+
 ### OK so now ecology2 and species2 are the ones to merge!
 
-
-
-inf_ecology <- inf_ecology_raw %>% 
-  clean_names() %>% 
-  remove_empty_cols()
-
-# inf_species_info <- inf_species_info_raw %>% 
-#   clean_names()
-
-inf_nuts_raw <- read_csv("data/INF_fish.csv")
-inf_minerals <- read_csv("data-processed/minerals_inf.csv") %>% 
-  clean_names() %>% 
-  remove_empty_cols()
-
-inf_nuts <- inf_nuts_raw %>% 
-  clean_names() %>% 
-  remove_empty_cols()
+# 
+# 
+# inf_nuts_raw <- read_csv("data/INF_fish.csv")
+# inf_minerals <- read_csv("data-processed/minerals_inf.csv") %>% 
+#   clean_names() %>% 
+#   remove_empty_cols()
+# 
+# inf_nuts <- inf_nuts_raw %>% 
+#   clean_names() %>% 
+#   remove_empty_cols()
 
 ## update Nov 16
 seanuts <- read_csv("data-processed/all_nuts_working18.csv")
 ## update Nov 21
 seanuts <- read_csv("data-processed/all_nuts_working27_subset.csv")
+ecology2 <- read_csv("data-processed/ecology2.csv")
+species2 <- read_csv("data-processed/species2.csv")
+
+
 
 # begin the joins!! -------------------------------------------------------
 
@@ -77,9 +77,6 @@ inf_all <- left_join(seanuts, ecology2, by = c("species_name" = "sciname"))
 inf_all2 <- left_join(inf_all, species2, by = c("species_name" = "sciname"))
 
 
-
-# inf_nuts_all <- left_join(inf_nuts, inf_all) %>% 
-  remove_empty_cols()
 
 # write_csv(inf_nuts_all, "data-processed/seanuts_ecology.csv")
 write_csv(inf_all2, "data-processed/seanuts_ecology2.csv")
