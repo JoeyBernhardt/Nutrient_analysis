@@ -7,6 +7,7 @@
 
 ## Nov 21, goal is to update with the a26 working file
 ### Nov 27 now updating with the weirdly different new results from the fishbase calls
+## Nov 29: "data-processed/seanuts_ecology2.csv" is the latest output from this file
 
 # load pacakges -----------------------------------------------------------
 
