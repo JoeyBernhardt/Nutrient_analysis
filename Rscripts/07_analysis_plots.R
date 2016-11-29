@@ -307,11 +307,13 @@ str_subset(names_seanuts, "length")
 str_subset(names_seanuts, "Length")
 str_subset(names_seanuts, "sl")
 
+names(seanuts_ecology)
+
 sum(!is.na(seanuts_ecology$Length))
 sum(!is.na(seanuts_ecology$length_from_study))
 
 n.long <- seanuts_ecology %>% 
-  select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id2, tl, food_item_id_2, Length, abs_lat, foodtroph) %>% 
+  dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id2, tl, food_item_id_2, Length, abs_lat, foodtroph) %>% 
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) 
 
@@ -320,16 +322,37 @@ n.long %>%
   ggplot(aes(x = log(Length), y = log(concentration))) + geom_point() +
   geom_smooth(method = "lm")
 
+
+sum(!is.na(n.long$foodtroph))
+sum(!is.na(n.long$tl))
+
+ggplot(aes(x = foodtroph, y = tl), data = n.long) + geom_point()
+
+
+
 n.long %>% 
   # filter(nutrient == "CA_mg") %>% 
   # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
   group_by(nutrient) %>% 
-  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + tl + abs_lat, data = .), conf.int = TRUE)) %>% 
+  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + tl + abs_lat + foodtroph, data = .), conf.int = TRUE)) %>% 
   unnest(fit) %>% 
   filter(term != "(Intercept)") %>% 
   ggplot(aes(x = term, y = estimate)) + geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
   facet_wrap( ~ nutrient) + geom_hline(yintercept = 0)
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  lm(log(concentration) ~ log(Length) + abs_lat + foodtroph, data = .) %>% 
+  summary
+
+n.long %>% 
+  filter(nutrient == "fat_g") %>% 
+  lm(log(concentration) ~ log(Length) + abs_lat + foodtroph, data = .) %>% 
+  summary
+
+
+
 
 n.long %>% 
   filter(nutrient == "fe_mg") %>% 

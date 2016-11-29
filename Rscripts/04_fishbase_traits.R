@@ -6,6 +6,7 @@
 
 library(tidyverse)
 library(rfishbase)
+library(stringr)
 
 # read in species list  ---------------------------------------------------
 
@@ -24,6 +25,9 @@ fb_species <- fishbase_species_list$species_name
 
 ### here's where we create our magic list of species we can extract fishbase data for!
 inf_fb_species <- intersect(seanuts_species, fb_species)
+
+str_subset(inf_fb_species, "Mytilus")
+
 length(inf_fb_species)
 length(setdiff(seanuts_species, fb_species)) ### ok, so there are still 116 species mismatches between fishbase and the seanuts species! ugh.
 
@@ -51,9 +55,37 @@ write.csv(diet, "data-processed/inf_diet.csv")
 ##### Here I pull out the 'ecology' tables for all the ntbl species in fb. ####
 ecology_inf <- ecology(inf_species)
 
+
 write.csv(ecology_inf, "data-processed/inf_ecology.csv")
+write.csv(ecology_inf, "data-processed/inf_ecology2.csv")
 
 #### Here I pull out the 'species' table
 
 species_inf <- species(inf_species)
 write_csv(species_inf, "data-processed/species_inf.csv")
+write_csv(species_inf, "data-processed/species_inf_2.csv")
+
+#### Now onto sealifebase to get the inverts data
+
+inf_ecology <- read_csv("data-processed/inf_ecology.csv")
+
+options(FISHBASE_API = "http://fishbase.ropensci.org/sealifebase")
+inf_species
+
+ecology_inf_inverts <- ecology(inf_species)
+write.csv(ecology_inf_inverts, "data-processed/inf_ecology_inverts.csv")
+
+
+invs_species <- unique(ecology_inf_inverts$sciname)
+ninvs_species <- unique(ecology_inf$sciname)
+
+length(invs_species)
+length(ninvs_species)
+setdiff(invs_species, ninvs_species)
+
+### why does inf_ecology have more species now??
+inf_ecology_raw <- read_csv("data-processed/inf_ecology.csv")
+invs1_species <- unique(inf_ecology_raw$sciname)
+length(invs1_species)
+
+intersect(invs1_species, ninvs_species)
