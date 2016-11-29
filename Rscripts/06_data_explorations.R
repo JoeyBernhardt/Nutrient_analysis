@@ -1,5 +1,6 @@
 ## looking at the seanuts data
-
+### trimming down to get a more manageable dataframe
+## latest df is "data-processed/seanuts_select2.csv"
 
 # load packages -----------------------------------------------------------
 
@@ -51,4 +52,20 @@ seanuts_select <- seanuts_raw %>%
 
 
 write_csv(seanuts_select, "data-processed/seanuts_select.csv")
+
+
+
+
+# exploring the dataset now! ----------------------------------------------
+
+seanuts_select <- read_csv("data-processed/seanuts_select.csv")
+
+seanuts_select2 <- seanuts_select %>% 
+  unite(genus_species, Genus, Species, sep = " ", remove = FALSE) %>% 
+  filter(genus_species == "NA NA" | genus_species == species_name) 
+
+write_csv(seanuts_select2, "data-processed/seanuts_select2.csv")
+
+
+
 
