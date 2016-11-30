@@ -2,6 +2,8 @@
 ### trimming down to get a more manageable dataframe
 ## latest df is "data-processed/seanuts_select2.csv"
 ## latest df is write_csv(seanuts_select_4, "data-processed/seanuts_select_4.csv")
+# ### Nov 30: after fixing the latest missing subgroup data:
+# write_csv(seanuts_select_5, "data-processed/seanuts_select_5.csv")
 
 # load packages -----------------------------------------------------------
 
@@ -104,6 +106,85 @@ seanuts_select_4 <- seanuts_select3 %>%
   
 write_csv(seanuts_select_4, "data-processed/seanuts_select_4.csv")
 
+
+
+# now exploring! ----------------------------------------------------------
+
+seanuts <- read_csv("data-processed/seanuts_select_4.csv")
+
+seanuts_select_5 %>% 
+  filter(is.na(subgroup)) %>% 
+  distinct(species_name) %>% View### OK it looks like there are some missing subgroup data, let's go ahead and fill that in
+
+seanuts_select_5 <- seanuts %>% 
+  mutate(subgroup = ifelse(species_name == "Penaeus semisulcatus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Metapenaeus monoceros", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Aristeus antennatus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "penaeid and pandalid shrimps", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Penaeus monodon", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Litopenaeus vannamei", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Xiphopenaeus kroyeri", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Macrobrachium rosenbergii", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Farfantepenaeus brasiliensis", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Litopenaeus schmitti", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Maja brachydactyla", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Hexaplex trunculus", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Scylla paramamosain", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Portunus trituberculatus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Eriocheir sinensis", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Mytilus galloprovincialis", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Mytilus chilensis", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Perunytitus purpuratus", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Nacella deaurata", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Acanthina monodon", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Aulacomya ater", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Fissurella picta", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Meretrix lusoria", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Chamelea gallina", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Donax trunculus", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Carcinus maenus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Mercenaria mercenaria", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Callinectes sapidus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Crassostrea virginica", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Placopectens magellanicus", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Homarus americanus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Homarus gammarus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Portunus pelagicus", "Crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Ostrea edulis", "Molluscs", subgroup)) %>%
+  mutate(subgroup = ifelse(species_name == "Pinctada radiata", "Molluscs", subgroup))
+
+
+### after fixing the latest missing subgroup data:
+write_csv(seanuts_select_5, "data-processed/seanuts_select_5.csv")
+
+
+#### Nov 30, after realizing that there were some data entry errors in Anthony, Jane E., et al. "Yields, proximate composition and mineral content of finfish and shellfish." Journal of Food Science 48.1 (1983): 313-314.
+seanuts_select_5 <- read_csv("data-processed/seanuts_select_5.csv")
+
+seanuts_select_5 %>% 
+ filter(grepl("Anthony, Jane E., et al.", ref_info)) %>% View
+
+
+seanuts_select_6 <- seanuts_select_5 %>% 
+  mutate(fe_mg = if_else(grepl("Anthony, Jane E., et al.", ref_info) & species_name == "Crassostrea virginica", 7.65, fe_mg)) %>%
+  mutate(zn_mg = if_else(grepl("Anthony, Jane E., et al.", ref_info) & species_name == "Crassostrea virginica", 82.46, zn_mg)) %>%
+  mutate(fe_mg = if_else(grepl("Anthony, Jane E., et al.", ref_info) & species_name == "Mercenaria mercenaria", 2.46, fe_mg)) %>% 
+  mutate(zn_mg = if_else(grepl("Anthony, Jane E., et al.", ref_info) & species_name == "Mercenaria mercenaria", 2.50, zn_mg)) %>%
+  mutate(ca_mg = if_else(grepl("Anthony, Jane E., et al.", ref_info) & species_name == "Mercenaria mercenaria", 32.8, ca_mg)) %>%
+  mutate(ca_mg = if_else(grepl("Anthony, Jane E., et al.", ref_info) & species_name == "Callinectes sapidus", 34.4, ca_mg)) 
+
+## now get rid of the data points that look like they should have never been there in first place
+seanuts_select_6$fe_mg[grepl("Anthony, Jane E., et al.", seanuts_select_6$ref_info) & seanuts_select_6$species_name == "Callinectes sapidus"] <- NA
+seanuts_select_6$zn_mg[grepl("Anthony, Jane E., et al.", seanuts_select_6$ref_info) & seanuts_select_6$species_name == "Callinectes sapidus"] <- NA
+
+
+seanuts_select_6 %>% 
+  filter(grepl("Anthony, Jane E., et al.", ref_info)) %>% View
+
+
+write_csv(seanuts_select_6, "data-processed/seanuts_select_6.csv")
+
+
 ##### EXTRA CODE
 
 
@@ -112,4 +193,4 @@ unique(seanuts_select2$species_name)
 
 length(unique(seanuts_select2$ca_mg))
 
-sapply(seanuts_select2, function(x) length(unique(x)))
+sapply(seanuts_select_4, function(x) length(unique(x)))

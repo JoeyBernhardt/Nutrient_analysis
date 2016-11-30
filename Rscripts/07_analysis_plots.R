@@ -8,24 +8,28 @@
 
 library(stringr)
 library(tidyverse)
+library(ggplot2)
 library(broom)
 library(coefplot)
 suppressPackageStartupMessages(library(vegan))
 library(purrr)
 library(arm)
+library(ggvegan)
 
 
 
 # read in data ------------------------------------------------------------
 
 a22 <- read_csv("data-processed/all_nuts_working25.csv")
+a22 <- read_csv("data-processed/seanuts_select_6.csv")
+
 n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## this is latest working version from round 1.
 
 
 # do a bit of finagling to get it into long form --------------------------
 
 n.long <- a22 %>% 
-  select(species_name, subgroup, prot_g, protcnt_g, epa, dha, fapun3, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id, tl, food_item_id) %>% 
+  dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, fapun3, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id2, tl, food_item_id_2) %>% 
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, fapun3, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) 
 
@@ -59,10 +63,9 @@ ntbl.minerals <- a22 %>%
   dplyr::select(subgroup, species_name, ca_mg, fe_mg, zn_mg)
 
 ntbl.minerals %>% 
-  arrange(desc(fe_mg)) %>% View
-
-unique(ntbl.minerals$fe_mg)
-
+  # filter(species_name == "Crassostrea virginica") %>% 
+  filter(subgroup == "Molluscs") %>% 
+  arrange(species_name, desc(ca_mg)) %>% View
 
 ## ok let's just get rid of the one super outlier ca and fe measurement for now
 
@@ -86,46 +89,66 @@ min.mat <- minerals %>%
   ungroup() %>% 
   dplyr::distinct(species_name, .keep_all = TRUE)
 
+### visualize the data before proceeding
+
+min.mat %>% 
+  # filter(species_name == "Crassostrea virginica") %>% 
+  filter(subgroup == "Molluscs") %>% 
+  arrange(species_name, desc(mean.CA)) %>% View
+
+crass <- a22 %>% 
+  filter(species_name == "Crassostrea virginica") %>% 
+  arrange(species_name, desc(ca_mg)) %>% 
+  dplyr::select(ref_info)
+  
+anthony_ref <- crass %>% 
+  filter(grepl("Anthony", ref_info)) 
+
+anthony_ref
 
 matrix.min <- data.matrix(min.mat[, 3:5])
 rownames(matrix.min) <- min.mat$species_name 
 
-min.taxon <- minerals %>% 
-  dplyr::distinct(species_name, subgroup) 
+min.taxon <- minerals %>%
+  dplyr::distinct(species_name, subgroup)
   
 
 min.env <- dplyr::semi_join(min.mat, min.taxon, by = "species_name") 
-
-min.env <- min.mat %>% 
-  select(subgroup, species_name)
-
-min.env <- as.data.frame(min.env)
-
 min.env <- min.env %>%
   dplyr::filter(!is.na(species_name)) %>% 
-  dplyr::distinct(species_name, .keep_all = TRUE)
-
-length(unique(min.env$species_name))
-
-rownames(min.env) <- min.env$species_name 
-dim(min.env)
-min.env <- as.matrix(min.env)
-View(min.env)
+  dplyr::distinct(species_name, .keep_all = TRUE) %>% 
+  dplyr::select(subgroup, species_name)
 
 #### begin ordination!
 
 ord.mine <- metaMDS(matrix.min, distance="bray", trymax=100)
 ord.mine$stress
+
+## try plotting the ggvegan way
+
+autoplot(ord.mine)
+ord_long <- fortify(ord.mine)
+
+### now join the ordination results with the subgroup data
+
+scaling <- left_join(ord_long, min.env, by = c("Label" = "species_name"))
+
+ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup, label = Label)) + geom_point() +
+  geom_text(check_overlap = TRUE)
+
+
 plot(ord.mine, type = "t",cex=.5)
 site.scaling <- as.data.frame(ord.mine$points)
 points(site.scaling,pch=16)
 
 
-site.scaling$nfi_plot <- row.names(site.scaling)
+
+
+# site.scaling$nfi_plot <- row.names(site.scaling)
 site.scaling$species_name <- row.names(site.scaling)
 
-min.env$nfi_plot <- row.names(min.env)
-str(min.env)
+# min.env$nfi_plot <- row.names(min.env)
+# str(min.env)
 
 new.compiled <- full_join(site.scaling, min.env)
 
@@ -156,7 +179,7 @@ comm.bc.clust <- hclust(comm.bc.dist, method = "average")
 plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 
 ## Use betadisper to test the significance of the multivariate groups
-min.subgroup <- min.env$subgroup
+# min.subgroup <- min.env$subgroup
 min.subgroup <- new.compiled$subgroup
 length(min.subgroup)
 str(comm.bc.dist)
@@ -173,7 +196,8 @@ permutest(mod, pairwise = TRUE, permutations = 200)
 #### Use adonis to ask whether the group means in multivariate space are different from each other ####
 
 min.subgroup %>% 
-  data_frame(subgrp = .) %>% 
+  dplyr::data_frame(subgrp = .) %>%
+  filter(!is.na(subgrp)) %>%
   adonis(comm.bc.dist ~ subgrp, data = .)
 
 
