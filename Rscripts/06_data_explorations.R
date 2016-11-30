@@ -1,6 +1,7 @@
 ## looking at the seanuts data
 ### trimming down to get a more manageable dataframe
 ## latest df is "data-processed/seanuts_select2.csv"
+## latest df is write_csv(seanuts_select_4, "data-processed/seanuts_select_4.csv")
 
 # load packages -----------------------------------------------------------
 
@@ -28,7 +29,7 @@ seanuts_select <- seanuts_raw %>%
          season, asfis_scientific_name_fishbase_swap_in_progress, season, season.x, season.y,
          fapun3, fapun_all_g, Herbivory2, HerbivoryRef, FeedingType, FeedingTypeRef, FoodTroph, FoodSeTroph, StockCode, SpecCode.x, SpecCode.y,
          Genus, Species, FBname, Subfamily, DemersPelag, AnaCat, DepthRangeShallow, DepthRangeDeep, starts_with("LType"), Length, starts_with("CommonLength"), contains("Weight"),
-         Sp2000_HierarchyCode)
+         Sp2000_HierarchyCode, reference)
 
 
 write_csv(seanuts_select, "data-processed/seanuts_select.csv")
@@ -68,51 +69,42 @@ write_csv(seanuts_select2, "data-processed/seanuts_select2.csv")
 seanuts_select2 <- read_csv("data-processed/seanuts_select2.csv")
 
 no_ref <- seanuts_select2 %>% 
-  filter(is.na(biblioid2), is.na(database))
+  select(reference, everything()) %>% 
+  filter(is.na(biblioid2), is.na(database), is.na(reference)) %>% View
 
+### OK now, the next step is to go find the actual references for all the biblioids!
 
-## noticing that there are some rows with no biblioid, let's see if we can track that down
-
-aquatic_inverts_micronutrients <- read_csv("data/aquatic_inverts_micronutrients.csv")
-names(aquatic_inverts_micronutrients)
-
-
-
-### OK so let's just add back in these observations with the reference info
-
-aq_inv <- aquatic_inverts_micronutrients %>% 
-  rename(protein_g = protein, 
-         dha = dha_g, 
-         fat_g = fat,
-         epa = epa_g,
-         species_name = species,
-         protein_g = protein) %>% 
-  mutate(ca_mg = as.numeric(ca_mg))
+has_biblio <- seanuts_select2 %>% 
+  filter(!is.na(biblioid2)) 
 
 
 
+bibliography <- read_csv("data/seanuts_bibliography.csv") %>% 
+  filter(!is.na(BiblioID))
+
+left_join(has_biblio, bibliography, by = c("biblioid2" = "BiblioID")) %>%
+  select(biblioid2, Bibliography, everything()) %>%
+  filter(!is.na(biblioid2), is.na(Bibliography)) ## OK this looks good. I think I can join the bibliography table with the seanuts table
 
 
 
-aq_ref <- aquatic_inverts_micronutrients %>% 
-  select(Reference, species)
+seanuts_select3 <- left_join(seanuts_select2, bibliography, by = c("biblioid2" = "BiblioID")) %>% 
+  select(Bibliography, everything()) 
 
-no_ref_sel <- no_ref %>% 
-  select(species_name, biblioid2)
+seanuts_select3 %>% 
+  filter(is.na(biblioid2)) %>%
+  select(reference, everything()) %>% View
 
-dplyr::left_join(no_ref_sel, aq_ref, by = c("species_name" = "species")) %>% 
-  select(Reference, everything()) %>%
-  filter(!is.na(Reference)) %>% 
-  distinct(species_name, Reference) %>% View
 
-?left_join
-
-### OK somehow we need to pull the reference info from the aquatic_inverts_micronutrients.csv and plop it into seanuts_select2
-
-aquatic_inverts_micronutrients %>% 
+seanuts_select_4 <- seanuts_select3 %>% 
+  mutate(ref_info = Bibliography) %>% 
+  mutate(ref_info = ifelse(is.na(Bibliography), nutrient_ref, ref_info)) %>% 
+  mutate(ref_info = ifelse(is.na(ref_info), reference, ref_info)) %>%
+  select(ref_info, everything()) 
   
+write_csv(seanuts_select_4, "data-processed/seanuts_select_4.csv")
 
-seanuts_select2
+##### EXTRA CODE
 
 
 sum(is.na(seanuts_select2$subgroup))
