@@ -332,7 +332,7 @@ names_seanuts <- names(seanuts_ecology)
 str_subset(names_seanuts, "length")
 str_subset(names_seanuts, "Length")
 str_subset(names_seanuts, "sl")
-str_subset(names_seanuts, "troph")
+str_subset(names_seanuts, "Troph")
 
 names(seanuts_ecology)
 

@@ -19,6 +19,8 @@ library(stringr)
 
 seanuts_raw <- read_csv("data-processed/seanuts_ecology2.csv")
 
+snames <- names(seanuts_raw)
+str_subset(snames, "Brack")
 
 # trim down the giant table to just the variables we want moving forward --------
 
@@ -40,6 +42,8 @@ seanuts_select <- seanuts_raw %>%
          Sp2000_HierarchyCode, reference, Fresh, BrackishWater, Brack, contains("Length"))
 
 
+snames2 <- names(seanuts_select)
+str_subset(snames2, "Brack")
 write_csv(seanuts_select, "data-processed/seanuts_select.csv")
 
 
@@ -52,10 +56,10 @@ seanuts_select <- read_csv("data-processed/seanuts_select.csv")
 seanuts_select2 <- seanuts_select %>% 
   unite(genus_species, Genus, Species, sep = " ", remove = FALSE) %>% 
   filter(genus_species == "NA NA" | genus_species == species_name) %>% 
-  select(seanuts_id2, food_item_id_2, food_name_clean, database,
+  dplyr::select(seanuts_id2, food_item_id_2, food_name_clean, database,
          starts_with("biblio"), nutrient_ref, species_name, genus_species, subgroup,
          prot_g, protcnt_g, protein_g, fat_g, contains("fapun"), epa, dha, ca_mg, zn_mg, fe_mg, everything()) %>% 
-  select(-biblioid.y)
+  dplyr::select(-biblioid.y)
 
 
 seanuts_select2 <- seanuts_select2 %>% 
