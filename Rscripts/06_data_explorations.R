@@ -4,6 +4,9 @@
 ## latest df is write_csv(seanuts_select_4, "data-processed/seanuts_select_4.csv")
 # ### Nov 30: after fixing the latest missing subgroup data:
 # write_csv(seanuts_select_5, "data-processed/seanuts_select_5.csv")
+### Nov 30: after fixing the mcg/mg issues in the Anthony data points, 
+## write_csv(seanuts_select_6, "data-processed/seanuts_select_6.csv")
+## Dec 1: pulled in a few more traits from Fishbase
 
 # load packages -----------------------------------------------------------
 
@@ -21,17 +24,20 @@ seanuts_raw <- read_csv("data-processed/seanuts_ecology2.csv")
 
 
 cols <- names(seanuts_raw)
+cols[75:length(cols)]
 str_subset(cols, "reference")
 
 seanuts_select <- seanuts_raw %>% 
-  select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean, prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
+  dplyr::select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean,
+         prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
          length_from_study, length_source, abs_lat, latitude,
          slmax, slmax_nov28, slmax_source, lwa, lwb,
          country_region, isscaap_cat, isscaap,
          season, asfis_scientific_name_fishbase_swap_in_progress, season, season.x, season.y,
-         fapun3, fapun_all_g, Herbivory2, HerbivoryRef, FeedingType, FeedingTypeRef, FoodTroph, FoodSeTroph, StockCode, SpecCode.x, SpecCode.y,
+         fapun3, fapun_all_g, Herbivory2, HerbivoryRef, FeedingType, FeedingTypeRef,
+         contains("Troph"), StockCode, SpecCode.x, SpecCode.y,
          Genus, Species, FBname, Subfamily, DemersPelag, AnaCat, DepthRangeShallow, DepthRangeDeep, starts_with("LType"), Length, starts_with("CommonLength"), contains("Weight"),
-         Sp2000_HierarchyCode, reference)
+         Sp2000_HierarchyCode, reference, Fresh, BrackishWater, Brack, contains("Length"))
 
 
 write_csv(seanuts_select, "data-processed/seanuts_select.csv")
@@ -183,6 +189,23 @@ seanuts_select_6 %>%
 
 
 write_csv(seanuts_select_6, "data-processed/seanuts_select_6.csv")
+
+
+### Dec 1 2016
+
+seanuts_select_6 <- read_csv("data-processed/seanuts_select_6.csv")
+seanuts_select_6 %>% 
+  filter(grepl("Anthony, Jane E., et al.", ref_info)) %>% View
+
+
+
+ecology <- read_csv("data-processed/inf_ecology2.csv")
+
+ecology1 <- read_csv("data-processed/inf_ecology.csv")
+
+ecology2 <- read_csv("data-processed/ecology2.csv")
+species2 <- read_csv("data-processed/species2.csv")
+
 
 
 ##### EXTRA CODE

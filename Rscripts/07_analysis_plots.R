@@ -15,12 +15,12 @@ suppressPackageStartupMessages(library(vegan))
 library(purrr)
 library(arm)
 library(ggvegan)
+library(dplyr)
 
 
 
 # read in data ------------------------------------------------------------
 
-a22 <- read_csv("data-processed/all_nuts_working25.csv")
 a22 <- read_csv("data-processed/seanuts_select_6.csv")
 
 n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## this is latest working version from round 1.
@@ -121,7 +121,7 @@ min.env <- min.env %>%
 
 #### begin ordination!
 
-ord.mine <- metaMDS(matrix.min, distance="bray", trymax=100)
+ord.mine <- metaMDS(matrix.min, distance="bray", trymax=200)
 ord.mine$stress
 
 ## try plotting the ggvegan way
@@ -131,10 +131,11 @@ ord_long <- fortify(ord.mine)
 
 ### now join the ordination results with the subgroup data
 
-scaling <- left_join(ord_long, min.env, by = c("Label" = "species_name"))
+scaling <- left_join(ord_long, min.env, by = c("Label" = "species_name")) %>% 
+  filter(Score == "sites")
 
-ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup, label = Label)) + geom_point() +
-  geom_text(check_overlap = TRUE)
+ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup, label = Label)) + geom_point(size = 4) +
+  geom_label()
 
 
 plot(ord.mine, type = "t",cex=.5)
@@ -180,7 +181,7 @@ plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
 
 ## Use betadisper to test the significance of the multivariate groups
 # min.subgroup <- min.env$subgroup
-min.subgroup <- new.compiled$subgroup
+min.subgroup <- scaling$subgroup
 length(min.subgroup)
 str(comm.bc.dist)
 
@@ -205,7 +206,7 @@ min.subgroup %>%
 # RDI analysis ------------------------------------------------------------
 
 aq.wide <- a22 %>% 
-  select(species_name, subgroup, prot_g, protcnt_g, epa, dha, fapun3, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id, tl, food_item_id)  
+  dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, fapun3, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id2, tl, food_item_id_2)  
   
 
 
@@ -247,7 +248,7 @@ RDI_minerals %>%
 
 #### species accumulation curves
 
-RDIS <- select(RDI_minerals, 6:8)
+RDIS <- dplyr::select(RDI_minerals, 6:8)
 
 spa.rand <- specaccum(RDIS, method = "random")
 # png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
@@ -261,14 +262,14 @@ summary(spa.rand)
 
 RDI_minerals %>% 
   filter(subgroup == "Finfish") %>% 
-  select(6:8) %>% 
+  dplyr::select(6:8) %>% 
 specaccum(., method = "random") %>% 
 plot(., col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "blue", ylim = c(0,3.5), xlim = c(0,60), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients: 25% RDI targets")
 
 
 spec <- RDI_minerals %>% 
   filter(subgroup == "Finfish") %>% 
-  select(6:8) %>% 
+  dplyr::select(6:8) %>% 
   specaccum(., method = "random")
 
 str(spec)
@@ -299,9 +300,9 @@ ntbl.RDI.all <- aq.wide %>%
 
 ### create spa curves for each of the subgroups individually
 subgroup_spa <- ntbl.RDI.all %>%
-  select(-RDI.micro.tot) %>%
-  select(-contains("mean")) %>% 
-  select(-species_name) %>% 
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>% 
+  dplyr::select(-species_name) %>% 
   split( .$subgroup) %>% 
   map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
   map(.f = specaccum, method = "random")
@@ -319,6 +320,7 @@ subgroup_spa %>%
 # traits section ----------------------------------------------------------
 
 seanuts_ecology <- read_csv("data-processed/seanuts_ecology.csv")
+seanuts_ecology <- read_csv("data-processed/seanuts_select_6.csv")
 
 ## ok let's just get rid of the one super outlier ca and fe measurement for now
 
@@ -330,14 +332,21 @@ names_seanuts <- names(seanuts_ecology)
 str_subset(names_seanuts, "length")
 str_subset(names_seanuts, "Length")
 str_subset(names_seanuts, "sl")
+str_subset(names_seanuts, "troph")
 
 names(seanuts_ecology)
 
 sum(!is.na(seanuts_ecology$Length))
+sum(!is.na(seanuts_ecology$slmax))
 sum(!is.na(seanuts_ecology$length_from_study))
 
+seanuts_ecology <- seanuts_ecology %>% 
+  rename(foodtroph = FoodTroph)
+
 n.long <- seanuts_ecology %>% 
-  dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg, seanuts_id2, tl, food_item_id_2, Length, abs_lat, foodtroph) %>% 
+  dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g,
+                zn_mg, fe_mg, slmax, seanuts_id2, tl, food_item_id_2,
+                Length, abs_lat, foodtroph, Herbivory2) %>% 
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) 
 
@@ -345,6 +354,14 @@ n.long %>%
   filter(nutrient == "ca_mg") %>% 
   ggplot(aes(x = log(Length), y = log(concentration))) + geom_point() +
   geom_smooth(method = "lm")
+
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  ggplot(aes(x = log(slmax), y = log(concentration))) + geom_point() +
+  geom_smooth(method = "lm")
+
+
 
 
 sum(!is.na(n.long$foodtroph))
@@ -358,12 +375,13 @@ n.long %>%
   # filter(nutrient == "CA_mg") %>% 
   # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
   group_by(nutrient) %>% 
-  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + tl + abs_lat + foodtroph, data = .), conf.int = TRUE)) %>% 
+  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + tl + abs_lat + foodtroph + Herbivory2, data = .), conf.int = TRUE)) %>% 
   unnest(fit) %>% 
   filter(term != "(Intercept)") %>% 
-  ggplot(aes(x = term, y = estimate)) + geom_point() +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) +
-  facet_wrap( ~ nutrient) + geom_hline(yintercept = 0)
+  ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) +
+  facet_wrap( ~ nutrient, scales = "free") + geom_hline(yintercept = 0) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 n.long %>% 
   filter(nutrient == "ca_mg") %>% 

@@ -69,7 +69,7 @@ seanuts <- read_csv("data-processed/all_nuts_working27_subset.csv")
 ecology2 <- read_csv("data-processed/ecology2.csv")
 species2 <- read_csv("data-processed/species2.csv")
 
-
+length(unique(species2$sciname))
 
 # begin the joins!! -------------------------------------------------------
 
