@@ -332,7 +332,7 @@ names_seanuts <- names(seanuts_ecology)
 str_subset(names_seanuts, "length")
 str_subset(names_seanuts, "Length")
 str_subset(names_seanuts, "sl")
-str_subset(names_seanuts, "Troph")
+str_subset(names_seanuts, "BrackishWater")
 
 names(seanuts_ecology)
 
@@ -346,7 +346,7 @@ seanuts_ecology <- seanuts_ecology %>%
 n.long <- seanuts_ecology %>% 
   dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g,
                 zn_mg, fe_mg, slmax, seanuts_id2, tl, food_item_id_2,
-                Length, abs_lat, foodtroph, Herbivory2) %>% 
+                Length, abs_lat, Herbivory2, DemersPelag, contains("Brack"), Marine, Fresh, contains("troph"), contains("length"), contains("weight")) %>% 
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) 
 
@@ -369,19 +369,36 @@ sum(!is.na(n.long$tl))
 
 ggplot(aes(x = foodtroph, y = tl), data = n.long) + geom_point()
 
-
+str(n.long)
 
 n.long %>% 
   # filter(nutrient == "CA_mg") %>% 
   # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
   group_by(nutrient) %>% 
-  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + tl + abs_lat + foodtroph + Herbivory2, data = .), conf.int = TRUE)) %>% 
+  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + DemersPelag + tl + abs_lat + FoodTroph, data = .), conf.int = TRUE)) %>% 
   unnest(fit) %>% 
   filter(term != "(Intercept)") %>% 
   ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) +
   facet_wrap( ~ nutrient, scales = "free") + geom_hline(yintercept = 0) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+seanuts_ecology %>% 
+  # filter(nutrient == "CA_mg") %>% 
+  # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
+  do(fit = tidy(lm(log(ca_mg) ~ log(Length) + DemersPelag + tl + abs_lat + FoodTroph, data = .), conf.int = TRUE)) %>% 
+  unnest(fit) %>% 
+  filter(term != "(Intercept)") %>%
+  ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) +
+  geom_hline(yintercept = 0) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+
+
 
 n.long %>% 
   filter(nutrient == "ca_mg") %>% 

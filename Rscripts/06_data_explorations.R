@@ -20,7 +20,7 @@ library(stringr)
 seanuts_raw <- read_csv("data-processed/seanuts_ecology2.csv")
 
 snames <- names(seanuts_raw)
-str_subset(snames, "Brack")
+str_subset(snames, "Marine")
 
 # trim down the giant table to just the variables we want moving forward --------
 
@@ -39,7 +39,7 @@ seanuts_select <- seanuts_raw %>%
          fapun3, fapun_all_g, Herbivory2, HerbivoryRef, FeedingType, FeedingTypeRef,
          contains("Troph"), StockCode, SpecCode.x, SpecCode.y,
          Genus, Species, FBname, Subfamily, DemersPelag, AnaCat, DepthRangeShallow, DepthRangeDeep, starts_with("LType"), Length, starts_with("CommonLength"), contains("Weight"),
-         Sp2000_HierarchyCode, reference, Fresh, BrackishWater, Brack, contains("Length"))
+         Sp2000_HierarchyCode, reference, Fresh, Marine, BrackishWater, Brack, contains("Length"))
 
 
 snames2 <- names(seanuts_select)
