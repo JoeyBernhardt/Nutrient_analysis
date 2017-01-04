@@ -7,6 +7,7 @@
 ### Nov 30: after fixing the mcg/mg issues in the Anthony data points, 
 ## write_csv(seanuts_select_6, "data-processed/seanuts_select_6.csv")
 ## Dec 1: pulled in a few more traits from Fishbase
+## write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
 
 # load packages -----------------------------------------------------------
 
@@ -210,6 +211,50 @@ ecology1 <- read_csv("data-processed/inf_ecology.csv")
 ecology2 <- read_csv("data-processed/ecology2.csv")
 species2 <- read_csv("data-processed/species2.csv")
 
+
+
+
+# now bring in new (Dec4) data --------------------------------------------
+
+seanuts_new4_all <- read_csv("data-processed/seanuts_new4_all.csv")
+seanuts_select_6 <- read_csv("data-processed/seanuts_select_6.csv")
+
+
+seanuts_new5all <- seanuts_new4_all %>% 
+  dplyr::select(1:34, 
+                seanuts_id2, species_name, subgroup, food_name_clean,
+                                protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
+                                length_from_study, length_source, abs_lat, latitude,
+                                slmax,
+                                country_region, isscaap_cat,
+                                season, season, 
+                                fapun3, fapun_all_g, Herbivory2, HerbivoryRef, FeedingType, FeedingTypeRef,
+                                contains("Troph"), StockCode, SpecCode.x, SpecCode.y,
+                                Genus, Species, FBname, Subfamily, DemersPelag, AnaCat, DepthRangeShallow, DepthRangeDeep, starts_with("LType"), Length, starts_with("CommonLength"), contains("Weight"),
+                                Fresh, Brack, contains("Length"))
+
+
+
+
+seanuts_select_6 <- seanuts_select_6 %>% 
+  mutate(protein_g = as.numeric(protein_g))
+
+seanuts_select_7 <- bind_rows(seanuts_select_6, seanuts_new5all)
+
+write_csv(seanuts_select_7, "data-processed/seanuts_select_7.csv")
+
+seanuts_select_7 <- read_csv("data-processed/seanuts_select_7.csv")
+
+
+seanuts_select_8 <- seanuts_select_7 %>% 
+  mutate(subgroup = str_replace(subgroup, "Molluscs", "mollusc")) %>% 
+  mutate(subgroup = str_replace(subgroup, "Crustacean", "crustacean")) %>% 
+  mutate(subgroup = str_replace(subgroup, "Finfish", "finfish"))
+
+unique(seanuts_select_8$subgroup)
+
+
+write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
 
 
 ##### EXTRA CODE

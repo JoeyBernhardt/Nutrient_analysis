@@ -1,7 +1,7 @@
 #### Cleaning up the horrendously messy all_nuts_messy.csv, which contains all the nutrient data from databases to date
 #### Last updated November 15 2016
 #### Still need to bring in the non database data
-
+#### Updated Dec 4 to bring in newly acquired data from seanuts_new
 
 
 # load libraries ----------------------------------------------------------
@@ -633,5 +633,26 @@ a27_subset <- a26 %>%
 
 write_csv(a27_subset, "data-processed/all_nuts_working27_subset.csv" )
 
+### Dec 4 bringing in and cleaning newly acquired nutrient data
+
+seanuts_new <- read_csv("data/seanuts_new.csv")
+
+seanuts_new2 <- seanuts_new %>% 
+  select(-food_name_clean_1)
+
+### now take out the entries from the bogard paper that have a's because they are replicates of data already published in Roos et a. 2001
+
+names(seanuts_new2)
+
+seanuts_new3 <- seanuts_new2 %>% 
+  mutate(ca_mg = ifelse(grepl("a", ca_mg), NA, ca_mg)) %>% 
+  mutate(fe_mg = ifelse(grepl("a", fe_mg), NA, fe_mg)) %>% 
+  mutate(zn_mg = ifelse(grepl("a", zn_mg), NA, zn_mg)) %>% 
+  mutate(K_mg = ifelse(grepl("a", K_mg), NA, K_mg)) %>% 
+  mutate(mg_mg = ifelse(grepl("a", mg_mg), NA, mg_mg)) %>% 
+  mutate(vit_a_IU = ifelse(grepl("a", vit_a_IU), NA, vit_a_IU)) 
 
 
+unique(seanuts_new3$ca_mg)
+  
+write_csv(seanuts_new3, "data-processed/seanuts_new3.csv")

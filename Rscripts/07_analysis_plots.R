@@ -21,7 +21,7 @@ library(dplyr)
 
 # read in data ------------------------------------------------------------
 
-a22 <- read_csv("data-processed/seanuts_select_6.csv")
+a22 <- read_csv("data-processed/seanuts_select_8.csv")
 
 n.long <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## this is latest working version from round 1.
 
@@ -89,22 +89,6 @@ min.mat <- minerals %>%
   ungroup() %>% 
   dplyr::distinct(species_name, .keep_all = TRUE)
 
-### visualize the data before proceeding
-
-min.mat %>% 
-  # filter(species_name == "Crassostrea virginica") %>% 
-  filter(subgroup == "Molluscs") %>% 
-  arrange(species_name, desc(mean.CA)) %>% View
-
-crass <- a22 %>% 
-  filter(species_name == "Crassostrea virginica") %>% 
-  arrange(species_name, desc(ca_mg)) %>% 
-  dplyr::select(ref_info)
-  
-anthony_ref <- crass %>% 
-  filter(grepl("Anthony", ref_info)) 
-
-anthony_ref
 
 matrix.min <- data.matrix(min.mat[, 3:5])
 rownames(matrix.min) <- min.mat$species_name 
@@ -138,9 +122,11 @@ ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup, label = Label)
   geom_label()
 
 
-plot(ord.mine, type = "t",cex=.5)
+ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup)) + geom_point(size = 4) 
+
+
 site.scaling <- as.data.frame(ord.mine$points)
-points(site.scaling,pch=16)
+
 
 
 
@@ -350,19 +336,6 @@ n.long <- seanuts_ecology %>%
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) 
 
-n.long %>% 
-  filter(nutrient == "ca_mg") %>% 
-  ggplot(aes(x = log(Length), y = log(concentration))) + geom_point() +
-  geom_smooth(method = "lm")
-
-
-n.long %>% 
-  filter(nutrient == "ca_mg") %>% 
-  ggplot(aes(x = log(slmax), y = log(concentration))) + geom_point() +
-  geom_smooth(method = "lm")
-
-
-
 
 sum(!is.na(n.long$foodtroph))
 sum(!is.na(n.long$tl))
@@ -385,18 +358,14 @@ n.long %>%
 
 
 seanuts_ecology %>% 
-  # filter(nutrient == "CA_mg") %>% 
-  # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
-  do(fit = tidy(lm(log(ca_mg) ~ log(Length) + DemersPelag + tl + abs_lat + FoodTroph, data = .), conf.int = TRUE)) %>% 
+  # mutate_each_(funs(scale), vars = c("Length", "tl", "abs_lat")) %>% 
+  do(fit = tidy(lm(log(zn_mg) ~ log(Length) + DemersPelag + tl + abs_lat, data = .), conf.int = TRUE)) %>% 
   unnest(fit) %>% 
   filter(term != "(Intercept)") %>%
   ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) +
   geom_hline(yintercept = 0) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-
 
 
 

@@ -9,6 +9,8 @@
 ### Nov 27 now updating with the weirdly different new results from the fishbase calls
 ## Nov 29: "data-processed/seanuts_ecology2.csv" is the latest output from this file
 
+## Dec 4 now moving forward with the newly aquired nutrient data
+
 # load pacakges -----------------------------------------------------------
 
 library(tidyverse)
@@ -80,6 +82,24 @@ inf_all2 <- left_join(inf_all, species2, by = c("species_name" = "sciname"))
 
 # write_csv(inf_nuts_all, "data-processed/seanuts_ecology.csv")
 write_csv(inf_all2, "data-processed/seanuts_ecology2.csv")
+
+### Dec 4 update, joining the new nutrient data with the new fishbase data
+
+seanuts_new3 <- read_csv("data-processed/seanuts_new3.csv")
+species_seanuts_new <- read_csv("data-processed/species_seanuts_new.csv")
+ecology_seanuts_new <- read_csv("data-processed/ecology_seanuts_new.csv")
+
+
+## let's join the new seanuts and fishbase data!
+
+seanuts_new3_all <- left_join(seanuts_new3, species_seanuts_new, by = c("species_name" = "sciname"))
+seanuts_new4_all <- left_join(seanuts_new3_all, ecology_seanuts_new, by = c("species_name" = "sciname"))
+
+write_csv(seanuts_new4_all, "data-processed/seanuts_new4_all.csv")
+
+# extra code --------------------------------------------------------------
+
+
 
 inf_minerals_all <- left_join(inf_minerals, inf_all) %>% 
   remove_empty_cols()

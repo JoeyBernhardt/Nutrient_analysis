@@ -1,6 +1,6 @@
 ## compiling traits table from fishbase
 
-
+## last updated Dec 4 to get traits from newly acquired nutrient data (seanuts_new3)
 
 # load packages -----------------------------------------------------------
 
@@ -89,3 +89,17 @@ invs1_species <- unique(inf_ecology_raw$sciname)
 length(invs1_species)
 
 intersect(invs1_species, ninvs_species)
+
+
+### Dec 4 updates
+
+fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
+seanuts_new3 <- read_csv("data-processed/seanuts_new3.csv")
+
+new_species <- unique(intersect(fishbase_species_list$species_name, seanuts_new3$species_name))
+
+ecology_seanuts_new <- ecology(new_species)
+species_seanuts_new <- species(new_species)
+
+write_csv(ecology_seanuts_new, "data-processed/ecology_seanuts_new.csv")
+write_csv(species_seanuts_new, "data-processed/species_seanuts_new.csv")
