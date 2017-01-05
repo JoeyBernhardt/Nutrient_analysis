@@ -8,6 +8,8 @@
 ## write_csv(seanuts_select_6, "data-processed/seanuts_select_6.csv")
 ## Dec 1: pulled in a few more traits from Fishbase
 ## write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
+## Jan 4 2017 updated with new nutrient data, 
+# write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
 
 # load packages -----------------------------------------------------------
 
@@ -215,8 +217,10 @@ species2 <- read_csv("data-processed/species2.csv")
 
 
 # now bring in new (Dec4) data --------------------------------------------
+# Updated Jan 4 2017 with new data --------------------------------------------
 
-seanuts_new4_all <- read_csv("data-processed/seanuts_new4_all.csv")
+# seanuts_new4_all <- read_csv("data-processed/seanuts_new4_all.csv")
+seanuts_new4_all <- read_csv("data-processed/seanuts_new6_all.csv") ## this is now the file with the Jan 4 2017 updated data
 seanuts_select_6 <- read_csv("data-processed/seanuts_select_6.csv")
 
 

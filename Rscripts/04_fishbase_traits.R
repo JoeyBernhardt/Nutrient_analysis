@@ -7,6 +7,7 @@
 library(tidyverse)
 library(rfishbase)
 library(stringr)
+library(janitor)
 
 # read in species list  ---------------------------------------------------
 
@@ -96,7 +97,18 @@ intersect(invs1_species, ninvs_species)
 fishbase_species_list <- read_csv("data-processed/fishbase_species_names.csv")
 seanuts_new3 <- read_csv("data-processed/seanuts_new3.csv")
 
-new_species <- unique(intersect(fishbase_species_list$species_name, seanuts_new3$species_name))
+### Jan 5 2017 updates
+
+seanuts_new4 <- read_csv("data/seanuts_new4.csv")
+seanuts_new4 <- seanuts_new4 %>% 
+  remove_empty_cols()
+  
+
+
+seanuts_new5 <- bind_rows(seanuts_new3, seanuts_new4)
+write_csv(seanuts_new5, "data-processed/seanuts_new5.csv")
+
+new_species <- unique(intersect(fishbase_species_list$species_name, seanuts_new5$species_name))
 
 ecology_seanuts_new <- ecology(new_species)
 species_seanuts_new <- species(new_species)
