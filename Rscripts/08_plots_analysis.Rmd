@@ -308,7 +308,7 @@ subgroup_spa %>%
 ```{r}
 # traits section ----------------------------------------------------------
 
-seanuts_ecology <- read_csv("data-processed/seanuts_ecology.csv")
+# seanuts_ecology <- read_csv("data-processed/seanuts_ecology.csv")
 seanuts_ecology <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_8.csv")
 
 ## ok let's just get rid of the one super outlier ca and fe measurement for now
