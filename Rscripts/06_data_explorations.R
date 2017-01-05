@@ -253,7 +253,17 @@ seanuts_select_7 <- read_csv("data-processed/seanuts_select_7.csv")
 seanuts_select_8 <- seanuts_select_7 %>% 
   mutate(subgroup = str_replace(subgroup, "Molluscs", "mollusc")) %>% 
   mutate(subgroup = str_replace(subgroup, "Crustacean", "crustacean")) %>% 
-  mutate(subgroup = str_replace(subgroup, "Finfish", "finfish"))
+  mutate(subgroup = str_replace(subgroup, "Finfish", "finfish")) %>% 
+  mutate(subgroup = ifelse(food_name_clean %in% c("red scorpion fish", "brown scorpion fish", "european hake", "angler fish", 
+                                                  "turbotfish", "John Dory", "Greater weever fish", "Tub gurnard", "Pike"), "finfish", subgroup)) %>% 
+  mutate(subgroup = ifelse(food_name_clean %in% c("Warty crab", "shamefaced crab", "shovelnosed lobster", "spiny lobster", "norway lobster", "shrimp"), "crustacean", subgroup)) %>%
+  mutate(subgroup = ifelse(food_name_clean %in% c("broadtail shorfin squid", "european squid", "common octopus", "common cuttlefish", "sea snail", "pecten"), "mollusc", subgroup))
+
+seanuts_select_8 %>% 
+  filter(is.na(subgroup)) %>%
+  dplyr::select(food_name_clean)
+
+
 
 unique(seanuts_select_8$subgroup)
 
