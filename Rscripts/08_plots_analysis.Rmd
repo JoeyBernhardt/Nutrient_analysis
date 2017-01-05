@@ -323,8 +323,6 @@ str_subset(names_seanuts, "Length")
 str_subset(names_seanuts, "sl")
 str_subset(names_seanuts, "BrackishWater")
 
-names(seanuts_ecology)
-
 sum(!is.na(seanuts_ecology$Length))
 sum(!is.na(seanuts_ecology$slmax))
 sum(!is.na(seanuts_ecology$length_from_study))
@@ -339,26 +337,39 @@ n.long <- seanuts_ecology %>%
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) 
 
-
-sum(!is.na(n.long$foodtroph))
-sum(!is.na(n.long$tl))
-
 ggplot(aes(x = foodtroph, y = tl), data = n.long) + geom_point()
 ```
 
 
 ```{r}
+names(n.long)
+unique(n.l)
+
 n.long %>% 
-  # filter(nutrient == "CA_mg") %>% 
+  filter(nutrient %in% c("ca_mg", "fe_mg", "zn_mg")) %>%
+  # filter(nutrient %in% c("epa", "dha")) %>%
   # mutate_each_(funs(scale), vars = c("max_length", "TL", "Abs_lat")) %>% 
   group_by(nutrient) %>% 
-  do(fit = tidy(lm(log(.$concentration) ~ log(Length) + DemersPelag + tl + abs_lat + foodtroph, data = .), conf.int = TRUE)) %>% 
-  unnest(fit) %>% 
+  do(fit = glance(lm(log(.$concentration) ~ log(CommonLength), data = .), conf.int = TRUE)) %>% 
+  unnest(fit) %>% View
   filter(term != "(Intercept)") %>% 
   ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) +
-  facet_wrap( ~ nutrient, scales = "free") + geom_hline(yintercept = 0) + 
+  facet_wrap( ~ nutrient, scales = "free") +
+  geom_hline(yintercept = 0) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  ggplot(aes(x = log(CommonLength), y = log(concentration))) + geom_point() +
+  geom_smooth(method = "lm")
+
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  lm(log(concentration) ~ log(Length), data = .) %>% 
+  summary
+  
 ```
 
 ```{r}
@@ -381,9 +392,12 @@ n.long %>%
 ```
 
 ```{r}
+
+str(n.long)
 n.long %>% 
-  filter(nutrient == "zn_mg") %>% 
-  lm(log(concentration) ~ log(Length) + abs_lat + foodtroph, data = .) %>% 
+  filter(nutrient == "fe_mg") %>% 
+  filter(!is.na(concentration)) %>% 
+  lm(concentration ~ log(Length), data = .) %>% 
   summary
 
 
