@@ -15,6 +15,7 @@
 
 library(tidyverse)
 library(stringr)
+library(janitor)
 
 
 
@@ -271,6 +272,71 @@ unique(seanuts_select_8$subgroup)
 write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
 
 
+# Jan 14 2017, bring in new trait data from online searching --------------
+
+seanuts_ecology <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_8.csv")
+
+## ok let's just get rid of the one super outlier ca and fe measurement for now
+
+seanuts_ecology$ca_mg[seanuts_ecology$ca_mg == 41206.00000] <- NA
+seanuts_ecology$fe_mg[seanuts_ecology$fe_mg > 40939.00000] <- NA
+
+seanuts_2 <- seanuts_ecology %>% 
+  rowwise() %>% 
+  mutate(avg_length = mean(c(Length, slmax), na.rm = TRUE)) %>% 
+  clean_names() %>% 
+  select(avg_length, length, slmax, foodtroph, feedingtype, everything())
+
+
+no_length_withdata <- read_csv("data-processed/no_length_withdata.csv")
+
+
+new_lengths2 <- no_length_withdata %>% 
+  select(seanuts_id2, avg_length, length, slmax, foodtroph, feedingtype, feeding_habit, length_source, length_source_1, accepted_name, species_name) %>% 
+  rename(herbivory2 = feedingtype)
+
+str(new_lengths2)
+
+seanuts_3 <- left_join(seanuts_2, new_lengths2, by = "seanuts_id2")
+
+str(seanuts_3)
+seanuts_4 <- seanuts_3 %>% 
+  select(contains(".x"), contains(".y"), everything()) %>% 
+  rowwise() %>% 
+  mutate(mean_length = mean(c(avg_length.x, avg_length.y, length.x, length.y, avg_length.y), na.rm = TRUE)) 
+
+seanuts_4 %>% 
+  select(mean_length, length.y, everything()) %>% View
+
+seanuts5 <- seanuts_4 %>% 
+  rowwise %>% 
+  mutate(max_length = mean(c(slmax.x, slmax.y, slmax_nov28), na.rm = TRUE))
+  
+seanuts6 <- seanuts5 %>% 
+  mutate(feeding_level = ifelse(is.na(herbivory2.x), herbivory2.y, herbivory2.x)) %>% 
+  select(feeding_level, contains("feeding"), everything()) %>% 
+  mutate(feeding_mode = ifelse(is.na(feedingtype), feeding_habit, feedingtype)) %>% 
+  select(feeding_mode, contains("feeding"), everything()) %>%
+  mutate(trophic_level = ifelse(is.na(foodtroph.x), foodtroph.y, foodtroph.x)) %>% 
+  select(trophic_level, foodtroph.x, foodtroph.y, everything()) %>% 
+  mutate(max_length = mean(c(slmax.x, slmax.y, slmax_nov28), na.rm = TRUE)) %>%
+  select(max_length, contains("slmax"), everything())
+
+
+seanuts6 %>%
+  select(species_name.x, mean_length, max_length) %>% 
+  group_by(species_name.x) %>% 
+  summarise_each(funs(mean), mean_length, max_length) %>% View 
+  filter(is.na(mean_mean_length)) %>% 
+  group_by(species_name.x) %>% 
+  filter(is.na(max_length)) %>%
+  filter(is.na(mean_length)) %>% 
+  select(mean_length, max_length, contains(".x"), contains(".y"), everything()) %>% View
+        
+  
+### OK so what I need to fix here is to get the values for size to fill in where there are 
+### repeats for the species, but no concordant trait values. Maybe make a litle look up table that will fill in the missing values??
+     
 ##### EXTRA CODE
 
 

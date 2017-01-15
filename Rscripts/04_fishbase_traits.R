@@ -103,15 +103,25 @@ seanuts_new4 <- read_csv("data/seanuts_new4.csv")
 seanuts_new4 <- seanuts_new4 %>% 
   remove_empty_cols()
   
+fishbase_species <- fishbase_species_list$species_name
 
+str_subset(fishbase_species, "Mytilus galloprovincialis")
 
 seanuts_new5 <- bind_rows(seanuts_new3, seanuts_new4)
 write_csv(seanuts_new5, "data-processed/seanuts_new5.csv")
 
+seanuts_new5 <- read_csv("data-processed/seanuts_new5.csv")
+
 new_species <- unique(intersect(fishbase_species_list$species_name, seanuts_new5$species_name))
 
+new_species_no_length <- unique(intersect(fishbase_species_list$species_name, species_no_length))
+
+species("Xiphopenaeus kroyeri")
+options(FISHBASE_API = "http://fishbase.ropensci.org/sealifebase")
+options(FISHBASE_API = "http://fishbase.ropensci.org")
+
 ecology_seanuts_new <- ecology(new_species)
-species_seanuts_new <- species(new_species)
+species_seanuts_new <- species(new_species_no_length)
 
 write_csv(ecology_seanuts_new, "data-processed/ecology_seanuts_new.csv")
 write_csv(species_seanuts_new, "data-processed/species_seanuts_new.csv")
