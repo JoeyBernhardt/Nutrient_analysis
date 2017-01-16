@@ -10,6 +10,8 @@
 ## write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
 ## Jan 4 2017 updated with new nutrient data, 
 # write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
+## Jan 16, updated with new size data, 
+## write_csv(seanuts_select_9, "data-processed/seanuts_select_9.csv")
 
 # load packages -----------------------------------------------------------
 
@@ -297,10 +299,14 @@ new_lengths2 <- no_length_withdata %>%
 
 str(new_lengths2)
 
-seanuts_3 <- left_join(seanuts_2, new_lengths2, by = "seanuts_id2")
+new_lengths2b <- new_lengths2 %>% 
+  select(-seanuts_id2)
 
-str(seanuts_3)
-seanuts_4 <- seanuts_3 %>% 
+seanuts_3 <- left_join(seanuts_2, new_lengths2, by = "seanuts_id2")
+seanuts_3b <- left_join(seanuts_2, new_lengths2b, by = "species_name")
+str(seanuts_3b)
+
+seanuts_4 <- seanuts_3b %>% 
   select(contains(".x"), contains(".y"), everything()) %>% 
   rowwise() %>% 
   mutate(mean_length = mean(c(avg_length.x, avg_length.y, length.x, length.y, avg_length.y), na.rm = TRUE)) 
@@ -323,17 +329,26 @@ seanuts6 <- seanuts5 %>%
   select(max_length, contains("slmax"), everything())
 
 
+
+seanuts_select_9 <- seanuts6
+
+write_csv(seanuts_select_9, "data-processed/seanuts_select_9.csv")
+
+str(seanuts6)
 seanuts6 %>%
-  select(species_name.x, mean_length, max_length) %>% 
-  group_by(species_name.x) %>% 
-  summarise_each(funs(mean), mean_length, max_length) %>% View 
-  filter(is.na(mean_mean_length)) %>% 
-  group_by(species_name.x) %>% 
+  select(species_name, mean_length, max_length) %>% 
+  group_by(species_name) %>% 
+  summarise_all(.funs = mean, na.rm = TRUE) %>% 
+  filter(is.na(mean_length)) %>%
+  filter(is.na(max_length)) %>% View
+  group_by(species_name) %>% 
   filter(is.na(max_length)) %>%
   filter(is.na(mean_length)) %>% 
   select(mean_length, max_length, contains(".x"), contains(".y"), everything()) %>% View
         
-  
+  ?summarize_each
+
+
 ### OK so what I need to fix here is to get the values for size to fill in where there are 
 ### repeats for the species, but no concordant trait values. Maybe make a litle look up table that will fill in the missing values??
      
