@@ -309,7 +309,8 @@ str(seanuts_3b)
 seanuts_4 <- seanuts_3b %>% 
   select(contains(".x"), contains(".y"), everything()) %>% 
   rowwise() %>% 
-  mutate(mean_length = mean(c(avg_length.x, avg_length.y, length.x, length.y, avg_length.y), na.rm = TRUE)) 
+  mutate(mean_length = mean(c(avg_length.x, avg_length.y, length.x, length.y, avg_length.y), na.rm = TRUE)) %>% 
+  select(mean_length, everything())
 
 seanuts_4 %>% 
   select(mean_length, length.y, everything()) %>% View
@@ -334,24 +335,38 @@ seanuts_select_9 <- seanuts6
 
 write_csv(seanuts_select_9, "data-processed/seanuts_select_9.csv")
 
+seanuts_select_9 <- read_csv("data-processed/seanuts_select_9.csv")
+
 str(seanuts6)
-seanuts6 %>%
-  select(species_name, mean_length, max_length) %>% 
+lengths <- seanuts6 %>%
+  select(species_name, mean_length, max_length, trophic_level) %>% 
   group_by(species_name) %>% 
   summarise_all(.funs = mean, na.rm = TRUE) %>% 
-  filter(is.na(mean_length)) %>%
-  filter(is.na(max_length)) %>% View
-  group_by(species_name) %>% 
-  filter(is.na(max_length)) %>%
-  filter(is.na(mean_length)) %>% 
-  select(mean_length, max_length, contains(".x"), contains(".y"), everything()) %>% View
-        
-  ?summarize_each
+  rename(bulk_mean_length = mean_length,
+         bulk_max_length = max_length,
+         bulk_trophic_level = trophic_level)
+  
+seanuts_select_10 <- left_join(seanuts_select_9, lengths, by = "species_name")
 
+
+
+write_csv(seanuts_select_10, "data-processed/seanuts_select_10.csv")
+
+seanuts_select_10 <- read_csv("data-processed/seanuts_select_10.csv")
+
+seanuts_select_10 <- seanuts_select_10 %>% 
+  select(species_name, contains("feeding"), contains("herbivory"), contains("length"), everything()) %>% 
+  arrange(species_name)
+write_csv(seanuts_select_10, "data-processed/seanuts_select_10.csv")
 
 ### OK so what I need to fix here is to get the values for size to fill in where there are 
 ### repeats for the species, but no concordant trait values. Maybe make a litle look up table that will fill in the missing values??
+
+## Jan 16 update: so I uploaded the select_10 file as a csv to google sheets and went and filled in the missing values
+
+seanuts_select_11 <- read_csv("data-processed/seanuts_select_11.csv")
      
+
 ##### EXTRA CODE
 
 

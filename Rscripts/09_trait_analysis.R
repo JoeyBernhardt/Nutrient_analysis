@@ -12,7 +12,7 @@ library(broom)
 
 # load data ---------------------------------------------------------------
 
-seanuts_ecology <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_8.csv")
+seanuts_ecology <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_11.csv")
 
 ## ok let's just get rid of the one super outlier ca and fe measurement for now
 
@@ -22,47 +22,28 @@ seanuts_ecology$fe_mg[seanuts_ecology$fe_mg > 40939.00000] <- NA
 
 # explore the dataset a bit -----------------------------------------------
 
+## Here are the main variables we'll use in the traits analysis
 
-names_seanuts <- names(seanuts_ecology)
-str_subset(names_seanuts, "length")
-str_subset(names_seanuts, "Length")
-str_subset(names_seanuts, "sl")
-str_subset(names_seanuts, "BrackishWater")
-
-sum(!is.na(seanuts_ecology$Length))
-sum(!is.na(seanuts_ecology$slmax))
-sum(!is.na(seanuts_ecology$length_from_study))
-sum(!is.na(seanuts_ecology$CommonLength))
-
-
-
-
+seanuts_ecology %>% 
+  select(species_name, contains("bulk"), contains("length")) %>% View
 
 ## let's figure out which length measurement makes sense to use
 
-ggplot(aes(x = Length, y = slmax_nov28), data = seanuts_ecology) + geom_point() +
-  geom_abline(slope = 1, intercept = 0)
-
-seanuts_ecology %>% 
-  filter(is.na(Length) | is.na(slmax) | is.na(slmax_nov28)) %>% 
-  select(Length, slmax, slmax_nov28, everything()) %>% View
 
 ## ok let's take an average of all the length measurements and use that for now
+# this is now obsolete, since I've gone back and fixed the missing lengths.
 
 seanuts_2 <- seanuts_ecology %>% 
-  rowwise() %>% 
-  mutate(avg_length = mean(c(Length, slmax), na.rm = TRUE)) %>% 
-  select(avg_length, Length, slmax, everything()) %>% 
-  clean_names()
+  clean_names() %>% 
+  select(bulk_mean_length, bulk_max_length, everything())
 
-seanuts_ecology <- seanuts_ecology %>% 
-  clean_names()
+hist(seanuts_2$bulk_mean_length)
 
 ### checking to see which species we don't have length data for:
 no_length <- seanuts_2 %>% 
-  filter(is.na(avg_length)) %>%
+  filter(is.na(bulk_mean_length)) %>%
   distinct(species_name, .keep_all = TRUE) %>% 
-  select(species_name, everything())
+  select(species_name, everything()) %>% View
 
 no_length_withaverage <- seanuts_2 %>% 
 group_by(species_name) %>% 
@@ -97,233 +78,303 @@ ggplot(aes(x = diettroph, y = foodtroph), data = seanuts_ecology) + geom_point()
   geom_abline(slope = 1, intercept = 0)
 
 
+# check for completeness of other fishbase variables ----------------------
+
+seanuts_2 %>% 
+  # filter(is.na(feeding_mode)) %>% 
+  select(species_name, feeding_mode, feeding_level, feeding_habit, herbivory2_x, herbivory2_y, everything()) %>% 
+  arrange(species_name) %>% View
+
+
+
 n.long <- seanuts_2 %>% 
   dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g,
-                zn_mg, fe_mg, slmax, seanuts_id2, tl, food_item_id_2,
-                Length, avg_length, abs_lat, Herbivory2, DemersPelag, contains("Brack"), Marine, Fresh, FeedingType, contains("troph"), contains("length"), contains("weight"), contains("ana")) %>% 
+                zn_mg, fe_mg, contains("length"), seanuts_id2, tl, food_item_id_2,
+                abs_lat, contains("feeding"), demerspelag, contains("Brack"), marine, fresh, contains("troph"), contains("weight"), contains("ana")) %>% 
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) %>% 
-  mutate(subgroup = as.factor(subgroup)) %>% 
-  mutate(herbivory = as.factor(Herbivory2)) %>% 
-  clean_names()
+  mutate(subgroup = as.factor(subgroup))
 
-ggplot(aes(x = foodtroph, y = tl), data = n.long) + geom_point()
+### fill in potentially missing trait values
+n.long <- n.long %>% 
+  mutate(bulk_trophic_level = ifelse(is.na(bulk_trophic_level), trophic_level, bulk_trophic_level)) %>% 
+  mutate(bulk_mean_length = ifelse(is.na(bulk_mean_length), mean_length, bulk_mean_length)) %>% 
+  mutate(bulk_max_length = ifelse(is.na(bulk_max_length), max_length, bulk_max_length))
 
-summary(sub$subgroup)
-
-n.long %>% 
-  filter(nutrient == "ca_mg") %>% 
-  filter(concentration > 0) %>% 
-  lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .) %>% 
-  tidy(., conf.int = TRUE) %>% 
-  filter(term != "(Intercept)") %>% 
-  ggplot(aes(x = term, y = estimate)) + geom_point() +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) + 
-  geom_hline(yintercept = 0) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 n.long %>% 
   filter(nutrient == "fe_mg") %>% 
   filter(concentration > 0) %>% 
-  lm(log(concentration) ~ log(avg_length) + FoodTroph + abs_lat, data = .) %>% 
+  lm(log(concentration) ~ log(bulk_mean_length) + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = .) %>% 
+  tidy(., conf.int = TRUE) %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) + 
+  geom_hline(yintercept = 0) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(concentration > 0) %>% 
+  lm(log(concentration) ~ log(bulk_mean_length) + subgroup, data = .) %>% summary
+  tidy(., conf.int = TRUE) %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) + 
+  geom_hline(yintercept = 0) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(concentration > 0) %>% 
+ggplot(data = ., aes(x = log(bulk_max_length), y = log(concentration))) + geom_point() +
+  geom_smooth(method = "lm")
+
+n.long %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(concentration > 0) %>% 
+  lm(log(concentration) ~ log(bulk_max_length) + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = .) %>% 
   summary
 
 
-# model comparisons! ------------------------------------------------------
+# zinc model comparisons! ------------------------------------------------------
+
+n.long_nutrient <- n.long %>% 
+  filter(nutrient == "zn_mg") %>% 
+  filter(concentration > 0) %>% 
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(feeding_level), !is.na(anacat), !is.na(abs_lat))
+
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + abs_lat + bulk_trophic_level + feeding_mode + feeding_level + anacat, data = n.long_nutrient, na.action = na.fail)
+
+dd <- dredge(mod_global)
+
+zn_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+zn_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+zn_mod_out <- left_join(zn_CI_average, zn_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  arrange(desc(slope)) %>% 
+  mutate(nutrient = "zinc")
+
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
 
 
 
-model.sel(mod1, mod2, mod3, mod1b, mod1c, mod1d, mod1e, mod1f, mod1g)
+#'Best' model
+confint(get.models(dd, 1)[[1]])
+summary(get.models(dd, 1)[[1]])
 
-mod1 <- n.long %>% 
+
+# calcium model comparisons! ------------------------------------------------------
+
+n.long_nutrient <- n.long %>% 
   filter(nutrient == "ca_mg") %>% 
   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .)
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(anacat), !is.na(abs_lat), !is.na(feeding_level))
 
-summary(mod1)
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + feeding_level + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = n.long_nutrient, na.action = na.fail)
 
-mod1g <- n.long %>% 
-  filter(nutrient == "ca_mg") %>% 
+dd <- dredge(mod_global)
+subset(dd, delta < 4)
+
+#or as a 95% confidence set:
+summary(model.avg(dd, subset = cumsum(weight) <= .95)) # get averaged coefficients
+ca_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+ca_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+
+
+ca_mod_out <- left_join(ca_CI_average, ca_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  arrange(desc(slope)) %>% 
+  mutate(nutrient = "calcium")
+
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
+
+
+
+# iron model comparisons! ------------------------------------------------------
+n.long_nutrient <- n.long %>% 
+  filter(nutrient == "fe_mg") %>% 
   filter(concentration > 0) %>% 
-  lm(log(concentration) ~ log(avg_length) + abs_lat + herbivory2 + anacat + feedingtype, data = .)
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(anacat), !is.na(abs_lat), !is.na(feeding_level))
+
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + feeding_level + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = n.long_nutrient, na.action = na.fail)
+
+dd <- dredge(mod_global)
+# subset(dd, delta < 4)
+
+#or as a 95% confidence set:
+# summary(model.avg(dd, subset = cumsum(weight) <= .95)) # get averaged coefficients
+fe_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+fe_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+fe_mod_out <- left_join(fe_CI_average, fe_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(nutrient = "iron")
+
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
+
+#'Best' model
+confint(get.models(dd, 1)[[1]])
+summary(get.models(dd, 1)[[1]])
+
+# epa model comparisons! ------------------------------------------------------
+
+n.long_nutrient <- n.long %>% 
+  filter(nutrient == "epa") %>% 
+  filter(concentration > 0) %>% 
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(anacat), !is.na(abs_lat), !is.na(feeding_level))
+
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + feeding_level + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = n.long_nutrient, na.action = na.fail)
+
+dd <- dredge(mod_global)
+# subset(dd, delta < 4)
+
+#or as a 95% confidence set:
+# summary(model.avg(dd, subset = cumsum(weight) <= .95)) # get averaged coefficients
+epa_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+epa_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
 
 
- mod1f <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- mod1e <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- mod1b <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat, data = .)
- 
- mod1c <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + feedingtype, data = .)
- 
- 
- mod1d <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
+epa_mod_out <- left_join(epa_CI_average, epa_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(nutrient = "EPA")
 
- mod2 <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2, data = .)
- 
- mod3 <- n.long %>% 
-   filter(nutrient == "ca_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph, data = .)
- 
- 
- 
- 
-# now for zinc ------------------------------------------------------------
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
 
- 
- model.sel(mod2, mod3, mod1b, mod1c, mod1d, mod1e, mod1f, mod1g, mod1v)
- mod.avg <- model.avg(mod1g, mod1, mod1e)
- 
- confint(mod.avg)
- 
- summary(mod1g)
- summary(mod1e)
- 
- tidy(mod1g, conf.int = TRUE)
- 
- mod1v <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .)
+#'Best' model
+confint(get.models(dd, 1)[[1]])
+summary(get.models(dd, 1)[[1]])
 
- 
- 
- mod1g <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ abs_lat + herbivory2 + anacat + feedingtype, data = .)
- 
- 
- mod1f <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- mod1e <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- mod1b <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat, data = .)
- 
- mod1c <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + feedingtype, data = .)
- 
- 
- mod1d <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- 
- mod2 <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2, data = .)
- 
- mod3 <- n.long %>% 
-   filter(nutrient == "zn_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph, data = .)
- 
- 
- # now for iron ------------------------------------------------------------
- 
- 
- model.sel(mod1, mod2, mod3, mod1b, mod1c, mod1d, mod1e, mod1f, mod1g, mod1gb)
- model.sel(mod1, mod1g, mod1e)
- 
- summary(mod1gb)
- summary(mod1g)
- 
- mod1 <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- 
- mod1gb <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + diettroph + abs_lat + herbivory2 + feedingtype + anacat, data = .)
- 
-confint_tidy(mod1g)
- 
- 
- 
- mod1g <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) +  abs_lat + herbivory2 + feedingtype + anacat, data = .)
- 
- 
- mod1f <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- mod1e <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ abs_lat + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- mod1b <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + anacat, data = .)
- 
- mod1c <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2 + feedingtype, data = .)
- 
- 
- mod1d <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + foodtroph + herbivory2 + anacat + feedingtype, data = .)
- 
- 
- mod2 <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph + herbivory2, data = .)
- 
- mod3 <- n.long %>% 
-   filter(nutrient == "fe_mg") %>% 
-   filter(concentration > 0) %>% 
-   lm(log(concentration) ~ log(avg_length) + abs_lat + foodtroph, data = .)
- 
- 
- species <- read_csv("data-processed/species_seanuts_new.csv")
- ecology <- read_csv("data-processed/ecology_seanuts_new.csv")
- names(species)
- names(ecology)
- 
- glimpse(ecology)
- 
+
+# dha model comparisons! ------------------------------------------------------
+
+n.long_nutrient <- n.long %>% 
+  filter(nutrient == "dha") %>% 
+  filter(concentration > 0) %>% 
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(anacat), !is.na(abs_lat), !is.na(feeding_level))
+
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + feeding_level + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = n.long_nutrient, na.action = na.fail)
+
+
+dd <- dredge(mod_global)
+# subset(dd, delta < 4)
+
+#or as a 95% confidence set:
+# summary(model.avg(dd, subset = cumsum(weight) <= .95)) # get averaged coefficients
+dha_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+dha_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+
+
+dha_mod_out <- left_join(dha_CI_average, dha_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(nutrient = "DHA")
+
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
+
+#'Best' model
+confint(get.models(dd, 1)[[1]])
+summary(get.models(dd, 1)[[1]])
+
+
+# protein model comparisons! ------------------------------------------------------
+
+n.long_nutrient <- n.long %>% 
+  filter(nutrient == "protcnt_g") %>% 
+  filter(concentration > 0) %>% 
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(anacat), !is.na(abs_lat), !is.na(feeding_level))
+
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + feeding_level + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = n.long_nutrient, na.action = na.fail)
+
+dd <- dredge(mod_global)
+
+table(n.long_nutrient$anacat)
+length(unique(n.long_nutrient$species_name))
+
+#or as a 95% confidence set:
+# summary(model.avg(dd, subset = cumsum(weight) <= .95)) # get averaged coefficients
+prot_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+prot_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+prot_mod_out <- left_join(prot_CI_average, prot_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(nutrient = "protein")
+
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
+
+#'Best' model
+confint(get.models(dd, 1)[[1]])
+summary(get.models(dd, 1)[[1]])
+
+
+# fat model comparisons! ------------------------------------------------------
+
+n.long_nutrient <- n.long %>% 
+  filter(nutrient == "fat_g") %>% 
+  filter(concentration > 0) %>% 
+  filter(!is.na(bulk_mean_length), !is.na(bulk_trophic_level), !is.na(feeding_mode), !is.na(anacat), !is.na(abs_lat), !is.na(feeding_level))
+
+mod_global <- lm(log(concentration) ~ log(bulk_mean_length) + feeding_level + abs_lat + bulk_trophic_level + feeding_mode + anacat, data = n.long_nutrient, na.action = na.fail)
+
+dd <- dredge(mod_global)
+
+table(n.long_nutrient$anacat)
+length(unique(n.long_nutrient$species_name))
+
+#or as a 95% confidence set:
+# summary(model.avg(dd, subset = cumsum(weight) <= .95)) # get averaged coefficients
+fat_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dd, subset = cumsum(weight) <= .95))), var = "term")
+fat_slopes_average <- enframe(coef(model.avg(dd, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+fat_mod_out <- left_join(fat_CI_average, fat_slopes_average) %>% 
+  rename(conf.low = `2.5 %`,
+         conf.high = `97.5 %`) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(nutrient = "fat")
+
+ggplot(data = mod_out, aes(x = term, y = slope)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip()
+
+#'Best' model
+confint(get.models(dd, 1)[[1]])
+summary(get.models(dd, 1)[[1]])
+
+# plot all coefficients ---------------------------------------------------
+
+coefs <- bind_rows(ca_mod_out, fe_mod_out, zn_mod_out, epa_mod_out, dha_mod_out, prot_mod_out, fat_mod_out) 
+
+
+unique(coefs$term)
+
+
+ggplot(data = coefs, aes(x = term, y = slope)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+  geom_hline(yintercept = 0) + coord_flip() + facet_wrap( ~ nutrient)
