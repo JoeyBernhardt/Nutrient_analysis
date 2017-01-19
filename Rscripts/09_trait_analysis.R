@@ -88,12 +88,19 @@ seanuts_2 %>%
 
 
 n.long <- seanuts_2 %>% 
-  dplyr::select(species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g,
+  dplyr::select(ref_info, species_name, subgroup, prot_g, protcnt_g, epa, dha, ca_mg, fat_g,
                 zn_mg, fe_mg, contains("length"), seanuts_id2, tl, food_item_id_2,
                 abs_lat, contains("feeding"), demerspelag, contains("Brack"), marine, fresh, contains("troph"), contains("weight"), contains("ana")) %>% 
   gather(key = "nutrient", value = "concentration", prot_g, protcnt_g, epa, dha, ca_mg, fat_g, zn_mg, fe_mg) %>% 
   filter(!is.na(concentration)) %>% 
-  mutate(subgroup = as.factor(subgroup))
+  mutate(subgroup = as.factor(subgroup)) %>% 
+  select(-contains("_y")) %>% 
+  select(-contains("_x")) %>% 
+  select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, abs_lat, contains("bulk"), feeding_mode, feeding_level, anacat, everything()) %>% 
+  select(-feedingtype)
+
+write_csv(n.long, "data-processed/n.long.csv")
+
 
 ### fill in potentially missing trait values
 n.long <- n.long %>% 
