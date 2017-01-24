@@ -141,38 +141,138 @@ n.long_lat2 <- n.long_lat %>%
  mutate(abs_lat2 = ifelse(latitude.y < 0, latitude.y*-1, latitude.y)) %>% 
   mutate(abs_lat = ifelse(is.na(abs_lat), abs_lat2, abs_lat))
 
+
+write_csv(n.long_lat2, "data-processed/n.long_lat2.csv")
+
 n.long_lat2 %>% 
   filter(is.na(abs_lat)) %>%
   dplyr::select(ref_info) %>% 
   distinct()
 
+## prep the data
 mod_all <- n.long_lat2 %>% 
+  filter(concentration > 0) %>% 
+  mutate(anacat = ifelse(subgroup != "finfish", "non-migratory", anacat)) %>% 
+  filter(!is.na(bulk_max_length), !is.na(bulk_trophic_level), !is.na(feeding_level), !is.na(feeding_mode), !is.na(abs_lat)) %>% 
+  mutate(log_length = log(bulk_max_length),
+         log_concentration = log(concentration)) %>% 
+  filter(!grepl("^Mohanty, B. P.,", ref_info))
+ 
+
+## find where anacat is missing
+n.long_lat2 %>% 
   filter(concentration > 0) %>% 
   filter(!is.na(bulk_max_length), !is.na(bulk_trophic_level), !is.na(feeding_level), !is.na(feeding_mode), !is.na(abs_lat)) %>% 
   mutate(log_length = log(bulk_max_length),
          log_concentration = log(concentration)) %>% 
-  filter(!grepl("^Mohanty, B. P.,", ref_info)) 
+  filter(subgroup != "finfish") %>% 
+  filter(!is.na(anacat)) %>% View
 
 
+table(mod_all$anacat)
+
+### onto models!
 mod <- mod_all %>% 
-  filter(nutrient == "ca_mg")
+  filter(nutrient == "fe_mg")
 
 
 mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
 mod3 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
-mod4 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat + anacat, data = mod), standardize.y = TRUE) 
+mod4 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 mod5 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
-mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat + anacat, data = mod), standardize.y = TRUE) 
+mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = mod), standardize.y = TRUE) 
 mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
-mod8 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat + anacat, data = mod), standardize.y = TRUE) 
 
-model.sel(mod1, mod2, mod3, mod5, mod7)
+
+mod8 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+
+model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
 confint(mod2)
 summary(mod1)
 summary(mod2)
 summary(model.avg(mod1, mod2))
 confint(model.avg(mod1, mod2))
+
+
+ca_CI_average <- rownames_to_column(as.data.frame(confint(mod2), var = "term")) %>% 
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`,
+         term = rowname)
+
+ca_slopes_average <- enframe(coef(mod2), name = "term", value = "slope")
+
+ca_results <- left_join(ca_CI_average, ca_slopes_average) %>% 
+  mutate(nutrient = "calcium")
+
+
+ca_results_plot <- ggplot(data = ca_results, aes(x = term, y = slope)) + geom_point(size = 3) + 
+  geom_hline(yintercept = 0) +
+  geom_errorbar(aes(ymin = conf_low, ymax = conf_high), width = 0.1) +
+  coord_flip() + theme_bw()
+
+### zn
+
+zn_slopes_average <- enframe(coef(model.avg(mod1, mod2)), name = "term", value = "slope")
+
+
+zn_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(mod1, mod2))), var = "term") %>% 
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`)
+
+
+zn_results <- left_join(zn_CI_average, zn_slopes_average) %>%
+  mutate(nutrient = "zinc")
+
+
+zn_results_plot <- ggplot(data = zn_results, aes(x = term, y = slope)) + geom_point(size = 3) + 
+  geom_hline(yintercept = 0) +
+  geom_errorbar(aes(ymin = conf_low, ymax = conf_high), width = 0.1) +
+  coord_flip() + theme_bw()
+
+
+
+## iron results
+
+fe_slopes_average <- enframe(coef(model.avg(mod1, mod2)), name = "term", value = "slope")
+
+
+fe_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(mod1, mod2))), var = "term") %>% 
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`)
+
+
+fe_results <- left_join(fe_CI_average, fe_slopes_average) %>% 
+  mutate(nutrient = "iron")
+
+
+## all microelements 
+
+microelements <- bind_rows(fe_results, zn_results, ca_results) %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(term = str_replace(term, "z.log_length", "body size (log length)")) %>% 
+  mutate(term = str_replace(term, "z.bulk_trophic_level", "fractional trophic position")) %>% 
+  mutate(term = str_replace(term, "feeding_modefiltering plankton", "plankton feeder")) %>% 
+  mutate(term = str_replace(term, "feeding_modegrazing on aquatic plants", "herbivore grazer")) %>% 
+  mutate(term = str_replace(term, "feeding_modeselective plankton feeding", "selective filter feeder")) %>%
+  mutate(term = str_replace(term, "feeding_modevariable", "variable feeding mode")) %>%
+  mutate(term = str_replace(term, "z.abs_lat", "absolute latitude")) %>%
+  mutate(term = ifelse(term == "feeding_levelplants/detritus+animals (troph. 2.2-2.79)", "omnivore", term)) %>%
+  mutate(term = ifelse(term == "feeding_levelmainly animals (troph. 2.8 and up)", "carnivore", term)) %>% 
+  mutate(term = ifelse(term == "feeding_modehunting macrofauna (predator)", "active predator", term))
+  
+
+ggplot(data = microelements, aes(x = term, y = slope)) + geom_point(size = 3) + 
+  geom_hline(yintercept = 0) +
+  geom_errorbar(aes(ymin = conf_low, ymax = conf_high), width = 0.1) +
+  coord_flip() + theme_bw() + facet_wrap( ~ nutrient)
+ggsave("trait_coefficients.png", width = 12, height = 6)
+
+## fix the term names
+microelements %>% 
+distinct(term)
+
+
 
 data <- n.long_lat2 %>% 
   filter(concentration > 0) %>% 
@@ -191,11 +291,37 @@ model <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode +
 summary(model)
 arm::standardize(model)
 
+
+### body size plots!
 n.long %>% 
-  filter(nutrient == "fe_mg") %>% 
+  # filter(nutrient == "ca_mg") %>% 
   filter(concentration > 0) %>%
-  # filter(subgroup == "finfish") %>% 
-ggplot(aes(y = log(concentration), x = log(bulk_max_length), group = subgroup, color = subgroup), data = .) + geom_point() + geom_smooth(method = "lm")
+  filter(nutrient %in% c("fe_mg", "ca_mg", "zn_mg")) %>% 
+  group_by(nutrient) %>% 
+ggplot(aes(y = log(concentration), x = log(bulk_mean_length)), data = .) + geom_point(size = 3, alpha = 0.5, color = "blue") + geom_smooth(method = "lm") +
+  theme_bw() + ylab("ln nutrient concentration") + xlab("ln body length") + facet_wrap( ~ nutrient, scales = "free")
+ggsave("figures/microelements_v_bodysize.png", width = 12, height = 4)
+
+
+n.long %>% 
+  # filter(nutrient == "ca_mg") %>% 
+  filter(concentration > 0) %>%
+  filter(nutrient %in% c("fe_mg", "ca_mg", "zn_mg")) %>% 
+  group_by(nutrient) %>% 
+  ggplot(aes(y = log(concentration), x = abs_lat), data = .) + geom_point(size = 3, alpha = 0.5, color = "blue") + geom_smooth(method = "lm") +
+  theme_bw() + ylab("ln nutrient concentration") + xlab("absolute latitude") + facet_wrap( ~ nutrient, scales = "free")
+ggsave("figures/microelements_v_latitude.png", width = 12, height = 4)
+
+n.long %>% 
+  # filter(nutrient == "ca_mg") %>% 
+  filter(concentration > 0) %>%
+  filter(nutrient %in% c("fe_mg", "ca_mg", "zn_mg")) %>% 
+  group_by(nutrient) %>% 
+  ggplot(aes(y = log(bulk_mean_length), x = abs_lat), data = .) + geom_point(size = 3, alpha = 0.5, color = "blue") + geom_smooth(method = "lm") +
+  theme_bw() + ylab("ln body length") + xlab("absolute latitude") + facet_wrap( ~ nutrient, scales = "free")
+ggsave("figures/size_v_latitude.png", width = 12, height = 4)
+
+
 
 
 n.long %>% 
