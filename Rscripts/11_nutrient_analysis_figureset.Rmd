@@ -316,15 +316,18 @@ RDIs <- RDIs %>%
 trait_data_prot <- trait_data %>% 
   mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
   mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
-  mutate(nutrient = str_replace(nutrient, "prot_g", "protein"))
+  mutate(nutrient = str_replace(nutrient, "prot_g", "protein")) %>% 
+  filter(!grepl("^Mohanty", ref_info))
 
 trait_data_rdi <- left_join(trait_data_prot, RDIs, by = "nutrient")
 
 trait_data_rdi <- trait_data_rdi %>% 
-  mutate(rdi_percent = (concentration/RDI)*100)
+  mutate(rdi_percent = (concentration/RDI)*100) %>% 
+  filter(nutrient == "epa") %>% View
 
-trait_data_rdi %>% 
-  dplyr::select(rdi_percent, nutrient, concentration, everything()) %>% View
+
+
+### something weird is going on here with the epa and dha concentrations, some are way too high! Ok it looks like the epa an dha in bogard et al 2015 were reported in mg/100g not g/100g. Now I need to go and change that!!
 
 trait_data_rdi %>% 
   filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "protein", "fat_g")) %>% 

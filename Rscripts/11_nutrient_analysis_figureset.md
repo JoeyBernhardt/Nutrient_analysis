@@ -12,14 +12,6 @@
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat2.csv")
 ```
 
-
-```r
-g <- ggplot(trait_data, aes(concentration)) + geom_histogram(binwidth = 0.07)
-g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
-```
-
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
-
 For how many species do we have nutrient data?
 
 ```r
@@ -45,6 +37,17 @@ trait_data %>%
 |  protcnt_g  | 318 |
 |  protein_g  | 106 |
 |    zn_mg    | 228 |
+
+Figure 1. Distribution of nutrient concentrations across species
+
+```r
+g <- ggplot(trait_data, aes(concentration)) + geom_histogram(binwidth = 0.07)
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
+```
+
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
+
 
 
 ### Trait analysis
@@ -165,15 +168,6 @@ Calcium
 ```
 
 all microelements 
-
-```
-##  [1] "body size (log length)"      "fractional trophic position"
-##  [3] "plankton feeder"             "herbivore grazer"           
-##  [5] "active predator"             "selective filter feeder"    
-##  [7] "variable feeding mode"       "absolute latitude"          
-##  [9] "herbivore"                   "omnivore"
-```
-
 ![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 
@@ -181,42 +175,6 @@ all microelements
 
 Get the data in order
 
-```r
-ntbl.minerals <- trait_data %>% 
-  spread(nutrient, concentration) %>% 
-  dplyr::select(subgroup, species_name, ca_mg, fe_mg, zn_mg)
-
-minerals <- ntbl.minerals
-minerals$subgroup <- as.factor(minerals$subgroup)
-minerals$species_name <- as.factor(minerals$species_name)
-
-minerals <- minerals %>% 
-  filter(!is.na(species_name))
-
-min.mat <- minerals %>% 
-  mutate(species_name = as.character(species_name)) %>% 
-  group_by(subgroup, species_name) %>% 
-  summarise(mean.CA = mean(ca_mg*1000, na.rm = TRUE),
-            mean.ZN = mean(zn_mg*1000, na.rm = TRUE), 
-            mean.FE = mean(fe_mg*1000, na.rm = TRUE)) %>%
-  filter(!is.na(mean.CA), !is.na(mean.ZN), !is.na(mean.FE)) %>%
-  ungroup() %>% 
-  dplyr::distinct(species_name, .keep_all = TRUE)
-
-
-matrix.min <- data.matrix(min.mat[, 3:5])
-rownames(matrix.min) <- min.mat$species_name 
-
-min.taxon <- minerals %>%
-  dplyr::distinct(species_name, subgroup)
-  
-
-min.env <- dplyr::semi_join(min.mat, min.taxon, by = "species_name") 
-min.env <- min.env %>%
-  dplyr::filter(!is.na(species_name)) %>% 
-  dplyr::distinct(species_name, .keep_all = TRUE) %>% 
-  dplyr::select(subgroup, species_name)
-```
 
 Ordination etc
 
@@ -308,8 +266,8 @@ permutest(mod, pairwise = TRUE, permutations = 200)
 ## Pairwise comparisons:
 ## (Observed p-value below diagonal, permuted p-value above diagonal)
 ##            crustacean    finfish mollusc
-## crustacean            0.00497512  0.3881
-## finfish    0.00015418             0.0050
+## crustacean            0.00497512   0.408
+## finfish    0.00015418              0.005
 ## mollusc    0.43291504 0.00027915
 ```
 
@@ -333,12 +291,84 @@ min.subgroup %>%
 ## Terms added sequentially (first to last)
 ## 
 ##            Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)   
-## subgrp      2     1.826 0.91281  3.9555 0.03664  0.004 **
+## subgrp      2     1.826 0.91281  3.9555 0.03664  0.005 **
 ## Residuals 208    48.000 0.23077         0.96336          
 ## Total     210    49.826                 1.00000          
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+### Distinct multinutrient profiles
+
+
+```r
+RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   nutrient = col_character(),
+##   RDI = col_integer()
+## )
+```
+
+```r
+unique(trait_data$nutrient)
+```
+
+```
+##  [1] "prot_g"      "fapun_all_g" "protein_g"   "fapun3"      "protcnt_g"  
+##  [6] "epa"         "dha"         "ca_mg"       "fat_g"       "zn_mg"      
+## [11] "fe_mg"
+```
+
+```r
+RDIs <- RDIs %>% 
+  mutate(nutrient = str_to_lower(nutrient)) %>%
+  mutate(nutrient = str_replace(nutrient, "fat", "fat_g")) %>% 
+  # mutate(nutrient = str_replace(nutrient, "protein", "prot_g")) %>% 
+  mutate(nutrient = str_replace(nutrient, "epa_g", "epa")) %>% 
+  mutate(nutrient = str_replace(nutrient, "dha_g", "dha")) %>% 
+  filter(RDI != 56)
+
+trait_data_prot <- trait_data %>% 
+  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "prot_g", "protein"))
+
+trait_data_rdi <- left_join(trait_data_prot, RDIs, by = "nutrient")
+
+trait_data_rdi <- trait_data_rdi %>% 
+  mutate(rdi_percent = (concentration/RDI)*100)
+
+
+trait_data_rdi %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "protein", "fat_g")) %>% 
+  ggplot(., aes(x = subgroup, y = rdi_percent, fill = subgroup, geom = "boxplot")) +
+ geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold")) +
+  geom_hline(yintercept=100) +
+  ylab("percentage of RDI in edible portion, log scale") +
+  facet_wrap( ~ nutrient, scales = "free") +
+  scale_y_log10()
+```
+
+```
+## Warning: Transformation introduced infinite values in continuous y-axis
+```
+
+```
+## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
+```
+
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+
+
+
 
 ### RDI Analysis
 
@@ -366,18 +396,18 @@ RDI_minerals %>%
   # group_by(species) %>% 
   # mutate(meanRDI = mean(RDI.micro.tot)) %>%
   group_by(subgroup, RDI.micro.tot) %>% 
-  summarise(n = n()) %>% 
-  mutate(cum.RDI = cumsum(n)) %>%
-  ggplot(., aes(x = RDI.micro.tot, y = cum.RDI)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") 
+  summarise(n = n()) %>%  
+  mutate(cum.RDI = cumsum(n)) %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = n)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") 
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 ```r
 qplot(factor(subgroup), data = RDI_minerals, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-19-2.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-20-2.png)<!-- -->
 
 ```r
 ggplot(RDI_minerals, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ subgroup, scales = "free_y") 
@@ -388,7 +418,7 @@ ggplot(RDI_minerals, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(
 ## `geom_histogram()` instead.
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-19-3.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-20-3.png)<!-- -->
 
 
 
@@ -436,7 +466,7 @@ specaccum(., method = "random") %>%
 plot(., col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "blue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients: 25% RDI targets")
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
 
 ```r
 RDIS <- dplyr::select(ntbl.RDI.all, 8:12)
@@ -462,7 +492,7 @@ abline( v= 15, col = "cadetblue")
 abline( v = 26, col = "pink")
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-21-2.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-22-2.png)<!-- -->
 
 ```r
 ### create spa curves for each of the subgroups individually
@@ -542,7 +572,7 @@ ggplot(data = nutraccum_all, aes(x = site, y = richness, color = groups)) + geom
 ## Warning: Removed 355 rows containing missing values (geom_path).
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-21-3.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-22-3.png)<!-- -->
 
 ```r
 mod1 <- nls(richness ~ SSlogis(site, Asym, xmid, scale), data = nutraccum)
@@ -550,10 +580,10 @@ coef(summary(mod1))
 ```
 
 ```
-##       Estimate   Std. Error   t value      Pr(>|t|)
-## Asym  2.999202 0.0006909475 4340.7092  0.000000e+00
-## xmid  1.696967 0.0118211863  143.5530 5.140190e-210
-## scale 1.378777 0.0126046096  109.3867 8.742924e-186
+##       Estimate   Std. Error    t value      Pr(>|t|)
+## Asym  2.998881 0.0008974918 3341.40200  0.000000e+00
+## xmid  1.398121 0.0155765051   89.75830 2.726742e-168
+## scale 1.240214 0.0165290682   75.03233 1.375533e-152
 ```
 
 ```r
@@ -563,9 +593,9 @@ coef(summary(mod2))
 
 ```
 ##       Estimate  Std. Error    t value      Pr(>|t|)
-## Asym  2.997656 0.001756221 1706.87790  0.000000e+00
-## xmid  1.825009 0.032257027   56.57711 3.690258e-108
-## scale 1.832011 0.034145613   53.65289 1.235683e-104
+## Asym  2.997336 0.001407906 2128.93191  0.000000e+00
+## xmid  1.634665 0.024306569   67.25198 9.363894e-120
+## scale 1.590433 0.025725296   61.82371 4.342584e-114
 ```
 
 ```r
@@ -573,10 +603,10 @@ coef(summary(mod2))
 ```
 
 ```
-##    term estimate    std.error statistic       p.value conf.low conf.high
-## 1  Asym 2.999202 0.0006909475 4340.7092  0.000000e+00 2.997839  3.000565
-## 2  xmid 1.696967 0.0118211863  143.5530 5.140190e-210 1.673649  1.719961
-## 3 scale 1.378777 0.0126046096  109.3867 8.742924e-186 1.352976  1.405054
+##    term estimate    std.error  statistic       p.value conf.low conf.high
+## 1  Asym 2.998881 0.0008974918 3341.40200  0.000000e+00 2.997110  3.000653
+## 2  xmid 1.398121 0.0155765051   89.75830 2.726742e-168 1.367226  1.428228
+## 3 scale 1.240214 0.0165290682   75.03233 1.375533e-152 1.205598  1.275754
 ```
 
 ```r
@@ -587,7 +617,7 @@ nutraccum_all %>%
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) + theme_bw()
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-21-4.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-22-4.png)<!-- -->
 
 
 
@@ -633,10 +663,10 @@ accumulated_targets_all <- accumulated_targets_all %>%
 
 accumulated_targets_all %>%
   filter(number_of_species < 10) %>% 
-ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = subgroup)) + geom_line(size =1) + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, color = subgroup, fill = subgroup), alpha = 0.1)  + geom_hline(yintercept = 2.5)
+ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = subgroup)) + geom_line(size =1) + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, fill = subgroup), alpha = 0.1)
 ```
 
-![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
 
 
 

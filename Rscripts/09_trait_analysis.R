@@ -1,5 +1,5 @@
 ### Seanuts traits analysis
-
+## notes: this write_csv(n.long_lat3, "data-processed/n.long_lat3.csv") contains the fixed Bogard et al. 2015 epa and dha data, where I changed the units from mg/100g to g/100g
 
 # load packages ----------------------------------------------------------
 
@@ -144,10 +144,14 @@ n.long_lat2 <- n.long_lat %>%
 
 write_csv(n.long_lat2, "data-processed/n.long_lat2.csv")
 
-n.long_lat2 %>% 
-  filter(is.na(abs_lat)) %>%
-  dplyr::select(ref_info) %>% 
-  distinct()
+
+## ok here, fix the g to mg issue in the bogard refs
+n.long_lat2 <- read_csv("data-processed/n.long_lat2.csv")
+
+n.long_lat3 <- n.long_lat2 %>% 
+  mutate(concentration = ifelse(grepl("Bogard, J.R., Thilsted, S.H., Marks, G.C., Wahab", ref_info) & nutrient %in% c("epa", "dha"), concentration/1000, concentration))
+  
+write_csv(n.long_lat3, "data-processed/n.long_lat3.csv")
 
 ## prep the data
 mod_all <- n.long_lat2 %>% 
