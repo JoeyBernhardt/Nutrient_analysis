@@ -513,7 +513,13 @@ ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/RDI.25-targets-barchart.
 
 ```{r}
 n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.long.csv")
-n.long <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv") ## update as of Jan 28
+n.long_temp <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/aq.long.csv")
+## update as of Jan 28
+
+RDIs <- n.long_temp %>% 
+  distinct(nutrient, RDI)
+write_csv(RDIs, "/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")  
+  
 n.long <- n.long %>% 
   group_by(Subgroup) %>% 
   mutate(RDI.25per = (concentration > (RDI/4)),

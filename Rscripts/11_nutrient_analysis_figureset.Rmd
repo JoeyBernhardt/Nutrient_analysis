@@ -25,18 +25,12 @@ library(arm)
 library(vegan)
 library(ggvegan)
 library(listviewer)
-
 ```
 
 #### Dataset summaries
 
 ```{r message=FALSE, warning=FALSE}
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat2.csv")
-```
-
-```{r message=FALSE, warning=FALSE}
-g <- ggplot(trait_data, aes(concentration)) + geom_histogram(binwidth = 0.07)
-g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
 ```
 
 For how many species do we have nutrient data?
@@ -47,6 +41,14 @@ trait_data %>%
   count() %>%
   knitr::kable(align = 'c', format = 'markdown', digits = 2)
 ```
+
+Figure 1. Distribution of nutrient concentrations across species
+```{r message=FALSE, warning=FALSE}
+g <- ggplot(trait_data, aes(concentration)) + geom_histogram(binwidth = 0.07)
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
+```
+
+
 
 
 ### Trait analysis
@@ -95,7 +97,7 @@ trait_data %>%
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ## prep the data
 mod_all <- trait_data %>% 
   filter(concentration > 0) %>% 
@@ -108,7 +110,7 @@ mod_all <- trait_data %>%
 
 
 Iron
-```{r, echo=FALSE}
+```{r echo = FALSE}
 mod <- mod_all %>% 
   filter(nutrient == "fe_mg")
 
@@ -155,7 +157,7 @@ zn_results <- left_join(zn_CI_average, zn_slopes_average, by = "term") %>%
 
 
 Calcium
-```{r echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 mod <- mod_all %>% 
   filter(nutrient == "ca_mg")
 
@@ -204,7 +206,7 @@ ggplot(data = microelements, aes(x = term, y = slope)) + geom_point(size = 3) +
 ### Multivariate nutrient trait analysis
 
 Get the data in order
-```{r warning= FALSE}
+```{r warning= FALSE, include = FALSE}
 ntbl.minerals <- trait_data %>% 
   spread(nutrient, concentration) %>% 
   dplyr::select(subgroup, species_name, ca_mg, fe_mg, zn_mg)
@@ -297,6 +299,51 @@ min.subgroup %>%
   adonis(comm.bc.dist ~ subgrp, data = .)
 ```
 
+### Distinct multinutrient profiles
+
+```{r}
+RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
+unique(trait_data$nutrient)
+
+RDIs <- RDIs %>% 
+  mutate(nutrient = str_to_lower(nutrient)) %>%
+  mutate(nutrient = str_replace(nutrient, "fat", "fat_g")) %>% 
+  # mutate(nutrient = str_replace(nutrient, "protein", "prot_g")) %>% 
+  mutate(nutrient = str_replace(nutrient, "epa_g", "epa")) %>% 
+  mutate(nutrient = str_replace(nutrient, "dha_g", "dha")) %>% 
+  filter(RDI != 56)
+
+trait_data_prot <- trait_data %>% 
+  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "prot_g", "protein"))
+
+trait_data_rdi <- left_join(trait_data_prot, RDIs, by = "nutrient")
+
+trait_data_rdi <- trait_data_rdi %>% 
+  mutate(rdi_percent = (concentration/RDI)*100)
+
+trait_data_rdi %>% 
+  dplyr::select(rdi_percent, nutrient, concentration, everything()) %>% View
+
+trait_data_rdi %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "protein", "fat_g")) %>% 
+  ggplot(., aes(x = subgroup, y = rdi_percent, fill = subgroup, geom = "boxplot")) +
+ geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold")) +
+  geom_hline(yintercept=100) +
+  ylab("percentage of RDI in edible portion, log scale") +
+  facet_wrap( ~ nutrient, scales = "free") +
+  scale_y_log10()
+
+```
+
+
+
+
 ### RDI Analysis
 
 ```{r}
@@ -321,9 +368,9 @@ RDI_minerals %>%
   # group_by(species) %>% 
   # mutate(meanRDI = mean(RDI.micro.tot)) %>%
   group_by(subgroup, RDI.micro.tot) %>% 
-  summarise(n = n()) %>% 
-  mutate(cum.RDI = cumsum(n)) %>%
-  ggplot(., aes(x = RDI.micro.tot, y = cum.RDI)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") 
+  summarise(n = n()) %>%  
+  mutate(cum.RDI = cumsum(n)) %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = n)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") 
 
 qplot(factor(subgroup), data = RDI_minerals, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
 
@@ -496,7 +543,7 @@ accumulated_targets_all <- accumulated_targets_all %>%
 
 accumulated_targets_all %>%
   filter(number_of_species < 10) %>% 
-ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = subgroup)) + geom_line(size =1) + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, color = subgroup, fill = subgroup), alpha = 0.1)  + geom_hline(yintercept = 2.5)
+ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = subgroup)) + geom_line(size =1) + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, fill = subgroup), alpha = 0.1)
 ```
 
 ```{r, eval=FALSE, include=FALSE}
