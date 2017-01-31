@@ -27,10 +27,10 @@ library(ggvegan)
 library(listviewer)
 ```
 
-#### Dataset summaries
+#### Background: dataset summaries
 
 ```{r message=FALSE, warning=FALSE}
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat2.csv")
+trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
 ```
 
 For how many species do we have nutrient data?
@@ -42,16 +42,415 @@ trait_data %>%
   knitr::kable(align = 'c', format = 'markdown', digits = 2)
 ```
 
-Figure 1. Distribution of nutrient concentrations across species
+### Figure 1. Distribution of nutrient concentrations across species
 ```{r message=FALSE, warning=FALSE}
 g <- ggplot(trait_data, aes(concentration)) + geom_histogram(binwidth = 0.07)
 g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10()
 ```
 
+### Figure 2. Few species reach RDI targets for more than one nutrient
+```{r}
+### how many micronutrient mineral targets does each species reach?
+RDI_minerals <- trait_data %>% 
+  spread(nutrient, concentration) %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+            mean.ZN = mean(zn_mg, na.rm = TRUE), 
+            mean.FE = mean(fe_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[6:8])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot)
+```
+
+```{r}
+RDI_minerals %>% 
+  group_by(subgroup, RDI.micro.tot) %>% 
+  summarise(n = n()) %>%  
+  mutate(cum.RDI = cumsum(n)) %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = n)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") + theme_bw() +
+  xlab("number of RDI targets in a single 100g portion") +
+  ylab("number of species")
+```
 
 
 
-### Trait analysis
+#### Multivariate nutrient trait analysis
+
+Get the data in order
+```{r warning= FALSE, include = FALSE}
+ntbl.minerals <- trait_data %>% 
+  spread(nutrient, concentration) %>% 
+  dplyr::select(subgroup, species_name, ca_mg, fe_mg, zn_mg)
+
+minerals <- ntbl.minerals
+minerals$subgroup <- as.factor(minerals$subgroup)
+minerals$species_name <- as.factor(minerals$species_name)
+
+minerals <- minerals %>% 
+  filter(!is.na(species_name))
+
+min.mat <- minerals %>% 
+  mutate(species_name = as.character(species_name)) %>% 
+  group_by(subgroup, species_name) %>% 
+  summarise(mean.CA = mean(ca_mg*1000, na.rm = TRUE),
+            mean.ZN = mean(zn_mg*1000, na.rm = TRUE), 
+            mean.FE = mean(fe_mg*1000, na.rm = TRUE)) %>%
+  filter(!is.na(mean.CA), !is.na(mean.ZN), !is.na(mean.FE)) %>%
+  ungroup() %>% 
+  dplyr::distinct(species_name, .keep_all = TRUE)
+
+
+matrix.min <- data.matrix(min.mat[, 3:5])
+rownames(matrix.min) <- min.mat$species_name 
+
+min.taxon <- minerals %>%
+  dplyr::distinct(species_name, subgroup)
+  
+
+min.env <- dplyr::semi_join(min.mat, min.taxon, by = "species_name") 
+min.env <- min.env %>%
+  dplyr::filter(!is.na(species_name)) %>% 
+  dplyr::distinct(species_name, .keep_all = TRUE) %>% 
+  dplyr::select(subgroup, species_name)
+```
+
+Ordination etc
+
+```{r warning = FALSE, message=FALSE, warning=FALSE, include=FALSE}
+#### begin ordination!
+
+ord.mine <- metaMDS(matrix.min, distance="bray", trymax=200)
+ord.mine$stress
+ord_long <- fortify(ord.mine)
+```
+
+### Figure 4. Functional groups have distinct multi-nutrient profiles
+```{r warning = FALSE, message = FALSE}
+scaling <- left_join(ord_long, min.env, by = c("Label" = "species_name")) %>% 
+  filter(Score == "sites")
+
+# ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup, label = Label)) + geom_point(size = 2) + geom_text() + theme_bw()
+
+ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup)) + geom_point(size = 4) +
+  theme_bw()
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+### calculate Bray-Curtis distance among samples
+comm.bc.dist <- vegdist(matrix.min, method = "bray")
+# hist(comm.bc.dist)
+
+# cluster communities using average-linkage algorithm
+comm.bc.clust <- hclust(comm.bc.dist, method = "average")
+
+# plot cluster diagram
+# plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
+
+## Use betadisper to test the significance of the multivariate groups
+# min.subgroup <- min.env$subgroup
+min.subgroup <- scaling$subgroup
+length(min.subgroup)
+
+
+mod <- betadisper(comm.bc.dist, min.subgroup)
+
+## Perform test
+anova(mod)
+
+## Permutation test for F
+permutest(mod, pairwise = TRUE, permutations = 200)
+
+
+#### Use adonis to ask whether the group means in multivariate space are different from each other ####
+
+min.subgroup %>% 
+  dplyr::data_frame(subgrp = .) %>%
+  filter(!is.na(subgrp)) %>%
+  adonis(comm.bc.dist ~ subgrp, data = .)
+```
+
+### Figure 4b. Nutrient-by-nutrient boxplots
+
+```{r}
+RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
+unique(trait_data$nutrient)
+
+RDIs <- RDIs %>% 
+  mutate(nutrient = str_to_lower(nutrient)) %>%
+  mutate(nutrient = str_replace(nutrient, "fat", "fat_g")) %>% 
+  # mutate(nutrient = str_replace(nutrient, "protein", "prot_g")) %>% 
+  mutate(nutrient = str_replace(nutrient, "epa_g", "epa")) %>% 
+  mutate(nutrient = str_replace(nutrient, "dha_g", "dha")) %>% 
+  filter(RDI != 56)
+
+trait_data_prot <- trait_data %>% 
+  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "prot_g", "protein")) %>% 
+  filter(!grepl("^Mohanty", ref_info))
+
+trait_data_rdi <- left_join(trait_data_prot, RDIs, by = "nutrient")
+
+trait_data_rdi <- trait_data_rdi %>% 
+  mutate(rdi_percent = (concentration/RDI)*100) 
+
+trait_data_rdi %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "protein", "fat_g", "epa", "dha")) %>% 
+  ggplot(., aes(x = subgroup, y = rdi_percent, fill = subgroup, geom = "boxplot")) +
+ geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_blank()) +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold")) +
+  geom_hline(yintercept=10) +
+  ylab("percentage of RDI in edible portion, log scale") +
+  facet_wrap( ~ nutrient, scales = "free") +
+  scale_y_log10()
+
+```
+
+
+
+
+### Figure 5. Functional group diversity enhances dietary nutritional diversity  
+
+```{r}
+#### now the accumulation curves for the all the nutrients
+
+ntbl.RDI.all <- trait_data %>% 
+  spread(nutrient, concentration) %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+            mean.ZN = mean(zn_mg, na.rm = TRUE), 
+            mean.FE = mean(fe_mg, na.rm = TRUE),
+            mean.EPA = mean(epa, na.rm = TRUE),
+            mean.DHA = mean(dha, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
+  filter(!is.na(RDI.micro.tot)) 
+
+RDI_minerals <- trait_data %>% 
+  spread(nutrient, concentration) %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+            mean.ZN = mean(zn_mg, na.rm = TRUE), 
+            mean.FE = mean(fe_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[6:8])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot)
+
+```
+
+```{r}
+#### how many species do you need to sample before reaching 3 RDI targets?
+### create spa curves for each of the subgroups individually
+subgroup_spa <- ntbl.RDI.all %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>% 
+  dplyr::select(-species_name) %>%
+  split( .$subgroup) %>% 
+  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
+  map(.f = specaccum, method = "random")
+
+
+subgroup_spa <- RDI_minerals %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>% 
+  split( .$subgroup) %>% 
+  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN")) %>%
+  map(.f = specaccum, method = "random", permutations = 10000)
+
+subgroup_spa_all <- RDI_minerals %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>%
+    dplyr::select(-subgroup) %>%
+ specaccum(method = "random", permutations = 100)
+
+subgroup_spa_all_no_mollusc <- RDI_minerals %>%
+  filter(subgroup == "finfish") %>% 
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>%
+    dplyr::select(-subgroup) %>%
+ specaccum(method = "random", permutations =100)
+
+
+nutraccum <- data.frame(subgroup_spa_all$richness, subgroup_spa_all$site, subgroup_spa_all$sd)
+nutraccum_no_mollusc <- data.frame(subgroup_spa_all_no_mollusc$richness, subgroup_spa_all_no_mollusc$site, subgroup_spa_all_no_mollusc$sd)
+
+nutraccum_no_mollusc$groups <- "no mollusc"
+nutraccum$groups <- "all"
+names(nutraccum_no_mollusc)
+
+nutraccum_no_mollusc <- nutraccum_no_mollusc %>% 
+  rename(richness = subgroup_spa_all_no_mollusc.richness,
+         site = subgroup_spa_all_no_mollusc.site, 
+         sd = subgroup_spa_all_no_mollusc.sd)
+
+nutraccum <- nutraccum %>% 
+  rename(richness = subgroup_spa_all.richness, 
+         site = subgroup_spa_all.site,
+         sd = subgroup_spa_all.sd)
+  
+nutraccum_all <- bind_rows(nutraccum, nutraccum_no_mollusc)
+
+ggplot(data = nutraccum_all, aes(x = site, y = richness, color = groups)) + geom_line(size = 2) + xlim(0,10) + 
+  # geom_ribbon(aes(ymin = richness - sd, ymax = richness + sd, fill = groups), alpha = 0.5) +
+  theme_bw()
+
+
+mod1 <- nls(richness ~ SSlogis(site, Asym, xmid, scale), data = nutraccum)
+coef(summary(mod1))
+
+mod2 <- nls(richness ~ SSlogis(site, Asym, xmid, scale), data = nutraccum_no_mollusc)
+coef(summary(mod2))
+
+(tidy(mod1, conf.int = TRUE))
+
+accumulated_targets <- subgroup_spa %>% 
+  map(.f = `[`, "richness") %>% 
+  unlist() %>% 
+  as.data.frame()
+
+accumulated_targets_sd <- subgroup_spa %>% 
+  map(.f = `[`, "sd") %>% 
+  unlist() %>% 
+  as.data.frame()
+
+accumulated_targets$richness_level = rownames(accumulated_targets)
+colnames(accumulated_targets) <- c("number_of_targets", "richness_level")
+
+accumulated_targets_sd$sd = rownames(accumulated_targets_sd)
+colnames(accumulated_targets_sd) <- c("sd", "number_of_targets")
+
+accumulated_targets_sd <- accumulated_targets_sd %>% 
+  separate(number_of_targets, into = c("subgroup", "number_of_species")) %>%
+  mutate(number_of_species = str_replace(number_of_species, "sd", "")) %>%
+  mutate(number_of_species = as.numeric(number_of_species))
+
+
+accumulated_targets <- accumulated_targets %>% 
+  separate(richness_level, into = c("subgroup", "number_of_species")) %>%
+  mutate(number_of_species = str_replace(number_of_species, "richness", "")) %>%
+  mutate(number_of_species = as.numeric(number_of_species))
+
+accumulated_targets_all <- left_join(accumulated_targets, accumulated_targets_sd)
+accumulated_targets_all <- accumulated_targets_all %>% 
+  mutate(se = sd / sqrt(number_of_species)) 
+
+accumulated_targets_all %>%
+  filter(number_of_species < 10) %>% 
+ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = subgroup)) + geom_line(size =2) + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, fill = subgroup), alpha = 0.1) + ylab("number of RDI targets") +
+  xlab("number of species")
+```
+```{r}
+
+# ntbl.RDI.all %>% 
+#   dplyr::select(8:12) %>% 
+# specaccum(., method = "random") %>%
+# plot(., col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "blue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients: 25% RDI targets")
+
+RDIS <- dplyr::select(ntbl.RDI.all, 8:12)
+
+spa.rand <- specaccum(RDIS, method = "random")
+# plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,6), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+# abline( v= 15, col = "cadetblue")
+# abline( v = 26, col = "pink")
+
+
+
+```
+
+
+### Figure 5b. What happens when we lose the molluscs -- does the slope of the accumulation curve increase?
+```{r}
+nutraccum_all %>% 
+  group_by(groups) %>% 
+  do(tidy(nls(richness ~ SSlogis(site, asymptote, xmid, scale), data = .), conf.int = TRUE)) %>% 
+  ggplot(data = ., aes(x = term, y = estimate, color = groups)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) + theme_bw()
+
+```
+
+
+
+
+```{r, eval=FALSE, include=FALSE}
+RDI_mollusc <- RDI_minerals %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>% 
+  filter(subgroup == "mollusc") %>% 
+  dplyr::select(-subgroup)
+
+RDI_fish <- RDI_minerals %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>% 
+  filter(subgroup == "finfish") %>% 
+  dplyr::select(-subgroup)
+
+RDI_no_mollusc <- RDI_minerals %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>% 
+  filter(subgroup != "mollusc") %>% 
+  dplyr::select(-subgroup)
+
+
+RDI_all <- RDI_minerals %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>%
+  dplyr::select(-species_name) %>% 
+  dplyr::select(-subgroup)
+
+spa_rand_all <- specaccum(RDI_all, "rarefaction")
+mod_all <- fitspecaccum(spa_rand_all, model = "gleason")
+
+
+spa_rand_fish <- specaccum(RDI_fish, "rarefaction")
+mod_fish <- fitspecaccum(spa_rand_fish, model = "gleason")
+
+spa_rand_mollusc <- specaccum(RDI_mollusc, "rarefaction")
+mod_mollusc <- fitspecaccum(spa_rand_mollusc, model = "gleason")
+
+spa_rand_no_mollusc <- specaccum(RDI_no_mollusc, method = "random", permutations = 100)
+mod_no_mollusc <- fitspecaccum(spa_rand_no_mollusc, model = "michaelis-menten")
+
+# as.data.frame(spa_rand_no_mollusc$perm) %>% 
+#   rowwise() %>% 
+#   mutate(avg_targets = mean(1:100))
+
+coef(mod_mollusc)
+summary(spa_rand_no_mollusc)
+coef(mod_fish)
+coef(mod_all)
+coef(summary(spa_rand_no_mollusc))
+
+confint(mod_fish)
+
+specslope(spa_rand_all, at = 3) 
+specslope(spa_rand_fish, at = 3) 
+specslope(spa_rand_mollusc, at = 3) 
+```
+
+#### Trait analysis
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -64,8 +463,8 @@ mod_all <- trait_data %>%
   filter(!grepl("^Mohanty, B. P.,", ref_info))
 ```
 
-##### Scatterplots
-
+#### Scatterplots
+### Figure 6. Micronutrient concentration decreases with increasing body size
 ```{r, message=FALSE, warning=FALSE}
 trait_data %>% 
   # filter(nutrient == "ca_mg") %>% 
@@ -75,6 +474,7 @@ trait_data %>%
 ggplot(aes(y = log(concentration), x = log(bulk_mean_length)), data = .) + geom_point(size = 3, alpha = 0.5, color = "blue") + geom_smooth(method = "lm") +
   theme_bw() + ylab("ln nutrient concentration") + xlab("ln body length") + facet_wrap( ~ nutrient, scales = "free")
 ```
+
 
 ```{r message=FALSE, warning=FALSE}
 trait_data %>% 
@@ -179,7 +579,7 @@ ca_results <- left_join(ca_CI_average, ca_slopes_average, by = "term") %>%
   mutate(nutrient = "calcium")
 ```
 
-all microelements 
+### Figure 7. Within functional groups, some traits such body size and latitude are strongly associated with nutritional profile 
 ```{r echo=FALSE}
 microelements <- bind_rows(fe_results, zn_results, ca_results) %>% 
   filter(term != "(Intercept)") %>% 
@@ -201,410 +601,3 @@ ggplot(data = microelements, aes(x = term, y = slope)) + geom_point(size = 3) +
   geom_errorbar(aes(ymin = conf_low, ymax = conf_high), width = 0.1) +
   coord_flip() + theme_bw() + facet_wrap( ~ nutrient)
 ```
-
-
-### Multivariate nutrient trait analysis
-
-Get the data in order
-```{r warning= FALSE, include = FALSE}
-ntbl.minerals <- trait_data %>% 
-  spread(nutrient, concentration) %>% 
-  dplyr::select(subgroup, species_name, ca_mg, fe_mg, zn_mg)
-
-minerals <- ntbl.minerals
-minerals$subgroup <- as.factor(minerals$subgroup)
-minerals$species_name <- as.factor(minerals$species_name)
-
-minerals <- minerals %>% 
-  filter(!is.na(species_name))
-
-min.mat <- minerals %>% 
-  mutate(species_name = as.character(species_name)) %>% 
-  group_by(subgroup, species_name) %>% 
-  summarise(mean.CA = mean(ca_mg*1000, na.rm = TRUE),
-            mean.ZN = mean(zn_mg*1000, na.rm = TRUE), 
-            mean.FE = mean(fe_mg*1000, na.rm = TRUE)) %>%
-  filter(!is.na(mean.CA), !is.na(mean.ZN), !is.na(mean.FE)) %>%
-  ungroup() %>% 
-  dplyr::distinct(species_name, .keep_all = TRUE)
-
-
-matrix.min <- data.matrix(min.mat[, 3:5])
-rownames(matrix.min) <- min.mat$species_name 
-
-min.taxon <- minerals %>%
-  dplyr::distinct(species_name, subgroup)
-  
-
-min.env <- dplyr::semi_join(min.mat, min.taxon, by = "species_name") 
-min.env <- min.env %>%
-  dplyr::filter(!is.na(species_name)) %>% 
-  dplyr::distinct(species_name, .keep_all = TRUE) %>% 
-  dplyr::select(subgroup, species_name)
-```
-
-Ordination etc
-
-```{r warning = FALSE, message=FALSE, warning=FALSE, include=FALSE}
-#### begin ordination!
-
-ord.mine <- metaMDS(matrix.min, distance="bray", trymax=200)
-ord.mine$stress
-ord_long <- fortify(ord.mine)
-```
-
-Plots!
-```{r}
-scaling <- left_join(ord_long, min.env, by = c("Label" = "species_name")) %>% 
-  filter(Score == "sites")
-
-ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup, label = Label)) + geom_point(size = 2) +
-  geom_text() + theme_bw()
-
-ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup)) + geom_point(size = 4) 
-```
-
-```{r, message=FALSE, warning=FALSE}
-
-### calculate Bray-Curtis distance among samples
-comm.bc.dist <- vegdist(matrix.min, method = "bray")
-# hist(comm.bc.dist)
-
-# cluster communities using average-linkage algorithm
-comm.bc.clust <- hclust(comm.bc.dist, method = "average")
-
-# plot cluster diagram
-# plot(comm.bc.clust, ylab = "Bray-Curtis dissimilarity")
-
-## Use betadisper to test the significance of the multivariate groups
-# min.subgroup <- min.env$subgroup
-min.subgroup <- scaling$subgroup
-length(min.subgroup)
-
-
-mod <- betadisper(comm.bc.dist, min.subgroup)
-
-## Perform test
-anova(mod)
-
-## Permutation test for F
-permutest(mod, pairwise = TRUE, permutations = 200)
-
-
-#### Use adonis to ask whether the group means in multivariate space are different from each other ####
-
-min.subgroup %>% 
-  dplyr::data_frame(subgrp = .) %>%
-  filter(!is.na(subgrp)) %>%
-  adonis(comm.bc.dist ~ subgrp, data = .)
-```
-
-### Distinct multinutrient profiles
-
-```{r}
-RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
-unique(trait_data$nutrient)
-
-RDIs <- RDIs %>% 
-  mutate(nutrient = str_to_lower(nutrient)) %>%
-  mutate(nutrient = str_replace(nutrient, "fat", "fat_g")) %>% 
-  # mutate(nutrient = str_replace(nutrient, "protein", "prot_g")) %>% 
-  mutate(nutrient = str_replace(nutrient, "epa_g", "epa")) %>% 
-  mutate(nutrient = str_replace(nutrient, "dha_g", "dha")) %>% 
-  filter(RDI != 56)
-
-trait_data_prot <- trait_data %>% 
-  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
-  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
-  mutate(nutrient = str_replace(nutrient, "prot_g", "protein")) %>% 
-  filter(!grepl("^Mohanty", ref_info))
-
-trait_data_rdi <- left_join(trait_data_prot, RDIs, by = "nutrient")
-
-trait_data_rdi <- trait_data_rdi %>% 
-  mutate(rdi_percent = (concentration/RDI)*100) %>% 
-  filter(nutrient == "epa") %>% View
-
-
-
-### something weird is going on here with the epa and dha concentrations, some are way too high! Ok it looks like the epa an dha in bogard et al 2015 were reported in mg/100g not g/100g. Now I need to go and change that!!
-
-trait_data_rdi %>% 
-  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "protein", "fat_g")) %>% 
-  ggplot(., aes(x = subgroup, y = rdi_percent, fill = subgroup, geom = "boxplot")) +
- geom_boxplot() +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 75, hjust = 1)) +
-  theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=14,face="bold")) +
-  geom_hline(yintercept=100) +
-  ylab("percentage of RDI in edible portion, log scale") +
-  facet_wrap( ~ nutrient, scales = "free") +
-  scale_y_log10()
-
-```
-
-
-
-
-### RDI Analysis
-
-```{r}
-### how many micronutrient mineral targets does each species reach?
-RDI_minerals <- trait_data %>% 
-  spread(nutrient, concentration) %>% 
-  group_by(species_name, subgroup) %>% 
-  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
-            mean.ZN = mean(zn_mg, na.rm = TRUE), 
-            mean.FE = mean(fe_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
-  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>% 
-  ungroup() %>% 
-  mutate(RDI.micro.tot = rowSums(.[6:8])) %>% 
-  filter(!is.na(RDI.micro.tot)) %>% 
-  arrange(., RDI.micro.tot)
-```
-
-```{r}
-RDI_minerals %>% 
-  # group_by(species) %>% 
-  # mutate(meanRDI = mean(RDI.micro.tot)) %>%
-  group_by(subgroup, RDI.micro.tot) %>% 
-  summarise(n = n()) %>%  
-  mutate(cum.RDI = cumsum(n)) %>% 
-  ggplot(., aes(x = RDI.micro.tot, y = n)) + geom_bar(stat = "identity") + facet_wrap(~ subgroup, scales = "free_y") 
-
-qplot(factor(subgroup), data = RDI_minerals, geom = "bar", fill = factor(RDI.micro.tot)) + theme_bw()
-
-ggplot(RDI_minerals, aes(RDI.micro.tot)) + geom_bar(binwidth = .5) + facet_wrap(~ subgroup, scales = "free_y") 
-```
-
-
-```{r}
-#### now the accumulation curves for the all the nutrients
-
-ntbl.RDI.all <- trait_data %>% 
-  spread(nutrient, concentration) %>% 
-  group_by(species_name, subgroup) %>% 
-  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
-            mean.ZN = mean(zn_mg, na.rm = TRUE), 
-            mean.FE = mean(fe_mg, na.rm = TRUE),
-            mean.EPA = mean(epa, na.rm = TRUE),
-            mean.DHA = mean(dha, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 300, 1, 0)) %>% 
-  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>%
-  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
-  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
-  ungroup() %>% 
-  mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
-  filter(!is.na(RDI.micro.tot)) 
-
-RDI_minerals <- trait_data %>% 
-  spread(nutrient, concentration) %>% 
-  group_by(species_name, subgroup) %>% 
-  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
-            mean.ZN = mean(zn_mg, na.rm = TRUE), 
-            mean.FE = mean(fe_mg, na.rm = TRUE)) %>% 
-  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
-  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>% 
-  ungroup() %>% 
-  mutate(RDI.micro.tot = rowSums(.[6:8])) %>% 
-  filter(!is.na(RDI.micro.tot)) %>% 
-  arrange(., RDI.micro.tot)
-
-```
-
-```{r}
-
-ntbl.RDI.all %>% 
-  # filter(subgroup == "finfish") %>% 
-  dplyr::select(8:12) %>% 
-specaccum(., method = "random") %>%
-plot(., col = "black", lwd = 4, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "blue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients: 25% RDI targets")
-
-RDIS <- dplyr::select(ntbl.RDI.all, 8:12)
-
-spa.rand <- specaccum(RDIS, method = "random")
-# png(filename = "sac.full.vs.noMoll.png", width = 6, height = 4, units = 'in', res = 300)
-spa.rand$sites
-plot(spa.rand, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,6), xlim = c(0,80), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
-abline( v= 15, col = "cadetblue")
-abline( v = 26, col = "pink")
-
-
-### create spa curves for each of the subgroups individually
-subgroup_spa <- ntbl.RDI.all %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>% 
-  dplyr::select(-species_name) %>%
-  split( .$subgroup) %>% 
-  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
-  map(.f = specaccum, method = "random")
-
-
-subgroup_spa <- RDI_minerals %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>% 
-  split( .$subgroup) %>% 
-  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN")) %>%
-  map(.f = specaccum, method = "random", permutations = 10000)
-
-subgroup_spa_all <- RDI_minerals %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>%
-    dplyr::select(-subgroup) %>%
- specaccum(method = "random", permutations = 100)
-
-subgroup_spa_all_no_mollusc <- RDI_minerals %>%
-  filter(subgroup == "finfish") %>% 
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>%
-    dplyr::select(-subgroup) %>%
- specaccum(method = "random", permutations =100)
-
-
-
-nutraccum <- data.frame(subgroup_spa_all$richness, subgroup_spa_all$site, subgroup_spa_all$sd)
-nutraccum_no_mollusc <- data.frame(subgroup_spa_all_no_mollusc$richness, subgroup_spa_all_no_mollusc$site, subgroup_spa_all_no_mollusc$sd)
-
-nutraccum_no_mollusc$groups <- "no mollusc"
-nutraccum$groups <- "all"
-names(nutraccum_no_mollusc)
-
-nutraccum_no_mollusc <- nutraccum_no_mollusc %>% 
-  rename(richness = subgroup_spa_all_no_mollusc.richness,
-         site = subgroup_spa_all_no_mollusc.site, 
-         sd = subgroup_spa_all_no_mollusc.sd)
-
-nutraccum <- nutraccum %>% 
-  rename(richness = subgroup_spa_all.richness, 
-         site = subgroup_spa_all.site,
-         sd = subgroup_spa_all.sd)
-  
-nutraccum_all <- bind_rows(nutraccum, nutraccum_no_mollusc)
-
-ggplot(data = nutraccum_all, aes(x = site, y = richness, color = groups)) + geom_line() + xlim(0,10) + 
-  # geom_ribbon(aes(ymin = richness - sd, ymax = richness + sd, fill = groups), alpha = 0.5) +
-  theme_bw()
-
-
-mod1 <- nls(richness ~ SSlogis(site, Asym, xmid, scale), data = nutraccum)
-coef(summary(mod1))
-
-mod2 <- nls(richness ~ SSlogis(site, Asym, xmid, scale), data = nutraccum_no_mollusc)
-coef(summary(mod2))
-
-(tidy(mod1, conf.int = TRUE))
-
-nutraccum_all %>% 
-  group_by(groups) %>% 
-  do(tidy(nls(richness ~ SSlogis(site, asymptote, xmid, scale), data = .), conf.int = TRUE)) %>% 
-  ggplot(data = ., aes(x = term, y = estimate, color = groups)) + geom_point(size = 2) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) + theme_bw()
-
-```
-
-
-```{r}
-#### how many species do you need to sample before reaching 3 RDI targets?
-accumulated_targets <- subgroup_spa %>% 
-  map(.f = `[`, "richness") %>% 
-  unlist() %>% 
-  as.data.frame()
-
-accumulated_targets_sd <- subgroup_spa %>% 
-  map(.f = `[`, "sd") %>% 
-  unlist() %>% 
-  as.data.frame()
-
-accumulated_targets$richness_level = rownames(accumulated_targets)
-colnames(accumulated_targets) <- c("number_of_targets", "richness_level")
-
-accumulated_targets_sd$sd = rownames(accumulated_targets_sd)
-colnames(accumulated_targets_sd) <- c("sd", "number_of_targets")
-
-accumulated_targets_sd <- accumulated_targets_sd %>% 
-  separate(number_of_targets, into = c("subgroup", "number_of_species")) %>%
-  mutate(number_of_species = str_replace(number_of_species, "sd", "")) %>%
-  mutate(number_of_species = as.numeric(number_of_species))
-
-
-accumulated_targets <- accumulated_targets %>% 
-  separate(richness_level, into = c("subgroup", "number_of_species")) %>%
-  mutate(number_of_species = str_replace(number_of_species, "richness", "")) %>%
-  mutate(number_of_species = as.numeric(number_of_species))
-
-accumulated_targets_all <- left_join(accumulated_targets, accumulated_targets_sd)
-accumulated_targets_all <- accumulated_targets_all %>% 
-  mutate(se = sd / sqrt(number_of_species)) 
-
-accumulated_targets_all %>%
-  filter(number_of_species < 10) %>% 
-ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = subgroup)) + geom_line(size =1) + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, fill = subgroup), alpha = 0.1)
-```
-
-```{r, eval=FALSE, include=FALSE}
-RDI_mollusc <- RDI_minerals %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>% 
-  filter(subgroup == "mollusc") %>% 
-  dplyr::select(-subgroup)
-
-RDI_fish <- RDI_minerals %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>% 
-  filter(subgroup == "finfish") %>% 
-  dplyr::select(-subgroup)
-
-RDI_no_mollusc <- RDI_minerals %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>% 
-  filter(subgroup != "mollusc") %>% 
-  dplyr::select(-subgroup)
-
-
-RDI_all <- RDI_minerals %>%
-  dplyr::select(-RDI.micro.tot) %>%
-  dplyr::select(-contains("mean")) %>%
-  dplyr::select(-species_name) %>% 
-  dplyr::select(-subgroup)
-
-spa_rand_all <- specaccum(RDI_all, "rarefaction")
-mod_all <- fitspecaccum(spa_rand_all, model = "gleason")
-
-
-spa_rand_fish <- specaccum(RDI_fish, "rarefaction")
-mod_fish <- fitspecaccum(spa_rand_fish, model = "gleason")
-
-spa_rand_mollusc <- specaccum(RDI_mollusc, "rarefaction")
-mod_mollusc <- fitspecaccum(spa_rand_mollusc, model = "gleason")
-
-spa_rand_no_mollusc <- specaccum(RDI_no_mollusc, method = "random", permutations = 100)
-mod_no_mollusc <- fitspecaccum(spa_rand_no_mollusc, model = "michaelis-menten")
-
-# as.data.frame(spa_rand_no_mollusc$perm) %>% 
-#   rowwise() %>% 
-#   mutate(avg_targets = mean(1:100))
-
-coef(mod_mollusc)
-summary(spa_rand_no_mollusc)
-coef(mod_fish)
-coef(mod_all)
-coef(summary(spa_rand_no_mollusc))
-
-confint(mod_fish)
-
-specslope(spa_rand_all, at = 3) 
-specslope(spa_rand_fish, at = 3) 
-specslope(spa_rand_mollusc, at = 3) 
-```
-
