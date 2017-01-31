@@ -165,7 +165,7 @@ permutest(mod, pairwise = TRUE, permutations = 200)
 ## Pairwise comparisons:
 ## (Observed p-value below diagonal, permuted p-value above diagonal)
 ##            crustacean    finfish mollusc
-## crustacean            0.00497512  0.4627
+## crustacean            0.00497512  0.4826
 ## finfish    0.00015418             0.0050
 ## mollusc    0.43291504 0.00027915
 ```
@@ -189,10 +189,10 @@ min.subgroup %>%
 ## 
 ## Terms added sequentially (first to last)
 ## 
-##            Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)   
-## subgrp      2     1.826 0.91281  3.9555 0.03664  0.004 **
-## Residuals 208    48.000 0.23077         0.96336          
-## Total     210    49.826                 1.00000          
+##            Df SumsOfSqs MeanSqs F.Model      R2 Pr(>F)    
+## subgrp      2     1.826 0.91281  3.9555 0.03664  0.001 ***
+## Residuals 208    48.000 0.23077         0.96336           
+## Total     210    49.826                 1.00000           
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -200,68 +200,10 @@ min.subgroup %>%
 ### Figure 4b. Nutrient-by-nutrient boxplots
 
 
-```r
-RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   nutrient = col_character(),
-##   RDI = col_integer()
-## )
-```
-
-```r
-unique(trait_data$nutrient)
-```
-
 ```
 ##  [1] "prot_g"      "fapun_all_g" "protein_g"   "fapun3"      "protcnt_g"  
 ##  [6] "epa"         "dha"         "ca_mg"       "fat_g"       "zn_mg"      
 ## [11] "fe_mg"
-```
-
-```r
-RDIs <- RDIs %>% 
-  mutate(nutrient = str_to_lower(nutrient)) %>%
-  mutate(nutrient = str_replace(nutrient, "fat", "fat_g")) %>% 
-  # mutate(nutrient = str_replace(nutrient, "protein", "prot_g")) %>% 
-  mutate(nutrient = str_replace(nutrient, "epa_g", "epa")) %>% 
-  mutate(nutrient = str_replace(nutrient, "dha_g", "dha")) %>% 
-  filter(RDI != 56)
-
-trait_data_prot <- trait_data %>% 
-  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
-  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
-  mutate(nutrient = str_replace(nutrient, "prot_g", "protein")) %>% 
-  filter(!grepl("^Mohanty", ref_info))
-
-trait_data_rdi <- left_join(trait_data_prot, RDIs, by = "nutrient")
-
-trait_data_rdi <- trait_data_rdi %>% 
-  mutate(rdi_percent = (concentration/RDI)*100) 
-
-trait_data_rdi %>% 
-  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "protein", "fat_g", "epa", "dha")) %>% 
-  ggplot(., aes(x = subgroup, y = rdi_percent, fill = subgroup, geom = "boxplot")) +
- geom_boxplot() +
-  theme_bw() +
-  theme(axis.text.x = element_blank()) +
-  theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=14,face="bold")) +
-  geom_hline(yintercept=10) +
-  ylab("percentage of RDI in edible portion, log scale") +
-  facet_wrap( ~ nutrient, scales = "free") +
-  scale_y_log10()
-```
-
-```
-## Warning: Transformation introduced infinite values in continuous y-axis
-```
-
-```
-## Warning: Removed 1 rows containing non-finite values (stat_boxplot).
 ```
 
 ![](11_nutrient_analysis_figureset_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
@@ -394,10 +336,10 @@ coef(summary(mod1))
 ```
 
 ```
-##       Estimate   Std. Error    t value      Pr(>|t|)
-## Asym  2.998406 0.0007747324 3870.24733  0.000000e+00
-## xmid  1.217179 0.0148663689   81.87465 3.253088e-160
-## scale 1.266923 0.0154877170   81.80179 3.893234e-160
+##       Estimate  Std. Error    t value      Pr(>|t|)
+## Asym  2.999401 0.000853908 3512.55744  0.000000e+00
+## xmid  1.136976 0.019469965   58.39640 5.639431e-131
+## scale 1.495075 0.019718767   75.81993 1.691671e-153
 ```
 
 ```r
@@ -406,10 +348,10 @@ coef(summary(mod2))
 ```
 
 ```
-##       Estimate  Std. Error    t value     Pr(>|t|)
-## Asym  2.997024 0.002032359 1474.65274 0.000000e+00
-## xmid  1.203202 0.047904211   25.11683 1.428996e-57
-## scale 1.930352 0.047892996   40.30551 5.014763e-86
+##       Estimate  Std. Error    t value      Pr(>|t|)
+## Asym  2.996747 0.001613948 1856.78037  0.000000e+00
+## xmid  1.500477 0.025946645   57.82933 1.281524e-109
+## scale 1.383327 0.027518111   50.26968 2.460337e-100
 ```
 
 ```r
@@ -417,10 +359,10 @@ coef(summary(mod2))
 ```
 
 ```
-##    term estimate    std.error  statistic       p.value conf.low conf.high
-## 1  Asym 2.998406 0.0007747324 3870.24733  0.000000e+00 2.996877  2.999935
-## 2  xmid 1.217179 0.0148663689   81.87465 3.253088e-160 1.187254  1.246247
-## 3 scale 1.266923 0.0154877170   81.80179 3.893234e-160 1.234277  1.300412
+##    term estimate   std.error  statistic       p.value conf.low conf.high
+## 1  Asym 2.999401 0.000853908 3512.55744  0.000000e+00 2.997715  3.001086
+## 2  xmid 1.136976 0.019469965   58.39640 5.639431e-131 1.097807  1.174840
+## 3 scale 1.495075 0.019718767   75.81993 1.691671e-153 1.454188  1.537020
 ```
 
 ```r

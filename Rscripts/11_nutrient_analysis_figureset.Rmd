@@ -176,7 +176,7 @@ min.subgroup %>%
 
 ### Figure 4b. Nutrient-by-nutrient boxplots
 
-```{r}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
 unique(trait_data$nutrient)
 
