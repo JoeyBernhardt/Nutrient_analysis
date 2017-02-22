@@ -8,6 +8,8 @@ output:
     toc_float: yes
 ---
 
+To do list: get the bones no bones incorporated
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

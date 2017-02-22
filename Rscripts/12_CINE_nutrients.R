@@ -1,6 +1,7 @@
 library(tidyverse)
 library(stringr)
 library(janitor)
+library(plotrix)
 
 
 
@@ -42,3 +43,51 @@ CINE_rename <- CINE %>%
   
   
 write_csv(CINE_rename, "data-processed/CINE-fish-nutrients-processed.csv")
+
+
+
+CINE_rename %>% 
+  gather(key = nutrient, value = concentration, 9:16) %>% 
+  filter(!is.na(concentration)) %>% 
+  filter(nutrient == "ca_mg") %>% View
+  ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
+  facet_wrap( ~ nutrient, scales = "free")+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+CINE_long <- CINE_rename %>% 
+  gather(key = nutrient, value = concentration, 9:17) %>% 
+  filter(!is.na(concentration))
+
+CINE_merge <- CINE_long %>% 
+  mutate(part = str_replace(part, "fillet", "muscle")) %>% 
+  mutate(part = str_replace(part, "meat", "muscle")) %>%
+  mutate(part = str_replace(part, "flesh + skin", "muscle + skin")) %>%
+  mutate(part = str_replace(part, "meat + skin", "muscle + skin")) %>%
+  mutate(part = str_replace(part, "flesh", "muscle")) %>%
+  mutate(part = str_replace(part, "middle cut", "middle")) %>%
+  mutate(part = str_replace(part, "roe", "eggs")) %>% 
+  mutate(part = str_replace(part, "grease", "oil")) 
+
+
+CINE_merge %>% 
+  ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
+  facet_wrap( ~ nutrient, scales = "free")+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+
+CINE_merge %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg", "fat_g", "protein_g", "fapun_all_g")) %>% 
+  # filter(part %in% c("whole", "muscle")) %>% 
+  group_by(nutrient, part) %>% 
+  summarise_each(funs(mean, std.error), concentration) %>%
+  arrange(mean) %>% 
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+  facet_wrap( ~ nutrient, scales = "free")+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  
