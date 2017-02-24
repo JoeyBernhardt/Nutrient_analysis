@@ -2,15 +2,25 @@ library(tidyverse)
 library(stringr)
 library(janitor)
 library(plotrix)
+library(gridExtra)
 
 
 
 CINE_raw_data <- read_csv("data/CINE-raw-fish.csv")
 refs <- read_csv("data/CINE-nutrients-fish-references.csv")
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+rdis <- read_csv("data-processed/RDIs.csv")
+
+rdis <- rdis %>% 
+  mutate(nutrient = str_replace(nutrient, "FE_mg", "fe_mg"),
+         nutrient = str_replace(nutrient, "CA_mg", "ca_mg"),
+         nutrient = str_replace(nutrient, "ZN_mg", "zn_mg"),
+         nutrient = str_replace(nutrient, "FAT", "fat_g"),
+         nutrient = str_replace(nutrient, "PROTEIN", "protein_g"))
 
 
-unique(trait_data$nutrient)
+
+
 
 
 CINE <- CINE_raw_data %>% 
@@ -49,7 +59,7 @@ write_csv(CINE_rename, "data-processed/CINE-fish-nutrients-processed.csv")
 CINE_rename %>% 
   gather(key = nutrient, value = concentration, 9:16) %>% 
   filter(!is.na(concentration)) %>% 
-  filter(nutrient == "ca_mg") %>% View
+  filter(nutrient == "ca_mg") %>% 
   ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
   facet_wrap( ~ nutrient, scales = "free")+
   theme_bw() +
@@ -68,7 +78,13 @@ CINE_merge <- CINE_long %>%
   mutate(part = str_replace(part, "flesh", "muscle")) %>%
   mutate(part = str_replace(part, "middle cut", "middle")) %>%
   mutate(part = str_replace(part, "roe", "eggs")) %>% 
-  mutate(part = str_replace(part, "grease", "oil")) 
+  mutate(part = str_replace(part, "grease", "oil")) %>% 
+  mutate(part = str_replace(part, "tail cut", "muscle")) %>% 
+  mutate(part = str_replace(part, "middle", "muscle")) %>%
+  mutate(part = str_replace(part, "tail end", "muscle")) %>% 
+  mutate(part = str_replace(part, "head end", "muscle"))
+
+write_csv(CINE_merge, "data-processed/CINE-body-parts.csv")
 
 
 CINE_merge %>% 
@@ -78,16 +94,67 @@ CINE_merge %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
   
 
-CINE_merge %>% 
-  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg", "fat_g", "protein_g", "fapun_all_g")) %>% 
-  # filter(part %in% c("whole", "muscle")) %>% 
+ca_plot <- CINE_merge %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
+  filter(part != "not specified") %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(part != "tongues + cheeks") %>% 
+  filter(part != "whole, no skin") %>% 
+  mutate(nutrient = str_replace(nutrient, "ca_mg", "calcium")) %>% 
   group_by(nutrient, part) %>% 
   summarise_each(funs(mean, std.error), concentration) %>%
+  group_by(nutrient) %>% 
   arrange(mean) %>% 
   ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free")+
+  geom_hline(yintercept = 1200/10) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-  
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("nutrient concentration (mg/100g edible portion)")
+
+
+fe_plot <- CINE_merge %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
+  filter(part != "not specified") %>% 
+  filter(nutrient == "fe_mg") %>% 
+  filter(part != "tongues + cheeks") %>% 
+  filter(part != "whole, no skin") %>% 
+  mutate(nutrient = str_replace(nutrient, "fe_mg", "iron")) %>% 
+  group_by(nutrient, part) %>% 
+  summarise_each(funs(mean, std.error), concentration) %>%
+  group_by(nutrient) %>% 
+  arrange(mean) %>% 
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+  facet_wrap( ~ nutrient, scales = "free")+
+  geom_hline(yintercept = 18/10) +
+  theme_bw() +
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("nutrient concentration (mg/100g edible portion)")
+
+zn_plot <- CINE_merge %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
+  filter(part != "not specified") %>% 
+  filter(nutrient == "zn_mg") %>% 
+  mutate(nutrient = str_replace(nutrient, "zn_mg", "zinc")) %>% 
+  filter(part != "tongues + cheeks") %>% 
+  filter(part != "whole, no skin") %>% 
+  group_by(nutrient, part) %>% 
+  summarise_each(funs(mean, std.error), concentration) %>%
+  group_by(nutrient) %>% 
+  arrange(mean) %>% 
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
+  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+  facet_wrap( ~ nutrient, scales = "free") +
+  geom_hline(yintercept = 11/10) +
+  theme_bw() +
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("nutrient concentration (mg/100g edible portion)")
+
+
+
+
+  microlement_body_part_plot <- grid.arrange(ca_plot, zn_plot, fe_plot, ncol = 3)
+  ggsave("figures/microelements_body_part.png", width = 14, height = 8, plot = microlement_body_part_plot)
   
