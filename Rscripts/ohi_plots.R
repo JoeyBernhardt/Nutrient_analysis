@@ -3,6 +3,8 @@ require(ohicore)
 
 library(rCharts)
 library(forcats)
+library(tidyverse)
+library(stringr)
 
 
 
@@ -13,12 +15,16 @@ RDI_10 <- trait_data %>%
   spread(nutrient, concentration) %>% 
   group_by(species_name, subgroup) %>% 
   summarise(mean_ca = mean(100*ca_mg/1200, na.rm = TRUE),
-            mean.zn = mean(100*zn_mg/11, na.rm = TRUE), 
-            mean.fe = mean(100*fe_mg/18, na.rm = TRUE),
+            mean_zn = mean(100*zn_mg/11, na.rm = TRUE), 
+            mean_fe = mean(100*fe_mg/18, na.rm = TRUE),
             mean_protein = mean(100*protcnt_g/50, na.rm = TRUE),
             mean_fat = mean(100*fat_g/70, na.rm = TRUE), 
             mean_epa = mean(100*epa/1, na.rm = TRUE),
             mean_dha = mean(100*dha/1, na.rm = TRUE))
+
+
+
+
 
 
 RDI_mean <- trait_data %>% 
@@ -41,8 +47,39 @@ RDI_mean <- trait_data %>%
 
 
 rdi_mean_long <- RDI_mean %>% 
-  gather(key = nutrient, value = concentration, 10:16) %>%
+  gather(key = nutrient, value = concentration, 3:9) %>%
   filter(!is.na(concentration))
+
+rdi_10_long <- RDI_10 %>% 
+  gather(key = nutrient, value = concentration, 3:9) %>%
+  filter(!is.na(concentration))
+
+## flower plot
+rdi_10_long %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_ca", "calcium")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_fe", "iron")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_zn", "zinc")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_fat", "fat")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_protein", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_epa", "EPA")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_dha", "DHA")) %>% 
+  # filter(subgroup == "crustacean") %>%
+  filter(concentration < 2000) %>% 
+  arrange(species_name, nutrient, concentration) %>% 
+ggplot(aes(y = log(concentration), x = nutrient, color = nutrient, group = species_name)) + geom_jitter(size =4, alpha = 0.5) + 
+  geom_hline(yintercept = log(10)) + 
+  coord_polar() + 
+  # labs(x = "", y = "") +
+  facet_wrap( ~ subgroup) +
+  theme_bw() + 
+  theme(text = element_text(size=18)) +
+  theme(legend.position="none") 
+ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
+
+
++
+  theme(axis.text.x = element_blank(), axis.text.y = element_blank()) 
+
 
 
 rdi_mean_mollusc <- rdi_mean_long %>% 
@@ -172,7 +209,11 @@ RDI_target_table_all <- ntbl.RDI.all %>%
   mutate(RDI.micro.tot = str_replace(RDI.micro.tot, "2", "2 DRI targets")) %>% 
   mutate(RDI.micro.tot = str_replace(RDI.micro.tot, "3", "3 DRI targets")) %>% 
   mutate(RDI.micro.tot = str_replace(RDI.micro.tot, "4", "4 DRI targets")) %>%
-  mutate(RDI.micro.tot = str_replace(RDI.micro.tot, "5", "5 DRI targets"))
+  mutate(RDI.micro.tot = str_replace(RDI.micro.tot, "5", "5 DRI targets")) %>% 
+  filter(subgroup == "finfish") %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = n)) + geom_bar(stat = "identity") +
+  coord_polar() + labs(x = "", y = "")
+  
 
 
 finfish_rdi_all <- RDI_target_table_all %>% 
@@ -194,3 +235,34 @@ library(gridExtra)
 
 grid.arrange(crus_plot, moll_plot, fin_plot, ncol = 3)
 
+
+
+
+# try with ggplot ---------------------------------------------------------
+
+RDI_minerals <- trait_data %>% 
+  spread(nutrient, concentration) %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+            mean.ZN = mean(zn_mg, na.rm = TRUE), 
+            mean.FE = mean(fe_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 120, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.1, 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[6:8])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot)
+
+RDI_minerals %>% 
+  group_by(subgroup, RDI.micro.tot) %>% 
+  summarise(n = n()) %>%  
+  mutate(cum.RDI = cumsum(n)) %>% 
+  filter(subgroup == "finfish") %>% 
+  ggplot(., aes(x = RDI.micro.tot, y = n)) + geom_bar(stat = "identity") +
+  coord_polar() + labs(x = "", y = "")
+
+last_plot() + scale_y_continuous() +
+   coord_polar() + labs(x = "", y = "") + opts(legend.position = "none",
+                                                    axis.text.x = theme_blank(), axis.text.y = theme_blank(),
+                                                    axis.ticks = theme_blank())

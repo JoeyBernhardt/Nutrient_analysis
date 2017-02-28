@@ -55,6 +55,9 @@ CINE_rename <- CINE %>%
 write_csv(CINE_rename, "data-processed/CINE-fish-nutrients-processed.csv")
 
 
+# make figures! -----------------------------------------------------------
+
+CINE_rename <- read_csv("data-processed/CINE-fish-nutrients-processed.csv")
 
 CINE_rename %>% 
   gather(key = nutrient, value = concentration, 9:16) %>% 
@@ -105,13 +108,13 @@ ca_plot <- CINE_merge %>%
   summarise_each(funs(mean, std.error), concentration) %>%
   group_by(nutrient) %>% 
   arrange(mean) %>% 
-  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 1200/10) +
   theme_bw() +
-  theme(text = element_text(size=20),
-        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("nutrient concentration (mg/100g edible portion)")
+  theme(text = element_text(size=24),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
 
 
 fe_plot <- CINE_merge %>% 
@@ -125,13 +128,13 @@ fe_plot <- CINE_merge %>%
   summarise_each(funs(mean, std.error), concentration) %>%
   group_by(nutrient) %>% 
   arrange(mean) %>% 
-  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 18/10) +
   theme_bw() +
-  theme(text = element_text(size=20),
-        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("nutrient concentration (mg/100g edible portion)")
+  theme(text = element_text(size=24),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
 
 zn_plot <- CINE_merge %>% 
   filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
@@ -144,13 +147,13 @@ zn_plot <- CINE_merge %>%
   summarise_each(funs(mean, std.error), concentration) %>%
   group_by(nutrient) %>% 
   arrange(mean) %>% 
-  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 3) +
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free") +
   geom_hline(yintercept = 11/10) +
   theme_bw() +
-  theme(text = element_text(size=20),
-        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("nutrient concentration (mg/100g edible portion)")
+  theme(text = element_text(size=24),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
 
 
 
