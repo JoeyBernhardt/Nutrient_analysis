@@ -8,6 +8,7 @@ library(stringr)
 
 
 
+
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
 RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
 
@@ -55,6 +56,8 @@ rdi_10_long <- RDI_10 %>%
   filter(!is.na(concentration))
 
 ## flower plot
+
+## flower plot
 rdi_10_long %>% 
   mutate(nutrient = str_replace(nutrient, "mean_ca", "calcium")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_fe", "iron")) %>% 
@@ -66,7 +69,7 @@ rdi_10_long %>%
   # filter(subgroup == "crustacean") %>%
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>% 
-ggplot(aes(y = log(concentration), x = nutrient, color = nutrient, group = species_name)) + geom_jitter(size =4, alpha = 0.5) + 
+  ggplot(aes(y = log(concentration), x = nutrient, color = nutrient, group = species_name)) + geom_jitter(size =4, alpha = 0.5) + 
   geom_hline(yintercept = log(10)) + 
   coord_polar() + 
   # labs(x = "", y = "") +
@@ -77,10 +80,89 @@ ggplot(aes(y = log(concentration), x = nutrient, color = nutrient, group = speci
 ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 
 
-+
-  theme(axis.text.x = element_blank(), axis.text.y = element_blank()) 
 
 
+rdi_rename <- rdi_10_long %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_ca", "calcium")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_fe", "iron")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_zn", "zinc")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_fat", "fat")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_protein", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_epa", "EPA")) %>% 
+  mutate(nutrient = str_replace(nutrient, "mean_dha", "DHA")) 
+
+rdi_targets <- rdi_rename %>% 
+  filter(concentration < 2000) %>% 
+  arrange(species_name, nutrient, concentration) %>%
+  group_by(subgroup, species_name, nutrient) %>% 
+  summarize(mean_conc = mean(concentration)) %>%
+  mutate(rdi = ifelse(mean_conc > 10, "1", "0")) %>%
+  mutate(rdi = as.numeric(rdi)) %>% 
+  group_by(species_name) %>%  
+  summarise(sum_rdi = sum(rdi))
+
+rdi_mean <- rdi_rename %>% 
+  filter(concentration < 2000) %>% 
+  arrange(species_name, nutrient, concentration) %>%
+  group_by(subgroup, species_name, nutrient) %>% 
+  summarize(mean_conc = mean(concentration))
+
+all <- left_join(rdi_mean, rdi_targets, by = "species_name")
+
+all %>%  
+  ungroup() %>% 
+  mutate(subgroup = ifelse(subgroup == "crustacean", "c_crustacean", subgroup)) %>% 
+  mutate(subgroup = ifelse(subgroup == "finfish", "a_finfish", subgroup)) %>% 
+  mutate(subgroup = ifelse(subgroup == "mollusc", "b_mollusc", subgroup)) %>% 
+  arrange(subgroup, species_name, nutrient, mean_conc) %>%
+  filter(mean_conc < 750) %>% 
+ggplot(aes(y = log(mean_conc), x = factor(sum_rdi), group = species_name)) + geom_jitter(size = 3, aes(color = factor(sum_rdi), alpha = 0.5)) + 
+  # geom_line(color = "grey") +
+  # geom_jitter(size =1, alpha = 0.5) + 
+  # geom_hline(yintercept = log(10)) + 
+  coord_polar() + 
+  # labs(x = "", y = "") +
+  facet_wrap( ~ subgroup) +
+  theme_bw() + 
+  theme(text = element_text(size=18)) +
+  theme(legend.position="none") 
+ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
+
+
+all %>%  
+  ungroup() %>% 
+  ggplot(aes(sum_rdi)) + geom_histogram(binwidth = 1) +
+  facet_wrap( ~ subgroup)
+
+
+
+rdi_rename %>% 
+  filter(concentration < 2000) %>% 
+  arrange(species_name, nutrient, concentration) %>%
+  mutate(rdi = ifelse(concentration > 10, "1", "0")) %>%
+  mutate(rdi = as.numeric(rdi)) %>% 
+  group_by(subgroup, species_name) %>%  
+  summarise(sum_rdi = sum(rdi)) %>% 
+  mutate(sum_rdi = as.integer(sum_rdi)) %>% 
+  ggplot(aes(sum_rdi)) + geom_density(aes(fill = subgroup, color = subgroup), size = 0.9, alpha = 0.1, adjust = 3) +
+  theme_bw() + xlab("number of DRI targets") + ylab("proportion") + theme(text = element_text(size=18))
+ggsave("figures/DRI_number_density_plot.png")  
+
+
+rdi_rename %>% 
+  filter(concentration < 2000) %>% 
+  arrange(species_name, nutrient, concentration) %>%
+  mutate(rdi = ifelse(concentration > 10, "1", "0")) %>%
+  mutate(rdi = as.numeric(rdi)) %>% 
+  group_by(subgroup, species_name) %>%  
+  summarise(sum_rdi = sum(rdi)) %>% 
+  mutate(sum_rdi = as.integer(sum_rdi)) %>% 
+  ggplot(aes(sum_rdi)) + geom_histogram(aes(fill = subgroup, color = subgroup), binwidth = 0.8, bins = 5) +
+  facet_wrap(~ subgroup, scales = "free_y") + 
+  theme_bw() + xlab("number of DRI targets") + ylab("number of species") + theme(text = element_text(size=18))
+
+
+?geom_histogram
 
 rdi_mean_mollusc <- rdi_mean_long %>% 
   filter(subgroup == "mollusc") %>% 
