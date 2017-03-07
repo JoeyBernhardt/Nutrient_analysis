@@ -296,6 +296,17 @@ subgroup_spa <- ntbl.RDI.all %>%
   map(.f = specaccum, method = "random")
 
 
+all_spa <- ntbl.RDI.all %>%
+  dplyr::select(-RDI.micro.tot) %>%
+  dplyr::select(-contains("mean")) %>% 
+  dplyr::select(-species_name) %>%
+  mutate(subgroup = "all") %>% 
+  split( .$subgroup) %>% 
+  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
+  map(.f = specaccum, method = "random")
+
+
+
 subgroup_spa <- RDI_minerals %>%
   dplyr::select(-RDI.micro.tot) %>%
   dplyr::select(-contains("mean")) %>%
@@ -383,12 +394,51 @@ accumulated_targets_all <- left_join(accumulated_targets, accumulated_targets_sd
 accumulated_targets_all <- accumulated_targets_all %>% 
   mutate(se = sd / sqrt(number_of_species)) 
 
-accumulated_targets_all %>%
+## add in the all accumulation curve
+
+accumulated_targets_full <- all_spa %>% 
+  map(.f = `[`, "richness") %>% 
+  unlist() %>% 
+  as.data.frame()
+
+accumulated_targets_full_sd <- all_spa %>% 
+  map(.f = `[`, "sd") %>% 
+  unlist() %>% 
+  as.data.frame()
+
+accumulated_targets_full$richness_level = rownames(accumulated_targets_full)
+colnames(accumulated_targets_full) <- c("number_of_targets", "richness_level")
+
+accumulated_targets_full_sd$sd = rownames(accumulated_targets_full_sd)
+colnames(accumulated_targets_full_sd) <- c("sd", "number_of_targets")
+
+accumulated_targets_full_sd <- accumulated_targets_full_sd %>% 
+  separate(number_of_targets, into = c("subgroup", "number_of_species")) %>%
+  mutate(number_of_species = str_replace(number_of_species, "sd", "")) %>%
+  mutate(number_of_species = as.numeric(number_of_species))
+
+
+accumulated_targets_full <- accumulated_targets_full %>% 
+  separate(richness_level, into = c("subgroup", "number_of_species")) %>%
+  mutate(number_of_species = str_replace(number_of_species, "richness", "")) %>%
+  mutate(number_of_species = as.numeric(number_of_species))
+
+accumulated_targets_all_full <- left_join(accumulated_targets_full, accumulated_targets_full_sd)
+accumulated_targets_all_full <- accumulated_targets_all_full %>% 
+  mutate(se = sd / sqrt(number_of_species)) 
+
+## now bind rows with the subroup split accum
+
+all <- bind_rows(accumulated_targets_all, accumulated_targets_all_full)
+
+all %>%
   filter(number_of_species < 15) %>% 
   rename(group = subgroup) %>% 
-ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = group)) + geom_line(size =1, linetype = "dotted") + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.2, size = 1) + ylab("number of DRI targets") +
-  xlab("number of species") + theme(text = element_text(size=24)) + scale_colour_grey()
+ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = group)) + geom_line(size =1, linetype = "dotted") + theme_bw() + geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.2, size = 1) + ylab("number of nutrient requirements fulfilled") +
+  xlab("number of species") + theme(text = element_text(size=14)) 
+
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/nutrient_accum_grey.png", width = 8, height = 6)
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/nutrient_accum_all.png", width = 8, height = 6)
 ```
 ```{r}
 
