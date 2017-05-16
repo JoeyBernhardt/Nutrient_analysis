@@ -9,6 +9,9 @@ output:
 ---
 
 To do list: get the bones no bones incorporated
+make table of all the ISSCAAP categories and numbers of distinct species for each nutrient
+functional group/morphology/parts eaten
+table s1: supplementary table with all the species and the nutrients
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -166,6 +169,7 @@ scaling <- left_join(ord_long, min.env, by = c("Label" = "species_name")) %>%
 
 ggplot(data = scaling, aes(x = Dim1, y = Dim2, colour = subgroup)) + geom_point(size = 4) +
   theme_bw()
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/subgroup_ordination_plot.png")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
@@ -557,8 +561,8 @@ trait_data %>%
   group_by(nutrient) %>% 
 ggplot(aes(y = log(concentration), x = log(bulk_mean_length)), data = .) + geom_point(size = 3, alpha = 0.5) + geom_smooth(method = "lm", color = "grey") +
   theme_bw() + ylab("ln concentration (mg/100g)") + xlab("ln body length") + facet_wrap( ~ nutrient, scales = "free") +
-  theme(text = element_text(size=24)) 
-ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/concentration_body_size.png", width = 8, height = 6)
+  theme(text = element_text(size=16)) 
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/concentration_body_size.png", width = 8, height = 3)
 ```
 
 
@@ -598,7 +602,8 @@ mod_all <- trait_data %>%
 Iron
 ```{r echo = FALSE}
 mod <- mod_all %>% 
-  filter(nutrient == "fe_mg")
+  filter(nutrient == "fe_mg") %>% 
+  filter(subgroup == "finfish")
 
 mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
@@ -609,19 +614,25 @@ mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + fee
 mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 
 ddfe <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
-
+ddfe
+summary(mod2)
 fe_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfe, subset = cumsum(weight) <= .95)), var = "term")) %>% rename(conf_low = `2.5 %`,
          conf_high = `97.5 %`) %>% 
   rename(term = rowname)
 fe_slopes_average <- enframe(coef(model.avg(ddfe, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
 fe_results <- left_join(fe_CI_average, fe_slopes_average, by = "term") %>% 
   mutate(nutrient = "iron")
+
+summary(mod1)
+
+
 ```
 
 Zinc
 ```{r echo=FALSE}
 mod <- mod_all %>% 
-  filter(nutrient == "zn_mg")
+  filter(nutrient == "zn_mg") %>% 
+  filter(subgroup == "finfish")
 
 mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
@@ -632,7 +643,7 @@ mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + fee
 mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 
 ddzn <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
-
+summary(mod1)
 zn_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddzn, subset = cumsum(weight) <= .95)), var = "term")) %>% rename(conf_low = `2.5 %`,
          conf_high = `97.5 %`) %>% 
   rename(term = rowname)
@@ -645,7 +656,8 @@ zn_results <- left_join(zn_CI_average, zn_slopes_average, by = "term") %>%
 Calcium
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 mod <- mod_all %>% 
-  filter(nutrient == "ca_mg")
+  filter(nutrient == "ca_mg") %>% 
+  filter(subgroup == "finfish")
 
 mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
 mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
@@ -665,9 +677,111 @@ ca_results <- left_join(ca_CI_average, ca_slopes_average, by = "term") %>%
   mutate(nutrient = "calcium")
 ```
 
+EPA
+```{r echo=FALSE}
+mod <- mod_all %>% 
+  filter(nutrient == "epa") %>% 
+  filter(subgroup == "finfish")
+
+mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
+mod3 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod4 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod5 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = mod), standardize.y = TRUE) 
+mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+
+ddepa <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
+summary(mod1)
+epa_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddepa, subset = cumsum(weight) <= .95)), var = "term")) %>% rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+epa_slopes_average <- enframe(coef(model.avg(ddepa, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+epa_results <- left_join(epa_CI_average, epa_slopes_average, by = "term") %>% 
+  mutate(nutrient = "epa")
+```
+
+DHA
+```{r echo=FALSE}
+mod <- mod_all %>% 
+  filter(nutrient == "dha") %>% 
+  filter(subgroup == "finfish")
+
+mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
+mod3 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod4 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod5 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = mod), standardize.y = TRUE) 
+mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+
+dddha <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
+summary(mod6)
+dha_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(dddha, subset = cumsum(weight) <= .95)), var = "term")) %>% rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+dha_slopes_average <- enframe(coef(model.avg(dddha, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+dha_results <- left_join(dha_CI_average, dha_slopes_average, by = "term") %>% 
+  mutate(nutrient = "dha")
+```
+
+fat
+```{r echo=FALSE}
+mod <- mod_all %>% 
+  filter(nutrient == "fat_g") %>% 
+  filter(subgroup == "finfish")
+
+mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
+mod3 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod4 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod5 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = mod), standardize.y = TRUE) 
+mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+
+ddfat <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
+summary(mod1)
+summary(model.avg(ddfat, subset = cumsum(weight) <= .95))
+
+fat_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfat, subset = cumsum(weight) <= .95)), var = "term")) %>% rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+fat_slopes_average <- enframe(coef(model.avg(ddfat, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+fat_results <- left_join(fat_CI_average, fat_slopes_average, by = "term") %>% 
+  mutate(nutrient = "fat")
+```
+
+
+protein
+```{r echo=FALSE}
+unique(mod_all$nutrient)
+
+mod <- mod_all %>% 
+  filter(nutrient %in% c("protcnt_g")) %>% 
+  filter(subgroup == "finfish")
+
+mod1 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod2 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = mod), standardize.y = TRUE) 
+mod3 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod4 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod5 <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+mod6 <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = mod), standardize.y = TRUE) 
+mod7 <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = mod), standardize.y = TRUE) 
+
+ddprotein <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
+summary(mod1)
+protein_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddprotein, subset = cumsum(weight) <= .95)), var = "term")) %>% rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+protein_slopes_average <- enframe(coef(model.avg(ddprotein, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+protein_results <- left_join(protein_CI_average, protein_slopes_average, by = "term") %>% 
+  mutate(nutrient = "protein")
+```
+
+
 ### Figure 7. Within functional groups, some traits such body size and latitude are strongly associated with nutritional profile 
 ```{r echo=FALSE}
-microelements <- bind_rows(fe_results, zn_results, ca_results) %>% 
+microelements_finfish <- bind_rows(fe_results, zn_results, ca_results, epa_results, dha_results, fat_results, protein_results) %>% 
   filter(term != "(Intercept)") %>% 
   mutate(term = str_replace(term, "z.log_length", "body size (log length)")) %>% 
   mutate(term = str_replace(term, "z.bulk_trophic_level", "fractional trophic position")) %>% 
@@ -679,16 +793,33 @@ microelements <- bind_rows(fe_results, zn_results, ca_results) %>%
   mutate(term = ifelse(term == "feeding_levelplants/detritus+animals (troph. 2.2-2.79)", "omnivore", term)) %>%
   mutate(term = ifelse(term == "feeding_levelmainly animals (troph. 2.8 and up)", "carnivore", term)) %>% 
   mutate(term = ifelse(term == "feeding_modehunting macrofauna (predator)", "active predator", term)) %>% 
-  mutate(term = ifelse(term == "feeding_levelmainly plants/detritus (troph. 2-2.19)", "herbivore", term))
+  mutate(term = ifelse(term == "feeding_levelmainly plants/detritus (troph. 2-2.19)", "herbivore", term)) %>% 
+  mutate(term = ifelse(term == "feeding_modeother", "other feeding mode", term)) %>% 
+  mutate(term = ifelse(term == "feeding_modefeeding on the prey of a host (commensal)", "commensal", term)) 
 
-
-ggplot(data = microelements, aes(x = term, y = slope)) + geom_point(size = 4) + 
+microelements %>% 
+  filter(nutrient %in% c("calcium", "iron", "zinc")) %>% 
+ggplot(data = ., aes(x = term, y = slope)) + geom_point(size = 4) + 
   geom_hline(yintercept = 0) +
   geom_errorbar(aes(ymin = conf_low, ymax = conf_high), width = 0.1) +
   coord_flip() + theme_bw() + facet_wrap( ~ nutrient) +
-  theme(text = element_text(size=24)) +
+  theme(text = element_text(size=12)) +
   ylab("model-averaged estimate") 
 ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/coefs_dot_plot.png", width = 8, height = 5)
+```
+
+```{r}
+microelements %>% 
+  filter(nutrient %in% c("fat", "protein", "epa", "dha")) %>% 
+ggplot(data = ., aes(x = term, y = slope)) + geom_point(size = 4) + 
+  geom_hline(yintercept = 0) +
+  geom_errorbar(aes(ymin = conf_low, ymax = conf_high), width = 0.1) +
+  coord_flip() + theme_bw() + facet_wrap( ~ nutrient) +
+  theme(text = element_text(size=12)) +
+  ylab("model-averaged estimate") 
+ggsave("/Users/Joey/Documents/Nutrient_Analysis/figures/coefs_dot_plot.png", width = 8, height = 5)
+
+
 ```
 
 
