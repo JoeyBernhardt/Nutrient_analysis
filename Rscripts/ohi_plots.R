@@ -144,8 +144,9 @@ rdi_rename %>%
   group_by(subgroup, species_name) %>%  
   summarise(sum_rdi = sum(rdi)) %>% 
   mutate(sum_rdi = as.integer(sum_rdi)) %>% 
-  ggplot(aes(sum_rdi)) + geom_density(aes(fill = subgroup, color = subgroup), size = 0.9, alpha = 0.1, adjust = 3) +
-  theme_bw() + xlab("number of DRI targets") + ylab("proportion") + theme(text = element_text(size=18))
+  ggplot(aes(sum_rdi)) + geom_density(aes(linetype = subgroup), size = 0.9, alpha = 0.1, adjust = 3) +
+  theme_bw() + xlab("number of DRI targets") + ylab("proportion") + theme(text = element_text(size=18)) + geom_vline(xintercept = 1) +
+  scale_x_continuous(breaks=seq(0, 6, 1)) + scale_colour_grey()
 ggsave("figures/DRI_number_density_plot.png")  
 
 
