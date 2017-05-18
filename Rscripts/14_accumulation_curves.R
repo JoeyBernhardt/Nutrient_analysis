@@ -78,7 +78,7 @@ all_spa <- ntbl.RDI.all %>%
 	map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
 	map(.f = specaccum, method = "random")
 
-
+all_spa
 without_crustaceans <- ntbl.RDI.all %>%
 	dplyr::select(-RDI.micro.tot) %>%
 	dplyr::select(-contains("mean")) %>% 
@@ -195,6 +195,7 @@ accumulated_targets_all_nc <- accumulated_targets_all_nc %>%
 ## now bind rows with the subroup split accum
 
 all <- bind_rows(accumulated_targets_all, accumulated_targets_all_full, accumulated_targets_all_nc)
+write_csv(all, "data-processed/all_accumulation_curve_data.csv")
 
 all %>%
 	filter(number_of_species < 15) %>% 

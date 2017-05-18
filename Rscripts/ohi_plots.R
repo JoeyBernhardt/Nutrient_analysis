@@ -5,7 +5,7 @@ library(rCharts)
 library(forcats)
 library(tidyverse)
 library(stringr)
-
+library(multifunc)
 
 
 
