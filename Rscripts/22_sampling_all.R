@@ -5,6 +5,7 @@ library(purrr)
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
 
 trait_data_pro <- trait_data %>% 
+  filter(!grepl("^Mohanty", ref_info)) %>% 
   spread(nutrient, concentration) %>% 
   group_by(species_name, subgroup) %>% 
   summarise(mean.CA = mean(ca_mg, na.rm = TRUE),

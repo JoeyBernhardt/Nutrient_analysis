@@ -111,7 +111,7 @@ targets %>%
   ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
   theme_bw() +
   scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
-
+ggsave("figures/nutrient_accumulation_by_threshold.pdf")
 
 targets %>% 
   filter(number_of_species < 15) %>% 
@@ -120,5 +120,18 @@ targets %>%
   filter(term != "(Intercept)") %>% 
   ggplot(aes(x = threshold1, y = estimate)) + geom_point() + geom_errorbar(aes(ymin = conf.low, ymax = conf.high)) + theme_bw() +
   xlab("threshold (DRI percentage)") + ylab("effect of adding one species to diet (linear coefficient)")
+ggsave("figures/effect_of_adding_one_species_by_threshold.pdf")
 
+
+
+targets %>%
+  # filter(number_of_species < 30) %>% 
+  mutate(threshold1 = threshold1*100) %>% 
+  filter(threshold1 == 25) %>% 
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
+  theme_bw() +
+  scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
+
+
+### ok now need to do the thing where I compare the accumulation curves to the best species at each richness level
 
