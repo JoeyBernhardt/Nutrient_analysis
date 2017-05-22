@@ -3,6 +3,7 @@ library(stringr)
 library(purrr)
 library(tidyverse)
 library(broom)
+library(vegan)
 
 
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")

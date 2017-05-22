@@ -1,0 +1,23 @@
+species_name,subgroup,RDI.CA,RDI.FE,RDI.ZN,RDI.EPA,RDI.DHA,RDI.micro.tot,ID
+Boreogadus saida,finfish,0.0,0.0,0.0,0.0,0.0,0.0,6
+Thunnus alalunga,finfish,0.0,0.0,0.0,1.0,1.0,2.0,101
+Tinca tinca,finfish,0.0,0.0,0.0,0.0,0.0,0.0,104
+Dentex sp.,finfish,0.0,0.0,0.0,0.0,1.0,1.0,24
+Tilapia pra,finfish,1.0,0.0,0.0,0.0,0.0,1.0,103
+Ctenopharyngodon idella,finfish,0.0,0.0,0.0,0.0,0.0,0.0,21
+Gasterochisma melampus,finfish,0.0,0.0,0.0,0.0,1.0,1.0,30
+Nephrops norvegicus,crustacean,0.0,0.0,0.0,0.0,0.0,0.0,58
+Pampus argenteus,finfish,0.0,0.0,0.0,0.0,1.0,1.0,67
+Clarias batrachus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,15
+Gadus morhua,finfish,0.0,0.0,0.0,0.0,0.0,0.0,29
+Liza aurata,finfish,0.0,0.0,0.0,0.0,0.0,0.0,43
+Cipangopaludina chinensis,mollusc,1.0,0.0,1.0,0.0,0.0,2.0,14
+Coregonus lavaretus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,18
+Perca flavescens,finfish,0.0,0.0,0.0,0.0,0.0,0.0,73
+Liza parsia,finfish,0.0,0.0,0.0,1.0,0.0,1.0,44
+Tor putitora,finfish,0.0,0.0,0.0,1.0,1.0,2.0,105
+Crassostrea rhizophorae,mollusc,0.0,0.0,1.0,0.0,0.0,1.0,20
+Melanogrammus aeglefinus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,47
+Meretrix lusoria,mollusc,0.0,1.0,0.0,0.0,1.0,2.0,48
+Cyclopterus lumpus,finfish,0.0,0.0,0.0,1.0,1.0,2.0,22
+Coregonus clupeaformis,finfish,0.0,0.0,0.0,0.0,0.0,0.0,17

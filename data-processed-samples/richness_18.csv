@@ -1,0 +1,19 @@
+species_name,subgroup,RDI.CA,RDI.FE,RDI.ZN,RDI.EPA,RDI.DHA,RDI.micro.tot,ID
+Oncorhynchus gorbuscha,finfish,0.0,0.0,0.0,0.0,1.0,1.0,61
+Meretrix lusoria,mollusc,0.0,1.0,0.0,0.0,1.0,2.0,48
+Perca fluviatilis,finfish,0.0,0.0,0.0,0.0,1.0,1.0,74
+Melanogrammus aeglefinus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,47
+Lampris guttatus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,37
+Tilapia pra,finfish,1.0,0.0,0.0,0.0,0.0,1.0,103
+Oncorhynchus gorbuscha,finfish,0.0,0.0,0.0,0.0,1.0,1.0,61
+Oncorhyncus spp,finfish,0.0,0.0,0.0,0.0,0.0,0.0,64
+Crassostrea madrasensis,mollusc,0.0,0.0,0.0,1.0,1.0,2.0,19
+Isurus oxyrinchus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,33
+Oncorhynchus mykiss,finfish,0.0,0.0,0.0,1.0,1.0,2.0,62
+Thymallus arcticus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,102
+Coregonus lavaretus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,18
+Esox lucius,finfish,0.0,0.0,0.0,0.0,0.0,0.0,26
+Lates calcarifer,finfish,0.0,1.0,1.0,1.0,1.0,4.0,38
+Thymallus arcticus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,102
+Boreogadus saida,finfish,0.0,0.0,0.0,0.0,0.0,0.0,6
+Portunus pelagicus,crustacean,0.0,0.0,1.0,0.0,0.0,1.0,79

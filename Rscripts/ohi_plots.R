@@ -6,6 +6,7 @@ library(forcats)
 library(tidyverse)
 library(stringr)
 library(multifunc)
+library(stringr)
 
 
 
@@ -81,8 +82,7 @@ ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 
 
 
-
-rdi_rename <- rdi_10_long %>% 
+rdi_10_rename <- rdi_10_long %>% 
   mutate(nutrient = str_replace(nutrient, "mean_ca", "calcium")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_fe", "iron")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_zn", "zinc")) %>% 
@@ -91,7 +91,7 @@ rdi_rename <- rdi_10_long %>%
   mutate(nutrient = str_replace(nutrient, "mean_epa", "EPA")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_dha", "DHA")) 
 
-rdi_targets <- rdi_rename %>% 
+rdi_targets <- rdi_10_rename %>% 
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>%
   group_by(subgroup, species_name, nutrient) %>% 
@@ -143,13 +143,34 @@ rdi_rename %>%
   mutate(rdi = as.numeric(rdi)) %>% 
   group_by(subgroup, species_name) %>%  
   summarise(sum_rdi = sum(rdi)) %>% 
-  mutate(sum_rdi = as.integer(sum_rdi)) %>% 
+  mutate(sum_rdi = as.integer(sum_rdi)) %>%
   ggplot(aes(sum_rdi)) + geom_density(aes(linetype = subgroup), size = 0.9, alpha = 0.1, adjust = 3) +
   theme_bw() + xlab("number of DRI targets") + ylab("proportion") + theme(text = element_text(size=18)) + geom_vline(xintercept = 1) +
   scale_x_continuous(breaks=seq(0, 6, 1)) + scale_colour_grey()
 ggsave("figures/DRI_number_density_plot.png")  
 
 
+
+rdi_rename %>% 
+  filter(concentration < 2000) %>% 
+  arrange(species_name, nutrient, concentration) %>%
+  mutate(rdi = ifelse(concentration > 10, "1", "0")) %>%
+  mutate(rdi = as.numeric(rdi)) %>% 
+  group_by(subgroup, species_name) %>%  
+  summarise(sum_rdi = sum(rdi)) %>% 
+  mutate(sum_rdi = as.integer(sum_rdi)) %>% 
+  group_by(subgroup, sum_rdi) %>% 
+  tally() %>% 
+  mutate(percent = NA) %>% 
+  mutate(percent = ifelse(subgroup == "crustacean", n/59, percent)) %>% 
+  mutate(percent = ifelse(subgroup == "mollusc", n/70, percent)) %>% 
+  mutate(percent = ifelse(subgroup == "finfish", n/552, percent)) %>% 
+  ggplot(aes(x = sum_rdi, y = percent, color = subgroup)) + geom_line(size = 2) +
+  theme_bw() + xlab("number of DRI targets") + ylab("percentage of species pool")
+ggsave("figures/DRI_number_line_plot.png")  
+## 59 for crustaceans, 552 for finfish, 70 for molluscs
+  
+  
 rdi_rename %>% 
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>%

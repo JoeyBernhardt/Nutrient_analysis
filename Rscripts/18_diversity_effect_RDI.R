@@ -53,3 +53,11 @@ filter(number_of_species < 30) %>%
   theme_bw() +
   scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("log species richness") + ylab("log number of functions (distinct DRI targets reached)")
 ggsave("figures/multifunction_curve_DRI_30spp.pdf")
+
+
+
+targets %>% 
+  filter(threshold1 == 0.25) %>% 
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
+  theme_bw()
+  
