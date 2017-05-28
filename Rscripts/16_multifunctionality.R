@@ -6,6 +6,9 @@ library(broom)
 
 trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
 
+trait_data %>% 
+  filter(species_name == "Hexaplex trunculus") %>% View
+
 ntbl.RDI.25 <- trait_data %>% 
   spread(nutrient, concentration) %>% 
   group_by(species_name, subgroup) %>% 
@@ -410,6 +413,7 @@ all_targets %>%
   filter(number_of_species < 30) %>% 
   # filter(threshold == 100) %>% 
   ggplot(aes(x = log(number_of_species), y = log(number_of_targets), color = threshold, group = threshold)) + geom_line() + theme_bw() +
+  geom_hline(yintercept = 2) +
   scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("log species richness") + ylab("log number of functions (distinct DRI targets reached)")
 
 

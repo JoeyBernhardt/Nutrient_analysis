@@ -49,15 +49,66 @@ targets %>%
 filter(number_of_species < 30) %>% 
   mutate(threshold1 = threshold1*100) %>% 
   group_by(threshold1) %>% 
-  ggplot(aes(x = log(number_of_species), y = log(number_of_targets), group = threshold1, color = threshold1)) + geom_line() +
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
   theme_bw() +
+  geom_hline(yintercept = 2) +
   scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("log species richness") + ylab("log number of functions (distinct DRI targets reached)")
 ggsave("figures/multifunction_curve_DRI_30spp.pdf")
 
 
 
 targets %>% 
-  filter(threshold1 == 0.25) %>% 
+  filter(number_of_species < 30) %>% 
+  filter(threshold1 == 1) %>% 
   ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
   theme_bw()
   
+### now bring in null model
+
+trait_data_pro <- read_csv("data-processed/micronutrients-species-mean.csv")
+
+
+trait_data_pro %>% 
+  filter(species_name %in% c("Fenneropenaeus indicus", "Puntius sophore", "Amblypharyngodon mola")) %>% View
+
+number_of_grams <- 100
+
+
+
+trait_data_pro %>% 
+  filter(species_name == "Fenneropenaeus indicus") %>%
+  select(calcium, iron, zinc, epa, dha) %>% 
+  gather() %>% 
+  mutate(per_200g = value*2) %>% View
+
+  
+trait_data_pro %>% 
+  filter(species_name == "Hexaplex trunculus") %>% View
+  
+
+## ok what if I divide all the nutrients by their RDI and then add them up
+trait_data_pro %>% 
+  # filter(species_name == "Carcinus maenus") %>% 
+mutate(calcium_rdi = calcium/(1200*.25),
+       zinc_rdi = zinc/(11*.25),
+       iron_rdi = iron/(18*.25),
+       epa_rdi = epa/(1*.25),
+       dha_rdi = dha/(1*.25)) %>% 
+  mutate(total_points = calcium_rdi + zinc_rdi + iron_rdi + epa_rdi + dha_rdi) %>% 
+  # top_n(n = 1, wt = total_points) %>% 
+  dplyr::select(species_name, subgroup, contains("rdi")) %>% 
+  gather(key = nutrient, value = concentration, contains("rdi")) %>% 
+  mutate(meets_target = ifelse(concentration >= 1, "1", "0")) %>% 
+  group_by(species_name, subgroup) %>% 
+  arrange(meets_target) %>% 
+  mutate(total_targets = cumsum(meets_target)) %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(total_targets_per_species = max(total_targets)) %>% View
+  ggplot(aes(x = reorder(species_name, -total_targets_per_species), y = total_targets_per_species)) + geom_point() +
+  theme_bw() + xlab("species") + ylab("number of DRI targets reached per 100g portion (10% DRI)") +
+  # theme(axis.text.y= element_text(angle = 30, hjust = 1)) +
+  coord_flip()
+ggsave("figures/species_by_RDI_tagets_reached_25_percentRDI.pdf")
+ggsave("figures/species_by_RDI_tagets_reached_10_percentRDI.pdf")
+
+

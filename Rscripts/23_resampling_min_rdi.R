@@ -4,12 +4,23 @@ library(purrr)
 
 
 trait_data_pro <- read_csv("data-processed/micronutrients-species-mean.csv")
+most_common <- read_csv("data-processed/most_common_species.csv")
+
+mc <- most_common %>%
+  filter(rowname < 57) %>% 
+  select(species_name, subgroup, contains("mean")) %>% 
+  rename(calcium = mean.CA, 
+         zinc = mean.ZN, 
+         iron = mean.FE, 
+         epa = mean.EPA, 
+         dha = mean.DHA)
+
 trait_data_pro_no_moll <- trait_data_pro %>% 
   filter(subgroup == "finfish")
 
 
 nutrient_fishing_function <- function(sample_size) {
-ntbl_sub1 <- trait_data_pro_no_moll %>% 
+ntbl_sub1 <- mc %>% 
   sample_n(size = sample_size, replace = FALSE)
 
 sample_list <- NULL
@@ -50,14 +61,15 @@ resampling_15 <- new_data_sub1 %>%
 }
 
 
-samples_rep <- rep(10, 100)
+samples_rep <- rep(10, 1000)
 
 output <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")
 
-write_csv(output, "data-processed/grams-required-1000reps.csv")
+write_csv(output, "data-processed/grams-required-10-spp-1000reps.csv")
 write_csv(output, "data-processed/grams-required-15-spp-1000reps.csv")
-
+write_csv(output, "data-processed/grams-required-10-spp-1000reps-most-common.csv")
+write_csv(output, "data-processed/grams-required-10-spp-1000reps-10most-common.csv")
 
 summaries <- output %>%
   group_by(species_no) %>% 
@@ -72,6 +84,7 @@ output %>%
   scale_y_log10() +
   ylab("grams required to meet 5 RDI targets") + xlab("species richness")
 ggsave("figures/grams_required_15spp_1000reps.pdf")
+ggsave("figures/grams_required_10spp_1000reps.png")
 
 summaries  %>% 
   ggplot() +

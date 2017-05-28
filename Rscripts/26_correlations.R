@@ -1,0 +1,92 @@
+library(tidyverse)
+library(corrplot)
+
+trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+
+
+wide <- trait_data %>% 
+  select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
+  distinct(species_name, nutrient, concentration, .keep_all = TRUE) %>% 
+  spread(key = nutrient, value = concentration) 
+
+
+
+wide %>% 
+  filter(!is.na(protein_g)) %>% View
+
+widenuts <- wide %>% 
+  select(5:15) %>% 
+mutate(protein = ifelse(is.na(protcnt_g), protein_g, protcnt_g)) %>% 
+  mutate(protein = ifelse(is.na(protein), prot_g, protein)) %>% 
+  select(-prot_g) %>% 
+  select(-protein_g) %>% 
+  select(-protcnt_g)
+
+
+widenuts %>% 
+  filter(is.na(protein)) %>% View
+
+wcor <- cor(widenuts, use = "pairwise.complete.obs")
+
+corrplot(wcor, method = "number", type = "upper")
+
+
+col4 <- colorRampPalette(c("#7F0000","red","#FF7F00","yellow","#7FFF7F", 
+                           "cyan", "#007FFF", "blue","#00007F"))   
+
+corrplot(wcor, method = "number", col=col4(10))
+
+
+res1 <- cor.mtest(widenuts,0.95)
+corrplot(wcor, p.mat = res1[[1]], sig.level=0.2, col=col4(10))
+
+
+
+cor(wide$ca_mg, wide$dha)
+str(wide)
+
+td <- read_csv("data-processed/micronutrients-species-mean.csv")
+
+rdi <- td %>% 
+  mutate(cal_per = calcium/1200,
+         iron_per = iron/18,
+         zinc_per = zinc/11,
+         epa_per = epa/1,
+         dha_per = dha/1) %>% 
+  select(contains("per"))
+
+
+
+
+cor(rdi$zinc_per, rdi$dha_per)
+cor(td$iron, td$epa)
+
+
+
+
+nuts <- td %>% 
+  select(3:7)
+
+rcor <- cor(rdi)
+
+corrplot(rcor, method = "number")
+
+
+cor.mtest <- function(mat, conf.level = 0.95){
+  mat <- as.matrix(mat)
+  n <- ncol(mat)
+  p.mat <- lowCI.mat <- uppCI.mat <- matrix(NA, n, n)
+  diag(p.mat) <- 0
+  diag(lowCI.mat) <- diag(uppCI.mat) <- 1
+  for(i in 1:(n-1)){
+    for(j in (i+1):n){
+      tmp <- cor.test(mat[,i], mat[,j], conf.level = conf.level)
+      p.mat[i,j] <- p.mat[j,i] <- tmp$p.value
+      lowCI.mat[i,j] <- lowCI.mat[j,i] <- tmp$conf.int[1]
+      uppCI.mat[i,j] <- uppCI.mat[j,i] <- tmp$conf.int[2]
+    }
+  }
+  return(list(p.mat, lowCI.mat, uppCI.mat))
+}
+res1 <- cor.mtest(nuts,0.95)
+corrplot(rcor, p.mat = res1[[1]], sig.level=0.2)
