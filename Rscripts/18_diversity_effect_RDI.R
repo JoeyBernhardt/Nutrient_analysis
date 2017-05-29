@@ -8,7 +8,7 @@ targets <- read_csv("data-processed/targets_richness.csv")
 
 
 targets_split <- targets %>% 
-filter(number_of_species < 30) %>% 
+filter(number_of_species < 11) %>% 
   split(.$threshold1)
 
 
@@ -40,7 +40,8 @@ results %>%
   group_by(threshold) %>% 
   summarise_each(funs(mean, std.error), diversity_effect) %>% 
   ggplot(aes(x = threshold, y = mean)) + geom_point() + theme_bw() +
-  geom_errorbar(aes(ymin = mean-std.error, ymax = mean + std.error)) + geom_smooth() + 
+  geom_errorbar(aes(ymin = mean-std.error, ymax = mean + std.error)) +
+  # geom_smooth() + 
   xlab("percentage of DRI threshold") + ylab("diversity effect (max slope of diversity-function curve)")
 
 ggsave("figures/diversity_effect_DRI_30spp.pdf")
@@ -51,9 +52,35 @@ filter(number_of_species < 30) %>%
   group_by(threshold1) %>% 
   ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
   theme_bw() +
-  geom_hline(yintercept = 2) +
-  scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("log species richness") + ylab("log number of functions (distinct DRI targets reached)")
+  # geom_hline(yintercept = 2, linetype = "dashed") +
+  scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
 ggsave("figures/multifunction_curve_DRI_30spp.pdf")
+
+
+
+targets %>%
+  filter(number_of_species < 11) %>% 
+  # mutate(threshold1 = threshold1*100) %>% 
+  mutate(grams = 100/threshold1) %>% 
+  filter(grams < 350) %>% 
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = grams, color = grams)) + geom_line(size = 1) +
+  theme_bw() +
+  scale_color_gradient(name="grams required", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
+
+
+
+results %>%
+  mutate(threshold = as.numeric(threshold)) %>% 
+  mutate(grams = 100/threshold) %>% 
+  filter(grams < 750) %>% 
+  group_by(grams) %>% 
+  summarise_each(funs(mean, std.error), diversity_effect) %>% 
+  ggplot(aes(x = grams, y = mean)) + geom_point() + theme_bw() +
+  geom_errorbar(aes(ymin = mean-std.error, ymax = mean + std.error)) +
+  geom_smooth() +
+  xlab("grams consumed") + ylab("diversity effect (max slope of diversity-function curve)")
+
+
 
 
 
@@ -89,11 +116,11 @@ trait_data_pro %>%
 ## ok what if I divide all the nutrients by their RDI and then add them up
 trait_data_pro %>% 
   # filter(species_name == "Carcinus maenus") %>% 
-mutate(calcium_rdi = calcium/(1200*.25),
-       zinc_rdi = zinc/(11*.25),
-       iron_rdi = iron/(18*.25),
-       epa_rdi = epa/(1*.25),
-       dha_rdi = dha/(1*.25)) %>% 
+mutate(calcium_rdi = calcium/(1200),
+       zinc_rdi = zinc/(11),
+       iron_rdi = iron/(18),
+       epa_rdi = epa/(1),
+       dha_rdi = dha/(1)) %>% 
   mutate(total_points = calcium_rdi + zinc_rdi + iron_rdi + epa_rdi + dha_rdi) %>% 
   # top_n(n = 1, wt = total_points) %>% 
   dplyr::select(species_name, subgroup, contains("rdi")) %>% 

@@ -125,25 +125,26 @@ one_species_grams %>%
   
 
 
-ggplot() +
-  geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b) +
-  geom_line(aes(x = species_no, y = grams_for_25_percent_median, group = group, color = group), data = all_summary, size = 2) +
-  # geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = mostcommonc, color = "blue") +
-  # geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = summary, size = 4) +
-  # geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = mostcommonb, size = 4, color = "blue") +
-  # geom_point(aes(x = species_no, y = grams_for_25_percent_median), shape = 18, data = mollusc_summary, color = "black", size = 4) +
-  geom_point(aes(x = species_no, y = grams_required), data = one_species_gramsb, color = "black", size = 4, alpha = 0.5) +
-  geom_point(aes(x = species_no, y = grams_for_25_percent), data = grams_most_common, color = "blue", size = 4, alpha = 0.5) +
+violin_plot <- ggplot() +
+  geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b, fill = "lightgrey") +
+  geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = summary, size = 4, shape = 1) +
+  geom_point(aes(x = species_no, y = grams_required), data = one_species_gramsb, color = "black", size = 3, alpha = 0.5) +
+  geom_point(aes(x = species_no, y = grams_for_25_percent), data = grams_most_common, color = "black", shape = 17, size = 3, alpha = 0.5) +
+  # geom_point(aes(shape = c('most common species', 'median'))) +
+  scale_shape_manual(name = '', values = c('most common species' = 17, 'median' = 1)) +
   geom_hline(yintercept = 100, linetype = "dotted") +
   geom_hline(yintercept = 200, linetype = "dashed") +
   scale_y_log10() +
-  theme_bw() + xlab("species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)")
+  scale_x_continuous(breaks = c(1:10)) +
+  theme_bw() + xlab("species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)") +
+  background_grid(major = "none", minor = "none") 
 ggsave("figures/violin_grams_req_with_moll_in_red.pdf")
 ggsave("figures/violin_grams_req_with_moll_in_grey_plus_outliers.pdf")
 ggsave("figures/violin_grams_req_common_species.pdf")
 ggsave("figures/violin_grams_req_10common_species.pdf")
 
-ggplot() +
+require(cowplot)
+line_graph <- ggplot() +
   # geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b) +
   geom_line(aes(x = species_no, y = grams_for_25_percent_median, group = group, color = group), data = all_summary, size = 2) +
   # geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = mostcommonc, color = "blue") +
@@ -154,5 +155,28 @@ ggplot() +
   # geom_point(aes(x = species_no, y = grams_for_25_percent), data = grams_most_common, color = "blue", size = 4, alpha = 0.5) +
   geom_hline(yintercept = 100, linetype = "dotted") +
   geom_hline(yintercept = 200, linetype = "dashed") +
-  theme_bw() + xlab("species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)")
+  scale_x_continuous(breaks = c(1:10)) +
+  scale_y_continuous(breaks = seq(0,1000, 100)) +
+  scale_colour_grey() +
+  theme_bw() + xlab("species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)") +
+  theme(legend.position = c(0.6, 0.85),
+        legend.title = element_blank()) +
+  background_grid(major = "none", minor = "none")
 ggsave("figures/line_graph_grams_required.pdf")
+
+
+
+library(cowplot)
+
+grid <- plot_grid(violin_plot, line_graph, labels = c("A", "B"), align = "h")
+
+save_plot("figures/grams_required.pdf", grid,
+          ncol = 2, # we're saving a grid plot of 2 columns
+          # each individual subplot should have an aspect ratio of 1.3
+          base_aspect_ratio = 1,
+          base_height = 5
+)
+
+all_summary %>% 
+  filter(group == "all species") %>% View
+?save_plot

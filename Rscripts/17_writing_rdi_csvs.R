@@ -114,7 +114,7 @@ targets %>%
 ggsave("figures/nutrient_accumulation_by_threshold.pdf")
 
 targets %>% 
-  filter(number_of_species < 15) %>% 
+  filter(number_of_species < 11) %>% 
   group_by(threshold1) %>% 
   do(tidy(lm(log(number_of_targets) ~ log(number_of_species), data =.), conf.int = TRUE)) %>% 
   filter(term != "(Intercept)") %>% 
@@ -125,10 +125,10 @@ ggsave("figures/effect_of_adding_one_species_by_threshold.pdf")
 
 
 targets %>%
-  # filter(number_of_species < 30) %>% 
+  filter(number_of_species < 11) %>% 
   mutate(threshold1 = threshold1*100) %>% 
-  filter(threshold1 == 25) %>% 
-  ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
+  # filter(threshold1 == 25) %>% 
+  ggplot(aes(x = log(number_of_species), y = log(number_of_targets), group = threshold1, color = threshold1)) + geom_line() +
   theme_bw() +
   scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
 
