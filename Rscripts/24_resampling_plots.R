@@ -116,7 +116,6 @@ grams_most_common <- mostcommon %>%
   filter(species_no == 1) %>% 
   distinct(grams_for_25_percent, .keep_all = TRUE)
 
-?distinct
 
 one_species_grams %>% 
   ggplot(aes(x = reorder(species_name, grams_required), y = grams_required)) + geom_point() +
@@ -168,15 +167,44 @@ ggsave("figures/line_graph_grams_required.pdf")
 
 library(cowplot)
 
-grid <- plot_grid(violin_plot, line_graph, labels = c("A", "B"), align = "h")
 
-save_plot("figures/grams_required.pdf", grid,
-          ncol = 2, # we're saving a grid plot of 2 columns
-          # each individual subplot should have an aspect ratio of 1.3
-          base_aspect_ratio = 1,
-          base_height = 5
-)
+all_accumulation <- read_csv("data-processed/27_all_accumulation.csv")
 
-all_summary %>% 
-  filter(group == "all species") %>% View
-?save_plot
+all_subset <- all_accumulation %>%
+  filter(number_of_species < 11) %>% 
+  filter(subgroup != "mollusc") 
+
+
+acc_plot <- all_subset %>% 
+  filter(threshold == "10 percent") %>% 
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = subgroup, color = subgroup)) + geom_line(size =1.5, aes(linetype = subgroup)) +
+  geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, color = subgroup, group = subgroup), alpha = 0.2, size = 0) +
+  ylab("number of nutrient requirements fulfilled (10% DRI)") +
+  xlab("species richness") + theme(text = element_text(size=14)) + 
+  scale_color_grey(start = 0.01, end = 0.7) +
+  theme_bw() +
+  # theme(legend.position = c(0.6, 0.2)) +
+  scale_x_continuous(breaks = c(1:10)) +
+  theme(legend.position = c(0.6, 0.3),
+legend.title = element_blank()) +
+  background_grid(major = "none", minor = "none")
+
+
+
+  
+  grid <- plot_grid(violin_plot, line_graph, acc_plot, labels = c("A", "B", "C"), align = "v", ncol =1, nrow = 3)
+
+
+
+
+?plot_grid
+
+
+
+save_plot("figures/grams_required_accum.png", grid,
+          ncol = 1,
+          nrow = 3,
+          base_aspect_ratio = 1.3, 
+          base_height = 5)
+
+

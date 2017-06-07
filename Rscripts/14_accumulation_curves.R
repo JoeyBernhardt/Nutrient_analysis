@@ -229,14 +229,15 @@ all <- bind_rows(accumulation_data, mca)
 
 
 all  %>%
-	filter(number_of_species < 15) %>% 
+	filter(number_of_species < 11) %>% 
 	rename(group = subgroup) %>% 
 	filter(group %in% c("mollusc", "finfish", "crustacean", "all", "most common")) %>% 
 	mutate(group = str_replace(group, "finfish", "finfish only, no invertebrates")) %>% 
 	mutate(group = str_replace(group, "all", "combined, finfish and invertebrates")) %>% 
 	mutate(group = str_replace(group, "crustacean", "only crusteaceans")) %>% 
 	mutate(group = str_replace(group, "mollusc", "only molluscs")) %>% 
-  # filter(group != "only crusteaceans") %>% 
+  filter(group != "combined, finfish and invertebrates") %>%
+  filter(group != "most common") %>%
   # filter(group == "most common" | group == "combined, finfish and invertebrates") %>% 
 	ggplot(data = ., aes(x = number_of_species, y = number_of_targets, color = group)) +
   geom_line(aes(linetype = group), size = 1) +
@@ -244,6 +245,7 @@ all  %>%
   geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, fill = group), alpha = 0.2, size = 0) +
   ylab("number of nutrient requirements fulfilled") +
 	xlab("number of species") + theme(text = element_text(size=16)) + 
+  scale_x_continuous(breaks = seq(1,10,1)) +
 	# scale_color_grey(start = 0.01, end = 0.5) +
 	theme_bw() +
 	theme(legend.position = c(0.6, 0.2)) +

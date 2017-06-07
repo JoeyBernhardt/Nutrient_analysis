@@ -47,8 +47,9 @@ results %>%
 ggsave("figures/diversity_effect_DRI_30spp.pdf")
 
 targets %>%
-filter(number_of_species < 30) %>% 
+filter(number_of_species < 11) %>% 
   mutate(threshold1 = threshold1*100) %>% 
+  filter(threshold1 %in% c(25, 50, 75, 100)) %>% 
   group_by(threshold1) %>% 
   ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
   theme_bw() +
@@ -65,8 +66,9 @@ targets %>%
   filter(grams < 350) %>% 
   ggplot(aes(x = number_of_species, y = number_of_targets, group = grams, color = grams)) + geom_line(size = 1) +
   theme_bw() +
+  scale_x_continuous(breaks = seq(0,10,1))+
   scale_color_gradient(name="grams required", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
-
+ggsave("figures/grams_consumed_accumulation.pdf")
 
 
 results %>%
@@ -78,8 +80,9 @@ results %>%
   ggplot(aes(x = grams, y = mean)) + geom_point() + theme_bw() +
   geom_errorbar(aes(ymin = mean-std.error, ymax = mean + std.error)) +
   geom_smooth() +
+  scale_x_log10() +
   xlab("grams consumed") + ylab("diversity effect (max slope of diversity-function curve)")
-
+ggsave("figures/grams_consumed_diversity_effect.pdf")
 
 
 

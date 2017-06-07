@@ -7,6 +7,7 @@ library(tidyverse)
 library(stringr)
 library(multifunc)
 library(stringr)
+library(cowplot)
 
 
 
@@ -59,7 +60,7 @@ rdi_10_long <- RDI_10 %>%
 ## flower plot
 
 ## flower plot
-rdi_10_long %>% 
+rdi_10_long2 <- rdi_10_long %>% 
   mutate(nutrient = str_replace(nutrient, "mean_ca", "calcium")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_fe", "iron")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_zn", "zinc")) %>% 
@@ -67,8 +68,10 @@ rdi_10_long %>%
   mutate(nutrient = str_replace(nutrient, "mean_protein", "protein")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_epa", "EPA")) %>% 
   mutate(nutrient = str_replace(nutrient, "mean_dha", "DHA")) %>% 
-  # filter(subgroup == "crustacean") %>%
-  filter(concentration < 2000) %>% 
+  filter(concentration < 2000)
+
+
+rdi_10_long2 %>% 
   arrange(species_name, nutrient, concentration) %>% 
   ggplot(aes(y = log(concentration), x = nutrient, color = nutrient, group = species_name)) + geom_jitter(size =4, alpha = 0.5) + 
   geom_hline(yintercept = log(10)) + 
@@ -80,6 +83,76 @@ rdi_10_long %>%
   theme(legend.position="none") 
 ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 
+
+
+
+ rdi_10_long2$nutrient <- factor(rdi_10_long2$nutrient, levels = c("protein", "EPA", "zinc", "iron", "DHA", "fat", "calcium"))
+
+### flower plot panels
+fin_flower <- rdi_10_long2 %>% 
+ filter(subgroup == "finfish") %>% 
+  ggplot(aes(y = concentration, x = nutrient, color = nutrient)) +
+  # geom_violin(aes(fill = nutrient), scale = "width", adjust = 5) + 
+  geom_boxplot(aes(fill = nutrient))+
+  geom_hline(yintercept = 10) + 
+  scale_y_log10(breaks = c(1,100)) +
+   coord_polar() +
+   theme_bw() + 
+  theme(text = element_text(size=18)) +
+  theme(legend.position="none") +xlab("") + ylab("percentage of DR/100g")
+
+moll_flower <- rdi_10_long2 %>% 
+  filter(subgroup == "mollusc") %>% 
+  ggplot(aes(y = concentration, x = nutrient, color = nutrient)) +
+  # geom_violin(aes(fill = nutrient), scale = "width", adjust = 5) + 
+  geom_boxplot(aes(fill = nutrient))+
+  geom_hline(yintercept = 10) + 
+  scale_y_log10(breaks = c(1,100)) +
+  coord_polar() +
+  theme_bw() + 
+  theme(text = element_text(size=18)) +
+  theme(legend.position="none") +xlab("") + ylab("")
+
+crus_flower <- rdi_10_long2 %>% 
+  filter(subgroup == "crustacean") %>% 
+  ggplot(aes(y = concentration, x = nutrient, color = nutrient)) +
+  # geom_violin(aes(fill = nutrient), scale = "width", adjust = 5) + 
+  geom_boxplot(aes(fill = nutrient))+
+  geom_hline(yintercept = 10) + 
+  scale_y_log10(breaks = c(1,100)) +
+  coord_polar() +
+  theme_bw() + 
+  theme(text = element_text(size=18)) +
+  theme(legend.position="none") +xlab("") + ylab("")
+
+
+
+flowers <- plot_grid(fin_flower, moll_flower, crus_flower, labels = c("A) Finfish", "B) Molluscs", "C) Crustaceans"), align = "h", nrow = 1)
+
+
+save_plot("figures/flowers.pdf", flowers,
+          ncol = 3, # we're saving a grid plot of 2 columns
+          nrow = 1, # and 2 rows
+          # each individual subplot should have an aspect ratio of 1.3
+          base_aspect_ratio = 1
+)
+
+
+
+ggdraw() +
+  draw_plot(fin_flower, 0,0) +
+  draw_plot(moll_flower, 0.5, 0) +
+  draw_plot(crus_flower, 1, 0) 
+
+aligned_plots <- align_plots(fin_flower, moll_flower, crus_flower)
+ggdraw() + draw_grob(aligned_plots[[1]]) + draw_grob(aligned_plots[[2]])
+
+
+
+rdi_10_long2 %>% 
+  filter(nutrient == "protein") %>% View
+  ggplot(aes(concentration)) + geom_histogram(aes(fill = subgroup, color = subgroup), binwidth = 0.8, bins = 5) +
+  facet_wrap( ~ subgroup, scales = "free")
 
 
 rdi_10_rename <- rdi_10_long %>% 
@@ -101,7 +174,7 @@ rdi_targets <- rdi_10_rename %>%
   group_by(species_name) %>%  
   summarise(sum_rdi = sum(rdi))
 
-rdi_mean <- rdi_rename %>% 
+rdi_mean <- rdi_10_rename %>% 
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>%
   group_by(subgroup, species_name, nutrient) %>% 
@@ -136,7 +209,7 @@ all %>%
 
 
 
-rdi_rename %>% 
+rdi_10_rename %>% 
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>%
   mutate(rdi = ifelse(concentration > 10, "1", "0")) %>%
@@ -151,7 +224,7 @@ ggsave("figures/DRI_number_density_plot.png")
 
 
 
-rdi_rename %>% 
+rdi_10_rename %>% 
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>%
   mutate(rdi = ifelse(concentration > 10, "1", "0")) %>%
@@ -171,7 +244,7 @@ ggsave("figures/DRI_number_line_plot.png")
 ## 59 for crustaceans, 552 for finfish, 70 for molluscs
   
   
-rdi_rename %>% 
+rdi_10_rename %>% 
   filter(concentration < 2000) %>% 
   arrange(species_name, nutrient, concentration) %>%
   mutate(rdi = ifelse(concentration > 10, "1", "0")) %>%
