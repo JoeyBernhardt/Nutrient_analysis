@@ -1,8 +1,16 @@
 library(tidyverse)
 library(corrplot)
 
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
 
+trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+bg <- read_csv("bangladesh-nutrients.csv")
+inuit <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
+
+bg2 <- bg %>% 
+  select(4:25, 30)
+
+in2 <- inuit %>%
+  select(-latin_name)
 
 wide <- trait_data %>% 
   select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
@@ -26,18 +34,26 @@ mutate(protein = ifelse(is.na(protcnt_g), protein_g, protcnt_g)) %>%
 widenuts %>% 
   filter(is.na(protein)) %>% View
 
+
+
 wcor <- cor(widenuts, use = "pairwise.complete.obs")
 
-corrplot(wcor, method = "number", type = "upper")
+bg3 <- bg2 %>% 
+  select(calcium, iron, zinc, vitamin_b12, vitamin_e_α_tocopherol, total_vitamin_a)
+  # select(-protein, -fat, - moisture, -ash)
+
+bcor <- cor(bg3, use = "pairwise.complete.obs" )
+
+corrplot(bcor, method = "number", type = "upper")
 
 
 col4 <- colorRampPalette(c("#7F0000","red","#FF7F00","yellow","#7FFF7F", 
                            "cyan", "#007FFF", "blue","#00007F"))   
 
-corrplot(wcor, method = "number", col=col4(10))
+corrplot(bcor, method = "number", col=col4(10))
 
 
-res1 <- cor.mtest(widenuts,0.95)
+res1 <- cor.mtest(bg3,0.95)
 corrplot(wcor, p.mat = res1[[1]], sig.level=0.2, col=col4(10))
 
 
@@ -88,5 +104,5 @@ cor.mtest <- function(mat, conf.level = 0.95){
   }
   return(list(p.mat, lowCI.mat, uppCI.mat))
 }
-res1 <- cor.mtest(nuts,0.95)
-corrplot(rcor, p.mat = res1[[1]], sig.level=0.2)
+res1 <- cor.mtest(bg3,0.95)
+corrplot(bcor, p.mat = res1[[1]], sig.level=0.2)

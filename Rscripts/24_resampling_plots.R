@@ -3,17 +3,25 @@
 ### making plots with resampling data
 library(tidyverse)
 library(plotrix)
-
+library(ggplot2)
 
 # reps100 <- read_csv("data-processed/grams-required-15-spp-1000reps.csv")
-reps100 <- read_csv("data-processed/grams-required-10-spp-1000reps.csv")
+reps100 <- read.csv("data-processed/grams-required-10-spp-1000reps.csv")
 molluscs <- read_csv("data-processed/mollusc_sampling_all.csv")
 mostcommon <- read_csv("data-processed/grams-required-10-spp-1000reps-10most-common.csv")
+inuit_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-inuit.csv")
 
-summary <- reps100 %>%
+
+summary <- inuit_resampling %>%
+  filter(!is.na(grams_required)) %>% 
   mutate(grams_for_25_percent = grams_required/10) %>% 
   group_by(species_no) %>%
   summarise_each(funs(mean, min, max, median, std.error), grams_required, grams_for_25_percent)
+
+inuit_10sp <- inuit_resampling %>%
+  filter(!is.na(grams_required)) %>% 
+  mutate(grams_for_25_percent = grams_required/10) %>% 
+  filter(species_no < 11)
 
 mollusc_processed <- molluscs %>% 
   rename(species_number = subsample_size) %>%
@@ -144,10 +152,10 @@ ggsave("figures/violin_grams_req_10common_species.pdf")
 
 require(cowplot)
 line_graph <- ggplot() +
-  # geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b) +
-  geom_line(aes(x = species_no, y = grams_for_25_percent_median, group = group, color = group), data = all_summary, size = 2) +
+  # geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = inuit_10sp) +
+  geom_line(aes(x = species_no, y = grams_for_25_percent_median), data = summary, size = 2) +
   # geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = mostcommonc, color = "blue") +
-  # geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = summary, size = 4) +
+  geom_line(aes(x = species_no, y = grams_for_25_percent_min), data = summary, size = 2, color = "grey") +
   # geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = mostcommonb, size = 4, color = "blue") +
   # geom_point(aes(x = species_no, y = grams_for_25_percent_median), shape = 18, data = mollusc_summary, color = "black", size = 4) +
   # geom_point(aes(x = species_no, y = grams_required), data = one_species_gramsb, color = "black", size = 4, alpha = 0.5) +
@@ -155,7 +163,8 @@ line_graph <- ggplot() +
   geom_hline(yintercept = 100, linetype = "dotted") +
   geom_hline(yintercept = 200, linetype = "dashed") +
   scale_x_continuous(breaks = c(1:10)) +
-  scale_y_continuous(breaks = seq(0,1000, 100)) +
+  # scale_y_log10() +
+  # scale_y_continuous(breaks = seq(0,1000, 100)) +
   scale_colour_grey() +
   theme_bw() + xlab("species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)") +
   theme(legend.position = c(0.6, 0.85),
