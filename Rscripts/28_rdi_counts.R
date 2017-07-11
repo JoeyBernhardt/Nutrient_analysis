@@ -2,6 +2,7 @@ library(tidyverse)
 library(purrr)
 library(janitor)
 library(xtable)
+library(stringr)
 
 
 data <- read_csv("data-processed/micronutrients-species-mean.csv")
@@ -54,7 +55,7 @@ data %>%
 
 
 
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
 trait_data2 <- trait_data %>% 
   filter(!grepl("^Mohanty", ref_info))
@@ -133,9 +134,78 @@ rdis1 %>%
 ggsave("figures/flower_diagram_percentage_reach_DRI.png")
 
 
+
+rdis1$nutrient <- factor(rdis1$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "EPA", "DHA"))
+rdis1 %>% 
+  select(-contains("mean")) %>% 
+  group_by(nutrient, rdi, subgroup) %>% 
+  tally() %>% 
+  group_by(nutrient, subgroup) %>% 
+  mutate(total = cumsum(n)) %>% 
+  filter(rdi == 1) %>% 
+  mutate(proportion_that_reach_RDI = n*100/total) %>% 
+  ggplot(aes(nutrient, proportion_that_reach_RDI, group = subgroup, color = nutrient, fill = nutrient)) + geom_bar(position = "dodge", stat="identity") +
+  facet_wrap( ~ subgroup) +
+  geom_hline(yintercept = 50, color = "grey") + theme_bw() + 
+  ylab("Proportion of species that reach 10% of DRI")+ xlab("Nutrient")
+ggsave("figures/DRI_barchart_figure2.png")
+
+rdis1 %>% 
+  filter(subgroup == "mollusc") %>% View
+
 rdis %>% 
   gather(key = nutrient, value = rdi, 10:16) %>% 
   filter(!is.na(rdi)) %>% 
   select(species_name, subgroup, RDI.micro.tot) %>%
   distinct(species_name, .keep_all = TRUE) %>% 
   filter(!is.na(RDI.micro.tot)) %>% View
+
+
+trait_data3 <- trait_data2 %>% 
+  distinct(species_name, food_name_clean, ref_info, seanuts_id2, nutrient, concentration, .keep_all = TRUE) %>% 
+  spread(key = nutrient, value = concentration) %>% 
+  mutate(protein = protcnt_g) %>% 
+  mutate(protein = ifelse(is.na(protein), protein_g, protein)) %>% 
+  mutate(protein = ifelse(is.na(protein), prot_g, protein)) %>% 
+  select(species_name, seanuts_id2, protein, fat_g, dha, epa, ca_mg, zn_mg, fe_mg, subgroup) %>% 
+  rename(fat = fat_g,
+         calcium = ca_mg, 
+         zinc = zn_mg,
+         iron = fe_mg) %>% 
+  gather(key = nutrient, value = concentration, 3:9) %>% 
+  filter(!is.na(concentration))
+
+percentages <- trait_data3 %>% 
+  mutate(dri_per = NA) %>% 
+  mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "zinc", concentration/11, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "epa", concentration/1, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "dha", concentration/1, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "protein", concentration/50, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "fat", concentration/70, dri_per)) %>% 
+  mutate(dri_per = dri_per*100) %>% 
+  filter(dri_per < 2000) 
+
+outliers <- trait_data3 %>% 
+  mutate(dri_per = NA) %>% 
+  mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "zinc", concentration/11, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "epa", concentration/1, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "dha", concentration/1, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "protein", concentration/50, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "fat", concentration/70, dri_per)) %>% 
+  mutate(dri_per = dri_per*100) %>% 
+  filter(dri_per > 2000)
+
+unique(trait_data3$nutrient)
+percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
+
+write_csv(percentages, "data-processed/percentages.csv")
+
+g <- ggplot(percentages, aes(dri_per, fill = subgroup)) + geom_histogram(binwidth = 0.07) 
+g + facet_grid(nutrient ~ ., scales = "free_y") + theme_bw() + scale_x_log10(breaks = c(0,1,10,100)) + geom_vline(xintercept = 10) +
+  xlab("percentage of DRI in 100g edible portion") + scale_color_grey() 
+ggsave("figures/dri_histogram_figure2.png")
+  

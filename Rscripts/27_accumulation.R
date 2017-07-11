@@ -111,6 +111,8 @@ all_accumulation <- bind_rows(all_accumulation_10, all_accumulation_25)
 
 write_csv(all_accumulation, "data-processed/27_all_accumulation.csv")
 
+all_accumulation <- read_csv("data-processed/27_all_accumulation.csv")
+
 all_subset <- all_accumulation %>%
   filter(number_of_species < 11) %>% 
   filter(subgroup != "mollusc") 

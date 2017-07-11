@@ -5,6 +5,9 @@ library(janitor)
 library(vegan)
 library(purrr)
 library(stringr)
+library(readr)
+library(tidyr)
+library(dplyr)
 
 ### June 6 next steps: get the other RDIs for the bangladesh micronutrients, (eg vitamins!)
 
@@ -36,8 +39,13 @@ nutrients <- left_join(table3, table4)
 
 nuts <- left_join(nutrients, table6)
 
+write.csv(nuts, "data-processed/bangladesh-micronutrients.csv")
+
+bang_data <- read.csv("~/Users/student/Desktop/Nutrient_analysis-master/data-processed/bangladesh-nutrients.csv")
+
 names(nuts)
 threshold <- 0.1
+
 
 accumulate <- function(data, threshold) {
   ntbl.RDI.all <- data %>% 
@@ -128,5 +136,5 @@ accumulation %>%
 
 
 
-
+### now let's look at the correlation
 

@@ -1,4 +1,12 @@
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+library(purrr)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(vegan)
+library(stringr)
+library(ggplot2)
+
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
 accumulateq <- function(data, threshold) {
   ntbl.RDI.all <- data %>% 
@@ -64,3 +72,7 @@ finfish_accumulation_25 <- trait_data %>%
   accumulateq(., threshold = 0.1) %>% 
   mutate(subgroup = "finfish") %>% 
   mutate(threshold = "10 percent")
+
+finfish_accumulation_25 %>% 
+  filter(number_of_species < 11) %>% 
+  ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_line()

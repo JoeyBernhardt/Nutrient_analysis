@@ -2,11 +2,14 @@ library(tidyverse)
 library(vegan)
 library(stringr)
 library(purrr)
+library(plotrix)
+library(broom)
 
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
 
 ntbl.RDI.30 <- trait_data %>% 
+  filter(!grepl("^Mohanty", ref_info)) %>% 
   spread(nutrient, concentration) %>% 
   group_by(species_name, subgroup) %>% 
   summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
@@ -29,6 +32,7 @@ nuts <- ntbl.RDI.30 %>%
 
 
 ntbl <- trait_data %>% 
+  filter(!grepl("^Mohanty", ref_info)) %>% 
   spread(nutrient, concentration) %>% 
   group_by(species_name, subgroup) %>% 
   summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
@@ -99,7 +103,7 @@ total_nutrient_25 <- function(species_number){
 }
 
 
-sample_number_rep <- rep(1:108, 100)
+sample_number_rep <- rep(1:108, 10)
 
 
 results_25 <- sample_number_rep %>% 
@@ -116,7 +120,51 @@ results_total_25 %>%
   ggplot(aes(x = species_no, y = number_of_targets)) + geom_point(size = 1) + theme_bw()
 
 results_total_25_v2 %>% 
-  ggplot(aes(x = species_no, y = number_of_targets)) + geom_point(size = 1) + theme_bw()
+  ggplot(aes(x = species_no, y = number_of_targets)) + geom_point(size = 1) + theme_bw() + geom_smooth()
+
+results_total_25_v2 %>% 
+  filter(species_no < 11) %>% 
+group_by(species_no) %>% 
+  summarise_each(funs(mean, median), number_of_targets) %>% 
+  ggplot(aes(x = species_no, y = median)) + geom_point(size = 1) + theme_bw() + geom_smooth()
+
+### now if the threshold is 10% of RDI
+total_nutrient_10 <- function(species_number){
+  y <- vector()
+  x <- species_number
+  y <- ntbl_sub %>% 
+    sample_n(size = species_number, replace = TRUE) %>% 
+    mutate(cal_total = (calcium_g/species_number)*108) %>% 
+    mutate(zinc_total = (zinc_g/species_number)*108) %>% 
+    mutate(iron_total = (iron_g/species_number)*108) %>% 
+    mutate(epa_total = (epa_g/species_number)*108) %>%
+    mutate(dha_total = (dha_g/species_number)*108) %>% 
+    mutate(total_calcium = cumsum(cal_total)) %>% 
+    mutate(total_zinc = cumsum(zinc_total)) %>% 
+    mutate(total_iron = cumsum(iron_total)) %>% 
+    mutate(total_epa = cumsum(epa_total)) %>%
+    mutate(total_dha = cumsum(dha_total)) %>% 
+    top_n(n = 1, wt = total_dha) %>% 
+    mutate(calcium_rdi = ifelse(total_calcium > (1200*.1), 1, 0)) %>% 
+    mutate(zinc_rdi = ifelse(total_zinc > (11*.1), 1, 0)) %>% 
+    mutate(iron_rdi = ifelse(total_iron > (18*.1), 1, 0)) %>% 
+    mutate(epa_rdi = ifelse(total_epa > (1*.1), 1, 0)) %>% 
+    mutate(dha_rdi = ifelse(total_dha > (1*.1), 1, 0)) %>% 
+    mutate(species_no = species_number) %>% 
+    select(18:23)
+  df <- data.frame(x, y)
+  combined_df <- rbind(df)
+  return(combined_df)
+}
+
+
+sample_number_rep <- rep(1:10, 1000)
+results_10_all <- sample_number_rep %>% 
+  map_df(total_nutrient_10) %>% 
+mutate(number_of_targets = rowSums(.[2:6])) %>% 
+  mutate(threshold = "10") %>% 
+  mutate(group = "all species")
+
 
 ### now if the threshold is 100% of RDI
 total_nutrient_100 <- function(species_number){
@@ -148,16 +196,135 @@ total_nutrient_100 <- function(species_number){
 }
 
 
-sample_number_rep <- rep(1:30, 100)
-results_100_30spp <- sample_number_rep %>% 
+sample_number_rep <- rep(1:10, 1000)
+results_100_all_species <- sample_number_rep %>% 
   map_df(total_nutrient_100) %>% 
-mutate(number_of_targets = rowSums(.[2:6])) %>% 
-  mutate(threshold = "100")
+  mutate(number_of_targets = rowSums(.[2:6])) %>% 
+  mutate(threshold = "100") %>% 
+  mutate(group = "all species")
 
-results_100_30spp %>% 
-  ggplot(aes(x = species_no, y = number_of_targets)) + geom_point(size = 1) + theme_bw() +
-  geom_smooth()
 
+
+### now for inverts only
+total_nutrient_10_inverts <- function(species_number){
+  y <- vector()
+  x <- species_number
+  y <- ntbl_sub %>%
+    filter(subgroup != "finfish") %>%
+    sample_n(size = species_number, replace = TRUE) %>% 
+    mutate(cal_total = (calcium_g/species_number)*108) %>% 
+    mutate(zinc_total = (zinc_g/species_number)*108) %>% 
+    mutate(iron_total = (iron_g/species_number)*108) %>% 
+    mutate(epa_total = (epa_g/species_number)*108) %>%
+    mutate(dha_total = (dha_g/species_number)*108) %>% 
+    mutate(total_calcium = cumsum(cal_total)) %>% 
+    mutate(total_zinc = cumsum(zinc_total)) %>% 
+    mutate(total_iron = cumsum(iron_total)) %>% 
+    mutate(total_epa = cumsum(epa_total)) %>%
+    mutate(total_dha = cumsum(dha_total)) %>% 
+    top_n(n = 1, wt = total_dha) %>% 
+    mutate(calcium_rdi = ifelse(total_calcium > (1200*.1), 1, 0)) %>% 
+    mutate(zinc_rdi = ifelse(total_zinc > (11*.1), 1, 0)) %>% 
+    mutate(iron_rdi = ifelse(total_iron > (18*.1), 1, 0)) %>% 
+    mutate(epa_rdi = ifelse(total_epa > (1*.1), 1, 0)) %>% 
+    mutate(dha_rdi = ifelse(total_dha > (1*.1), 1, 0)) %>% 
+    mutate(species_no = species_number) %>% 
+    select(18:23)
+  df <- data.frame(x, y)
+  combined_df <- rbind(df)
+  return(combined_df)
+}
+
+sample_number_rep <- rep(1:10, 1000)
+results_10_inverts <- sample_number_rep %>% 
+  map_df(total_nutrient_10_inverts) %>% 
+  mutate(number_of_targets = rowSums(.[2:6])) %>% 
+  mutate(threshold = "10") %>% 
+  mutate(group = "invertebrates")
+
+results_10_inverts %>% 
+  group_by(species_no) %>% 
+  summarise_each(funs(mean, median, std.error), number_of_targets) %>% 
+  ggplot(aes(x = species_no, y = mean)) + geom_point(size = 1) + theme_bw() +
+  geom_line() +
+  geom_ribbon(aes(ymin = mean - std.error, ymax = mean + std.error), fill = "grey", alpha = 0.5) +
+  scale_x_continuous(breaks = c(1:10)) + ylim(0, 5)
+
+### now for finfish only
+
+total_nutrient_10_finfish <- function(species_number){
+  y <- vector()
+  x <- species_number
+  y <- ntbl_sub %>%
+    filter(subgroup == "finfish") %>%
+    sample_n(size = species_number, replace = TRUE) %>% 
+    mutate(cal_total = (calcium_g/species_number)*108) %>% 
+    mutate(zinc_total = (zinc_g/species_number)*108) %>% 
+    mutate(iron_total = (iron_g/species_number)*108) %>% 
+    mutate(epa_total = (epa_g/species_number)*108) %>%
+    mutate(dha_total = (dha_g/species_number)*108) %>% 
+    mutate(total_calcium = cumsum(cal_total)) %>% 
+    mutate(total_zinc = cumsum(zinc_total)) %>% 
+    mutate(total_iron = cumsum(iron_total)) %>% 
+    mutate(total_epa = cumsum(epa_total)) %>%
+    mutate(total_dha = cumsum(dha_total)) %>% 
+    top_n(n = 1, wt = total_dha) %>% 
+    mutate(calcium_rdi = ifelse(total_calcium > (1200*.1), 1, 0)) %>% 
+    mutate(zinc_rdi = ifelse(total_zinc > (11*.1), 1, 0)) %>% 
+    mutate(iron_rdi = ifelse(total_iron > (18*.1), 1, 0)) %>% 
+    mutate(epa_rdi = ifelse(total_epa > (1*.1), 1, 0)) %>% 
+    mutate(dha_rdi = ifelse(total_dha > (1*.1), 1, 0)) %>% 
+    mutate(species_no = species_number) %>% 
+    select(18:23)
+  df <- data.frame(x, y)
+  combined_df <- rbind(df)
+  return(combined_df)
+}
+
+sample_number_rep <- rep(1:10, 1000)
+results_10_finfish <- sample_number_rep %>% 
+  map_df(total_nutrient_10_finfish) %>% 
+  mutate(number_of_targets = rowSums(.[2:6])) %>% 
+  mutate(threshold = "10")%>% 
+  mutate(group = "finfish")
+
+### all of the 10 percent thresholds
+
+all_10 <- bind_rows(results_10_finfish, results_10_inverts, results_10_all, results_100_all_species)
+
+write_csv(all_10, "data-processed/DRI_accumulation_replacement_design.csv")
+
+all_10 %>% 
+  filter(species_no < 11, threshold == 10) %>% 
+  group_by(group, species_no, threshold) %>% 
+  summarise_each(funs(mean, median, std.error), number_of_targets) %>% 
+  ggplot(aes(x = species_no, y = mean, color = group, shape = threshold)) + geom_line(size = 2) +
+  theme_bw() + ylim(1, 5) + scale_x_continuous(breaks = c(0:10)) + ylab("mean number of distinct micronutrient DRI targets per 100g portion") +
+  xlab("species richness") +
+  stat_function(fun = all_power_fit)
+  # + geom_ribbon(aes(ymin = mean - std.error*1.96, ymax = mean + std.error*1.96, fill = group), alpha = 0.2)
+ggsave("figures/nutrient_accumulation_replacement.png")
+
+## now let's try to fit power functions to these curves
+
+
+  
+all_sp_10 <- all_10 %>% 
+  filter(group == "all species", threshold == 10) 
+
+
+all_fit <-   nls(formula=(number_of_targets ~ a * species_no^b), data= all_sp_10, start = c(a=1, b=0.5))
+
+
+summary(all_fit)
+glance(all_fit)
+tidy(all_fit, conf.int = TRUE)
+cor(all_sp_10$number_of_targets, predict(all_fit))
+
+all.b <- coef(all_fit)[["b"]]
+all.a <- coef(all_fit)[["a"]]
+
+all_power_fit <-  function(x) all.a*x^all.b
 
 results_100 <- sample_number_rep %>% 
   map_df(total_nutrient_100)
@@ -281,6 +448,7 @@ all_results <- bind_rows(results_total_25_v2, results_total_100, results_total_5
 
 write_csv(all_results, "data-processed/all_accumulation_by_fractions.csv")
 
+all_results <- read_csv("data-processed/all_accumulation_by_fractions.csv")
 
 all_results %>% 
   filter(species_no < 30) %>%
