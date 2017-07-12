@@ -3,12 +3,16 @@ library(stringr)
 library(janitor)
 library(plotrix)
 library(gridExtra)
-
+library(dplyr)
+library(readr)
+library(tidyr)
+library(ggplot2)
+library(broom)
 
 
 CINE_raw_data <- read_csv("data/CINE-raw-fish.csv")
 refs <- read_csv("data/CINE-nutrients-fish-references.csv")
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 rdis <- read_csv("data-processed/RDIs.csv")
 
 rdis <- rdis %>% 
@@ -161,3 +165,57 @@ zn_plot <- CINE_merge %>%
   microlement_body_part_plot <- grid.arrange(ca_plot, zn_plot, fe_plot, ncol = 3)
   ggsave("figures/microelements_body_part.png", width = 14, height = 8, plot = microlement_body_part_plot)
   
+  
+  CINE_merge %>% 
+    filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg")) %>% 
+    group_by(nutrient, part) %>% 
+    summarise_each(funs(mean, std.error), concentration) %>%
+    group_by(nutrient) %>% 
+    arrange(mean) %>% 
+    ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
+    facet_wrap( ~ nutrient, scales = "free") +
+    geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2)
+  
+  
+  
+  ### now stats
+  
+  unique(CINE_merge$nutrient)
+  
+  CINE_merge %>% 
+    group_by(nutrient) %>% 
+    do(glance(lm(concentration ~ part, data = .), conf.int = TRUE)) %>% View
+  
+  
+  ?xtable
+  
+CINE_merge %>% 
+    filter(part != "not specified") %>% 
+   filter(part != "tongues + cheeks") %>% 
+    filter(part != "whole, no skin") %>% 
+    filter(nutrient =="zn_mg") %>% 
+    lm(concentration ~ part, data = .) %>% 
+    summary %>% 
+   xtable()
+  
+ print(table1, type = "html")
+ 
+ 
+ CINE_merge %>% 
+   filter(part != "not specified") %>% 
+   filter(nutrient == "fapun3") %>% 
+   mutate(nutrient = str_replace(nutrient, "fat_g", "fat")) %>% 
+   # filter(part != "tongues + cheeks") %>% 
+   # filter(part = "whole, no skin") %>% 
+   group_by(nutrient, part) %>% 
+   summarise_each(funs(mean, std.error), concentration) %>%
+   group_by(nutrient) %>% 
+   arrange(mean) %>% 
+   ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
+   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+   facet_wrap( ~ nutrient, scales = "free") +
+   geom_hline(yintercept = 50/10) +
+   theme_bw() +
+   theme(text = element_text(size=24),
+         axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
+ 

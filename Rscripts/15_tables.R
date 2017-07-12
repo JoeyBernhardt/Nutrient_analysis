@@ -7,11 +7,13 @@ library(forcats)
 library(tidyverse)
 library(stargazer)
 library(xtable)
+library(dplyr)
+library(tidyr)
+library(tibble)
 
 
 
-
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
 str(trait_data)
 
@@ -77,5 +79,5 @@ mod_all %>%
   do(glance(lm(log_concentration ~ abs_lat + log_length + feeding_mode + feeding_level + bulk_trophic_level, data = .))) %>% 
   dplyr::select(1, 3, 5, 6, 7, 11, 12) %>% 
   xtable() %>% 
-  print()
+  print(type = "html")
 

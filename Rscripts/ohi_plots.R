@@ -8,11 +8,14 @@ library(stringr)
 library(multifunc)
 library(stringr)
 library(cowplot)
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
 
 
-
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
-RDIs <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/RDIs.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
+RDIs <- read_csv("data-processed/RDIs.csv")
 
 RDI_10 <- trait_data %>% 
   spread(nutrient, concentration) %>% 
@@ -26,7 +29,27 @@ RDI_10 <- trait_data %>%
             mean_dha = mean(100*dha/1, na.rm = TRUE))
 
 
+###
+RDI_10 %>% 
+  filter(!is.na(mean_ca), !is.na(mean_zn), !is.na(mean_epa), !is.na(mean_fat), !is.na(mean_protein)) %>% View
 
+mean_nuts <- read_csv("data-processed/mean_nuts.csv")
+
+rdi_per <- mean_nuts %>% 
+  mutate(calcium_rdi = calcium/1200) %>% 
+  mutate(zinc_rdi = zinc/11) %>% 
+  mutate(iron_rdi = iron/18) %>% 
+  mutate(epa_rdi = epa/1) %>% 
+  mutate(dha_rdi = dha/1) %>% 
+  gather(key = nutrient, value = concentration, 8:12)
+
+View(rdi_per)
+
+rdi_per %>% 
+  filter(subgroup == "mollusc") %>% 
+  ggplot(aes(x = nutrient, y = concentration, group = species_name, color = species_name)) +
+           geom_point() + geom_line() + coord_polar() + theme_bw() + 
+  scale_y_log10()
 
 
 
