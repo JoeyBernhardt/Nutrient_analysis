@@ -116,6 +116,8 @@ ca_plot <- CINE_merge %>%
   facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 1200/10) +
   theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
   theme(text=element_text(family="Helvetica", size=12)) +
   theme(strip.background = element_blank()) +
   theme(legend.title=element_blank()) +
@@ -138,6 +140,8 @@ fe_plot <- CINE_merge %>%
   facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 18/10) +
   theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
   theme(text=element_text(family="Helvetica", size=12)) +
   theme(strip.background = element_blank()) +
   theme(legend.title=element_blank()) +
@@ -174,9 +178,10 @@ zn_plot <- CINE_merge %>%
   ggsave("figures/microelements_body_part.png", width = 14, height = 8, plot = microlement_body_part_plot)
   
   
-  plot_grid(ca_plot, fe_plot, zn_plot, labels = "AUTO", align = 'h', nrow = 1)  
-  
-  
+  body_parts_plot <- plot_grid(ca_plot, fe_plot, zn_plot, labels = "AUTO", align = 'h', nrow = 1)  
+  save_plot("figures/figureS1_body_parts.pdf", body_parts_plot, base_width = 14, base_height = 7)
+ 
+  ?save_plot 
   
   CINE_merge %>% 
     filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg")) %>% 
