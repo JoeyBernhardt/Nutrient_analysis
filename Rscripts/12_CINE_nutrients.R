@@ -8,6 +8,7 @@ library(readr)
 library(tidyr)
 library(ggplot2)
 library(broom)
+library(cowplot)
 
 
 CINE_raw_data <- read_csv("data/CINE-raw-fish.csv")
@@ -110,15 +111,17 @@ ca_plot <- CINE_merge %>%
   mutate(nutrient = str_replace(nutrient, "ca_mg", "calcium")) %>% 
   group_by(nutrient, part) %>% 
   summarise_each(funs(mean, std.error), concentration) %>%
-  group_by(nutrient) %>% 
-  arrange(mean) %>% 
-  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
-  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+  ggplot(aes(x = reorder(part, concentration_mean), y = concentration_mean)) + geom_point(size = 5) +
+  geom_errorbar(aes(ymin = concentration_mean - concentration_std.error, ymax = concentration_mean + concentration_std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 1200/10) +
   theme_bw() +
+  theme(text=element_text(family="Helvetica", size=12)) +
+  theme(strip.background = element_blank()) +
+  theme(legend.title=element_blank()) +
+  theme(strip.text.y = element_text(size = 12)) +
   theme(text = element_text(size=24),
-        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("") + ylab("mg/100g edible portion")
 
 
 fe_plot <- CINE_merge %>% 
@@ -130,40 +133,49 @@ fe_plot <- CINE_merge %>%
   mutate(nutrient = str_replace(nutrient, "fe_mg", "iron")) %>% 
   group_by(nutrient, part) %>% 
   summarise_each(funs(mean, std.error), concentration) %>%
-  group_by(nutrient) %>% 
-  arrange(mean) %>% 
-  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
-  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+  ggplot(aes(x = reorder(part, concentration_mean), y = concentration_mean)) + geom_point(size = 5) +
+  geom_errorbar(aes(ymin = concentration_mean - concentration_std.error, ymax = concentration_mean + concentration_std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 18/10) +
   theme_bw() +
+  theme(text=element_text(family="Helvetica", size=12)) +
+  theme(strip.background = element_blank()) +
+  theme(legend.title=element_blank()) +
+  theme(strip.text.y = element_text(size = 12)) +
   theme(text = element_text(size=24),
-        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
-
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("") + ylab("mg/100g edible portion")
 zn_plot <- CINE_merge %>% 
   filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
   filter(part != "not specified") %>% 
   filter(nutrient == "zn_mg") %>% 
-  mutate(nutrient = str_replace(nutrient, "zn_mg", "zinc")) %>% 
   filter(part != "tongues + cheeks") %>% 
   filter(part != "whole, no skin") %>% 
+  mutate(nutrient = str_replace(nutrient, "zn_mg", "zinc")) %>% 
   group_by(nutrient, part) %>% 
   summarise_each(funs(mean, std.error), concentration) %>%
-  group_by(nutrient) %>% 
-  arrange(mean) %>% 
-  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
-  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
-  facet_wrap( ~ nutrient, scales = "free") +
+  ggplot(aes(x = reorder(part, concentration_mean), y = concentration_mean)) + geom_point(size = 5) +
+  geom_errorbar(aes(ymin = concentration_mean - concentration_std.error, ymax = concentration_mean + concentration_std.error), width = 0.2) +
+  facet_wrap( ~ nutrient, scales = "free")+
   geom_hline(yintercept = 11/10) +
   theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(text=element_text(family="Helvetica", size=12)) +
+  theme(strip.background = element_blank()) +
+  theme(legend.title=element_blank()) +
+    theme(strip.text.y = element_text(size = 12)) +
   theme(text = element_text(size=24),
-        axis.text.x = element_text(angle=45, hjust=1)) + xlab("body part") + ylab("mg/100g edible portion")
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("") + ylab("mg/100g edible portion")
 
 
 
 
   microlement_body_part_plot <- grid.arrange(ca_plot, zn_plot, fe_plot, ncol = 3)
   ggsave("figures/microelements_body_part.png", width = 14, height = 8, plot = microlement_body_part_plot)
+  
+  
+  plot_grid(ca_plot, fe_plot, zn_plot, labels = "AUTO", align = 'h', nrow = 1)  
+  
   
   
   CINE_merge %>% 
