@@ -22,12 +22,14 @@ mc <- most_common %>%
          epa = mean.EPA, 
          dha = mean.DHA)
 
-trait_data_pro_no_moll <- trait_data_pro %>% 
-  filter(subgroup == "finfish")
+trait_data_pro_no_finfish <- mean_nuts %>% 
+  filter(subgroup !="finfish")
+trait_data_finfish <- mean_nuts %>% 
+  filter(subgroup =="finfish")
 
 
 nutrient_fishing_function <- function(sample_size) {
-ntbl_sub1 <- mc %>% 
+ntbl_sub1 <- trait_data_finfish %>% 
   sample_n(size = sample_size, replace = FALSE)
 
 sample_list <- NULL
@@ -70,7 +72,7 @@ resampling_15 <- new_data_sub1 %>%
 
 samples_rep <- rep(10, 1000)
 
-output_mc <- samples_rep %>% 
+output_finfish <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")
 
 write_csv(output, "data-processed/grams-required-10-spp-100reps-inuit.csv")
@@ -78,6 +80,8 @@ write.csv(output, "data-processed/grams-required-10-spp-1000reps.csv")
 write_csv(output, "data-processed/grams-required-15-spp-1000reps.csv")
 write_csv(output, "data-processed/grams-required-10-spp-1000reps-most-common.csv")
 write_csv(output_mc, "data-processed/grams-required-10-spp-1000reps-10most-common.csv")
+write_csv(output_invertebrates, "data-processed/grams-required-10-spp-1000reps-invertebrates.csv")
+write_csv(output_finfish, "data-processed/grams-required-10-spp-1000reps-finfish.csv")
 
 summaries <- output %>%
   group_by(species_no) %>% 
