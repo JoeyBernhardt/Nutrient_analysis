@@ -43,7 +43,7 @@ trait_select %>%
   rename(fat = fat_g) %>% 
   rename(iron = fe_mg) %>% 
   rename(zinc = zn_mg) %>% 
-  dplyr::select(subgroup, species, protein, fat, contains("fatty"), EPA, DHA, calcium, iron, zinc) %>% 
+  dplyr::select(subgroup, species, protein, fat, contains("fatty"), EPA, DHA, calcium, iron, zinc) %>% View
   xtable(type = "latex")
   
 ## table 1
@@ -78,6 +78,93 @@ mod_all %>%
   group_by(nutrient) %>% 
   do(glance(lm(log_concentration ~ abs_lat + log_length + feeding_mode + feeding_level + bulk_trophic_level, data = .))) %>% 
   dplyr::select(1, 3, 5, 6, 7, 11, 12) %>% 
+  filter(nutrient != "fapun3") %>% 
+  arrange(desc(adj.r.squared)) %>% 
   xtable() %>% 
-  print(type = "html")
+  print(type = "latex")
 
+## table S1 as of July 22 2017
+
+data <- read_csv("data-processed/mean_nuts.csv")
+
+percentage <- 0.1
+data %>% 
+  mutate(RDI.CA = ifelse(calcium > (1200*percentage), 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(iron > (18*percentage), 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(zinc > (11*percentage), 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(epa > (1*percentage), 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(dha > (1*percentage), 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  group_by(subgroup, RDI.micro.tot) %>% 
+  tally() %>% 
+  group_by(subgroup) %>% 
+  mutate(total = cumsum(n)) %>% 
+  mutate(total_spp = NA) %>% 
+  mutate(total_spp = ifelse(subgroup == "finfish", 78, total_spp)) %>% 
+  mutate(total_spp = ifelse(subgroup == "mollusc", 12, total_spp)) %>% 
+  mutate(total_spp = ifelse(subgroup == "crustacean", 6, total_spp)) %>% 
+  mutate(proportion_that_reach_RDI = n*100/total_spp) %>% 
+  xtable(type = "latex", digits = 0)
+  
+  
+  trait_data <- read_csv("data-processed/n.long_lat3.csv")
+  
+  trait_data2 <- trait_data %>% 
+    filter(!grepl("^Mohanty", ref_info))
+  
+  wide <- trait_data2 %>% 
+    select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
+    distinct(species_name, nutrient, concentration, .keep_all = TRUE) %>% 
+    spread(key = nutrient, value = concentration) 
+  
+  wide2 <- wide %>% 
+    group_by(species_name, subgroup) %>% 
+    summarise(mean.CA = mean(ca_mg, na.rm = TRUE),
+              mean.ZN = mean(zn_mg, na.rm = TRUE), 
+              mean.FE = mean(fe_mg, na.rm = TRUE),
+              mean.EPA = mean(epa, na.rm = TRUE),
+              mean.DHA = mean(dha, na.rm = TRUE), 
+              mean.protein = mean(protcnt_g, na.rm = TRUE),
+              mean.fat = mean(fat_g, na.rm = TRUE)) 
+  
+  
+  rdis <- wide2 %>% 
+    mutate(RDI.CA = ifelse(mean.CA > (1200*percentage), 1, 0)) %>% 
+    mutate(RDI.FE = ifelse(mean.FE > (18*percentage), 1, 0)) %>% 
+    mutate(RDI.ZN = ifelse(mean.ZN > (11*percentage), 1, 0)) %>%
+    mutate(RDI.EPA = ifelse(mean.EPA > (1*percentage), 1, 0)) %>% 
+    mutate(RDI.DHA = ifelse(mean.DHA > (1*percentage), 1, 0)) %>%
+    mutate(RDI.fat = ifelse(mean.fat > (70*percentage), 1, 0)) %>%
+    mutate(RDI.protein = ifelse(mean.protein > (56*percentage), 1, 0)) %>% 
+    ungroup() %>% 
+    mutate(RDI.micro.tot = rowSums(.[10:14])) 
+  
+  
+  ### proportion that reach RDI targets
+tableS1 <-   rdis %>% 
+    gather(key = nutrient, value = rdi, 10:16) %>% 
+    filter(!is.na(rdi)) %>% 
+    select(-contains("mean")) %>% 
+    group_by(nutrient, rdi, subgroup) %>% 
+    tally() %>% 
+    group_by(nutrient, subgroup) %>% 
+    mutate(total = cumsum(n)) %>% 
+    filter(rdi == 1) %>% 
+    mutate(proportion_that_reach_RDI = n*100/total) %>% View
+    select(subgroup, proportion_that_reach_RDI, nutrient) %>% View
+    spread(key = subgroup, value = proportion_that_reach_RDI) %>%
+    ungroup() %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.CA", "calcium", nutrient)) %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.FE", "iron", nutrient)) %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.ZN", "zinc", nutrient)) %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.EPA", "EPA", nutrient)) %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.DHA", "DHA", nutrient)) %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.fat", "fat", nutrient)) %>% 
+    mutate(nutrient = ifelse(nutrient == "RDI.protein", "protein", nutrient)) %>% 
+  arrange(desc(crustacean)) %>% 
+  xtable(type = "latex", digits = 0)
+
+
+write_csv(tableS1 , "tables/tableS1.csv")

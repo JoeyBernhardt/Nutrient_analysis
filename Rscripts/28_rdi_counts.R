@@ -5,7 +5,7 @@ library(xtable)
 library(stringr)
 
 
-data <- read_csv("data-processed/micronutrients-species-mean.csv")
+data <- read_csv("data-processed/mean_nuts.csv")
 
 percentage <- 0.1
 data %>% 
