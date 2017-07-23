@@ -2,7 +2,7 @@ library(tidyverse)
 library(corrplot)
 
 
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 bg <- read_csv("bangladesh-nutrients.csv")
 inuit <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 
@@ -28,7 +28,15 @@ mutate(protein = ifelse(is.na(protcnt_g), protein_g, protcnt_g)) %>%
   mutate(protein = ifelse(is.na(protein), prot_g, protein)) %>% 
   select(-prot_g) %>% 
   select(-protein_g) %>% 
-  select(-protcnt_g)
+  select(-protcnt_g) %>% 
+  select(-starts_with("fapun")) %>% 
+  rename(EPA = epa,
+         DHA = dha,
+         Protein = protein,
+         Fat = fat_g,
+         Calcium = ca_mg, 
+         Iron = fe_mg, 
+         Zinc = zn_mg)
 
 
 widenuts %>% 
@@ -44,24 +52,29 @@ bg3 <- bg2 %>%
 
 bcor <- cor(bg3, use = "pairwise.complete.obs" )
 
-corrplot(bcor, method = "number", type = "upper")
+rcor2 <- rcor
+diag(rcor2) = NA
+corrplot(rcor2, method = "color", type = "upper", na.label = "o")
 
 
 col4 <- colorRampPalette(c("#7F0000","red","#FF7F00","yellow","#7FFF7F", 
                            "cyan", "#007FFF", "blue","#00007F"))   
 
-corrplot(bcor, method = "number", col=col4(10))
+corrplot(wcor, method = "number", col=col4(10), p.mat = res1[[1]], sig.level=0.05, diag = FALSE)
 
+?corrplot
 
-res1 <- cor.mtest(bg3,0.95)
-corrplot(wcor, p.mat = res1[[1]], sig.level=0.2, col=col4(10))
+rcor <- cor(rdi, use = "pairwise.complete.obs")
+
+res1 <- cor.mtest(rcor,0.95)
+corrplot(rcor2, p.mat = res1[[1]], sig.level=0.2, col=col4(10), type = "upper", na.label = "o")
 
 
 
 cor(wide$ca_mg, wide$dha)
 str(wide)
 
-td <- read_csv("data-processed/micronutrients-species-mean.csv")
+td <- read_csv("data-processed/mean_nuts.csv")
 
 rdi <- td %>% 
   mutate(cal_per = calcium/1200,
@@ -85,7 +98,7 @@ nuts <- td %>%
 
 rcor <- cor(rdi)
 
-corrplot(rcor, method = "number")
+corrplot(rcor, method = "square")
 
 
 cor.mtest <- function(mat, conf.level = 0.95){
@@ -104,5 +117,6 @@ cor.mtest <- function(mat, conf.level = 0.95){
   }
   return(list(p.mat, lowCI.mat, uppCI.mat))
 }
-res1 <- cor.mtest(bg3,0.95)
-corrplot(bcor, p.mat = res1[[1]], sig.level=0.2)
+res1 <- cor.mtest(rcor,0.95)
+corrplot(rcor, p.mat = res1[[1]], sig.level=0.05)
+corrplot(rcor, p.mat = res1[[1]])
