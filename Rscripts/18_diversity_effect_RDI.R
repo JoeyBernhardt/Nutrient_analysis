@@ -3,12 +3,13 @@
 library(tidyverse)
 library(purrr)
 library(plotrix)
+library(cowplot)
 
 targets <- read_csv("data-processed/targets_richness.csv")
 
 
 targets_split <- targets %>% 
-filter(number_of_species < 11) %>% 
+filter(number_of_species < 30) %>% 
   split(.$threshold1)
 
 
@@ -34,28 +35,52 @@ results <- targets_split %>%
 
   
   
-results %>%
+diversity_effect <- results %>%
   mutate(threshold = as.numeric(threshold)) %>% 
   mutate(threshold = threshold*100) %>% 
   group_by(threshold) %>% 
   summarise_each(funs(mean, std.error), diversity_effect) %>% 
-  ggplot(aes(x = threshold, y = mean)) + geom_point() + theme_bw() +
-  geom_errorbar(aes(ymin = mean-std.error, ymax = mean + std.error)) +
-  # geom_smooth() + 
-  xlab("percentage of DRI threshold") + ylab("diversity effect (max slope of diversity-function curve)")
+  ggplot(aes(x = threshold, y = diversity_effect_mean)) + geom_point() + theme_bw() +
+  geom_ribbon(aes(ymin = diversity_effect_mean-diversity_effect_std.error, ymax = diversity_effect_mean + diversity_effect_std.error)) +
+  geom_smooth() + 
+  xlab("Threshold (percent of DRI)") + ylab("Diversity effect (max slope of diversity-function curve)") + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(text = element_text(size=16, family = "Helvetica")) 
 
 ggsave("figures/diversity_effect_DRI_30spp.pdf")
 
-targets %>%
-filter(number_of_species < 11) %>% 
+
+results %>%
+  mutate(threshold = as.numeric(threshold)) %>% 
+  mutate(threshold = threshold*100) %>% 
+  ggplot(aes(x = threshold, y = diversity_effect)) + geom_point() +
+  geom_smooth()
+
+
+
+spagetti <- targets %>%
+filter(number_of_species < 30) %>% 
   mutate(threshold1 = threshold1*100) %>% 
-  filter(threshold1 %in% c(25, 50, 75, 100)) %>% 
+  # filter(threshold1 %in% c(25, 50, 75, 100)) %>% 
   group_by(threshold1) %>% 
   ggplot(aes(x = number_of_species, y = number_of_targets, group = threshold1, color = threshold1)) + geom_line() +
   theme_bw() +
   # geom_hline(yintercept = 2, linetype = "dashed") +
-  scale_color_gradient(name="Percent of DRI", low="blue", high="red") + xlab("species richness") + ylab("number of functions (distinct DRI targets reached)")
+  scale_color_gradient(name="Threshold \n(percent of DRI)", low="blue", high="red") + xlab("Species richness") + ylab("Number of functions (distinct DRI targets reached)") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(text = element_text(size=16, family = "Helvetica")) +
+  theme(legend.position = c(0.7, 0.2))
 ggsave("figures/multifunction_curve_DRI_30spp.pdf")
+
+
+s2 <- plot_grid(spagetti, diversity_effect, labels = c("A", "B"))
+save_plot("figures/figure_S2.pdf", s2,
+          ncol = 2, # we're saving a grid plot of 2 columns
+          nrow = 1, # and 2 rows
+          # each individual subplot should have an aspect ratio of 1.3
+          base_width = 7, base_height = 6.5)
 
 
 
@@ -77,7 +102,7 @@ results %>%
   filter(grams < 750) %>% 
   group_by(grams) %>% 
   summarise_each(funs(mean, std.error), diversity_effect) %>% 
-  ggplot(aes(x = grams, y = mean)) + geom_point() + theme_bw() +
+  ggplot(aes(x = grams, y = diversity_effect_mean)) + geom_point() + theme_bw() +
   geom_errorbar(aes(ymin = mean-std.error, ymax = mean + std.error)) +
   geom_smooth() +
   scale_x_log10() +
