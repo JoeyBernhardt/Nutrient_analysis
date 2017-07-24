@@ -173,13 +173,13 @@ all_summaries <- all_output_with5 %>%
   group_by(nutrient, species_no) %>%
   summarise_at(.vars = "grams_for_25_percent", funs(mean, min, max, median, std.error)) 
 
-params <- all_summary %>% 
+params <- all_summaries %>% 
   ungroup() %>% 
   mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
   group_by(nutrient) %>% 
   do(tidy(nls(median ~ a * species_no^b, data =., start = c(a=10000, b=-0.7)), conf.int = TRUE)) %>% 
   filter(term == "b") %>% 
-  ggplot(aes(x = reorder(nutrient, estimate), y = estimate)) + geom_point(size = 3) +
+  ggplot(aes(x = reorder(nutrient, estimate), y = estimate)) + geom_point(size = 2) +
   # facet_wrap( ~ term, scales = "free") +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + theme_bw() +
   scale_y_reverse() + xlab("nutrient") + ylab("b estimate") +
@@ -187,11 +187,12 @@ params <- all_summary %>%
   theme(text=element_text(family="Helvetica", size=12)) +
   theme(legend.title=element_blank()) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+        panel.background = element_blank(), panel.border = element_blank(), 
+        axis.line = element_line(colour = "black")) +
   theme(legend.position="none")
-ggsave("figures/power_function_params_by_nutrient.png")
+ggsave("figures/power_function_params_by_nutrient.pdf", width = 3, height = 2)
 
-all_summary %>% 
+all_summaries %>% 
   group_by(nutrient) %>% 
   do(tidy(lm(median ~ species_no, data =.), conf.int = TRUE)) %>%  View
 
@@ -207,19 +208,20 @@ save_plot("figures/figure3.pdf", figure3, base_height = 6, base_width = 9)
 bef <- all_summaries %>% 
   ungroup() %>% 
   mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
-  ggplot(aes(x = species_no, y = median, color = nutrient)) + geom_point(size = 2) +
-  geom_line() + theme_bw() +
+  ggplot(aes(x = species_no, y = median, color = nutrient)) + 
+  geom_point(size = 1.5) +
+  geom_line(size = 1.5) + theme_bw() +
   scale_y_reverse() +
   theme(text=element_text(family="Helvetica", size=16)) +
   theme(legend.title=element_blank()) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
   scale_x_continuous(breaks = c(1:10)) + xlab("species richness") + ylab("median grams required \n to reach 10% of DRI") +
-  theme(legend.position = c(0.76, 0.56), legend.direction = "horizontal") +
+  theme(legend.position = c(0.66, 0.36), legend.direction = "horizontal") +
   scale_color_viridis(discrete = TRUE) +
   theme(legend.key = element_rect(fill = "transparent"))
   # theme(legend.position = "bottom")
-ggsave("figures/all_nutrients_efficiency_power_fits_rev_y.pdf")
+ggsave("figures/all_nutrients_efficiency_power_fits_rev_y.pdf", width = 4, height = 4)
 
 
 ### try with cowplot
@@ -247,6 +249,7 @@ accum_plot <- accumulation %>%
   theme(legend.position = c(0.7, 0.2)) +
   theme(legend.text = element_text(size = 14)) + scale_color_viridis(discrete = TRUE) +
   scale_fill_grey() + scale_color_grey()
+ggsave("figures/accumulation_plot_grey.pdf", width = 4, height = 4)
 
 ### now we need the plot with the most commont species and the violin plot
 reps100 <- read_csv("data-processed/grams-required-10-spp-1000reps.csv")
@@ -290,7 +293,8 @@ violin_plot <- ggplot() +
   scale_x_continuous(breaks = c(1:10)) +
   theme_bw() + xlab("species richness") + ylab("grams required to reach \n 5 RDI targets (10% RDI)") +
   background_grid(major = "none", minor = "none") +
-  theme(text=element_text(family="Helvetica", size=14)) 
+  theme(text=element_text(family="Helvetica", size=16)) 
+ggsave("figures/violin_plot_fig3.pdf", width = 4.3, height = 3.5)
 
 mollusc_summary <- mollusc_processed %>%
   mutate(grams_for_25_percent = grams_required/10) %>% 
@@ -315,17 +319,18 @@ all_summary <- bind_rows(mostcommon_summary, inverts_summary, finfish_summary)
 
 most_common_plot <- ggplot(aes(x = species_no, y = grams_for_25_percent_median, group = group, color = group), data = all_summary) + geom_line(size = 1.5, aes(linetype = group)) +
   # geom_ribbon(aes(ymin = grams_for_25_percent_mean - grams_for_25_percent_std.error*1.96, ymax = grams_for_25_percent_mean + grams_for_25_percent_std.error*1.96, fill = group), alpha = 0.5) +
-  theme_bw() + xlab("species richness") + ylab("grams required to reach \n 5 RDI targets (10% RDI)") +
+  theme_bw() + xlab("species richness") + ylab("median grams required to reach \n 5 RDI targets (10% RDI)") +
   theme(text=element_text(family="Helvetica", size=14)) +
   theme(legend.title=element_blank()) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
   scale_x_continuous(breaks = c(1:10)) +
   theme(legend.position = c(0.55, 0.8)) +
-  theme(legend.text = element_text(size=14, family = "Helvetica")) + 
+  theme(legend.position = "none") +
+  theme(legend.text = element_text(size=16, family = "Helvetica")) + 
   scale_color_viridis(discrete = TRUE) +
   scale_fill_viridis(discrete = TRUE) + scale_color_grey()
-
+ggsave("figures/most_common_plot_fig3.pdf", width = 4, height= 3.5)
 
 
 
