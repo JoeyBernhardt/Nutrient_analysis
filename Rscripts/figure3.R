@@ -179,9 +179,13 @@ params <- all_summaries %>%
   group_by(nutrient) %>% 
   do(tidy(nls(median ~ a * species_no^b, data =., start = c(a=10000, b=-0.7)), conf.int = TRUE)) %>% 
   filter(term == "b") %>% 
+  mutate(estimate = estimate*-1) %>%
+  mutate(conf.low = conf.low *-1) %>%
+  mutate(conf.high = conf.high*-1) %>%
   ggplot(aes(x = reorder(nutrient, estimate), y = estimate, color = nutrient, group = nutrient)) + geom_point(size = 2) +
    geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + theme_bw() +
-  scale_y_reverse() + xlab("nutrient") + ylab("b estimate") +
+  # scale_y_reverse() +
+  xlab("nutrient") + ylab("b estimate") +
   theme(legend.position = "none") + xlab("") +
   theme(text=element_text(family="Helvetica", size=12)) +
   theme(legend.title=element_blank()) +
