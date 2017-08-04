@@ -45,6 +45,8 @@ widenuts %>%
 
 
 wcor <- cor(widenuts, use = "pairwise.complete.obs")
+corrplot(wcor, type="lower")
+
 
 bg3 <- bg2 %>% 
   select(calcium, iron, zinc, vitamin_b12, vitamin_e_α_tocopherol, total_vitamin_a)
@@ -60,13 +62,13 @@ corrplot(rcor2, method = "color", type = "upper", na.label = "o")
 col4 <- colorRampPalette(c("#7F0000","red","#FF7F00","yellow","#7FFF7F", 
                            "cyan", "#007FFF", "blue","#00007F"))   
 
-corrplot(wcor, method = "number", col=col4(10), p.mat = res1[[1]], sig.level=0.05, diag = FALSE)
+corrplot(wcor, type = "lower", method = "number", col=col4(10), p.mat = res1[[1]], sig.level=0.05, diag = FALSE)
 
 ?corrplot
 
 rcor <- cor(rdi, use = "pairwise.complete.obs")
 
-res1 <- cor.mtest(rcor,0.95)
+res1 <- cor.mtest(wcor,0.95)
 corrplot(rcor2, p.mat = res1[[1]], sig.level=0.2, col=col4(10), type = "upper", na.label = "o")
 
 

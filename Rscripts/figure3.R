@@ -179,9 +179,8 @@ params <- all_summaries %>%
   group_by(nutrient) %>% 
   do(tidy(nls(median ~ a * species_no^b, data =., start = c(a=10000, b=-0.7)), conf.int = TRUE)) %>% 
   filter(term == "b") %>% 
-  ggplot(aes(x = reorder(nutrient, estimate), y = estimate)) + geom_point(size = 2) +
-  # facet_wrap( ~ term, scales = "free") +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + theme_bw() +
+  ggplot(aes(x = reorder(nutrient, estimate), y = estimate, color = nutrient, group = nutrient)) + geom_point(size = 2) +
+   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + theme_bw() +
   scale_y_reverse() + xlab("nutrient") + ylab("b estimate") +
   theme(legend.position = "none") + xlab("") +
   theme(text=element_text(family="Helvetica", size=12)) +
@@ -189,8 +188,9 @@ params <- all_summaries %>%
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), panel.border = element_blank(), 
         axis.line = element_line(colour = "black")) +
-  theme(legend.position="none")
+  scale_color_viridis(discrete = TRUE)
 ggsave("figures/power_function_params_by_nutrient.pdf", width = 3, height = 2)
+ggsave("figures/power_function_params_by_nutrient_color.pdf", width = 3, height = 2)
 
 all_summaries %>% 
   group_by(nutrient) %>% 
@@ -207,9 +207,9 @@ figure3 <- ggdraw() +
 save_plot("figures/figure3.pdf", figure3, base_height = 6, base_width = 9)
 bef <- all_summaries %>% 
   ungroup() %>% 
-  mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
+  # mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
   ggplot(aes(x = species_no, y = median, color = nutrient)) + 
-  geom_point(size = 1.5) +
+  geom_point(size = 3) +
   geom_line(size = 1.5) + theme_bw() +
   scale_y_reverse() +
   theme(text=element_text(family="Helvetica", size=16)) +
@@ -224,7 +224,32 @@ bef <- all_summaries %>%
 ggsave("figures/all_nutrients_efficiency_power_fits_rev_y.pdf", width = 4, height = 4)
 
 
+
+### plot for ESA talk!
+
+g <- all_summaries %>% 
+  ungroup() %>% 
+  mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
+  filter(nutrient == "dha") %>% 
+  ggplot(aes(x = species_no, y = median, color = nutrient)) + 
+  geom_point(size = 3) +
+  geom_line(size = 1) + theme_bw() +
+  scale_y_reverse(limits = c(500, 0)) +
+  theme(text=element_text(family="Helvetica", size=16)) +
+  theme(legend.title=element_blank()) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  scale_x_continuous(breaks = c(1:10)) + xlab("species richness") + ylab("median grams required \n to reach 10% of DRI") +
+  theme(legend.position = c(0.66, 0.36), legend.direction = "horizontal") +
+  scale_color_viridis(discrete = TRUE) +
+  # theme(legend.position = "none") + 
+  scale_color_manual(values = c("mediumpurple4", "cyan4", "deepskyblue3", "gold", "mediumseagreen", "royalblue3"))
+
+ggsave("figures/esa_BEF_plot.pdf", width = 7, height = 6)
+
 ### try with cowplot
+
+colors <- c("cyan4", "deepskyblue3", "gold", "chartreuse2", "royalblue3", "mediumpurple4")
 
 choose_font(c("Helvetic Light"), quiet = FALSE)
 loadfonts()
