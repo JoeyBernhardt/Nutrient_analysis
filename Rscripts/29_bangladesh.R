@@ -41,7 +41,7 @@ nuts <- left_join(nutrients, table6)
 
 write.csv(nuts, "data-processed/bangladesh-micronutrients.csv")
 
-bang_data <- read.csv("~/Users/student/Desktop/Nutrient_analysis-master/data-processed/bangladesh-nutrients.csv")
+bang_data <- read.csv("data-processed/bangladesh-micronutrients.csv")
 
 names(nuts)
 threshold <- 0.1

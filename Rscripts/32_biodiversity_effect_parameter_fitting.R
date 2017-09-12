@@ -142,9 +142,11 @@ reps_sum <- reps100 %>%
 all <- bind_rows(bang_sum, inuit_sum, reps_sum)
 write_csv(all, "data-processed/summary_resampling_global_bang_inuit.csv")
 
+all <- read_csv("data-processed/summary_resampling_global_bang_inuit.csv")
+
 all %>% 
-  ggplot(aes(x = species_no, y = median, color = dataset)) + geom_point() +
-  facet_wrap( ~ dataset, scales = "free")
+  ggplot(aes(x = species_no, y = median, color = dataset)) + geom_line() +
+  facet_wrap( ~ dataset)
 
 bang_power <- nls(formula=(median ~ a * species_no^b), data=bang_sum, start = c(a=10000, b=-0.7))
 a.bang <- coef(bang_power)[1]
