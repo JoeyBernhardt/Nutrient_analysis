@@ -370,7 +370,8 @@ most_common_plot <- ggplot(aes(x = species_no, y = grams_for_25_percent_median, 
   theme(legend.position = "none") +
   theme(legend.text = element_text(size=16, family = "Helvetica")) + 
   scale_color_viridis(discrete = TRUE) +
-  scale_fill_viridis(discrete = TRUE) + scale_color_grey()
+  geom_hline(yintercept = 100, color = "black", linetype = "dotted")
+  # scale_color_grey()
 ggsave("figures/most_common_plot_fig3.pdf", width = 4, height= 3.5)
 ggsave("figures/most_common_plot_fig3.png", width = 4, height= 3.5)
 
