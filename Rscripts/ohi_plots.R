@@ -12,6 +12,7 @@ library(readr)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+library(viridis)
 
 
 trait_data <- read_csv("data-processed/n.long_lat3.csv")
@@ -109,23 +110,33 @@ ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 
 rdi_10_long2 %>% 
   group_by(subgroup, nutrient) %>% 
-  summarise(mean_conc = mean(concentration)) %>% 
-  filter(subgroup == "crustacean") %>% 
-  ggplot(aes(y = mean_conc, x = nutrient, fill = nutrient)) + geom_bar(position = "dodge", stat="identity") + 
-  coord_polar() + 
+  # summarise(mean_conc = mean(concentration)) %>% 
+  # filter(subgroup == "crustacean") %>% 
+  # filter(species_name == "Abramis brama") %>% 
+  # filter(species_name == "Mullus surmuletus") %>% 
+  # filter(species_name == "Nephrops norvegicus") %>% 
+  filter(species_name == "Sepia officinalis") %>% 
+  ggplot(aes(y = concentration, x = nutrient, fill = nutrient)) + geom_bar(position = "dodge", stat="identity") + 
+  # coord_polar() + 
   # labs(x = "", y = "") +
   # facet_wrap( ~ subgroup) +
-  theme_bw() + 
+  # theme_bw() + 
   theme(text=element_text(family="Helvetica", size=16)) +
   theme(legend.title=element_blank()) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))+
-  coord_polar() + ylab("Percentage of DRI in a 100g portion") + xlab("") +
+        panel.background = element_blank(), axis.line = element_line(colour = "white"),
+        axis.text.x=element_blank(), axis.ticks.x=element_blank())+
+  coord_polar() +
+  ylab("Percentage of DRI in a 100g portion") + xlab("") +
   scale_fill_viridis(discrete = TRUE) +
   scale_color_viridis(discrete = TRUE) +
   theme(strip.background = element_rect(colour="white", fill="white")) +
   geom_hline(yintercept = 10, color = "grey") +
   geom_hline(yintercept = 25, color = "grey") 
+ggsave("figures/flower_diagram_mullus.png", width = 6, height = 6)
+ggsave("figures/flower_diagram_abramis.png", width = 6, height = 6)
+ggsave("figures/flower_diagram_nephrops.png", width = 6, height = 6)
+ggsave("figures/flower_diagram_sepia.png", width = 6, height = 6)
   
   
 
