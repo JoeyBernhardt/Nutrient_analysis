@@ -3,6 +3,7 @@ library(purrr)
 library(janitor)
 library(xtable)
 library(stringr)
+library(viridis)
 
 
 data <- read_csv("data-processed/mean_nuts.csv")
@@ -130,8 +131,18 @@ rdis1 %>%
   ggplot(aes(nutrient, proportion_that_reach_RDI, group = subgroup, color = nutrient, fill = nutrient)) + geom_bar(position = "dodge", stat="identity") +
   facet_wrap( ~ subgroup) +
   geom_hline(yintercept = 50, color = "grey") +
-  coord_polar() + ylab("percentage of species that reach 10% DRI") + xlab("")
-ggsave("figures/flower_diagram_percentage_reach_DRI.png")
+  geom_hline(yintercept = 100, color = "black") +
+  theme(text=element_text(family="Helvetica", size=16)) +
+  theme_bw() +
+  theme(legend.title=element_blank()) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"))+
+  ylab("number of different micronutrient \n DRI targets per 100g portion") +
+  coord_polar() + ylab("percentage of species that reach 10% DRI") + xlab("") +
+  scale_fill_viridis(discrete = TRUE) +
+  scale_color_viridis(discrete = TRUE) +
+  theme(strip.background = element_rect(colour="white", fill="white"))
+ggsave("figures/flower_diagram_percentage_reach_DRI.png", width = 12, height = 5)
 
 
 

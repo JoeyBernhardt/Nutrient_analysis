@@ -107,7 +107,27 @@ rdi_10_long2 %>%
 ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 
 
-
+rdi_10_long2 %>% 
+  group_by(subgroup, nutrient) %>% 
+  summarise(mean_conc = mean(concentration)) %>% 
+  filter(subgroup == "crustacean") %>% 
+  ggplot(aes(y = mean_conc, x = nutrient, fill = nutrient)) + geom_bar(position = "dodge", stat="identity") + 
+  coord_polar() + 
+  # labs(x = "", y = "") +
+  # facet_wrap( ~ subgroup) +
+  theme_bw() + 
+  theme(text=element_text(family="Helvetica", size=16)) +
+  theme(legend.title=element_blank()) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"))+
+  coord_polar() + ylab("Percentage of DRI in a 100g portion") + xlab("") +
+  scale_fill_viridis(discrete = TRUE) +
+  scale_color_viridis(discrete = TRUE) +
+  theme(strip.background = element_rect(colour="white", fill="white")) +
+  geom_hline(yintercept = 10, color = "grey") +
+  geom_hline(yintercept = 25, color = "grey") 
+  
+  
 
  rdi_10_long2$nutrient <- factor(rdi_10_long2$nutrient, levels = c("protein", "EPA", "zinc", "iron", "DHA", "fat", "calcium"))
 
