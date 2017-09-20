@@ -4,11 +4,12 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(gridExtra)
+library(plotrix)
 
 
-inuit_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-inuit.csv")
-reps100 <- read_csv("data-processed/grams-required-10-spp-1000reps.csv")
-bang_resampling <- read_csv("data-processed/grams-required-10-spp-1000reps-bangladesh.csv")
+inuit_resampling <- read_csv("~/Desktop/grams-required-10-spp-100reps-inuit.csv")
+reps100 <- read_csv("~/Desktop/grams-required-10-spp-1000reps.csv")
+bang_resampling <- read_csv("~/Desktop/grams-required-10-spp-1000reps-bangladesh.csv")
 
 summary <- inuit_resampling %>%
   filter(!is.na(grams_required)) %>% 
@@ -49,14 +50,6 @@ bind_rows(full, inuit_params) %>%
   ggplot(aes(x = dataset, y = estimate)) + geom_point() +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high, width = 0.1)) +
   facet_wrap( ~ term, scales = "free")
-
-
-plot(x=inuit$species_no,y=inuit$grams_required)
-
-
-
-
-plot(x=reps100$species_no,y=reps100$grams_required)
 
 ## now let's try a power function
 
@@ -148,15 +141,15 @@ all %>%
   ggplot(aes(x = species_no, y = median, color = dataset)) + geom_line() +
   facet_wrap( ~ dataset)
 
-bang_power <- nls(formula=(median ~ a * species_no^b), data=bang_sum, start = c(a=10000, b=-0.7))
+bang_power <- nls(formula=(grams_required_median ~ a * species_no^b), data=bang_sum, start = c(a=10000, b=-0.7))
 a.bang <- coef(bang_power)[1]
 b.bang <- coef(bang_power)[2]
 
-global_power <- nls(formula=(median ~ a * species_no^b), data=reps_sum, start = c(a=10000, b=-0.7))
+global_power <- nls(formula=(grams_required_median ~ a * species_no^b), data=reps_sum, start = c(a=10000, b=-0.7))
 a.global <- coef(global_power)[1]
 b.global <- coef(global_power)[2]
 
-inuit_power <- nls(formula=(median ~ a * species_no^b), data=inuit_sum, start = c(a=10000, b=-0.7))
+inuit_power <- nls(formula=(grams_required_median ~ a * species_no^b), data=inuit_sum, start = c(a=10000, b=-0.7))
 a.inuit <- coef(inuit_power)[1]
 b.inuit <- coef(inuit_power)[2]
 
