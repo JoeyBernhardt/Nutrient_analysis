@@ -5,6 +5,8 @@ library(tidyr)
 library(extrafont)
 library(gridExtra)
 library(RColorBrewer)
+library(cowplot)
+library(viridis)
 
 ### making the grouped bar chart for number of DRI targets reached, figure 2
 
@@ -67,10 +69,14 @@ pp <- percentages %>%
   filter(species_name == "Chamelea gallina")
 
 
-  figure2b <- ggplot(percentages, aes(dri_per, fill = subgroup, color = subgroup)) + geom_histogram(binwidth = 0.07) +
-        scale_fill_brewer(type = "qual", palette = "Paired") + scale_x_log10() +
-    scale_color_brewer(type = "qual", palette = "Paired") +
-    facet_grid(nutrient ~ ., scales = "free_y", switch = "x") + theme_bw() + geom_vline(xintercept = 10) +
+  figure2b <- ggplot(percentages, aes(dri_per, fill = subgroup)) + geom_histogram(binwidth = 0.07) +
+    scale_fill_brewer(type = "qual", palette = "Paired") +
+    # scale_fill_viridis(discrete = TRUE) +
+    # scale_color_manual(values = c("white", "white", "white")) +
+    scale_x_log10(breaks = c(1, 10, 100)) +
+    # scale_fill_brewer(type = "qual", palette = "Paired") +
+    # scale_color_brewer(type = "qual", palette = "Paired") +
+    facet_grid(nutrient ~ subgroup, scales = "free_y", switch = "x") + theme_bw() + geom_vline(xintercept = 10) +
     xlab("Percentage of DRI in 100g edible portion") +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
           panel.background = element_blank(), axis.line = element_line(colour = "black")) +
@@ -85,5 +91,20 @@ pp <- percentages %>%
   ggsave("figures/dri_histogram_figure2.pdf")
   
   
-grid.arrange(figure2b, figure2a, nrow = 2, widths = c(6, 6), heights = c(6, 2))  
-?grid.arrange
+  
+p <- plot_grid(figure2b, figure2a, labels = c("A", "B"), ncol = 1, nrow = 2, align = "v")  
+
+
+p <- ggdraw() +
+  draw_plot(figure2b, x = 0, y = 0.3, width = 0.95, height = 0.67) +
+  draw_plot(figure2a, x = 0, y = 0, width = 0.95, height = 0.3) +
+  draw_plot_label(c("A", "B"), c(0, 0), c(0.95, 0.3), size = 15)
+
+?draw_plot_label
+
+save_plot("figures/figure2.png", p,
+          ncol = 1, # we're saving a grid plot of 2 columns
+          nrow = 2,
+          base_height = 3.8, base_width = 6)
+
+?save_plot
