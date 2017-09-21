@@ -42,7 +42,7 @@ diversity_effect <- results %>%
   summarise_each(funs(mean, std.error), diversity_effect) %>% 
   ggplot(aes(x = threshold, y = diversity_effect_mean)) + geom_point() + theme_bw() +
   geom_ribbon(aes(ymin = diversity_effect_mean-diversity_effect_std.error, ymax = diversity_effect_mean + diversity_effect_std.error)) +
-  geom_smooth() + 
+  # geom_smooth() + 
   xlab("Threshold (percent of DRI)") + ylab("Diversity effect (max slope of diversity-function curve)") + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
@@ -76,11 +76,11 @@ ggsave("figures/multifunction_curve_DRI_30spp.pdf")
 
 
 s2 <- plot_grid(spagetti, diversity_effect, labels = c("A", "B"))
-save_plot("figures/figure_S2.pdf", s2,
+save_plot("figures/figure_S2.png", s2,
           ncol = 2, # we're saving a grid plot of 2 columns
           nrow = 1, # and 2 rows
           # each individual subplot should have an aspect ratio of 1.3
-          base_width = 7, base_height = 6.5)
+          base_width = 5.2, base_height = 6.2)
 
 
 
