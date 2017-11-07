@@ -98,9 +98,10 @@ nuts_mean <- nuts_raw_parts %>%
 write_csv(nuts_mean, "data-processed/CINE-inuit-mean-nutrients.csv")
 
 ## now make accumulation curves
+nuts_mean <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 
 data <- nuts_mean
-
+threshold = 0.1
 accumulate <- function(data, threshold) {
   ntbl.RDI.all <- data %>% 
     mutate(RDI.CA = ifelse(calcium > (1200*threshold), 1, 0)) %>% 
