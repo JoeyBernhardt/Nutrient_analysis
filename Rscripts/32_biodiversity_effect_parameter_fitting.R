@@ -30,13 +30,12 @@ inuit <- inuit_resampling %>%
 yupik <- yupik_resampling %>% 
   filter(!is.infinite(grams_required))
 
-inuit %>% 
-  ggplot(aes(x = species_no, y = grams_required)) + geom_point()
+# inuit %>% 
+#   ggplot(aes(x = species_no, y = grams_required)) + geom_point()
+# 
+# yupik %>% 
+#   ggplot(aes(x = species_no, y = grams_required)) + geom_point()
 
-yupik %>% 
-  ggplot(aes(x = species_no, y = grams_required)) + geom_point()
-
-sum(is.infinite(inuit$grams_required))
 
 inuit.fit <- nls(formula=(grams_required ~ a * species_no^b), data=inuit, start = c(a=10000, b=-0.7))
 yupik.fit <- nls(formula=(grams_required ~ a * species_no^b), data=yupik, start = c(a=10000, b=-0.7))

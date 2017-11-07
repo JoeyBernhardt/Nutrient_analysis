@@ -11,14 +11,20 @@ culture_foods <- read_excel("~/Documents/traditional-foods/culture-foods.xlsx")
 
 nuts_trad %>% 
   filter(reference != "88") %>% 
+  filter(part != "eggs") %>% 
   gather(key = "nutrient", value = "concentration", 9:19) %>% 
-  ggplot(aes(x = latin_name, y = concentration)) + geom_point() +
-  facet_wrap( ~ nutrient, scales = "free") + theme_classic()
+  filter(!is.na(concentration)) %>% 
+  filter(nutrient == "ca_mg") %>% 
+  mutate(latin_name = factor(latin_name)) %>% View
+  ggplot(aes(x = reorder(latin_name, concentration), y = concentration)) + geom_point() +
+  facet_wrap( ~ nutrient, scales = "free") + theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
   
 
 cnuts <- left_join(culture_foods, nuts_trad)
 
 write_csv(cnuts, "data-processed/cnuts-trad-foods-culture.csv")
+cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
 
 nuts_mean %>% 
   filter(culture == "Aleut") %>% 
@@ -101,6 +107,7 @@ res <- cnuts_split %>%
   map_df(accumulate, threshold = 0.1, .id = "culture")
 
 write_csv(res, "data-processed/nut_accumulation_trad_foods.csv")
+res <- read_csv("data-processed/nut_accumulation_trad_foods.csv")
 
 res %>% 
   filter(number_of_species < 11) %>% 
