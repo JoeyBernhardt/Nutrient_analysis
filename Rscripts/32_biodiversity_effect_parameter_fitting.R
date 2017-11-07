@@ -7,9 +7,10 @@ library(gridExtra)
 library(plotrix)
 
 
-inuit_resampling <- read_csv("~/Desktop/grams-required-10-spp-100reps-inuit.csv")
-reps100 <- read_csv("~/Desktop/grams-required-10-spp-1000reps.csv")
-bang_resampling <- read_csv("~/Desktop/grams-required-10-spp-1000reps-bangladesh.csv")
+inuit_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-inuit.csv")
+reps100 <- read_csv("data-processed/grams-required-10-spp-1000reps.csv")
+bang_resampling <- read_csv("data-processed/grams-required-10-spp-1000reps-bangladesh.csv")
+yupik_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-yupik.csv")
 
 summary <- inuit_resampling %>%
   filter(!is.na(grams_required)) %>% 
@@ -26,24 +27,35 @@ summary %>%
 inuit <- inuit_resampling %>% 
  filter(!is.infinite(grams_required))
 
+yupik <- yupik_resampling %>% 
+  filter(!is.infinite(grams_required))
+
 inuit %>% 
+  ggplot(aes(x = species_no, y = grams_required)) + geom_point()
+
+yupik %>% 
   ggplot(aes(x = species_no, y = grams_required)) + geom_point()
 
 sum(is.infinite(inuit$grams_required))
 
 inuit.fit <- nls(formula=(grams_required ~ a * species_no^b), data=inuit, start = c(a=10000, b=-0.7))
+yupik.fit <- nls(formula=(grams_required ~ a * species_no^b), data=yupik, start = c(a=10000, b=-0.7))
 full.fit <- nls(formula=(grams_required ~ a * species_no^b), data=reps100, start = c(a=10000, b=-0.7))
 
 
 summary(inuit.fit)
+summary(yupik.fit)
 summary(full.fit)
 
 bind_rows(tidy(inuit.fit, conf.int = TRUE), tidy(full.fit, conf.int = TRUE)) 
+bind_rows(tidy(inuit.fit, conf.int = TRUE), tidy(yupik.fit, conf.int = TRUE)) 
 
 full <- tidy(full.fit, conf.int = TRUE) %>% 
   mutate(dataset = "full")
 inuit_params <- tidy(inuit.fit, conf.int = TRUE) %>% 
   mutate(dataset = "inuit")
+yupik_params <- tidy(yupik.fit, conf.int = TRUE) %>% 
+  mutate(dataset = "yupik")
 
 
 bind_rows(full, inuit_params) %>% 
@@ -124,6 +136,15 @@ inuit_sum <- inuit_resampling %>%
   summarise_each(funs(mean, median), grams_required) %>% 
   mutate(dataset = "inuit")
 
+yupik_sum <- yupik_resampling %>% 
+  filter(!is.infinite(grams_required)) %>% 
+  mutate(grams_required = grams_required/10) %>% 
+  group_by(species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  mutate(dataset = "yupik") %>% 
+  rename(mean = grams_required_mean,
+         median = grams_required_median)
+
 reps_sum <- reps100 %>% 
   filter(!is.infinite(grams_required)) %>%
   mutate(grams_required = grams_required/10) %>% 
@@ -135,11 +156,12 @@ reps_sum <- reps100 %>%
 all <- bind_rows(bang_sum, inuit_sum, reps_sum)
 write_csv(all, "data-processed/summary_resampling_global_bang_inuit.csv")
 
-all <- read_csv("data-processed/summary_resampling_global_bang_inuit.csv")
+all <- read_csv("data-processed/summary_resampling_global_bang_inuit.csv") %>% 
+  bind_rows(yupik_sum)
 
 all %>% 
   ggplot(aes(x = species_no, y = median, color = dataset)) + geom_line() +
-  facet_wrap( ~ dataset)
+  facet_wrap( ~ dataset) + theme_classic()
 
 bang_power <- nls(formula=(grams_required_median ~ a * species_no^b), data=bang_sum, start = c(a=10000, b=-0.7))
 a.bang <- coef(bang_power)[1]
@@ -161,16 +183,18 @@ global_power_function <- function(x) a.global*x^b.global
 inuit_power_function <- function(x) a.inuit*x^b.inuit
 
 
-grams_plots <- ggplot(aes(x = species_no, y = median, color = dataset), data = all) + geom_point(size = 3) +
-  stat_function(fun = bang_power_function, color = "grey") +
-  stat_function(fun = inuit_power_function, color = "grey") +
-  stat_function(fun = global_power_function, color = "grey") +
-  theme_bw() + ylab("median grams required to reach 5 DRI targets") + xlab("species richness") +
+grams_plots <- ggplot(aes(x = species_no, y = median, color = dataset), data = all) + geom_line(size = 1) +
+  # stat_function(fun = bang_power_function, color = "grey") +
+  # stat_function(fun = inuit_power_function, color = "grey") +
+  # stat_function(fun = global_power_function, color = "grey") +
+  theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
   scale_x_continuous(breaks = 1:10) +
-  annotate("text", x=8, y=330, label= "inuit: a = 408.24, b = -0.18") +
-  annotate("text", x=8, y=210, label= "global: a = 487.66, b = -0.52") +
-  annotate("text", x=8, y=110, label= "bangladesh: a = 207.02, b = -0.48") 
-  
+  scale_color_viridis(discrete = TRUE)
+  # annotate("text", x=8, y=330, label= "inuit: a = 408.24, b = -0.18") +
+  # annotate("text", x=8, y=210, label= "global: a = 487.66, b = -0.52") +
+  # annotate("text", x=8, y=110, label= "bangladesh: a = 207.02, b = -0.48") 
+
+ggsave("figures/bef-curves-color.png", width = 5, height = 5)  
 
 inuit_params <- tidy(inuit_power, conf.int = TRUE) %>% 
   mutate(dataset = "inuit")

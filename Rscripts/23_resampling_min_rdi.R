@@ -8,6 +8,7 @@ mean_nuts <- read.csv("data-processed/mean_nuts.csv")
 trait_data_pro <- read.csv("data-processed/micronutrients-species-mean.csv")
 most_common <- read_csv("data-processed/most_common_species.csv")
 bang_data <- read.csv("data-processed/bangladesh-micronutrients.csv")
+trad_data <- read_csv("data-processed/trad-foods-mean.csv")
 
 inuit_mean <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 inuit <- inuit_mean %>% 
@@ -27,9 +28,12 @@ trait_data_pro_no_finfish <- mean_nuts %>%
 trait_data_finfish <- mean_nuts %>% 
   filter(subgroup =="finfish")
 
+dataset <- trad_data %>% 
+  filter(culture == "Yupik") 
 
+sample_size <- 10
 nutrient_fishing_function <- function(sample_size) {
-ntbl_sub1 <- trait_data_finfish %>% 
+ntbl_sub1 <- dataset %>% 
   sample_n(size = sample_size, replace = FALSE)
 
 sample_list <- NULL
@@ -72,9 +76,10 @@ resampling_15 <- new_data_sub1 %>%
 
 samples_rep <- rep(10, 1000)
 
-output_finfish <- samples_rep %>% 
+output_yupik <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")
 
+write_csv(output_yupik, "data-processed/grams-required-10-spp-100reps-yupik.csv")
 write_csv(output, "data-processed/grams-required-10-spp-100reps-inuit.csv")
 write.csv(output, "data-processed/grams-required-10-spp-1000reps.csv")
 write_csv(output, "data-processed/grams-required-15-spp-1000reps.csv")
