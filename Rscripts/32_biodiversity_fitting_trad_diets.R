@@ -3,11 +3,18 @@
 library(tidyverse)
 library(broom)
 yupik_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-yupik.csv")
-
+all_trad_resampling <- read_csv("data-processed/all_trad_reps.csv")
 
 yupik <- yupik_resampling %>% 
   filter(!is.infinite(grams_required))
 
+all_resamp <- all_trad_resampling %>% 
+  filter(!is.infinite(grams_required)) %>% 
+  group_by(culture, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(median = grams_required_median,
+         mean = grams_required_mean) %>% 
+  rename(dataset = culture)
 
 yupik_sum <- yupik %>% 
   group_by(species_no) %>% 
@@ -23,7 +30,7 @@ b.yupik <- coef(yupik_power)[2]
 
 
 all <- read_csv("data-processed/summary_resampling_global_bang_inuit.csv") %>% 
-  bind_rows(yupik_sum)
+  bind_rows(all_resamp)
 
 
 all %>% 

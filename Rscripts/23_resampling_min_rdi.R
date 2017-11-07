@@ -11,6 +11,14 @@ bang_data <- read.csv("data-processed/bangladesh-micronutrients.csv")
 trad_data <- read_csv("data-processed/trad-foods-mean.csv")
 
 inuit_mean <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
+
+inuit_mean %>% 
+  filter(latin_name == "Catostomus commersonii")
+trad_data %>% 
+  filter(culture == "Inuit-Inupiaq") %>% 
+  filter(latin_name == "Catostomus commersonii")
+
+
 inuit <- inuit_mean %>% 
   dplyr::rename(species_name = latin_name)
 

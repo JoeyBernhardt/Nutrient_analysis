@@ -6,7 +6,23 @@ library(stringr)
 
 nuts_raw <- read_excel("~/Documents/traditional-foods/nutrients-finfish.xlsx")
 nuts_raw_inverts <- read_excel("~/Documents/traditional-foods/marine-inverts.xlsx")
+nuts_6449 <- read_excel("~/Documents/traditional-foods/nutrients-6449.xlsx")
+nuts_6433 <- read_excel("~/Documents/traditional-foods/nutrients-6433.xlsx")
 
+thing1 <- nuts_raw %>% 
+  filter(page_id == 6433) %>%
+  clean_names() %>% 
+  mutate(ca_mg = as.numeric(str_replace(ca_mg_100g, " (.*)", ""))) %>%
+  select(page_id, common_name, ca_mg)
+
+thing2 <- nuts_6433 %>% 
+  filter(page_id == 6433) %>%
+  clean_names() %>% 
+  mutate(ca_mg = as.numeric(str_replace(ca_mg_100g, " (.*)", ""))) %>%
+  select(page_id, common_name, ca_mg)
+
+identical(thing1, thing2)
+  
 
 nuts <- clean_names(nuts_raw) %>% 
   select(- contains("sfa"))
