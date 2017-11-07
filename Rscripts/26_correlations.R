@@ -47,6 +47,10 @@ widenuts %>%
 wcor <- cor(widenuts, use = "pairwise.complete.obs")
 corrplot(wcor, type="lower")
 
+diag(wcor) = NA
+corrplot(wcor, method = "color", type = "lower", na.label = "o")
+
+
 
 bg3 <- bg2 %>% 
   select(calcium, iron, zinc, vitamin_b12, vitamin_e_α_tocopherol, total_vitamin_a)
@@ -56,7 +60,7 @@ bcor <- cor(bg3, use = "pairwise.complete.obs" )
 
 rcor2 <- rcor
 diag(rcor2) = NA
-corrplot(rcor2, method = "color", type = "upper", na.label = "o")
+corrplot(rcor2, method = "color", type = "lower")
 
 
 col4 <- colorRampPalette(c("#7F0000","red","#FF7F00","yellow","#7FFF7F", 
@@ -64,17 +68,13 @@ col4 <- colorRampPalette(c("#7F0000","red","#FF7F00","yellow","#7FFF7F",
 
 corrplot(wcor, type = "lower", method = "number", col=col4(10), p.mat = res1[[1]], sig.level=0.05, diag = FALSE)
 
-?corrplot
+
 
 rcor <- cor(rdi, use = "pairwise.complete.obs")
 
 res1 <- cor.mtest(wcor,0.95)
-corrplot(rcor2, p.mat = res1[[1]], sig.level=0.2, col=col4(10), type = "upper", na.label = "o")
+corrplot(rcor, p.mat = res1[[1]], sig.level=0.2, col=col4(10), type = "upper", na.label = "o")
 
-
-
-cor(wide$ca_mg, wide$dha)
-str(wide)
 
 td <- read_csv("data-processed/mean_nuts.csv")
 
@@ -85,14 +85,6 @@ rdi <- td %>%
          epa_per = epa/1,
          dha_per = dha/1) %>% 
   select(contains("per"))
-
-
-
-
-cor(rdi$zinc_per, rdi$dha_per)
-cor(td$iron, td$epa)
-
-
 
 
 nuts <- td %>% 
