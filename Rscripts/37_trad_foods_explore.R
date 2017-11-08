@@ -3,11 +3,13 @@
 library(tidyverse)
 library(viridis)
 library(readxl)
+library(stringr)
 
 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv")
 culture_foods <- read_excel("~/Documents/traditional-foods/culture-foods.xlsx")
 
+nuts_mean <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 
 nuts_trad %>% 
   filter(reference != "88") %>% 
@@ -26,9 +28,9 @@ cnuts <- left_join(culture_foods, nuts_trad)
 write_csv(cnuts, "data-processed/cnuts-trad-foods-culture.csv")
 cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
 
-nuts_mean %>% 
-  filter(culture == "Aleut") %>% 
-  distinct(latin_name)
+cnuts %>% 
+  filter(culture == "Inuit-Inupiaq") %>% 
+  distinct(latin_name) %>% View
 
 nuts_mean <- cnuts %>% 
   group_by(culture, latin_name) %>% 
@@ -41,6 +43,58 @@ nuts_mean <- cnuts %>%
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
 
+cine_inuit <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
+
+cine_inuit2 <- cine_inuit %>% 
+  mutate(latin_name = str_replace(latin_name, "Mercenaria mercenaria<ca>", "Mercenaria mercenaria"))
+
+inuit_inu <- nuts_mean %>% 
+  filter(culture == "Inuit-Inupiaq") %>% 
+  ungroup() %>% 
+  select(-culture) 
+
+# mutate(mn_mg = str_replace(mn_mg_100g, " (.*)", "")) %>% 
+
+
+
+stringr::str_subset(inuit_inu2$latin_name, "Mercenaria")
+
+name1 <- inuit_inu %>% 
+  dplyr::filter(grepl("Mercenaria", latin_name))%>% 
+  distinct(latin_name)
+
+name1[[1]]
+
+inuit_inu2 <- inuit_inu %>% 
+  mutate(latin_name = ifelse(latin_name == name1[[1]], "Mercenaria mercenaria", latin_name))
+
+
+all_equal(cine_inuit2, inuit_inu2)
+
+## things that are in inuit_inu but not cine_inuit2
+setdiff(inuit_inu2$latin_name, cine_inuit2$latin_name)
+
+inuit_inu3 <- inuit_inu2 %>% 
+  filter(!latin_name %in% c(setdiff(inuit_inu2$latin_name, cine_inuit2$latin_name)))
+
+setdiff(inuit_inu3$latin_name, cine_inuit2$latin_name)
+setdiff(cine_inuit2$latin_name, inuit_inu3$latin_name)
+all_equal(cine_inuit2, inuit_inu3)
+
+
+cine_inuit3 <- cine_inuit2 %>% 
+  filter(!latin_name %in% c(setdiff(cine_inuit2$latin_name, inuit_inu3$latin_name)))
+
+all_equal(cine_inuit3, inuit_inu3)
+
+### ok write out what we've got!
+
+write_csv(nuts_mean, "data-processed/trad-foods-means.csv")
+
+
+cnuts %>% 
+  filter(culture == "Inuit-Inupiaq") %>% 
+  distinct(latin_name, .keep_all = TRUE) %>% View
 
 threshold = 0.1
 data <- cnuts_split[[1]]
