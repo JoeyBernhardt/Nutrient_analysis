@@ -58,6 +58,14 @@ nuts_mean <- cnuts %>%
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
 
+### how many species per culture?
+
+nuts_mean %>% 
+  group_by(culture) %>% 
+  summarise(n_species = n_distinct(latin_name)) %>% 
+  filter(n_species >= 25) %>% View
+
+
 # comparing cine inuit to the new data ------------------------------------
 
 
@@ -95,7 +103,16 @@ spp3 <- mean_nuts %>%
   rename(latin_name = species_name)
   
 intersect(spp$latin_name, spp3$latin_name)
-setdiff(spp$latin_name, spp3$latin_name)
+
+new_trad_species <- setdiff(spp$latin_name, spp3$latin_name) ### these are the species in the new trad foods, that are not in the global dataset
+
+newtrad <- mean_trad %>% 
+  filter(latin_name %in% new_trad_species) %>% 
+  rename(species_name = latin_name)
+
+write_csv(newtrad, "data-processed/newtrad.csv")
+
+
 setdiff(spp3$latin_name, spp$latin_name)
 
 lj <- inner_join(mean_nuts, mean_trad, by = c("species_name" = "latin_name"))

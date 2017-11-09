@@ -20,7 +20,7 @@ loadfonts(quiet = FALSE)
 ### Code for figure 3. 
 
 all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions.csv")
-bang_resampling <- read_csv("~/Desktop/grams-required-10-spp-1000reps-bangladesh.csv")
+bang_resampling <- read_csv("data-processed/grams-required-10-spp-1000reps-bangladesh.csv")
 
 summary <- all_output %>%
   filter(!is.na(grams_required)) %>% 

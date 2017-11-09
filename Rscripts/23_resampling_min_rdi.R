@@ -5,6 +5,7 @@ library(tidyr)
 library(readr)
 
 mean_nuts <- read.csv("data-processed/mean_nuts.csv")
+newtrad <- read_csv("data-processed/newtrad.csv")
 trait_data_pro <- read.csv("data-processed/micronutrients-species-mean.csv")
 most_common <- read_csv("data-processed/most_common_species.csv")
 bang_data <- read.csv("data-processed/bangladesh-micronutrients.csv")
@@ -17,6 +18,10 @@ inuit_mean %>%
 trad_data %>% 
   filter(culture == "Inuit-Inupiaq") %>% 
   filter(latin_name == "Catostomus commersonii")
+
+## make a joined df with global dataset and new species from trad foods
+
+global_new <- bind_rows(mean_nuts, newtrad)
 
 
 inuit <- inuit_mean %>% 
@@ -36,8 +41,13 @@ trait_data_pro_no_finfish <- mean_nuts %>%
 trait_data_finfish <- mean_nuts %>% 
   filter(subgroup =="finfish")
 
+dataset <- global_new
 dataset <- trad_data %>% 
-  filter(culture == "Yupik") 
+  distinct(latin_name, .keep_all = TRUE)
+
+dataset <- mean_nuts[30:67,]
+dataset80 <- mean_nuts[1:80,]
+dataset <- mean_nuts
 
 sample_size <- 10
 nutrient_fishing_function <- function(sample_size) {
@@ -83,6 +93,35 @@ resampling_15 <- new_data_sub1 %>%
 
 
 samples_rep <- rep(10, 1000)
+
+output_new_100 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+
+output_new_global <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+
+output_all_trad <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+
+output_70 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+
+output_70_2 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+output_80 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+output_full <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+output_38 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
+
+write_csv(output_70, "data-processed/grams-required-10-spp-100reps-70spp.csv")
+write_csv(output_70_2, "data-processed/grams-required-10-spp-100reps-70spp_2.csv")
+write_csv(output_new_100, "data-processed/grams-required-10-spp-100reps.csv")
+write_csv(output_all_trad, "data-processed/grams-required-10-spp-100reps-all_trad.csv")
+write_csv(output_new_global, "data-processed/grams-required-10-spp-100reps-new_global.csv")
+write_csv(output_full, "data-processed/grams-required-10-spp-1000reps-old.csv")
+
 
 output_yupik <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")
