@@ -1,10 +1,4 @@
 page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,zn_mg,fe_mg,protein_g,fat_g,fapun3,fapun_all_g,mn_mg,mg_mg,epa,dha
-6151,Fish,Freshwater Fish,Trout,"Salvelinus spp., Oncorhynchus spp., Salmo salar",muscle,raw,88,43,0.66,1.5,20.8,6.61,NA,1499,0.851,22,0.202,0.528
-6151,Fish,Freshwater Fish,Trout,"Salvelinus spp., Oncorhynchus spp., Salmo salar",muscle,raw,36,11.6,0.514,0.441,19.5,2.73,NA,NA,0.03,26.27,NA,NA
-6151,Fish,Freshwater Fish,Trout,"Salvelinus spp., Oncorhynchus spp., Salmo salar",muscle,raw,40,NA,NA,NA,21.3,5.7,NA,NA,NA,NA,NA,NA
-6151,Fish,Freshwater Fish,Trout,"Salvelinus spp., Oncorhynchus spp., Salmo salar",muscle,raw,53,38,0.4,0.4,19,3,NA,NA,0.01,26,0.2,0.6
-6151,Fish,Freshwater Fish,Trout,"Salvelinus spp., Oncorhynchus spp., Salmo salar",muscle,raw,62,43,0.66,1.5,20.8,6.6,NA,2.33,0.851,22,NA,NA
-6151,Fish,Freshwater Fish,Trout,"Salvelinus spp., Oncorhynchus spp., Salmo salar",liver,raw,40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6151,Fish,Freshwater Fish,Lake Trout,Salvelinus namaycush,muscle,raw,83,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6151,Fish,Freshwater Fish,Lake Trout,Salvelinus namaycush,muscle,raw,84,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6151,Fish,Freshwater Fish,Lake Trout,Salvelinus namaycush,muscle,raw,23,NA,NA,NA,NA,9.7,NA,3.4,NA,NA,0.5,1.1
@@ -66,27 +60,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6151,Fish,Freshwater Fish,Brown Trout,Salmo trutta,muscle,raw,82,20,0.44,0.7,20,3.3,NA,0.11,0.04,30,NA,NA
 6151,Fish,Freshwater Fish,Brown Trout,Salmo trutta,muscle,raw,27,20,0.46,1,18.5,2.9,NA,NA,0.05,25,NA,NA
 6151,Fish,Freshwater Fish,Brown Trout,Salmo trutta,muscle,raw,52,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,7,NA,0.99,0.29,18.9,6.1,NA,1.82,NA,33,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,13,NA,NA,NA,NA,NA,NA,NA,NA,33,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,11,356,NA,NA,25.8,1.3,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,33,356,NA,NA,25.8,1.3,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,13,NA,0.99,0.37,19.1,5.86,NA,2.15,NA,NA,0.317,0.941
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,40,NA,0.6,NA,25,1.1,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,53,26,NA,0.4,20,4,NA,NA,0.01,32,0.2,0.3
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,61,356,NA,NA,25.8,1.3,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,41,NA,NA,NA,22,4.9,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,59,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.263,0.493
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,82,60,0.54,0.5,21.7,3,NA,0.23,0.05,30,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,88,26,0.99,0.37,19.1,5.86,NA,2.15,0.067,33,0.317,0.941
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",liver,raw,21,54,NA,NA,10,3,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",liver,raw,11,55,NA,NA,11,4.4,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",liver,raw,33,55,NA,NA,11,4.4,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",liver,raw,61,55,NA,NA,11,4.4,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",liver,raw,40,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",eggs,raw,11,54,NA,NA,8,5,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",eggs,raw,33,54,NA,NA,8,5,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",oil,raw,11,14,NA,NA,0,100,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Whitefish and Cisco,"Stenodus spp., Coegonus spp., Prosopium spp.",muscle,raw,83,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,muscle,raw,32,NA,NA,NA,22.2,4.1,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,muscle,raw,24,10,0.3,0.4,19,7,NA,NA,0.02,33,NA,NA
 6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,muscle,raw,29,NA,NA,NA,10.8,3.1,NA,NA,NA,NA,NA,NA
@@ -94,7 +67,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,muscle,raw,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,muscle,raw,79,16,NA,0.2,18.2,11.8,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,muscle,raw,27,NA,NA,NA,19.9,6.8,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Inconnu,Stenodus leucichthys,not specified,raw,88,140,0.6,0.5,22.2,2.84,NA,0.7,0.037,25,0.17,0.32
 6388,Fish,Freshwater Fish,Lake Whitefish,Coregonus clupeaformis,muscle,raw,23,NA,NA,NA,NA,6,NA,2.2,NA,NA,0.3,1
 6388,Fish,Freshwater Fish,Lake Whitefish,Coregonus clupeaformis,muscle,raw,62,26,0.99,0.37,19.1,5.9,NA,2.15,0.067,33,NA,NA
 6388,Fish,Freshwater Fish,Lake Whitefish,Coregonus clupeaformis,muscle,raw,24,9.4,0.8,0.5,18,0.7,NA,NA,0.01,21,NA,NA
@@ -117,16 +89,10 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6388,Fish,Freshwater Fish,Lake Whitefish,Coregonus clupeaformis,muscle,raw,79,5,1.3,0.3,18.8,9,NA,3.6,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Lake Whitefish,Coregonus clupeaformis,muscle,raw,72,NA,NA,NA,NA,5.2,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Lake Whitefish,Coregonus clupeaformis,muscle,raw,84,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Cisco,Coregonus autumnalis and Coregonus sardinella,muscle,raw,23,NA,NA,NA,NA,1.9,NA,0.6,NA,NA,0.1,0.3
-6388,Fish,Freshwater Fish,Cisco,Coregonus autumnalis and Coregonus sardinella,muscle,raw,27,NA,NA,NA,14.9,8.9,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Cisco,Coregonus autumnalis and Coregonus sardinella,whole,raw,27,NA,NA,NA,15.8,9.6,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Cisco,Coregonus autumnalis and Coregonus sardinella,eggs,raw,49,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Cisco,Coregonus autumnalis and Coregonus sardinella,eggs,raw,83,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,muscle,raw,13,NA,0.37,NA,19.0,1.91,NA,0.613,NA,NA,0.095,0.257
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,muscle,raw,63,12,0.37,0.4,19.0,1.91,NA,0.613,0.067,17,0.095,0.257
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,muscle,raw,43,11.2,1.1,0.46,14.1,3.4,0.65,1.3,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,muscle,raw,88,NA,NA,0.4,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,muscle,raw,27,12,NA,NA,19.4,3.2,NA,NA,NA,17,NA,NA
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,whole,raw,27,NA,NA,NA,17.4,6.8,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Lake Herring,Coregonus artedi,offal,raw,27,NA,NA,NA,15.9,7.2,NA,NA,NA,NA,NA,NA
@@ -142,7 +108,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,muscle,raw,49,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,"head, eyes, cheeks + soft bones",raw,7,NA,NA,3.9,18.6,3.6,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,"head, eyes, cheeks + soft bones",raw,34,NA,NA,3.9,18.6,3.6,NA,NA,NA,NA,NA,NA
-6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,"head, eyes, cheeks + soft bones",raw,88,NA,NA,3.9,18.6,3.6,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,liver,raw,7,53,NA,8.6,11,4.4,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,liver,raw,34,NA,NA,8.6,NA,NA,NA,NA,NA,NA,NA,NA
 6388,Fish,Freshwater Fish,Broad Whitefish,Coregonus nasus,eggs,raw,7,54,NA,0.9,8,5,NA,NA,NA,NA,NA,NA
@@ -178,7 +143,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,23,NA,NA,NA,NA,0.7,NA,0.2,NA,NA,NA,0.1
 6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,13,57,0.67,0.55,19.3,0.69,NA,0.202,NA,NA,0.033,0.074
 6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,63,57,0.67,0.55,NA,0.69,NA,0.202,0.24,31,0.033,0.074
-6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,88,NA,NA,NA,19.3,NA,NA,NA,0.24,NA,NA,NA
 6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,82,50,0.96,0.3,19,1.2,NA,0.044,0.04,29,NA,NA
 6404,Fish,Freshwater Fish,Northern Pike,Esox lucius,muscle,raw,24,60,0.7,0.4,19,0.8,NA,NA,0.03,28,NA,NA
@@ -205,7 +169,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,45,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,13,50,0.76,0.9,19.3,0.81,NA,0.297,0.7,32,0.07,0.096
 6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,63,50,0.76,0.9,19.3,0.81,NA,0.297,0.7,32,0.07,0.096
-6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,88,NA,0.76,NA,NA,NA,NA,NA,0.7,32,NA,NA
 6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,24,40,0.6,0.4,18,0.6,NA,NA,0.02,20,NA,NA
 6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,59,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.063,0.135
 6405,Fish,Freshwater Fish,Burbot,Lota lota,muscle,raw,60,NA,NA,NA,24.9,NA,NA,NA,NA,NA,NA,NA
@@ -236,20 +199,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6406,Fish,Freshwater Fish,Arctic Grayling,Thymallus arcticus,muscle,raw,53,31,0.7,1,20,1.9,NA,NA,0.04,63,0.1,0.1
 6406,Fish,Freshwater Fish,Arctic Grayling,Thymallus arcticus,muscle,raw,11,532,NA,NA,23.4,1.6,NA,NA,NA,NA,NA,NA
 6406,Fish,Freshwater Fish,Arctic Grayling,Thymallus arcticus,muscle,raw,33,532,NA,NA,23.4,1.6,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,not specified,raw,87,110,NA,1.3,19,24,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,not specified,raw,88,110,0.62,1.3,19.1,1.22,NA,0.447,0.8,30,0.086,0.225
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,2,31,0.3,0.2,20.1,0.7,NA,NA,NA,21.2,0.052,0.156
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,27,NA,NA,NA,19.7,1.2,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,44,13.7,0.503,0.153,19.4,1.07,NA,NA,0.015,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,13,110,0.62,1.3,19.1,1.22,NA,0.447,0.8,30,0.086,0.225
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,63,110,0.62,1.3,19.1,1.22,NA,0.447,0.8,30,0.086,0.225
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,21,13,NA,0.3,19,1,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,62,30,0.62,1.3,19.1,1.2,NA,0.45,0.8,30,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,56,NA,NA,NA,19.5,1.1,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Walleye,Sander vitreus,muscle,raw,79,60,0.7,0.8,19.2,1.4,0.2,0.3,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Sauger,Sander canadensis,muscle,raw,62,8,NA,0.44,17.1,1.1,NA,NA,NA,NA,NA,NA
-6407,Fish,Freshwater Fish,Sauger,Sander canadensis,muscle,raw,79,8,NA,0.4,17.1,1.1,NA,NA,NA,NA,NA,NA
 6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,muscle,raw,23,NA,NA,NA,NA,5.6,NA,1.4,NA,NA,0.2,0.1
 6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,muscle,raw,46,99,NA,1.7,18.4,1.2,NA,NA,NA,NA,NA,NA
 6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -260,14 +209,12 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,muscle,raw,79,24,1.4,1,16.4,8.5,0.5,1.7,NA,NA,NA,NA
 6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,muscle,raw,56,NA,NA,NA,NA,2,NA,NA,NA,NA,NA,NA
 6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,muscle,raw,72,NA,NA,NA,NA,4.2,NA,NA,NA,NA,NA,NA
-6408,Fish,Freshwater Fish,Common Carp,Cyprinus carpio,not specified,raw,88,41,1.48,1.24,17.8,5.6,NA,1.43,0.042,29,0.238,0.114
 6408,Fish,Freshwater Fish,Lake Chub,Couesius plumbeus,muscle,raw,27,NA,NA,NA,18.7,1.2,NA,NA,NA,NA,NA,NA
 6408,Fish,Freshwater Fish,Goldfish,Carassius auratus,muscle,raw,27,76,NA,NA,16.3,3,NA,NA,NA,69,NA,NA
 6408,Fish,Freshwater Fish,Goldfish,Carassius auratus,whole,raw,27,NA,6,5.6,NA,NA,NA,NA,0.23,NA,NA,NA
 6408,Fish,Freshwater Fish,Spottail Shiner,Notropis hudsonius,whole,raw,27,NA,NA,NA,13,11.9,NA,NA,NA,NA,NA,NA
 6408,Fish,Freshwater Fish,Pikeminnows,Ptychocheilus spp.,muscle,raw,27,NA,NA,NA,17.2,2.8,NA,NA,NA,NA,NA,NA
 6409,Fish,Freshwater Fish,Bass,Micropterus spp.,muscle,raw,44,14.8,0.419,0.283,19.0,1.98,NA,NA,0.016,NA,NA,NA
-6409,Fish,Freshwater Fish,Bass,Micropterus spp.,not specified,raw,88,80,0.65,1.49,18.89,3.69,NA,1.06,0.889,30,0.238,0.357
 6409,Fish,Freshwater Fish,Largemouth Bass,Micropterus salmoides,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6410,Fish,Freshwater Fish,Catfish,Ictaluridae,muscle,raw,46,27,NA,0.9,22.7,6.8,NA,NA,NA,NA,NA,NA
 6410,Fish,Freshwater Fish,Catfish,Ictaluridae,muscle,raw,45,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -285,7 +232,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6411,Fish,Freshwater Fish,Perch and Darters,Percidae,muscle,raw,59,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.054,0.245
 6411,Fish,Freshwater Fish,Perch and Darters,Percidae,muscle,raw,82,110,0.52,0.6,18.1,1.3,NA,0.053,0.062,26,NA,NA
 6411,Fish,Freshwater Fish,Perch and Darters,Percidae,muscle,raw,27,NA,1285,NA,14.9,0.7,NA,NA,NA,NA,NA,NA
-6411,Fish,Freshwater Fish,Perch and Darters,Percidae,not specified,raw,88,80,1.11,0.9,19.4,0.92,NA,0.368,0.7,30,0.174,0.174
 6411,Fish,Freshwater Fish,Yellow Perch,Perca flavescens,muscle,raw,23,NA,NA,NA,NA,0.9,NA,0.4,NA,NA,0.1,0.2
 6411,Fish,Freshwater Fish,Yellow Perch,Perca flavescens,muscle,raw,44,59.77,0.546,0.209,17.8,1.01,NA,NA,0.09,NA,NA,NA
 6411,Fish,Freshwater Fish,Yellow Perch,Perca flavescens,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -303,7 +249,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6414,Fish,Freshwater Fish,Freshwater Drum,Aplodinotus grunniens,muscle,raw,27,52,0.7,1.05,18.5,2.5,NA,NA,NA,NA,NA,NA
 6414,Fish,Freshwater Fish,Freshwater Drum,Aplodinotus grunniens,whole,raw,27,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6414,Fish,Freshwater Fish,Freshwater Drum,Aplodinotus grunniens,muscle,raw,56,NA,NA,NA,18.0,3.2,NA,NA,NA,NA,NA,NA
-6414,Fish,Freshwater Fish,Freshwater Drum,Aplodinotus grunniens,not specified,raw,88,60,0.66,0.9,17.5,4.93,NA,1.15,0.7,30,0.23,0.287
 6415,Fish,Freshwater Fish,Sunfish,Lepomis spp.,muscle,raw,23,NA,NA,NA,NA,0.7,NA,0.2,NA,NA,NA,0.1
 6415,Fish,Freshwater Fish,Sunfish,Lepomis spp.,muscle,raw,27,NA,NA,0.34,20.4,1.7,NA,NA,0.029,NA,NA,NA
 6415,Fish,Freshwater Fish,Sunfish,Lepomis spp.,muscle,raw,56,NA,NA,NA,19.4,0.7,NA,NA,NA,NA,NA,NA
@@ -320,17 +265,10 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6419,Fish,Freshwater Fish,Ninespine Stickleback,Gasterosteidae,muscle,raw,33,901,NA,NA,20.7,2.2,NA,NA,NA,NA,NA,NA
 6419,Fish,Freshwater Fish,Ninespine Stickleback,Gasterosteidae,muscle,raw,7,93,NA,6.2,9.9,6.3,NA,NA,NA,NA,NA,NA
 6419,Fish,Freshwater Fish,Ninespine Stickleback,Gasterosteidae,whole,raw,34,93,NA,6.2,9.9,6.3,NA,NA,NA,NA,NA,NA
-6446,Fish,Searun Fish,Salmon,Oncorhynchus and Salmo spp.,muscle,raw,36,13,0.8,1,19.9,13.6,NA,NA,0.014,29,NA,NA
-6446,Fish,Searun Fish,Salmon,Oncorhynchus and Salmo spp.,muscle,raw,53,6,0.5,0.9,19,5,NA,NA,0.02,74,0.2,0.3
-6446,Fish,Searun Fish,Salmon,Oncorhynchus and Salmo spp.,oil,raw,23,NA,NA,NA,NA,100,NA,29.9,NA,NA,8.8,11.1
-6446,Fish,Searun Fish,Salmon,Oncorhynchus and Salmo spp.,eggs,raw,53,40,2,1.6,27,10,NA,NA,0.03,53,1.1,1.3
-6446,Fish,Searun Fish,Salmon,Oncorhynchus and Salmo spp.,eggs,raw,86,12,NA,0.7,27,10,NA,NA,NA,NA,1.1,1.3
-6446,Fish,Searun Fish,Salmon,Oncorhynchus and Salmo spp.,eggs,raw,87,42,NA,2,16,16,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,23,NA,NA,NA,NA,6.6,NA,1.5,NA,NA,0.4,0.6
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,7,11,0.47,0.55,20.1,3.77,NA,0.898,0.015,NA,NA,NA
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,13,11,0.47,0.55,20.1,3.77,NA,0.898,0.015,NA,0.233,0.394
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,63,11,0.47,0.55,20.1,3.77,NA,0.898,NA,22,0.233,0.394
-6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,0.015,NA,NA,NA
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,34,11,NA,NA,12,1.5,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,58,11,NA,NA,12,2,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Chum Salmon,Oncorhynchus keta,muscle,raw,27,12,1.37,0.475,20.4,4.6,NA,NA,0.028,22,NA,NA
@@ -344,7 +282,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,7,NA,0.41,0.7,21.6,5.95,NA,NA,0.015,0,NA,NA
 6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,13,NA,0.41,0.7,21.6,5.95,NA,1.74,0.015,NA,0.327,0.487
 6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,63,36,0.41,0.56,21.6,5.93,NA,1.99,0.014,31,0.429,0.656
-6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,58,78,NA,1.8,20,6,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,27,36,NA,1345,21.1,5.7,NA,NA,0.02,29,NA,NA
 6446,Fish,Searun Fish,Coho Salmon,Oncorhynchus kisutch,muscle,raw,55,NA,NA,NA,NA,5.4,NA,NA,NA,NA,7.6,18.6
@@ -356,7 +293,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,7,NA,0.55,0.77,19.9,3.45,NA,1.35,0.015,NA,NA,NA
 6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,13,NA,0.55,0.77,19.9,3.45,NA,1.35,0.015,NA,0.419,0.586
 6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,63,13,0.55,0.77,19.9,3.45,NA,NA,0.015,26,0.419,0.586
-6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,88,NA,NA,NA,NA,NA,NA,1.35,NA,NA,NA,NA
 6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,58,13,NA,1.1,20,4,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Pink Salmon,Oncorhynchus gorbuscha,muscle,raw,27,13,NA,0.93,20.1,4.8,NA,NA,NA,NA,NA,NA
@@ -369,7 +305,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,muscle,raw,7,6,0.5,0.5,21.3,9,NA,1.9,0.01,24,NA,NA
 6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,muscle,raw,13,6,0.54,0.47,21.3,8.56,NA,1.88,0.014,24,0.519,0.653
 6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,muscle,raw,63,6,0.54,0.47,21.3,8.56,NA,1.88,0.014,24,0.519,0.653
-6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,muscle,raw,58,52,0.9,0.8,20,5,NA,NA,0.017,25,NA,NA
 6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,muscle,raw,58,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Sockeye Salmon,Oncorhynchus nerka,light muscle,raw,28,NA,NA,NA,NA,2.52,0.87,0.94,NA,NA,0.22,0.57
@@ -389,7 +324,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,muscle,raw,7,79,NA,0.9,22.5,13.4,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,muscle,raw,13,22,0.44,0.71,20.1,10.4,NA,2.08,0.015,NA,0.788,0.567
 6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,muscle,raw,63,22,0.44,0.71,20.1,10.4,NA,2.08,0.015,95,0.788,0.567
-6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,muscle,raw,88,26,NA,0.25,19.9,10.4,NA,2.8,NA,NA,1.008,0.944
 6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,muscle,raw,25,NA,NA,NA,NA,7,1.2,1.6,NA,NA,0.44,0.55
 6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,muscle,raw,58,NA,NA,NA,19.6,15,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Chinook Salmon,Oncorhynchus tshawytscha,liver,raw,21,28,NA,NA,17,8,NA,NA,NA,NA,NA,NA
@@ -424,7 +358,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6446,Fish,Searun Fish,Atlantic Salmon,Salmo salar,skin,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6446,Fish,Searun Fish,Atlantic Salmon,Salmo salar,muscle,raw,79,15,0.5,1,18.4,5.6,1.4,2.4,NA,NA,NA,NA
 6446,Fish,Searun Fish,Atlantic Salmon,Salmo salar,muscle,raw,72,NA,NA,NA,NA,5.8,NA,NA,NA,NA,NA,NA
-6447,Fish,Searun Fish,Sturgeon,Acipenser spp.,muscle,raw,88,13,0.42,0.7,16.1,4.04,NA,0.69,0.025,35,0.194,0.093
 6447,Fish,Searun Fish,Sturgeon,Acipenser spp.,muscle,raw,13,NA,0.42,NA,16.1,4.04,NA,0.69,0.025,NA,0.194,0.093
 6447,Fish,Searun Fish,Sturgeon,Acipenser spp.,muscle,raw,55,NA,NA,NA,NA,7.2,2.29,NA,NA,NA,1.4,0.57
 6447,Fish,Searun Fish,Sturgeon,Acipenser spp.,muscle,raw,27,NA,NA,NA,18.1,1.9,NA,NA,NA,NA,NA,NA
@@ -494,10 +427,8 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6450,Fish,Searun Fish,American Eel,Anguilla rostrata,muscle,raw,27,56,0.615,NA,18.2,13.3,NA,NA,NA,NA,NA,NA
 6450,Fish,Searun Fish,American Eel,Anguilla rostrata,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6450,Fish,Searun Fish,American Eel,Anguilla rostrata,not specified,raw,87,20,NA,0.6,19,12,NA,NA,NA,NA,NA,NA
-6450,Fish,Searun Fish,American Eel,Anguilla rostrata,not specified,raw,88,20,1.62,0.5,18.4,11.7,NA,0.95,0.035,20,0.084,0.063
 6451,Fish,Searun Fish,Rainbow Smelt,Osmerus mordax,muscle,raw,55,NA,1.65,0.9,NA,NA,NA,0.33,NA,30,0.12,0.18
 6451,Fish,Searun Fish,Rainbow Smelt,Osmerus mordax,muscle,raw,63,60,NA,NA,17.6,2.42,NA,0.885,0.7,NA,0.275,0.418
-6451,Fish,Searun Fish,Rainbow Smelt,Osmerus mordax,muscle,raw,88,NA,1.65,0.9,NA,NA,NA,NA,0.7,30,NA,NA
 6451,Fish,Searun Fish,Rainbow Smelt,Osmerus mordax,muscle,raw,27,NA,2,NA,18.8,2,NA,NA,NA,NA,NA,NA
 6451,Fish,Searun Fish,Rainbow Smelt,Osmerus mordax,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6451,Fish,Searun Fish,Rainbow Smelt,Osmerus mordax,whole,raw,27,NA,NA,NA,15.5,4,NA,NA,NA,NA,NA,NA
@@ -522,8 +453,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6152,Fish,Saltwater Fish,Halibut,Hippoglossinae,muscle,raw,27,19,NA,1,18.7,4.3,NA,NA,0.048,60,NA,NA
 6152,Fish,Saltwater Fish,Halibut,Hippoglossinae,whole,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Halibut,Hippoglossinae,oil,raw,45,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Halibut,Hippoglossinae,muscle + skin,raw,88,20,0.61,0.27,20.5,2.92,NA,0.912,0.011,26,0.217,0.393
-6152,Fish,Saltwater Fish,Atlantic Halibut and Pacific Halibut,Hippoglossus spp.,not specified,raw,88,47,0.42,0.84,20.8,2.29,NA,0.73,0.015,83,0.071,0.292
 6152,Fish,Saltwater Fish,Pacific Halibut,Hippoglossus stenolepis,muscle,raw,23,NA,NA,NA,NA,2.3,NA,0.7,NA,NA,0.1,0.3
 6152,Fish,Saltwater Fish,Pacific Halibut,Hippoglossus stenolepis,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Pacific Halibut,Hippoglossus stenolepis,"muscle, cheeks",raw,27,NA,NA,NA,19.2,0.7,NA,NA,NA,NA,NA,NA
@@ -535,7 +464,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,23,NA,NA,NA,NA,13.8,NA,1.4,NA,NA,0.5,0.4
 6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,47,10,NA,NA,13.1,11.3,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,63,3,0.4,0.66,14.4,13.8,NA,1367,0.012,26,0.526,0.393
-6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,88,NA,0.4,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,82,25,NA,0.25,12.4,15.6,NA,2.55,NA,22,0.95,0.87
 6152,Fish,Saltwater Fish,Greenland Halibut,Reinhardtius hippoglossoides,muscle,raw,48,NA,NA,NA,NA,13.1,1.88,NA,NA,NA,NA,NA
@@ -558,7 +486,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6152,Fish,Saltwater Fish,Flounders and Soles,Pleuronectinae,muscle,raw,27,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Flounders and Soles,Pleuronectinae,eggs,raw,27,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Flounders and Soles,Pleuronectinae,whole,raw,27,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Flounders and Soles,Pleuronectinae,not specified,raw,88,NA,NA,NA,18.8,1.19,NA,0.329,NA,NA,0.093,0.106
 6152,Fish,Saltwater Fish,Winter Flounder,Pseudopleuronectes americanus,muscle,raw,65,13.2,0.394,0.103,21.2,1.19,NA,NA,0.015,47,NA,NA
 6152,Fish,Saltwater Fish,Winter Flounder,Pseudopleuronectes americanus,muscle,raw,55,NA,NA,NA,NA,NA,NA,0.23,NA,NA,0.07,0.12
 6152,Fish,Saltwater Fish,Winter Flounder,Pseudopleuronectes americanus,muscle,raw,55,NA,NA,NA,NA,0.45,0.22,NA,NA,NA,0.07,0.12
@@ -568,16 +495,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6152,Fish,Saltwater Fish,Starry Flounder,Platichthys stellatus,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Starry Flounder,Platichthys stellatus,muscle,raw,27,NA,NA,NA,17.1,1.8,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Starry Flounder,Platichthys stellatus,muscle,raw,79,4,0.5,0.5,17.1,1.5,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,muscle,raw,46,71,NA,0.8,21.4,3.2,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,muscle,raw,45,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,muscle,raw,23,NA,NA,NA,NA,1.2,NA,0.2,NA,NA,NA,0.1
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,muscle,raw,82,29,0.08,0.6,18.7,1.1,NA,0.404,0.04,25,0.213,0.099
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,muscle,raw,27,38,0.378,0.656,17.9,1,NA,NA,0.02,29,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,eggs,raw,27,NA,NA,NA,20.7,4.6,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,eggs,raw,25,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.08,0.09
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,eggs,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6152,Fish,Saltwater Fish,Sole,Pleuronectinae and Cynoglossinae,skin,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Dover Sole,Microstomus pacificus,muscle,raw,25,NA,NA,NA,NA,1,0.20,0.23,NA,NA,0.08,0.09
 6152,Fish,Saltwater Fish,Dover Sole,Microstomus pacificus,muscle,raw,27,50,NA,NA,15.1,0.9,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Dover Sole,Microstomus pacificus,whole,raw,27,NA,NA,NA,12.7,3.5,NA,NA,NA,NA,NA,NA
@@ -590,24 +507,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6152,Fish,Saltwater Fish,English Sole,Parophrys vetulus,muscle,raw,79,9,0.3,0.3,16.8,1.7,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Rock Sole,Lepidopsetta bilineata,muscle,raw,27,NA,NA,NA,18.6,1.2,NA,NA,NA,NA,NA,NA
 6152,Fish,Saltwater Fish,Rock Sole,Lepidopsetta bilineata,muscle,raw,79,NA,0.3,NA,18.6,1,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,10,33,0.5,0.8,16.8,18.5,NA,3.1,0.04,29,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,67,NA,NA,1.54,14.5,10.5,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,55,NA,NA,NA,NA,12,3.12,NA,NA,NA,1.05,1.29
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,36,34,NA,1.1,18.2,17.8,NA,NA,NA,31,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,26,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,eggs,raw,7,19,NA,2.7,9.6,1.93,NA,0.71,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,eggs,raw,11,46,NA,NA,23.6,0.2,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,eggs,raw,33,46,NA,NA,23.6,0.2,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,eggs,raw,27,NA,NA,NA,20,NA,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,eggs,raw,36,NA,NA,NA,26,3.05,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,oil,raw,36,NA,NA,NA,NA,100,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,oil,raw,23,NA,NA,NA,NA,100,NA,16.1,NA,NA,7.1,4.3
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,27,58,0.743,1.09,17.7,2.8,NA,NA,0.038,26,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,whole,raw,27,NA,2032,0.885,17.6,7.4,NA,NA,0.109,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,soft eggs,raw,36,NA,NA,NA,20.9,2.83,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,eggs,raw,27,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6431,Fish,Saltwater Fish,Herrings and Relatives,Clupeinae and Alosinae,skin,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,Pacific Herring,Clupea pallasii,muscle,raw,23,NA,NA,NA,NA,13.9,NA,2.4,NA,NA,1,0.7
 6431,Fish,Saltwater Fish,Pacific Herring,Clupea pallasii,muscle,raw,63,83,0.53,1.12,16.4,13.9,NA,2423,0.045,32,0.969,0.689
 6431,Fish,Saltwater Fish,Pacific Herring,Clupea pallasii,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -624,7 +523,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6431,Fish,Saltwater Fish,Shad,Aloseinae,eggs,raw,27,NA,NA,NA,23.4,3.8,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,American Shad,Alosa sapidissima,muscle,raw,62,47,0.37,0.97,16.9,13.8,NA,3.18,0.042,30,NA,NA
 6431,Fish,Saltwater Fish,American Shad,Alosa sapidissima,muscle,raw,63,47,0.37,0.97,16.9,13.8,NA,3.27,0.042,30,1.09,1.32
-6431,Fish,Saltwater Fish,American Shad,Alosa sapidissima,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,American Shad,Alosa sapidissima,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,American Shad,Alosa sapidissima,muscle,raw,27,NA,NA,0.7,18,11.2,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,American Shad,Alosa sapidissima,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -634,7 +532,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,62,57,0.99,1.1,18,NA,NA,2.13,0.035,32,NA,NA
 6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,23,NA,NA,NA,NA,9,NA,2.1,NA,NA,0.7,0.9
 6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,63,57,0.99,1.1,18.0,9.04,NA,2.13,0.035,32,0.709,0.862
-6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,88,NA,NA,1.1,NA,NA,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,82,50,0.85,1.3,18.2,13.1,NA,2.54,0.01,26,0.57,1.25
 6431,Fish,Saltwater Fish,Atlantic Herring,Clupea harengus,muscle,raw,27,20,0.701,1,18,9.8,NA,NA,0.12,36,NA,NA
@@ -662,14 +559,12 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadiformes,eggs,raw,27,NA,NA,NA,22.3,1.9,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadiformes,oil,raw,45,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadiformes,muscle,raw,83,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Cod and Relatives,Gadidae,muscle,raw,88,48,0.88,0.34,18.3,1.31,NA,0.422,0.104,21,0.093,0.131
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadidae,muscle,raw,23,NA,NA,NA,NA,0.5,NA,0.1,NA,NA,NA,0.1
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadidae,muscle,raw,82,50,0.5,0.3,18.3,0.6,NA,0,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadidae,muscle,raw,27,30,0.793,NA,18.9,1.3,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadidae,muscle,raw,48,NA,NA,NA,NA,1.3,0.5,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Cod and Relatives,Gadidae,whole,raw,27,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Atlantic Cod,Gadus morhua,muscle,raw,63,16,0.45,0.38,17.8,0.67,NA,0.231,0.015,32,0.064,0.12
-6432,Fish,Saltwater Fish,Atlantic Cod,Gadus morhua,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.12
 6432,Fish,Saltwater Fish,Atlantic Cod,Gadus morhua,muscle,raw,55,NA,NA,NA,NA,NA,NA,0.33,NA,NA,0.08,0.23
 6432,Fish,Saltwater Fish,Atlantic Cod,Gadus morhua,muscle,raw,59,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.087,0.195
 6432,Fish,Saltwater Fish,Atlantic Cod,Gadus morhua,muscle,raw,23,NA,NA,NA,NA,0.7,NA,0.3,NA,NA,0.1,0.2
@@ -691,7 +586,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6432,Fish,Saltwater Fish,Atlantic Cod,Gadus morhua,skin,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Pacific Cod,Gadus macrocephalus,muscle,raw,23,NA,NA,NA,NA,0.6,NA,0.2,NA,NA,0.1,0.1
 6432,Fish,Saltwater Fish,Pacific Cod,Gadus macrocephalus,muscle,raw,63,7,0.4,0.26,17.9,0.63,NA,0.244,0.012,24,0.08,0.135
-6432,Fish,Saltwater Fish,Pacific Cod,Gadus macrocephalus,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.08,NA
 6432,Fish,Saltwater Fish,Pacific Cod,Gadus macrocephalus,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Pacific Cod,Gadus macrocephalus,muscle,raw,27,NA,NA,NA,16.7,0.7,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Pacific Cod,Gadus macrocephalus,offal,raw,27,NA,NA,NA,16.5,1.9,NA,NA,NA,NA,NA,NA
@@ -709,20 +603,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6432,Fish,Saltwater Fish,Arctic Cod,Boreogadus saida,muscle,raw,2,20.2,0.5,0.6,24.8,1,NA,NA,NA,18.1,0.165,0.329
 6432,Fish,Saltwater Fish,Saffron Cod,Eleginus gracilis,muscle,raw,34,NA,NA,NA,14.7,0.8,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Saffron Cod,Eleginus gracilis,liver,raw,34,6,NA,3.8,8,45.1,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,62,60,0.47,0.46,19.4,1,NA,0.48,0.015,67,NA,0.01
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,55,NA,NA,NA,NA,1.1,0.26,0.28,NA,NA,0.08,0.18
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,23,NA,NA,NA,NA,1,NA,0.5,NA,NA,0.1,0.4
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,27,63,NA,0.615,19.7,1.3,NA,NA,NA,33,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,eggs,raw,27,NA,NA,NA,24.9,1,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,eggs,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,skin,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,liver,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,72,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,82,8,0.3,0.2,19.3,0.3,NA,0.009,0.01,14,NA,NA
-6432,Fish,Saltwater Fish,Pollocks,Theragra chalcogramma and Pollachius virens,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Pollock,Pollachius virens,not specified,raw,88,60,0.47,0.46,19.4,0.98,NA,0.483,0.015,67,0.071,0.35
 6432,Fish,Saltwater Fish,Alaska Pollock,Theragra chalcogramma,muscle,raw,63,5,0.44,0.23,17.2,0.8,NA,0.412,0.015,57,0.15,0.222
 6432,Fish,Saltwater Fish,Alaska Pollock,Theragra chalcogramma,whole,raw,66,NA,NA,NA,14.0,1.58,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Hakes,Merluccius spp.,muscle,raw,55,NA,NA,NA,NA,0.69,0.3,0.29,NA,NA,0.05,0.22
@@ -736,7 +616,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6432,Fish,Saltwater Fish,Pacific Hake,Merluccius productus,muscle,raw,72,NA,NA,NA,NA,1.5,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Silver Hake,Merluccius bilinearis,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Silver Hake,Merluccius bilinearis,muscle,raw,79,45,0.4,NA,15.8,2.2,0.4,0.7,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,muscle,raw,88,42,0.48,1.35,24.2,0.93,NA,0.309,0.03,50,0.076,0.162
 6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,muscle,raw,27,27,0.788,0.679,18.2,0.5,NA,NA,0.018,24,NA,NA
 6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,muscle,raw,48,NA,NA,NA,NA,1.1,0.41,NA,NA,NA,NA,NA
@@ -752,7 +631,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,liver,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,muscle,raw,79,27,0.6,0.8,18.2,0.6,0.2,0.2,NA,NA,NA,NA
 6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,muscle,raw,72,NA,NA,NA,NA,0.66,NA,NA,NA,NA,NA,NA
-6432,Fish,Saltwater Fish,Haddock,Melanogrammus aeglefinus,not specified,raw,88,33,0.37,1.05,18.9,0.72,NA,0.241,0.025,39,0.059,0.126
 6433,Fish,Saltwater Fish,Lingcod,Ophiodon elongatus,muscle,raw,7,NA,NA,NA,17.9,0.8,NA,NA,NA,NA,NA,NA
 6433,Fish,Saltwater Fish,Lingcod,Ophiodon elongatus,muscle,raw,63,14,0.45,0.32,17.7,1.06,NA,0.3,0.02,26,0,0
 6433,Fish,Saltwater Fish,Lingcod,Ophiodon elongatus,muscle,raw,69,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -800,7 +678,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6437,Fish,Saltwater Fish,Sablefish,Anoplopoma fimbria,offal,raw,27,NA,NA,NA,12.9,14.7,NA,NA,NA,NA,NA,NA
 6437,Fish,Saltwater Fish,Sablefish,Anoplopoma fimbria,muscle,raw,79,35,0.3,1.2,13.2,14.2,1.3,2,NA,NA,NA,NA
 6437,Fish,Saltwater Fish,Sablefish,Anoplopoma fimbria,muscle,raw,72,NA,NA,NA,NA,13.1,NA,NA,NA,NA,NA,NA
-6437,Fish,Saltwater Fish,Sablefish,Anoplopoma fimbria,not specified,raw,88,35,0.32,1.28,13.4,15.3,NA,2042,0.015,55,0.677,0.718
 6437,Fish,Saltwater Fish,Striped Bass,Morone saxatillis,muscle,raw,23,NA,NA,NA,NA,2.3,NA,0.8,NA,NA,0.2,0.6
 6437,Fish,Saltwater Fish,Striped Bass,Morone saxatillis,muscle,raw,62,15,0.4,0.84,17.7,2.3,NA,0.78,0.015,40,NA,NA
 6437,Fish,Saltwater Fish,Striped Bass,Morone saxatillis,muscle,raw,63,15,0.4,0.84,17.7,2.33,NA,0.784,0.015,40,0.169,0.585
@@ -814,7 +691,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,muscle,raw,65,10.4,0.341,0.136,18.5,2.08,NA,NA,0.013,41.4,NA,NA
 6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,muscle,raw,27,41,NA,NA,NA,NA,NA,NA,NA,25,NA,NA
 6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,muscle,raw,27,NA,0.142,NA,18.4,1.7,NA,NA,NA,NA,NA,NA
-6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,not specified,raw,88,10,0.4,0.29,18.4,2,NA,0.743,0.015,41,0.161,0.434
 6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,whole,raw,27,NA,NA,NA,14.3,6.1,NA,NA,NA,NA,NA,NA
 6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,offal,raw,27,NA,NA,NA,16.4,7.2,NA,NA,NA,NA,NA,NA
 6437,Fish,Saltwater Fish,Black Sea Bass,Centropristes striata,eggs,raw,27,NA,NA,NA,16.9,3.8,NA,NA,NA,NA,NA,NA
@@ -823,7 +699,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,23,NA,NA,NA,NA,6.5,NA,1.6,NA,NA,0.4,0.8
 6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,62,7,0.81,0.48,20,4.2,NA,1.06,0.021,33,NA,NA
 6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,63,7,0.81,0.48,20,4.24,NA,1.06,0.021,33,0.252,0.519
-6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.519
 6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,65,6.8,0.763,0.452,19.6,2,NA,NA,0.022,42.3,NA,NA
 6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,27,59,NA,5.2,20.6,3.8,NA,NA,NA,NA,NA,NA
 6437,Fish,Saltwater Fish,Bluefish,Pomatomus saltatrix,muscle,raw,79,33,0.8,2.8,20.1,2.9,NA,NA,NA,NA,NA,NA
@@ -847,7 +722,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6437,Fish,Saltwater Fish,Porgies,Sparidae,muscle,raw,27,47,1.92,0.982,19.3,2.4,NA,NA,0.05,NA,NA,NA
 6437,Fish,Saltwater Fish,Porgies,Sparidae,muscle,raw,59,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.199,0.273
 6437,Fish,Saltwater Fish,Porgies,Sparidae,muscle,raw,82,63,0.42,0.44,16.7,4,NA,0.17,0.087,26,NA,NA
-6437,Fish,Saltwater Fish,Porgies,Sparidae,muscle,raw,88,21,0.39,0.46,20.2,2.41,NA,0.518,0.013,32,0.138,0.123
 6437,Fish,Saltwater Fish,Porgies,Sparidae,muscle,raw,23,NA,NA,NA,NA,2.4,NA,0.5,NA,NA,0.1,0.1
 6437,Fish,Saltwater Fish,Porgies,Sparidae,muscle,raw,63,37,0.63,0.67,26,1.63,NA,0.38,0.021,35,0.083,0.107
 6437,Fish,Saltwater Fish,Porgies,Sparidae,eggs,raw,27,NA,NA,NA,16,5.8,NA,NA,NA,NA,NA,NA
@@ -871,7 +745,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6439,Fish,Saltwater Fish,Capelin,Mallotus villosus,muscle,raw,48,NA,NA,NA,NA,13.5,1.97,NA,NA,NA,NA,NA
 6439,Fish,Saltwater Fish,Capelin,Mallotus villosus,whole,raw,66,NA,NA,NA,14.3,4.76,NA,NA,NA,NA,NA,NA
 6439,Fish,Saltwater Fish,Surf Smelt,Hypomesus pretiosus,whole,raw,66,NA,NA,NA,18.4,7.21,NA,NA,NA,NA,NA,NA
-6440,Fish,Saltwater Fish,Sharks,Squaliformes,muscle,raw,88,34,0.43,0.84,21.0,4.51,NA,1.19,0.015,49,0.316,0.527
 6440,Fish,Saltwater Fish,Sharks,Squaliformes,muscle,raw,15,34,0.43,0.84,21,4.5,NA,1.5,0.015,50,NA,NA
 6440,Fish,Saltwater Fish,Sharks,Squaliformes,muscle,raw,23,NA,NA,NA,NA,1.9,NA,0.8,NA,NA,NA,0.5
 6440,Fish,Saltwater Fish,Sharks,Squaliformes,liver,raw,45,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -894,7 +767,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6442,Fish,Saltwater Fish,Tuna and Mackerel,Scombridae,muscle,raw,27,12,1.13,1,24.7,5.1,NA,NA,0.5,NA,NA,NA
 6442,Fish,Saltwater Fish,Bluefin Tuna,Thunnus spp.,muscle,raw,23,NA,NA,NA,NA,6.6,NA,2,NA,NA,0.4,1.2
 6442,Fish,Saltwater Fish,Bluefin Tuna,Thunnus spp.,muscle,raw,63,8,0.6,1.02,23.3,4.9,NA,1433,0.015,50,0.283,0.89
-6442,Fish,Saltwater Fish,Bluefin Tuna,Thunnus spp.,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.89
 6442,Fish,Saltwater Fish,Bluefin Tuna,Thunnus spp.,muscle,raw,82,10,0.08,1.5,27.5,1.1,NA,NA,0.03,50,NA,NA
 6442,Fish,Saltwater Fish,Bluefin Tuna,Thunnus spp.,"muscle, dark muscle",raw,27,NA,NA,NA,23.5,8.5,NA,NA,NA,NA,NA,NA
 6442,Fish,Saltwater Fish,Bluefin Tuna,Thunnus spp.,"muscle, light muscle",raw,27,NA,NA,NA,24.5,5,NA,NA,NA,NA,NA,NA
@@ -914,7 +786,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,muscle,raw,23,NA,NA,NA,NA,13.9,NA,3.7,NA,NA,0.9,1.6
 6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,muscle,raw,21,6,NA,1.1,19,12,NA,NA,NA,NA,NA,NA
 6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,muscle,raw,63,12,0.63,1.63,18.6,13.9,NA,3.35,0.015,76,0.898,1.4
-6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,muscle,raw,88,NA,NA,NA,NA,NA,NA,3.35,NA,NA,NA,NA
 6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,muscle,raw,82,15,0.1,0.75,18.2,24,NA,6.52,NA,24,1.3,3.17
 6442,Fish,Saltwater Fish,Atlantic Mackerel,Scomber scombrus,not specified,raw,87,12,NA,1.7,19,14,NA,NA,NA,NA,NA,NA
@@ -944,21 +815,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6445,Fish,Saltwater Fish,Anchovies,Engraulidae,whole,raw,27,2150,NA,NA,17.1,2.9,NA,NA,NA,300,NA,NA
 6445,Fish,Saltwater Fish,Anchovies,Engraulidae,muscle,raw,79,150,0.9,1.5,19.6,4.8,1.4,1.7,NA,NA,NA,NA
 6445,Fish,Saltwater Fish,Anchovies,Engraulidae,muscle,raw,72,NA,NA,NA,NA,6.4,NA,NA,NA,NA,NA,NA
-0,Fish,Saltwater Fish,"Fish eggs (Carp, Cod, Haddock, Herring, Pike, Shad)","Cyprinus spp, Gadinae, Merluccius spp, Esox spp, Clupeidae",eggs,raw,21,30,NA,0.6,24,2.2,NA,NA,NA,NA,NA,NA
-0,Fish,Saltwater Fish,"Fish eggs (Carp, Cod, Haddock, Herring, Pike, Shad)","Cyprinus spp, Gadinae, Merluccius spp, Esox spp, Clupeidae",eggs,raw,87,30,NA,0.6,24,2,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,7,46,1.37,14,12.8,0.97,NA,0.282,0.5,9,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,88,46,1.37,14,12.8,0.97,NA,0.282,0.5,9,0.069,0.073
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,13,46,1.37,14,12.8,0.97,NA,0.282,0.5,9,0.069,0.073
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,37,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.2,0.1
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,49,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,26,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,65,32.8,2.5,2.46,9.7,1.18,NA,NA,16.9,9.24,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle+ liquid,raw,21,68,NA,7.7,7,NA,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",whole,raw,27,83,3.01,6.9,9.7,1.6,NA,NA,2.79,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",not specified,raw,83,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",not specified,raw,87,46,NA,14,13,1,NA,NA,NA,NA,NA,NA
-6504,Marine Invertebrates,Bivalves,Clams,"Veneroida, Myoida, and Ostreoida",muscle,raw,84,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6504,Marine Invertebrates,Bivalves,Washington Butterclam,Saxidomus gigantea,whole,raw,27,41,NA,NA,13.2,1.9,NA,NA,NA,NA,NA,NA
 6504,Marine Invertebrates,Bivalves,Pacific Littleneck Clam,Protothaca staminea,muscle,raw,23,NA,NA,NA,NA,0.8,NA,0.1,NA,NA,NA,NA
 6504,Marine Invertebrates,Bivalves,Atlantic Jackknife Clam,Ensis directus,whole,raw,27,50,6.32,11,11.2,1.5,NA,NA,NA,NA,NA,NA
@@ -983,7 +839,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,23,NA,NA,NA,NA,2.2,NA,0.6,NA,NA,0.2,0.3
 6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,13,26,1.6,3.95,11.9,2.24,NA,0.606,NA,34,0.188,0.253
 6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,63,26,1.6,3.95,11.9,2.24,NA,0.606,3.4,34,0.188,0.253
-6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,3.4,NA,NA,NA
 6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,79,20,2.8,7.3,12,2.2,0.43,0.75,NA,NA,NA,NA
 6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,55,NA,NA,NA,NA,NA,NA,0.42,NA,NA,0.13,0.17
 6505,Marine Invertebrates,Bivalves,Blue Mussel,Mytilus edulis,muscle,raw,4,85,1,15,NA,1.7,NA,NA,0.16,58,NA,NA
@@ -999,7 +854,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6506,Marine Invertebrates,Bivalves,Nuttall Cockle,Clinocardium nuttallii,muscle,raw,7,30,NA,16.2,13.5,0.7,NA,NA,NA,NA,NA,NA
 6506,Marine Invertebrates,Bivalves,Nuttall Cockle,Clinocardium nuttallii,muscle,raw,19,30,NA,16.2,13.5,0.7,NA,NA,NA,NA,NA,NA
 6506,Marine Invertebrates,Bivalves,Nuttall Cockle,Clinocardium nuttallii,muscle,raw,77,30,NA,16.2,13.5,0.7,NA,NA,NA,NA,NA,NA
-6506,Marine Invertebrates,Bivalves,Nuttall Cockle,Clinocardium nuttallii,muscle,raw,88,30,NA,16.2,13.5,0.7,NA,NA,NA,NA,NA,NA
 6506,Marine Invertebrates,Bivalves,Nuttall Cockle,Clinocardium nuttallii,whole,raw,27,NA,NA,NA,11.8,1.1,NA,NA,0.163,NA,NA,NA
 6507,Marine Invertebrates,Bivalves,Oysters,Ostreidae,muscle,raw,21,88,NA,6.4,10,2,NA,NA,NA,NA,NA,NA
 6507,Marine Invertebrates,Bivalves,Oysters,Ostreidae,muscle,raw,23,NA,NA,NA,NA,2.3,NA,0.8,NA,NA,0.3,0.2
@@ -1011,7 +865,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6507,Marine Invertebrates,Bivalves,Oysters,Ostreidae,whole,raw,27,111,23.2,8185,8.5,1.8,NA,NA,0.329,NA,NA,NA
 6507,Marine Invertebrates,Bivalves,Oysters,Ostreidae,whole,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6507,Marine Invertebrates,Bivalves,Eastern Oyster,Crassostrea virginica,muscle,raw,63,45,90.8,6.66,7.05,2.46,NA,0.968,0.367,47,0.268,0.292
-6507,Marine Invertebrates,Bivalves,Eastern Oyster,Crassostrea virginica,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6507,Marine Invertebrates,Bivalves,Eastern Oyster,Crassostrea virginica,muscle,raw,79,69,110,7.1,8.2,2.2,0.51,0.86,NA,NA,NA,NA
 6507,Marine Invertebrates,Bivalves,Eastern Oyster,Crassostrea virginica,muscle,raw,55,NA,NA,NA,NA,NA,NA,0.22,NA,NA,0.11,0.09
 6507,Marine Invertebrates,Bivalves,Eastern Oyster,Crassostrea virginica,muscle,raw,65,61,82.5,7.65,8.59,2.36,NA,NA,0.387,54.4,NA,NA
@@ -1031,21 +884,16 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 2223,Marine Invertebrates,Sea Snails,Sea Snails and relatives,Gastropoda,muscle,raw,62,10,1,3.5,16.1,1.4,NA,0.3,NA,250,NA,NA
 2223,Marine Invertebrates,Sea Snails,Sea Snails and relatives,Gastropoda,muscle,raw,78,NA,NA,NA,17.6,3.25,NA,NA,NA,NA,NA,NA
 2223,Marine Invertebrates,Sea Snails,Sea Snails and relatives,Gastropoda,muscle,raw,82,170,NA,3.5,16,1,NA,NA,NA,250,NA,NA
-2223,Marine Invertebrates,Sea Snails,Sea Snails and relatives,Gastropoda,muscle,raw,88,10,1,3.5,16.1,1.4,NA,0.252,NA,250,0.119,0
 2223,Marine Invertebrates,Sea Snails,Sea Snails and relatives,Gastropoda,whole,raw,27,179,NA,2.5,14.4,1.9,NA,NA,1.6,250,NA,NA
 6510,Marine Invertebrates,Sea Snails,Abalones,Haliotididae,muscle,raw,21,36,NA,2.2,18,NA,NA,NA,NA,NA,NA,NA
 6510,Marine Invertebrates,Sea Snails,Abalones,Haliotididae,muscle,raw,23,NA,NA,NA,NA,1.1,NA,0.2,NA,NA,NA,NA
 6510,Marine Invertebrates,Sea Snails,Abalones,Haliotididae,muscle,raw,79,28,NA,2.6,17,0.5,0.04,0.12,NA,NA,NA,NA
 6510,Marine Invertebrates,Sea Snails,Abalones,Haliotididae,muscle,raw,87,31,NA,3.2,17,1,NA,NA,NA,NA,NA,NA
-6510,Marine Invertebrates,Sea Snails,Abalones,Haliotididae,muscle,raw,88,31,0.82,3.19,17.1,0.76,NA,0.104,0.04,48,0.049,0
 6510,Marine Invertebrates,Sea Snails,Abalones,Haliotididae,muscle,raw,27,34,1.42,2.06,17.9,0.6,NA,NA,NA,175,NA,NA
 6512,Marine Invertebrates,Sea Snails,Periwinkles,Littorinidae,muscle,raw,23,NA,NA,NA,NA,3.3,NA,1.1,NA,NA,0.5,NA
 6512,Marine Invertebrates,Sea Snails,Periwinkles,Littorinidae,whole,raw,27,NA,NA,NA,12,2.3,NA,NA,NA,NA,NA,NA
 6512,Marine Invertebrates,Sea Snails,Common Periwinkle,Littorina littorea,whole,raw,27,NA,NA,1.51,18.2,2.4,NA,NA,0.03,NA,NA,NA
 6512,Marine Invertebrates,Sea Snails,Common Periwinkle,Littorina littorea,muscle,raw,79,165,NA,1.5,18.2,3,0.44,0.9,NA,NA,NA,NA
-6514,Marine Invertebrates,Sea Snails,Whelks,Melongenidae and Buccinidae,muscle,raw,63,57,1.63,5.03,23.8,0.4,NA,0.023,0.447,86,0.004,0.006
-6514,Marine Invertebrates,Sea Snails,Whelks,Melongenidae and Buccinidae,muscle,raw,88,NA,NA,NA,NA,0.4,NA,NA,NA,NA,NA,NA
-6514,Marine Invertebrates,Sea Snails,Whelks,Melongenidae and Buccinidae,muscle,raw,23,NA,NA,NA,NA,2.7,NA,1.1,NA,NA,0.6,0.4
 6515,Marine Invertebrates,Sea Snails,Mudsnails,Nassarius spp.,whole,raw,27,NA,NA,NA,18.5,2.2,NA,NA,NA,NA,NA,NA
 6518,Marine Invertebrates,Crustaceans,Crabs,Brachyura,muscle,raw,46,NA,NA,NA,11.4,0.7,NA,NA,NA,NA,NA,NA
 6518,Marine Invertebrates,Crustaceans,Crabs,Brachyura,muscle,raw,27,NA,NA,NA,23,2.2,NA,NA,NA,NA,NA,NA
@@ -1059,7 +907,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6518,Marine Invertebrates,Crustaceans,Dungeness Crab,Cancer magister,offal,raw,27,NA,NA,NA,14,0.8,NA,NA,NA,NA,NA,NA
 6518,Marine Invertebrates,Crustaceans,Blue Crab,Callinectes sapidus,muscle,raw,23,NA,NA,NA,NA,1.3,NA,0.5,NA,NA,0.2,0.2
 6518,Marine Invertebrates,Crustaceans,Blue Crab,Callinectes sapidus,muscle,raw,63,89,3.54,0.74,18.1,1.08,NA,0.387,0.15,34,0.17,0.15
-6518,Marine Invertebrates,Crustaceans,Blue Crab,Callinectes sapidus,muscle,raw,88,NA,NA,NA,NA,NA,NA,NA,0.15,NA,NA,NA
 6518,Marine Invertebrates,Crustaceans,Blue Crab,Callinectes sapidus,muscle,raw,79,34.4,4,0.6,16.2,1,NA,NA,NA,NA,NA,NA
 6518,Marine Invertebrates,Crustaceans,Blue Crab,Callinectes sapidus,muscle,raw,65,74,NA,NA,16.4,0.77,NA,NA,NA,10,NA,NA
 6518,Marine Invertebrates,Crustaceans,Blue Crab,Callinectes sapidus,muscle,raw,27,115,4025,2.32,15.9,1.3,NA,NA,0.17,32,NA,NA
@@ -1080,18 +927,6 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6520,Marine Invertebrates,Crustaceans,American lobster,Homarus americanus,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6520,Marine Invertebrates,Crustaceans,American lobster,Homarus americanus,muscle,raw,64,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 6520,Marine Invertebrates,Crustaceans,American lobster,Homarus americanus,whole,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6520,Marine Invertebrates,Crustaceans,American lobster,Homarus americanus,whole,raw,88,48,3.02,0.3,18.8,0.9,NA,0.15,0.055,27,0,0
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,88,52,1.11,2.41,20.3,1.73,NA,0.669,0.05,37,0.258,0.222
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,21,63,NA,1.5,18,NA,NA,NA,NA,NA,NA,NA
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,23,NA,NA,NA,NA,1.1,NA,0.4,NA,NA,0.2,0.1
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,46,43,NA,0.6,19.9,2.1,NA,NA,NA,NA,NA,NA
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,55,NA,NA,NA,NA,2.43,0.5,0.5,NA,NA,0.28,0.16
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,59,NA,NA,NA,NA,NA,NA,NA,NA,NA,0.124,0.122
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,muscle,raw,27,89,2.1,1.98,18.4,1.7,NA,NA,0.073,75,NA,NA
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,whole,raw,27,1081,NA,23.7,20,0.8,NA,NA,NA,NA,NA,NA
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,whole,raw,81,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-6521,Marine Invertebrates,Crustaceans,Shrimps,Caridea and Caprellida,not specified,raw,87,52,NA,2.4,20,2,NA,NA,NA,NA,NA,NA
 6523,Marine Invertebrates,Echinoderms,Sea Urchins,Strongylocentrotidae,muscle,raw,46,7,NA,1.7,12.2,3.6,NA,NA,NA,NA,NA,NA
 6524,Marine Invertebrates,Echinoderms,Giant California Sea Cucumber,Parastichopus californicus,muscle,raw,19,30,NA,0.6,13,0.4,NA,NA,NA,NA,NA,NA
 6527,Marine Invertebrates,Cephalopods,Octopus,Octopoda,muscle,raw,15,53,1.69,5.32,15,1.1,NA,0.2,0.025,NA,NA,NA
@@ -1107,20 +942,9 @@ page_id,level_1,level_2,common_name,latin_name,part,preparation,reference,ca_mg,
 6527,Marine Invertebrates,Cephalopods,Pacific Giant Octopus,Enteroctopus dofleini,muscle,raw,7,35,1.43,4.9,12.3,0.8,NA,0.2,0.021,NA,NA,NA
 6527,Marine Invertebrates,Cephalopods,Pacific Giant Octopus,Enteroctopus dofleini,muscle,raw,19,24,NA,5.3,11.9,0.6,NA,NA,NA,NA,NA,NA
 6527,Marine Invertebrates,Cephalopods,Pacific Giant Octopus,Enteroctopus dofleini,muscle,raw,77,24,NA,5.3,11.9,0.6,NA,NA,NA,NA,NA,NA
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,88,32,1.53,0.68,15.6,1.38,NA,0.524,0.035,33,0.146,0.342
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,15,32,1.53,0.68,15.6,1.4,NA,0.5,0.035,33,NA,NA
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,23,NA,NA,NA,NA,1.4,NA,0.5,NA,NA,0.1,0.3
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,62,32,1.53,0.68,15.6,1.4,NA,0.52,0.035,33,NA,NA
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,55,NA,NA,NA,NA,2,0.93,NA,NA,NA,0.27,0.64
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,63,90,1.73,6.02,16.2,0.7,NA,0.134,0.11,30,0.039,0.066
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,23,NA,NA,NA,NA,0.6,NA,0.1,NA,NA,NA,NA
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,27,27,3.59,1.35,15.6,1.3,NA,NA,0.054,76,NA,NA
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,48,NA,NA,NA,NA,1.9,0.7,NA,NA,NA,NA,NA
-6528,Marine Invertebrates,Cephalopods,Squids,Sepiolida and Teuthida,muscle,raw,27,27,0.705,2.26,17.4,1.1,NA,NA,NA,NA,NA,NA
 6528,Marine Invertebrates,Cephalopods,Northern Shortfin Squid,Illex illecebrosus,muscle,raw,27,NA,NA,NA,17.3,1.7,NA,NA,NA,NA,NA,NA
 6528,Marine Invertebrates,Cephalopods,Northern Shortfin Squid,Illex illecebrosus,muscle,raw,79,NA,NA,NA,17.3,1.8,0.8,0.83,NA,NA,NA,NA
 6528,Marine Invertebrates,Cephalopods,Northern Shortfin Squid,Illex illecebrosus,muscle,raw,55,NA,NA,NA,NA,NA,NA,0.92,NA,NA,0.27,0.64
 6548,Marine Invertebrates,Primitive Mollusks,Black Katy Chiton,Katharina turnicata,muscle,raw,7,121,NA,16,17.1,1.6,NA,NA,NA,NA,NA,NA
 6548,Marine Invertebrates,Primitive Mollusks,Black Katy Chiton,Katharina turnicata,muscle,raw,19,121,NA,16,17.1,1.6,NA,NA,NA,NA,NA,NA
-6548,Marine Invertebrates,Primitive Mollusks,Black Katy Chiton,Katharina turnicata,muscle,raw,88,121,NA,16,17.1,1.6,NA,NA,NA,NA,NA,NA
 6548,Marine Invertebrates,Primitive Mollusks,Giant Pacific Chiton,Cryptochiton stelleri,muscle,raw,77,121,NA,16,17.1,1.6,NA,NA,NA,NA,NA,NA

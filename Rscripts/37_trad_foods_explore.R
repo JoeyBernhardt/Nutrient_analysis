@@ -13,13 +13,30 @@ culture_foods <- read_excel("~/Documents/traditional-foods/culture-foods.xlsx")
 
 nuts_mean <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 
+
+
+nuts_trad %>% 
+  distinct(latin_name) %>% 
+  tally
+
+nuts_trad %>% 
+  group_by(latin_name) %>% 
+summarise(calcium = mean(ca_mg, na.rm = TRUE),
+          zinc = mean(zn_mg, na.rm = TRUE), 
+          iron = mean(fe_mg, na.rm = TRUE),
+          epa = mean(epa, na.rm = TRUE),
+          dha = mean(dha, na.rm = TRUE)) %>% 
+  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) %>% View
+
+
+
 nuts_trad %>% 
   filter(reference != "88") %>% 
   filter(part != "eggs") %>% 
   gather(key = "nutrient", value = "concentration", 9:19) %>% 
   filter(!is.na(concentration)) %>% 
   filter(nutrient == "ca_mg") %>% 
-  mutate(latin_name = factor(latin_name)) %>% View
+  mutate(latin_name = factor(latin_name)) %>% 
   ggplot(aes(x = reorder(latin_name, concentration), y = concentration)) + geom_point() +
   facet_wrap( ~ nutrient, scales = "free") + theme_classic() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
@@ -34,6 +51,10 @@ cnuts %>%
   filter(culture == "Inuit-Inupiaq") %>% 
   distinct(latin_name) %>% View
 
+cnuts %>% 
+  distinct(latin_name) %>% 
+  tally
+
 nuts_mean <- cnuts %>% 
   group_by(culture, latin_name) %>% 
   summarise(calcium = mean(ca_mg, na.rm = TRUE),
@@ -44,7 +65,8 @@ nuts_mean <- cnuts %>%
   filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha))
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
-
+nuts_mean %>% 
+  filter(grepl("Inuit", culture)) %>% View
 
 # comparing cine inuit to the new data ------------------------------------
 

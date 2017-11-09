@@ -10,32 +10,7 @@ nuts_6449 <- read_excel("~/Documents/traditional-foods/nutrients-6449.xlsx")
 nuts_6433 <- read_excel("~/Documents/traditional-foods/nutrients-6433.xlsx")
 nuts_6447 <- read_excel("~/Documents/traditional-foods/nutrients-6447.xlsx")
 
-thing1 <- nuts_raw %>% 
-  filter(page_id == 6447) %>%
-  clean_names() %>% 
-  mutate(ca_mg = as.numeric(str_replace(ca_mg_100g, " (.*)", ""))) %>%
-  mutate(fe_mg = as.numeric(str_replace(fe_mg_100g, " (.*)", ""))) %>%
-  select(page_id, common_name, fe_mg)
 
-
-## Ok I see the problem here! very dirty data here. 
-thing1b <- nuts_6447 %>% 
-  filter(page_id == 6447) %>%
-  clean_names() %>%
-  select(fe_mg_100g) %>% View
-  mutate(ca_mg = as.numeric(str_replace(ca_mg_100g, " (.*)", ""))) %>%
-  mutate(fe_mg = as.numeric(str_replace(fe_mg_100g, " (.*)", ""))) %>%
-  select(page_id, common_name, fe_mg)
-
-
-thing2 <- nuts_6433 %>% 
-  filter(page_id == 6433) %>%
-  clean_names() %>% 
-  mutate(ca_mg = as.numeric(str_replace(ca_mg_100g, " (.*)", ""))) %>%
-  select(page_id, common_name, ca_mg)
-
-identical(thing1, thing2)
-  
 
 # begin cleaning, again :) ------------------------------------------------
 
@@ -99,7 +74,10 @@ nuts_raw_parts <- nutsraw %>%
   mutate(part = str_replace(part, "tail cut", "muscle")) %>% 
   mutate(part = str_replace(part, "middle", "muscle")) %>%
   mutate(part = str_replace(part, "tail end", "muscle")) %>% 
-  mutate(part = str_replace(part, "head end", "muscle"))
+  mutate(part = str_replace(part, "head end", "muscle")) %>% 
+  filter(reference != "88") %>% 
+  filter(!grepl("and", latin_name)) %>% ## get rid of ambigous species
+  filter(!grepl(",", latin_name)) 
 
 
 write_csv(nuts_raw_parts, "data-processed/trad-foods-cleaned.csv")
