@@ -1,3 +1,5 @@
+library(purrr)
+library(tidyverse)
 
 
 trad_data <- read_csv("data-processed/trad-foods-mean.csv")
@@ -53,48 +55,111 @@ nutrient_fishing_function <- function(sample_size, dataset) {
 }
 
 
-samples_rep <- rep(10, 100)
+samples_rep <- rep(10, 1000)
 
+#1
 yupik_data <- trad_data %>% 
   filter(culture == "Yupik") 
 output_yupik <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = yupik_data, .id = "run")
-output_yupik <- output_yupik %>% 
+  map_df(nutrient_fishing_function, dataset = yupik_data, .id = "run") %>% 
   mutate(culture = "Yupik")
-
+#2
 bella_data <- trad_data %>% 
   filter(culture == "Bella Coola") 
 output_bella <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = bella_data, .id = "run")
-output_bella <- output_bella %>% 
+  map_df(nutrient_fishing_function, dataset = bella_data, .id = "run") %>% 
   mutate(culture = "Bella Coola")
-
+#3
 central_salish_data <- trad_data %>% 
   filter(culture == "Central Salish") 
 output_central_salish <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = central_salish_data, .id = "run") %>% 
   mutate(culture = "Central Salish")
-
+#4
 interior_salish_data <- trad_data %>% 
   filter(culture == "Interior Salish") 
 output_interior_salish <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = interior_salish_data, .id = "run") %>% 
   mutate(culture = "Interior Salish")
-
+#5
 inuit_data <- trad_data %>% 
   filter(culture == "Inuit-Inupiaq") 
 output_inuit <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = inuit_data, .id = "run") %>% 
   mutate(culture = "Inuit-Inupiaq")
-
+#6
 tsimshian_data <- trad_data %>% 
   filter(culture == "Tsimshian") 
 output_tsimshian <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = tsimshian_data, .id = "run") %>% 
   mutate(culture = "Tsimshian")
+#7
+aleut_data <- trad_data %>% 
+  filter(culture == "Aleut") 
+output_aleut <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = aleut_data, .id = "run") %>% 
+  mutate(culture = "Aleut")
+
+#8
+tillamook_data <- trad_data %>% 
+  filter(culture == "Tillamook") 
+output_tillamook <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = tillamook_data, .id = "run") %>% 
+  mutate(culture = "Tillamook")
+
+#9
+haida_data <- trad_data %>% 
+  filter(culture == "Haida") 
+output_haida <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = haida_data, .id = "run") %>% 
+  mutate(culture = "Haida")
+
+#10
+chinook_data <- trad_data %>% 
+  filter(culture == "Chinook") 
+output_chinook <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = chinook_data, .id = "run") %>% 
+  mutate(culture = "Chinook")
+
+#11
+coosan_data <- trad_data %>% 
+  filter(culture == "Coosan") 
+output_coosan <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = coosan_data, .id = "run") %>% 
+  mutate(culture = "Coosan")
+
+#12
+quileute_data <- trad_data %>% 
+  filter(culture == "Quileute") 
+output_quileute <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = quileute_data, .id = "run") %>% 
+  mutate(culture = "Quileute")
+#13 
+nass_gitksan_data <- trad_data %>% 
+  filter(culture == "Nass-Gitksan") 
+output_nass_gitksan <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = nass_gitksan_data, .id = "run") %>% 
+  mutate(culture = "Nass-Gitksan")
+
+#14 
+siuslaw_data <- trad_data %>% 
+  filter(culture == "Siuslaw") 
+output_siuslaw <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = siuslaw_data, .id = "run") %>% 
+  mutate(culture = "Siuslaw")
+
+#15 
+eyak_data <- trad_data %>% 
+  filter(culture == "Eyak") 
+output_eyak <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = eyak_data, .id = "run") %>% 
+  mutate(culture = "Eyak")
 
 
-all_trad_reps <- bind_rows(output_yupik, output_bella, output_interior_salish, output_central_salish, output_inuit, output_tsimshian)
+
+all_trad_reps <- bind_rows(output_aleut, output_yupik, output_bella, output_interior_salish, output_central_salish, 
+                           output_chinook, output_coosan, output_eyak, output_haida, output_inuit, 
+                           output_nass_gitksan, output_quileute, output_siuslaw, output_tillamook, output_tsimshian)
 
 write_csv(all_trad_reps, "data-processed/all_trad_reps.csv")
 

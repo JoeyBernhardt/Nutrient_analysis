@@ -4,6 +4,8 @@ library(tidyverse)
 library(viridis)
 library(readxl)
 library(stringr)
+library(purrr)
+library(vegan)
 
 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv")
@@ -42,6 +44,10 @@ nuts_mean <- cnuts %>%
   filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha))
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
+
+
+# comparing cine inuit to the new data ------------------------------------
+
 
 cine_inuit <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 
@@ -91,10 +97,10 @@ all_equal(cine_inuit3, inuit_inu3)
 
 write_csv(nuts_mean, "data-processed/trad-foods-means.csv")
 
+trad_nuts_mean <- read_csv("data-processed/trad-foods-means.csv")
 
-cnuts %>% 
-  filter(culture == "Inuit-Inupiaq") %>% 
-  distinct(latin_name, .keep_all = TRUE) %>% View
+# accumulation analysis ---------------------------------------------------
+
 
 threshold = 0.1
 data <- cnuts_split[[1]]
@@ -174,6 +180,8 @@ res %>%
   # theme(legend.position = c(0.6, 0.2)) +
   # scale_x_continuous(breaks = seq(1,10,1)) +
   theme(legend.title=element_blank()) + theme_classic() +
-  facet_wrap( ~ culture) + scale_color_viridis(discrete = TRUE) + scale_fill_viridis(discrete = TRUE)
+  ylim(0,5) +
+  facet_wrap( ~ culture) +
+  scale_color_viridis(discrete = TRUE) + scale_fill_viridis(discrete = TRUE)
 
 ggsave("figures/nutrient_accumulation_plots_na_cultures.png", width = 8, height = 6)

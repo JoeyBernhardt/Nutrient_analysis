@@ -10,11 +10,12 @@ yupik <- yupik_resampling %>%
 
 all_resamp <- all_trad_resampling %>% 
   filter(!is.infinite(grams_required)) %>% 
-  group_by(culture, species_no) %>% 
+  group_by(culture, species_no) %>%
+  mutate(grams_required = grams_required/10) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
   rename(median = grams_required_median,
          mean = grams_required_mean) %>% 
-  rename(dataset = culture)
+  rename(dataset = culture) 
 
 yupik_sum <- yupik %>% 
   group_by(species_no) %>% 
@@ -43,6 +44,7 @@ all %>%
 ggplot(aes(x = species_no, y = median, color = dataset), data = all) + geom_line(size = 1) +
   theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
   scale_x_continuous(breaks = 1:10) +
-  scale_color_viridis(discrete = TRUE)
+  scale_color_viridis(discrete = TRUE) +
+  facet_wrap( ~ dataset)
 
-
+ggsave("figures/all-bef-curves-trad-1000reps.png", width = 8, height = 6)
