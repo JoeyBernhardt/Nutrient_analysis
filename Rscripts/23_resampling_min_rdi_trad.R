@@ -55,7 +55,7 @@ nutrient_fishing_function <- function(sample_size, dataset) {
 }
 
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 100)
 
 #1
 yupik_data <- trad_data %>% 

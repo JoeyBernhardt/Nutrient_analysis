@@ -2,6 +2,7 @@
 
 library(tidyverse)
 library(broom)
+library(viridis)
 yupik_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-yupik.csv")
 all_trad_resampling <- read_csv("data-processed/all_trad_reps.csv")
 
