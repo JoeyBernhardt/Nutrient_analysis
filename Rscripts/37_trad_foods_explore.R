@@ -71,39 +71,8 @@ inuit_inu <- nuts_mean %>%
   ungroup() %>% 
   select(-culture) 
 
-# mutate(mn_mg = str_replace(mn_mg_100g, " (.*)", "")) %>% 
 
 
-
-stringr::str_subset(inuit_inu2$latin_name, "Mercenaria")
-
-name1 <- inuit_inu %>% 
-  dplyr::filter(grepl("Mercenaria", latin_name))%>% 
-  distinct(latin_name)
-
-name1[[1]]
-
-inuit_inu2 <- inuit_inu %>% 
-  mutate(latin_name = ifelse(latin_name == name1[[1]], "Mercenaria mercenaria", latin_name))
-
-
-all_equal(cine_inuit2, inuit_inu2)
-
-## things that are in inuit_inu but not cine_inuit2
-setdiff(inuit_inu2$latin_name, cine_inuit2$latin_name)
-
-inuit_inu3 <- inuit_inu2 %>% 
-  filter(!latin_name %in% c(setdiff(inuit_inu2$latin_name, cine_inuit2$latin_name)))
-
-setdiff(inuit_inu3$latin_name, cine_inuit2$latin_name)
-setdiff(cine_inuit2$latin_name, inuit_inu3$latin_name)
-all_equal(cine_inuit2, inuit_inu3)
-
-
-cine_inuit3 <- cine_inuit2 %>% 
-  filter(!latin_name %in% c(setdiff(cine_inuit2$latin_name, inuit_inu3$latin_name)))
-
-all_equal(cine_inuit3, inuit_inu3)
 
 ### ok write out what we've got!
 
@@ -132,8 +101,8 @@ setdiff(spp3$latin_name, spp$latin_name)
 lj <- inner_join(mean_nuts, mean_trad, by = c("species_name" = "latin_name"))
 lj %>% 
   # select(starts_with("calcium"), starts_with("iron"), starts_with("epa")) %>% 
-  ggplot(aes(x = iron.x, y = iron.y)) + geom_point() +
-  ylim(0,10) +
+  ggplot(aes(x = calcium.x, y = calcium.y)) + geom_point() +
+  # ylim(0,10) +
   geom_abline(slope = 1, intercept = 0)
 
 

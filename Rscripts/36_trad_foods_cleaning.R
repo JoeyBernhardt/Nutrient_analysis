@@ -75,7 +75,8 @@ nuts_raw_parts <- nutsraw %>%
   mutate(part = str_replace(part, "middle", "muscle")) %>%
   mutate(part = str_replace(part, "tail end", "muscle")) %>% 
   mutate(part = str_replace(part, "head end", "muscle")) %>% 
-  filter(reference != "88") %>% 
+  filter(reference != "88") %>% # get rid of USDA sources
+  filter(reference != "63") %>% # get rid of USDA sources
   filter(!grepl("and", latin_name)) %>% ## get rid of ambigous species
   filter(!grepl(",", latin_name)) 
 
