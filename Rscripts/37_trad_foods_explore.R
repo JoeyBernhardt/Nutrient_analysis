@@ -19,15 +19,14 @@ nuts_trad %>%
   distinct(latin_name) %>% 
   tally
 
-nuts_trad %>% 
+mean_trad <- nuts_trad %>% 
   group_by(latin_name) %>% 
 summarise(calcium = mean(ca_mg, na.rm = TRUE),
           zinc = mean(zn_mg, na.rm = TRUE), 
           iron = mean(fe_mg, na.rm = TRUE),
           epa = mean(epa, na.rm = TRUE),
           dha = mean(dha, na.rm = TRUE)) %>% 
-  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) %>% View
-
+  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) 
 
 
 nuts_trad %>% 
@@ -47,13 +46,6 @@ cnuts <- left_join(culture_foods, nuts_trad)
 write_csv(cnuts, "data-processed/cnuts-trad-foods-culture.csv")
 cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
 
-cnuts %>% 
-  filter(culture == "Inuit-Inupiaq") %>% 
-  distinct(latin_name) %>% View
-
-cnuts %>% 
-  distinct(latin_name) %>% 
-  tally
 
 nuts_mean <- cnuts %>% 
   group_by(culture, latin_name) %>% 
@@ -65,8 +57,6 @@ nuts_mean <- cnuts %>%
   filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha))
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
-nuts_mean %>% 
-  filter(grepl("Inuit", culture)) %>% View
 
 # comparing cine inuit to the new data ------------------------------------
 
@@ -120,6 +110,32 @@ all_equal(cine_inuit3, inuit_inu3)
 write_csv(nuts_mean, "data-processed/trad-foods-means.csv")
 
 trad_nuts_mean <- read_csv("data-processed/trad-foods-means.csv")
+mean_nuts <- read.csv("data-processed/mean_nuts.csv")
+
+
+
+# compare species lists
+spp <- trad_nuts_mean %>% 
+  distinct(latin_name)
+
+spp2 <- mean_trad %>% 
+  distinct(latin_name)
+
+spp3 <- mean_nuts %>% 
+  select(species_name) %>% 
+  rename(latin_name = species_name)
+  
+intersect(spp$latin_name, spp3$latin_name)
+setdiff(spp$latin_name, spp3$latin_name)
+setdiff(spp3$latin_name, spp$latin_name)
+
+lj <- inner_join(mean_nuts, mean_trad, by = c("species_name" = "latin_name"))
+lj %>% 
+  # select(starts_with("calcium"), starts_with("iron"), starts_with("epa")) %>% 
+  ggplot(aes(x = iron.x, y = iron.y)) + geom_point() +
+  ylim(0,10) +
+  geom_abline(slope = 1, intercept = 0)
+
 
 # accumulation analysis ---------------------------------------------------
 

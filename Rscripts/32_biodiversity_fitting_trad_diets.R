@@ -19,8 +19,6 @@ bang_sum <- bang_resampling %>%
   
 
 
-yupik <- yupik_resampling %>% 
-  filter(!is.infinite(grams_required))
 
 all_resamp <- all_trad_resampling %>% 
   filter(!is.infinite(grams_required)) %>% 
@@ -57,7 +55,9 @@ all %>%
   do(tidy(nls(formula = (median ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.7)))) %>% 
   ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point() + 
   geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error)) +
-  facet_wrap( ~ term, scales = "free") + theme_classic()
+  facet_wrap( ~ term, scales = "free") + theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +xlab("local population")
+ggsave("figures/trad_diets_fitted_power_coefs.png")
 
 
 all %>% 
