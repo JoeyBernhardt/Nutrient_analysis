@@ -6,6 +6,9 @@ library(viridis)
 yupik_resampling <- read_csv("data-processed/grams-required-10-spp-100reps-yupik.csv")
 all_trad_resampling <- read_csv("data-processed/all_trad_reps.csv")
 
+
+
+
 yupik <- yupik_resampling %>% 
   filter(!is.infinite(grams_required))
 
@@ -16,7 +19,8 @@ all_resamp <- all_trad_resampling %>%
   summarise_each(funs(mean, median), grams_required) %>% 
   rename(median = grams_required_median,
          mean = grams_required_mean) %>% 
-  rename(dataset = culture) 
+  rename(dataset = culture) %>% 
+  filter(!dataset %in% c("Coosan", "Tillamook", "Siuslaw", "Quileute", "Eyak", "Chinook")) ## these only have 11 distinct species
 
 yupik_sum <- yupik %>% 
   group_by(species_no) %>% 

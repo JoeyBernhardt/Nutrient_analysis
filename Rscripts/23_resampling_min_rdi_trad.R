@@ -4,6 +4,14 @@ library(tidyverse)
 
 trad_data <- read_csv("data-processed/trad-foods-mean.csv")
 
+trad_data %>% 
+  group_by(culture) %>% 
+  mutate(number_species = length(unique(latin_name))) %>% 
+  distinct(number_species) %>% View
+
+trad_data %>% 
+  filter(culture == "Haida") %>% View
+
 
 trad_split <- trad_data %>% 
   split(.$culture)
