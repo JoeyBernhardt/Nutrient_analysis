@@ -10,6 +10,8 @@ trait_data_pro <- read.csv("data-processed/micronutrients-species-mean.csv")
 most_common <- read_csv("data-processed/most_common_species.csv")
 bang_data <- read.csv("data-processed/bangladesh-micronutrients.csv")
 trad_data <- read_csv("data-processed/trad-foods-mean.csv")
+new_global <- read_csv("data-processed/new_global.csv")
+
 
 inuit_mean <- read_csv("data-processed/CINE-inuit-mean-nutrients.csv")
 
@@ -48,6 +50,7 @@ dataset <- trad_data %>%
 dataset <- mean_nuts[30:67,]
 dataset80 <- mean_nuts[1:80,]
 dataset <- mean_nuts
+dataset <- sample_n(new_global, size = 40, replace = FALSE)
 
 sample_size <- 10
 nutrient_fishing_function <- function(sample_size) {
@@ -92,10 +95,11 @@ resampling_15 <- new_data_sub1 %>%
 }
 
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 100)
 
 output_new_100 <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")
+write_csv(output_new_100, "data-processed/grams-required-10-spp-100reps-new-global-40sp.csv")
 
 output_new_global <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")

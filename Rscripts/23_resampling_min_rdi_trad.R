@@ -4,19 +4,20 @@ library(tidyverse)
 
 trad_data <- read_csv("data-processed/trad-foods-mean.csv")
 
-trad_data %>% 
+cultures_keep <- trad_data %>% 
   group_by(culture) %>% 
   mutate(number_species = length(unique(latin_name))) %>% 
-  distinct(number_species) %>% View
+  distinct(number_species) %>% 
+  filter(number_species >= 25) 
 
-trad_data %>% 
-  filter(culture == "Haida") %>% View
+
+trad_data2 <- trad_data %>% 
+  filter(culture %in% cultures_keep$culture) 
 
 
 trad_split <- trad_data %>% 
   split(.$culture)
 
-trad_split[[2]] %>% View
 
 dataset <- trad_data %>% 
   filter(culture == "Abenaki") 
@@ -84,11 +85,11 @@ output_central_salish <- samples_rep %>%
   map_df(nutrient_fishing_function, dataset = central_salish_data, .id = "run") %>% 
   mutate(culture = "Central Salish")
 #4
-interior_salish_data <- trad_data %>% 
-  filter(culture == "Interior Salish") 
-output_interior_salish <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = interior_salish_data, .id = "run") %>% 
-  mutate(culture = "Interior Salish")
+abenaki_data <- trad_data %>% 
+  filter(culture == "Abenaki") 
+output_abenaki <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = abenaki_data, .id = "run") %>% 
+  mutate(culture = "Abenaki")
 #5
 inuit_data <- trad_data %>% 
   filter(culture == "Inuit-Inupiaq") 
@@ -102,80 +103,65 @@ output_tsimshian <- samples_rep %>%
   map_df(nutrient_fishing_function, dataset = tsimshian_data, .id = "run") %>% 
   mutate(culture = "Tsimshian")
 #7
-aleut_data <- trad_data %>% 
-  filter(culture == "Aleut") 
-output_aleut <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = aleut_data, .id = "run") %>% 
-  mutate(culture = "Aleut")
+cree_data <- trad_data %>% 
+  filter(culture == "Cree") 
+output_cree <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = cree_data, .id = "run") %>% 
+  mutate(culture = "Cree")
 
 #8
-tillamook_data <- trad_data %>% 
-  filter(culture == "Tillamook") 
-output_tillamook <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = tillamook_data, .id = "run") %>% 
-  mutate(culture = "Tillamook")
-
-#9
 haida_data <- trad_data %>% 
   filter(culture == "Haida") 
 output_haida <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = haida_data, .id = "run") %>% 
   mutate(culture = "Haida")
 
+#9
+tlingit_data <- trad_data %>% 
+  filter(culture == "Tlingit") 
+output_tlingit <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = tlingit_data, .id = "run") %>% 
+  mutate(culture = "Tlingit")
+
 #10
-chinook_data <- trad_data %>% 
-  filter(culture == "Chinook") 
-output_chinook <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = chinook_data, .id = "run") %>% 
-  mutate(culture = "Chinook")
+kwakiutl_data <- trad_data %>% 
+  filter(culture == "Kwakiutl") 
+output_kwakiutl <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = kwakiutl_data, .id = "run") %>% 
+  mutate(culture = "Kwakiutl")
 
 #11
-coosan_data <- trad_data %>% 
-  filter(culture == "Coosan") 
-output_coosan <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = coosan_data, .id = "run") %>% 
-  mutate(culture = "Coosan")
+wampanoag_data <- trad_data %>% 
+  filter(culture == "Wampanoag") 
+output_wampanoag <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = wampanoag_data, .id = "run") %>% 
+  mutate(culture = "Wampanoag")
 
 #12
-quileute_data <- trad_data %>% 
-  filter(culture == "Quileute") 
-output_quileute <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = quileute_data, .id = "run") %>% 
-  mutate(culture = "Quileute")
+nootkan_data <- trad_data %>% 
+  filter(culture == "Nootkan") 
+output_nootkan <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = nootkan_data, .id = "run") %>% 
+  mutate(culture = "Nootkan")
 #13 
-nass_gitksan_data <- trad_data %>% 
-  filter(culture == "Nass-Gitksan") 
-output_nass_gitksan <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = nass_gitksan_data, .id = "run") %>% 
-  mutate(culture = "Nass-Gitksan")
+montaganais_data <- trad_data %>% 
+  filter(culture == "Montagnais-Naskapi") 
+output_montaganais <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = montaganais_data, .id = "run") %>% 
+  mutate(culture = "Montagnais-Naskapi")
 
 #14 
-siuslaw_data <- trad_data %>% 
-  filter(culture == "Siuslaw") 
-output_siuslaw <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = siuslaw_data, .id = "run") %>% 
-  mutate(culture = "Siuslaw")
-
-#15 
-eyak_data <- trad_data %>% 
-  filter(culture == "Eyak") 
-output_eyak <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = eyak_data, .id = "run") %>% 
-  mutate(culture = "Eyak")
+micmac_data <- trad_data %>% 
+  filter(culture == "Micmac") 
+output_micmac <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = micmac_data, .id = "run") %>% 
+  mutate(culture = "Micmac")
 
 
-#15 
-abenaki_data <- trad_data %>% 
-  filter(culture == "Abenaki") 
-output_abenaki <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = abenaki_data, .id = "run") %>% 
-  mutate(culture = "Abenaki")
-write_csv(output_abenaki, "data-processed/output_abenaki_resampling_100.csv")
-
-
-all_trad_reps <- bind_rows(output_aleut, output_yupik, output_bella, output_interior_salish, output_central_salish, 
-                           output_chinook, output_coosan, output_eyak, output_haida, output_inuit, 
-                           output_nass_gitksan, output_quileute, output_siuslaw, output_tillamook, output_tsimshian)
+all_trad_reps <- bind_rows(output_yupik, output_bella, output_central_salish, 
+                          output_haida, output_inuit, output_abenaki,
+                            output_micmac, output_wampanoag,
+                          output_tsimshian, output_tlingit, output_kwakiutl, output_cree, output_nootkan, output_montaganais)
 
 write_csv(all_trad_reps, "data-processed/all_trad_reps.csv")
 
