@@ -19,7 +19,7 @@ trad_split <- trad_data %>%
 trad_split[[2]] %>% View
 
 dataset <- trad_data %>% 
-  filter(culture == "Yupik") 
+  filter(culture == "Abenaki") 
 
 nutrient_fishing_function <- function(sample_size, dataset) {
   ntbl_sub1 <- dataset %>% 
@@ -163,6 +163,14 @@ output_eyak <- samples_rep %>%
   map_df(nutrient_fishing_function, dataset = eyak_data, .id = "run") %>% 
   mutate(culture = "Eyak")
 
+
+#15 
+abenaki_data <- trad_data %>% 
+  filter(culture == "Abenaki") 
+output_abenaki <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = abenaki_data, .id = "run") %>% 
+  mutate(culture = "Abenaki")
+write_csv(output_abenaki, "data-processed/output_abenaki_resampling_100.csv")
 
 
 all_trad_reps <- bind_rows(output_aleut, output_yupik, output_bella, output_interior_salish, output_central_salish, 

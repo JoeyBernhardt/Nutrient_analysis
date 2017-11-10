@@ -60,10 +60,10 @@ write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
 
 ### how many species per culture?
 
-nuts_mean %>% 
+species_numbers <- nuts_mean %>% 
   group_by(culture) %>% 
   summarise(n_species = n_distinct(latin_name)) %>% 
-  filter(n_species >= 25) %>% View
+  filter(n_species >= 25) 
 
 
 # comparing cine inuit to the new data ------------------------------------
