@@ -7,13 +7,19 @@ library(stringr)
 library(purrr)
 library(vegan)
 library(cowplot)
+library(broom)
 
 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv")
 culture_foods <- read_excel("~/Documents/traditional-foods/culture-foods.xlsx")
 
+
+
+# data prep section -------------------------------------------------------
+
+
 nuts_trad %>% 
-  distinct(latin_name) %>% 
+  distinct(latin_name, common_name, reference) %>% View
   tally
 
 mean_trad <- nuts_trad %>% 
@@ -45,38 +51,46 @@ cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
 
 
 nuts_mean <- cnuts %>% 
-  group_by(culture, latin_name) %>% 
+  group_by(culture, latin_name, level_1) %>% 
   summarise(calcium = mean(ca_mg, na.rm = TRUE),
             zinc = mean(zn_mg, na.rm = TRUE), 
             iron = mean(fe_mg, na.rm = TRUE),
             epa = mean(epa, na.rm = TRUE),
             dha = mean(dha, na.rm = TRUE)) %>% 
-  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha))
+  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) %>% 
+  rename(subgroup = level_1)
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
 
 ### how many species per culture?
+
+nuts_mean <- read_csv("data-processed/trad-foods-mean.csv")
+trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv")
+mean_nuts_global <- read.csv("data-processed/mean_nuts.csv")
+
+
+## ok let's make a new global dataset that also includes the new trad foods
+
+trad_means <- trad_nuts_mean %>% 
+  distinct(latin_name, .keep_all = TRUE) %>%
+  select(-culture) %>% 
+  rename(species_name = latin_name)
+
+## ok this will be the new global dataset!
+new_global <- bind_rows(mean_nuts_global, trad_means)
+
+write_csv(new_global, "data-processed/new_global.csv")
+
 
 species_numbers <- nuts_mean %>% 
   group_by(culture) %>% 
   summarise(n_species = n_distinct(latin_name)) %>% 
   filter(n_species >= 25) 
 
-median(species_numbers$n_species)
-hist(species_numbers$n_species)
-
-nuts_mean %>% 
-  filter(culture == "Haida") %>% View
 
 
-### ok write out what we've got!
 
-write_csv(nuts_mean, "data-processed/trad-foods-means.csv")
-
-trad_nuts_mean <- read_csv("data-processed/trad-foods-means.csv")
-mean_nuts <- read.csv("data-processed/mean_nuts.csv")
-
-
+# comparing species lists -------------------------------------------------
 
 # compare species lists
 spp <- trad_nuts_mean %>% 
@@ -100,7 +114,7 @@ newtrad <- mean_trad %>%
 write_csv(newtrad, "data-processed/newtrad.csv")
 
 
-setdiff(spp3$latin_name, spp$latin_name)
+
 
 lj <- inner_join(mean_nuts, mean_trad, by = c("species_name" = "latin_name"))
 lj %>% 
@@ -111,10 +125,6 @@ lj %>%
 
 
 # accumulation analysis ---------------------------------------------------
-
-
-threshold = 0.1
-data <- cnuts_split[[1]]
 
 accumulate <- function(data, threshold) {
   ntbl.RDI.all <- data %>% 
@@ -181,9 +191,9 @@ write_csv(res, "data-processed/nut_accumulation_trad_foods.csv")
 res <- read_csv("data-processed/nut_accumulation_trad_foods.csv")
 
 ## now for global dataset
-mean_nuts <- read.csv("data-processed/mean_nuts.csv")
+mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 
-accumulate <- function(data, threshold) {
+accumulate_global <- function(data, threshold) {
   ntbl.RDI.all <- data %>% 
     mutate(RDI.CA = ifelse(calcium > (1200*threshold), 1, 0)) %>% 
     mutate(RDI.FE = ifelse(iron > (18*threshold), 1, 0)) %>% 
@@ -235,8 +245,9 @@ accumulate <- function(data, threshold) {
   return(accumulated_targets_all)
   
 }
+## but now use new global
 
-res_global <- accumulate(sample_n(mean_nuts, size = 40, replace = FALSE), threshold = 0.1) %>% 
+res_global <- accumulate_global(sample_n(new_global, size = 40, replace = FALSE), threshold = 0.1) %>% 
   mutate(culture = "global")
 
 
@@ -255,6 +266,7 @@ res_all %>%
   # scale_x_continuous(breaks = seq(1,10,1)) +
   theme(legend.title=element_blank()) + theme_classic() +
   ylim(0,5) +
+  scale_x_continuous(breaks = seq(1,10,1)) +
   # facet_wrap( ~ culture) +
   scale_color_viridis(discrete = TRUE) + scale_fill_viridis(discrete = TRUE)
 
@@ -275,6 +287,7 @@ res_all %>%
   # scale_x_continuous(breaks = seq(1,10,1)) +
   theme(legend.title=element_blank()) + theme_classic() +
   ylim(0,5) +
+  scale_x_continuous(breaks = seq(1,10,1)) +
   facet_wrap( ~ culture) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
