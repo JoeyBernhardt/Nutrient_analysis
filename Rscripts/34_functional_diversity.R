@@ -1,4 +1,5 @@
 library(FD)
+library(tidyverse)
 
 trait_data <- read_csv("data-processed/n.long_lat3.csv") %>% 
   filter(!grepl("^Mohanty", ref_info)) 
@@ -35,6 +36,8 @@ colnames(comm) <- c("Sp1", "Sp2", "Sp3", "Sp4", "Sp5")
 
 FD.mic <- dbFD(ntbl.matrix.mic)
 FD.mic
+
+?dbFD
 
 
 ntbl.mac.matrix <- data.matrix(ntbl.RDI.mac[, 2:3])

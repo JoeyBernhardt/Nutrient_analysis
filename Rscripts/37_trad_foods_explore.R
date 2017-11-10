@@ -331,3 +331,63 @@ res_all %>%
   ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_line() +
   ylim(0, 5) +
   stat_function(fun = yupik_power_function, color = "green")
+
+
+# Functional diversity analysis -------------------------------------------
+
+## let's look at functional diversity
+library(FD)
+
+cnuts_split <- nuts_mean %>% 
+  select(-latin_name) %>% 
+  ungroup() %>% 
+  split(.$culture)
+
+
+fds <- cnuts_split %>% 
+  map(dbFD)
+
+names(fds[[1]])
+
+fdiv <- fds %>% 
+  map("FEve") %>% 
+  unlist() %>% 
+  as.data.frame() 
+
+fdiv$culture <- rownames(fdiv) 
+names(fdiv) <- c("fdiv", "culture")
+fdiv <- fdiv %>% 
+  mutate(culture = str_replace(culture, ".Community1", ""))
+
+### compare to global dataset
+mean_nuts <- read_csv("data-processed/mean_nuts.csv")  
+
+mean_nuts2 <- sample_n(mean_nuts, size = 40, replace = FALSE)
+ntbl.matrix.mic <- data.matrix(mean_nuts2[, 3:7])
+rownames(ntbl.matrix.mic) <- mean_nuts2$species_name
+FD_global <- data.frame(fdiv = dbFD(ntbl.matrix.mic)$FEve) %>% 
+  mutate(culture = "global")
+
+all_fd <- bind_rows(fdiv, FD_global)
+
+all_fd %>% 
+  filter(culture %in% species_numbers$culture | culture == "global") %>% 
+  ggplot(aes(x = reorder(culture, fdiv), y = fdiv)) + geom_histogram(stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  ylab("Nutritional functional evenness (FEve)") + xlab("Culture")
+
+
+(unames <- map_chr(fds, c(1,1)))
+
+com_names <- fds %>% 
+  map_chr(1) %>% 
+  names()
+
+(udf <- fds %>%
+    set_names(com_names) %>% 
+    enframe("community", "diversity_info"))
+
+udf %>% 
+  mutate(repo_info = diversity_info %>%
+           map(. %>% map_df(`[`, c("FDiv", "FDis"))))
+
