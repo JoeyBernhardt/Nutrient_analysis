@@ -228,7 +228,7 @@ mca <- most_common_accumulation %>%
 all <- bind_rows(accumulation_data, mca)
 
 
-all  %>%
+accumulation_data  %>%
 	filter(number_of_species < 11) %>% 
 	rename(group = subgroup) %>% 
 	filter(group %in% c("mollusc", "finfish", "crustacean", "all", "most common")) %>% 

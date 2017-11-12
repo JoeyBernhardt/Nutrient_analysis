@@ -66,7 +66,7 @@ write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
 
 nuts_mean <- read_csv("data-processed/trad-foods-mean.csv")
 trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv")
-mean_nuts_global <- read.csv("data-processed/mean_nuts.csv")
+mean_nuts_global <- read_csv("data-processed/mean_nuts.csv")
 
 
 ## ok let's make a new global dataset that also includes the new trad foods
@@ -80,7 +80,7 @@ trad_means <- trad_nuts_mean %>%
 new_global <- bind_rows(mean_nuts_global, trad_means)
 
 write_csv(new_global, "data-processed/new_global.csv")
-
+new_global <- read_csv("data-processed/new_global.csv")
 
 species_numbers <- nuts_mean %>% 
   group_by(culture) %>% 
@@ -250,14 +250,22 @@ accumulate_global <- function(data, threshold) {
 res_global <- accumulate_global(sample_n(new_global, size = 40, replace = FALSE), threshold = 0.1) %>% 
   mutate(culture = "global")
 
+res_global_all <- accumulate_global(new_global, threshold = 0.1) %>% 
+  mutate(culture = "global")
+
+
+write_csv(res_global_all, "data-processed/res_global_all.csv")
+
 
 res_all <- bind_rows(res, res_global)
 
 res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
   filter(number_of_species < 11) %>% 
-  ggplot(aes(x = number_of_species, y = number_of_targets, group = culture, color = culture)) + geom_line(size =1) +
-  # geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se, fill = culture), alpha = 0.2, size = 0) +
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = culture)) +
+  geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.05, size = 0) +
+  geom_line(size =.5, alpha = 0.5) +
+  geom_line(color = "cadetblue", size =1, data = filter(res_all, culture == "global", number_of_species < 11)) +
   ylab("Number of nutrient requirements fulfilled (10% DRI)") +
   xlab("Number of species") + theme(text = element_text(size=14)) + 
   # scale_color_grey(start = 0.01, end = 0.7) +
@@ -266,33 +274,34 @@ res_all %>%
   # scale_x_continuous(breaks = seq(1,10,1)) +
   theme(legend.title=element_blank()) + theme_classic() +
   ylim(0,5) +
-  scale_x_continuous(breaks = seq(1,10,1)) +
-  # facet_wrap( ~ culture) +
-  scale_color_viridis(discrete = TRUE) + scale_fill_viridis(discrete = TRUE)
+  scale_x_continuous(breaks = seq(1,10,1))
+  #facet_wrap( ~ culture) +
+  # scale_color_viridis(discrete = TRUE, option = "magma") + scale_fill_viridis(discrete = TRUE, option = "magma")
 
 ggsave("figures/nutrient_accumulation_plots_na_cultures_overlay.png", width = 8, height = 6)
+ggsave("figures/nutrient_accumulation_plots_na_cultures_overlay_bw.png", width = 4, height = 4)
 
 ## same figure, no color
 res_all %>% 
   mutate(culture = ifelse(culture == "global", "Global", culture)) %>% 
   filter(culture %in% species_numbers$culture | culture == "Global") %>% 
   filter(number_of_species < 11) %>% 
-  ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_line(size =1) +
+  ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_line(size =.5) +
   geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.2, size = 0) +
   ylab("Number of nutrient requirements fulfilled (10% DRI)") +
-  xlab("Number of species") + theme(text = element_text(size=14)) + 
+  xlab("Number of species") + theme(text = element_text(size=12)) + 
   # scale_color_grey(start = 0.01, end = 0.7) +
   # theme_bw() +
   # theme(legend.position = c(0.6, 0.2)) +
   # scale_x_continuous(breaks = seq(1,10,1)) +
   theme(legend.title=element_blank()) + theme_classic() +
   ylim(0,5) +
-  scale_x_continuous(breaks = seq(1,10,1)) +
+  scale_x_continuous(breaks = seq(1,10,2)) +
   facet_wrap( ~ culture) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         strip.background = element_blank())
-ggsave("figures/nutrient_accumulation_plots_nut_accum_bw.png", width = 8, height = 6)
+ggsave("figures/nutrient_accumulation_plots_nut_accum_bw.png", width = 4, height = 4)
 
 
 
@@ -351,26 +360,77 @@ res_all %>%
 ## let's look at functional diversity
 library(FD)
 
-cnuts_split <- nuts_mean %>% 
-  select(-latin_name) %>% 
+new_global <- read_csv("data-processed/new_global.csv")
+trad_mean <- read_csv("data-processed/trad-foods-mean.csv")
+
+cnuts_split <- trad_mean %>% 
+  select(-latin_name) %>%
+  select(- subgroup) %>% 
   ungroup() %>% 
   split(.$culture)
-
+cnuts_split[[1]]
 
 fds <- cnuts_split %>% 
   map(dbFD)
 
 names(fds[[1]])
 
-fdiv <- fds %>% 
+dbFD(cnuts_split[1])
+
+
+fEve <- fds %>% 
   map("FEve") %>% 
   unlist() %>% 
   as.data.frame() 
 
-fdiv$culture <- rownames(fdiv) 
-names(fdiv) <- c("fdiv", "culture")
-fdiv <- fdiv %>% 
+fEve$culture <- rownames(fEve) 
+names(fEve) <- c("FEve", "culture")
+fEve <- fEve %>% 
   mutate(culture = str_replace(culture, ".Community1", ""))
+
+
+fDiv <- fds %>% 
+  map("FDiv") %>% 
+  unlist() %>% 
+  as.data.frame() 
+
+fDiv$culture <- rownames(fDiv) 
+names(fDiv) <- c("FDiv", "culture")
+fDiv <- fDiv %>% 
+  mutate(culture = str_replace(culture, ".Community1", ""))
+
+FDs <- left_join(fDiv, fEve, by = "culture") %>% 
+  select(culture, FDiv, FEve)
+
+fdiv_expected <- read_csv("data-processed/fdiv_expected.csv") %>% 
+  mutate(dataset = "expected") %>% 
+  rename(value = fdiv_expected) %>% 
+  mutate(metric = "FDiv")
+
+feve_expected <- read_csv("data-processed/FEve_expected.csv") %>% 
+  mutate(dataset = "expected") %>% 
+  rename(value = FEve_expected) %>% 
+  mutate(metric = "FEve")
+
+fd_long <- FDs %>% 
+  gather(key = "metric", value = "value", 2:3) %>% 
+  rename(dataset = culture)
+
+
+all_fd <- bind_rows(fdiv_expected, fd_long, feve_expected)
+
+all_fd %>% 
+  filter(dataset %in% species_numbers$culture | dataset == "expected") %>% 
+  filter(metric == "FEve") %>% 
+  ggplot(aes(x = value), fill = "grey") + geom_histogram(bins = 40) +
+  geom_vline(xintercept = filter(all_fd, dataset == "Abenaki", metric == "FEve")[[1]]) +
+  geom_vline(xintercept = filter(all_fd, dataset == "Bella Coola", metric == "FEve")[[1]]) +
+  geom_vline(xintercept = filter(all_fd, dataset == "Haida", metric == "FEve")[[1]]) +
+  geom_vline(xintercept = filter(all_fd, dataset == "Tlingit", metric == "FEve")[[1]]) +
+  geom_vline(xintercept = filter(all_fd, dataset == "Micmac", metric == "FEve")[[1]]) +
+  geom_vline(xintercept = quantile(feve_expected$value, probs = c(0.025)), color = "red") +
+  geom_vline(xintercept = quantile(feve_expected$value, probs = c(0.975)), color = "red") +
+  geom_vline(xintercept = mean(feve_expected$value), color = "red")
 
 ### compare to global dataset
 mean_nuts <- read_csv("data-processed/mean_nuts.csv")  

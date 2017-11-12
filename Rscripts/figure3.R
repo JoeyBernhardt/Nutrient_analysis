@@ -60,6 +60,7 @@ output_calcium_1000 %>%
 reps100 <- read_csv("~/Desktop/grams-required-10-spp-1000reps.csv")
 
 
+
 reps100 %>% 
   mutate(grams_for_25_percent = grams_required/10) %>% 
   lm(grams_for_25_percent ~ species_no, data = .) %>% 
