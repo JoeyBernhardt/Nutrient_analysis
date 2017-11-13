@@ -119,7 +119,7 @@ write_csv(newtrad, "data-processed/newtrad.csv")
 lj <- inner_join(mean_nuts, mean_trad, by = c("species_name" = "latin_name"))
 lj %>% 
   # select(starts_with("calcium"), starts_with("iron"), starts_with("epa")) %>% 
-  ggplot(aes(x = calcium.x, y = calcium.y)) + geom_point() +
+  ggplot(aes(x = dha.x, y = dha.y)) + geom_point() +
   # ylim(0,10) +
   geom_abline(slope = 1, intercept = 0)
 
@@ -255,7 +255,7 @@ res_global_all <- accumulate_global(new_global, threshold = 0.1) %>%
 
 
 write_csv(res_global_all, "data-processed/res_global_all.csv")
-
+res_global_all <- read_csv("data-processed/res_global_all.csv")
 
 res_all <- bind_rows(res, res_global)
 
@@ -338,7 +338,13 @@ b_plot <- b_terms %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   xlab("Culture") + ylab("Parameter estimate (b)") 
 
-plot_grid(a_plot, b_plot, nrow = 1, ncol = 2)
+BEF_params_plot <- plot_grid(a_plot, b_plot, nrow = 2, ncol = 1)
+save_plot("figures/BEF-params.png", BEF_params_plot,
+          ncol = 1, # we're saving a grid plot of 2 columns
+          nrow = 2, # and 2 rows
+          # each individual subplot should have an aspect ratio of 1.3
+          base_aspect_ratio = 1.2
+)
 
 
 a_est <- mod$estimate[mod$culture == "Haida" & mod$term == "a"]
