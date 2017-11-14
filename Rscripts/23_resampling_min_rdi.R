@@ -52,7 +52,9 @@ dataset80 <- mean_nuts[1:80,]
 dataset <- mean_nuts
 dataset <- sample_n(new_global, size = 40, replace = FALSE)
 
+dataset <- new_global
 sample_size <- 10
+
 nutrient_fishing_function <- function(sample_size) {
 ntbl_sub1 <- dataset %>% 
   sample_n(size = sample_size, replace = FALSE)
@@ -95,11 +97,14 @@ resampling_15 <- new_data_sub1 %>%
 }
 
 
-samples_rep <- rep(10, 100)
+samples_rep <- rep(10, 1000)
 
 output_new_100 <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")
+output_new_1000 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run")
 write_csv(output_new_100, "data-processed/grams-required-10-spp-100reps-new-global-40sp.csv")
+write_csv(output_new_1000, "data-processed/grams-required-10-spp-1000reps-new-global.csv")
 
 output_new_global <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run")

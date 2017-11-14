@@ -273,7 +273,7 @@ loadfonts()
 fonts()
 
 accumulation <- read_csv("data-processed/DRI_accumulation_replacement_design.csv")
-
+library(plotrix)
 
 accum_plot <- accumulation %>% 
   filter(species_no < 11, threshold == 10) %>% 
@@ -294,7 +294,7 @@ accum_plot <- accumulation %>%
 ggsave("figures/accumulation_plot_grey.pdf", width = 4, height = 4)
 
 ### now we need the plot with the most commont species and the violin plot
-reps100 <- read_csv("~/Desktop/grams-required-10-spp-1000reps.csv")
+reps100 <- read_csv("data-processed/grams-required-10-spp-100reps-new_global.csv")
 molluscs <- read_csv("data-processed/mollusc_sampling_all.csv")
 mostcommon <- read_csv("data-processed/grams-required-10-spp-1000reps-10most-common.csv")
 invertebrates <- read_csv("~/Desktop/grams-required-10-spp-1000reps-invertebrates.csv")
@@ -327,8 +327,8 @@ finfish_summary <- finfish %>%
 
 
 violin_plot <- ggplot() +
-  geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b) +
-  geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = reps100_summary, size = 4) +
+  geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b, color = "grey", size = 1, fill = "grey") +
+  geom_line(aes(x = species_no, y = grams_for_25_percent_median), data = reps100_summary, size = 1) +
    geom_hline(yintercept = 100, linetype = "dotted") +
   geom_hline(yintercept = 200, linetype = "dashed") +
   scale_y_log10() +
@@ -337,6 +337,7 @@ violin_plot <- ggplot() +
   background_grid(major = "none", minor = "none") +
   theme(text=element_text(family="Helvetica", size=16)) 
 ggsave("figures/violin_plot_fig3.pdf", width = 4.3, height = 3.5)
+ggsave("figures/violin_plot_fig3.png", width = 4.3, height = 3.5)
 
 # mollusc_summary <- mollusc_processed %>%
 #   mutate(grams_for_25_percent = grams_required/10) %>% 

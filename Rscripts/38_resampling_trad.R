@@ -57,7 +57,7 @@ dataset29 <- mean_nuts %>%
 
 # sample away! ------------------------------------------------------------
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 100)
 
 output29 <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = dataset29, .id = "run")
@@ -112,15 +112,73 @@ varying_sizes <- bind_rows(output29, output25, output57)
  all_trad_resampling <- read_csv("data-processed/all_trad_reps.csv")
  output_abenaki <- read_csv("data-processed/output_abenaki_resampling_100.csv")
  all_trad2 <- bind_rows(all_trad_resampling, output_abenaki)
+ reps1000 <- read_csv("data-processed/grams-required-10-spp-1000reps-new-global.csv") %>% 
+   mutate(dataset = "global")
+ reps100_40sp<- read_csv("data-processed/grams-required-10-spp-100reps-new-global-40sp.csv") %>% 
+   mutate(dataset = "global40")
  
-trad <- all_trad2 %>% 
+trad <- all_trad_resampling%>% 
    filter(!is.infinite(grams_required)) %>% 
    group_by(species_no, culture) %>%
-   mutate(grams_required = grams_required/10) %>% 
-   summarise_each(funs(mean, median), grams_required) %>% 
-   rename(median = grams_required_median,
-          mean = grams_required_mean) %>% 
+   mutate(grams_required_10 = grams_required/10) %>% 
+   summarise_each(funs(mean, median, std.error), grams_required_10) %>% 
+   rename(median = grams_required_10_median,
+          mean = grams_required_10_mean) %>% 
   rename(dataset = culture)
+
+
+
+reps100b <- reps1000 %>% 
+  filter(species_no < 11) %>% 
+  filter(!is.na(grams_required)) %>% 
+  mutate(grams_required_10 = grams_required/10) 
+
+reps100_summary <- reps100b %>% 
+  group_by(species_no, dataset) %>%
+  summarise_each(funs(mean, median, std.error), grams_required_10) %>%
+  rename(median = grams_required_10_median,
+         mean = grams_required_10_mean) 
+
+
+reps40 <-  reps100_40sp %>% 
+  filter(species_no < 11) %>% 
+  filter(!is.na(grams_required)) %>% 
+  mutate(grams_required_10 = grams_required/10) 
+
+reps40_summary <- reps40 %>% 
+  group_by(species_no, dataset) %>%
+  summarise_each(funs(mean, median, std.error), grams_required_10) %>%
+  rename(median = grams_required_10_median,
+         mean = grams_required_10_mean) 
+
+
+all <- bind_rows(trad, reps100_summary, reps40_summary)
+
+all %>% 
+  # filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
+  dplyr::group_by(dataset) %>% 
+  filter(species_no < 11) %>% 
+  do(tidy(nls(formula = (median ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.7)))) %>% 
+  ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point() + 
+  geom_errorbar(aes(ymin = estimate - std.error*1.96, ymax = estimate + std.error*1.96)) +
+  facet_wrap( ~ term, scales = "free") + theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+
+all %>% 
+  # filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
+  filter(species_no < 11) %>% 
+  filter(dataset != "global") %>% 
+  ggplot(aes(x = species_no, y = median, group = dataset)) + geom_line(size = 1, alpha = 0.5) +
+  # geom_ribbon(aes(ymin = mean - grams_required_10_std.error, ymax = mean + grams_required_10_std.error), fill = "grey", alpha = 0.5) +
+  theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
+  scale_x_continuous(breaks = 1:10) +
+  scale_color_viridis(discrete = TRUE) +
+  geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11))
+
+
+
 
 var2 <- var %>% 
   rename(dataset = pool_size) %>% 
@@ -134,7 +192,7 @@ species_numbers <- nuts_mean %>%
   summarise(n_species = n_distinct(latin_name)) %>% 
   filter(n_species >= 25) 
 
-alltrad %>% 
+trad %>% 
   filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
   dplyr::group_by(dataset) %>% 
   filter(species_no < 11) %>% 
@@ -144,7 +202,7 @@ alltrad %>%
   facet_wrap( ~ term, scales = "free") + theme_classic() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-alltrad %>% 
+trad %>% 
   filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
   filter(species_no < 11) %>% 
   ggplot(aes(x = species_no, y = median, color = dataset)) + geom_line(size = 1) +
