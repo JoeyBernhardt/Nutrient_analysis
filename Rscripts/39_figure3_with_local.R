@@ -36,20 +36,20 @@ a_terms <- mod %>%
   filter(term == "a")
 
 a_plot <- a_terms %>% 
-  ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point() +
-  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  xlab("Culture") + ylab("Parameter estimate (a)") 
+  ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("Culture") + ylab("Parameter estimate (a)") + coord_flip()
 
 
 b_terms <- mod %>% 
   filter(term == "b")
 
 b_plot <- b_terms %>% 
-  ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point() +
-  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  xlab("Culture") + ylab("Parameter estimate (b)") 
+  ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("Culture") + ylab("Parameter estimate (b)") + coord_flip()
 
 BEF_params_plot <- plot_grid(a_plot, b_plot, nrow = 2, ncol = 1)
 save_plot("figures/BEF-params.png", BEF_params_plot,

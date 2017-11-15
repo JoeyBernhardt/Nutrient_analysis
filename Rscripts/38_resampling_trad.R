@@ -3,7 +3,7 @@
 library(purrr)
 library(tidyverse)
 
-mean_nuts <- read_csv("data-processed/mean_nuts.csv")
+mean_nuts <- read_csv("data-processed/new_global.csv")
 
 # define resampling function ----------------------------------------------
 
@@ -52,16 +52,16 @@ nutrient_fishing_function <- function(sample_size, dataset) {
 
 # define dataset to pull from ---------------------------------------------
 
-dataset29 <- mean_nuts %>% 
-  sample_n(size = 29, replace = FALSE)
+mean(species_numbers$n_species)
 
 # sample away! ------------------------------------------------------------
 
 samples_rep <- rep(10, 100)
 
+dataset29 <- mean_nuts %>% 
+  sample_n(size = 29, replace = FALSE)
 output29 <- samples_rep %>% 
-  map_df(nutrient_fishing_function, dataset = dataset29, .id = "run")
-output29 <- output29 %>% 
+  map_df(nutrient_fishing_function, dataset = dataset29, .id = "run") %>% 
   mutate(pool_size = 29)
 
 dataset25 <- mean_nuts %>% 
@@ -70,13 +70,22 @@ output25 <- samples_rep %>%
   map_df(nutrient_fishing_function, dataset = dataset25, .id = "run") %>% 
   mutate(pool_size = 25)
 
+
+dataset20 <- mean_nuts %>% 
+  sample_n(size = 20, replace = FALSE)
+output20 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, dataset = dataset20, .id = "run") %>% 
+  mutate(pool_size = 20)
+
+
 dataset57 <- mean_nuts %>% 
   sample_n(size = 57, replace = FALSE)
 output57 <- samples_rep %>% 
   map_df(nutrient_fishing_function, dataset = dataset57, .id = "run") %>% 
   mutate(pool_size = 57)
 
-varying_sizes <- bind_rows(output29, output25, output57)
+varying_sizes <- bind_rows(output29, output25, output57, output20)
+write_csv(varying_sizes, "data-processed/resampling_global_new_varying_sizes.csv")
 
 
 
@@ -106,6 +115,20 @@ varying_sizes <- bind_rows(output29, output25, output57)
    scale_x_continuous(breaks = 1:10) +
    scale_color_viridis(discrete = FALSE) +
    facet_wrap( ~ pool_size)
+ 
+ 
+ ### ok it looks like the random sample that we take from the global dataset really matters. Let's repeat the resampling,
+ ### then average
+ 
+ samples_rep_1000 <- rep(10, 1000)
+ 
+ output40 <- samples_rep_1000 %>% 
+   map_df(nutrient_fishing_function, dataset = sample_n(mean_nuts, size = 40, replace = FALSE), .id = "run") %>% 
+   mutate(pool_size = 40)
+ 
+ 
+ 
+ 
  
  ### compare to the trad diets
  
@@ -151,31 +174,79 @@ reps40_summary <- reps40 %>%
   rename(median = grams_required_10_median,
          mean = grams_required_10_mean) 
 
+var <- varying_sizes %>% 
+  filter(!is.infinite(grams_required)) %>% 
+  group_by(species_no, pool_size) %>%
+  mutate(grams_required = grams_required/10) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(median = grams_required_median,
+         mean = grams_required_mean) %>% 
+  mutate(dataset = as.character(pool_size))
+  
 
-all <- bind_rows(trad, reps100_summary, reps40_summary)
+var40 <- output40 %>% 
+  filter(!is.infinite(grams_required)) %>% 
+  group_by(species_no, pool_size) %>%
+  mutate(grams_required = grams_required/10) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(median = grams_required_median,
+         mean = grams_required_mean) %>% 
+  mutate(dataset = as.character(pool_size))
 
-all %>% 
-  # filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
+
+all <- bind_rows(trad, reps100_summary, reps40_summary, var, var40)
+
+write_csv(all, "data-processed/all_resampling_new_global_local.csv")
+
+mod <- all %>% 
+  filter(dataset != "global") %>% 
+  filter(!dataset %in% c("25", "25", "29", "57", "40", "20")) %>% 
   dplyr::group_by(dataset) %>% 
   filter(species_no < 11) %>% 
-  do(tidy(nls(formula = (median ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.7)))) %>% 
-  ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point() + 
-  geom_errorbar(aes(ymin = estimate - std.error*1.96, ymax = estimate + std.error*1.96)) +
-  facet_wrap( ~ term, scales = "free") + theme_classic() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  do(tidy(nls(formula = (median ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.7))))
 
+
+
+a_terms <- mod %>% 
+  filter(term == "a")
+
+a_plot <- a_terms %>% 
+  ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("Culture") + ylab("Parameter estimate (a)") + coord_flip()
+
+
+b_terms <- mod %>% 
+  filter(term == "b")
+
+b_plot <- b_terms %>% 
+  ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
+  # theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  xlab("Culture") + ylab("Parameter estimate (b)") + coord_flip()
+
+BEF_params_plot_min <- plot_grid(a_plot, b_plot, nrow = 2, ncol = 1)
+save_plot("figures/BEF-params-min-dri.png", BEF_params_plot,
+          ncol = 1, # we're saving a grid plot of 2 columns
+          nrow = 2, # and 2 rows
+          # each individual subplot should have an aspect ratio of 1.3
+          base_aspect_ratio = 1.2
+)
 
 
 all %>% 
   # filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
   filter(species_no < 11) %>% 
   filter(dataset != "global") %>% 
+  filter(!dataset %in% c("25", "25", "29", "57")) %>% 
   ggplot(aes(x = species_no, y = median, group = dataset)) + geom_line(size = 1, alpha = 0.5) +
   # geom_ribbon(aes(ymin = mean - grams_required_10_std.error, ymax = mean + grams_required_10_std.error), fill = "grey", alpha = 0.5) +
   theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
   scale_x_continuous(breaks = 1:10) +
   scale_color_viridis(discrete = TRUE) +
   geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11))
+ggsave("figures/min_rdi_local_BEF.png", width = 3, height = 3)
 
 
 
