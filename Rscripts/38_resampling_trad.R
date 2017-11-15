@@ -2,6 +2,9 @@
 
 library(purrr)
 library(tidyverse)
+library(cowplot)
+library(stringr)
+library(broom)
 
 mean_nuts <- read_csv("data-processed/new_global.csv")
 
@@ -201,37 +204,60 @@ write_csv(all, "data-processed/all_resampling_new_global_local.csv")
 mod <- all %>% 
   filter(dataset != "global") %>% 
   filter(!dataset %in% c("25", "25", "29", "57", "40", "20")) %>% 
+  mutate(dataset = str_replace(dataset, "Inuit-Inupiaq", "II")) %>% 
+  mutate(dataset = str_replace(dataset, "Central Salish", "CS")) %>% 
+  mutate(dataset = str_replace(dataset, "Wampanoag", "WA")) %>% 
+  mutate(dataset = str_replace(dataset, "Cree", "CR")) %>%
+  mutate(dataset = str_replace(dataset, "Nootkan", "NO")) %>% 
+  mutate(dataset = str_replace(dataset, "Bella Coola", "BC")) %>% 
+  mutate(dataset = str_replace(dataset, "Tlingit", "TL")) %>%
+  mutate(dataset = str_replace(dataset, "Haida", "HA")) %>%
+  mutate(dataset = str_replace(dataset, "Tsimshian", "TS")) %>% 
+  mutate(dataset = str_replace(dataset, "Montagnais-Naskapi", "MN")) %>%
+  mutate(dataset = str_replace(dataset, "Yupik", "YU")) %>% 
+  mutate(dataset = str_replace(dataset, "Abenaki", "AB")) %>%
+  mutate(dataset = str_replace(dataset, "Micmac", "MI")) %>%
+  mutate(dataset = str_replace(dataset, "Kwakiutl", "KW")) %>%
+  mutate(dataset = str_replace(dataset, "global40", "GL")) %>% 
   dplyr::group_by(dataset) %>% 
   filter(species_no < 11) %>% 
   do(tidy(nls(formula = (median ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.7))))
 
 
 
-a_terms <- mod %>% 
+a_terms1 <- mod %>% 
   filter(term == "a")
 
-a_plot <- a_terms %>% 
+a_plot1 <- a_terms1 %>% 
   ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point(size = 2) +
   geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
-  # theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  xlab("Culture") + ylab("Parameter estimate (a)") + coord_flip()
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  geom_point(size = 2, data = filter(a_terms1, dataset == "GL"), color = "cadet blue") +
+  theme(
+    axis.ticks.x = element_blank())
 
 
-b_terms <- mod %>% 
+
+b_terms1 <- mod %>% 
   filter(term == "b")
 
-b_plot <- b_terms %>% 
+b_plot1 <- b_terms1 %>% 
   ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point(size = 2) +
+  geom_point(size = 2, data = filter(b_terms1, dataset == "GL"), color = "cadet blue") +
   geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
-  # theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  xlab("Culture") + ylab("Parameter estimate (b)") + coord_flip()
+  geom_point(size = 2, data = filter(b_terms1, dataset == "GL"), color = "cadet blue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  xlab("") + ylab("") +
+  theme(
+    axis.ticks.x = element_blank())
 
-BEF_params_plot_min <- plot_grid(a_plot, b_plot, nrow = 2, ncol = 1)
-save_plot("figures/BEF-params-min-dri.png", BEF_params_plot,
-          ncol = 1, # we're saving a grid plot of 2 columns
-          nrow = 2, # and 2 rows
+  BEF_params_plot_min <- plot_grid(a_plot1, b_plot1, nrow = 1, ncol = 2)
+save_plot("figures/BEF-params-min-dri.png", BEF_params_plot_min,
+          ncol = 2, # we're saving a grid plot of 2 columns
+          nrow = 1, # and 2 rows
           # each individual subplot should have an aspect ratio of 1.3
-          base_aspect_ratio = 1.2
+          base_aspect_ratio = 1
 )
 
 
@@ -240,12 +266,11 @@ all %>%
   filter(species_no < 11) %>% 
   filter(dataset != "global") %>% 
   filter(!dataset %in% c("25", "25", "29", "57")) %>% 
-  ggplot(aes(x = species_no, y = median, group = dataset)) + geom_line(size = 1, alpha = 0.5) +
+  ggplot(aes(x = species_no, y = median, group = dataset)) + geom_line(size = 0.5, alpha = 0.5) +
   # geom_ribbon(aes(ymin = mean - grams_required_10_std.error, ymax = mean + grams_required_10_std.error), fill = "grey", alpha = 0.5) +
   theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
-  scale_x_continuous(breaks = 1:10) +
-  scale_color_viridis(discrete = TRUE) +
-  geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11))
+  geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11)) +
+  scale_x_continuous(breaks = seq(1,10,1))
 ggsave("figures/min_rdi_local_BEF.png", width = 3, height = 3)
 
 
