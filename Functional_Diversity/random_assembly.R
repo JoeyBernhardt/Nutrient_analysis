@@ -9,8 +9,8 @@ library(ggtree)
 library(ggdendro)
 
 ### Load data
-rdimat <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/RDImat.csv")
-ntbl.raw <- read.csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
+rdimat <- read.csv("data/RDImat.csv")
+ntbl.raw <- read.csv("data/ntbl.csv")
 
 
 
@@ -48,12 +48,12 @@ View(matrix.mic)
   filter(!is.na(mean.EPA)) %>%
   filter(!is.na(mean.DHA)) %>%
   filter(!is.na(mean.ZN)) %>%
-  filter(!is.na(mean.FE)) %>% View
+  filter(!is.na(mean.FE)) 
 
 ntbl.taxon <- ntbl.raw %>% 
   group_by(species) %>% 
   select(taxon, Habitat, Subgroup) %>% 
-  distinct(species) %>% View
+  distinct(species) 
 
 ntbl.all <- left_join(ntbl.env, ntbl.taxon, by = "species") %>%
   select(Subgroup, Habitat, taxon)
@@ -76,7 +76,7 @@ mydist <- function(x) dist(x, method = "euclidian")
 myhclust <- function(x) hclust(x, method = "average")
 tree <- myhclust(mydist(matrix.mic))
 treeheight(tree)
-ggdendrogram(tree, rotate = FALSE, size = 2, theme_dendro = TRUE) + geom_text(colour = "purple") 
+plot(tree, rotate = FALSE, size = 2, theme_dendro = TRUE) + geom_text(colour = "purple") 
 ggsave("standard.nut.dendro.png")
 
 
