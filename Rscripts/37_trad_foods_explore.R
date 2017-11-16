@@ -313,6 +313,7 @@ ggsave("figures/nutrient_accumulation_plots_nut_accum_bw.png", width = 4, height
 
 
 # parameter estimate plots ------------------------------------------------
+library(broom)
 
 mod <- res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
@@ -333,6 +334,8 @@ a_plot <- a_terms %>%
 
 b_terms <- mod %>% 
   filter(term == "b")
+
+write_csv(b_terms, "data-processed/b_terms_bef.csv")
 
 b_plot <- b_terms %>% 
   ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point() +

@@ -73,3 +73,22 @@ all_fds %>%
   ggplot(aes(x = n_species, y = FD)) + geom_point() +
   theme_classic() + geom_smooth(method = "lm") +
   xlab("Species richness") + ylab("FD")
+
+
+b_terms <- read_csv("data-processed/b_terms_bef.csv")
+
+all_terms <- left_join(b_terms, species_numbers)
+
+all_fds_b <- left_join(all_fds, all_terms)
+
+all_fds_b %>% 
+  mutate(redundancy = exp_df - FD) %>% 
+  ggplot(aes(x = redundancy, y = estimate)) + geom_point() +
+  geom_smooth(method = "lm") +
+  xlab("Functional redundancy") + ylab("Biodiversity effect (b)")
+
+
+all_fds_b %>% 
+  mutate(redundancy = exp_df - FD) %>% 
+  lm(estimate ~ redundancy, data = .) %>% 
+  summary()
