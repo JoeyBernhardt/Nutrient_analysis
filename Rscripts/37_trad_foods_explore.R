@@ -251,6 +251,7 @@ res_global <- accumulate_global(sample_n(new_global, size = 40, replace = FALSE)
   mutate(culture = "global")
 
 write_csv(res_global, "data-processed/res_global.csv")
+res_global <- read_csv("data-processed/res_global.csv")
 
 res_global_all <- accumulate_global(new_global, threshold = 0.1) %>% 
   mutate(culture = "global")
