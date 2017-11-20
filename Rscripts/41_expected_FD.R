@@ -1,3 +1,5 @@
+library(tidyverse)
+
 trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>% 
   filter(!is.na(latin_name))
 
