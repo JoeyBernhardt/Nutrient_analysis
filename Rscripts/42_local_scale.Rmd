@@ -83,7 +83,7 @@ accumulate_global <- function(data, threshold) {
 
 Apply the accumulate function to 40 species sampled randomly from the global pool. Here we sample out 40 because this is the average species pool size at the local scale. For the local diets, we sample from the full local species pool. 
 ```{r}
-res_global <- accumulate_global(sample_n(new_global, size = 40, replace = FALSE), threshold = 0.1) %>% 
+res_global <-accumulate_global(sample_n(new_global, size = 40, replace = FALSE), threshold = 0.1) %>% 
   mutate(culture = "global")
 
 ```
