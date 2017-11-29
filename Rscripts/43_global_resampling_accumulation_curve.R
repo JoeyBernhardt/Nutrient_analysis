@@ -82,7 +82,9 @@ mean_target <- repeat_global %>%
 
 
 sub <- repeat_global %>%
-  filter(number_of_species < 11) 
+  filter(number_of_species < 11) %>%
+  mutate(culture = "global")
+  
 
 sub %>% 
   ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_point(alpha = 0.1)
@@ -90,11 +92,35 @@ sub %>%
   
   mean_target %>% 
  ggplot(aes(x = number_of_species, y = number_of_targets), color = "red") + geom_line() +
-  geom_line(aes(x = number_of_species, y = number_of_targets, group = run), data = sub, alpha = 0.2) +
+  geom_line(aes(x = number_of_species, y = number_of_targets, group = run), data = sub, alpha = 0.1) +
   geom_line(aes(x = number_of_species, y = number_of_targets), data = mean_target, color = "cadetblue", size = 1) +
     ylim(0, 5)
   
 
+res <- read_csv(here("data-processed", "nut_accumulation_trad_foods.csv"))
+
+res_all <- bind_rows(sub, res)
+
+species_numbers <- nuts_mean %>% ## get a list of communities for which we have at least 25 species
+  group_by(culture) %>% 
+  summarise(n_species = n_distinct(latin_name)) %>% 
+  filter(n_species >= 25) 
+
+
+
+
+res_all %>% 
+  filter(culture %in% species_numbers$culture | culture == "global") %>% 
+  filter(number_of_species < 11) %>% 
+  ggplot(aes(x = number_of_species, y = number_of_targets, group = culture, group = run)) +
+  geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.05, size = 0) +
+  geom_line(size =.5, alpha = 0.5) +
+  geom_line(group = run, color = "cadetblue", size =1, data = filter(res_all, culture == "global", number_of_species < 11)) +
+  ylab("Number of nutrient requirements fulfilled (10% DRI)") +
+  xlab("Number of species") + theme(text = element_text(size=14)) + 
+  theme(legend.title=element_blank()) + theme_classic() +
+  ylim(0,5) +
+  scale_x_continuous(breaks = seq(1,10,1))
 
 
 
