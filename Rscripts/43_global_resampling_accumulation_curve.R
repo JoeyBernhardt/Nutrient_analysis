@@ -1,9 +1,14 @@
+library(ggplot2)
+library(patchwork)
 library(tidyverse)
 library(purrr)
 library(here)
 library(stringr)
 library(cowplot)
 library(broom)
+library(vegan)
+
+
 
 new_global <- read_csv(here("data-processed", "new_global.csv"))
 
@@ -68,11 +73,14 @@ accumulate_global <- function(data, threshold) {
 rep_acc_function <- function(x) accumulate_global(sample_n(new_global, size = x, replace = FALSE), threshold = 0.1)
 
 
-samples <- rep(40, 1000)
+samples <- rep(40, 10000)
 
 
 repeat_global <- samples %>% 
   map_df(rep_acc_function, .id = "run")
+
+write_csv(repeat_global, "data-processed/global_accumulation_null.csv")
+repeat_global <- read_csv("data-processed/global_accumulation_null.csv")
 
 
 mean_target <- repeat_global %>% 
@@ -86,11 +94,7 @@ sub <- repeat_global %>%
   mutate(culture = "global")
   
 
-sub %>% 
-  ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_point(alpha = 0.1)
-  
-  
-  mean_target %>% 
+mean_target %>% 
  ggplot(aes(x = number_of_species, y = number_of_targets), color = "red") + geom_line() +
   geom_line(aes(x = number_of_species, y = number_of_targets, group = run), data = sub, alpha = 0.1) +
   geom_line(aes(x = number_of_species, y = number_of_targets), data = mean_target, color = "cadetblue", size = 1) +
@@ -106,16 +110,34 @@ species_numbers <- nuts_mean %>% ## get a list of communities for which we have 
   summarise(n_species = n_distinct(latin_name)) %>% 
   filter(n_species >= 25) 
 
+global_mean  <- sub %>% 
+  group_by(number_of_species) %>% 
+  summarise(mean_targets = mean(number_of_targets),
+            low=quantile(number_of_targets, probs=0.025),
+            high=quantile(number_of_targets, probs=0.975))
 
 
-
-res_all %>% 
+res_sel <- res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
-  filter(number_of_species < 11) %>% 
-  ggplot(aes(x = number_of_species, y = number_of_targets, group = culture, group = run)) +
-  geom_ribbon(aes(ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.05, size = 0) +
-  geom_line(size =.5, alpha = 0.5) +
-  geom_line(group = run, color = "cadetblue", size =1, data = filter(res_all, culture == "global", number_of_species < 11)) +
+  filter(number_of_species < 11)
+
+seq(1:10)
+run <- data.frame(run = rep(1:1014, 10)) %>% 
+  arrange(run)
+
+res_sel2 <- bind_cols(res_sel, run) %>% 
+  filter(culture != "global")
+
+table(res_sel2$culture)
+
+
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
+fig3c <- res_sel2 %>% 
+  ggplot() +
+  geom_ribbon(aes(x = number_of_species, ymin = number_of_targets - se, ymax = number_of_targets + se, group = culture), alpha = 0.15, size = 0) +
+  geom_line(aes(x = number_of_species, y = number_of_targets, group = culture)) +
+  geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high), alpha = 0.5, size = 0, fill = "cadetblue", data = global_mean) +
+  geom_line(aes(x = number_of_species, y = mean_targets), data = global_mean, color = "cadetblue", size = 1.5) +
   ylab("Number of nutrient requirements fulfilled (10% DRI)") +
   xlab("Number of species") + theme(text = element_text(size=14)) + 
   theme(legend.title=element_blank()) + theme_classic() +
@@ -124,4 +146,4 @@ res_all %>%
 
 
 
-write_csv(repeat_global, "data-processed/global_accumulation_null.csv")
+
