@@ -182,6 +182,8 @@ all_summaries <- all_output_with5 %>%
   group_by(nutrient, species_no) %>%
   summarise_at(.vars = "grams_for_25_percent", funs(mean, min, max, median, std.error)) 
 
+write_csv(all_summaries, "data-processed/all_summaries_BEF.csv")
+
 params <- all_summaries %>% 
   ungroup() %>% 
   mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
@@ -223,19 +225,20 @@ bef <- all_summaries %>%
   # mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
   ggplot(aes(x = species_no, y = median, color = nutrient)) + 
   geom_point(size = 2) +
-  geom_line(size = 1.5) + theme_bw() +
+  geom_line(size = 1.5) + 
+  # theme_bw() +
   # scale_y_reverse() +
-  theme(text=element_text(family="Helvetica", size=16)) +
+  theme(text=element_text(family="Helvetica", size=14)) +
   theme(legend.title=element_blank()) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
   scale_x_continuous(breaks = c(1:10)) + xlab("species richness") +
   # ylab("median grams required \n to reach 10% of DRI") +
-  ylab("") +
+  ylab("") + xlab("Species richness") +
   theme(legend.position = "none") + 
   # theme(legend.position = c(0.66, 0.7), legend.direction = "horizontal") +
   scale_color_viridis(discrete = TRUE) +
-  theme(legend.key = element_rect(fill = "transparent"))
+  # theme(legend.key = element_rect(fill = "transparent"))
   # theme(legend.position = "bottom")
 ggsave("figures/all_nutrients_efficiency_power_fits_rev_y.pdf", width = 4, height = 4)
 ggsave("figures/all_nutrients_efficiency_power_fits.png", width = 4, height = 4)

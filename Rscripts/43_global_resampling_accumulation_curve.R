@@ -105,6 +105,8 @@ res <- read_csv(here("data-processed", "nut_accumulation_trad_foods.csv"))
 
 res_all <- bind_rows(sub, res)
 
+write_csv(res_all, "data-processed/res_all.csv")
+
 species_numbers <- nuts_mean %>% ## get a list of communities for which we have at least 25 species
   group_by(culture) %>% 
   summarise(n_species = n_distinct(latin_name)) %>% 
@@ -139,10 +141,11 @@ fig3c <- res_sel2 %>%
   geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high), alpha = 0.5, size = 0, fill = "cadetblue", data = global_mean) +
   geom_line(aes(x = number_of_species, y = mean_targets), data = global_mean, color = "cadetblue", size = 1.5) +
   ylab("Number of nutrient requirements fulfilled (10% DRI)") +
-  xlab("Number of species") + theme(text = element_text(size=14)) + 
+  xlab("Species richness") + theme(text = element_text(size=14)) + 
   theme(legend.title=element_blank()) + theme_classic() +
   ylim(0,5) +
-  scale_x_continuous(breaks = seq(1,10,1))
+  scale_x_continuous(breaks = seq(1,10,1)) +
+  theme(text=element_text(family="Helvetica", size=14)) 
 
 
 

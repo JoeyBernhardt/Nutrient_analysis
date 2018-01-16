@@ -24,7 +24,8 @@ plot3B <- all_min_rdi %>%
   # geom_ribbon(aes(ymin = mean - grams_required_10_std.error, ymax = mean + grams_required_10_std.error), fill = "grey", alpha = 0.5) +
   theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
   geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11)) +
-  scale_x_continuous(breaks = seq(1,10,1))
+  scale_x_continuous(breaks = seq(1,10,1)) +
+  theme(text=element_text(family="Helvetica", size=14)) 
 ggsave("figures/min_rdi_local_BEF.png", width = 3, height = 3)
 
 
@@ -133,16 +134,16 @@ reps100_summary <- reps100b %>%
 
 
 
-ggplot() +
+violin_greyscale <- ggplot() +
   geom_violin(aes(x = species_no, y = grams_for_25_percent, group = species_no), data = reps100b, color = "grey", size = 1, fill = "grey") +
   geom_point(aes(x = species_no, y = grams_for_25_percent_median), data = reps100_summary, size = 2) +
   geom_hline(yintercept = 100, linetype = "dotted") +
   geom_hline(yintercept = 200, linetype = "dashed") +
   scale_y_log10() +
   scale_x_continuous(breaks = c(1:10)) +
-  theme_bw() + xlab("species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)") +
+  xlab("Species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)") +
   background_grid(major = "none", minor = "none") +
-  theme(text=element_text(family="Helvetica", size=16)) 
+  theme(text=element_text(family="Helvetica", size=14)) 
 ggsave("figures/violin_plot_fig3.pdf", width = 4.3, height = 3.5)
 ggsave("figures/violin_plot_fig3.png", width = 4, height = 3.5)
 
