@@ -201,6 +201,7 @@ all <- bind_rows(trad, reps100_summary, reps40_summary, var, var40)
 
 write_csv(all, "data-processed/all_resampling_new_global_local.csv")
 
+all <- read_csv("data-processed/all_resampling_new_global_local.csv")
 mod <- all %>% 
   filter(dataset != "global") %>% 
   filter(!dataset %in% c("25", "25", "29", "57", "40", "20")) %>% 
@@ -229,6 +230,7 @@ a_terms1 <- mod %>%
   filter(term == "a")
 
 a_plot1 <- a_terms1 %>% 
+  ungroup() %>% 
   ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point(size = 2) +
   geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
@@ -243,6 +245,7 @@ b_terms1 <- mod %>%
   filter(term == "b")
 
 b_plot1 <- b_terms1 %>% 
+  ungroup() %>% 
   ggplot(aes(x = reorder(dataset, estimate), y = estimate)) + geom_point(size = 2) +
   geom_point(size = 2, data = filter(b_terms1, dataset == "GL"), color = "cadet blue") +
   geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +

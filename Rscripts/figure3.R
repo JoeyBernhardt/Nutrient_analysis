@@ -57,7 +57,7 @@ output_calcium_1000 %>%
   summary
 
 
-reps100 <- read_csv("~/Desktop/grams-required-10-spp-1000reps.csv")
+reps100 <- read_csv("data-processed/grams-required-10-spp-1000reps-new-global.csv")
 
 
 
