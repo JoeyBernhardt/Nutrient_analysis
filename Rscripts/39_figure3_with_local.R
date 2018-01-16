@@ -1,6 +1,8 @@
 ### Figure 3 with local
 
 library(tidyverse)
+library(plotrix)
+library(cowplot)
 
 
 res <- read_csv("data-processed/nut_accumulation_trad_foods.csv")
@@ -101,6 +103,7 @@ b_terms <- mod %>%
   filter(term == "b")
 
 b_plot <- b_terms %>% 
+  ungroup() %>% 
   ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point(size = 2) +
   geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.1) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
