@@ -53,7 +53,7 @@ exp_df <- sample_sizes %>%
 
 write_csv(exp_df, "data-processed/expected_FD_regional.csv")
 
-
+exp_df <- read_csv("data-processed/expected_FD_regional.csv")
 expected_fds <- exp_df %>% 
   group_by(sample_size) %>% 
   summarise(exp_df = mean(FD))
@@ -66,7 +66,7 @@ all_fds <- left_join(observed_fd, expected_fds, by = c("n_species" = "sample_siz
 
 
 all_fds %>% 
-  ggplot(aes(x = exp_df, y = FD)) + geom_point(size = 2) +
+  ggplot(aes(x = exp_df, y = FD, color = region)) + geom_point(size = 4) +
   geom_abline(slope = 1, intercept = 0) +
   theme_classic() +ylim(2.5, 4) + xlim(2.5, 4) +
   xlab("Expected FD") + ylab("Observed FD")
@@ -85,12 +85,20 @@ all_fds_b <- left_join(all_fds, all_terms)
 
 all_fds_b %>% 
   mutate(redundancy = exp_df - FD) %>% 
-  ggplot(aes(x = redundancy, y = estimate)) + geom_point() +
-  geom_smooth(method = "lm") +
-  xlab("Functional redundancy") + ylab("Biodiversity effect (b)")
+  ggplot(aes(x = redundancy, y = estimate, color = region)) + geom_point(size = 4) +
+  geom_smooth(method = "lm", color = "black") +
+  geom_point(size = 4) +
+  xlab("Functional redundancy") + ylab("Biodiversity effect (b)") + scale_color_viridis(discrete = TRUE)
+ggsave("figures/biodiversity_vs_FD.png")
 
+library(lmodel2)
 
-all_fds_b %>% 
-  mutate(redundancy = exp_df - FD) %>% 
+all_fds_b2 <- all_fds_b %>% 
+  mutate(redundancy = exp_df - FD) 
+
+all_fds_b2 %>% 
   lm(estimate ~ redundancy, data = .) %>% 
   summary()
+
+
+lmodel2(estimate ~ redundancy, data = all_fds_b2, range.y = "interval", range.x = "interval")
