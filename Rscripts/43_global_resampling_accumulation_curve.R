@@ -106,7 +106,7 @@ res <- read_csv(here("data-processed", "nut_accumulation_trad_foods.csv"))
 res_all <- bind_rows(sub, res)
 
 write_csv(res_all, "data-processed/res_all.csv")
-
+res_all <- read_csv("data-processed/res_all.csv")
 species_numbers <- nuts_mean %>% ## get a list of communities for which we have at least 25 species
   group_by(culture) %>% 
   summarise(n_species = n_distinct(latin_name)) %>% 
@@ -118,6 +118,7 @@ global_mean  <- sub %>%
             low=quantile(number_of_targets, probs=0.025),
             high=quantile(number_of_targets, probs=0.975))
 
+write_csv(global_mean, "data-processed/global_mean_accumulation.csv")
 
 res_sel <- res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 

@@ -2,9 +2,15 @@
 
 ## new attempt at making the mega plot for figure 3!
 library(patchwork)
+library(tidyverse)
+library(stringr)
+library(broom)
+library(viridis)
+library(plotrix)
+library(cowplot)
 
-giant_plot <- bef + fig3c + a_plot + b_plot + violin_greyscale  + plot3B + a_plot1 + b_plot1 + plot_layout(ncol = 4)
-ggplot2::ggsave(plot = giant_plot, filename = "figures/figure3_multi", device = "pdf", width = 12, height = 5)
+giant_plot <- bef + violin_greyscale + fig3c + plot3B + a_plot +  a_plot1 + b_plot + b_plot1 + plot_layout(ncol = 2)
+ggplot2::ggsave(plot = giant_plot, filename = "figures/figure3_multi", device = "pdf", width =8, height = 12)
 
 class(giant_plot)
 
@@ -22,9 +28,18 @@ plot3B <- all_min_rdi %>%
   theme(text=element_text(family="Helvetica", size=14)) 
 
 res_all <- read_csv("data-processed/res_all.csv")
+global_mean <- read_csv("data-processed/global_mean_accumulation.csv")
 res_sel <- res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
   filter(number_of_species < 11)
+run <- data.frame(run = rep(1:1014, 10)) %>% 
+  arrange(run)
+
+res_sel2 <- bind_cols(res_sel, run) %>% 
+  filter(culture != "global")
+
+res_sel2 <- res_sel %>% 
+  filter(culture != "global")
 
 fig3c <- res_sel2 %>% 
   ggplot() +
@@ -77,7 +92,6 @@ a_terms <- mod %>%
   ungroup() %>% 
   mutate(culture = as.character(culture))
 
-str(a_terms)
 
 a_plot <- a_terms %>% 
   ggplot(aes(x = reorder(culture, estimate), y = estimate)) + geom_point(size = 2) +
@@ -159,12 +173,10 @@ all_summaries <- read_csv("data-processed/all_summaries_BEF.csv")
 
 bef <- all_summaries %>% 
   ungroup() %>% 
-  # mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
   ggplot(aes(x = species_no, y = median, color = nutrient)) + 
-  geom_point(size = 2) +
-  geom_line(size = 1.5) + 
-  # theme_bw() +
-  # scale_y_reverse() +
+  geom_line(size = 1) + 
+  geom_point(size = 1.5) +
+  # geom_point(size = 1.5, shape = 1, color = "black") +
   theme(text=element_text(family="Helvetica", size=14)) +
   theme(legend.title=element_blank()) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
