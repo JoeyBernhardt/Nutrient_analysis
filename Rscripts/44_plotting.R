@@ -3,20 +3,19 @@
 ## new attempt at making the mega plot for figure 3!
 library(patchwork)
 
-giant_plot <- bef + fig3c + a_plot1 + b_plot1 + violin_greyscale  + plot3B + a_plot + b_plot + plot_layout(ncol = 4)
-
-ggsave(giant_plot, "figures/figure3_multi.png", device = "png", width = 5, height = 3)
+giant_plot <- bef + fig3c + a_plot + b_plot + violin_greyscale  + plot3B + a_plot1 + b_plot1 + plot_layout(ncol = 4)
+ggplot2::ggsave(plot = giant_plot, filename = "figures/figure3_multi", device = "pdf", width = 12, height = 5)
 
 class(giant_plot)
 
 all_min_rdi <- read_csv("data-processed/all_resampling_new_global_local.csv")
 plot3B <- all_min_rdi %>% 
-  # filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
   filter(species_no < 11) %>% 
   filter(dataset != "global") %>% 
   filter(!dataset %in% c("25", "25", "29", "57")) %>% 
-  ggplot(aes(x = species_no, y = median, group = dataset)) + geom_line(size = 0.5, alpha = 0.5) +
-  # geom_ribbon(aes(ymin = mean - grams_required_10_std.error, ymax = mean + grams_required_10_std.error), fill = "grey", alpha = 0.5) +
+  ggplot(aes(x = species_no, y = median, group = dataset)) + 
+  geom_ribbon(aes(ymin = median - grams_required_10_std.error, ymax = median + grams_required_10_std.error), fill = "darkgrey", alpha = 0.5) +
+  geom_line(size = 0.5) +
   theme_classic() + ylab("") + xlab("Species richness") +
   geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11)) +
   scale_x_continuous(breaks = seq(1,10,1)) +
@@ -29,10 +28,10 @@ res_sel <- res_all %>%
 
 fig3c <- res_sel2 %>% 
   ggplot() +
-  geom_ribbon(aes(x = number_of_species, ymin = number_of_targets - se, ymax = number_of_targets + se, group = culture), alpha = 0.15, size = 0) +
+  geom_ribbon(aes(x = number_of_species, ymin = number_of_targets - se, ymax = number_of_targets + se, group = culture), alpha = 0.5, size = 0, fill = "darkgrey") +
   geom_line(aes(x = number_of_species, y = number_of_targets, group = culture)) +
   geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high), alpha = 0.5, size = 0, fill = "cadetblue", data = global_mean) +
-  geom_line(aes(x = number_of_species, y = mean_targets), data = global_mean, color = "cadetblue", size = 1.5) +
+  geom_line(aes(x = number_of_species, y = mean_targets), data = global_mean, color = "cadetblue", size = 0.75) +
   ylab("") +
   xlab("Species richness") + theme(text = element_text(size=14)) + 
   theme(legend.title=element_blank()) + theme_classic() +
@@ -195,6 +194,5 @@ violin_greyscale <- ggplot() +
   geom_hline(yintercept = 200, linetype = "dashed") +
   scale_y_log10() +
   scale_x_continuous(breaks = c(1:10)) +
-  xlab("Species richness") + ylab("grams required to reach 5 RDI targets (10% RDI)") +
-  background_grid(major = "none", minor = "none") +
+  xlab("Species richness") + ylab("") +
   theme(text=element_text(family="Helvetica", size=14)) 
