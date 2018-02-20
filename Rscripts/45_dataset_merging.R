@@ -3,7 +3,7 @@
 
 ## ok these are the most up-to-datasets
 percentages <- read_csv("data-processed/percentages.csv") 
-cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
+
 
 
 ## Feb 20 2018. Here I'm recreating the cleaning code in 28_rdi_counts to go from trait_data to the percentages.csv file. 
@@ -27,22 +27,33 @@ trait_data3b <- trait_data2 %>%
 
 
 ### Now I see there are multiple columns for latitude. Need to pick which latitude to use.
-trait_data3b %>% 
+sum(!is.na(trait_data3b$latitude.x))
+sum(!is.na(trait_data3b$latitude.y))
+trait_data4 <- trait_data3b %>% 
+  mutate(latitude = ifelse(!is.na(latitude.y), latitude.y, latitude.x)) %>% 
   select(contains('lat'), everything()) %>% 
+  select(-latitude.x) %>% 
+  select(-latitude.y) %>% 
+  mutate(seanuts_id2 = as.character(seanuts_id2))
   # gather(key = nutrient, value = concentration, 3:9) %>% 
   # filter(!is.na(concentration))
 
-sum(!is.na(trait_data3b$latitude.x))
-sum(!is.na(trait_data3b$latitude.y))
+### ok now bring in the traditional animal foods data
 
-mean_nuts <- trait_data %>% 
-  filter(!grepl("^Mohanty", ref_info)) %>%
-  spread(nutrient, concentration) %>% 
-  group_by(species_name, subgroup) %>% 
-  summarise(calcium = mean(ca_mg, na.rm = TRUE),
-            zinc = mean(zn_mg, na.rm = TRUE), 
-            iron = mean(fe_mg, na.rm = TRUE),
-            epa = mean(epa, na.rm = TRUE),
-            dha = mean(dha, na.rm = TRUE)) %>% 
-  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha)) %>% 
-  ungroup()
+cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
+
+cnuts2 <- cnuts %>% 
+  rename(fat = fat_g,
+         calcium = ca_mg, 
+         zinc = zn_mg,
+         iron = fe_mg,
+         protein = protein_g,
+         species_name = latin_name) %>% 
+  mutate(cnuts_id = rownames(.)) %>% 
+  mutate(cnuts_id2 = paste("cnuts", cnuts_id, sep = "_")) %>% ## make a new column for a unique ID
+  mutate(seanuts_id2 = cnuts_id2) 
+
+seadiv <- bind_rows(trait_data4, cnuts2) %>% 
+  filter(!is.na(species_name))
+
+write_csv(seadiv, "data-processed/seadiv.csv")
