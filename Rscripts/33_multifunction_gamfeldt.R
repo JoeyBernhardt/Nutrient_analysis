@@ -9,12 +9,14 @@ library(broom)
 library(gridExtra)
 library(grid)
 
-mean_nuts <- read.csv("data-processed/mean_nuts.csv")
+mean_nuts <- read_csv("data-processed/mean_nuts.csv")
+mean_seadiv <- read_csv("data-processed/mean_seadiv.csv")
 
-str(mean_nuts)
+
 sample_size <- 10
+
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- mean_seadiv %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -38,13 +40,15 @@ nutrient_fishing_function <- function(sample_size) {
     # mutate(zinc_total = (zinc/species_number)) %>% 
     # mutate(iron_total = (iron/species_number)) %>% 
     # mutate(epa_total = (epa/species_number)) %>%
-    mutate(dha_total = (dha/species_number)) %>%
+    mutate(protein_total = (protein/species_number)) %>%
+    # mutate(dha_total = (dha/species_number)) %>%
     summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
     # mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
     # mutate(iron_grams = (iron_total/(18))) %>%
     # mutate(zinc_grams = (zinc_total/(11))) %>% 
     # mutate(epa_grams = (epa_total/(1))) %>%
-    mutate(dha_grams = (dha_total/(1))) %>%
+    # mutate(dha_grams = (dha_total/(1))) %>%
+    mutate(protein_grams = (protein_total/(56))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
@@ -84,8 +88,22 @@ output_dha <- samples_rep %>%
   map_df(nutrient_fishing_function, .id = "run") %>% 
   mutate(nutrient = "dha")
 
+output_protein <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run") %>% 
+  mutate(nutrient = "protein") %>% 
+  mutate(run = as.integer(run))
+
 all_output <- bind_rows(output_calcium, output_iron, output_zinc, output_dha, output_epa)
 write_csv(all_output, "data-processed/single_nutrient_accumulation_by_fractions.csv")
+
+all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions.csv")
+str(all_output)
+
+output_protein2  <- output_protein %>% 
+  mutate(sample_id = as.integer(sample_id))
+all_output2 <- bind_rows(all_output, output_protein2)
+
+write_csv(all_output2,"data-processed/single_nutrient_accumulation_by_fractions2.csv" )
 
 summary <- output_iron %>%
   filter(!is.na(grams_required)) %>% 

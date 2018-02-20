@@ -10,7 +10,8 @@ library(viridis)
 
 ### Code for figure 3. 
 
-all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions.csv")
+# all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions.csv")
+all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions2.csv") ## update Feb 20 to include protein, revert to above file for older results
 bang_resampling <- read_csv("data-processed/grams-required-10-spp-1000reps-bangladesh.csv")
 
 summary <- all_output %>%

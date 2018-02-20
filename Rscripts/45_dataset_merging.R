@@ -67,3 +67,17 @@ seadiv <- bind_rows(trait_data4, cnuts2) %>%
 
 
 write_csv(seadiv, "data-processed/seadiv.csv")
+
+mean_seadiv <- seadiv %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise(calcium = mean(calcium, na.rm = TRUE),
+            zinc = mean(zinc, na.rm = TRUE), 
+            iron = mean(iron, na.rm = TRUE),
+            epa = mean(epa, na.rm = TRUE),
+            dha = mean(dha, na.rm = TRUE),
+            protein = mean(protein, na.rm = TRUE),
+            fat = mean(fat, na.rm = TRUE)) %>% 
+  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha))
+
+
+write_csv(mean_seadiv, "data-processed/mean_seadiv.csv")
