@@ -87,7 +87,7 @@ species_numbers <- nuts_mean %>%
   summarise(n_species = n_distinct(latin_name)) %>% 
   filter(n_species >= 25) 
 
-
+write_csv(species_numbers, "data-processed/species_numbers.csv")
 
 
 # comparing species lists -------------------------------------------------

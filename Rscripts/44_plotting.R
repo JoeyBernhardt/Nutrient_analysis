@@ -12,6 +12,10 @@ library(cowplot)
 giant_plot <- bef + violin_greyscale + fig3c + plot3B + a_plot +  a_plot1 + b_plot + b_plot1 + plot_layout(ncol = 2)
 ggplot2::ggsave(plot = giant_plot, filename = "figures/figure3_multi", device = "pdf", width =8, height = 12)
 
+### this is the new plot, without the parameter values
+giant_plot2 <- bef + violin_greyscale + fig3c + plot3B  + plot_layout(ncol = 2)
+ggplot2::ggsave(plot = giant_plot2, filename = "figures/figure3_multi2", device = "pdf", width =10, height = 8)
+
 class(giant_plot)
 
 all_min_rdi <- read_csv("data-processed/all_resampling_new_global_local.csv")
@@ -22,21 +26,22 @@ plot3B <- all_min_rdi %>%
   ggplot(aes(x = species_no, y = median, group = dataset)) + 
   geom_ribbon(aes(ymin = median - grams_required_10_std.error, ymax = median + grams_required_10_std.error), fill = "darkgrey", alpha = 0.5) +
   geom_line(size = 0.5) +
-  theme_classic() + ylab("") + xlab("Species richness") +
-  geom_line(color = "cadetblue", size =1, data = filter(all, dataset == "global40", species_no < 11)) +
+  ylab("") + xlab("Species richness") +
+  geom_line(color = "cadetblue", size =1, data = filter(all_min_rdi, dataset == "global40", species_no < 11)) +
   scale_x_continuous(breaks = seq(1,10,1)) +
   theme(text=element_text(family="Helvetica", size=14)) 
 
 res_all <- read_csv("data-processed/res_all.csv")
 global_mean <- read_csv("data-processed/global_mean_accumulation.csv")
+species_numbers <- read_csv("data-processed/species_numbers.csv")
 res_sel <- res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
   filter(number_of_species < 11)
 run <- data.frame(run = rep(1:1014, 10)) %>% 
   arrange(run)
 
-res_sel2 <- bind_cols(res_sel, run) %>% 
-  filter(culture != "global")
+# res_sel2 <- bind_cols(res_sel, run) %>% 
+  # filter(culture != "global")
 
 res_sel2 <- res_sel %>% 
   filter(culture != "global")
