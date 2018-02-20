@@ -1,20 +1,11 @@
 library(purrr)
-library(dplyr)
-library(tidyr)
-library(readr)
+library(tidyverse)
 library(plotrix)
 library(ggplot2)
 library(broom)
-library(gridExtra)
-library(grid)
-library(tidyverse)
 library(cowplot)
 library(viridis)
-library(viridisLite)
-library(extrafont)
-library(extrafontdb)
 
-loadfonts(quiet = FALSE)
 
 
 ### Code for figure 3. 
@@ -184,6 +175,7 @@ all_summaries <- all_output_with5 %>%
 
 write_csv(all_summaries, "data-processed/all_summaries_BEF.csv")
 
+all_summaries <- read_csv("data-processed/all_summaries_BEF.csv")
 params <- all_summaries %>% 
   ungroup() %>% 
   mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
@@ -237,9 +229,7 @@ bef <- all_summaries %>%
   ylab("") + xlab("Species richness") +
   theme(legend.position = "none") + 
   # theme(legend.position = c(0.66, 0.7), legend.direction = "horizontal") +
-  scale_color_viridis(discrete = TRUE) +
-  # theme(legend.key = element_rect(fill = "transparent"))
-  # theme(legend.position = "bottom")
+  scale_color_viridis(discrete = TRUE) 
 ggsave("figures/all_nutrients_efficiency_power_fits_rev_y.pdf", width = 4, height = 4)
 ggsave("figures/all_nutrients_efficiency_power_fits.png", width = 4, height = 4)
 
