@@ -10,6 +10,8 @@ percentages <- read_csv("data-processed/percentages.csv")
 ## I'm re-creating this because I want to create a new clean dataset that also includes the data from the traditional foods dataset
 trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
+length(unique(trait_data3b$species_name))
+
 trait_data2 <- trait_data %>% 
   filter(!grepl("^Mohanty", ref_info))
 trait_data3b <- trait_data2 %>% 
@@ -27,8 +29,7 @@ trait_data3b <- trait_data2 %>%
 
 
 ### Now I see there are multiple columns for latitude. Need to pick which latitude to use.
-sum(!is.na(trait_data3b$latitude.x))
-sum(!is.na(trait_data3b$latitude.y))
+
 trait_data4 <- trait_data3b %>% 
   mutate(latitude = ifelse(!is.na(latitude.y), latitude.y, latitude.x)) %>% 
   select(contains('lat'), everything()) %>% 
@@ -51,9 +52,18 @@ cnuts2 <- cnuts %>%
          species_name = latin_name) %>% 
   mutate(cnuts_id = rownames(.)) %>% 
   mutate(cnuts_id2 = paste("cnuts", cnuts_id, sep = "_")) %>% ## make a new column for a unique ID
-  mutate(seanuts_id2 = cnuts_id2) 
+  mutate(seanuts_id2 = cnuts_id2) %>% 
+  mutate(subgroup = NA) %>% 
+  mutate(subgroup = ifelse(level_2 %in% c("Bivalves", "Sea Snails","Primitive Mollusks", "Cephalopods"), "mollusc", subgroup)) %>% 
+  mutate(subgroup = ifelse(level_2 %in% c("Freshwater Fish", "Saltwater Fish", "Searun Fish"), "finfish", subgroup)) %>% 
+  mutate(subgroup = ifelse(level_2 %in% c("Crustaceans"), "crustacean", subgroup)) %>% 
+  mutate(subgroup = ifelse(level_2 %in% c("Echinoderms"), "echinoderm", subgroup))
+
 
 seadiv <- bind_rows(trait_data4, cnuts2) %>% 
   filter(!is.na(species_name))
+
+
+
 
 write_csv(seadiv, "data-processed/seadiv.csv")
