@@ -36,5 +36,26 @@ nuts %>%
 
 # R2 We found no effect of diversity on the protein benefits of seafood.
 
+all_summaries <- read_csv("data-processed/all_summaries_BEF.csv")
+all_summaries %>% 
+  ungroup() %>% 
+  mutate(nutrient = ifelse(nutrient == "all 5 micronutrients", "all", nutrient)) %>% 
+  group_by(nutrient) %>% 
+  do(tidy(nls(median ~ a * species_no^b, data =., start = c(a=10000, b=-0.7)), conf.int = TRUE)) %>% 
+  filter(term == "b") %>% 
+  mutate(estimate = estimate*-1) %>%
+  mutate(conf.low = conf.low *-1) %>%
+  mutate(conf.high = conf.high*-1) %>% 
+
+protein <- all_summaries %>% 
+  filter(nutrient == "protein") 
+
+
+ pro_mod <- nls(median ~ a * species_no^b, start = c(a=10, b=-0.7), data = protein)
+ summary(pro_mod)
+ tidy(pro_mod, conf.int = TRUE)
+ boot_ci <- nlstools::nlsBoot(pro_mod)
+ as_data_frame(boot_ci$coefboot) %>% View
+ as_data_frame(boot_ci$bootCI) %>% View
 
 

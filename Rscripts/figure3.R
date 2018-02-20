@@ -157,16 +157,16 @@ cal_sum %>%
 
 reps <- reps100 %>% 
   mutate(nutrient = "all 5 micronutrients") %>% 
-  select(-run, -`X1`) 
+  select(-run) 
 
-all_output2 <- all_output %>% 
+all_output2b <- all_output %>% 
   select(-run) %>% 
   mutate(sample_id = as.integer(sample_id))
 
 str(all_output)
 str(reps)
 
-all_output_with5 <- bind_rows(all_output2, reps)
+all_output_with5 <- bind_rows(all_output2b, reps)
 
 all_summaries <- all_output_with5 %>% 
   filter(!is.na(grams_required)) %>% 
@@ -185,7 +185,7 @@ params <- all_summaries %>%
   filter(term == "b") %>% 
   mutate(estimate = estimate*-1) %>%
   mutate(conf.low = conf.low *-1) %>%
-  mutate(conf.high = conf.high*-1) %>%
+  mutate(conf.high = conf.high*-1) %>% 
   ggplot(aes(x = reorder(nutrient, estimate), y = estimate, color = nutrient, group = nutrient)) + geom_point(size = 2) +
    geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + theme_bw() +
   # scale_y_reverse() +
