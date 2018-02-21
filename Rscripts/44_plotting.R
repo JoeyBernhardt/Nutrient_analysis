@@ -62,8 +62,19 @@ fig3c <- res_sel2 %>%
 
 ### params plots
 res_all <- read_csv("data-processed/res_all.csv")
+mean_target <- read_csv("data-processed/global_40_species_resampled_accumulation_mean.csv")
 
-res_all2 <- res_all %>% 
+mt <- mean_target %>% 
+  mutate(culture = "global")
+res_all %>% 
+  filter(culture == "Inuit-Inupiaq") %>% View
+
+res_allb <- res_all %>% 
+  filter(culture != "global")
+
+res_allc <- bind_rows(res_allb, mt)
+
+res_all2 <- res_allc %>% 
   rename(dataset = culture) %>% 
   filter(!dataset %in% c("25", "25", "29", "57", "40", "20")) %>% 
   mutate(dataset = str_replace(dataset, "Inuit-Inupiaq", "II")) %>% 
@@ -83,6 +94,8 @@ res_all2 <- res_all %>%
   mutate(dataset = str_replace(dataset, "global", "GL"))
 cultures <- c("II", "CS", "WA", "CR", "NO", "BC", "TL", "HA",
               "TS", "MN", "YU", "AB", "MI", "KW", "GL")
+
+table(res_all2$dataset)
 
 mod <- res_all2 %>% 
   rename(culture = dataset) %>% 

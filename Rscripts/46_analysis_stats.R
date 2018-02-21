@@ -58,4 +58,11 @@ protein <- all_summaries %>%
  as_data_frame(boot_ci$coefboot) %>% View
  as_data_frame(boot_ci$bootCI) %>% View
 
+ 
+ 
 
+# Result #3 ---------------------------------------------------------------
+
+### although the magnitude of the biodiversity effect was generally lower at the local scale than the global scale 
+ 
+ 

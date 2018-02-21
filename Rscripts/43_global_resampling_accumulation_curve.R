@@ -88,7 +88,7 @@ mean_target <- repeat_global %>%
   summarise_each(funs(mean), number_of_targets) %>% 
   filter(number_of_species < 11) 
 
-
+write_csv(mean_target, "data-processed/global_40_species_resampled_accumulation_mean.csv")
 sub <- repeat_global %>%
   filter(number_of_species < 11) %>%
   mutate(culture = "global")

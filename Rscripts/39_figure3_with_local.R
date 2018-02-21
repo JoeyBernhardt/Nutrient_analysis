@@ -73,6 +73,7 @@ filter(!dataset %in% c("25", "25", "29", "57", "40", "20")) %>%
   mutate(dataset = str_replace(dataset, "Micmac", "MI")) %>%
   mutate(dataset = str_replace(dataset, "Kwakiutl", "KW")) %>%
   mutate(dataset = str_replace(dataset, "global", "GL"))
+
 cultures <- c("II", "CS", "WA", "CR", "NO", "BC", "TL", "HA",
               "TS", "MN", "YU", "AB", "MI", "KW", "GL")
 
