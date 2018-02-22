@@ -16,7 +16,7 @@ mean_seadiv <- read_csv("data-processed/mean_seadiv.csv")
 sample_size <- 10
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- mean_seadiv %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -36,19 +36,19 @@ nutrient_fishing_function <- function(sample_size) {
   resampling_15 <- new_data_sub1 %>% 
     dplyr::rename(species_number = subsample_size) %>%
     group_by(species_number, sample_id) %>% 
-    # mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
+    mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
     # mutate(zinc_total = (zinc/species_number)) %>% 
     # mutate(iron_total = (iron/species_number)) %>% 
     # mutate(epa_total = (epa/species_number)) %>%
-    mutate(protein_total = (protein/species_number)) %>%
+    # mutate(protein_total = (protein/species_number)) %>%
     # mutate(dha_total = (dha/species_number)) %>%
     summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
-    # mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
+    mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
     # mutate(iron_grams = (iron_total/(18))) %>%
     # mutate(zinc_grams = (zinc_total/(11))) %>% 
     # mutate(epa_grams = (epa_total/(1))) %>%
     # mutate(dha_grams = (dha_total/(1))) %>%
-    mutate(protein_grams = (protein_total/(56))) %>%
+    # mutate(protein_grams = (protein_total/(56))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
@@ -61,9 +61,111 @@ nutrient_fishing_function <- function(sample_size) {
 
 samples_rep <- rep(10, 100)
 
-output_calcium <- samples_rep %>% 
+output_calcium_100c <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") %>% 
   mutate(nutrient = "calcium")
+
+## quick diversion to plot this!
+
+output_calcium %>% 
+  ungroup() %>% 
+  ggplot(aes(x = log(species_no), y = log(grams_required), group = run, color = run)) + geom_smooth(method = "lm")
+
+output_calcium_1000 %>% 
+  group_by(run) %>% 
+  do(tidy(lm(log(grams_required) ~ log(species_no), data = .), conf.int = TRUE)) %>% 
+  filter(term != "(Intercept)") %>% 
+  ungroup() %>% 
+  summarise_each(funs(mean, sd), estimate) %>% 
+  ggplot(aes(x = estimate_mean, y = estimate_mean)) + geom_point() +
+  geom_errorbar(aes(ymin = estimate_mean - estimate_sd, ymax = estimate_mean + estimate_sd)) + ylim(-1, 0)
+  
+output_calcium %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) %>% 
+  filter(term == "b") %>% 
+  ungroup() %>% 
+  summarise_each(funs(mean, sd), estimate) %>% 
+  ggplot(aes(x = estimate_mean, y = estimate_mean)) + geom_point() +
+  geom_errorbar(aes(ymin = estimate_mean - estimate_sd, ymax = estimate_mean + estimate_sd)) + ylim(-1, 0)
+
+ estimates_1000 <- output_calcium_1000 %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+
+estimates_200 <- output_calcium_200 %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+
+estimates_100 <- output_calcium_100 %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+
+estimates_100b <- output_calcium_100b %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+estimates_100c <- output_calcium_100c %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+
+estimates_10 <- output_calcium_10 %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+
+estimates_10$replication <- "10_reps"
+estimates_100$replication <- "100_reps"
+estimates_100b$replication <- "100_repsb"
+estimates_100c$replication <- "100_repsc"
+estimates_200$replication <- "200_reps"
+estimates_1000$replication <- "1000_reps"
+
+all_est <- bind_rows(estimates_10, estimates_100, estimates_100b, estimates_100c, estimates_200, estimates_1000)
+
+all_est %>% 
+  filter(term == "b") %>% 
+  group_by(replication) %>% 
+  summarise_each(funs(mean, sd), estimate) %>% 
+  ggplot(aes(x = replication, y = estimate_mean)) + geom_point() +
+  geom_errorbar(aes(ymin = estimate_mean - estimate_sd, ymax = estimate_mean + estimate_sd)) + ylim(-1, 0)
+
+  
+
+mod1000 <- output_calcium_1000 %>% 
+  group_by(run) %>% 
+  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.5)))) 
+
+mod1000_linear <- output_calcium_1000 %>% 
+  group_by(run) %>% 
+  do(tidy(lm(log(grams_required) ~ log(species_no), data = .), conf.int = TRUE))
+ 
+  
+o287 <- mod1000 %>% 
+  filter(run == 287)
+
+l287 <- mod1000_linear %>% 
+  filter(run == 287)
+
+data287 <- output_calcium_1000 %>% 
+  filter(run == 287)
+
+pf <- function(x) 7542.6337779*x^-0.3375611
+
+data287 %>% 
+  ggplot(aes(x = species_no, y = grams_required)) + geom_jitter(width = 0.4) +
+  stat_function(fun = pf, color = "blue")
+
+lf <- function(x) -0.1113618*x + 8.5263642
+
+data287 %>% 
+  ggplot(aes(x = log(species_no), y = log(grams_required))) + geom_point() +
+ stat_function(fun = lf, color = "blue", size =1.5)
+
+mod1000 %>% 
+  filter(term == "b") %>%
+  ungroup() %>% 
+  summarise_each(funs(mean, sd), estimate) %>% 
+  ggplot(aes(x = estimate_mean, y = estimate_mean)) + geom_point() +
+  geom_errorbar(aes(ymin = estimate_mean - estimate_sd, ymax = estimate_mean + estimate_sd)) + ylim(-1, 0)
 
 output_calcium_1000 <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") %>% 

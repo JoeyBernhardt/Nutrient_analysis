@@ -101,6 +101,7 @@ mean_target %>%
     ylim(0, 5)
   
 
+library(here)
 res <- read_csv(here("data-processed", "nut_accumulation_trad_foods.csv"))
 
 res_all <- bind_rows(sub, res)

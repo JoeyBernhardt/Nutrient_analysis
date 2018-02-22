@@ -105,6 +105,8 @@ mod <- res_all2 %>%
   do(tidy(nls(formula = (number_of_targets ~ a * number_of_species^b),data = .,  start = c(a=1, b=0.3)))) 
 
 
+
+
 a_terms <- mod %>% 
   filter(term == "a") %>% 
   ungroup() %>% 
@@ -122,6 +124,9 @@ a_plot <- a_terms %>%
 
 b_terms <- mod %>% 
   filter(term == "b")
+
+lm(estimate ~ culture, data = b_terms) %>% summary
+
 
 b_plot <- b_terms %>% 
   ungroup() %>% 
