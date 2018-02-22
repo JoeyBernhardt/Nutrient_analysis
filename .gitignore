@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .DS_Store
+
+data-processed/single_nutrient_accumulation_by_fractions.csv

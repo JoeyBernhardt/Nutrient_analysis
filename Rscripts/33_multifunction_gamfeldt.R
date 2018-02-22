@@ -225,6 +225,7 @@ output_epa <- samples_rep %>%
   mutate(nutrient = "epa")
 
 
+write_csv(output_epa, "data-processed/epa_grams_required.csv")
 # dha ---------------------------------------------------------------------
 
 nutrient_fishing_dha <- function(sample_size) {
@@ -266,7 +267,7 @@ output_dha <- samples_rep %>%
   map_df(nutrient_fishing_dha, .id = "run") %>% 
   mutate(nutrient = "dha")
 
-
+write_csv(output_dha, "data-processed/dha_grams_required.csv")
 # protein -----------------------------------------------------------------
 
 nutrient_fishing_protein <- function(sample_size) {
@@ -305,6 +306,8 @@ output_protein <- samples_rep %>%
   map_df(nutrient_fishing_protein, .id = "run") %>% 
   mutate(nutrient = "protein")
 
+
+write_csv(output_protein, "data-processed/protein_grams_required.csv")
 ## quick diversion to plot this!
 
 # quick diversion to plot (remove later) ----------------------------------
