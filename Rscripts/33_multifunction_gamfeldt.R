@@ -10,13 +10,15 @@ library(gridExtra)
 library(grid)
 
 mean_nuts <- read_csv("data-processed/mean_nuts.csv")
-mean_seadiv <- read_csv("data-processed/mean_seadiv.csv")
+mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
 
+mean_seadiv <- mean_seadiv_raw %>% 
+  filter(!grepl("juvenile", species_name))
 
 sample_size <- 10
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- mean_seadiv %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -59,13 +61,254 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 100)
+samples_rep <- rep(10, 1000)
 
-output_calcium_100c <- samples_rep %>% 
-  map_df(nutrient_fishing_function, .id = "run") %>% 
+
+# calcium -----------------------------------------------------------------
+
+nutrient_fishing_calcium <- function(sample_size) {
+  ntbl_sub1 <- mean_seadiv %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
+       summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, 3) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+output_calcium <- samples_rep %>% 
+  map_df(nutrient_fishing_calcium, .id = "run") %>% 
   mutate(nutrient = "calcium")
 
+
+# iron --------------------------------------------------------------------
+
+nutrient_fishing_iron <- function(sample_size) {
+  ntbl_sub1 <- mean_seadiv %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(iron_total = (iron/species_number)) %>% 
+    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(iron_grams = (iron_total/(18))) %>%
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, 3) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+
+
+output_iron <- samples_rep %>% 
+  map_df(nutrient_fishing_iron, .id = "run") %>% 
+  mutate(nutrient = "iron")
+
+
+# zinc --------------------------------------------------------------------
+
+nutrient_fishing_zinc <- function(sample_size) {
+  ntbl_sub1 <- mean_seadiv %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(zinc_total = (zinc/species_number)) %>% 
+    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(zinc_grams = (zinc_total/(11))) %>% 
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, 3) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+
+
+output_zinc <- samples_rep %>% 
+  map_df(nutrient_fishing_zinc, .id = "run") %>% 
+  mutate(nutrient = "zinc")
+
+
+# epa ---------------------------------------------------------------------
+
+nutrient_fishing_epa <- function(sample_size) {
+  ntbl_sub1 <- mean_seadiv %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(epa_total = (epa/species_number)) %>%
+    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(epa_grams = (epa_total/(1))) %>%
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, 3) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+
+output_epa <- samples_rep %>% 
+  map_df(nutrient_fishing_epa, .id = "run") %>% 
+  mutate(nutrient = "epa")
+
+
+# dha ---------------------------------------------------------------------
+
+nutrient_fishing_dha <- function(sample_size) {
+  ntbl_sub1 <- mean_seadiv %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(dha_total = (dha/species_number)) %>%
+    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(dha_grams = (dha_total/(1))) %>%
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, 3) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+
+
+
+output_dha <- samples_rep %>% 
+  map_df(nutrient_fishing_dha, .id = "run") %>% 
+  mutate(nutrient = "dha")
+
+
+# protein -----------------------------------------------------------------
+
+nutrient_fishing_protein <- function(sample_size) {
+  ntbl_sub1 <- mean_seadiv %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(protein_total = (protein/species_number)) %>%
+    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(protein_grams = (protein_total/(56))) %>%
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, 3) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+output_protein <- samples_rep %>% 
+  map_df(nutrient_fishing_protein, .id = "run") %>% 
+  mutate(nutrient = "protein")
+
 ## quick diversion to plot this!
+
+# quick diversion to plot (remove later) ----------------------------------
+
 
 output_calcium %>% 
   ungroup() %>% 
@@ -174,28 +417,11 @@ output_calcium_1000 <- samples_rep %>%
 output_calcium <- output_calcium %>% 
   mutate(nutrient = "calcium")
 
-output_zinc <- samples_rep %>% 
-  map_df(nutrient_fishing_function, .id = "run") %>% 
-  mutate(nutrient = "zinc")
 
-output_iron <- samples_rep %>% 
-  map_df(nutrient_fishing_function, .id = "run") %>% 
-  mutate(nutrient = "iron")
+# back to other nutrients -------------------------------------------------
 
-output_epa <- samples_rep %>% 
-  map_df(nutrient_fishing_function, .id = "run") %>% 
-  mutate(nutrient = "epa")
 
-output_dha <- samples_rep %>% 
-  map_df(nutrient_fishing_function, .id = "run") %>% 
-  mutate(nutrient = "dha")
-
-output_protein <- samples_rep %>% 
-  map_df(nutrient_fishing_function, .id = "run") %>% 
-  mutate(nutrient = "protein") %>% 
-  mutate(run = as.integer(run))
-
-all_output <- bind_rows(output_calcium, output_iron, output_zinc, output_dha, output_epa)
+all_output <- bind_rows(output_calcium, output_iron, output_zinc, output_dha, output_epa, output_protein)
 write_csv(all_output, "data-processed/single_nutrient_accumulation_by_fractions.csv")
 
 all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions.csv")
