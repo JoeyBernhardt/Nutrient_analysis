@@ -41,10 +41,10 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
     mutate(zinc_total = (zinc/species_number)) %>% 
     mutate(iron_total = (iron/species_number)) %>% 
-    mutate(epa_total = (epa/species_number)) %>%
+    mutate(epa_total = (epa/species_number)) %>% 
     # mutate(protein_total = (protein/species_number)) %>%
     mutate(dha_total = (dha/species_number)) %>%
-    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
     mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
     mutate(iron_grams = (iron_total/(18))) %>%
     mutate(zinc_grams = (zinc_total/(11))) %>% 
@@ -54,9 +54,9 @@ nutrient_fishing_function <- function(sample_size) {
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, 3) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
     group_by(species_no, sample_id) %>% 
-    summarise(min_percentage = min(concentration)) %>% 
+    summarise(min_percentage = min(concentration)) %>%
     mutate(grams_required = 100/min_percentage)
 }
 
@@ -112,7 +112,7 @@ write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
 
 nutrient_fishing_iron <- function(sample_size) {
-  ntbl_sub1 <- mean_seadiv %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -145,11 +145,11 @@ nutrient_fishing_iron <- function(sample_size) {
 }
 
 
-output_iron <- samples_rep %>% 
+output_iron_nuts <- samples_rep %>% 
   map_df(nutrient_fishing_iron, .id = "run") %>% 
   mutate(nutrient = "iron")
 
-
+write_csv(output_iron_nuts, "data-processed/iron_grams_required_nuts.csv")
 write_csv(output_iron, "data-processed/iron_grams_required.csv")
 
 # zinc --------------------------------------------------------------------
