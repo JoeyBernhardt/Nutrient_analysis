@@ -39,17 +39,17 @@ nutrient_fishing_function <- function(sample_size) {
     dplyr::rename(species_number = subsample_size) %>%
     group_by(species_number, sample_id) %>% 
     mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
-    # mutate(zinc_total = (zinc/species_number)) %>% 
-    # mutate(iron_total = (iron/species_number)) %>% 
-    # mutate(epa_total = (epa/species_number)) %>%
+    mutate(zinc_total = (zinc/species_number)) %>% 
+    mutate(iron_total = (iron/species_number)) %>% 
+    mutate(epa_total = (epa/species_number)) %>%
     # mutate(protein_total = (protein/species_number)) %>%
-    # mutate(dha_total = (dha/species_number)) %>%
+    mutate(dha_total = (dha/species_number)) %>%
     summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
     mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
-    # mutate(iron_grams = (iron_total/(18))) %>%
-    # mutate(zinc_grams = (zinc_total/(11))) %>% 
-    # mutate(epa_grams = (epa_total/(1))) %>%
-    # mutate(dha_grams = (dha_total/(1))) %>%
+    mutate(iron_grams = (iron_total/(18))) %>%
+    mutate(zinc_grams = (zinc_total/(11))) %>% 
+    mutate(epa_grams = (epa_total/(1))) %>%
+    mutate(dha_grams = (dha_total/(1))) %>%
     # mutate(protein_grams = (protein_total/(56))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
@@ -63,6 +63,12 @@ nutrient_fishing_function <- function(sample_size) {
 
 samples_rep <- rep(10, 1000)
 
+
+output_all5 <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run") %>% 
+  mutate(nutrient = "all_5_micronutrients")
+
+write_csv(output_all5, "data-processed/all_5_micronutrients_grams_required.csv")
 
 # calcium -----------------------------------------------------------------
 
@@ -102,7 +108,7 @@ output_calcium <- samples_rep %>%
   map_df(nutrient_fishing_calcium, .id = "run") %>% 
   mutate(nutrient = "calcium")
 
-
+write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
 
 nutrient_fishing_iron <- function(sample_size) {
@@ -144,6 +150,8 @@ output_iron <- samples_rep %>%
   mutate(nutrient = "iron")
 
 
+write_csv(output_iron, "data-processed/iron_grams_required.csv")
+
 # zinc --------------------------------------------------------------------
 
 nutrient_fishing_zinc <- function(sample_size) {
@@ -184,6 +192,7 @@ output_zinc <- samples_rep %>%
   map_df(nutrient_fishing_zinc, .id = "run") %>% 
   mutate(nutrient = "zinc")
 
+write_csv(output_zinc, "data-processed/zinc_grams_required.csv")
 
 # epa ---------------------------------------------------------------------
 
@@ -424,7 +433,7 @@ output_calcium <- output_calcium %>%
 # back to other nutrients -------------------------------------------------
 
 
-all_output <- bind_rows(output_calcium, output_iron, output_zinc, output_dha, output_epa, output_protein)
+all_output <- bind_rows(output_calcium, output_iron, output_zinc, output_dha, output_epa, output_protein, output_all5)
 write_csv(all_output, "data-processed/single_nutrient_accumulation_by_fractions.csv")
 
 all_output <- read_csv("data-processed/single_nutrient_accumulation_by_fractions.csv")
