@@ -15,6 +15,10 @@ mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
 mean_seadiv <- mean_seadiv_raw %>% 
   filter(!grepl("juvenile", species_name))
 
+
+hist(mean_seadiv$dha)
+hist(mean_nuts$dha)
+
 sample_size <- 10
 
 nutrient_fishing_function <- function(sample_size) {
@@ -61,14 +65,16 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 100)
 
 
 output_all5 <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") %>% 
   mutate(nutrient = "all_5_micronutrients")
 
+write_csv(output_all5, "data-processed/all_5_micronutrients_grams_required_mean_nuts.csv")
 write_csv(output_all5, "data-processed/all_5_micronutrients_grams_required.csv")
+
 
 # calcium -----------------------------------------------------------------
 
@@ -99,7 +105,7 @@ nutrient_fishing_calcium <- function(sample_size) {
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, 3) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
     group_by(species_no, sample_id) %>% 
     summarise(min_percentage = min(concentration)) %>% 
     mutate(grams_required = 100/min_percentage)
@@ -108,11 +114,12 @@ output_calcium <- samples_rep %>%
   map_df(nutrient_fishing_calcium, .id = "run") %>% 
   mutate(nutrient = "calcium")
 
+write_csv(output_calcium, "data-processed/calcium_grams_required_mean_nuts.csv")
 write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
 
 nutrient_fishing_iron <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- mean_seadiv %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -138,18 +145,18 @@ nutrient_fishing_iron <- function(sample_size) {
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, 3) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>%
     group_by(species_no, sample_id) %>% 
     summarise(min_percentage = min(concentration)) %>% 
     mutate(grams_required = 100/min_percentage)
 }
 
 
-output_iron_nuts <- samples_rep %>% 
+output_iron <- samples_rep %>% 
   map_df(nutrient_fishing_iron, .id = "run") %>% 
   mutate(nutrient = "iron")
 
-write_csv(output_iron_nuts, "data-processed/iron_grams_required_nuts.csv")
+write_csv(output_iron_nuts, "data-processed/iron_grams_required_mean_nuts.csv")
 write_csv(output_iron, "data-processed/iron_grams_required.csv")
 
 # zinc --------------------------------------------------------------------
@@ -181,7 +188,7 @@ nutrient_fishing_zinc <- function(sample_size) {
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, 3) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
     group_by(species_no, sample_id) %>% 
     summarise(min_percentage = min(concentration)) %>% 
     mutate(grams_required = 100/min_percentage)
@@ -192,6 +199,7 @@ output_zinc <- samples_rep %>%
   map_df(nutrient_fishing_zinc, .id = "run") %>% 
   mutate(nutrient = "zinc")
 
+write_csv(output_zinc, "data-processed/zinc_grams_required_mean_nuts.csv")
 write_csv(output_zinc, "data-processed/zinc_grams_required.csv")
 
 # epa ---------------------------------------------------------------------
@@ -223,7 +231,7 @@ nutrient_fishing_epa <- function(sample_size) {
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, 3) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
     group_by(species_no, sample_id) %>% 
     summarise(min_percentage = min(concentration)) %>% 
     mutate(grams_required = 100/min_percentage)
@@ -233,7 +241,7 @@ output_epa <- samples_rep %>%
   map_df(nutrient_fishing_epa, .id = "run") %>% 
   mutate(nutrient = "epa")
 
-
+write_csv(output_epa, "data-processed/epa_grams_required_mean_nuts.csv")
 write_csv(output_epa, "data-processed/epa_grams_required.csv")
 # dha ---------------------------------------------------------------------
 
@@ -264,7 +272,7 @@ nutrient_fishing_dha <- function(sample_size) {
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, 3) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
     group_by(species_no, sample_id) %>% 
     summarise(min_percentage = min(concentration)) %>% 
     mutate(grams_required = 100/min_percentage)
@@ -276,6 +284,7 @@ output_dha <- samples_rep %>%
   map_df(nutrient_fishing_dha, .id = "run") %>% 
   mutate(nutrient = "dha")
 
+write_csv(output_dha, "data-processed/dha_grams_required_mean_nuts.csv")
 write_csv(output_dha, "data-processed/dha_grams_required.csv")
 # protein -----------------------------------------------------------------
 
@@ -318,6 +327,55 @@ output_protein <- samples_rep %>%
 
 write_csv(output_protein, "data-processed/protein_grams_required.csv")
 ## quick diversion to plot this!
+
+
+
+# Get BEF params ----------------------------------------------------------
+
+all_grams <- bind_rows(output_all5, output_calcium, output_dha, output_epa, output_iron, output_zinc) %>% 
+  filter(grams_required < 100000)
+
+run7_mod <- all_grams %>% 
+  filter(run == 75, nutrient == "epa") %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  do(tidy(nls(formula = (grams_required_mean ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.7)))) 
+
+
+mod7 <- function(x) run7_mod$estimate[run7_mod$term == "a"]*x^run7_mod$estimate[run7_mod$term == "b"]
+all_grams %>% 
+  filter(run == 75, nutrient == "epa") %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  ggplot(aes(x = species_no, y = grams_required_mean)) + geom_point() +
+  stat_function(fun = mod7)
+
+run8_mod <- all_grams %>% 
+  filter(run == 56, nutrient == "calcium") %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  do(tidy(nls(formula = (grams_required_mean ~ a * species_no^b),data = .,  start = c(a=1000, b=-0.7)))) 
+
+
+mod8 <- function(x) run8_mod$estimate[run8_mod$term == "a"]*x^run8_mod$estimate[run8_mod$term == "b"]
+all_grams %>% 
+  filter(run == 56, nutrient == "calcium") %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  ggplot(aes(x = species_no, y = grams_required_mean)) + geom_point() +
+  stat_function(fun = mod8)
+
+
+mods_seadiv <- all_grams %>% 
+  group_by(nutrient, run, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  group_by(nutrient, run) %>%
+  do(tidy(nls(formula = (grams_required_mean ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.5)))) 
+
+
+mods_seadiv %>% 
+  filter(term == "b") %>% View
+
+mod_sum_seadiv <- mods_seadiv %>% 
+  filter(term == "b") %>% 
+  group_by(nutrient) %>% 
+  summarise_each(funs(mean, std.error), estimate)
 
 # quick diversion to plot (remove later) ----------------------------------
 
