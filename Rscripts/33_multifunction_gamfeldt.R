@@ -19,10 +19,12 @@ mn_sp <- mean_nuts$species_name
 mean_seadiv2 <- mean_seadiv_raw %>% 
   filter(species_name %in% mn_sp) 
 
-mean_seadiv2 %>% 
-  select(species_name, protein, fat) %>% View
-  filter(!is.na(protein), !is.na(fat)) %>% View
+protein_data <- mean_seadiv2 %>% 
+  select(species_name, protein) %>%
+  filter(!is.na(protein)) 
 
+mean_nuts_protein <- left_join(mean_nuts, protein_data, by = "species_name") %>% 
+  filter(!is.na(protein))
 
 mean_seadiv <- mean_seadiv_raw %>% 
   filter(!grepl("juvenile", species_name)) %>% 
@@ -82,8 +84,8 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(zinc_total = (zinc/species_number)) %>% 
     mutate(iron_total = (iron/species_number)) %>% 
     mutate(epa_total = (epa/species_number)) %>% 
-    mutate(protein_total = (protein/species_number)) %>%
-    mutate(fat_total = (fat/species_number)) %>%
+    # mutate(protein_total = (protein/species_number)) %>%
+    # mutate(fat_total = (fat/species_number)) %>%
     mutate(dha_total = (dha/species_number)) %>%
     summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
     mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
@@ -91,8 +93,8 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(zinc_grams = (zinc_total/(11))) %>% 
     mutate(epa_grams = (epa_total/(1))) %>%
     mutate(dha_grams = (dha_total/(1))) %>%
-    mutate(fat_grams = (fat_total/(78))) %>%
-    mutate(protein_grams = (protein_total/(56))) %>%
+    # mutate(fat_grams = (fat_total/(78))) %>%
+    # mutate(protein_grams = (protein_total/(56))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
@@ -115,7 +117,7 @@ write_csv(output_all5, "data-processed/all_5_micronutrients_grams_required.csv")
 
 
 # calcium -----------------------------------------------------------------
-
+dataset <- mean_nuts
 nutrient_fishing_calcium <- function(sample_size) {
   ntbl_sub1 <- dataset %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -155,7 +157,7 @@ output_calciumm <- samples_rep %>%
 write_csv(output_calcium, "data-processed/calcium_grams_required_mean_nuts.csv")
 write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
-
+dataset <- mean_nuts
 nutrient_fishing_iron <- function(sample_size) {
   ntbl_sub1 <- dataset %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -198,7 +200,7 @@ write_csv(output_iron_nuts, "data-processed/iron_grams_required_mean_nuts.csv")
 write_csv(output_iron, "data-processed/iron_grams_required.csv")
 
 # zinc --------------------------------------------------------------------
-
+dataset <- mean_nuts
 nutrient_fishing_zinc <- function(sample_size) {
   ntbl_sub1 <- dataset %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -241,7 +243,7 @@ write_csv(output_zinc, "data-processed/zinc_grams_required_mean_nuts.csv")
 write_csv(output_zinc, "data-processed/zinc_grams_required.csv")
 
 # epa ---------------------------------------------------------------------
-
+dataset <- mean_nuts
 nutrient_fishing_epa <- function(sample_size) {
   ntbl_sub1 <- dataset %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -282,7 +284,7 @@ output_epam <- samples_rep %>%
 write_csv(output_epa, "data-processed/epa_grams_required_mean_nuts.csv")
 write_csv(output_epa, "data-processed/epa_grams_required.csv")
 # dha ---------------------------------------------------------------------
-
+dataset <- mean_nuts
 nutrient_fishing_dha <- function(sample_size) {
   ntbl_sub1 <- dataset %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -326,7 +328,7 @@ write_csv(output_dha, "data-processed/dha_grams_required_mean_nuts.csv")
 write_csv(output_dha, "data-processed/dha_grams_required.csv")
 # protein -----------------------------------------------------------------
 
-dataset <- mean_seadiv
+dataset <- mean_nuts_protein
 nutrient_fishing_protein <- function(sample_size) {
   ntbl_sub1 <- dataset %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -359,7 +361,7 @@ nutrient_fishing_protein <- function(sample_size) {
     summarise(min_percentage = min(concentration)) %>% 
     mutate(grams_required = 100/min_percentage)
 }
-output_proteins <- samples_rep %>% 
+output_proteinm <- samples_rep %>% 
   map_df(nutrient_fishing_protein, .id = "run") %>% 
   mutate(nutrient = "protein")
 
@@ -424,32 +426,24 @@ output_fatm <- samples_rep %>%
 all_grams_seadiv <- bind_rows(output_all5s, output_calciums, output_dhas, output_epas, output_irons, output_zincs, output_proteins) %>% 
   filter(grams_required < 50000)
 
-all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm, output_proteinm, output_fatm) %>% 
+all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm, output_proteinm) %>% 
   filter(grams_required < 50000)
 
-all_grams_seadiv$dataset <- "seadiv"
-all_grams_mean_nuts$dataset <- "mean_nuts"
+write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 
 
-all_grams_all <- bind_rows(all_grams_mean_nuts, all_grams_seadiv) 
-
-
-all_grams_all %>% 
-  filter(nutrient == "protein") %>% 
-  group_by(dataset, species_no, nutrient) %>% 
+all_grams_mean_nuts %>% 
+  group_by(species_no, nutrient) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
-  ggplot(aes(x = log(species_no), y = log(grams_required_median), color = nutrient, group = dataset, shape = dataset))  + geom_point(size = 2) +
-  facet_wrap( ~ nutrient, scales = "free") +
-  geom_smooth(method = "lm")
-  
+  ggplot(aes(x = species_no, y = grams_required_median, color = nutrient, group = nutrient))  + geom_point(size = 2) + geom_line()
 
 
-pf <- function(x) 741.8550179*x^0.3963267
-all_grams_median_nuts %>% 
-  filter(nutrient == "protein") %>% 
-  ggplot(aes(x = species_no, y = grams_required_median))  + geom_point(size = 2) +
-  geom_smooth(method = "lm") +
-  stat_function(fun = pf)
+all_grams_median_nuts <- all_grams_mean_nuts %>% 
+  group_by(nutrient, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) 
+
+
+# other stuff -------------------------------------------------------------
 
 
 all_grams_all %>% 
@@ -473,9 +467,7 @@ mod_sum_seadiv <- mods_seadiv %>%
   summarise_each(funs(mean, std.error), estimate)
 
 
-all_grams_median_nuts <- all_grams_mean_nuts %>% 
-    group_by(nutrient, species_no) %>% 
-  summarise_each(funs(mean, median), grams_required) 
+
 
 
 all_grams_median_nuts %>% 
@@ -524,6 +516,9 @@ prediction_function <- function(df) {
 }
 
 
+# fit power functions -----------------------------------------------------
+
+
 cal_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "calcium"),  start = c(a=10000, b=-0.5))
 cal_boot <- nlsBoot(cal_mod)
 cal_boot$bootCI
@@ -534,7 +529,7 @@ cal_split <- cal_boot_df %>%
   mutate(replicate = rownames(.)) %>% 
   split(.$replicate)
 
-cal_median <- all_grams_median %>% 
+cal_median <- all_grams_median_nuts %>% 
   filter(nutrient == "calcium")
 
 
@@ -548,13 +543,7 @@ ggplot(aes(x= species_no, y = grams_required_median)) + geom_point() +
 all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "all_5_micronutrients"),  start = c(a=10000, b=-0.5))
 all_boot <- nlsBoot(all_mod)
 all_boot$bootCI
-
-all_mod_s <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_seadiv, nutrient == "all_5_micronutrients"),  start = c(a=10000, b=-0.5))
-all_boot_s <- nlsBoot(all_mod_s)
-all_boot_s$bootCI
-
 all_boot$estiboot
-all_boot_s$estiboot
 all_boot_df <- as_data_frame(all_boot$coefboot) 
 
 
@@ -565,22 +554,9 @@ zinc_boot$estiboot
 zinc_boot_df <- as_data_frame(zinc_boot$coefboot) 
 
 iron_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "iron"),  start = c(a=10000, b=-0.5))
-iron_mod_s <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_seadiv, nutrient == "iron"),  start = c(a=10000, b=-0.5))
-
 iron_boot <- nlsBoot(iron_mod)
-iron_boot_s <- nlsBoot(iron_mod_s)
 iron_boot$bootCI
-iron_boot_s$bootCI
-iron_boot_s$estiboot
 iron_boot_df <- as_data_frame(iron_boot$coefboot) 
-
-all_grams_median %>% 
-  ggplot(aes(x = species_no, y = grams_required_median, group = nutrient, color = nutrient)) + geom_point()
-
-
-all_grams_median %>% 
-  group_by(nutrient) %>% 
-  do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .))) %>% View
 
 epa_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "epa"),  start = c(a=10000, b=-0.5))
 epa_boot <- nlsBoot(epa_mod)
@@ -598,13 +574,6 @@ protein_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = f
 protein_boot <- nlsBoot(protein_mod)
 protein_boot$bootCI
 protein_boot$estiboot
-protein_boot_df <- as_data_frame(protein_boot$coefboot) 
-
-
-protein_mods <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_seadiv, nutrient == "protein"),  start = c(a=300, b=-0.5))
-protein_boots <- nlsBoot(protein_mods)
-protein_boots$bootCI
-protein_boots$estiboot
 protein_boot_df <- as_data_frame(protein_boot$coefboot) 
 
 library(janitor)
