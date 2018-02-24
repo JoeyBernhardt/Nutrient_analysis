@@ -13,8 +13,15 @@ library(nlstools)
 
 mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
-
+new_global <- read_csv("data-processed/new_global.csv")
 mn_sp <- mean_nuts$species_name
+
+new_global <- new_global %>% 
+  filter(species_name != "Ostreidae") %>% 
+  filter(iron < 100)
+
+mean(new_global$zinc)
+mean(mean_nuts$zinc)
 
 mean_seadiv2 <- mean_seadiv_raw %>% 
   filter(species_name %in% mn_sp) 
@@ -60,7 +67,7 @@ sample_size <- 10
 dataset <- mean_nuts
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- new_global %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -105,7 +112,7 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 200)
 
 
 output_all5m <- samples_rep %>% 
@@ -119,7 +126,7 @@ write_csv(output_all5, "data-processed/all_5_micronutrients_grams_required.csv")
 # calcium -----------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_calcium <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- new_global %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -159,7 +166,7 @@ write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_iron <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- new_global %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -202,7 +209,7 @@ write_csv(output_iron, "data-processed/iron_grams_required.csv")
 # zinc --------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_zinc <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- new_global %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -245,7 +252,7 @@ write_csv(output_zinc, "data-processed/zinc_grams_required.csv")
 # epa ---------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_epa <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- new_global %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -286,7 +293,7 @@ write_csv(output_epa, "data-processed/epa_grams_required.csv")
 # dha ---------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_dha <- function(sample_size) {
-  ntbl_sub1 <- mean_nuts %>% 
+  ntbl_sub1 <- new_global %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -428,6 +435,9 @@ all_grams_seadiv <- bind_rows(output_all5s, output_calciums, output_dhas, output
 
 all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm, output_proteinm) %>% 
   filter(grams_required < 50000)
+all_grams_global <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm) %>% 
+  filter(grams_required < 50000)
+
 
 write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 
@@ -443,16 +453,23 @@ all_grams_median_nuts <- all_grams_mean_nuts %>%
   summarise_each(funs(mean, median), grams_required) 
 
 
+all_grams_median_nuts <- all_grams_global %>% 
+  group_by(nutrient, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) 
+
+
 # other stuff -------------------------------------------------------------
 
 
-all_grams_all %>% 
+all_grams_mean_nuts %>% 
   # filter(nutrient == "iron") %>% 
-  group_by(dataset, species_no, nutrient) %>% 
+  group_by(run, species_no, nutrient) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
-  group_by(nutrient, dataset) %>% 
+  group_by(nutrient, run) %>% 
   do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .))) %>%
-  filter(term != "(Intercept)") %>% View
+  filter(term != "(Intercept)") %>%
+  group_by(nutrient) %>%
+  summarise(mean_slope = mean(estimate)) %>% View
 
 mods_mean <- all_grams %>% 
   group_by(nutrient, run, species_no) %>% 
@@ -471,17 +488,23 @@ mod_sum_seadiv <- mods_seadiv %>%
 
 
 all_grams_median_nuts %>% 
+  mutate(efficiency = 1/grams_required_median) %>% 
   ggplot(aes(x = species_no, y = grams_required_median, color = nutrient)) + geom_point() + geom_line()
 
+
+all_grams_median_nuts %>% 
+  ggplot(aes(x = log(species_no), y = log(grams_required_median), color = nutrient)) + geom_point() +
+  geom_smooth(method = "lm")
 
 all_grams_median_seadiv <- all_grams_seadiv %>% 
   group_by(nutrient, species_no) %>% 
   summarise_each(funs(mean, median), grams_required) 
 
-all_grams_seadiv %>% 
-  group_by(nutrient, run) %>% 
-  do(tidy(lm(log(grams_required) ~ log(species_no), data = .))) %>% 
-  filter(term != "(Intercept)") %>% 
+all_grams_median_nuts %>% 
+  mutate(efficiency = 1/grams_required_median) %>% 
+  group_by(nutrient) %>% 
+  do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .), conf.int = TRUE)) %>% 
+  filter(term != "(Intercept)") %>% View
   group_by(nutrient) %>% 
   summarise(mean_slope = mean(estimate)) %>% View
 
@@ -517,7 +540,7 @@ prediction_function <- function(df) {
 
 
 # fit power functions -----------------------------------------------------
-
+library(nlstools)
 
 cal_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "calcium"),  start = c(a=10000, b=-0.5))
 cal_boot <- nlsBoot(cal_mod)
@@ -599,11 +622,16 @@ protein_b <- as_data_frame(protein_boot$bootCI)
 protein_b$nutrient <- "protein"
 
 ### these are the parameter estimates for the b terms
+library(janitor)
 all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %>% 
   clean_names() %>% 
   rename(lower = x2_5percent,
          upper = x97_5percent) %>% 
   filter(median < 1)
+
+
+ggplot(aes(x = nutrient, y = median), data = all_params) + geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
 
 
 cal_split <- cal_boot_df %>% 
@@ -704,8 +732,6 @@ p +
   geom_point(data = all_grams_median_nuts, aes(x = species_no, y = grams_required_median, color = nutrient))
   
   
-  ggplot(aes(x = nutrient, y = median), data = all_params) + geom_point() +
-    geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
 
 # quick diversion to plot (remove later) ----------------------------------
 
