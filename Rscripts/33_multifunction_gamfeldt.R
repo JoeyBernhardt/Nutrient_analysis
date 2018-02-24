@@ -431,7 +431,7 @@ all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham, out
 
 write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 
-
+all_grams_mean_nuts <- read_csv("data-processed/single_nutrient_grams_required.csv")
 all_grams_mean_nuts %>% 
   group_by(species_no, nutrient) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
@@ -546,13 +546,13 @@ all_boot$estiboot
 all_boot_df <- as_data_frame(all_boot$coefboot) 
 
 
-zinc_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "zinc"),  start = c(a=10000, b=-0.5))
+zinc_mod <- nls(formula = (grams_required_median ~ a * species_no^b), data = filter(all_grams_median_nuts, nutrient == "zinc"),  start = c(a=10000, b=-0.5))
 zinc_boot <- nlsBoot(zinc_mod)
 zinc_boot$bootCI
 zinc_boot$estiboot
 zinc_boot_df <- as_data_frame(zinc_boot$coefboot) 
 
-iron_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "iron"),  start = c(a=10000, b=-0.5))
+iron_mod <- nls(formula = (grams_required_median ~ a * species_no^b), data = filter(all_grams_median_nuts, nutrient == "iron"),  start = c(a=10000, b=-0.5))
 iron_boot <- nlsBoot(iron_mod)
 iron_boot$bootCI
 iron_boot_df <- as_data_frame(iron_boot$coefboot) 
@@ -598,6 +598,7 @@ all_b$nutrient <- "all"
 protein_b <- as_data_frame(protein_boot$bootCI) 
 protein_b$nutrient <- "protein"
 
+### these are the parameter estimates for the b terms
 all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %>% 
   clean_names() %>% 
   rename(lower = x2_5percent,
@@ -699,7 +700,7 @@ p +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_dha, alpha = 0.7, fill = "blue") +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_protein, alpha = 0.7, fill = "cadetblue", color = "cadetblue") +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_iron, alpha = 0.7, fill = "orange") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_all, alpha = 1, fill = "purple") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_all, alpha = 0.7, fill = "purple") +
   geom_point(data = all_grams_median_nuts, aes(x = species_no, y = grams_required_median, color = nutrient))
   
   
