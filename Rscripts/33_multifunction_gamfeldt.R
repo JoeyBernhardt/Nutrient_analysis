@@ -60,7 +60,7 @@ sample_size <- 10
 dataset <- mean_nuts
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -105,7 +105,7 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 100)
+samples_rep <- rep(10, 1000)
 
 
 output_all5m <- samples_rep %>% 
@@ -119,7 +119,7 @@ write_csv(output_all5, "data-processed/all_5_micronutrients_grams_required.csv")
 # calcium -----------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_calcium <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -159,7 +159,7 @@ write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_iron <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -202,7 +202,7 @@ write_csv(output_iron, "data-processed/iron_grams_required.csv")
 # zinc --------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_zinc <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -245,7 +245,7 @@ write_csv(output_zinc, "data-processed/zinc_grams_required.csv")
 # epa ---------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_epa <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -286,7 +286,7 @@ write_csv(output_epa, "data-processed/epa_grams_required.csv")
 # dha ---------------------------------------------------------------------
 dataset <- mean_nuts
 nutrient_fishing_dha <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -330,7 +330,7 @@ write_csv(output_dha, "data-processed/dha_grams_required.csv")
 
 dataset <- mean_nuts_protein
 nutrient_fishing_protein <- function(sample_size) {
-  ntbl_sub1 <- dataset %>% 
+  ntbl_sub1 <- mean_nuts_protein %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -529,15 +529,14 @@ cal_split <- cal_boot_df %>%
   mutate(replicate = rownames(.)) %>% 
   split(.$replicate)
 
-cal_median <- all_grams_median_nuts %>% 
-  filter(nutrient == "calcium")
-
 
 cal_preds <- cal_split %>% 
   map_df(prediction_function, .id = "replicate")
 
+cal_median <- all_grams_median_nuts %>% 
+  filter(nutrient == "calcium")
 cal_median %>% 
-ggplot(aes(x= species_no, y = grams_required_median)) + geom_point() +
+ggplot(aes(x= species_no, y = grams_required_median)) +
   geom_line(data = cal_preds, aes(x = species_no, y = grams_required, group = replicate), alpha = 0.01, color = "grey")
 
 all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "all_5_micronutrients"),  start = c(a=10000, b=-0.5))
@@ -605,8 +604,107 @@ all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %
          upper = x97_5percent) %>% 
   filter(median < 1)
 
+
+cal_split <- cal_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+
+cal_preds <- cal_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+iron_split <- iron_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+iron_preds <- iron_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+zinc_split <- zinc_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+zinc_preds <- zinc_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+epa_split <- epa_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+epa_preds <- epa_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+dha_split <- dha_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+dha_preds <- dha_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+all_split <- all_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+all_preds <- all_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+protein_split <- protein_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate)
+protein_preds <- protein_split %>% 
+  map_df(prediction_function, .id = "replicate")
+
+limits_protein <- protein_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+limits_cal <- cal_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+limits_iron <- iron_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+limits_epa <- epa_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+limits_dha <- dha_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+
+limits_zinc <- zinc_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+limits_all <- all_preds %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required))
+
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
+p + 
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_cal, alpha = 0.7, fill = "green") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_zinc, alpha = 0.7, fill = "pink") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_epa, alpha = 0.7, fill = "red") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_dha, alpha = 0.7, fill = "blue") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_protein, alpha = 0.7, fill = "cadetblue", color = "cadetblue") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_iron, alpha = 0.7, fill = "orange") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_all, alpha = 1, fill = "purple") +
+  geom_point(data = all_grams_median_nuts, aes(x = species_no, y = grams_required_median, color = nutrient))
   
-  ggplot(aes(x = nutrient, y = lower), data = all_params) + geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1)
+  
+  ggplot(aes(x = nutrient, y = median), data = all_params) + geom_point() +
+    geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
 
 # quick diversion to plot (remove later) ----------------------------------
 
