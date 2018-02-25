@@ -232,6 +232,7 @@ all_b_params <- bind_rows(GL_b, CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, KW_b, 
 
 ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
+ggsave("figures/b_params_efficiency.png", width = 5, height = 5)
 
 
 # plot the functions ------------------------------------------------------
