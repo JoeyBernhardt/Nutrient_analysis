@@ -67,7 +67,7 @@ sample_size <- 10
 dataset <- mean_nuts
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- new_global %>% 
+  ntbl_sub1 <- mean_nuts %>% 
     sample_n(size = sample_size, replace = FALSE)
   
   sample_list <- NULL
@@ -112,7 +112,7 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 200)
+samples_rep <- rep(10, 100)
 
 
 output_all5m <- samples_rep %>% 

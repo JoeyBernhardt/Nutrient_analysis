@@ -22,7 +22,7 @@ all_min_rdi <- read_csv("data-processed/all_resampling_new_global_local.csv")
 plot3B <- all_min_rdi %>% 
   filter(species_no < 11) %>% 
   filter(dataset != "global") %>% 
-  filter(!dataset %in% c("25", "25", "29", "57")) %>% 
+  filter(!dataset %in% c("25", "25", "29", "57", "20", "40")) %>%
   ggplot(aes(x = species_no, y = median, group = dataset)) + 
   geom_ribbon(aes(ymin = median - grams_required_10_std.error, ymax = median + grams_required_10_std.error), fill = "darkgrey", alpha = 0.5) +
   geom_line(size = 0.5) +
