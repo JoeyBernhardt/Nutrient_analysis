@@ -57,11 +57,11 @@ global_10 <- samples_rep %>%
 global_10$dataset <- "GL"
 
 
-
+write_csv(global_10, "data-processed/global_10_40spp_efficiency.csv")
 
 ### get the efficiency curves for the local cases
 all_trad_eff_raw <- read_csv("data-processed/all_trad_reps.csv")
-
+global_10 <- read_csv("data-processed/global_10_40spp_efficiency.csv")
 
 unique(all_trad_eff$dataset)
 

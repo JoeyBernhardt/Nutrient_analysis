@@ -441,7 +441,7 @@ all_grams_global <- bind_rows(output_all5m, output_calciumm, output_dham, output
 
 write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 
-all_grams_mean_nuts <- read_csv("data-processed/single_nutrient_grams_required.csv")
+all_grams_mean_nuts <- read_csv("~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required.csv")
 all_grams_mean_nuts %>% 
   group_by(species_no, nutrient) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
