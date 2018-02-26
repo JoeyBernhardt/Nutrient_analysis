@@ -372,24 +372,22 @@ CS_b$culture <- "CS"
 
 
 # Merge all params --------------------------------------------------------
-
-all_b_params <- bind_rows(CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, GL_b, KW_b, TS_b, TL_b, WA_b, YU_b, AB_b, MI_b) %>% 
+ all_b_params <- bind_rows(CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, GL_b, KW_b, TS_b, TL_b, WA_b, YU_b, AB_b, MI_b) %>% 
   clean_names() %>% 
   rename(lower = x2_5percent,
-         upper = x97_5percent) %>% 
-  filter(median < 1)
+        upper = x97_5percent) %>% 
+filter(median < 1)
 
-all_b_params_mean <- bind_rows(CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, GL_b, KW_b, TS_b, TL_b, WA_b, YU_b, AB_b, MI_b) %>% 
-  clean_names() %>% 
-  rename(lower = x2_5percent,
-         upper = x97_5percent) %>% 
-  filter(median < 1)
+# all_b_params_mean <- bind_rows(CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, GL_b, KW_b, TS_b, TL_b, WA_b, YU_b, AB_b, MI_b) %>% 
+#   clean_names() %>% 
+#   rename(lower = x2_5percent,
+#          upper = x97_5percent) %>% 
+#   filter(median < 1)
 
 write_csv(all_b_params, "data-processed/replacement_design_accumulation_b_params.csv")
 
-ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params_mean) + geom_point() +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
 
+### this is the plot for the appendix
 ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
 
@@ -558,8 +556,7 @@ all_trad_accum_sum %>%
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = WA_preds, alpha = 0.7, fill = "pink") 
 
 p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
-p + 
-  # geom_line(aes(x = species_no, y = rdi_micro_tot_mean, group = dataset), data = all_trad_accum_sum) +
+rdi_accum_plot <- p + 
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = WA_preds, alpha = 0.7, fill = "grey") +
   geom_line(aes(x = species_no, y = mean), data = WA_preds, alpha = 0.7, color = "black") +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = AB_preds, alpha = 0.7, fill = "grey") +
@@ -589,5 +586,4 @@ p +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = TS_preds, alpha = 0.7, fill = "grey") +
   geom_line(aes(x = species_no, y = mean), data = TS_preds, alpha = 0.7, color = "black") +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = GL_preds, alpha = 0.7, fill = "cadetblue") +
-  geom_line(aes(x = species_no, y = mean), data = GL_preds, alpha = 0.7, color = "cadetblue") +
-  ylab("# Distinct DRI targets /100g") + xlab("Species richness")
+  geom_line(aes(x = species_no, y = mean), data = GL_preds, alpha = 0.7, color = "cadetblue") 

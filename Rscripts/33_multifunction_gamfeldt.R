@@ -449,13 +449,32 @@ all_grams_mean_nuts %>%
 
 
 all_grams_median_nuts <- all_grams_mean_nuts %>% 
+  mutate(grams_required = grams_required/10) %>% 
   group_by(nutrient, species_no) %>% 
   summarise_each(funs(mean, median), grams_required) 
 
+# 
+# all_grams_median_nuts <- all_grams_global %>% 
+#   group_by(nutrient, species_no) %>% 
+#   summarise_each(funs(mean, median), grams_required) 
 
-all_grams_median_nuts <- all_grams_global %>% 
-  group_by(nutrient, species_no) %>% 
-  summarise_each(funs(mean, median), grams_required) 
+prediction_function <- function(df) {
+  pf <-function(x){
+    res<-(df$a[[1]]*x^df$b[[1]])
+    res
+  }
+  
+  pred <- function(x) {
+    y <- pf(x)
+  }
+  
+  x <- seq(1, 10, by = 0.1)
+  
+  preds <- sapply(x, pred)
+  preds <- data.frame(x, preds) %>% 
+    rename(species_no = x, 
+           grams_required = preds)
+}
 
 
 # other stuff -------------------------------------------------------------
@@ -520,23 +539,6 @@ all_grams_median_nuts %>%
   summarise(mean_slope = mean(estimate)) %>% View
 
 
-prediction_function <- function(df) {
-  pf <-function(x){
-    res<-(df$a[[1]]*x^df$b[[1]])
-    res
-  }
-  
-  pred <- function(x) {
-    y <- pf(x)
-  }
-  
-  x <- seq(1, 10, by = 0.1)
-  
-  preds <- sapply(x, pred)
-  preds <- data.frame(x, preds) %>% 
-    rename(species_no = x, 
-           grams_required = preds)
-}
 
 
 # fit power functions -----------------------------------------------------
@@ -731,7 +733,10 @@ p +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_all, alpha = 0.7, fill = "purple") +
   geom_point(data = all_grams_median_nuts, aes(x = species_no, y = grams_required_median, color = nutrient))
   
-  
+library(colormap)
+ic <- colormap(colormap = colormaps$viridis, nshades = 8, format = "hex",
+               alpha = 1, reverse = FALSE)
+
 
 # quick diversion to plot (remove later) ----------------------------------
 
