@@ -420,7 +420,8 @@ CS_preds <- CS_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "CS")
 #14
 II_preds <- II_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -429,7 +430,8 @@ II_preds <- II_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "II")
 #13
 HA_preds <- HA_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -438,7 +440,8 @@ HA_preds <- HA_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "HA")
 #12
 KW_preds <- KW_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -447,7 +450,8 @@ KW_preds <- KW_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "KW")
 #11
 CR_preds <- CR_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -456,7 +460,8 @@ CR_preds <- CR_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "CR")
 #10
 NO_preds <- NO_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -465,7 +470,8 @@ NO_preds <- NO_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "NO")
 #9
 MN_preds <- MN_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -474,7 +480,8 @@ MN_preds <- MN_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "MN")
 #8
 TL_preds <- TL_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -483,7 +490,8 @@ TL_preds <- TL_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "TL")
 #7
 TS_preds <- TS_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -492,7 +500,8 @@ TS_preds <- TS_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "TS")
 #6
 GL_preds <- GL_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -501,7 +510,8 @@ GL_preds <- GL_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "GL")
 #5
 MI_preds <- MI_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -510,7 +520,8 @@ MI_preds <- MI_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets))%>% 
+  mutate(dataset = "MI")
 #4
 BC_preds <- BC_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -519,7 +530,8 @@ BC_preds <- BC_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "BC")
 #3
 AB_preds <- AB_boot_df %>% 
   mutate(replicate = rownames(.)) %>% 
@@ -528,7 +540,8 @@ AB_preds <- AB_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "AB")
 
 #2
 YU_preds <- YU_boot_df %>% 
@@ -538,7 +551,8 @@ YU_preds <- YU_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "YU")
 
 #1
 WA_preds <- WA_boot_df %>% 
@@ -548,8 +562,14 @@ WA_preds <- WA_boot_df %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(DRI_targets, probs=0.025),
             q97.5=quantile(DRI_targets, probs=0.975),
-            mean = mean(DRI_targets))
+            mean = mean(DRI_targets)) %>% 
+  mutate(dataset = "WA")
 
+
+all_accumulation_lims <- bind_rows(WA_preds, YU_preds, TL_preds, TS_preds, CS_preds, CR_preds, HA_preds, BC_preds, GL_preds,
+                            KW_preds, MN_preds, NO_preds, AB_preds, II_preds, MI_preds)
+
+write_csv(all_accumulation_lims, "data-processed/all_accumulation_lims.csv")
 
 all_trad_accum_sum %>% 
   ggplot(aes(x = species_no, y = rdi_micro_tot_mean)) + geom_line(size = 1) +
@@ -557,33 +577,10 @@ all_trad_accum_sum %>%
 
 p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
 rdi_accum_plot <- p + 
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = WA_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = WA_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = AB_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = AB_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = HA_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = HA_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = MI_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = MI_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = MN_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = MN_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = NO_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = NO_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = BC_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = BC_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = CR_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = CR_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = YU_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = YU_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = KW_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = KW_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = CS_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = CS_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = TL_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = TL_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = II_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = II_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = TS_preds, alpha = 0.7, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = TS_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = GL_preds, alpha = 0.7, fill = "cadetblue") +
-  geom_line(aes(x = species_no, y = mean), data = GL_preds, alpha = 0.7, color = "cadetblue") 
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, group = dataset), data = all_accumulation_lims, alpha = 0.7, fill = "grey") +
+  geom_line(aes(x = species_no, y = mean, group = dataset), data = all_accumulation_lims, alpha = 0.7, color = "black") +
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = filter(all_accumulation_lims, dataset == "GL"), alpha = 0.7, fill = "cadetblue") +
+  geom_line(aes(x = species_no, y = mean), data = filter(all_accumulation_lims, dataset == "GL"), alpha = 0.7, color = "cadetblue") +
+  ylab("") + xlab("") +
+  scale_x_continuous(breaks = seq(1,10,1)) +
+  theme(axis.text = element_text(size=16))

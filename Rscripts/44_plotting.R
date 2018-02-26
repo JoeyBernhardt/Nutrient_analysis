@@ -234,8 +234,8 @@ violin_greyscale <- ggplot() +
   geom_hline(yintercept = 200, linetype = "dashed") +
   scale_y_log10() +
   scale_x_continuous(breaks = c(1:10)) +
-  xlab("Species richness") + ylab("") +
-  theme(text=element_text(family="Helvetica", size=14)) 
+  xlab("") + ylab("") +
+  theme(axis.text = element_text(size=16))
 
 
 
@@ -278,11 +278,12 @@ efficiency_local <- p +
   scale_x_continuous(breaks = seq(1,10,1))
 
 
-### efficiency_local is from 38b_efficiency_trad, rdi_accum_plot is from 31b_replacement_local, 
-### violin greyscale is from this script, above, bef_plot is from 33_multifunction_gamfeldt
+### efficiency_local is from 38b_efficiency_trad, rdi_accum_plot is from 31b_replacement_resampling_local, 
+### violin greyscale is from this script, above, single_nut_plot is from 33_multifunction_gamfeldt
+## 
 
 
-giant_plot2 <- bef + violin_greyscale + efficiency_local + rdi_accum_plot  + plot_layout(ncol = 2)
+giant_plot2 <- single_nut_plot + violin_greyscale + efficiency_local + rdi_accum_plot  + plot_layout(ncol = 2)
 ggplot2::ggsave(plot = giant_plot2, filename = "figures/figure3_multi2", device = "pdf", width =10, height = 8)
 
 

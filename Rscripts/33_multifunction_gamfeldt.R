@@ -441,6 +441,9 @@ all_grams_global <- bind_rows(output_all5m, output_calciumm, output_dham, output
 
 write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 
+# read in single nut grams required ---------------------------------------
+
+
 all_grams_mean_nuts <- read_csv("~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required.csv")
 all_grams_mean_nuts %>% 
   group_by(species_no, nutrient) %>% 
@@ -683,59 +686,77 @@ limits_protein <- protein_preds %>%
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required)) %>% 
+  mutate(nutrient = "protein")
 
 limits_cal <- cal_preds %>% 
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required))%>% 
+  mutate(nutrient = "calcium")
 
 limits_iron <- iron_preds %>% 
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required))%>% 
+  mutate(nutrient = "iron")
 
 limits_epa <- epa_preds %>% 
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required))%>% 
+  mutate(nutrient = "epa")
 
 limits_dha <- dha_preds %>% 
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required))%>% 
+  mutate(nutrient = "dha")
 
 
 limits_zinc <- zinc_preds %>% 
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required))%>% 
+  mutate(nutrient = "zinc")
 
 limits_all <- all_preds %>% 
   group_by(species_no) %>% 
   summarise(q2.5=quantile(grams_required, probs=0.025),
             q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required))
+            mean = mean(grams_required))%>% 
+  mutate(nutrient = "five micronutrients")
 
-p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
-p + 
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_cal, alpha = 0.7, fill = "green") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_zinc, alpha = 0.7, fill = "pink") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_epa, alpha = 0.7, fill = "red") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_dha, alpha = 0.7, fill = "blue") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_protein, alpha = 0.7, fill = "cadetblue", color = "cadetblue") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_iron, alpha = 0.7, fill = "orange") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = limits_all, alpha = 0.7, fill = "purple") +
-  geom_point(data = all_grams_median_nuts, aes(x = species_no, y = grams_required_median, color = nutrient))
-  
+
+all_preds <- bind_rows(limits_all, limits_cal, limits_dha, limits_epa, limits_iron, limits_protein, limits_zinc)
+
+write_csv(all_preds, "data-processed/single_nutrient_prediction_limits.csv")
+
 library(colormap)
+library(viridis)
 ic <- colormap(colormap = colormaps$viridis, nshades = 8, format = "hex",
                alpha = 1, reverse = FALSE)
+
+all_grams <- all_grams_median_nuts %>% 
+  ungroup() %>% 
+  mutate(nutrient = ifelse(nutrient == "all_5_micronutrients", "five micronutrients", nutrient))
+
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
+single_nut_plot <- p + 
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds, alpha = 0.5) +
+  geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds, alpha = 1, size = 1.5) +
+  geom_point(data = all_grams, aes(x = species_no, y = grams_required_median, color = nutrient), size = 2) + 
+  scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
+  scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
+  theme(legend.position="none") +
+  theme(axis.text = element_text(size=16))
+  
+
 
 
 # quick diversion to plot (remove later) ----------------------------------
