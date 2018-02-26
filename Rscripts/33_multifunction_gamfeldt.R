@@ -632,11 +632,24 @@ all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %
   clean_names() %>% 
   rename(lower = x2_5percent,
          upper = x97_5percent) %>% 
-  filter(median < 1)
+  filter(median < 1) %>% 
+  mutate(nutrient = ifelse(nutrient == "all", "5 Micronutrients", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "calcium", "Calcium", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "iron", "Iron", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "zinc", "Zinc", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "epa", "EPA", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "dha", "DHA", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "protein", "Protein", nutrient))
 
+all_params$nutrient <- factor(all_params$nutrient, levels = c("5 Micronutrients", "Calcium", "Iron", "Zinc", "EPA", "DHA", "Protein"))
+all_params$nutrient <- factor(all_params$nutrient, levels = c("Protein", "DHA", "EPA", "Zinc", "Iron", "Calcium", "5 Micronutrients"))
 
-ggplot(aes(x = nutrient, y = median), data = all_params) + geom_point() +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
+ggplot(aes(x = reorder(nutrient, -median), y = median, color = nutrient), data = all_params) + geom_point(size = 4) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +
+  scale_color_viridis(discrete = TRUE) + coord_flip() + ylab("") +
+  theme(legend.position="none")
+  
+ggsave("figures/BEF_params.pdf", width = 4, height = 3)
 
 
 cal_split <- cal_boot_df %>% 
@@ -737,6 +750,8 @@ all_preds <- bind_rows(limits_all, limits_cal, limits_dha, limits_epa, limits_ir
 
 write_csv(all_preds, "data-processed/single_nutrient_prediction_limits.csv")
 
+
+all_preds <- read_csv("data-processed/single_nutrient_prediction_limits.csv")
 library(colormap)
 library(viridis)
 ic <- colormap(colormap = colormaps$viridis, nshades = 8, format = "hex",
@@ -747,17 +762,47 @@ all_grams <- all_grams_median_nuts %>%
   mutate(nutrient = ifelse(nutrient == "all_5_micronutrients", "five micronutrients", nutrient))
 
 p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
+
+all_preds2 <- all_preds %>% 
+  mutate(nutrient = ifelse(nutrient == "five micronutrients", "5 Micronutrients", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "calcium", "Calcium", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "iron", "Iron", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "zinc", "Zinc", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "epa", "EPA", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "dha", "DHA", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "protein", "Protein", nutrient))
+all_preds2$nutrient <- factor(all_preds2$nutrient, levels = c("5 Micronutrients", "Calcium", "Iron", "Zinc", "EPA", "DHA", "Protein"))
+
+all_grams2 <- all_grams %>% 
+  mutate(nutrient = ifelse(nutrient == "five micronutrients", "5 Micronutrients", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "calcium", "Calcium", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "iron", "Iron", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "zinc", "Zinc", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "epa", "EPA", nutrient)) %>%
+  mutate(nutrient = ifelse(nutrient == "dha", "DHA", nutrient)) %>% 
+  mutate(nutrient = ifelse(nutrient == "protein", "Protein", nutrient))
+all_grams2$nutrient <- factor(all_grams2$nutrient, levels = c("5 Micronutrients", "Calcium", "Iron", "Zinc", "EPA", "DHA", "Protein"))
+
 single_nut_plot <- p + 
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds, alpha = 0.5) +
-  geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds, alpha = 1, size = 1.5) +
-  geom_point(data = all_grams, aes(x = species_no, y = grams_required_median, color = nutrient), size = 2) + 
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds2, alpha = 0.5) +
+  geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds2, alpha = 1, size = 1.5) +
+  geom_point(data = all_grams2, aes(x = species_no, y = grams_required_median, color = nutrient), size = 2) + 
   scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
   scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
   theme(legend.position="none") +
   theme(axis.text = element_text(size=16))
-  
 
 
+
+ p + 
+  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds2, alpha = 0.5) +
+  geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds2, alpha = 1, size = 1.5) +
+  geom_point(data = all_grams2, aes(x = species_no, y = grams_required_median, color = nutrient), size = 2) + 
+  scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
+  scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
+  theme(legend.position="right") +
+  theme(axis.text = element_text(size=16))
+ ggsave("figures/single_nutrient_plot.pdf", width = 5.5, height = 4)
 
 # quick diversion to plot (remove later) ----------------------------------
 
