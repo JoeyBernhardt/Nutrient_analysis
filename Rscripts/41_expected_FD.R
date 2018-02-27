@@ -3,6 +3,10 @@ library(tidyverse)
 trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>% 
   filter(!is.na(latin_name))
 
+# trad_nuts_mean <- read_csv("data-processed/mean_nuts.csv") %>% 
+  # rename(latin_name = species_name) %>% 
+  # filter(!is.na(latin_name))
+
 
 repeat_fd <- function(sample_size){
 

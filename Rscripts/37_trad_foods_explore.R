@@ -430,6 +430,7 @@ fd_long <- FDs %>%
 
 
 all_fd <- bind_rows(fdiv_expected, fd_long, feve_expected)
+species_numbers <- read_csv("data-processed/species_numbers.csv")
 
 all_fd %>% 
   filter(dataset %in% species_numbers$culture | dataset == "expected") %>% 
@@ -456,8 +457,9 @@ FD_global <- data.frame(fdiv = dbFD(ntbl.matrix.mic)$FEve) %>%
 all_fd <- bind_rows(fdiv, FD_global)
 
 all_fd %>% 
+  rename(culture = dataset) %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
-  ggplot(aes(x = reorder(culture, fdiv), y = fdiv)) + geom_histogram(stat = "identity") +
+  ggplot(aes(x = culture, y = value)) + geom_histogram(stat = "identity") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Nutritional functional evenness (FEve)") + xlab("Culture")
 

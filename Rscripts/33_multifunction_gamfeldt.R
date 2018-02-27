@@ -480,68 +480,6 @@ prediction_function <- function(df) {
 }
 
 
-# other stuff -------------------------------------------------------------
-
-
-all_grams_mean_nuts %>% 
-  # filter(nutrient == "iron") %>% 
-  group_by(run, species_no, nutrient) %>% 
-  summarise_each(funs(mean, median), grams_required) %>% 
-  group_by(nutrient, run) %>% 
-  do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .))) %>%
-  filter(term != "(Intercept)") %>%
-  group_by(nutrient) %>%
-  summarise(mean_slope = mean(estimate)) %>% View
-
-mods_mean <- all_grams %>% 
-  group_by(nutrient, run, species_no) %>% 
-  summarise_each(funs(mean, median), grams_required) %>% 
-  group_by(nutrient, run) %>%
-  do(tidy(nls(formula = (grams_required_mean ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.5)))) 
-
-
-mod_sum_seadiv <- mods_seadiv %>% 
-  filter(term == "b") %>% 
-  group_by(nutrient) %>% 
-  summarise_each(funs(mean, std.error), estimate)
-
-
-
-
-
-all_grams_median_nuts %>% 
-  mutate(efficiency = 1/grams_required_median) %>% 
-  ggplot(aes(x = species_no, y = grams_required_median, color = nutrient)) + geom_point() + geom_line()
-
-
-all_grams_median_nuts %>% 
-  ggplot(aes(x = log(species_no), y = log(grams_required_median), color = nutrient)) + geom_point() +
-  geom_smooth(method = "lm")
-
-all_grams_median_seadiv <- all_grams_seadiv %>% 
-  group_by(nutrient, species_no) %>% 
-  summarise_each(funs(mean, median), grams_required) 
-
-all_grams_median_nuts %>% 
-  mutate(efficiency = 1/grams_required_median) %>% 
-  group_by(nutrient) %>% 
-  do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .), conf.int = TRUE)) %>% 
-  filter(term != "(Intercept)") %>% View
-  group_by(nutrient) %>% 
-  summarise(mean_slope = mean(estimate)) %>% View
-
-all_iron <- all_grams_seadiv %>% 
-  filter(nutrient == "iron") 
-
-all_grams_median_nuts %>% 
-  filter(nutrient == "protein") %>% 
-  group_by(run) %>% 
-  do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.5)))) %>% 
-  filter(term == "b") %>% 
-  ungroup() %>% 
-  summarise(mean_slope = mean(estimate)) %>% View
-
-
 
 
 # fit power functions -----------------------------------------------------
@@ -583,6 +521,7 @@ zinc_boot_df <- as_data_frame(zinc_boot$coefboot)
 iron_mod <- nls(formula = (grams_required_median ~ a * species_no^b), data = filter(all_grams_median_nuts, nutrient == "iron"),  start = c(a=10000, b=-0.5))
 iron_boot <- nlsBoot(iron_mod)
 iron_boot$bootCI
+iron_boot$estiboot
 iron_boot_df <- as_data_frame(iron_boot$coefboot) 
 
 epa_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "epa"),  start = c(a=10000, b=-0.5))
@@ -628,6 +567,7 @@ protein_b$nutrient <- "protein"
 
 ### these are the parameter estimates for the b terms
 library(janitor)
+library(viridis)
 all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %>% 
   clean_names() %>% 
   rename(lower = x2_5percent,
@@ -641,8 +581,10 @@ all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %
   mutate(nutrient = ifelse(nutrient == "dha", "DHA", nutrient)) %>% 
   mutate(nutrient = ifelse(nutrient == "protein", "Protein", nutrient))
 
+write_csv(all_params, "data-processed/all_single_efficiency_nutrient_params.csv")
+
 all_params$nutrient <- factor(all_params$nutrient, levels = c("5 Micronutrients", "Calcium", "Iron", "Zinc", "EPA", "DHA", "Protein"))
-all_params$nutrient <- factor(all_params$nutrient, levels = c("Protein", "DHA", "EPA", "Zinc", "Iron", "Calcium", "5 Micronutrients"))
+# all_params$nutrient <- factor(all_params$nutrient, levels = c("Protein", "DHA", "EPA", "Zinc", "Iron", "Calcium", "5 Micronutrients"))
 
 ggplot(aes(x = reorder(nutrient, -median), y = median, color = nutrient), data = all_params) + geom_point(size = 4) +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +
@@ -804,6 +746,70 @@ single_nut_plot <- p +
   theme(axis.text = element_text(size=16))
  ggsave("figures/single_nutrient_plot.pdf", width = 5.5, height = 4)
 
+ 
+ # other stuff -------------------------------------------------------------
+ 
+ 
+ all_grams_mean_nuts %>% 
+   # filter(nutrient == "iron") %>% 
+   group_by(run, species_no, nutrient) %>% 
+   summarise_each(funs(mean, median), grams_required) %>% 
+   group_by(nutrient, run) %>% 
+   do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .))) %>%
+   filter(term != "(Intercept)") %>%
+   group_by(nutrient) %>%
+   summarise(mean_slope = mean(estimate)) %>% View
+ 
+ mods_mean <- all_grams %>% 
+   group_by(nutrient, run, species_no) %>% 
+   summarise_each(funs(mean, median), grams_required) %>% 
+   group_by(nutrient, run) %>%
+   do(tidy(nls(formula = (grams_required_mean ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.5)))) 
+ 
+ 
+ mod_sum_seadiv <- mods_seadiv %>% 
+   filter(term == "b") %>% 
+   group_by(nutrient) %>% 
+   summarise_each(funs(mean, std.error), estimate)
+ 
+ 
+ 
+ 
+ 
+ all_grams_median_nuts %>% 
+   mutate(efficiency = 1/grams_required_median) %>% 
+   ggplot(aes(x = species_no, y = grams_required_median, color = nutrient)) + geom_point() + geom_line()
+ 
+ 
+ all_grams_median_nuts %>% 
+   ggplot(aes(x = log(species_no), y = log(grams_required_median), color = nutrient)) + geom_point() +
+   geom_smooth(method = "lm")
+ 
+ all_grams_median_seadiv <- all_grams_seadiv %>% 
+   group_by(nutrient, species_no) %>% 
+   summarise_each(funs(mean, median), grams_required) 
+ 
+ all_grams_median_nuts %>% 
+   mutate(efficiency = 1/grams_required_median) %>% 
+   group_by(nutrient) %>% 
+   do(tidy(lm(log(grams_required_median) ~ log(species_no), data = .), conf.int = TRUE)) %>% 
+   filter(term != "(Intercept)") %>% View
+ group_by(nutrient) %>% 
+   summarise(mean_slope = mean(estimate)) %>% View
+ 
+ all_iron <- all_grams_seadiv %>% 
+   filter(nutrient == "iron") 
+ 
+ all_grams_median_nuts %>% 
+   filter(nutrient == "protein") %>% 
+   group_by(run) %>% 
+   do(tidy(nls(formula = (grams_required ~ a * species_no^b),data = .,  start = c(a=10000, b=-0.5)))) %>% 
+   filter(term == "b") %>% 
+   ungroup() %>% 
+   summarise(mean_slope = mean(estimate)) %>% View
+ 
+ 
+ 
 # quick diversion to plot (remove later) ----------------------------------
 
 

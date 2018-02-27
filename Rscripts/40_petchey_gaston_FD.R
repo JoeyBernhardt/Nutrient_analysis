@@ -77,9 +77,13 @@ Calculate.FD <- function(landfile, traitfile, writefiles = T, scale = T){
 trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>% 
   filter(!is.na(latin_name))
 
+
+global_mean_nuts <- read_csv("data-processed/mean_nuts.csv") %>% 
+  rename(latin_name = species_name)
+
 sum(is.na(trad_nuts_mean$latin_name))
 
-global <- sample_n(distinct(trad_nuts_mean, latin_name, .keep_all = TRUE), size = 40, replace = FALSE) %>% 
+global <- sample_n(distinct(global_mean_nuts, latin_name, .keep_all = TRUE), size = 40, replace = FALSE) %>% 
   mutate(culture = "global")
 
 all <- bind_rows(trad_nuts_mean, global)

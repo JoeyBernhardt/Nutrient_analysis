@@ -258,6 +258,7 @@ all_trad_accum <- all_trad_accum %>%
 GL_mod <- nls(formula = (rdi_micro_tot_mean ~ a * species_no^b), data = filter(all_trad_accum, dataset == "GL"),  start = c(a=2, b=0.5))
 GL_boot <- nlsBoot(GL_mod)
 GL_boot$bootCI
+GL_estiboot <- GL_boot$estiboot
 GL_boot_df <- as_data_frame(GL_boot$coefboot) 
 GL_b <- as_data_frame(GL_boot$bootCI) 
 GL_b$culture <- "GL"
@@ -265,6 +266,7 @@ GL_b$culture <- "GL"
 AB_mod <- nls(formula = (rdi_micro_tot_mean ~ a * species_no^b), data = filter(all_trad_accum, dataset == "AB"),  start = c(a=2, b=0.5))
 AB_boot <- nlsBoot(AB_mod)
 AB_boot$bootCI
+AB_estiboot <- AB_boot$estiboot
 AB_boot_df <- as_data_frame(AB_boot$coefboot)
 AB_b <- as_data_frame(AB_boot$bootCI) 
 AB_b$culture <- "AB"
@@ -387,10 +389,16 @@ filter(median < 1)
 write_csv(all_b_params, "data-processed/replacement_design_accumulation_b_params.csv")
 
 
+accum_b_params <- read_csv("data-processed/replacement_design_accumulation_b_params.csv")
 ### this is the plot for the appendix
-ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
+ggplot(aes(x = reorder(culture, median), y = median), data = accum_b_params) + geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region")
+ggsave("figures/b_params_accumulation.png", width = 5, height = 5)
 
+
+accum_b_params %>% 
+  filter(culture != "GL") %>% 
+  summarise_each(funs(mean, std.error), median) %>% View 
 
 # plot the functions ------------------------------------------------------
 

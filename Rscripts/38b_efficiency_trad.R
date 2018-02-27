@@ -232,8 +232,14 @@ all_b_params <- bind_rows(GL_b, CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, KW_b, 
 
 write_csv(all_b_params, "data-processed/all_b_params_accumulation.csv")
 
+all_b_params <- read_csv("data-processed/all_b_params_accumulation.csv")
+
+all_b_params %>% 
+  filter(culture != "GL") %>% 
+  summarise_each(funs(mean, std.error), median) %>% View 
+
 ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate")
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region")
 ggsave("figures/b_params_efficiency.png", width = 5, height = 5)
 
 
