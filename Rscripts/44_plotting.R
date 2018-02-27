@@ -239,45 +239,7 @@ violin_greyscale <- ggplot() +
 
 
 
-# Take 2 ------------------------------------------------------------------
-
-### this plot comes from the bottom of script 38b_efficiency_trad
-p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x)) 
-efficiency_local <- p + 
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = WA_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = WA_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = AB_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = AB_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = HA_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = HA_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = MI_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = MI_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = MN_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = MN_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = NO_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = NO_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = BC_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = BC_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = CR_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = CR_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = YU_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = YU_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = KW_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = KW_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = CS_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = CS_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = TL_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = TL_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = II_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = II_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = TS_preds, alpha = 0.3, fill = "grey") +
-  geom_line(aes(x = species_no, y = mean), data = TS_preds, alpha = 0.7, color = "black") +
-  geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = GL_preds, alpha = 0.7, fill = "cadetblue") +
-  geom_line(aes(x = species_no, y = mean), data = GL_preds, alpha = 0.7, color = "cadetblue") +
-  ylab("") + xlab("") +
-  scale_x_continuous(breaks = seq(1,10,1))
-
-
+#
 ### efficiency_local is from 38b_efficiency_trad, rdi_accum_plot is from 31b_replacement_resampling_local, 
 ### violin greyscale is from this script, above, single_nut_plot is from 33_multifunction_gamfeldt
 ## 
@@ -287,3 +249,26 @@ giant_plot2 <- single_nut_plot + violin_greyscale + efficiency_local + rdi_accum
 ggplot2::ggsave(plot = giant_plot2, filename = "figures/figure3_multi2", device = "pdf", width =10, height = 8)
 
 
+# b params plots ----------------------------------------------------------
+
+all_b_params <- read_csv("data-processed/all_b_params_accumulation.csv")
+
+all_b_params %>% 
+  filter(culture != "GL") %>% 
+  summarise_each(funs(mean, std.error), median) %>% View 
+
+efficiency_b_plot <- ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region") +
+  ggtitle("A) Nutritional efficiency") +
+  theme(plot.title = element_text(hjust = 0))
+
+accum_b_params <- read_csv("data-processed/replacement_design_accumulation_b_params.csv")
+### this is the plot for the appendix
+accumulation_b_plot <- ggplot(aes(x = reorder(culture, median), y = median), data = accum_b_params) + geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region") +
+  ggtitle("B) Nutritional diversity") +
+  theme(plot.title = element_text(hjust = 0))
+
+
+b_params_plots <- efficiency_b_plot + accumulation_b_plot  + plot_layout(ncol = 2)
+ggplot2::ggsave(plot = b_params_plots, filename = "figures/b_params_plots.pdf", device = "pdf", width =10, height = 5)

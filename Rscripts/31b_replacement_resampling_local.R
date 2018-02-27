@@ -391,7 +391,7 @@ write_csv(all_b_params, "data-processed/replacement_design_accumulation_b_params
 
 accum_b_params <- read_csv("data-processed/replacement_design_accumulation_b_params.csv")
 ### this is the plot for the appendix
-ggplot(aes(x = reorder(culture, median), y = median), data = accum_b_params) + geom_point() +
+accumulation_b_plot <- ggplot(aes(x = reorder(culture, median), y = median), data = accum_b_params) + geom_point() +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region")
 ggsave("figures/b_params_accumulation.png", width = 5, height = 5)
 

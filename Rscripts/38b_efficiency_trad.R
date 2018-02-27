@@ -238,7 +238,7 @@ all_b_params %>%
   filter(culture != "GL") %>% 
   summarise_each(funs(mean, std.error), median) %>% View 
 
-ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
+efficiency_b_plot <- ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region")
 ggsave("figures/b_params_efficiency.png", width = 5, height = 5)
 
