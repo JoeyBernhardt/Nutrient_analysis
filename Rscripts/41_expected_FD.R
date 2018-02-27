@@ -1,6 +1,12 @@
 library(tidyverse)
+library(cowplot)
+library(viridis)
 
 trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>% 
+  filter(!is.na(latin_name))
+
+trad_nuts_mean2 <- read_csv("data-processed/mean_nuts.csv") %>% 
+  rename(latin_name = species_name) %>% 
   filter(!is.na(latin_name))
 
 # trad_nuts_mean <- read_csv("data-processed/mean_nuts.csv") %>% 
@@ -10,7 +16,7 @@ trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>%
 
 repeat_fd <- function(sample_size){
 
-global <- sample_n(distinct(trad_nuts_mean, latin_name, .keep_all = TRUE), size = sample_size, replace = FALSE) %>% 
+global <- sample_n(distinct(trad_nuts_mean2, latin_name, .keep_all = TRUE), size = sample_size, replace = FALSE) %>% 
   mutate(culture = "global")
 
 pres_abs <- global %>% 
@@ -52,8 +58,10 @@ return(fd3)
 sample_sizes <- rep(species_numbers$n_species, 1000)
 
 
-exp_df <- sample_sizes %>% 
+exp_df2 <- sample_sizes %>% 
   map_df(repeat_fd, .id = "sample")
+
+exp_df_mean_nuts <- exp_df
 
 write_csv(exp_df, "data-processed/expected_FD_regional.csv")
 
@@ -62,11 +70,29 @@ expected_fds <- exp_df %>%
   group_by(sample_size) %>% 
   summarise(exp_df = mean(FD))
 
+expected_fds2 <- exp_df2 %>% 
+  group_by(sample_size) %>% 
+  summarise(exp_df = mean(FD))
+
+expected_fds_mean_nuts <- exp_df_mean_nuts %>% 
+  group_by(sample_size) %>% 
+  summarise(exp_df_nuts = mean(FD))
+
+left_join(expected_fds_mean_nuts, expected_fds) %>% View
+left_join(expected_fds_mean_nuts, expected_fds2) %>% View
 
 observed_fd <- read_csv("data-processed/regional_functional_diversity.csv")
 
 
-all_fds <- left_join(observed_fd, expected_fds, by = c("n_species" = "sample_size"))
+global_fd <- read_csv("data-processed/global_FD_repeat.csv") %>% 
+  mutate(region = "global_resampled") %>% 
+  mutate(n_species = 40) %>% 
+  group_by(n_species, region) %>% 
+  summarise(FD = mean(FD))
+
+all_observed_fd <- bind_rows(observed_fd, global_fd)
+
+all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample_size"))
 
 
 all_fds %>% 
@@ -74,6 +100,11 @@ all_fds %>%
   geom_abline(slope = 1, intercept = 0) +
   theme_classic() +ylim(2.5, 4) + xlim(2.5, 4) +
   xlab("Expected FD") + ylab("Observed FD")
+
+
+all_fds %>% 
+  ggplot(aes(x = reorder(region, FD), y = FD)) + geom_histogram(stat = "identity") +
+  geom_point(aes(x = region, y = exp_df))
 
 all_fds %>% 
   ggplot(aes(x = n_species, y = FD)) + geom_point() +
@@ -87,6 +118,7 @@ all_terms <- left_join(b_terms, species_numbers)
 
 all_fds_b <- left_join(all_fds, all_terms)
 
+library(viridis)
 all_fds_b %>% 
   mutate(redundancy = exp_df - FD) %>% 
   ggplot(aes(x = redundancy, y = estimate, color = region)) + geom_point(size = 4) +

@@ -227,3 +227,57 @@ rownames(traitfile) <- species_names$species_name
 FDs <- Calculate.FD(landfile = landfile, traitfile = traitfile, scale = F, writefiles = F)
 
 global_FDs <- data.frame(FD = FDs, replicate = names(FDs))
+write_csv(global_FDs, "data-processed/global_FD.csv")  # this looks wrong! use the version below
+
+
+
+# Global FD take 2 --------------------------------------------------------
+
+repeat_fd <- function(sample_size){
+  
+  global <- sample_n(distinct(trad_nuts_mean2, latin_name, .keep_all = TRUE), size = sample_size, replace = FALSE) %>% 
+    mutate(culture = "global")
+  
+  pres_abs <- global %>% 
+    spread(key = culture, value = latin_name) %>%
+    rename(species_name = global) %>% 
+    mutate(global = 1) %>% 
+    # mutate_all(.funs= str_replace_na, "0") %>% 
+    arrange(species_name)  %>% 
+    select(global)
+  
+  
+  species_names <- global %>% 
+    rename(species_name = latin_name) %>% 
+    select(species_name) %>% 
+    arrange(species_name)
+  
+  
+  
+  pres_abs <- as.data.frame(pres_abs)
+  rownames(pres_abs) <- species_names$species_name
+  
+  landfile <- pres_abs
+  
+  traitfile <- global %>% 
+    distinct(latin_name, .keep_all = TRUE) %>% 
+    select(-culture, -subgroup) %>% 
+    filter(latin_name %in% species_names$species_name) %>% 
+    arrange(latin_name) %>% 
+    select(-latin_name) %>% 
+    as.data.frame()
+  
+  rownames(traitfile) <- species_names$species_name
+  FDs <- Calculate.FD(landfile = landfile, traitfile = traitfile, scale = F, writefiles = F)
+  fd3 <- data.frame(FD = FDs, region = names(FDs), sample_size = sample_size)
+  return(fd3)
+}
+
+
+sample_sizes <- rep(40, 5000)
+
+
+global_fd <- sample_sizes %>% 
+  map_df(repeat_fd, .id = "sample")
+
+write_csv(global_fd, "data-processed/global_FD_repeat.csv")

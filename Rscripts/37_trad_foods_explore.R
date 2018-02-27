@@ -451,15 +451,15 @@ mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 mean_nuts2 <- sample_n(mean_nuts, size = 40, replace = FALSE)
 ntbl.matrix.mic <- data.matrix(mean_nuts2[, 3:7])
 rownames(ntbl.matrix.mic) <- mean_nuts2$species_name
-FD_global <- data.frame(fdiv = dbFD(ntbl.matrix.mic)$FEve) %>% 
+FD_global <- data.frame(FDiv = dbFD(ntbl.matrix.mic)$FEve) %>% 
   mutate(culture = "global")
 
-all_fd <- bind_rows(fdiv, FD_global)
+all_fd <- bind_rows(fDiv, FD_global)
 
 all_fd %>% 
-  rename(culture = dataset) %>% 
+  # rename(culture = dataset) %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
-  ggplot(aes(x = culture, y = value)) + geom_histogram(stat = "identity") +
+  ggplot(aes(x = culture, y = FDiv)) + geom_histogram(stat = "identity") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Nutritional functional evenness (FEve)") + xlab("Culture")
 
