@@ -59,7 +59,7 @@ write_csv(fdiv_expected, "data-processed/fdiv_expected.csv")
 ### global FEve expected
 
 FEve.exp <- vector()
-for (i in 1:1000) {
+for (i in 1:10) {
   randsp.data<- ntbl.matrix.mic[sample(1:length(row.names(ntbl.matrix.mic)), 40, replace = FALSE),]
   FEve.exp[i] <- dbFD(randsp.data)$FEve
 }
@@ -70,6 +70,10 @@ quantile(fdiv.exp, probs = c(0.025, 0.975))
 
 FEve_expected <- data.frame(FEve_expected = FEve.exp)
 write_csv(FEve_expected, "data-processed/FEve_expected.csv")
+
+
+### let's try this again
+
 
 
 

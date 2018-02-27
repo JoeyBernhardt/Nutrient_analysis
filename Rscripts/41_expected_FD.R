@@ -103,20 +103,32 @@ all_observed_fd <- bind_rows(observed_fd, global_fd)
 all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample_size")) %>% 
   filter(region != "global")
 
+write_csv(all_fds, "data-processed/all_fds.csv")
+
 all_fds %>% 
   filter(region != "global_resampled") %>% 
   summarise_each(funs(mean, std.error), FD) %>% View
 
-all_fds %>% 
+obs_eve_FD <- all_fds %>% 
   rename(Region = region) %>% 
+  mutate(FD = ifelse(Region == "global_resampled", exp_df, FD)) %>% 
   mutate(Region = ifelse(Region == "global_resampled", "Global (40 species)", Region)) %>% 
   ggplot(aes(x = exp_df, y = FD, color = fct_reorder2(Region, exp_df, FD))) + geom_point(size = 4) +
   geom_point(size = 4, shape = 1, color = "black") +
   geom_abline(slope = 1, intercept = 0) +
-  theme_classic() +
 ylim(1.5, 4) + xlim(1.5, 4) +
-  xlab("Expected FD") + ylab("Observed FD") + scale_color_viridis(discrete = TRUE, name = "Region")
+  xlab("Expected FD") + ylab("Observed FD") + scale_color_viridis(discrete = TRUE, name = "Region") +
+  ggtitle("A") +
+  theme(plot.title = element_text(hjust = 0))
 ggsave("figures/expected_vs_observed_FD.pdf", width = 7, height = 5)
+
+
+library(patchwork)
+
+obs_exp_plot <- obs_eve_FD + obs_exp_feve_plot + plot_layout(ncol = 2)
+ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD.pdf", device = "pdf", width =14, height = 5)
+
+
 
 all_fds %>% 
   ggplot(aes(x = reorder(region, FD), y = FD)) + geom_histogram(stat = "identity") +

@@ -417,7 +417,69 @@ fEve_global <- fds_global %>%
 fEve_global$replicate <- rownames(fEve_global) 
 names(fEve_global) <- c("FEve", "replicate")
 fEve_global <- fEve_global %>% 
-  mutate(culture = str_replace(replicate, ".Community1", ""))
+  mutate(culture = str_replace(replicate, ".Community1", "")) %>% 
+  select(-replicate) %>% 
+  rename(replicate = culture)
+
+
+write_csv(fEve_global, "data-processed/functional_evenness_global.csv")
+
+
+
+# Calculate expected functional evenness ----------------------------------
+mean_nuts <- read_csv("data-processed/mean-nuts.csv")
+repeat_feve <- function(sample_size){
+  global <- sample_n(distinct(mean_nuts, latin_name, .keep_all = TRUE), size = sample_size, replace = FALSE) %>% 
+    mutate(culture = "global") %>% 
+    select(-species_name) %>%
+    select(- subgroup) %>% 
+    ungroup()
+  res <- dbFD(global)$FEve[[1]]
+results <- cbind(res, sample_size) 
+results <- as.data.frame(results)
+return(results)
+}
+
+
+sample_sizes <- rep(species_numbers$n_species, 1000)
+
+feves <- sample_sizes %>% 
+  map_df(repeat_feve, .id = "replicate")
+
+write_csv(feves, "data-processed/expected_functional_evenness.csv")
+
+####  Expected vs. Observed Functional Evenness
+feves_summ <- feves %>% 
+  group_by(sample_size) %>% 
+  summarise_each(funs(mean, std.error), res)
+
+species_numbers <- read_csv("data-processed/species_numbers.csv")
+
+FEve_cultures <- left_join(fEve, species_numbers) %>% 
+  filter(!is.na(n_species)) 
+
+obs_exp_feve <- left_join(FEve_cultures, feves_summ, by = c("n_species" = "sample_size"))
+
+obs_exp_feve_global <- fEve_global %>% 
+  summarise_each(funs(mean, std.error), FEve) %>% 
+  rename(res_mean = FEve_mean) %>% 
+  mutate(n_species = 40) %>% 
+  mutate(culture = "Global (40 spcies)") %>% 
+  mutate(FEve = res_mean)
+
+obs_exp_feve2 <- bind_rows(obs_exp_feve, obs_exp_feve_global)
+
+write_csv(obs_exp_feve2, "data-processed/obs_exp_feve2.csv")
+
+obs_exp_feve_plot <- obs_exp_feve2 %>% 
+ggplot(aes(x = res_mean, y = FEve, color = fct_reorder2(culture, res_mean, FEve))) +
+  geom_abline(slope = 1, intercept = 0) +geom_point(size = 4) +
+  geom_point(size = 4, shape = 1, color = "black") +
+  ylim(0.68, 0.82) + xlim(0.68, 0.82) +
+  xlab("Expected FEve") + ylab("Observed FEve") + scale_color_viridis(discrete = TRUE, name = "Region") +
+  ggtitle("B") +
+  theme(plot.title = element_text(hjust = 0))
+ggsave("figures/obs_exp_functional_evenness.pdf", width = 7, height = 5)
 
 
 
