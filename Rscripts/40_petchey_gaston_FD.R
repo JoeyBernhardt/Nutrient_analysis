@@ -83,7 +83,7 @@ global_mean_nuts <- read_csv("data-processed/mean_nuts.csv") %>%
 
 sum(is.na(trad_nuts_mean$latin_name))
 
-global <- sample_n(distinct(global_mean_nuts, latin_name, .keep_all = TRUE), size = 40, replace = FALSE) %>% 
+global <- sample_n(distinct(trad_nuts_mean, latin_name, .keep_all = TRUE), size = 40, replace = FALSE) %>% 
   mutate(culture = "global")
 
 all <- bind_rows(trad_nuts_mean, global)
@@ -124,7 +124,7 @@ species_names <- trad2 %>%
   select(species_name) %>% 
   arrange(species_name)
 
-
+length(unique(species_names$species_name))
 
 pres_abs <- as.data.frame(pres_abs)
 rownames(pres_abs) <- species_names$species_name
@@ -153,3 +153,77 @@ View(fd2)
 View(fd4)
 
 write_csv(fd4, "data-processed/regional_functional_diversity.csv")
+
+
+# Do this for the global dataset, mean_nuts -------------------------------
+
+## ok prep data
+
+# trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>% 
+  filter(!is.na(latin_name))
+
+
+global_mean_nuts <- read_csv("data-processed/mean_nuts.csv") %>% 
+  rename(latin_name = species_name)
+
+sum(is.na(trad_nuts_mean$latin_name))
+
+global_sampling <- function(sample_size) {
+  global_sample <- sample_n(distinct(global_mean_nuts, latin_name, .keep_all = TRUE), size = sample_size, replace = FALSE)
+}
+
+samples <- rep(40, times = 1000)
+
+global_samples <- samples %>% 
+  map_df(global_sampling, .id = "dataset")
+
+# all <- bind_rows(trad_nuts_mean, global)
+
+
+species_numbers <- global_samples %>% 
+  group_by(dataset) %>% 
+  summarise(n_species = n_distinct(latin_name)) %>% 
+  filter(n_species >= 25) 
+
+trad2 <- global_samples %>% 
+  filter(dataset %in% species_numbers$dataset)
+
+
+pres_abs <- trad2 %>% 
+  spread(key = dataset, value = latin_name) %>% 
+  mutate(species_name = "dataset") %>% 
+  # mutate(species_name = ifelse(is.na(species_name), Wampanoag, species_name)) %>% 
+  # mutate(species_name = ifelse(is.na(species_name), Nootkan, species_name)) %>%
+  # mutate(species_name = ifelse(is.na(species_name), Cree, species_name)) %>% 
+  # mutate(species_name = ifelse(is.na(species_name), `Montagnais-Naskapi`, species_name)) %>% 
+  # mutate(species_name = ifelse(is.na(species_name), global, species_name)) %>% 
+  select(7:1007) %>% 
+  mutate_all(.funs= str_replace, ".*", "1") %>% 
+  # mutate_all(.funs= str_replace_na, "0") %>% 
+  arrange(species_name)  %>% 
+  select(-species_name)
+
+
+species_names$species_name <- global_mean_nuts$latin_name
+
+length(unique(species_names$species_name))
+
+pres_abs <- as.data.frame(pres_abs)
+rownames(pres_abs) <- species_names$species_name
+
+landfile <- pres_abs
+
+traitfile <- global_mean_nuts %>% 
+  distinct(latin_name, .keep_all = TRUE) %>% 
+  select(-subgroup) %>% 
+  filter(latin_name %in% species_names$species_name) %>% 
+  arrange(latin_name) %>% 
+  select(-latin_name) %>% 
+  as.data.frame()
+
+rownames(traitfile) <- species_names$species_name
+
+
+FDs <- Calculate.FD(landfile = landfile, traitfile = traitfile, scale = F, writefiles = F)
+
+global_FDs <- data.frame(FD = FDs, replicate = names(FDs))
