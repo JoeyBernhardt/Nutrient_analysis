@@ -1,6 +1,8 @@
 library(tidyverse)
 library(cowplot)
 library(viridis)
+library(forcats)
+library(plotrix)
 
 trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv") %>% 
   filter(!is.na(latin_name))
@@ -90,17 +92,31 @@ global_fd <- read_csv("data-processed/global_FD_repeat.csv") %>%
   group_by(n_species, region) %>% 
   summarise(FD = mean(FD))
 
+read_csv("data-processed/global_FD_repeat.csv") %>% 
+  mutate(region = "global_resampled") %>% 
+  mutate(n_species = 40) %>% 
+  group_by(n_species, region) %>% 
+  summarise_each(funs(mean, std.error), FD) %>% View ### this is to get the average global FD
+
 all_observed_fd <- bind_rows(observed_fd, global_fd)
 
-all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample_size"))
-
+all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample_size")) %>% 
+  filter(region != "global")
 
 all_fds %>% 
-  ggplot(aes(x = exp_df, y = FD, color = region)) + geom_point(size = 4) +
-  geom_abline(slope = 1, intercept = 0) +
-  theme_classic() +ylim(2.5, 4) + xlim(2.5, 4) +
-  xlab("Expected FD") + ylab("Observed FD")
+  filter(region != "global_resampled") %>% 
+  summarise_each(funs(mean, std.error), FD) %>% View
 
+all_fds %>% 
+  rename(Region = region) %>% 
+  mutate(Region = ifelse(Region == "global_resampled", "Global (40 species)", Region)) %>% 
+  ggplot(aes(x = exp_df, y = FD, color = fct_reorder2(Region, exp_df, FD))) + geom_point(size = 4) +
+  geom_point(size = 4, shape = 1, color = "black") +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+ylim(1.5, 4) + xlim(1.5, 4) +
+  xlab("Expected FD") + ylab("Observed FD") + scale_color_viridis(discrete = TRUE, name = "Region")
+ggsave("figures/expected_vs_observed_FD.pdf", width = 7, height = 5)
 
 all_fds %>% 
   ggplot(aes(x = reorder(region, FD), y = FD)) + geom_histogram(stat = "identity") +

@@ -374,6 +374,24 @@ library(FD)
 
 new_global <- read_csv("data-processed/new_global.csv")
 trad_mean <- read_csv("data-processed/trad-foods-mean.csv")
+mean_nuts <- read_csv("data-processed/mean-nuts.csv")
+
+
+sample_40_global <- function(sample_size) {
+  sample_n(mean_nuts, size = sample_size, replace = FALSE)
+}
+
+reps <- rep(40, 1000)
+
+mean_nuts_rep <- reps %>% 
+  map_df(sample_40_global, .id = "replicate") %>% 
+  select(-species_name) %>%
+  select(- subgroup) %>% 
+  ungroup() %>% 
+  filter(replicate != 1) %>% 
+  split(.$replicate)
+
+mean_nuts_rep[[1]]
 
 cnuts_split <- trad_mean %>% 
   select(-latin_name) %>%
@@ -385,9 +403,23 @@ cnuts_split[[1]]
 fds <- cnuts_split %>% 
   map(dbFD)
 
-names(fds[[1]])
+str(cnuts_split)
+str(mean_nuts_rep)
 
-dbFD(cnuts_split[1])
+fds_global <- mean_nuts_rep %>% 
+  map(dbFD)
+
+fEve_global <- fds_global %>% 
+  map("FEve") %>% 
+  unlist() %>% 
+  as.data.frame() 
+
+fEve_global$replicate <- rownames(fEve_global) 
+names(fEve_global) <- c("FEve", "replicate")
+fEve_global <- fEve_global %>% 
+  mutate(culture = str_replace(replicate, ".Community1", ""))
+
+
 
 
 fEve <- fds %>% 
@@ -463,6 +495,14 @@ all_fd %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ylab("Nutritional functional evenness (FEve)") + xlab("Culture")
 
+
+### FEve result
+FDs %>% 
+  filter(culture %in% species_numbers$culture) %>%
+  summarise_each(funs(mean, std.error), FEve) %>% View
+
+### FD and FEve data
+write_csv(FDs, "data-processed/functional_diversity_results.csv")
 
 (unames <- map_chr(fds, c(1,1)))
 
