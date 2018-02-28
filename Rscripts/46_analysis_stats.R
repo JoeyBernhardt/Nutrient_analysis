@@ -5,6 +5,7 @@ library(broom)
 
 
 seadiv <- read_csv("data-processed/seadiv.csv")
+mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 ### Goal here is to update stats for the paper, https://github.com/JoeyBernhardt/Nutrient_analysis/issues/28
 
 
@@ -16,6 +17,7 @@ seadiv <- read_csv("data-processed/seadiv.csv")
 unique(seadiv$level_2)
 
 nuts <- seadiv %>% 
+  filter(species_name %in% mean_nuts$species_name) %>% 
   select(species_name, subgroup, calcium, iron, zinc, epa, dha, fat, protein) %>% 
   gather(key = nutrient, value = concentration, 3:9) %>% 
   filter(!is.na(concentration))
@@ -26,10 +28,25 @@ nuts %>%
   do(tidy(lm(concentration ~ species_name, data = .), conf.int = TRUE)) %>% View
 
 nuts %>% 
-  filter(nutrient == "calcium") %>% 
+  filter(nutrient == "protein") %>% 
   lm(concentration ~ species_name, data = .) %>% 
   summary
 
+percentages <- read_csv("data-processed/percentages.csv") 
+
+percentages %>% 
+  group_by(subgroup, nutrient) %>% 
+  summarise_each(funs(mean, std.error), dri_per) %>% 
+  ggplot(aes(x = nutrient, y = dri_per_mean)) + geom_point() +
+  geom_errorbar(aes(ymin = dri_per_mean - dri_per_std.error, ymax = dri_per_mean + dri_per_std.error)) +
+  facet_wrap( ~ subgroup, scales = "free")
+
+### CVs for protein and micronutrients
+percentages %>% 
+  group_by(nutrient) %>% 
+  summarise_each(funs(mean, sd), dri_per) %>% 
+  mutate(cv = dri_per_sd/dri_per_mean) %>% View
+ 
 
 
 # Result #2 ---------------------------------------------------------------
