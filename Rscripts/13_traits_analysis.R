@@ -10,7 +10,7 @@ library(stargazer)
 library(arm)
 
 
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
 
 mod_all <- trait_data %>% 
@@ -31,6 +31,18 @@ finfish_size <- mod_all %>%
   do(glance(lm(log_concentration ~ log_length + bulk_trophic_level + abs_lat, data = .))) %>% 
   mutate(subgroup = "finfish") %>% 
   stargazer()
+
+mod_all %>% 
+  filter(subgroup == "finfish") %>% 
+  group_by(nutrient) %>% 
+  do(tidy(lm(log_concentration ~ log_length, data = .))) %>% 
+  mutate(subgroup = "finfish") %>% 
+  filter(term != "(Intercept)") %>% View
+
+mod_all %>% 
+  filter(subgroup == "finfish") %>% 
+  filter(nutrient == "zn_mg") %>% 
+  lm(log_concentration ~ log_length, data = .) %>% summary()
 
 
 fin_ca<- mod_all %>% 

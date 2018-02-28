@@ -43,9 +43,12 @@ percentages %>%
 
 ### CVs for protein and micronutrients
 percentages %>% 
+  filter(dri_per > 0) %>% 
+  mutate(log_dri_per = log(dri_per)) %>% 
   group_by(nutrient) %>% 
-  summarise_each(funs(mean, sd), dri_per) %>% 
-  mutate(cv = dri_per_sd/dri_per_mean) %>% View
+  summarise_each(funs(mean, sd), log_dri_per) %>% 
+  mutate(cv = log_dri_per_sd/log_dri_per_mean) %>% 
+  mutate(log_cv = (exp(log_dri_per_sd^2)-1)^1/2) %>% View
  
 
 
