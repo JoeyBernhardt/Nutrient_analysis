@@ -86,3 +86,8 @@ protein <- all_summaries %>%
 ### although the magnitude of the biodiversity effect was generally lower at the local scale than the global scale 
  
  
+ ### number of species that reach DRI targets
+ 
+(.94*17 + 45*161 + .88*34)/(17+161+34)
+ 
+ 

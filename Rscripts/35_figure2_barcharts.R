@@ -24,7 +24,8 @@ rdis <- nuts %>%
 
 View(rdis)
 
-
+rdis %>% 
+  summarise_each(funs(sum), 8:12) %>% View
 
 
 rdi_prop <- rdis %>% 

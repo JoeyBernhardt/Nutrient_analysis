@@ -1,6 +1,6 @@
 
 library(plotrix)
-
+library(tidyverse)
 ### RDI accumulation for the global and local scales, with replacement design
 trad_nuts_mean_raw <- read_csv("data-processed/trad-foods-mean.csv")
 species_numbers <- read_csv("data-processed/species_numbers.csv")
