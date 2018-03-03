@@ -10,6 +10,7 @@ library(xtable)
 library(dplyr)
 library(tidyr)
 library(tibble)
+library(readxl)
 
 ## practice
 
@@ -168,3 +169,41 @@ tableS1 <-   rdis %>%
 
 
 write_csv(tableS1 , "tables/tableS1.csv")
+
+### table S9, indigenous cultures
+
+cultures <- read_csv("data-processed/species_numbers.csv")
+cultures_details <- read_xlsx("data/Cultures_details.xlsx") %>% 
+  mutate(Culture = ifelse(Culture == "Montagnais-Naskapi (Innu)", "Montagnais-Naskapi", Culture))
+
+cultures_list <- cultures$culture
+
+cultures_all <- left_join(cultures, cultures_details, by = c("culture" = "Culture"))
+
+
+tableS9 <- cultures_all %>% 
+  select(1:5) %>% 
+  select(-Language) %>% 
+  mutate(dataset = culture) %>% 
+  mutate(dataset = str_replace(dataset, "Inuit-Inupiaq", "II")) %>% 
+  mutate(dataset = str_replace(dataset, "Central Salish", "CS")) %>% 
+  mutate(dataset = str_replace(dataset, "Wampanoag", "WA")) %>% 
+  mutate(dataset = str_replace(dataset, "Cree", "CR")) %>%
+  mutate(dataset = str_replace(dataset, "Nootkan", "NO")) %>% 
+  mutate(dataset = str_replace(dataset, "Bella Coola", "BC")) %>% 
+  mutate(dataset = str_replace(dataset, "Tlingit", "TL")) %>%
+  mutate(dataset = str_replace(dataset, "Haida", "HA")) %>%
+  mutate(dataset = str_replace(dataset, "Tsimshian", "TS")) %>% 
+  mutate(dataset = str_replace(dataset, "Montagnais-Naskapi", "MN")) %>%
+  mutate(dataset = str_replace(dataset, "Yupik", "YU")) %>% 
+  mutate(dataset = str_replace(dataset, "Abenaki", "AB")) %>%
+  mutate(dataset = str_replace(dataset, "Micmac", "MI")) %>%
+  mutate(dataset = str_replace(dataset, "Kwakiutl", "KW")) %>% 
+  rename(Abbreviation = dataset,
+         Culture = culture,
+         `Number of species in diet` = n_species) %>%
+  select(Culture, Abbreviation, Region, Location, everything()) %>%
+  # xtable(type = "latex", digits = 0) %>% 
+  writexl::write_xlsx(., "tables/tableS9.xlsx")
+
+write_csv(tableS9 , "tables/tableS9.csv") 
