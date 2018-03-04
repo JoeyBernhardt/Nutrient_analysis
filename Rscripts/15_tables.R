@@ -219,3 +219,71 @@ trad_nuts_mean %>%
   filter(culture %in% cultures$culture) %>% 
   select(culture, latin_name) %>%
   write_csv(., "tables/tableS10_cultures_species.csv")
+
+
+## update table S7
+percentages <- read_csv("data-processed/percentages.csv")
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
+
+nutrients <- trait_data %>% 
+  filter(!grepl("^Mohanty", ref_info)) %>% 
+  as_tibble() %>% 
+  mutate(nutrient = str_replace(nutrient, "prot_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
+  select(species_name, subgroup, nutrient, concentration) %>%
+  group_by(subgroup, species_name, nutrient) %>% 
+  summarise(concentration = mean(concentration)) %>% 
+  spread(key =nutrient, value = concentration) %>% 
+  select(subgroup, species_name, ca_mg, zn_mg, fe_mg, epa, dha, protein, fat_g) %>%
+  rename(calcium = ca_mg,
+         zinc = zn_mg, 
+         iron = fe_mg,
+         fat = fat_g)
+
+
+
+percentages_mean %>% 
+  filter(nutrient == "protein") %>% View
+
+percentages_mean <- percentages %>% 
+  group_by(subgroup, species_name, nutrient) %>%
+  summarise(dri_per = mean(dri_per))
+
+reaches <- percentages_mean %>% 
+  mutate(reaches = ifelse(dri_per > 10, 1, 0)) %>% 
+  group_by(subgroup, nutrient) %>% 
+  summarise(number_reaching = sum(reaches))
+
+
+totals <- percentages_mean %>% 
+  group_by(subgroup, nutrient) %>% 
+  tally()
+
+
+prop_reaches_dri <- left_join(totals, reaches) %>% 
+  mutate(proportion_reaching_dri = (number_reaching/n)*100) %>% 
+  mutate(proportion_reaching_dri = round(proportion_reaching_dri, digits = 2))
+
+percentage <- 0.1
+trait_data %>% 
+  mutate(RDI.CA = ifelse(calcium > (1200*percentage), 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(iron > (18*percentage), 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(zinc > (11*percentage), 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(epa > (1*percentage), 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(dha > (1*percentage), 1, 0)) %>% 
+  mutate(RDI.protein = ifelse(protein > (1*percentage), 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  select(subgroup, contains("RDI")) %>% 
+  group_by(subgroup) %>%
+  summarise_each(funs(sum), contains("RDI")) %>% View
+  group_by(subgroup) %>% 
+  mutate(total = cumsum(n)) %>% 
+  mutate(total_spp = NA) %>% 
+  mutate(total_spp = ifelse(subgroup == "finfish", 78, total_spp)) %>% 
+  mutate(total_spp = ifelse(subgroup == "mollusc", 12, total_spp)) %>% 
+  mutate(total_spp = ifelse(subgroup == "crustacean", 6, total_spp)) %>% 
+  mutate(proportion_that_reach_RDI = n*100/total_spp) %>% View
+
