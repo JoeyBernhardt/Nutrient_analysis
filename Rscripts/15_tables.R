@@ -106,7 +106,7 @@ data %>%
   mutate(total_spp = ifelse(subgroup == "finfish", 78, total_spp)) %>% 
   mutate(total_spp = ifelse(subgroup == "mollusc", 12, total_spp)) %>% 
   mutate(total_spp = ifelse(subgroup == "crustacean", 6, total_spp)) %>% 
-  mutate(proportion_that_reach_RDI = n*100/total_spp) %>% 
+  mutate(proportion_that_reach_RDI = n*100/total_spp) %>% View
   xtable(type = "latex", digits = 0)
   
   
@@ -207,3 +207,15 @@ tableS9 <- cultures_all %>%
   writexl::write_xlsx(., "tables/tableS9.xlsx")
 
 write_csv(tableS9 , "tables/tableS9.csv") 
+
+## table s10, species in the local diets
+
+nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv")
+trad_nuts_mean <- read_csv("data-processed/trad-foods-mean.csv")
+cultures <- read_csv("data-processed/species_numbers.csv")
+
+
+trad_nuts_mean %>% 
+  filter(culture %in% cultures$culture) %>% 
+  select(culture, latin_name) %>%
+  write_csv(., "tables/tableS10_cultures_species.csv")
