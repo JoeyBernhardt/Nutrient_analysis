@@ -263,7 +263,21 @@ totals <- percentages_mean %>%
 
 prop_reaches_dri <- left_join(totals, reaches) %>% 
   mutate(proportion_reaching_dri = (number_reaching/n)*100) %>% 
-  mutate(proportion_reaching_dri = round(proportion_reaching_dri, digits = 2))
+  mutate(proportion_reaching_dri = round(proportion_reaching_dri, digits = 2)) %>% 
+  select(subgroup, nutrient, proportion_reaching_dri) %>% 
+  spread(key = subgroup, value = proportion_reaching_dri)
+
+n_reaches_dri <- left_join(totals, reaches) %>% 
+  select(subgroup, nutrient, n) %>% 
+  spread(key = subgroup, value = n) %>% 
+  rename(crustacean_n = crustacean,
+         mollusc_n = mollusc,
+         finfish_n = finfish)
+
+all_props <- left_join(prop_reaches_dri, n_reaches_dri) %>% 
+  select(nutrient, starts_with("crustacean"), starts_with("finfish"), starts_with("mollusc"))
+
+writexl::write_xlsx(all_props, "tables/tableS7.xlsx")
 
 percentage <- 0.1
 trait_data %>% 
