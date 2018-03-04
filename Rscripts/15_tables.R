@@ -255,6 +255,9 @@ reaches <- percentages_mean %>%
   group_by(subgroup, nutrient) %>% 
   summarise(number_reaching = sum(reaches))
 
+View(reaches)
+View(totals)
+
 
 totals <- percentages_mean %>% 
   group_by(subgroup, nutrient) %>% 
@@ -267,6 +270,10 @@ prop_reaches_dri <- left_join(totals, reaches) %>%
   select(subgroup, nutrient, proportion_reaching_dri) %>% 
   spread(key = subgroup, value = proportion_reaching_dri)
 
+prop_reaches_dri %>% 
+  mutate(avg_prop = (crustacean+ mollusc+finfish)/3) %>% View
+
+
 n_reaches_dri <- left_join(totals, reaches) %>% 
   select(subgroup, nutrient, n) %>% 
   spread(key = subgroup, value = n) %>% 
@@ -277,27 +284,35 @@ n_reaches_dri <- left_join(totals, reaches) %>%
 all_props <- left_join(prop_reaches_dri, n_reaches_dri) %>% 
   select(nutrient, starts_with("crustacean"), starts_with("finfish"), starts_with("mollusc"))
 
-writexl::write_xlsx(all_props, "tables/tableS7.xlsx")
 
-percentage <- 0.1
-trait_data %>% 
-  mutate(RDI.CA = ifelse(calcium > (1200*percentage), 1, 0)) %>% 
-  mutate(RDI.FE = ifelse(iron > (18*percentage), 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(zinc > (11*percentage), 1, 0)) %>%
-  mutate(RDI.EPA = ifelse(epa > (1*percentage), 1, 0)) %>% 
-  mutate(RDI.DHA = ifelse(dha > (1*percentage), 1, 0)) %>% 
-  mutate(RDI.protein = ifelse(protein > (1*percentage), 1, 0)) %>% 
-  ungroup() %>% 
-  mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
-  filter(!is.na(RDI.micro.tot)) %>% 
-  select(subgroup, contains("RDI")) %>% 
-  group_by(subgroup) %>%
-  summarise_each(funs(sum), contains("RDI")) %>% View
-  group_by(subgroup) %>% 
-  mutate(total = cumsum(n)) %>% 
-  mutate(total_spp = NA) %>% 
-  mutate(total_spp = ifelse(subgroup == "finfish", 78, total_spp)) %>% 
-  mutate(total_spp = ifelse(subgroup == "mollusc", 12, total_spp)) %>% 
-  mutate(total_spp = ifelse(subgroup == "crustacean", 6, total_spp)) %>% 
-  mutate(proportion_that_reach_RDI = n*100/total_spp) %>% View
 
+percentages_mean_all <- percentages %>% 
+  group_by(species_name, nutrient) %>%
+  summarise(dri_per = mean(dri_per))
+
+reaches_all <- percentages_mean_all %>% 
+  mutate(reaches = ifelse(dri_per > 10, 1, 0)) %>% 
+  group_by(nutrient) %>% 
+  summarise(number_reaching = sum(reaches))
+
+totals_all <- percentages_mean %>% 
+  group_by(nutrient) %>% 
+  tally()
+
+
+prop_reaches_dri_all <- left_join(totals_all, reaches_all) %>% 
+  mutate(proportion_reaching_dri = (number_reaching/n)*100) %>% 
+  mutate(proportion_reaching_dri = round(proportion_reaching_dri, digits = 2)) %>% 
+  select(nutrient, proportion_reaching_dri, n) %>% 
+  rename(all = proportion_reaching_dri)
+
+all_props2 <- left_join(all_props, prop_reaches_dri_all) %>% 
+  rename(all_species = all,
+         all_species_n = n) %>% 
+  xtable(type = "latex", digits = 0)
+
+
+
+writexl::write_xlsx(all_props2, "tables/tableS7.xlsx")
+
+length(unique(percentages$species_name))
