@@ -115,6 +115,8 @@ data %>%
   trait_data2 <- trait_data %>% 
     filter(!grepl("^Mohanty", ref_info))
   
+  write_csv(trait_data2, "data-processed/trait_data_refs.csv")
+  
   wide <- trait_data2 %>% 
     select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
     distinct(species_name, nutrient, concentration, .keep_all = TRUE) %>% 
@@ -316,3 +318,37 @@ all_props2 <- left_join(all_props, prop_reaches_dri_all) %>%
 writexl::write_xlsx(all_props2, "tables/tableS7.xlsx")
 
 length(unique(percentages$species_name))
+
+
+
+# references --------------------------------------------------------------
+
+traits <- read_csv("data-processed/trait_data_refs.csv")
+
+
+traits %>% 
+  filter(seanuts_id2 == 59) %>% View
+
+"Brand J.C., Rae C., McDonnell J., Lee A., Cherikoff V. and Truswell A.S. (1983) The Nutritional composition of Austrialian Aborriginal bushfoods. Food Technology in Austrilia, 35(6): 293-298."
+
+traits2 <- traits %>% 
+  # select(species_name, ref_info, updated_ref_info) %>% 
+  distinct(species_name, ref_info, updated_ref_info, .keep_all = TRUE) %>% 
+  mutate(reference = ifelse(is.na(updated_ref_info), ref_info, updated_ref_info))
+
+
+traits3$abs_lat[traits3$seanuts_id2 == 168]
+
+traits3 <- traits2
+
+traits4 <- traits3 %>% 
+  mutate(reference = ifelse(abs_lat == traits3$abs_lat[traits3$seanuts_id2 == 168], "Stansby M.E. (1976). Chemical characteristics of fish caught in the Northeast Pacific Ocean. Marine Fisheries Review 38(9): 1-11", reference)) %>% 
+  mutate(reference = ifelse(is.na(reference), ref_info, reference)) %>% 
+  mutate(reference = ifelse(seanuts_id2 == 59, "Brand J.C., Rae C., McDonnell J., Lee A., Cherikoff V. and Truswell A.S. (1983) The Nutritional composition of Austrialian Aborriginal bushfoods. Food Technology in Austrilia, 35(6): 293-298.", reference)) %>% 
+  # filter(is.na(reference)) %>%
+  select(species_name, reference)
+
+write_csv(traits4, "tables/references.csv")
+
+
+writexl::write_xlsx(traits4, "tables/references.xlsx")

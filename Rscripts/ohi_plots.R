@@ -111,11 +111,12 @@ ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 rdi_10_long2 %>% 
   group_by(subgroup, nutrient) %>% 
   # summarise(mean_conc = mean(concentration)) %>% 
-  # filter(subgroup == "crustacean") %>% 
+  filter(subgroup == "mollusc") %>% 
   # filter(species_name == "Abramis brama") %>% 
   # filter(species_name == "Mullus surmuletus") %>% 
   # filter(species_name == "Nephrops norvegicus") %>% 
-  filter(species_name == "Sepia officinalis") %>% 
+  # filter(species_name == "Sepia officinalis") %>% 
+filter(species_name == "Mytilus galloprovincialis") %>% 
   ggplot(aes(y = concentration, x = nutrient, fill = nutrient)) + geom_bar(position = "dodge", stat="identity") + 
   # coord_polar() + 
   # labs(x = "", y = "") +
@@ -133,6 +134,7 @@ rdi_10_long2 %>%
   theme(strip.background = element_rect(colour="white", fill="white")) +
   geom_hline(yintercept = 10, color = "grey") +
   geom_hline(yintercept = 25, color = "grey") 
+ggsave("figures/flower_diagram_mytilus.png", width = 6, height = 6)
 ggsave("figures/flower_diagram_mullus.png", width = 6, height = 6)
 ggsave("figures/flower_diagram_abramis.png", width = 6, height = 6)
 ggsave("figures/flower_diagram_nephrops.png", width = 6, height = 6)

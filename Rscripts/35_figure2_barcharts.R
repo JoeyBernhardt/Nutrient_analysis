@@ -69,6 +69,8 @@ percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat"
 pp <- percentages %>% 
   filter(species_name == "Chamelea gallina")
 
+length(unique(percentages$species_name))
+
 
   figure2b <- ggplot(percentages, aes(dri_per, fill = subgroup)) + geom_histogram(binwidth = 0.07) +
     scale_fill_brewer(type = "qual", palette = "Paired") +
