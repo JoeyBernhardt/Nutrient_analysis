@@ -80,7 +80,7 @@ mod_all %>%
   do(glance(lm(log_concentration ~ abs_lat + log_length + feeding_mode + feeding_level + bulk_trophic_level, data = .))) %>% 
   dplyr::select(1, 3, 5, 6, 7, 11, 12) %>% 
   filter(nutrient != "fapun3") %>% 
-  arrange(desc(adj.r.squared)) %>% 
+  arrange(desc(adj.r.squared)) %>% View
   xtable() %>% 
   print(type = "latex")
 

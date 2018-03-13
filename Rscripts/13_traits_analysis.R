@@ -29,7 +29,7 @@ finfish_size <- mod_all %>%
   filter(subgroup == "finfish") %>% 
   group_by(nutrient) %>% 
   do(glance(lm(log_concentration ~ log_length + bulk_trophic_level + abs_lat, data = .))) %>% 
-  mutate(subgroup = "finfish") %>% 
+  mutate(subgroup = "finfish") %>%
   stargazer()
 
 mod_all %>% 
@@ -139,7 +139,7 @@ model_table %>%
          ln_length = z.log_length) %>% 
   dplyr::select(-`(Intercept)`) %>% 
   t() %>%
-  as.data.frame() %>% View
+  as.data.frame() %>% 
     xtable(type = "latex", digits = 2)
 
 summary(mod6)
@@ -164,8 +164,3 @@ summary(mod2)
   summary(mod1)
 confint(mod2)
   
-  
-  library(listviewer)
-  
-  
-  map(`[`, c("Richness", "fixed"))
