@@ -41,7 +41,7 @@ mod5m_calcium <- lme(log_concentration ~ log_length + bulk_trophic_level + feedi
 mod6m_calcium <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
 
 ddfer_calcium <- model.sel(mod1m_calcium, mod2m_calcium, mod3m_calcium, mod4m_calcium, mod5m_calcium, mod6m_calcium)
-anova(mod2fg, mod2m)
+anova(mod2fg_calcium, mod2m_calcium)
 
 summary(mod2m_calcium)
 intervals(mod2m_calcium)
