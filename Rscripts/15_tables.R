@@ -372,6 +372,6 @@ mod_all <- n.long_lat3 %>%
   mutate(reference = ifelse(is.na(updated_ref_info), ref_info, updated_ref_info)) %>% 
   mutate(reference = ifelse(abs_lat == traits3$abs_lat[traits3$seanuts_id2 == 168], "Stansby M.E. (1976). Chemical characteristics of fish caught in the Northeast Pacific Ocean. Marine Fisheries Review 38(9): 1-11", reference)) %>% 
   filter(!is.na(reference)) %>% 
-  dplyr::select(seanuts_id2, species_name, log_concentration, log_length, bulk_trophic_level, feeding_mode, feeding_level, reference, abs_lat)
+  dplyr::select(seanuts_id2, species_name, subgroup, log_concentration, log_length, bulk_trophic_level, feeding_mode, feeding_level, reference, abs_lat, nutrient)
 
 write_csv(mod_all, "data-processed/traits_for_analysis.csv")

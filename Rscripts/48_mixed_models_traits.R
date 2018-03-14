@@ -43,10 +43,10 @@ mod6m_calcium <- lme(log_concentration ~ bulk_trophic_level + feeding_level + fe
 ddfer_calcium <- model.sel(mod1m_calcium, mod2m_calcium, mod3m_calcium, mod4m_calcium, mod5m_calcium, mod6m_calcium)
 anova(mod2fg, mod2m)
 
-summary(mod2m)
-intervals(mod2m)
-r.squaredGLMM(mod3m_calcium)
-r.squaredGLMM(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95))
+summary(mod2m_calcium)
+intervals(mod2m_calcium)
+r.squaredGLMM(mod2m_calcium)
+
 
 ca_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95)), var = "term")) %>%
   rename(conf_low = `2.5 %`,
