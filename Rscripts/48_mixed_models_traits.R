@@ -45,8 +45,8 @@ anova(mod2fg, mod2m)
 
 summary(mod2m)
 intervals(mod2m)
-r.squaredGLMM(mod2m_calcium)
-
+r.squaredGLMM(mod3m_calcium)
+r.squaredGLMM(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95))
 
 ca_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95)), var = "term")) %>%
   rename(conf_low = `2.5 %`,
