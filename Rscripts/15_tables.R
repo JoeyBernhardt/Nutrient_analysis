@@ -352,3 +352,26 @@ write_csv(traits4, "tables/references.csv")
 
 
 writexl::write_xlsx(traits4, "tables/references.xlsx")
+
+
+
+# write out trait data file for analysis ----------------------------------
+
+n.long_lat3 <- read_csv("data-processed/n.long_lat3.csv")
+
+mod_all <- n.long_lat3 %>% 
+  filter(concentration > 0) %>% 
+  mutate(nutrient = str_replace(nutrient, "prot_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protcnt_g", "protein")) %>% 
+  mutate(nutrient = str_replace(nutrient, "protein_g", "protein")) %>% 
+  mutate(anacat = ifelse(subgroup != "finfish", "non-migratory", anacat)) %>% 
+  filter(!is.na(bulk_max_length), !is.na(bulk_trophic_level), !is.na(feeding_level), !is.na(feeding_mode), !is.na(abs_lat)) %>% 
+  mutate(log_length = log(bulk_max_length),
+         log_concentration = log(concentration)) %>% 
+  filter(!grepl("^Mohanty, B. P.,", ref_info)) %>% 
+  mutate(reference = ifelse(is.na(updated_ref_info), ref_info, updated_ref_info)) %>% 
+  mutate(reference = ifelse(abs_lat == traits3$abs_lat[traits3$seanuts_id2 == 168], "Stansby M.E. (1976). Chemical characteristics of fish caught in the Northeast Pacific Ocean. Marine Fisheries Review 38(9): 1-11", reference)) %>% 
+  filter(!is.na(reference)) %>% 
+  dplyr::select(seanuts_id2, species_name, log_concentration, log_length, bulk_trophic_level, feeding_mode, feeding_level, reference, abs_lat)
+
+write_csv(mod_all, "data-processed/traits_for_analysis.csv")

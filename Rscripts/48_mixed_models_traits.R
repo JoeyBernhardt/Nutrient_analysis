@@ -9,86 +9,249 @@ library(xtable)
 library(stargazer)
 library(arm)
 library(nlme)
+library(cowplot)
+library(visreg)
 
 
-n.long_lat3 <- read_csv("data-processed/n.long_lat3.csv")
-
-mod_all <- n.long_lat3 %>% 
-  filter(concentration > 0) %>% 
-  mutate(anacat = ifelse(subgroup != "finfish", "non-migratory", anacat)) %>% 
-  filter(!is.na(bulk_max_length), !is.na(bulk_trophic_level), !is.na(feeding_level), !is.na(feeding_mode), !is.na(abs_lat)) %>% 
-  mutate(log_length = log(bulk_max_length),
-         log_concentration = log(concentration)) %>% 
-  filter(!grepl("^Mohanty, B. P.,", ref_info)) %>% 
-  mutate(reference = ifelse(is.na(updated_ref_info), ref_info, updated_ref_info)) %>% 
-  filter(!is.na(reference)) 
-
-mod_all %>% 
-  filter(is.na(reference)) %>% View
+traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv")
 
 
-modf <- mod_all %>% 
+mod_all <- traits_analysis_raw
+
+
+# calcium -----------------------------------------------------------------
+calcium <- mod_all %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(subgroup == "finfish")
+
+mod1fg_calcium <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = calcium, method = "ML") 
+mod2fg_calcium <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = calcium, method = "ML") 
+mod2fg2_calcium <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = calcium, method = "ML") 
+mod3fg_calcium <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = calcium, method = "ML") 
+mod4fg_calcium <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = calcium, method = "ML") 
+mod5fg_calcium <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = calcium, method = "ML") 
+mod6fg_calcium <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = calcium, method = "ML") 
+ddfeg_calcium <- model.sel(mod1fg_calcium, mod2fg_calcium, mod3fg_calcium, mod4fg_calcium, mod5fg_calcium, mod6fg_calcium, mod2fg2_calcium)
+
+mod1m_calcium <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
+mod2m_calcium <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
+mod3m_calcium <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
+mod4m_calcium <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium)
+mod5m_calcium <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = calcium) 
+mod6m_calcium <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
+
+ddfer_calcium <- model.sel(mod1m_calcium, mod2m_calcium, mod3m_calcium, mod4m_calcium, mod5m_calcium, mod6m_calcium)
+anova(mod2fg, mod2m)
+
+summary(mod2m)
+intervals(mod2m)
+r.squaredGLMM(mod2m_calcium)
+
+
+ca_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+
+ca_slopes_average <- enframe(coef(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
+  mutate(type = "random")
+
+ca_results <- left_join(ca_CI_average, ca_slopes_average, by = "term") %>% 
+  mutate(nutrient = "calcium") %>% 
+  mutate(type = "random")
+
+
+
+# iron -----------------------------------------------------------------
+iron <- mod_all %>% 
   filter(nutrient == "fe_mg") %>% 
   filter(subgroup == "finfish")
 
-mod1f <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
-mod2f <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = modf), standardize.y = TRUE) 
-mod3f <- standardize(lm(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
-mod4f <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
-mod5f <- standardize(lm(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = modf), standardize.y = TRUE) 
-mod6f <- standardize(lm(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
-ddfe <- model.sel(mod1f, mod2f, mod3f, mod4f, mod5f, mod6f)
+mod1fg_iron <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = iron, method = "ML") 
+mod2fg_iron <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = iron, method = "ML") 
+mod2fg2_iron <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = iron, method = "ML") 
+mod3fg_iron <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = iron, method = "ML") 
+mod4fg_iron <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = iron, method = "ML") 
+mod5fg_iron <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = iron, method = "ML") 
+mod6fg_iron <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = iron, method = "ML") 
+ddfeg_iron <- model.sel(mod1fg_iron, mod2fg_iron, mod3fg_iron, mod4fg_iron, mod5fg_iron, mod6fg_iron,mod2fg2_iron)
 
-mod1fg <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = modf) 
-mod2fg <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = modf) 
-mod3fg <- standardize(gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
-mod4fg <- standardize(gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
-mod5fg <- standardize(gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = modf), standardize.y = TRUE) 
-mod6fg <- standardize(gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = modf), standardize.y = TRUE) 
+mod1m_iron <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = iron) 
+mod2m_iron <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data = iron) 
+mod3m_iron <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = iron) 
+mod4m_iron <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = iron)
+mod5m_iron <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = iron) 
+mod6m_iron <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = iron) 
 
+ddfer_iron <- model.sel(mod1m_iron, mod2m_iron, mod3m_iron, mod4m_iron, mod5m_iron, mod6m_iron)
 
+ddfeg_iron
+ddfer_iron
 
-summary(mod2)
-
-fe_CI_average <- rownames_to_column(as.data.frame(confint(mod2), var = "term")) %>%
+fe_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_iron, subset = cumsum(weight) <= .95)), var = "term")) %>%
   rename(conf_low = `2.5 %`,
          conf_high = `97.5 %`) %>% 
   rename(term = rowname)
-fe_slopes_average <- enframe(coef(mod2), name = "term", value = "slope") %>% 
-  mutate(type = "fixed")
+
+fe_slopes_average <- enframe(coef(model.avg(ddfer_iron, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
+  mutate(type = "random")
+
 fe_results <- left_join(fe_CI_average, fe_slopes_average, by = "term") %>% 
   mutate(nutrient = "iron") %>% 
-  mutate(type = "fixed")
+  mutate(type = "random")
 
-mod1m <- standardize(lmer(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat + (1 |reference), data = modf), standardize.y = TRUE) 
-mod2m <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, data = modf) 
-mod3m <- standardize(lmer(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat + (1 |reference), data = modf), standardize.y = TRUE) 
-mod4m <- standardize(lmer(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat + (1 |reference), data = modf), standardize.y = TRUE) 
-mod5m <- standardize(lmer(log_concentration ~ log_length + bulk_trophic_level + feeding_level + (1 |reference), data = modf), standardize.y = TRUE) 
-mod6m <- standardize(lmer(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat + (1 |reference), data = modf), standardize.y = TRUE) 
 
-ddfer <- model.sel(mod1m, mod2m, mod3m, mod4m, mod5m, mod6m)
-summary(mod2m)
-tidy(mod2m, conf.int = TRUE) %>% View
 
-anova(mod2fg, mod2m)
-AIC(mod2fg, mod2m)
 
-fer_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer, subset = cumsum(weight) <= .95)), var = "term")) %>%
+# zinc -----------------------------------------------------------------
+zinc <- mod_all %>% 
+  filter(nutrient == "zn_mg") %>% 
+  filter(subgroup == "finfish")
+
+mod1fg_zinc <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = zinc, method = "ML") 
+mod2fg_zinc <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = zinc, method = "ML") 
+mod2fg2_zinc <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = zinc, method = "ML") 
+mod3fg_zinc <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = zinc, method = "ML") 
+mod4fg_zinc <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = zinc, method = "ML") 
+mod5fg_zinc <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = zinc, method = "ML") 
+mod6fg_zinc <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = zinc, method = "ML") 
+ddfeg_zinc <- model.sel(mod1fg_zinc, mod2fg_zinc, mod3fg_zinc, mod4fg_zinc, mod5fg_zinc, mod6fg_zinc,mod2fg2_zinc)
+
+mod1m_zinc <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = zinc) 
+mod2m_zinc <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data = zinc) 
+mod3m_zinc <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data =zinc) 
+mod4m_zinc <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = zinc)
+mod5m_zinc <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = zinc) 
+mod6m_zinc <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = zinc) 
+
+ddfer_zinc <- model.sel(mod1m_zinc, mod2m_zinc, mod3m_zinc, mod4m_zinc, mod5m_zinc, mod6m_zinc)
+
+zn_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_zinc, subset = cumsum(weight) <= .95)), var = "term")) %>%
   rename(conf_low = `2.5 %`,
          conf_high = `97.5 %`) %>% 
   rename(term = rowname)
-fer_slopes_average <- enframe(coef(model.avg(ddfer, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
-  mutate(type = "random")
-fer_results <- left_join(fer_CI_average, fer_slopes_average, by = "term") %>% 
-  mutate(nutrient = "iron") %>% 
+
+zn_slopes_average <- enframe(coef(model.avg(ddfer_zinc, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
   mutate(type = "random")
 
+zn_results <- left_join(zn_CI_average, zn_slopes_average, by = "term") %>% 
+  mutate(nutrient = "zinc") %>% 
+  mutate(type = "random")
 
-bind_rows(fer_results, fe_results) %>% View
+
+# EPA -----------------------------------------------------------------
+EPA <- mod_all %>% 
+  filter(nutrient == "epa") %>% 
+  filter(subgroup == "finfish")
+
+mod1fg_EPA <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = EPA, method = "ML") 
+mod2fg_EPA <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = EPA, method = "ML") 
+mod2fg2_EPA <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = EPA, method = "ML") 
+mod3fg_EPA <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = EPA, method = "ML") 
+mod4fg_EPA <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = EPA, method = "ML") 
+mod5fg_EPA <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = EPA, method = "ML") 
+mod6fg_EPA <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = EPA, method = "ML") 
+ddfeg_EPA <- model.sel(mod1fg_EPA, mod2fg_EPA, mod3fg_EPA, mod4fg_EPA, mod5fg_EPA, mod6fg_EPA,mod2fg2_EPA)
+
+mod1m_EPA <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = EPA) 
+mod2m_EPA <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data =EPA) 
+mod3m_EPA <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = EPA) 
+mod4m_EPA <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = EPA)
+mod5m_EPA <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = EPA) 
+mod6m_EPA <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = EPA) 
+
+ddfer_EPA <- model.sel(mod1m_EPA, mod2m_EPA, mod3m_EPA, mod4m_EPA, mod5m_EPA, mod6m_EPA)
+
+
+epa_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_EPA, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+
+epa_slopes_average <- enframe(coef(model.avg(ddfer_EPA, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
+  mutate(type = "random")
+
+epa_results <- left_join(epa_CI_average, epa_slopes_average, by = "term") %>% 
+  mutate(nutrient = "epa") %>% 
+  mutate(type = "random")
+
+# DHA -----------------------------------------------------------------
+dha <- mod_all %>% 
+  filter(nutrient == "dha") %>% 
+  filter(subgroup == "finfish")
+
+mod1fg_dha <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = dha, method = "ML") 
+mod2fg_dha <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = dha, method = "ML") 
+mod2fg2_dha <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = dha, method = "ML") 
+mod3fg_dha <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = dha, method = "ML") 
+mod4fg_dha <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = dha, method = "ML") 
+mod5fg_dha <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = dha, method = "ML") 
+mod6fg_dha <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = dha, method = "ML") 
+ddfeg_dha <- model.sel(mod1fg_dha, mod2fg_dha, mod3fg_dha, mod4fg_dha, mod5fg_dha, mod6fg_dha,mod2fg2_dha)
+
+mod1m_dha <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = dha) 
+mod2m_dha <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data =dha) 
+mod3m_dha <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = dha) 
+mod4m_dha <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = dha)
+mod5m_dha <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = dha) 
+mod6m_dha <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = dha) 
+
+ddfer_dha <- model.sel(mod1m_dha, mod2m_dha, mod3m_dha, mod4m_dha, mod5m_dha, mod6m_dha)
+
+
+dha_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_dha, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+
+dha_slopes_average <- enframe(coef(model.avg(ddfer_dha, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
+  mutate(type = "random")
+
+dha_results <- left_join(dha_CI_average, dha_slopes_average, by = "term") %>% 
+  mutate(nutrient = "dha") %>% 
+  mutate(type = "random")
+
+# protein -----------------------------------------------------------------
+protein <- mod_all %>% 
+  filter(nutrient == "protein") %>% 
+  filter(subgroup == "finfish")
+
+mod1fg_protein <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = protein, method = "ML") 
+mod2fg_protein <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = protein, method = "ML") 
+mod2fg2_protein <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = protein, method = "ML") 
+mod3fg_protein <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = protein, method = "ML") 
+mod4fg_protein <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = protein, method = "ML") 
+mod5fg_protein <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = protein, method = "ML") 
+mod6fg_protein <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = protein, method = "ML") 
+ddfeg_protein <- model.sel(mod1fg_protein, mod2fg_protein, mod3fg_protein, mod4fg_protein, mod5fg_protein, mod6fg_protein,mod2fg2_protein)
+
+mod1m_protein <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = protein) 
+mod2m_protein <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data =protein) 
+mod3m_protein <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = protein) 
+mod4m_protein <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = protein)
+mod5m_protein <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = protein) 
+mod6m_protein <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = protein) 
+
+ddfer_protein <- model.sel(mod1m_protein, mod2m_protein, mod3m_protein, mod4m_protein, mod5m_protein, mod6m_protein)
+
+
+protein_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_protein, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+
+protein_slopes_average <- enframe(coef(model.avg(ddfer_protein, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
+  mutate(type = "random")
+
+protein_results <- left_join(protein_CI_average, protein_slopes_average, by = "term") %>% 
+  mutate(nutrient = "protein") %>% 
+  mutate(type = "random")
 
 
 
+# Merge all results -------------------------------------------------------
+
+all_nuts_results <- bind_rows(protein_results, zn_results, fe_results, ca_results, epa_results, dha_results)
 
 # calcium -----------------------------------------------------------------
 
@@ -193,7 +356,3 @@ bind_rows(znr_results, zn_results) %>% View
 summary(mod2m)
 tidy(mod2m, conf.int = TRUE) %>% View
 
-
-library(piecewiseSEM)
-sem.model.fits(mod2m)
-r.squaredGLMM(mod2m)
