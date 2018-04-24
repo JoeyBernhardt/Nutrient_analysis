@@ -34,6 +34,7 @@ mod5fg_calcium <- gls(log_concentration ~ log_length + bulk_trophic_level + feed
 mod6fg_calcium <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = calcium, method = "ML") 
 ddfeg_calcium <- model.sel(mod1fg_calcium, mod2fg_calcium, mod3fg_calcium, mod4fg_calcium, mod5fg_calcium, mod6fg_calcium, mod2fg2_calcium)
 
+summary(mod6fg_calcium)
 mod1m_calcium <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
 mod2m_calcium <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
 mod3m_calcium <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = calcium) 
@@ -43,9 +44,9 @@ mod6m_calcium <- lme(log_concentration ~ bulk_trophic_level + feeding_level + fe
 
 ddfer_calcium <- model.sel(mod1m_calcium, mod2m_calcium, mod3m_calcium, mod4m_calcium, mod5m_calcium, mod6m_calcium)
 anova(mod2fg_calcium, mod2m_calcium)
-summary(mod2m_calcium)
+summary(mod6m_calcium)
 intervals(mod2m_calcium)
-r.squaredGLMM(mod2m_calcium)
+r.squaredGLMM(mod6m_calcium)
 
 
 
@@ -258,6 +259,47 @@ protein_slopes_average <- enframe(coef(model.avg(ddfer_protein, subset = cumsum(
 protein_results <- left_join(protein_CI_average, protein_slopes_average, by = "term") %>% 
   mutate(nutrient = "protein") %>% 
   mutate(type = "random")
+
+r.squaredGLMM(mod5m_protein)
+
+
+# fat -----------------------------------------------------------------
+fat <- mod_all %>% 
+  filter(nutrient == "fat_g") %>% 
+  filter(subgroup == "finfish")
+
+mod1fg_fat <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, data = fat, method = "ML") 
+mod2fg_fat <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = fat, method = "ML") 
+mod2fg2_fat <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, data = fat, method = "ML") 
+mod3fg_fat <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, data = fat, method = "ML") 
+mod4fg_fat <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, data = fat, method = "ML") 
+mod5fg_fat <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, data = fat, method = "ML") 
+mod6fg_fat <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, data = fat, method = "ML") 
+ddfeg_fat <- model.sel(mod1fg_fat, mod2fg_fat, mod3fg_fat, mod4fg_fat, mod5fg_fat, mod6fg_fat,mod2fg2_fat)
+
+mod1m_fat <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = fat) 
+mod2m_fat <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, random = ~ 1 | reference, method = "ML", data =fat) 
+mod3m_fat <- lme(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = fat) 
+mod4m_fat <- lme(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = fat)
+mod5m_fat <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_level, random = ~ 1 | reference, method = "ML", data = fat) 
+mod6m_fat <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = fat) 
+
+ddfer_fat <- model.sel(mod1m_fat, mod2m_fat, mod3m_fat, mod4m_fat, mod5m_fat, mod6m_fat)
+
+
+fat_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_fat, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+
+fat_slopes_average <- enframe(coef(model.avg(ddfer_fat, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
+  mutate(type = "random")
+
+fat_results <- left_join(fat_CI_average, fat_slopes_average, by = "term") %>% 
+  mutate(nutrient = "fat") %>% 
+  mutate(type = "random")
+
+r.squaredGLMM(mod1m_fat)
 
 
 
