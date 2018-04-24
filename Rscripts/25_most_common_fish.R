@@ -6,7 +6,7 @@ library(janitor)
 fish <- read_csv("~/Desktop/FoodSupply_LivestockFish_E_All_Data.csv")
 
 ### this is the data from FAO on fish species with highest production
-tonnes <- read_excel("~/Desktop/a1e.xlsx")
+tonnes <- read_excel("data/a1e.xlsx", skip = 4)
 
 tonnes <- tonnes %>% 
   clean_names()

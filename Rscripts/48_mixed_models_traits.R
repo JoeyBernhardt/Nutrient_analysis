@@ -16,6 +16,7 @@ library(visreg)
 traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv")
 
 
+
 mod_all <- traits_analysis_raw
 
 
@@ -42,13 +43,13 @@ mod6m_calcium <- lme(log_concentration ~ bulk_trophic_level + feeding_level + fe
 
 ddfer_calcium <- model.sel(mod1m_calcium, mod2m_calcium, mod3m_calcium, mod4m_calcium, mod5m_calcium, mod6m_calcium)
 anova(mod2fg_calcium, mod2m_calcium)
-
 summary(mod2m_calcium)
 intervals(mod2m_calcium)
 r.squaredGLMM(mod2m_calcium)
 
 
-ca_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95)), var = "term")) %>%
+
+  ca_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_calcium, subset = cumsum(weight) <= .95)), var = "term")) %>%
   rename(conf_low = `2.5 %`,
          conf_high = `97.5 %`) %>% 
   rename(term = rowname)
@@ -84,8 +85,6 @@ mod5m_iron <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_
 mod6m_iron <- lme(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = iron) 
 
 ddfer_iron <- model.sel(mod1m_iron, mod2m_iron, mod3m_iron, mod4m_iron, mod5m_iron, mod6m_iron)
-
-ddfeg_iron
 ddfer_iron
 
 fe_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_iron, subset = cumsum(weight) <= .95)), var = "term")) %>%
@@ -101,7 +100,7 @@ fe_results <- left_join(fe_CI_average, fe_slopes_average, by = "term") %>%
   mutate(type = "random")
 
 
-
+r.squaredGLMM(mod3m_iron)
 
 # zinc -----------------------------------------------------------------
 zinc <- mod_all %>% 
@@ -138,6 +137,13 @@ zn_results <- left_join(zn_CI_average, zn_slopes_average, by = "term") %>%
   mutate(nutrient = "zinc") %>% 
   mutate(type = "random")
 
+ddfer_zinc
+anova(mod1fg_zinc, mod4m_zinc)
+summary(mod4m_zinc)
+intervals(mod4m_zinc)
+r.squaredGLMM(mod5m_zinc)
+
+
 
 # EPA -----------------------------------------------------------------
 EPA <- mod_all %>% 
@@ -170,10 +176,13 @@ epa_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer_EPA, 
 
 epa_slopes_average <- enframe(coef(model.avg(ddfer_EPA, subset = cumsum(weight) <= .95)), name = "term", value = "slope") %>% 
   mutate(type = "random")
-
+ddfer_EPA
+summary(mod5m_EPA)
 epa_results <- left_join(epa_CI_average, epa_slopes_average, by = "term") %>% 
   mutate(nutrient = "epa") %>% 
   mutate(type = "random")
+
+r.squaredGLMM(mod6m_EPA)
 
 # DHA -----------------------------------------------------------------
 dha <- mod_all %>% 
@@ -210,6 +219,9 @@ dha_slopes_average <- enframe(coef(model.avg(ddfer_dha, subset = cumsum(weight) 
 dha_results <- left_join(dha_CI_average, dha_slopes_average, by = "term") %>% 
   mutate(nutrient = "dha") %>% 
   mutate(type = "random")
+
+r.squaredGLMM(mod6m_dha)
+
 
 # protein -----------------------------------------------------------------
 protein <- mod_all %>% 
