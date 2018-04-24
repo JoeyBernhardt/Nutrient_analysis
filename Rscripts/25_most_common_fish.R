@@ -9,21 +9,36 @@ fish <- read_csv("~/Desktop/FoodSupply_LivestockFish_E_All_Data.csv")
 tonnes <- read_excel("data/a1e.xlsx", skip = 4)
 
 tonnes <- tonnes %>% 
-  clean_names()
+  clean_names() %>% 
+  rename(species_name = scientific_name_nom_scientifique_nombre_científico)
+  
+
+names(tonnes)
 
 sub <- tonnes %>% 
-  select(na_2) %>% 
+  dplyr::select(species_name) %>% 
   rownames_to_column() %>% 
   filter(rowname != c("1", "2", "3", "4")) %>% 
   filter(rowname != c("81", "82", "83", "84")) %>% 
-  distinct(na_2) %>% 
+  distinct(species_name) %>% 
   rownames_to_column() %>% 
   mutate(rowname = as.numeric(rowname)) %>% 
   filter(rowname < 77) %>% 
-  rename(species_name = na_2)
+  filter(!is.na(species_name))
+
+write_csv(sub, "data-processed/commonly_consumed_species.csv")
 
 
-trait_data <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/n.long_lat3.csv")
+
+
+trait_data <- read_csv("data-processed/n.long_lat3.csv")
+
+
+trait_species <- trait_data %>% 
+  distinct(species_name)
+
+intersect(sub$species_name, trait_species$species_name) ### species in our dataset, and in the FAO top production volumes
+
 
 ntbl.RDI.all <- trait_data %>% 
   filter(!grepl("^Mohanty", ref_info)) %>% 
