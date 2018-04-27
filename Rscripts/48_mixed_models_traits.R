@@ -19,6 +19,11 @@ traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv")
 
 mod_all <- traits_analysis_raw
 
+feeding_mode_table <- as.data.frame(table(mod_all$feeding_mode))
+write_csv(feeding_mode_table, "data-processed/feeding_mode_table.csv")
+
+feeding_level_table <- as.data.frame(table(mod_all$feeding_level))
+write_csv(feeding_level_table, "data-processed/feeding_level_table.csv")
 
 # calcium -----------------------------------------------------------------
 calcium <- mod_all %>% 
