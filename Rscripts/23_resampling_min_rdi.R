@@ -59,6 +59,8 @@ nutrient_fishing_function <- function(sample_size) {
 ntbl_sub1 <- dataset %>% 
   sample_n(size = sample_size, replace = FALSE)
 
+?combn
+
 sample_list <- NULL
 for (i in 1:nrow(ntbl_sub1) ) {
   output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)

@@ -25,6 +25,10 @@ write_csv(feeding_mode_table, "data-processed/feeding_mode_table.csv")
 feeding_level_table <- as.data.frame(table(mod_all$feeding_level))
 write_csv(feeding_level_table, "data-processed/feeding_level_table.csv")
 
+
+mod_all %>% 
+  summarise_each(funs(min, max, mean), bulk_trophic_level) %>% View
+
 # calcium -----------------------------------------------------------------
 calcium <- mod_all %>% 
   filter(nutrient == "ca_mg") %>% 
