@@ -471,6 +471,8 @@ obs_exp_feve2 <- bind_rows(obs_exp_feve, obs_exp_feve_global)
 
 write_csv(obs_exp_feve2, "data-processed/obs_exp_feve2.csv")
 
+obs_exp_feve2 <- read_csv("data-processed/obs_exp_feve2.csv")
+
 obs_exp_feve_plot <- obs_exp_feve2 %>% 
 ggplot(aes(x = res_mean, y = FEve, color = fct_reorder2(culture, res_mean, FEve))) +
   geom_abline(slope = 1, intercept = 0) +geom_point(size = 4) +

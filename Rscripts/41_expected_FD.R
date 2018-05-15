@@ -105,6 +105,8 @@ all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample
 
 write_csv(all_fds, "data-processed/all_fds.csv")
 
+
+all_fds <- read_csv("data-processed/all_fds.csv")
 all_fds %>% 
   filter(region != "global_resampled") %>% 
   summarise_each(funs(mean, std.error), FD) %>% View
