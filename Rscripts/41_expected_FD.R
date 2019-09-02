@@ -111,15 +111,26 @@ all_fds %>%
   filter(region != "global_resampled") %>% 
   summarise_each(funs(mean, std.error), FD) %>% View
 
+?qualpal
+
+colors <- lacroix_palette("PeachPear", type = "continuous", n = 15) 
+
+colorsp <- c(unique(lacroix_palette(type = "paired")), "yellow", "cadetblue", "purple") 
+
+length(unique(colorsp))
+
 obs_eve_FD <- all_fds %>% 
   rename(Region = region) %>% 
   mutate(FD = ifelse(Region == "global_resampled", exp_df, FD)) %>% 
   mutate(Region = ifelse(Region == "global_resampled", "Global (40 species)", Region)) %>% 
-  ggplot(aes(x = exp_df, y = FD, color = fct_reorder2(Region, exp_df, FD))) + geom_point(size = 4) +
-  geom_point(size = 4, shape = 1, color = "black") +
+  ggplot(aes(x = exp_df, y = FD, color = Region)) +
   geom_abline(slope = 1, intercept = 0) +
+  geom_point(size = 4) +
+  geom_point(size = 4, shape = 1, color = "black") +
 ylim(1.5, 4) + xlim(1.5, 4) +
-  xlab("Expected FD") + ylab("Observed FD") + scale_color_viridis(discrete = TRUE, name = "Region") +
+  xlab("Expected FD") + ylab("Observed FD") + 
+  scale_color_manual(values = colorsp) +
+  # scale_color_discrete(name = "Region") +
   ggtitle("A") +
   theme(plot.title = element_text(hjust = 0))
 ggsave("figures/expected_vs_observed_FD.pdf", width = 7, height = 5)
@@ -128,7 +139,7 @@ ggsave("figures/expected_vs_observed_FD.pdf", width = 7, height = 5)
 library(patchwork)
 
 obs_exp_plot <- obs_eve_FD + obs_exp_feve_plot + plot_layout(ncol = 2)
-ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD.pdf", device = "pdf", width =14, height = 5)
+ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD_no_order.pdf", device = "pdf", width =10, height = 3)
 
 
 

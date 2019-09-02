@@ -88,7 +88,7 @@ species_numbers <- nuts_mean %>%
   filter(n_species >= 25) 
 
 write_csv(species_numbers, "data-processed/species_numbers.csv")
-
+species_numbers <- read_csv("data-processed/species_numbers.csv")
 
 # comparing species lists -------------------------------------------------
 
@@ -314,6 +314,24 @@ ggsave("figures/nutrient_accumulation_plots_nut_accum_bw.png", width = 4, height
 
 
 # parameter estimate plots ------------------------------------------------
+power_function <- function(x) 2.5*x^0.23
+power_function4 <- function(x) 2.3*x^0.23
+
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
+p + stat_function(fun = power_function, color = "black", size = 1) +
+  stat_function(fun = power_function4, color = "red", size = 1) + xlim(1,10)
+
+
+xes <- seq(1:10)
+intercept_2.5 <- sapply(xes, power_function)
+intercept_2.3 <- sapply(xes, power_function4)
+
+df <- data.frame(xes, intercept_2.5, intercept_2.3) %>% 
+  gather(key = "intercept", value = "y", contains("inter"))
+
+df %>% 
+  ggplot(aes( x = log(xes), y = log(y), color = intercept)) + geom_line() 
+
 library(broom)
 
 mod <- res_all %>% 
@@ -322,6 +340,24 @@ mod <- res_all %>%
   group_by(culture) %>% 
   do(tidy(nls(formula = (number_of_targets ~ a * number_of_species^b),data = .,  start = c(a=1, b=0.3)))) 
 
+bef_terms <- mod %>% 
+  select(culture, term, estimate) %>% 
+  spread(key = term, value = estimate) 
+
+cor(bef_terms$a, bef_terms$b)
+
+linear_slopes <- res_all %>% 
+  filter(culture %in% species_numbers$culture | culture == "global") %>% 
+  filter(number_of_species < 11) %>% 
+  group_by(culture) %>% 
+  do(tidy(lm(log(number_of_targets) ~ log(number_of_species),data = .))) %>% 
+  filter(term != "(Intercept)")
+
+
+res_all %>% 
+  filter(culture %in% species_numbers$culture | culture == "global") %>% 
+  filter(number_of_species < 11) %>%
+  ggplot(aes(x = log(number_of_species), y = log(number_of_targets))) + geom_point()
 
 a_terms <- mod %>% 
   filter(term == "a")
@@ -473,12 +509,16 @@ write_csv(obs_exp_feve2, "data-processed/obs_exp_feve2.csv")
 
 obs_exp_feve2 <- read_csv("data-processed/obs_exp_feve2.csv")
 
+library(LaCroixColoR)
+colors <- lacroix_palette("PeachPear", type = "continuous", n = 15) 
+colorsp <- c(unique(lacroix_palette(type = "paired")), "yellow", "cadetblue", "purple") 
+
 obs_exp_feve_plot <- obs_exp_feve2 %>% 
-ggplot(aes(x = res_mean, y = FEve, color = fct_reorder2(culture, res_mean, FEve))) +
+ggplot(aes(x = res_mean, y = FEve, color = culture)) +
   geom_abline(slope = 1, intercept = 0) +geom_point(size = 4) +
   geom_point(size = 4, shape = 1, color = "black") +
   ylim(0.68, 0.82) + xlim(0.68, 0.82) +
-  xlab("Expected FEve") + ylab("Observed FEve") + scale_color_viridis(discrete = TRUE, name = "Region") +
+  xlab("Expected FEve") + ylab("Observed FEve") + scale_color_manual(values = colorsp, name = "Region") +
   ggtitle("B") +
   theme(plot.title = element_text(hjust = 0))
 ggsave("figures/obs_exp_functional_evenness.pdf", width = 7, height = 5)
