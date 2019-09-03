@@ -15,6 +15,12 @@ library(visreg)
 
 traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv")
 
+fish_species <- traits_analysis_raw %>% 
+  filter(subgroup == "finfish") %>% 
+  dplyr::select(species_name, reference, seanuts_id2) %>% 
+  distinct() 
+
+write_csv(fish_species, "data-processed/fish_species.csv")
 
 
 mod_all <- traits_analysis_raw

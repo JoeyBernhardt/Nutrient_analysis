@@ -39,6 +39,7 @@ mod_all %>%
   mutate(subgroup = "finfish") %>% 
   filter(term != "(Intercept)") %>% View
 
+
 mod_all %>% 
   filter(subgroup == "finfish") %>% 
   filter(nutrient == "zn_mg") %>% 

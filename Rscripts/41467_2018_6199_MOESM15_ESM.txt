@@ -1,0 +1,129 @@
+rm(list=ls())
+
+library(phytools)
+library(geiger)
+library(phylolm)
+
+#FUNCTION TO REMOVE SPECIES WITH MISSING DATA
+removeNA<-function(dat){
+	missing.list<-sapply(1:ncol(dat), function(x) as.numeric(which(is.na(dat[,x])==TRUE)))
+	missing<-missing.list[[1]]
+		for(i in 2:length(missing.list)) {missing<-c(missing, missing.list[[i]][which(match(missing.list[[i]], missing, nomatch=0)==0)])}
+	dat<-dat[-missing,]
+	return(dat)
+}
+
+#GET DATA AND TREE
+fullTree<-read.newick("Rabosky_etal2014.timetree.nex")
+	fullTree$tip.label[grep("Acanthopagrus_schlegelii",fullTree$tip.label)]<-"Acanthopagrus_schlegelii"
+	fullTree$tip.label[grep("Auxis_thazard",fullTree$tip.label)]<-"Auxis_thazard"
+	fullTree$tip.label[grep("Auxis_rochei",fullTree$tip.label)]<-"Auxis_rochei"
+	fullTree$tip.label[grep("Carassius_auratus",fullTree$tip.label)]<-"Carassius_auratus"
+	fullTree$tip.label[grep("Diagramma_picta",fullTree$tip.label)]<-"Diagramma_pictum"
+	fullTree$tip.label[grep("Helicolenus_dactylopterus",fullTree$tip.label)]<-"Helicolenus_dactylopterus"
+	fullTree$tip.label[grep("Oncorhynchus_masou",fullTree$tip.label)]<-"Oncorhynchus_masou"
+	fullTree$tip.label[grep("Osmerus_mordax_mordax",fullTree$tip.label)]<-"Osmerus_mordax"
+	fullTree$tip.label[grep("Salvelinus_alpinus",fullTree$tip.label)]<-"Salvelinus_alpinus"
+	fullTree$tip.label[grep("Salvelinus_leucomaenis_leucomaenis",fullTree$tip.label)]<-"Salvelinus_leucomaenis"	
+	fullTree$tip.label[grep("Sebastes_pachycephalus_pachycephalus",fullTree$tip.label)]<-"Sebastes_pachycephalus"
+	fullTree$tip.label[grep("Thymallus_arcticus",fullTree$tip.label)]<-"Thymallus_arcticus"
+
+fullDat<-read.csv("bionut_working.csv")
+	rownames(fullDat)<-fullDat[,1]
+	fullDat<-fullDat[,-1]
+
+
+datSp<-rownames(fullDat)
+
+species<-datSp[which(match(datSp, fullTree$tip.label, nomatch=0)!=0)]
+exclude<-fullTree$tip.label[which(match(fullTree$tip.label, datSp, nomatch=0)==0)]
+
+tree<-drop.tip(fullTree, exclude)
+
+
+nutDat<-fullDat[species,c("protein", "fat", "fac3_pol", "fac6_pol", "iron", "zinc", "ret_eq", "vitb12", "vitd")]
+nutDat<-data.frame(nutDat[,"protein"], sapply(c("fat", "fac3_pol", "fac6_pol", "iron", "zinc", "ret_eq", "vitb12", "vitd"), function(x) log(nutDat[,x]+1)))
+	colnames(nutDat)[1]<-"protein"
+
+lifeHistDat<-fullDat[species, c("maxlen", "troph", "depmax")]
+	
+nutList<-lapply(1:ncol(nutDat), function(x) data.frame(lifeHistDat[which(is.na(nutDat[,x])==FALSE),], nutDat[which(is.na(nutDat[,x])==FALSE),x]))
+	names(nutList)<-colnames(nutDat)
+	for (i in 1:length(nutList)) {colnames(nutList[[i]])[ncol(nutList[[i]])]<-names(nutList)[i]}
+for (i in 1:length(nutList)) {
+	for (j in 1:ncol(nutList[[i]])){
+		nutList[[i]]<-nutList[[i]][which(is.na(nutList[[i]][,j])==FALSE),]
+	}
+}
+
+	
+treeList<-lapply(1:length(nutList), function(x) drop.tip(tree, tree$tip.label[which(match(tree$tip.label, rownames(nutList[[x]]), nomatch=0)==0)]))
+
+
+#ESTIMATING REGRESSION COEFFICIENTS USING PGLS [BAPU HAS ALREADY DONE THIS]
+
+pgls.table<-matrix(, length(nutList), 18, dimnames=list(names(nutList), c("n", "lambda", "b0", "b1_maxlen", "b1_troph", "b1_depmax", "se_b0", "se_b1_maxlen", "se_b1_troph", "se_b1_depmax", "tstat_b0", "tstat_maxlen", "tstat_troph", "tstat_depmax", "P_b0", "P_maxlen", "P_troph", "P_depmax")))
+
+fit.table<-matrix(, length(nutList), 9, dimnames=list(names(nutList), c("lnL_lmLambda", "lnL_lambda", "lnL_white", "AICc_lmLambda", "AICc_lambda", "AICc_white", "dAICc_lmLambda", "dAICc_lambda", "dAICc_white")))
+
+lrt<-matrix(, length(nutList), 4, dimnames=list(names(nutList), c("lnL_lmLambda", "lnL_white", "-2lnLR", "P_Chi-sq_4df")))
+lrt2<-matrix(, length(nutList), 4, dimnames=list(names(nutList), c("lnL_lmLambda", "lnL_lambda", "-2lnLR", "P_Chi-sq_3df")))
+
+#coeffList<-list()
+
+for (i in 1:length(nutList)){
+	maxlen<-nutList[[i]]$maxlen
+		names(maxlen)<-rownames(nutList[[i]])
+	troph<-nutList[[i]]$troph
+		names(troph)<-rownames(nutList[[i]])
+	depmax<-nutList[[i]]$depmax
+		names(depmax)<-rownames(nutList[[i]])
+	
+	nut<-nutList[[i]][,4]
+		names(nut)<-rownames(nutList[[i]])
+		
+	phylo<-treeList[[i]]
+		
+	lmLambda<-phylolm(nut ~ maxlen + troph + depmax, phy=phylo, model="lambda")
+	lmBrown<-phylolm(nut ~ maxlen + troph + depmax, phy=phylo, model="BM")
+	lambda<-fitContinuous(phy=phylo, dat=nut, model="lambda")$opt
+	brown<-fitContinuous(phy=phylo, dat=nut, model="BM")$opt
+	white<-fitContinuous(phy=phylo, dat=nut, model="white")$opt
+	
+	fit.table[i,1:3]<-c(lmLambda$logLik, lambda$lnL, white$lnL)
+	
+	k<-c(6, 3, 2)
+		names(k)<-c("lmLambda", "lambda", "white")
+	
+	aic_lmLambda<-(2 * k["lmLambda"]) - (2 * lmLambda$logLik) + (((2* k["lmLambda"]) * (k["lmLambda"] + 1)) / (length(nut) - k["lmLambda"] - 1))
+	aic_lambda<-(2 * k["lambda"]) - (2 * lambda$lnL) + (((2* k["lambda"]) * (k["lambda"] + 1)) / (length(nut) - k["lambda"] - 1))
+	aic_white<-(2 * k["white"]) - (2 * white$lnL) + (((2* k["white"]) * (k["white"] + 1)) / (length(nut) - k["white"] - 1))
+	
+	fit.table[i,4:6]<-c(aic_lmLambda, aic_lambda, aic_white)
+	
+	fit.table[i, 7:9]<-sapply(c(4:6), function(x) fit.table[i,x] - min(fit.table[i,4:6]))
+	
+	lrt[i,1:2]<-c(lmLambda$logLik, white$lnL)
+	lrt[i,3]<-(-2) * (lrt[i,2] - lrt[i, 1])
+	lrt[i,4]<-dchisq(lrt[i,3], df=4)
+	
+	lrt2[i,1:2]<-c(lmLambda$logLik, lambda$lnL)
+	lrt2[i,3]<-(-2) * (lrt2[i,2] - lrt2[i,1])
+	lrt2[i,4]<-dchisq(lrt2[i,3], df=3)
+	
+		
+	pgls.table[i,1]<-nrow(nutList[[i]])
+	pgls.table[i,2]<-round(lmLambda[[3]], 3)
+	pgls.table[i,3:6]<-round(summary(lmLambda)[[2]][,"Estimate"], 5)
+	pgls.table[i,7:10]<-round(summary(lmLambda)[[2]][,"StdErr"], 5)
+	pgls.table[i,11:14]<-round(summary(lmLambda)[[2]][,"t.value"], 2)
+	pgls.table[i,15:18]<-round(summary(lmLambda)[[2]][,"p.value"], 5)
+
+#	coeffList[[i]]<-c(lmLambda[[3]], summary(lmLambda)[[2]][,"Estimate"])
+
+	write.csv(pgls.table, file="nutPGLS_table.csv")
+	write.csv(fit.table, file="nutPGLS_fitTable.csv")
+	write.csv(lrt, file="nutPGLS_LRT.csv")
+	write.csv(lrt, file="nutPGLS_LRT2.csv")
+
+}
