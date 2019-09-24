@@ -4,7 +4,22 @@ library(tidyverse)
 library(rotl)
 library(ape)
 library(stargazer)
+library(cowplot)
+library(stringr)
+library(purrr)
+library(janitor)
+library(MuMIn)
+library(broom)
+library(forcats)
+library(tidyverse)
+library(xtable)
+library(stargazer)
+library(arm)
+library(nlme)
+library(cowplot)
+library(visreg)
 
+install.packages("janitor")
 
 fish_species <- read_csv("data-processed/fish_species.csv")
 traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv") %>% 
@@ -61,6 +76,32 @@ calcium <- traits %>%
  cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
  tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
 
+ 
+ cal_sp <- cal_taxa$search_string
+ 
+ f_phy <- fishtree_phylogeny(species = calcium$species1)
+ f_phy
+ 
+ library(httr)
+ library(jsonlite)
+ # library(rgbif)
+ library(rotl)
+ library(phytools)
+ 
+ library(fishtree)
+ ?fishtree
+ 
+ 
+ url_ot <- 'https://api.opentreeoflife.org/v3/tree_of_life/induced_subtree'
+ body <- list(ott_ids=cal_taxa$ott_id)
+ r <- POST(url_ot, body = body, encode = "json")#gets which studies support the subtree from  the open tree API
+ for(studytree in content(r)$supporting_studies){
+   study <-  strsplit(studytree, '@')[[1]][1]
+   meta <- get_study_meta(study) #pulls the metadata for each study
+   pub <- get_publication(meta)  #grabs teh publication information
+   cat(pub,"\n\n")
+ }
+ 
 species <- unique(calcium$species)
 species <- unique(things$species)
 
@@ -79,11 +120,358 @@ cal2 <- calcium %>%
 
 rownames(cal2) <- cal2$unique_name2
 
+library(phylolm)
+?phylolm
 
-mod1 <- phylolm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, phy = tr_bl, data = cal2)
+mod1 <- phylolm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, phy = tr_bl, data = cal2, boot = 1000, model = "BM")
+mod1b <- phylolm(log_concentration ~ log_length, phy = tr_bl, data = cal2, boot = 1000)
+mod1m_iron <- lme(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, random = ~ 1 | reference, method = "ML", data = cal2) 
+
+
+summary(mod1b)
+summary(mod1)
+mod1b$coefficients
+mod1b$bootmean
+mod1b$bootconfint95
 sums <- summary(mod1)
+summary(mod1)
 sums$coefficients
 stargazer(sums$coefficients, type = "html")
+
+cal2 %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm")
+lm(log_concentration ~ log_length, data = cal2) %>% tidy(conf.int = TRUE)
+lm(log_concentration ~ log_length, data = cal2) %>% summary
+
+
+# Iron PGLS ---------------------------------------------------------------
+
+
+iron <- traits %>% 
+  # filter(species != "Scorpena_scrofa") %>% 
+  filter(species != "Parambassis wolffii") %>% 
+  filter(species_name %in% c(species)) %>% 
+  filter(nutrient == "fe_mg") %>% 
+  filter(subgroup == "finfish") %>% 
+  rename(species1 = species_name) %>% 
+  group_by(species1, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) 
+
+iron$species1 <- str_to_lower(iron$species1)
+
+iron_taxa <- tnrs_match_names(iron$species1, context="Animals", names = iron$species1, do_approximate_matching = TRUE) 
+tr_iron <- tol_induced_subtree(ott_ids = ott_id(iron_taxa), label_format="name") 
+
+
+tr_bl_iron <- compute.brlen(tr_iron)
+plot(tr_iron)
+
+length(tr_bl_iron$tip.label)
+
+
+iron2 <- iron %>% 
+  left_join(., iron_taxa, by = c("species1" = "search_string")) %>% 
+  mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
+  filter(unique_name2 %in% c(tr_bl_iron$tip.label)) %>% 
+  group_by(unique_name2, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat)
+
+rownames(iron2) <- iron2$unique_name2
+
+length(iron2$unique_name2)
+mod2 <- phylolm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level,
+                phy = tr_bl_iron, data = iron2, boot = 1000)
+mod2b <- phylolm(log_concentration ~ log_length, phy = tr_bl_iron, data = iron2, boot = 1000)
+mod2c <- lm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, data = iron2)
+mod2c <- lm(log_concentration ~ log_length, data = iron2)
+summary(mod2b)
+summary(mod2)
+mod2b$bootmean
+mod2b$bootconfint95
+summary(mod2)
+summary(mod2c)
+
+sums$coefficients
+stargazer(sums$coefficients, type = "html")
+
+iron2 %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm")
+lm(log_concentration ~ log_length, data = iron2) %>% tidy(conf.int = TRUE)
+  lm(log_concentration ~ log_length, data = iron2) %>% summary
+
+  
+  traits %>% 
+    filter(nutrient == "fe_mg") %>% 
+    # filter(subgroup == "finfish") %>% 
+    # group_by(species_name) %>% 
+    # summarise_each(funs(mean), log_concentration, log_length) %>% 
+    lm(log_concentration ~ log_length, data = .) %>% summary
+# Zinc PGLS ---------------------------------------------------------------
+
+
+zinc <- traits %>% 
+  # filter(species != "Scorpena_scrofa") %>% 
+  filter(species != "Parambassis wolffii") %>% 
+  filter(species_name %in% c(species)) %>% 
+  filter(nutrient == "zn_mg") %>% 
+  filter(subgroup == "finfish") %>% 
+  rename(species1 = species_name) %>% 
+  group_by(species1, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) 
+
+zinc$species1 <- str_to_lower(zinc$species1)
+
+zinc_taxa <- tnrs_match_names(zinc$species1, context="Animals", names = zinc$species1, do_approximate_matching = TRUE) 
+tr_zinc <- tol_induced_subtree(ott_ids = ott_id(zinc_taxa), label_format="name") 
+
+
+tr_bl_zinc <- compute.brlen(tr_zinc)
+plot(tr_zinc)
+
+length(tr_bl_zinc$tip.label)
+
+
+zinc2 <- zinc %>% 
+  left_join(., zinc_taxa, by = c("species1" = "search_string")) %>% 
+  mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
+  filter(unique_name2 %in% c(tr_bl_zinc$tip.label)) %>% 
+  group_by(unique_name2, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat)
+
+rownames(zinc2) <- zinc2$unique_name2
+
+length(zinc2$unique_name2)
+mod3 <- phylolm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, phy = tr_bl_zinc, data = zinc2, boot  = 1000)
+mod3b <- phylolm(log_concentration ~ log_length, phy = tr_bl_zinc, data = zinc2, boot = 1000)
+
+mod3b$bootconfint95
+mod3b$bootmean
+
+mod3$bootconfint95
+mod3$bootmean
+summary(mod3b)
+sums$coefficients
+mod3$coefficients
+
+stargazer(mod3, type = "html", out = "tables/zinc-pgls.htm")
+
+lm(log_concentration ~ log_length, data = zinc2) %>% tidy(conf.int = TRUE)
+lm(log_concentration ~ log_length, data = zinc2) %>% summary
+zinc2 %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm")
+
+traits %>% 
+  filter(nutrient == "zn_mg") %>% 
+  filter(subgroup == "finfish") %>% 
+  group_by(species_name) %>% 
+  summarise_each(funs(mean), log_concentration, log_length) %>% 
+  lm(log_concentration ~ log_length, data = .) %>% summary
+
+
+
+# DHA PGLS ---------------------------------------------------------------
+unique(traits$nutrient)
+
+dha <- traits %>% 
+  # filter(species != "Scorpena_scrofa") %>% 
+  filter(species != "Parambassis wolffii") %>% 
+  filter(species_name %in% c(species)) %>% 
+  filter(nutrient == "dha") %>% 
+  filter(subgroup == "finfish") %>% 
+  rename(species1 = species_name) %>% 
+  mutate(species1 = str_to_lower(species1)) %>% 
+  dplyr::filter(species1 != "epinephelus spp.") %>%
+  group_by(species1, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) %>% 
+  ungroup() %>% 
+  dplyr::distinct(species1, .keep_all = TRUE)
+
+
+dha$species1 <- str_to_lower(dha$species1)
+
+length(unique(dha$species1))
+length(dha$species1)
+
+dha_taxa <- tnrs_match_names(dha$species1, context="Animals", names = dha$species1, do_approximate_matching = TRUE) 
+tr_dha <- tol_induced_subtree(ott_ids = ott_id(dha_taxa), label_format="name") 
+
+
+tr_bl_dha <- compute.brlen(tr_dha)
+plot(tr_dha)
+
+length(tr_bl_dha$tip.label)
+
+
+dha2 <- dha %>% 
+  left_join(., dha_taxa, by = c("species1" = "search_string")) %>% 
+  mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
+  filter(unique_name2 %in% c(tr_bl_dha$tip.label)) %>% 
+  group_by(unique_name2, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat)
+
+rownames(dha2) <- dha2$unique_name2
+
+length(dha2$unique_name2)
+mod4 <- phylolm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, phy = tr_bl_dha, data = dha2, boot = 1000)
+mod4a <- phylostep(log_concentration ~ log_length + abs_lat, phy = tr_bl_dha, data = dha2, direction = "backward")
+
+library(nlme)
+library(MuMIn)
+library(arm)
+
+?standardize
+?scale
+
+vec <- c(2, 5, 7, 19, 44, 55, 99)
+vec2 <- scale(vec)
+
+dha3 <- dha2
+dha3$abs_lat <- scale(dha3$abs_lat)
+dha3$log_length <- scale(dha3$log_length)
+dha3$bulk_trophic_level <- scale(dha3$bulk_trophic_level)
+
+# dha3 <- dha2 %>% 
+#   # mutate(log_concentration = scale(log_concentration, scale = TRUE, center = FALSE)) %>% 
+#   # mutate(log_length = scale(log_length)) %>% 
+#   mutate(abs_lat = scale(abs_lat)) %>% 
+#   mutate(bulk_trophic_level = scale(bulk_trophic_level))
+
+pgls <- gls(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, correlation = corBrownian(phy = tr_bl_dha),
+                 data = dha3, method = "ML")
+rsquared(pgls)
+
+library(nlme)
+library(MuMIn)
+sum(is.na(dha3$bulk_trophic_level))
+
+mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML")
+mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML")
+mod3 <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML")
+mod4 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML")
+mod6 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML") 
+mod7 <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML")
+
+ddfe <- model.sel(mod1, mod2, mod3, mod4, mod6, mod7)
+ddfe
+coef(mod1)
+summary(mod6)
+intervals(mod6)
+fe_CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfe, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+fe_slopes_average <- enframe(coef(model.avg(ddfe, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+fe_results <- left_join(fe_CI_average, fe_slopes_average, by = "term") %>% 
+  mutate(nutrient = "iron")
+
+ddfe
+summary(pgls)
+anova(pgls)
+library(piecewiseSEM)
+source("Rscripts/rsquared.R")
+
+rsquared.gls(mod1)
+library(devtools)
+install_github("jslefche/piecewiseSEM@devel", build_vignette = TRUE)
+
+### need to standardize variables.
+
+pgls1 <- gls(log_concentration ~ log_length, correlation = corBrownian(phy = tr_bl_dha),
+            data = dha2, method = "ML")
+
+AIC(pgls1, pgls)
+model.avg(pgls, pgls1)
+model.sel(pgls, pgls1)
+summary(pgls)
+anova(pgls)
+
+summary(pgls)
+mod4b <- phylolm(log_concentration ~ log_length, phy = tr_bl_dha, data = dha2, boot = 1000)
+AIC(mod5)
+
+mod5 <- lm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, data = dha2)
+summary(mod4)
+summary(mod5)
+tidy(mod5, conf.int = TRUE)
+summary(mod4)
+sums$coefficients
+stargazer(sums$coefficients, type = "html")
+
+lm(log_concentration ~ log_length, data = dha2) %>% summary
+
+# EPA PGLS ---------------------------------------------------------------
+unique(traits$nutrient)
+
+epa <- traits %>% 
+  # filter(species != "Scorpena_scrofa") %>% 
+  filter(species != "Parambassis wolffii") %>% 
+  filter(species_name %in% c(species)) %>% 
+  filter(nutrient == "epa") %>% 
+  filter(subgroup == "finfish") %>% 
+  rename(species1 = species_name) %>% 
+  mutate(species1 = str_to_lower(species1)) %>% 
+  dplyr::filter(species1 != "epinephelus spp.") %>%
+  group_by(species1, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) %>% 
+  ungroup() %>% 
+  dplyr::distinct(species1, .keep_all = TRUE)
+
+
+epa$species1 <- str_to_lower(epa$species1)
+
+length(unique(epa$species1))
+length(epa$species1)
+
+epa_taxa <- tnrs_match_names(epa$species1, context="Animals", names = epa$species1, do_approximate_matching = TRUE) 
+tr_epa <- tol_induced_subtree(ott_ids = ott_id(epa_taxa), label_format="name") 
+
+
+tr_bl_epa <- compute.brlen(tr_epa)
+plot(tr_epa)
+
+length(tr_bl_epa$tip.label)
+
+
+epa2 <- epa %>% 
+  left_join(., epa_taxa, by = c("species1" = "search_string")) %>% 
+  mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
+  filter(unique_name2 %in% c(tr_bl_epa$tip.label)) %>% 
+  group_by(unique_name2, feeding_mode, feeding_level) %>% 
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat)
+
+rownames(epa2) <- epa2$unique_name2
+
+length(epa2$unique_name2)
+mod6 <- phylolm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, phy = tr_bl_epa, data = epa2, boot = 1000)
+mod7 <- lm(log_concentration ~ log_length + bulk_trophic_level + abs_lat + feeding_mode + feeding_level, data = epa2)
+summary(mod6)
+tidy(mod7, conf.int = TRUE)
+R2(mod6, phy = tr_bl_epa)
+?R2
+summary(mod6)
+sums$coefficients
+stargazer(sums$coefficients, type = "html")
+
+lm(log_concentration ~ log_length, data = epa2) %>% summary
+
+
+
+# new figure 4 ------------------------------------------------------------
+cal2$nutrient <- "Calcium"
+zinc2$nutrient <- "Zinc"
+iron2$nutrient <- "Iron"
+
+all_micro <- bind_rows(cal2, zinc2, iron2)
+
+all_micro %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  facet_wrap( ~ nutrient, scales = "free") + geom_smooth(method = "lm", color = "black") +
+  ylab("ln(Nutrient concentration), mg/100g") + xlab("ln(Length), cm")
+ggsave("figures/cal-iron-zinc-length.png", width = 8, height = 4)
+  
 
 
 # Extra crap --------------------------------------------------------------
