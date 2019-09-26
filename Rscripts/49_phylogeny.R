@@ -19,7 +19,9 @@ library(nlme)
 library(cowplot)
 library(visreg)
 
-install.packages("janitor")
+theme_set(theme_cowplot())
+
+install.packages("stagazer")
 
 fish_species <- read_csv("data-processed/fish_species.csv")
 traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv") %>% 
@@ -37,10 +39,7 @@ traits <- traits_analysis_raw %>%
   mutate(species = str_replace(species, "Travin, 1951_", "")) %>% 
   mutate(species = ifelse(species == "Prochilodus reticulatus magdalenae", "Prochilodus reticulatus", species)) 
   
-  fish_species_sub <- traits %>% 
-  distinct(species) %>% 
-  top_n(n = 200) %>% 
-  filter(species != "Parambassis wolffii")
+
 
 species <- fish_species_sub$species
 
@@ -64,23 +63,112 @@ library(fuzzyjoin)
 calcium <- traits %>% 
   # filter(species != "Scorpena_scrofa") %>% 
   filter(species != "Parambassis wolffii") %>% 
-  filter(species_name %in% c(species)) %>% 
+  #filter(species_name %in% c(species)) %>% 
   filter(nutrient == "ca_mg") %>% 
-  filter(subgroup == "finfish") %>% 
-  rename(species1 = species_name) %>% 
-  group_by(species1, feeding_mode, feeding_level) %>% 
+  # filter(subgroup == "finfish") %>% 
+  rename(species1 = species) %>% 
+  mutate(species1 = str_replace(species1, "Channa striatus", "Channa striata")) %>% 
+  mutate(species1 = str_replace(species1, "Johnius argentatus", "Pennahia argentata")) %>% 
+  mutate(species1 = str_replace(species1, "Rutilus frisii kutum", "Rutilus frisii")) %>% 
+  mutate(species1 = str_replace(species1, "Salvelinus naresi", "Salvelinus alpinus alpinus")) %>% 
+  mutate(species1 = str_replace(species1, "Scorpena scrofa", "Scorpaena scrofa")) %>% 
+  # mutate(species1 = str_replace(species1, "Mormyrus rume", "Mormyrus rume rume")) %>% 
+  group_by(species1, feeding_mode, feeding_level, subgroup) %>% 
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) 
 
  calcium$species1 <- str_to_lower(calcium$species1)
 
  cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
  tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
-
- 
+ tr_bl_cal <- compute.brlen(tr_cal)
+ str(tr_bl_cal)
  cal_sp <- cal_taxa$search_string
  
+ cal2 <- calcium %>% 
+   left_join(., cal_taxa, by = c("species1" = "search_string")) %>%  
+   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
+   filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
+   group_by(unique_name2, feeding_mode, feeding_level) %>% 
+   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat)
+ 
+ rownames(cal2) <- cal2$unique_name2
+ 
  f_phy <- fishtree_phylogeny(species = calcium$species1)
+ 
+ miss <- c("Salvelinus alpinus", "Salvelinus naresi")
+ missing <- fishtree_phylogeny(species = miss)
  f_phy
+ str(f_phy)
+
+ f_phy <-  tr_bl_cal
+ 
+ cal_species <-  str_replace_all(f_phy$tip.label, "_", " ")
+ cal_species1 <-  str_replace_all(tr_bl_cal$tip.label, "_", " ")
+ 
+ setdiff(cal_species, calcium$species1)
+ 
+ calcium2 <- calcium %>% 
+   filter(species1 %in% cal_species) %>% 
+   as.data.frame() %>% 
+   mutate(tip_labels = str_replace_all(species1, " ", "_"))
+ 
+ calcium3 <- calcium %>% 
+   filter(species1 %in% cal_species1) %>% 
+   as.data.frame() %>% 
+   mutate(tip_labels = str_replace_all(species1, " ", "_"))
+ 
+setdiff(cal_species1, cal_species)
+cal_species1[grepl("Isurus", cal_species1)]
+cal_species[grepl("Salv", cal_species)]
+calcium$species1[grepl("Liza", calcium$species1)]
+ 
+ 
+rownames(calcium2) <- calcium2$tip_labels
+ 
+calcium2$log_length <- scale(calcium2$log_length)
+calcium2$abs_lat <- scale(calcium2$abs_lat)
+calcium2$bulk_trophic_level <- scale(calcium2$bulk_trophic_level)
+# calcium2$log_concentration <- scale(calcium2$log_concentration)
+ 
+ mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = f_phy), data = calcium2, method = "ML")
+ mod2 <- gls(log_concentration ~ log_length, correlation = corBrownian(phy = f_phy), data = calcium2, method = "ML")
+ model.sel(mod1, mod2)
+ 
+library(ggplot2)
+cal2 %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm")
+
+
+
+summary(mod3)
+intervals(mod3)
+mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod3 <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod4 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod6 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML") 
+mod7 <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+ddfer <- model.sel(mod1, mod2, mod3, mod4, mod6, mod7)
+ddfer
+
+confint(mod1)
+coef(model.avg(ddfer, subset = cumsum(weight) <= .95))
+summary(model.avg(ddfer, subset = cumsum(weight) <= .95))
+
+CI_average <- rownames_to_column(as.data.frame(confint(model.avg(ddfer, subset = cumsum(weight) <= .95)), var = "term")) %>%
+  rename(conf_low = `2.5 %`,
+         conf_high = `97.5 %`) %>% 
+  rename(term = rowname)
+  
+summary(mod1)
+summary(mod2b)
+intervals(mod2)
+ 
+ str(f_phy)
+ summary(mod2)
+ anova(mod2)
+ intervals(mod1)
  
  library(httr)
  library(jsonlite)
@@ -92,29 +180,14 @@ calcium <- traits %>%
  ?fishtree
  
  
- url_ot <- 'https://api.opentreeoflife.org/v3/tree_of_life/induced_subtree'
- body <- list(ott_ids=cal_taxa$ott_id)
- r <- POST(url_ot, body = body, encode = "json")#gets which studies support the subtree from  the open tree API
- for(studytree in content(r)$supporting_studies){
-   study <-  strsplit(studytree, '@')[[1]][1]
-   meta <- get_study_meta(study) #pulls the metadata for each study
-   pub <- get_publication(meta)  #grabs teh publication information
-   cat(pub,"\n\n")
- }
  
-species <- unique(calcium$species)
-species <- unique(things$species)
+ 
 
-tr_bl <- compute.brlen(tr_cal)
-plot(tr)
-
-length(tr_bl$tip.label)
-cal_taxa
 
 cal2 <- calcium %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
-  filter(unique_name2 %in% c(tr_bl$tip.label)) %>% 
+  filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
   group_by(unique_name2, feeding_mode, feeding_level) %>% 
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat)
 
