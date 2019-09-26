@@ -79,7 +79,7 @@ ddfer <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, extra = "rsquared")
   dplyr::select(-"rsquared.family") %>% 
   dplyr::select(-"rsquared.link") %>% 
   dplyr::select(-"rsquared.method")
-library(tableHTML)
+
 
 dd_wide <- ddfer %>% 
   mutate(weight = round(weight, digits = 2)) %>% 
@@ -90,29 +90,18 @@ dd_wide <- ddfer %>%
 dd_wide %>% 
   filter(rowname == "weight")
 
-rsquared
-summary(mod5)
-class(mod5)
-coef(avg_mod)
-class(avg_mod)
 
 tab1 <- tableHTML(ddfer, round = 2)
 write_tableHTML(tab1, file = "tables/model-sel-calcium.htm")
 
 ddfer
 rsquared(mod6) 
-# mod1, 
-# mod7, 
-# mod3, 
-# mod5, 
-# mod2, 
-# mod6
 
 stargazer(ddfer, type = "html", out="tables/model-sel-calcium.htm")
 stargazer(mod1, mod3, mod4, mod7, mod5, mod2, mod6, title="", type = "html",
           align=TRUE, dep.var.labels= "Calcium concentration (mg/100g)",
           ci=TRUE, ci.level=0.95, 
-          single.row=TRUE, digits = 2, dep.var.caption = "", out="tables/calcium-models.htm",
+          single.row=FALSE, digits = 2, dep.var.caption = "", out="tables/calcium-models.htm",
           add.lines = list(c("delta",  "0.00",  "0.39",  "0.89",
                              "2.45",  "2.79", "12.96", "20.38"),
                            c("weight", "0.33", "0.27", "0.21", "0.098", "0.083", "0.001", "0.00"),
@@ -143,7 +132,7 @@ results <- left_join(CI_average, slopes_average, by = "term") %>%
                                         ))) %>% 
   dplyr::arrange((term))
 
-levels(results$term)
+
 
 res_tab1 <- tableHTML(results, round = 2)
 write_tableHTML(res_tab1, file = "tables/model-avg-calcium.htm")
@@ -215,7 +204,7 @@ ddfer
 stargazer(mod4, mod1, mod7, mod3, mod5, mod2, mod6, title="", type = "html",
           align=TRUE, dep.var.labels= "Iron concentration (mg/100g)",
           ci=TRUE, ci.level=0.95, 
-          single.row=TRUE, digits = 2, dep.var.caption = "", out="tables/iron-models.htm",
+          single.row=FALSE, digits = 2, dep.var.caption = "", out="tables/iron-models.htm",
           add.lines = list(c("delta",  "0.00",  "1.98",  "2.81",
                              "3.02",  "5.16", "17.35", "26.40"),
                            c("weight", "0.52", "0.19", "0.13", "0.12", "0.04", "0.00", "0.00"),
@@ -314,7 +303,7 @@ ddfer
 stargazer(mod3, mod5, mod1, mod2, mod4, mod7, mod6, title="", type = "html",
           align=TRUE, dep.var.labels= "Zinc concentration (mg/100g)",
           ci=TRUE, ci.level=0.95, 
-          single.row=TRUE, digits = 2, dep.var.caption = "", out="tables/zinc-models.htm",
+          single.row=FALSE, digits = 2, dep.var.caption = "", out="tables/zinc-models.htm",
           add.lines = list(c("delta",  "0.00",  "2.01",  "2.81",
                              "2.88",  "6.72", "8.12", "15.62"),
                            c("weight", "0.52", "0.19", "0.13", "0.12", "0.018", "0.009", "0.00"),
@@ -371,7 +360,7 @@ tr_bl_cal <- compute.brlen(tr_cal)
 str(tr_bl_cal)
 
 
-View(cal_taxa)
+
 cal2 <- calcium %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
@@ -427,7 +416,7 @@ ddfer
 stargazer(mod6, mod2, mod4, mod1, mod7, mod3, mod5, title="", type = "html",
           align=TRUE, dep.var.labels= "EPA concentration (g/100g)",
           ci=TRUE, ci.level=0.95, 
-          single.row=TRUE, digits = 2, dep.var.caption = "", out="tables/epa-models.htm",
+          single.row=FALSE, digits = 2, dep.var.caption = "", out="tables/epa-models.htm",
           add.lines = list(c("delta",  "0.00",  "1.90",  "5.98",
                              "8.16",  "10.16", "12.34", "12.40"),
                            c("weight", "0.68", "0.26", "0.034", "0.12", "0.004", "0.001", "0.00"),
@@ -482,8 +471,8 @@ tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name")
 tr_bl_cal <- compute.brlen(tr_cal)
 str(tr_bl_cal)
 
+?compute.brlen
 
-View(cal_taxa)
 cal2 <- calcium %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
@@ -502,7 +491,7 @@ cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
 
 rownames(cal2) <- cal2$unique_name2
 
-# models to compare -------------------------------------------------------
+  # models to compare -------------------------------------------------------
 
 mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
 mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
@@ -538,7 +527,7 @@ ddfer
 stargazer(mod6, mod2, mod4, mod1, mod3, mod7, mod5, title="", type = "html",
           align=TRUE, dep.var.labels= "dha concentration (g/100g)",
           ci=TRUE, ci.level=0.95, 
-          single.row=TRUE, digits = 2, dep.var.caption = "", out="tables/dha-models.htm",
+          single.row=FALSE, digits = 2, dep.var.caption = "", out="tables/dha-models.htm",
           add.lines = list(c("delta",  "0.00",  "1.49",  "9.09",
                              "10.19",  "10.96", "11.09", "12.18"),
                            c("weight", "0.66", "0.32", "0.007", "0.004", "0.003", "0.003", "0.002"),
