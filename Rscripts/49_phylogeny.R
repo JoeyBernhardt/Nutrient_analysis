@@ -21,7 +21,6 @@ library(visreg)
 
 theme_set(theme_cowplot())
 
-install.packages("stagazer")
 
 fish_species <- read_csv("data-processed/fish_species.csv")
 traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv") %>% 
@@ -226,7 +225,7 @@ iron <- traits %>%
   filter(species != "Parambassis wolffii") %>% 
   filter(species_name %in% c(species)) %>% 
   filter(nutrient == "fe_mg") %>% 
-  filter(subgroup == "finfish") %>% 
+  # filter(subgroup == "finfish") %>% 
   rename(species1 = species_name) %>% 
   group_by(species1, feeding_mode, feeding_level) %>% 
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) 
@@ -289,7 +288,7 @@ zinc <- traits %>%
   filter(species != "Parambassis wolffii") %>% 
   filter(species_name %in% c(species)) %>% 
   filter(nutrient == "zn_mg") %>% 
-  filter(subgroup == "finfish") %>% 
+  # filter(subgroup == "finfish") %>% 
   rename(species1 = species_name) %>% 
   group_by(species1, feeding_mode, feeding_level) %>% 
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat) 
@@ -448,7 +447,7 @@ source("Rscripts/rsquared.R")
 
 rsquared.gls(mod1)
 library(devtools)
-install_github("jslefche/piecewiseSEM@devel", build_vignette = TRUE)
+
 
 ### need to standardize variables.
 
@@ -540,10 +539,16 @@ iron2$nutrient <- "Iron"
 all_micro <- bind_rows(cal2, zinc2, iron2)
 
 all_micro %>% 
-  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point(alpha = 0.7) +
   facet_wrap( ~ nutrient, scales = "free") + geom_smooth(method = "lm", color = "black") +
-  ylab("ln(Nutrient concentration), mg/100g") + xlab("ln(Length), cm")
-ggsave("figures/cal-iron-zinc-length.png", width = 8, height = 4)
+  ylab("ln(nutrient concentration) \n (mg/100g)") + xlab("ln(length) (cm)")
+ggsave("figures/cal-iron-zinc-length.png", width = 8, height = 3.5)
+
+
+### slopes
+
+cal_mod <- gls(log_concentration ~ log_length, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+
   
 
 

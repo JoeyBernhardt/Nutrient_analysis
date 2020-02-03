@@ -13,7 +13,7 @@ in2 <- inuit %>%
   select(-latin_name)
 
 wide <- trait_data %>% 
-  select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
+  dplyr::select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
   distinct(species_name, nutrient, concentration, .keep_all = TRUE) %>% 
   spread(key = nutrient, value = concentration) 
 
@@ -23,13 +23,13 @@ wide %>%
   filter(!is.na(protein_g)) %>% View
 
 widenuts <- wide %>% 
-  select(5:15) %>% 
+  dplyr::select(5:15) %>% 
 mutate(protein = ifelse(is.na(protcnt_g), protein_g, protcnt_g)) %>% 
   mutate(protein = ifelse(is.na(protein), prot_g, protein)) %>% 
-  select(-prot_g) %>% 
-  select(-protein_g) %>% 
-  select(-protcnt_g) %>% 
-  select(-starts_with("fapun")) %>% 
+  dplyr::select(-prot_g) %>% 
+  dplyr::select(-protein_g) %>% 
+  dplyr::select(-protcnt_g) %>% 
+  dplyr::select(-starts_with("fapun")) %>% 
   rename(EPA = epa,
          DHA = dha,
          Protein = protein,
@@ -114,3 +114,24 @@ cor.mtest <- function(mat, conf.level = 0.95){
 res1 <- cor.mtest(rcor,0.95)
 corrplot(rcor, p.mat = res1[[1]], sig.level=0.05)
 corrplot(rcor, p.mat = res1[[1]])
+
+
+
+# try again ---------------------------------------------------------------
+library(corrplot)
+nuts <- read_csv("data-processed/traits_for_analysis.csv") %>% 
+  # dplyr::select(nutrient, log_concentration, seanuts_id2) %>% 
+  spread(key = nutrient, value = log_concentration) %>% 
+  filter(!is.na(epa), !is.na(dha), !is.na(protein), !is.na(fat_g), !is.na(ca_mg), !is.na(zn_mg), !is.na(fe_mg)) %>% 
+  dplyr::select(epa, dha, protein, fat_g, ca_mg, zn_mg, fe_mg)
+
+sM <- cor(nuts)
+corrplot(M, method = "circle")
+
+wcor <- cor(widenuts, use = "pairwise.complete.obs", method = "spearman")
+corrplot(wcor, type="lower")
+
+diag(wcor) = NA
+corrplot(wcor, method = "ellipse", type = "lower", na.label = "o")
+
+plot(log(widenuts))

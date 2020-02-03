@@ -10,6 +10,7 @@ nuts_6449 <- read_excel("~/Documents/traditional-foods/nutrients-6449.xlsx")
 nuts_6433 <- read_excel("~/Documents/traditional-foods/nutrients-6433.xlsx")
 nuts_6447 <- read_excel("~/Documents/traditional-foods/nutrients-6447.xlsx")
 
+names(nuts_raw)
 
 
 # begin cleaning, again :) ------------------------------------------------

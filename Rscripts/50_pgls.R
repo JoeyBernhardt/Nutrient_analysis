@@ -19,6 +19,7 @@ library(visreg)
 traits_analysis_raw <- read_csv("data-processed/traits_for_analysis.csv") 
 
 traits <- traits_analysis_raw %>% 
+  # filter(subgroup == "finfish") %>% 
   mutate(species = species_name) %>% 
   mutate(species = str_replace(species, "(juvenile)", "")) %>% 
   # mutate(species = str_replace(species, " ", "")) %>%
@@ -52,20 +53,39 @@ calcium$species1 <- str_to_lower(calcium$species1)
 cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
 tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
 tr_bl_cal <- compute.brlen(tr_cal)
-str(tr_bl_cal)
+
 
 
 
 cal2 <- calcium %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
-  filter(unique_name2 %in% c(tr_bl_cal$tip.label)) 
+  filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
+  ungroup() %>% 
+  mutate(feeding_level = as.factor(feeding_level)) %>% 
+  mutate(feeding_mode = as.factor(feeding_mode))
 cal2$log_length <- scale(cal2$log_length)
 cal2$abs_lat <- scale(cal2$abs_lat)
 cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
 
 rownames(cal2) <- cal2$unique_name2
 # models to compare -------------------------------------------------------
+
+str(cal2)
+
+cal_mod <- gls(log_concentration ~ log_length, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+summary(cal_mod)
+rsquared(cal_mod)
+confint(cal_mod)
+coef(cal_mod)
+
+visreg(cal_mod)
+visreg(cal_mod, "log_length")
+
+calcium_points <- cal2
+cal_plot2 <- calcium_points %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm", color = "black")
 
 mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
 mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
@@ -80,15 +100,18 @@ ddfer <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, extra = "rsquared")
   dplyr::select(-"rsquared.link") %>% 
   dplyr::select(-"rsquared.method")
 
+visreg(mod1)
+summary(mod2)
+rsquared(mod2)
+confint(mod4)
+coef(mod1)
+
 
 dd_wide <- ddfer %>% 
   mutate(weight = round(weight, digits = 2)) %>% 
   t() %>% 
   as.data.frame() %>% 
   rownames_to_column() 
-
-dd_wide %>% 
-  filter(rowname == "weight")
 
 
 tab1 <- tableHTML(ddfer, round = 2)
@@ -138,6 +161,8 @@ res_tab1 <- tableHTML(results, round = 2)
 write_tableHTML(res_tab1, file = "tables/model-avg-calcium.htm")
 
 
+
+
 # iron models -------------------------------------------------------------
 
 calcium <- traits %>% 
@@ -150,14 +175,16 @@ calcium$species1 <- str_to_lower(calcium$species1)
 cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
 tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
 tr_bl_cal <- compute.brlen(tr_cal)
-str(tr_bl_cal)
-
-
 
 cal2 <- calcium %>% 
+  ungroup() %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
-  filter(unique_name2 %in% c(tr_bl_cal$tip.label)) 
+  filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
+  mutate(feeding_level = as.factor(feeding_level)) %>% 
+  mutate(feeding_mode = as.factor(feeding_mode))
+
+iron2 <- cal2
 cal2$log_length <- scale(cal2$log_length)
 cal2$abs_lat <- scale(cal2$abs_lat)
 cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
@@ -178,6 +205,19 @@ ddfer <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, extra = "rsquared")
   dplyr::select(-"rsquared.link") %>% 
   dplyr::select(-"rsquared.method")
 
+visreg(mod4, "abs_lat")
+mod1b <- gls(log_concentration ~ log_length, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+summary(mod1b)
+coef(mod1b)
+confint(mod1b)
+
+cal2 %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm")
+
+summary(mod1b)
+coef(mod1b)
+confint(mod1b)
 
 dd_wide <- ddfer %>% 
   mutate(weight = round(weight, digits = 2)) %>% 
@@ -254,14 +294,16 @@ calcium$species1 <- str_to_lower(calcium$species1)
 cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
 tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
 tr_bl_cal <- compute.brlen(tr_cal)
-str(tr_bl_cal)
+
 
 
 
 cal2 <- calcium %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
-  filter(unique_name2 %in% c(tr_bl_cal$tip.label)) 
+  filter(unique_name2 %in% c(tr_bl_cal$tip.label))
+zinc2 <- cal2
+
 cal2$log_length <- scale(cal2$log_length)
 cal2$abs_lat <- scale(cal2$abs_lat)
 cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
@@ -282,6 +324,18 @@ ddfer <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, extra = "rsquared")
   dplyr::select(-"rsquared.link") %>% 
   dplyr::select(-"rsquared.method")
 
+coef(mod3)
+confint(mod3)
+
+rownames(zinc2) <- zinc2$unique_name2
+mod1c <- gls(log_concentration ~ log_length, correlation = corBrownian(phy = tr_bl_cal), data = zinc2, method = "ML")
+summary(mod1c)
+coef(mod1c)
+confint(mod1c)
+
+zinc2 %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point() +
+  geom_smooth(method = "lm")
 
 
 dd_wide <- ddfer %>% 
@@ -338,6 +392,22 @@ results <- left_join(CI_average, slopes_average, by = "term") %>%
 
 res_tab1 <- tableHTML(results, round = 2)
 write_tableHTML(res_tab1, file = "tables/model-avg-zinc.htm")
+
+
+
+# plot all micronutrients -------------------------------------------------
+
+cal2$nutrient <- "Calcium"
+zinc2$nutrient <- "Zinc"
+iron2$nutrient <- "Iron"
+
+all_micro <- bind_rows(cal2, zinc2, iron2)
+
+all_micro %>% 
+  ggplot(aes(x = log_length, y = log_concentration)) + geom_point(alpha = 0.7) +
+  facet_wrap( ~ nutrient, scales = "free") + geom_smooth(method = "lm", color = "black") +
+  ylab("ln(nutrient concentration) \n (mg/100g)") + xlab("ln(length) (cm)")
+ggsave("figures/cal-iron-zinc-length-all.png", width = 8, height = 3.5)
 
 
 # epa models -------------------------------------------------------------
