@@ -74,6 +74,13 @@ CINE_rename %>%
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
+calcium <- CINE_rename %>% 
+  gather(key = nutrient, value = concentration, 9:16) %>% 
+  filter(!is.na(concentration)) %>% 
+  filter(nutrient == "ca_mg") 
+
+
+
 CINE_long <- CINE_rename %>% 
   gather(key = nutrient, value = concentration, 9:17) %>% 
   filter(!is.na(concentration))
@@ -100,17 +107,24 @@ CINE_merge %>%
   facet_wrap( ~ nutrient, scales = "free")+
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+CINE_merge %>% 
+  filter(nutrient == "ca_mg") %>% 
+  ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
+  facet_wrap( ~ nutrient, scales = "free")+
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
   
 
 ca_plot <- CINE_merge %>% 
   filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
   filter(part != "not specified") %>% 
   filter(nutrient == "ca_mg") %>% 
-  filter(part != "tongues + cheeks") %>% 
+  # filter(part != "tongues + cheeks") %>% 
   filter(part != "whole, no skin") %>% 
   mutate(nutrient = str_replace(nutrient, "ca_mg", "calcium")) %>% 
   group_by(nutrient, part) %>% 
-  summarise_each(funs(mean, std.error), concentration) %>%
+  summarise_each(funs(mean, std.error), concentration) %>% 
   ggplot(aes(x = reorder(part, concentration_mean), y = concentration_mean)) + geom_point(size = 5) +
   geom_errorbar(aes(ymin = concentration_mean - concentration_std.error, ymax = concentration_mean + concentration_std.error), width = 0.2) +
   facet_wrap( ~ nutrient, scales = "free")+

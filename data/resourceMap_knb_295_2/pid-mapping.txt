@@ -1,0 +1,5 @@
+knb.295.2 (pdf)	data/knb.295.2-METADATA.pdf
+resourceMap_knb.295.2	data/resourceMap_knb.295.2-RESOURCE.rdf
+knb.295.2	data/knb.295.2-METADATA.xml
+rkarimi.7.1	data/rkarimi.7.1-Seafood_Hg_Database.data
+rkarimi.8.1	data/rkarimi.8.1-Seafood_Hg_Summary__Search_Terms__References.pdf

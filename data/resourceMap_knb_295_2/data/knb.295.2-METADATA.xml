@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml packageId="knb.295.2" system="knb" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 eml.xsd">   <access authSystem="knb" order="allowFirst"> <allow> <principal>uid=knbadmin,o=NCEAS,dc=ecoinformatics,dc=org</principal>
+<permission>all</permission>
+ </allow>
+ <allow> <principal>cn=knb-prod,o=NCEAS,dc=ecoinformatics,dc=org</principal>
+<permission>all</permission>
+ </allow>
+ <allow> <principal>cn=esa-moderators,dc=ecoinformatics,dc=org</principal>
+<permission>all</permission>
+ </allow>
+ <allow> <principal>uid=rkarimi,o=unaffiliated,dc=ecoinformatics,dc=org</principal>
+<permission>read</permission>
+ <permission>write</permission>
+ </allow>
+ <allow> <principal>public</principal>
+<permission>read</permission>
+ </allow>
+ </access>
+ <dataset> <alternateIdentifier system="Stony Brook University">Seafood Hg Database</alternateIdentifier>
+ <title>Seafood Hg Database: Mercury concentrations in U.S. commercial seafood items</title>
+ <creator> <organizationName>Stony Brook University</organizationName>
+ </creator>
+ <creator> <individualName> <givenName>Roxanne</givenName>
+ <surName>Karimi</surName>
+ </individualName>
+ <organizationName>Stony Brook University</organizationName>
+ <address> <deliveryPoint>School of Marine and Atmospheric Sciences</deliveryPoint>
+ <city>Stony Brook</city>
+ <administrativeArea>New York</administrativeArea>
+ <postalCode>11794-5000</postalCode>
+ <country>USA</country>
+ </address>
+ <phone>631-632-3128</phone>
+ <electronicMailAddress>roxanne.karimi@stonybrook.edu</electronicMailAddress>
+ </creator>
+ <metadataProvider><individualName> <givenName>Roxanne</givenName>
+ <surName>Karimi</surName>
+ </individualName>
+ </metadataProvider>
+ <associatedParty><individualName> <givenName>Roxanne</givenName>
+ <surName>Karimi</surName>
+ </individualName>
+ <role>associatedParty</role>
+ </associatedParty>
+ <associatedParty><individualName> <givenName>Timothy</givenName>
+ <surName>Fitzgerald</surName>
+ </individualName>
+ <role>Co-owner</role>
+ </associatedParty>
+ <associatedParty><individualName> <givenName>Nicholas</givenName>
+ <surName>Fisher</surName>
+ </individualName>
+ <role>Co-owner</role>
+ </associatedParty>
+ <pubDate>2012-06-18</pubDate>
+ <abstract> <para>The Seafood Hg Database contains mercury concentrations of common, commercial fish and shellfish items in the U.S. The database includes mean mercury concentrations, sample size, and gegraphic region, aggregated from multiple government monitoring programs and from the academic literature. Details describing the development and composition of the Seafood Hg Database, as well as findings from the database, can be found in the first peer-reviewed publication resulting from this research: A Quantitative Synthesis of Mercury in Commercial Seafood and Implications for Exposure in the U.S. (http://dx.doi.org/10.1289/ehp.1205122). This publication is open access. Please cite this publication when using or sharing this database. Updated versions of the Seafood Hg Database will be posted periodically if additionally funding is obtained. These updates will be posted and associated with the original Seafood Hg Database.</para>
+ </abstract>
+ <keywordSet> <keyword>mercury, fish, shellfish, Hg, seafood, aquaculture, consumption advisory, contaminants, fisheries, seafood safety</keyword>
+ <keywordThesaurus>None</keywordThesaurus>
+ </keywordSet>
+ <additionalInfo> <para>The Seafood Hg Database is freely available as an Excel file (.xls). A table summarizing the mercury data for individual seafood items, and a list of references, are also provided as a pdf file.</para>
+ </additionalInfo>
+ <intellectualRights> <para>other</para>
+ <para>ÃÂ  The Seafood Hg Database is available for public use and may be downloaded. Please inform the designated contact person of any plans to use the database. Persons interested in using the database are encouraged to contact the original investigators for consultation and collaboration. Publications, datasets, and other references to the database must properly acknowledge the database and the original published source (available at: http://dx.doi.org/10.1289/ehp.1205122).</para>
+ </intellectualRights>
+ <distribution> <online> <url>http://dx.doi.org/10.1289/ehp.1205122</url>
+ </online>
+ </distribution>
+ <distribution> <offline> <mediumName>digital</mediumName>
+ </offline>
+ </distribution>
+ <coverage> <temporalCoverage> <rangeOfDates> <beginDate> <calendarDate>1972</calendarDate>
+ </beginDate>
+ <endDate> <calendarDate>2012</calendarDate>
+ </endDate>
+ </rangeOfDates>
+ </temporalCoverage>
+ <geographicCoverage> <geographicDescription>Geographic Description:
+Data are included for commercial fish and shellfish species that are likely to enter the U.S. market. These include fish and shellfish that were domestically harvested in the U.S., and collected from regions outside of the U.S. that are known sources to the U.S. market. Please see the text of the accompanying reference for details (http://dx.doi.org/10.1289/ehp.1205122).</geographicDescription>
+ <boundingCoordinates> <westBoundingCoordinate>0.0000</westBoundingCoordinate>
+ <eastBoundingCoordinate>0.0000</eastBoundingCoordinate>
+ <northBoundingCoordinate>0.0000</northBoundingCoordinate>
+ <southBoundingCoordinate>0.0000</southBoundingCoordinate>
+ </boundingCoordinates>
+ </geographicCoverage>
+ </coverage>
+ <contact> <individualName> <givenName>Roxanne</givenName>
+ <surName>Karimi</surName>
+ </individualName>
+ <organizationName>Stony Brook University</organizationName>
+ <address> <deliveryPoint>School of Marine and Atmospheric Sciences</deliveryPoint>
+ <city>Stony Brook</city>
+ <administrativeArea>New York</administrativeArea>
+ <postalCode>11794-5000</postalCode>
+ <country>USA</country>
+ </address>
+ <phone>631-632-3128</phone>
+ <electronicMailAddress>roxanne.karimi@stonybrook.edu</electronicMailAddress>
+ </contact>
+ <otherEntity id="375325e0f0899b2335cda72d444c15d606cf8d0b001" scope="document"> <entityName>Seafood Hg Database</entityName>
+ <physical scope="document"> <objectName>SuppMaterialTable S2.SeafoodHgDatabaseCorrected.xls</objectName>
+ <size>236032</size>
+ <authentication method="SHA1">375325e0f0899b2335cda72d444c15d606cf8d0b</authentication>
+ <dataFormat> <externallyDefinedFormat> <formatName>application/vnd.ms-excel</formatName>
+ </externallyDefinedFormat>
+ </dataFormat>
+  <distribution><online><url>ecogrid://knb/rkarimi.7.1</url>
+</online>
+</distribution>
+</physical>
+ <entityType>Other</entityType>
+ </otherEntity>
+ <otherEntity id="4d18530823146fc5ae5b2c6b2a1bea27cd04407d001" scope="document"> <entityName>Seafood Hg Summary, Search Terms, References</entityName>
+ <physical scope="document"> <objectName>Supp.MaterialTableS1.Search Terms.Table S2RefsCorrected.pdf</objectName>
+ <size>351834</size>
+ <authentication method="SHA1">4d18530823146fc5ae5b2c6b2a1bea27cd04407d</authentication>
+ <dataFormat> <externallyDefinedFormat> <formatName>application/pdf</formatName>
+ </externallyDefinedFormat>
+ </dataFormat>
+  <distribution><online><url>ecogrid://knb/rkarimi.8.1</url>
+</online>
+</distribution>
+</physical>
+ <entityType>Other</entityType>
+ </otherEntity>
+ </dataset>
+ </eml:eml>

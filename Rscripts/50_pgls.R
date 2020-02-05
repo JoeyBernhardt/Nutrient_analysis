@@ -38,6 +38,7 @@ traits <- traits_analysis_raw %>%
   mutate(species1 = str_replace(species1, "Scorpena scrofa", "Scorpaena scrofa")) %>% 
   filter(species1 != "Parambassis wolffii")
 
+write_csv(traits, "data-processed/nutrients-traits-for-pgls.csv")
 
 
 # calcium models ----------------------------------------------------------

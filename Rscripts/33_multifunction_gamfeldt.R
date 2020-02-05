@@ -582,6 +582,7 @@ all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %
   mutate(nutrient = ifelse(nutrient == "protein", "Protein", nutrient))
 
 write_csv(all_params, "data-processed/all_single_efficiency_nutrient_params.csv")
+all_params <- read_csv("data-processed/all_single_efficiency_nutrient_params.csv")
 
 all_params$nutrient <- factor(all_params$nutrient, levels = c("5 Micronutrients", "Calcium", "Iron", "Zinc", "EPA", "DHA", "Protein"))
 # all_params$nutrient <- factor(all_params$nutrient, levels = c("Protein", "DHA", "EPA", "Zinc", "Iron", "Calcium", "5 Micronutrients"))

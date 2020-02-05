@@ -19,7 +19,9 @@ ntbl2 <- read_csv("data/ntbl2.csv")
 dec19_raw <- read_csv("~/Documents/Nutrient_Analysis/data/nut_dec19.csv")
 inf_fish_raw <- read_csv("data/INF_fish.csv") ## this is the version that has different data than the dec19 version. Could merge it in?
 anf_raw <- read_csv("/Users/Joey/Desktop/Nutrient_databases/AnFooD1.0_fish.csv") ## I think this is version of infoods that dec_19 is based on
+anf_raw <- read_excel("data/AnFooD1.1.xlsx", sheet = "09 Fish & Shellfish")
 nutrients_raw <- read_csv("data/Nutrient_data_October2016.csv")
+
 
 
 # clean up the data a bit -------------------------------------------------

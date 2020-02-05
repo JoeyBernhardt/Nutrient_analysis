@@ -1,0 +1,5 @@
+d5c44bca76e73d6ee0c63048572e9853  data/resourceMap_knb.295.2-RESOURCE.rdf
+2533d0c7609afdac5b204a5f2e86bb14  data/rkarimi.7.1-Seafood_Hg_Database.data
+33a39dcdfda4eb7a553c5fcd2aa66932  data/knb.295.2-METADATA.xml
+9fd14cec77dd88a5c1529d5183c3e7d5  data/rkarimi.8.1-Seafood_Hg_Summary__Search_Terms__References.pdf
+ca02b279d649a4b1638e2c5823d7cb37  data/knb.295.2-METADATA.pdf
