@@ -84,6 +84,7 @@ calcium <- CINE_rename %>%
 CINE_long <- CINE_rename %>% 
   gather(key = nutrient, value = concentration, 9:17) %>% 
   filter(!is.na(concentration))
+unique(CINE_long$part)
 
 CINE_merge <- CINE_long %>% 
   mutate(part = str_replace(part, "fillet", "muscle")) %>% 
@@ -97,10 +98,22 @@ CINE_merge <- CINE_long %>%
   mutate(part = str_replace(part, "tail cut", "muscle")) %>% 
   mutate(part = str_replace(part, "middle", "muscle")) %>%
   mutate(part = str_replace(part, "tail end", "muscle")) %>% 
-  mutate(part = str_replace(part, "head end", "muscle"))
+  mutate(part = str_replace(part, "head end", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, dark meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, light meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "light meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "white meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "white muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, dark muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, light muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "dark muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, cheeks", "muscle"))
+
+unique(CINE_long$part)
 
 write_csv(CINE_merge, "data-processed/CINE-body-parts.csv")
 
+CINE_merge <- read_csv("data-processed/CINE-body-parts.csv")
 
 CINE_merge %>% 
   ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
@@ -111,10 +124,42 @@ CINE_merge %>%
 CINE_merge %>% 
   filter(nutrient == "ca_mg") %>% 
   ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
-  facet_wrap( ~ nutrient, scales = "free")+
+  facet_wrap( ~ nutrient, scales = "free") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-  
+
+
+
+# Micronutrients only -----------------------------------------------------
+
+
+cine_micro <- CINE_merge %>% 
+  # filter(part %in% c("whole", "muscle")) %>% 
+  filter(nutrient %in% c("ca_mg", "fe_mg", "zn_mg")) %>% 
+  filter(!grepl("spp", latin_name))
+
+# whitefish <- common_to_sci("Whitefish")
+
+theme_set(theme_cowplot())
+spc <- species(cine_micro$latin_name) %>% 
+  filter(!is.na(Genus))
+
+spc %>% 
+  mutate(Length = as.numeric(Length)) %>% 
+  ggplot(aes(x = Length)) + geom_histogram()
+
+
+cine_calcium %>% 
+  group_by(latin_name, part) %>% 
+  summarise(concentration = mean(concentration)) %>% 
+  ggplot(aes(x = concentration)) + geom_histogram() + 
+  facet_wrap( ~ part)
+
+cine_calcium$latin_name
+ 
+cine_calcium %>% 
+  filter(latin_name == "Thunnus spp.") %>% View
+ 
 
 CINE_merge %>% 
   filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
