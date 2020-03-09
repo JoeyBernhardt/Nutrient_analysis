@@ -156,7 +156,7 @@ cine_traits <- CINE_merge %>%
 write_csv(cine_traits, "data-processed/cine-traits.csv")
 
 unique(cine_traits$nutrient)
-unique(cine2$part)
+unique(cine_traits$part)
 
 cine2 <- cine_traits %>% 
   mutate(log_concentration = log(concentration)) %>% 
@@ -167,9 +167,24 @@ cine2 <- cine_traits %>%
   ungroup() %>%
   filter(complete.cases(.)) %>% 
   filter(nutrient == "ca_mg") %>% 
+  filter(part %in% c("muscle", "muscle + skin", "muscle + small bones", "whole")) %>% 
   filter(log_concentration > 0) %>% 
   group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp) %>% 
   summarise_each(funs(mean), AgeMatMin, log_concentration, log_length, bulk_trophic_level, log_length, DepthRangeDeep) 
+
+
+calcium <- cine_traits %>% 
+  mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length)) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  ungroup() %>%
+  filter(complete.cases(.)) %>% 
+  filter(nutrient == "ca_mg") 
+
+unique(calcium$part)
+
 
 cine2 %>% 
   ggplot(aes(x = part, y = log_concentration)) + geom_boxplot() + 
@@ -183,12 +198,16 @@ cine2 %>%
 full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
                  DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
 
+full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
+                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp, data = cine2, na.action=na.exclude)
+
+
 summary(full_mod)
 anova_zinc <- anova(full_mod)  
 confint(full_mod)
 
 library(stargazer)
-stargazer(full_mod, title = "", type = "html", out="tables/calcium-models-expanded2.htm")
+stargazer(full_mod, title = "", type = "html", out="tables/calcium-models-expanded-muscle.htm")
 library(report)
 full_mod %>% 
   report() %>% 
@@ -205,5 +224,7 @@ table <- lm(log_concentration ~ bulk_trophic_level + log_length + feeding_mode +
 
 
 library(visreg)
+
+visreg(full_mod)
 
 
