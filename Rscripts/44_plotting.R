@@ -237,6 +237,20 @@ violin_greyscale <- ggplot() +
   xlab("") + ylab("") +
   theme(axis.text = element_text(size=16))
 
+ggplot() +
+  geom_violin(aes(x = species_no, y = 1/grams_for_25_percent, group = species_no), data = reps100b, color = "grey", size = 1, fill = "grey") +
+  geom_point(aes(x = species_no, y = 1/grams_for_25_percent_median), data = reps100_summary, size = 2) +
+  # geom_hline(yintercept = 100, linetype = "dotted") +
+  # geom_hline(yintercept = 200, linetype = "dashed") +
+  scale_y_log10() +
+  scale_x_continuous(breaks = c(1:10)) +
+  xlab("") + ylab("") +
+  theme(axis.text = element_text(size=16)) + geom_hline(yintercept = 1/100, linetype = "dotted") +
+  geom_hline(yintercept = 1/200, linetype = "dashed") +
+  ylab("Fraction of RDA target per gram") + xlab("Species richness") + scale_x_log10() + scale_y_log10()
+ggsave("figures/Ne-per-gram-violin-log.pdf", width = 6, height = 4)
+ggsave("figures/Ne-per-gram-violin-log.png", width = 6, height = 4)
+
 
 
 #

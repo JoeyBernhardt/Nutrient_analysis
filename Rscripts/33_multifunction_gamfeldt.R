@@ -729,12 +729,38 @@ all_grams2$nutrient <- factor(all_grams2$nutrient, levels = c("5 Micronutrients"
 single_nut_plot <- p + 
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds2, alpha = 0.5) +
   geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds2, alpha = 1, size = 1.5) +
-  geom_point(data = all_grams2, aes(x = species_no, y = grams_required_median, color = nutrient), size = 2) + 
+  geom_point(data = all_grams2, aes(x = species_no, y = median, color = nutrient), size = 2) + 
   scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
   scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
   theme(legend.position="none") +
   theme(axis.text = element_text(size=16))
 
+p + 
+  geom_ribbon(aes(ymin = 1/q2.5, ymax = 1/q97.5, x = species_no, fill = nutrient), data = all_preds2, alpha = 0.5) +
+  geom_line(aes(y = 1/mean, x = species_no, color= nutrient), data = all_preds2, alpha = 1, size = 1.5) +
+  geom_point(data = all_grams2, aes(x = species_no, y = 1/median, color = nutrient), size = 2) + 
+  scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
+  scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
+  theme(legend.position="none") +
+  theme(axis.text = element_text(size=16)) +
+  # ylim(0, 0.04) +
+  # scale_y_log10() +
+  # scale_x_log10() +
+  ylab("Fraction of RDA target per gram") +
+  xlab("Species richness")
+ggsave("figures/Ne-per-gram-single-nutrient.png", width = 8, height = 6)
+
+b_estimates_inverse <- all_grams2 %>% 
+  group_by(nutrient) %>% 
+  do(tidy(lm(log(1/median) ~ log(species_no), data = .))) 
+
+b_estimates <- all_grams2 %>% 
+  group_by(nutrient) %>% 
+  do(tidy(lm(log(median) ~ log(species_no), data = .))) 
+
+
+all_preds2 %>% 
+  mutate(mean_eff = 1/mean) %>% 
 
 
  p + 

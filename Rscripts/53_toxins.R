@@ -13,7 +13,7 @@ tox <- read_excel("data/Hall-trace-elements.xlsx") %>%
   mutate(species = str_to_lower(species)) %>% 
   mutate(area = str_to_lower(area)) %>% 
   mutate(part = str_to_lower(part)) %>% 
-  filter(part == "muscle") %>% 
+  filter(part != "liver") %>% 
   # select(6:20) %>% 
   filter(cadmium != 2.61) %>% 
   filter(nickel != 1.810) 
@@ -27,6 +27,19 @@ tox_sum <- tox %>%
   summarise_at(c(names_tox[6:20]), mean) %>% 
   select(2:16)
   
+
+tox_sum4 <- tox %>% 
+  group_by(subgroup, species) %>% 
+  summarise_at(c(names_tox[6:20]), mean) %>% 
+  gather(key = element, value = concentration, 3:17)
+
+
+tox_sum4 %>% 
+  ggplot(aes(x = concentration, color = subgroup)) + geom_density() +
+  facet_wrap( ~ element, scales = "free")
+ggsave("figures/toxin-distribution-subgroup.pdf", width = 10, height = 6)
+
+length(unique(tox_sum$species))
 str(tox_sum)
 
 library(corrplot)
@@ -240,10 +253,10 @@ mean_target %>%
   scale_y_continuous(breaks = seq(1,12,1), limits = c(0, 6)) 
 
 all_targets %>% 
-  ggplot(aes(x = number_of_species, y = mean_targets, color = threshold, group = threshold)) + geom_line() +
-  geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high, fill = threshold), alpha = 0.5) +
-  scale_color_viridis_c() + 
-  scale_fill_viridis_c() +
+  ggplot(aes(x = number_of_species, y = mean_targets, color = factor(threshold), group = threshold)) + geom_line() +
+  geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high, fill = factor(threshold)), alpha = 0.5) +
+  scale_color_viridis_d(name = "Threshold") + 
+  scale_fill_viridis_d(name = "Threshold") +
   ylab("Number of tolerable limits exceeded per 100g portion") +
   xlab("Species richness")
 ggsave("figures/toxin-accumulation.pdf", width = 8, height = 6)
@@ -256,10 +269,10 @@ b_terms <- all_targets %>%
   filter(term == "b")
 
 b_terms %>% 
-  ggplot(aes(x = threshold, y = estimate, color = threshold)) + geom_point() +
-  geom_errorbar(aes(x = threshold, ymin = conf.low, ymax = conf.high, color = threshold), width = 0.1) +
+  ggplot(aes(x = threshold, y = estimate, color = factor(threshold))) + geom_point() +
+  geom_errorbar(aes(x = threshold, ymin = conf.low, ymax = conf.high, color = factor(threshold)), width = 0.1) +
   ylab("b estimate (biodiversity effect)") +
   xlab("% of upper tolerable limit in a portion") +
-  scale_color_viridis_c()
+  scale_color_viridis_d(name = "Threshold")
 ggsave("figures/toxin-accumulation-b-estimates.pdf", width = 4, height = 3)
 
