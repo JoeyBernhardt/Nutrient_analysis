@@ -99,6 +99,8 @@ all_traits <- left_join(traits, traits4, by = c("species1" = "Species"))
 
 write_csv(all_traits, "data-processed/more_traits-finfish.csv")
 
+all_traits <- read_csv("data-processed/more_traits-finfish.csv")
+
 
 # CINE traits -------------------------------------------------------------
 
@@ -154,9 +156,11 @@ cine_traits <- CINE_merge %>%
   left_join(., all_traits4, by = c("latin_name" = "Species"))
 
 write_csv(cine_traits, "data-processed/cine-traits.csv")
-
+cine_traits <- read_csv("data-processed/cine-traits.csv")
 unique(cine_traits$nutrient)
 unique(cine_traits$part)
+
+unique(cine_traits$nutrient)
 
 cine2 <- cine_traits %>% 
   mutate(log_concentration = log(concentration)) %>% 

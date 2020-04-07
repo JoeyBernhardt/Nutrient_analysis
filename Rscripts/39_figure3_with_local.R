@@ -17,9 +17,9 @@ all_min_rdi <- read_csv("data-processed/all_resampling_new_global_local.csv")
 
 plot3B <- all_min_rdi %>% 
   # filter(dataset %in% species_numbers$culture | dataset %in% c("25", "29", "57")) %>% 
-  filter(species_no < 11) %>% 
-  filter(dataset != "global") %>% 
-  filter(!dataset %in% c("25", "25", "29", "57")) %>% 
+  dplyr::filter(species_no < 11) %>% 
+  dplyr::filter(dataset != "global") %>% 
+  dplyr::filter(!dataset %in% c("25", "25", "29", "57")) %>% 
   ggplot(aes(x = species_no, y = median, group = dataset)) + geom_line(size = 0.5, alpha = 0.5) +
   # geom_ribbon(aes(ymin = mean - grams_required_10_std.error, ymax = mean + grams_required_10_std.error), fill = "grey", alpha = 0.5) +
   theme_classic() + ylab("Median grams required to reach 5 DRI targets") + xlab("Species richness") +
@@ -28,7 +28,7 @@ plot3B <- all_min_rdi %>%
   theme(text=element_text(family="Helvetica", size=14)) 
 ggsave("figures/min_rdi_local_BEF.png", width = 3, height = 3)
 
-
+species_numbers <- read_csv("data-processed/species_numbers.csv")
 plot3C <- res_all %>% 
   filter(culture %in% species_numbers$culture | culture == "global") %>% 
   filter(number_of_species < 11) %>% 

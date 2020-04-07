@@ -578,7 +578,7 @@ all_accumulation_lims <- bind_rows(WA_preds, YU_preds, TL_preds, TS_preds, CS_pr
                             KW_preds, MN_preds, NO_preds, AB_preds, II_preds, MI_preds)
 
 write_csv(all_accumulation_lims, "data-processed/all_accumulation_lims.csv")
-
+all_accumulation_lims <- read_csv("data-processed/all_accumulation_lims.csv")
 all_trad_accum_sum %>% 
   ggplot(aes(x = species_no, y = rdi_micro_tot_mean)) + geom_line(size = 1) +
   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no), data = WA_preds, alpha = 0.7, fill = "pink") 
