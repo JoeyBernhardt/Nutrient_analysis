@@ -323,6 +323,8 @@ all_traits_nuts <- bind_rows(all_cine, all_traits2) %>%
   ungroup() %>% 
   filter(complete.cases(.))
 
+write_csv(all_traits_nuts, "data-processed/all-traits-nuts.csv")
+
 threshold <- 0.1
 
 names(ntbl.RDI.all)
@@ -401,3 +403,76 @@ ggsave("figures/nd-fdisp-4traits.pdf", width = 8, height = 6)
 lm(targets ~ fdis, data = results) %>% summary()
 write_csv(results, "data-processed/fdis-nd-4traits.csv")
 write_csv(results, "data-processed/fdis-nd-4traits2.csv")
+
+#### do this same approach for the efficiency measure
+
+all_traits_nuts2 <- all_traits_nuts %>% 
+  mutate(feeding_mode = as.factor(feeding_mode)) %>% 
+  mutate(feeding_level = as.factor(feeding_level)) %>% 
+  mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+  mutate(BodyShapeI = as.factor(BodyShapeI)) %>% 
+  mutate(DemersPelag = as.factor(DemersPelag)) %>% 
+  group_by(species1, dha, epa, ca_mg, zn_mg, fe_mg, BodyShapeI, DemersPelag,
+           feeding_mode, feeding_level, EnvTemp) %>%
+  summarise_each(funs(mean), AgeMatMin, DepthRangeDeep, bulk_trophic_level, Length) %>% 
+  ungroup() %>% 
+  distinct(species1, .keep_all = TRUE)
+
+results2 <- data.frame()
+for (i in 1:5000) {
+  ntbl_sub1 <- all_traits_nuts2 %>% 
+    sample_n(size = 10, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(cal_total = (ca_mg/species_number)) %>% ## get the amount of calcium each species will contribute
+    mutate(zinc_total = (zn_mg/species_number)) %>% 
+    mutate(iron_total = (fe_mg/species_number)) %>% 
+    mutate(epa_total = (epa/species_number)) %>% 
+    mutate(dha_total = (dha/species_number)) %>%
+    summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
+    mutate(cal_grams = (cal_total/(1200/10))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
+    mutate(iron_grams = (iron_total/(18/10))) %>%
+    mutate(zinc_grams = (zinc_total/(11/10))) %>% 
+    mutate(epa_grams = (epa_total/(1/10))) %>%
+    mutate(dha_grams = (dha_total/(1/10))) %>%
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>%
+    mutate(grams_required = 100/min_percentage) %>% 
+    filter(species_no == 10)
+  
+  cn1 <- data.matrix(ntbl_sub1[, c(7, 8, 11, 15)])
+  rownames(cn1) <- ntbl_sub1$species1
+  hold <- data.frame(fdis = dbFD(cn1)$FDis[[1]][[1]], replicate = i, grams_required = resampling_15$grams_required[1])
+  results2 <- bind_rows(results2, hold)
+}
+
+
+results2 %>% 
+  ggplot(aes(x = fdis, y = 1/grams_required)) + geom_point(alpha = 0.1) +
+  geom_smooth(method = "lm", color = "black") + ylab("Nutritional efficiency") + xlab("Ecological functional diversity (dispersion)")
+ggsave("figures/ne-fdis.pdf", width = 8, height = 6)
+
+lm(1/grams_required ~ fdis, data = results2) %>% summary()
+
+write_csv(results, "data-processed/NE-fdis.csv")
+write_csv(results2, "data-processed/NE-fdis-5000.csv")
