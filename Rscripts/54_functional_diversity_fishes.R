@@ -200,7 +200,8 @@ cine3 <- cine_traits2 %>%
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(BodyShapeI = as.factor(BodyShapeI)) %>% 
   mutate(EnvTemp = as.factor(EnvTemp)) %>% 
-  mutate(culture = as.factor(culture))
+  mutate(culture = as.factor(culture)) %>% 
+  select(culture, species_name, DemersPelag, BodyShapeI, Length, EnvTemp)
 
 str(cine3)
 cnuts_split <- cine3 %>% 
@@ -225,7 +226,7 @@ results <- data.frame()
 for (j in 1:100){
 for (i in 1:length(cnuts_split)) {
 cnuts_split[[i]] <- cnuts_split[[i]][sample(1:length(row.names(cnuts_split[[i]])), 10, replace = FALSE),]
-cn1 <- data.matrix(cnuts_split[[i]][, 3:11])
+cn1 <- data.matrix(cnuts_split[[i]][, 3:6])
 rownames(cn1) <- cnuts_split[[i]]$species_name
 hold <- data.frame(fdis = dbFD(cn1)$FDis, culture = cnuts_split[[i]][1, 1], replicate = j)
 results <- bind_rows(results, hold)
@@ -292,7 +293,11 @@ all_traits2 <- left_join(all_nuts, all_traits)
 
 
 
-cine_traits <- read_csv("data-processed/cine-traits.csv")
+cine_traits <- read_csv("data-processed/cine-traits.csv") %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  distinct(latin_name, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep) 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv") %>% 
   select(latin_name, epa, dha) %>% 
   filter(!is.na(epa)) %>% 
@@ -309,15 +314,90 @@ cine_nuts <- cine_traits %>%
   summarise(concentration = mean(concentration)) %>% 
   spread(key = nutrient, value = concentration)
 
-all_cine <- left_join(cine_nuts, nuts_trad)
+all_cine <- left_join(cine_nuts, nuts_trad) %>% 
+  left_join(., cine_traits) %>% 
+  rename(species1 = latin_name)
 
-ntbl.RDI.all <- data %>% 
-  mutate(RDI.CA = ifelse(calcium > (1200*threshold), 1, 0)) %>% ## here we create a matrix of 0s and 1s, corresponding to whether the sample reaches DRI or not
-  mutate(RDI.FE = ifelse(iron > (18*threshold), 1, 0)) %>% 
-  mutate(RDI.ZN = ifelse(zinc > (11*threshold), 1, 0)) %>%
+all_traits_nuts <- bind_rows(all_cine, all_traits2) %>% 
+  select(species1, ca_mg, zn_mg, fe_mg, epa, dha, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep) %>%
+  ungroup() %>% 
+  filter(complete.cases(.))
+
+threshold <- 0.1
+
+names(ntbl.RDI.all)
+ntbl.RDI.all <- all_traits_nuts %>% 
+  mutate(RDI.CA = ifelse(ca_mg > (1200*threshold), 1, 0)) %>% ## here we create a matrix of 0s and 1s, corresponding to whether the sample reaches DRI or not
+  mutate(RDI.FE = ifelse(fe_mg > (18*threshold), 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(zn_mg > (11*threshold), 1, 0)) %>%
   mutate(RDI.EPA = ifelse(epa > (1*threshold), 1, 0)) %>%
   mutate(RDI.DHA = ifelse(dha > (1*threshold), 1, 0)) %>%
   ungroup() %>% 
-  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
-  filter(!is.na(RDI.micro.tot)) 
-  
+  mutate(RDI.micro.tot = rowSums(.[16:20])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  mutate(feeding_mode = as.factor(feeding_mode)) %>% 
+  mutate(feeding_level = as.factor(feeding_level)) %>% 
+  mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+  mutate(BodyShapeI = as.factor(BodyShapeI)) %>% 
+  mutate(DemersPelag = as.factor(DemersPelag)) %>% 
+  group_by(species1, RDI.DHA, RDI.EPA, RDI.CA, RDI.ZN, RDI.FE, BodyShapeI, DemersPelag,
+           feeding_mode, feeding_level, EnvTemp) %>%
+  summarise_each(funs(mean), AgeMatMin, DepthRangeDeep, bulk_trophic_level, Length) %>% 
+  ungroup()
+ 
+
+all_spa <- ntbl.RDI.all %>% 
+  dplyr::select(species1, 16:20) %>% 
+  mutate(subgroup = "all") %>% 
+  split( .$subgroup) %>% 
+  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
+  map(.f = specaccum, method = "collector")
+
+str(all_spa)
+all_spa$all$perm
+
+### ok new method. First sample 10 randomly, then do specaccum collector method, then caculate fdis
+
+ntbl_sub2 <- ntbl.RDI.all %>% 
+  distinct(species1, .keep_all = TRUE)
+results <- data.frame()
+for (i in 1:5000){
+ntbl_sub <- ntbl_sub2
+ntbl_sub <- ntbl_sub[sample(1:length(row.names(ntbl_sub)), 10, replace = FALSE),]
+
+all_spa <- ntbl_sub %>% 
+  dplyr::select(species1, 2:6) %>% 
+  mutate(subgroup = "all") %>% 
+  split( .$subgroup) %>% 
+  map(.f = `[`, c("RDI.CA", "RDI.FE", "RDI.ZN", "RDI.EPA", "RDI.DHA")) %>%
+  map(.f = specaccum, method = "collector")
+
+accumulated_targets <- all_spa %>% 
+  map(.f = `[`, "richness") %>% 
+  unlist() %>% 
+  as.data.frame()
+
+accumulated_targets$richness_level = rownames(accumulated_targets)
+colnames(accumulated_targets) <- c("number_of_targets", "richness_level")
+
+accumulated_targets <- accumulated_targets %>% 
+  separate(richness_level, into = c("subgroup", "number_of_species")) %>%
+  mutate(number_of_species = str_replace(number_of_species, "richness", "")) %>%
+  mutate(number_of_species = as.numeric(number_of_species))
+
+
+cn1 <- data.matrix(ntbl_sub[, c(7, 8, 11, 15)])
+rownames(cn1) <- ntbl_sub$species1
+hold <- data.frame(fdis = dbFD(cn1)$FDis[[1]][[1]], targets = accumulated_targets[10, 1], replicate = i)
+results <- bind_rows(results, hold)
+}
+
+results %>% 
+  ggplot(aes(x = fdis, y = targets)) + geom_point(alpha =0.05) +
+  geom_smooth(color = "black", method = "lm") + ylab("Nutritional diversity") +
+  xlab("Ecological functional diversity (dispersion)")
+ggsave("figures/nd-fdisp-4traits.pdf", width = 8, height = 6)
+
+lm(targets ~ fdis, data = results) %>% summary()
+write_csv(results, "data-processed/fdis-nd-4traits.csv")
+write_csv(results, "data-processed/fdis-nd-4traits2.csv")
