@@ -325,6 +325,8 @@ all_traits_nuts <- bind_rows(all_cine, all_traits2) %>%
 
 write_csv(all_traits_nuts, "data-processed/all-traits-nuts.csv")
 
+all_traits_nuts_incomplete <- bind_rows(all_cine, all_traits2)
+
 threshold <- 0.1
 
 names(ntbl.RDI.all)
