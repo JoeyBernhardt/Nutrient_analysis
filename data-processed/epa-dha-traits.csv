@@ -1,0 +1,67 @@
+Species,AgeMatMin,Herbivory2,FeedingType,FoodTroph,EnvTemp,BodyShapeI,DemersPelag,DepthRangeDeep,Length,page_id,latin_name,part,epa,dha
+Acipenser oxyrinchus,15.11111111111111,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.325,subtropical,elongated,demersal,46,403,6447,Acipenser oxyrhyncus,muscle,1.2,0.5349999999999999
+Alosa pseudoharengus,2.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.29,temperate,fusiform / normal,pelagic-neritic,145,40,6453,Alosa pseudoharengus,muscle,0.1,0.27
+Anguilla rostrata,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.62,subtropical,eel-like,demersal,464,152,6450,Anguilla rostrata,muscle,0.5,0.88
+Anoplopoma fimbria,5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.12,deep-water,fusiform / normal,bathydemersal,2740,120,6437,Anoplopoma fimbria,muscle,0.5249999999999999,0.5599999999999999
+Boreogadus saida,2.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.27,polar,elongated,demersal,400,40,6432,Boreogadus saida,muscle,0.165,0.329
+Brevoortia tyrannus,1,plants/detritus+animals (troph. 2.2-2.79),filtering plankton,2.61,subtropical,fusiform / normal,pelagic-neritic,50,50,6431,Brevoortia spp.,oil,12.7,7.9
+Catostomus catostomus,4.6,plants/detritus+animals (troph. 2.2-2.79),grazing on aquatic plants,3.1099998950958248,temperate,fusiform / normal,demersal,180,64,6403,Catostomus catostomus,muscle,0.075,0.212
+Catostomus commersonii,4,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),2.46,temperate,fusiform / normal,demersal,NA,65,6403,Catostomus commersonii,muscle,0.1365,0.23399999999999999
+Clupea harengus,2.5555555555555554,mainly animals (troph. 2.8 and up),selective plankton feeding,3.294999980926515,temperate,fusiform / normal,benthopelagic,364,45,6431,Clupea harengus,muscle,0.7733333333333333,1.1466666666666667
+Clupea harengus,2.5555555555555554,mainly animals (troph. 2.8 and up),selective plankton feeding,3.294999980926515,polar,fusiform / normal,benthopelagic,364,45,6431,Clupea harengus,muscle,0.7733333333333333,1.1466666666666667
+Clupea pallasii pallasii,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,temperate,fusiform / normal,pelagic-neritic,475,46,6431,Clupea pallasii,muscle,1,0.7
+Clupea pallasii pallasii,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,subtropical,fusiform / normal,pelagic-neritic,475,46,6431,Clupea pallasii,muscle,1,0.7
+Coregonus autumnalis,5.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.329999923706055,polar,fusiform / normal,pelagic-neritic,NA,65,6388,Coregonus autumnalis,muscle,0.3,0.3
+Cyprinus carpio,1.9742857142857142,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.05,subtropical,fusiform / normal,benthopelagic,NA,120,6408,Cyprinus carpio,muscle,0.2,0.1
+Cyprinus carpio,1.9742857142857142,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.05,temperate,fusiform / normal,benthopelagic,NA,120,6408,Cyprinus carpio,muscle,0.2,0.1
+Esox lucius,1.9444444444444444,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.400000095367432,subtropical,elongated,demersal,30,137,6404,Esox lucius,muscle,0.05525,0.164
+Gadus macrocephalus,4.0625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.115,boreal,fusiform / normal,demersal,1280,119,6432,Gadus macrocephalus,muscle,0.1,0.1
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,temperate,fusiform / normal,benthopelagic,600,200,6432,Gadus morhua,eggs,0.288,0.569
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,temperate,fusiform / normal,benthopelagic,600,200,6432,Gadus morhua,liver,6,4.5
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,temperate,fusiform / normal,benthopelagic,600,200,6432,Gadus morhua,muscle,0.08474999999999999,0.1955
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,polar,fusiform / normal,benthopelagic,600,200,6432,Gadus morhua,eggs,0.288,0.569
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,polar,fusiform / normal,benthopelagic,600,200,6432,Gadus morhua,liver,6,4.5
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,polar,fusiform / normal,benthopelagic,600,200,6432,Gadus morhua,muscle,0.08474999999999999,0.1955
+Hippoglossus hippoglossus,7.2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.28,temperate,fusiform / normal,demersal,2000,470,6152,Hippoglossus hippoglossus,muscle,0.22050000000000003,0.315
+Hippoglossus stenolepis,8.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.92,temperate,fusiform / normal,demersal,1200,258,6152,Hippoglossus stenolepis,muscle,0.1,0.3
+Hypomesus olidus,2,mainly animals (troph. 2.8 and up),selective plankton feeding,2.92,boreal,elongated,pelagic-neritic,NA,20,6418,Hypomesus olidus,muscle,0.1,0.2
+Ictalurus punctatus,3,mainly animals (troph. 2.8 and up),variable,3.4000000953674316,subtropical,fusiform / normal,benthopelagic,NA,132,6410,Ictalurus punctatus,muscle,0.1,0.2
+Lota lota,3.7916666666666665,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,temperate,elongated,demersal,700,152,6405,Lota lota,eggs,0.9365,1.47
+Lota lota,3.7916666666666665,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,temperate,elongated,demersal,700,152,6405,Lota lota,liver,0.6613333333333333,0.8576666666666667
+Lota lota,3.7916666666666665,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,temperate,elongated,demersal,700,152,6405,Lota lota,muscle,0.07766666666666668,0.11033333333333334
+Lota lota,3.7916666666666665,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,temperate,elongated,demersal,700,152,6405,Lota lota,not specified,0.07,0.1
+Lota lota,3.7916666666666665,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,temperate,elongated,demersal,700,152,6405,Lota lota,skin,0.1,0.1
+Mallotus villosus,2,mainly animals (troph. 2.8 and up),selective plankton feeding,3.2,polar,elongated,pelagic-oceanic,725,20,6439,Mallotus villosus,muscle,0.625,0.35
+Melanogrammus aeglefinus,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.56,temperate,fusiform / normal,demersal,450,112,6432,Melanogrammus aeglefinus,muscle,0.078,0.16325
+Melanogrammus aeglefinus,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.56,polar,fusiform / normal,demersal,450,112,6432,Melanogrammus aeglefinus,muscle,0.078,0.16325
+Merluccius productus,3.2666666666666666,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.980000019073486,temperate,elongated,pelagic-neritic,1000,91,6432,Merluccius productus,muscle,0.2,0.2
+Microstomus pacificus,5.875,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.34,temperate,short and / or deep,demersal,1370,76,6152,Microstomus pacificus,muscle,0.08,0.09
+Mugil cephalus,3.5555555555555554,mainly plants/detritus (troph. 2-2.19),variable,2.48,subtropical,fusiform / normal,benthopelagic,120,100,6437,Mugil cephalus,muscle,0.4,0.4
+Myoxocephalus scorpius,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.85,polar,fusiform / normal,demersal,451,60,6438,Myoxocephalus scorpius,"muscle, bone + inside",0.1,0.1
+Oncorhynchus gorbuscha,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.39,subtropical,fusiform / normal,demersal,250,76,6446,Oncorhynchus gorbuscha,muscle,0.4095,0.593
+Oncorhynchus keta,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.54,temperate,fusiform / normal,benthopelagic,250,100,6446,Oncorhynchus keta,muscle,0.3165,0.497
+Oncorhynchus kisutch,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.18,temperate,fusiform / normal,demersal,250,107.95,6446,Oncorhynchus kisutch,muscle,3.60675,8.84675
+Oncorhynchus mykiss,2.6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.53,subtropical,fusiform / normal,benthopelagic,200,122,6151,Oncorhynchus mykiss,eggs,0.459,1.44
+Oncorhynchus mykiss,2.6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.53,subtropical,fusiform / normal,benthopelagic,200,122,6151,Oncorhynchus mykiss,muscle,0.23375,0.76
+Oncorhynchus tshawytscha,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.83,temperate,fusiform / normal,benthopelagic,375,150,6446,Oncorhynchus tshawytscha,muscle,0.676,0.5723333333333334
+Osmerus mordax,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.44,temperate,elongated,pelagic-oceanic,425,35.6,6451,Osmerus mordax,muscle,0.12,0.18
+Pomatomus saltatrix,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.08,subtropical,fusiform / normal,pelagic-oceanic,200,130,6437,Pomatomus saltatrix,muscle,0.4,0.8
+Reinhardtius hippoglossoides,9,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.09,boreal,fusiform / normal,benthopelagic,2200,110,6152,Reinhardtius hippoglossoides,muscle,0.725,0.635
+Reinhardtius hippoglossoides,9,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.09,polar,fusiform / normal,benthopelagic,2200,110,6152,Reinhardtius hippoglossoides,muscle,0.725,0.635
+Salmo salar,2.15,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.76,temperate,fusiform / normal,benthopelagic,210,150,6446,Salmo salar,muscle,0.377,1.0844
+Salvelinus alpinus,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,temperate,fusiform / normal,benthopelagic,70,107,6449,Salvelinus alpinus,muscle,0.5900000000000001,0.44499999999999995
+Salvelinus alpinus,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,temperate,fusiform / normal,benthopelagic,70,107,6449,Salvelinus alpinus,skin,0.7,0.6
+Salvelinus fontinalis,1.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.74,temperate,fusiform / normal,benthopelagic,27,86,6151,Salvelinus fontinalis,muscle,0.13733333333333334,0.24066666666666667
+Salvelinus namaycush,8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.77,temperate,fusiform / normal,benthopelagic,53,150,6151,Salvelinus namaycush,muscle,0.224,0.5773333333333334
+Scomber scombrus,1.75,mainly animals (troph. 2.8 and up),variable,3.73,temperate,fusiform / normal,pelagic-neritic,1000,60,6442,Scomber scombrus,muscle,1.2166666666666668,2.31
+Sebastes norvegicus,10,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.04,temperate,fusiform / normal,pelagic-oceanic,1000,100,6436,Sebastes norvegicus,muscle,0.093,0.07150000000000001
+Sebastes norvegicus,10,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.04,polar,fusiform / normal,pelagic-oceanic,1000,100,6436,Sebastes norvegicus,muscle,0.093,0.07150000000000001
+Sebastes pinniger,4.333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.8,subtropical,fusiform / normal,demersal,838,76,6436,Sebastes pinniger,muscle,0.2,0.3
+Squalus acanthias,8.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,temperate,elongated,benthopelagic,1460,95,6440,Squalus acanthias,muscle,0.7,1.2
+Squalus acanthias,8.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,subtropical,elongated,benthopelagic,1460,95,6440,Squalus acanthias,muscle,0.7,1.2
+Stenodus leucichthys,7.7,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.15,boreal,fusiform / normal,demersal,NA,150,6388,Stenodus leucichthys,muscle,0.2,0.2
+Thaleichthys pacificus,3,mainly animals (troph. 2.8 and up),filtering plankton,3.25,temperate,elongated,pelagic-neritic,300,34,6448,Thaleichthys pacificus,muscle,0.12,0.18
+Thunnus alalunga,4.666666666666667,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.3,subtropical,fusiform / normal,pelagic-oceanic,600,140,6442,Thunnus alalunga,muscle,0.3,1
+Thunnus alalunga,4.666666666666667,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.3,temperate,fusiform / normal,pelagic-oceanic,600,140,6442,Thunnus alalunga,muscle,0.3,1
+Thunnus thynnus,5.333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.21,subtropical,fusiform / normal,pelagic-oceanic,985,458,6442,Thunnus spp.,muscle,0.4,1.2
+Thymallus arcticus,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.32,temperate,fusiform / normal,benthopelagic,NA,76,6406,Thymallus arcticus,muscle,0.1,0.1

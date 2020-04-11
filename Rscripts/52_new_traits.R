@@ -103,6 +103,26 @@ all_traits <- read_csv("data-processed/more_traits-finfish.csv")
 
 
 # CINE traits -------------------------------------------------------------
+nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv") %>% 
+  mutate(species1 = latin_name) %>% 
+  mutate(old_species1 = species1) %>% 
+  mutate(species1 = ifelse(common_name == "Ninespine Stickleback", "Pungitius pungitius", species1)) %>%
+  mutate(species1 = ifelse(common_name == "Menhaden", "Brevoortia tyrannus", species1)) %>%
+  mutate(species1 = ifelse(common_name == "Bluefin Tuna", "Thunnus thynnus", species1)) %>%
+  mutate(species1 = ifelse(species1 == "Acipenser fulvenscens","Acipenser fulvescens", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Acipenser oxyrhyncus", "Acipenser oxyrinchus", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Clupea pallasii", "Clupea pallasii pallasii", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Morone saxatillis", "Morone saxatilis", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Oncorhynchus mykiss irideus", "Oncorhynchus mykiss", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Theragra chalcogramma", "Gadus chalcogrammus", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Coregonus autumnalis and Coregonus sardinella", "Coregonus autumnalis", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
+  # select(page_id, latin_name, epa, dha) %>% 
+  filter(!is.na(epa)) %>% 
+  group_by(page_id, latin_name, species1, part) %>% 
+  summarise_each(funs(mean), epa, dha)
+
 
 data2 <- read_csv("data-processed/CINE-body-parts.csv") %>% 
   mutate(species1 = latin_name) %>% 
@@ -123,6 +143,8 @@ data2 <- read_csv("data-processed/CINE-body-parts.csv") %>%
 old_new_cine_species <- data2 %>% 
   select(species1, latin_name) %>% 
   mutate(latin_name = as.factor(latin_name))
+
+data2 <- nuts_trad
 
 more_traits2 <- species(data2$species1) ## contains BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep
 # fec2 <- fecundity(data2$species1) 
@@ -163,8 +185,10 @@ all_traits3 <- all_traits2 %>%
   left_join(., stocks3)
 
 all_traits4 <- all_traits3 %>% 
-  left_join(., mt3)
+  left_join(., mt3) %>% 
+  left_join(., nuts_trad, by = c("Species"= "species1"))
 
+write_csv(all_traits4, "data-processed/epa-dha-traits.csv")
 
 # Multi trait regressions -------------------------------------------------
 
@@ -187,15 +211,32 @@ new_cine <- bind_cols(old_new_cine_species, cine_traits) %>%
 write_csv(cine_traits, "data-processed/cine-traits.csv")
 write_csv(new_cine, "data-processed/cine-traits-new-species.csv")
 cine_traits_old <- read_csv("data-processed/cine-traits.csv") 
-cine_traits_new <- read_csv("data-processed/cine-traits-new-species.csv") ### ok this is with the fixed species names
+cine_traits_new <- read_csv("data-processed/cine-traits-new-species.csv") %>% 
+  mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length)) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) ### ok this is with the fixed species names
+epa_dha <- read_csv("data-processed/epa-dha-traits.csv") %>% 
+  gather(key = nutrient, value = concentration, epa, dha) %>% 
+  mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length)) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp, nutrient) %>% 
+  summarise_each(funs(mean), AgeMatMin, log_concentration,
+                 log_length, bulk_trophic_level, log_length, DepthRangeDeep)
 
+cine_traits_new2 <- bind_rows(cine_traits_new, epa_dha)
+write_csv(cine_traits_new2, "data-processed/cine-traits-new-species2.csv")
 
 unique(cine_traits$nutrient)
 unique(cine_traits$part)
 
 unique(cine_traits$nutrient)
 
-cine2 <- cine_traits %>% 
+cine2 <- cine_traits_new %>% 
   mutate(log_concentration = log(concentration)) %>% 
   mutate(log_length = log(Length)) %>% 
   rename(bulk_trophic_level = FoodTroph) %>% 
@@ -210,7 +251,8 @@ cine2 <- cine_traits %>%
   summarise_each(funs(mean), AgeMatMin, log_concentration, log_length, bulk_trophic_level, log_length, DepthRangeDeep) 
 
 
-calcium <- cine_traits %>% 
+calcium <- cine_traits_new %>% 
+  filter(part != "not specified") %>% 
   mutate(log_concentration = log(concentration)) %>% 
   mutate(log_length = log(Length)) %>% 
   rename(bulk_trophic_level = FoodTroph) %>% 
@@ -218,33 +260,29 @@ calcium <- cine_traits %>%
   rename(feeding_mode = FeedingType) %>% 
   ungroup() %>%
   filter(complete.cases(.)) %>% 
-  filter(nutrient == "ca_mg") 
-
-unique(calcium$part)
-
-
-cine2 %>% 
-  ggplot(aes(x = part, y = log_concentration)) + geom_boxplot() + 
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-cine2 %>% 
-  ggplot(aes(x = log_concentration)) + geom_histogram()
+  filter(nutrient == "epa") %>% 
+  # filter(part == "whole") %>% 
+  # filter(Length < 100) %>% 
+  group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp) %>% 
+  summarise_each(funs(mean), AgeMatMin, log_concentration,
+                 log_length, bulk_trophic_level, log_length, DepthRangeDeep) 
 
 
-full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
-                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+
+
+epa <- epa_dha %>% 
+  filter(nutrient == "dha")
 
 full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
-                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp, data = cine2, na.action=na.exclude)
-
+                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = epa, na.action=na.exclude)
 
 summary(full_mod)
-anova_zinc <- anova(full_mod)  
-confint(full_mod)
+anova(full_mod)
+visreg(full_mod)
+
 
 library(stargazer)
-stargazer(full_mod, title = "", type = "html", out="tables/calcium-models-expanded-muscle.htm")
+stargazer(full_mod, title = "", type = "html", out="tables/dha-models-expanded-new.htm")
 library(report)
 full_mod %>% 
   report() %>% 
@@ -269,11 +307,10 @@ visreg(full_mod)
 all_traits_raw <- read_csv("data-processed/more_traits-finfish.csv") %>% 
   mutate(Length = exp(log_length)) %>% 
   mutate(concentration = exp(log_concentration))
-cine_traits <- read_csv("data-processed/cine-traits.csv") %>% 
+
+"data-processed/cine-traits-new-species2.csv"
+cine_traits <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
   mutate(species1 = latin_name) %>% 
-  rename(bulk_trophic_level = FoodTroph) %>% 
-  rename(feeding_level = Herbivory2) %>% 
-  rename(feeding_mode = FeedingType) %>% 
   mutate(reference = as.character(reference))
 
 all_nuts_all <- bind_rows(all_traits_raw, cine_traits)

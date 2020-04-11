@@ -420,8 +420,10 @@ all_traits_nuts2 <- all_traits_nuts %>%
   ungroup() %>% 
   distinct(species1, .keep_all = TRUE)
 
+### this is where we caculate the fdis and the Ne for all the combos
+
 results2 <- data.frame()
-for (i in 1:5000) {
+for (i in 1:10) {
   ntbl_sub1 <- all_traits_nuts2 %>% 
     sample_n(size = 10, replace = FALSE)
   
