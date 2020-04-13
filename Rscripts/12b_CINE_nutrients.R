@@ -43,22 +43,28 @@ str(CINE)
 
 unique(CINE$ca_mg_100g)
 
+omega_3_20_5n3_g_100g
+omega_3_22_6n3_g_100g
+
 CINE_rename <- CINE %>% 
   mutate(ca_mg = as.numeric(str_replace(ca_mg_100g, " (.*)", ""))) %>% 
   mutate(zn_mg = as.numeric(str_replace(zn_mg_100g, " (.*)", ""))) %>%
   mutate(fe_mg = as.numeric(str_replace(fe_mg_100g, " (.*)", ""))) %>% 
   mutate(mn_mg = as.numeric(str_replace(mn_mg_100g, " (.*)", ""))) %>% 
   mutate(mg_mg = as.numeric(str_replace(mg_mg_100g, " (.*)", ""))) %>% 
+  mutate(epa = as.numeric(str_replace(omega_3_20_5n3_g_100g, " (.*)", ""))) %>% 
+  mutate(dha = as.numeric(str_replace(omega_3_22_6n3_g_100g, " (.*)", ""))) %>% 
   mutate(protein_g = as.numeric(str_replace(protein_g_100g, " (.*)", ""))) %>%
   mutate(fat_g = as.numeric(str_replace(fat_g_100g, " (.*)", ""))) %>%
   mutate(fapun_all_g = as.numeric(str_replace(total_pufa_g_100g, " (.*)", ""))) %>% 
   mutate(fapun3 = as.numeric(str_replace(total_omega_3_g_100g, " (.*)", ""))) %>% 
-  dplyr::select(1:8, ca_mg, zn_mg, fe_mg, protein_g, fat_g, fapun3, fapun_all_g, mn_mg, mg_mg) 
+  dplyr::select(1:8, ca_mg, zn_mg, fe_mg, protein_g, fat_g, fapun3, fapun_all_g, mn_mg, mg_mg, epa, dha) 
   
   
   
 write_csv(CINE_rename, "data-processed/CINE-fish-nutrients-processed.csv")
-
+### update april 2020 to include epa and dha
+write_csv(CINE_rename, "data-processed/CINE-fish-nutrients-processed.csv")
 
 # make figures! -----------------------------------------------------------
 
@@ -81,8 +87,8 @@ calcium <- CINE_rename %>%
 
 
 
-CINE_long <- CINE_rename %>% View
-  gather(key = nutrient, value = concentration, 9:17) %>% 
+CINE_long <- CINE_rename %>% 
+  gather(key = nutrient, value = concentration, 9:19) %>% 
   filter(!is.na(concentration))
 unique(CINE_long$part)
 
@@ -111,6 +117,7 @@ CINE_merge <- CINE_long %>%
 
 unique(CINE_long$part)
 
+write_csv(CINE_merge, "data-processed/CINE-body-parts-2020.csv")
 write_csv(CINE_merge, "data-processed/CINE-body-parts.csv")
 
 CINE_merge <- read_csv("data-processed/CINE-body-parts.csv")

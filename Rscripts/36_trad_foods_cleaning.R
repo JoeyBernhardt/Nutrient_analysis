@@ -79,8 +79,23 @@ nuts_raw_parts <- nutsraw %>%
   filter(reference != "88") %>% # get rid of USDA sources
   filter(reference != "63") %>% # get rid of USDA sources
   filter(!grepl("and", latin_name)) %>% ## get rid of ambigous species
-  filter(!grepl(",", latin_name)) 
+  filter(!grepl(",", latin_name)) %>% 
+  mutate(species1 = latin_name) %>% 
+  mutate(old_species1 = species1) %>% 
+  mutate(species1 = ifelse(common_name == "Ninespine Stickleback", "Pungitius pungitius", species1)) %>%
+  mutate(species1 = ifelse(common_name == "Menhaden", "Brevoortia tyrannus", species1)) %>%
+  mutate(species1 = ifelse(common_name == "Bluefin Tuna", "Thunnus thynnus", species1)) %>%
+  mutate(species1 = ifelse(species1 == "Acipenser fulvenscens","Acipenser fulvescens", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Acipenser oxyrhyncus", "Acipenser oxyrinchus", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Clupea pallasii", "Clupea pallasii pallasii", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Morone saxatillis", "Morone saxatilis", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Oncorhynchus mykiss irideus", "Oncorhynchus mykiss", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Theragra chalcogramma", "Gadus chalcogrammus", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Coregonus autumnalis and Coregonus sardinella", "Coregonus autumnalis", species1)) %>% 
+  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
+  rename(latin_name_cleaned = species1)
 
 
-write_csv(nuts_raw_parts, "data-processed/trad-foods-cleaned.csv")
+write_csv(nuts_raw_parts, "data-processed/trad-foods-cleaned-2020.csv")
 

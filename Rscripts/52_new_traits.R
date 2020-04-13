@@ -5,34 +5,66 @@ library(rfishbase)
 library(tidyverse)
 
 
-data <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% 
-  mutate(species_name = str_replace(species_name, "(juvenile)", "")) %>% 
-  mutate(species_name = str_replace(species_name, "()", ""))
+data_sea <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% 
+  mutate(concentration = exp(log_concentration)) %>% 
+  select(species1, nutrient, concentration, reference, abs_lat, seanuts_id2, subgroup) %>% 
+  mutate(source = "seanuts") %>% 
+  mutate(part = "unknown")
+data_cine <- read_csv("data-processed/trad-foods-cleaned-2020.csv") %>% 
+  gather(key = nutrient, value = concentration, 9:19) %>% 
+  select(latin_name_cleaned, part, page_id, reference, level_1, level_2, nutrient, concentration) %>% 
+  rename(species1 = latin_name_cleaned) %>% 
+  mutate(source = "cine") %>% 
+  mutate(reference = as.character(reference))
 
-CINE_merge <- read_csv("data-processed/CINE-body-parts.csv")
-
-more_traits <- species(data$species1) ## contains BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep
-fec <- fecundity(data$species1) 
-ecosys <- ecosystem(data$species1) 
-mat <- maturity(data$species1) ### contains age at maturity
-stocks1 <- stocks(data$species1) ###contains EnvTemp
-pop <- popchar(data$species1) 
-pop2 <- popqb(data$species1) ### contains K
-poplw2 <- poplw(data$species1) ### c
-popllf2 <- poplf(data$species1) ### c
-popll <- popll(data$species1) ### c
+data <- bind_rows(data_sea, data_cine)
 
 
-rep1 <- reproduction(data$species1) 
 
-mt2 <- more_traits %>% 
-  select(BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep, everything()) %>% 
-  mutate(DepthRangeDeep = as.numeric(DepthRangeDeep))
+more_traits2 <- species(data$species1) ## contains BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep
+mat2 <- maturity(data$species1) ### contains age at maturity
+stocks12 <- stocks(data$species1) ###contains EnvTemp
+ecology2 <- ecology(data$species1)
 
-str(mt2)
 
-mt2 %>% 
-  ggplot(aes(x = AnaCat)) + geom_histogram(stat = "count")
+mt3 <- more_traits2 %>% 
+  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep, Length) %>% 
+  group_by(Species, BodyShapeI, DemersPelag) %>% 
+  mutate(DepthRangeDeep = as.numeric(DepthRangeDeep)) %>% 
+  mutate(Length = as.numeric(Length)) %>% 
+  summarise_each(funs(mean), DepthRangeDeep, Length)
+
+ec3 <- ecology2 %>% 
+  dplyr::select(Species, Herbivory2, FoodTroph, FeedingType) %>% 
+  group_by(Species, Herbivory2, FeedingType) %>% 
+  mutate(FoodTroph = as.numeric(FoodTroph)) %>% 
+  summarise(FoodTroph = mean(FoodTroph)) 
+
+mat3 <- mat2 %>%
+  filter(!is.na(AgeMatMin)) %>% 
+  dplyr::select(Species, AgeMatMin) %>% 
+  mutate(AgeMatMin = as.numeric(AgeMatMin)) %>% 
+  group_by(Species) %>% 
+  summarise(AgeMatMin = mean(AgeMatMin))
+
+stocks3 <- stocks12 %>% 
+  dplyr::select(Species, EnvTemp) %>% 
+  dplyr::distinct(Species, EnvTemp) %>% 
+  filter(!is.na(EnvTemp)) %>% 
+  distinct(Species, .keep_all = TRUE)
+
+all_traits2 <- mat3 %>% 
+  full_join(., ec3)
+
+all_traits3 <- all_traits2 %>% 
+  full_join(., stocks3)
+
+all_traits4 <- all_traits3 %>% 
+  full_join(., mt3) %>% 
+  full_join(., data, by = c("Species"= "species1"))
+
+
+write_csv(all_traits4, "data-processed/all-traits-nuts.csv")
 
 
 write_csv(more_traits, "data-processed/fb-traits-species.csv")
@@ -103,48 +135,10 @@ all_traits <- read_csv("data-processed/more_traits-finfish.csv")
 
 
 # CINE traits -------------------------------------------------------------
-nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv") %>% 
-  mutate(species1 = latin_name) %>% 
-  mutate(old_species1 = species1) %>% 
-  mutate(species1 = ifelse(common_name == "Ninespine Stickleback", "Pungitius pungitius", species1)) %>%
-  mutate(species1 = ifelse(common_name == "Menhaden", "Brevoortia tyrannus", species1)) %>%
-  mutate(species1 = ifelse(common_name == "Bluefin Tuna", "Thunnus thynnus", species1)) %>%
-  mutate(species1 = ifelse(species1 == "Acipenser fulvenscens","Acipenser fulvescens", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Acipenser oxyrhyncus", "Acipenser oxyrinchus", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Clupea pallasii", "Clupea pallasii pallasii", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Morone saxatillis", "Morone saxatilis", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Oncorhynchus mykiss irideus", "Oncorhynchus mykiss", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Theragra chalcogramma", "Gadus chalcogrammus", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Coregonus autumnalis and Coregonus sardinella", "Coregonus autumnalis", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
-  # select(page_id, latin_name, epa, dha) %>% 
-  filter(!is.na(epa)) %>% 
-  group_by(page_id, latin_name, species1, part) %>% 
-  summarise_each(funs(mean), epa, dha)
+nuts_trad <- read_csv("data-processed/trad-foods-cleaned-2020.csv")
+  data2 <- nuts_trad %>% 
+    rename(species1 = latin_name_cleaned)
 
-
-data2 <- read_csv("data-processed/CINE-body-parts.csv") %>% 
-  mutate(species1 = latin_name) %>% 
-  mutate(old_species1 = species1) %>% 
-  mutate(species1 = ifelse(common_name == "Ninespine Stickleback", "Pungitius pungitius", species1)) %>%
-  mutate(species1 = ifelse(common_name == "Menhaden", "Brevoortia tyrannus", species1)) %>%
-  mutate(species1 = ifelse(common_name == "Bluefin Tuna", "Thunnus thynnus", species1)) %>%
-  mutate(species1 = ifelse(species1 == "Acipenser fulvenscens","Acipenser fulvescens", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Acipenser oxyrhyncus", "Acipenser oxyrinchus", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Clupea pallasii", "Clupea pallasii pallasii", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Morone saxatillis", "Morone saxatilis", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Oncorhynchus mykiss irideus", "Oncorhynchus mykiss", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Theragra chalcogramma", "Gadus chalcogrammus", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Coregonus autumnalis and Coregonus sardinella", "Coregonus autumnalis", species1)) %>% 
-  mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) 
-
-old_new_cine_species <- data2 %>% 
-  select(species1, latin_name) %>% 
-  mutate(latin_name = as.factor(latin_name))
-
-data2 <- nuts_trad
 
 more_traits2 <- species(data2$species1) ## contains BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep
 # fec2 <- fecundity(data2$species1) 
