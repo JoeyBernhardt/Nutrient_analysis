@@ -64,7 +64,7 @@ all_traits4 <- all_traits3 %>%
   full_join(., data, by = c("Species"= "species1"))
 
 
-write_csv(all_traits4, "data-processed/all-traits-nuts.csv")
+write_csv(all_traits4, "data-processed/all-traits-nuts.csv") ### april 13 2020 -- this is the one!!
 
 
 write_csv(more_traits, "data-processed/fb-traits-species.csv")
