@@ -229,7 +229,8 @@ epa_dha <- read_csv("data-processed/epa-dha-traits.csv") %>%
                  log_length, bulk_trophic_level, log_length, DepthRangeDeep)
 
 cine_traits_new2 <- bind_rows(cine_traits_new, epa_dha)
-write_csv(cine_traits_new2, "data-processed/cine-traits-new-species2.csv")
+write_csv(cine_traits_new2, "data-processed/cine-traits-new-species2.csv") ### this is most updated cine trait data
+View(cine_traits_new2)
 
 unique(cine_traits$nutrient)
 unique(cine_traits$part)
@@ -308,12 +309,17 @@ all_traits_raw <- read_csv("data-processed/more_traits-finfish.csv") %>%
   mutate(Length = exp(log_length)) %>% 
   mutate(concentration = exp(log_concentration))
 
-"data-processed/cine-traits-new-species2.csv"
 cine_traits <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
   mutate(species1 = latin_name) %>% 
   mutate(reference = as.character(reference))
 
-all_nuts_all <- bind_rows(all_traits_raw, cine_traits)
+str(all_traits_raw)
+str(cine_traits)
+
+all_nuts_all <- bind_rows(cine_traits, all_traits_raw)
+all_nuts_all %>% 
+  filter(nutrient == "epa") %>% View
+
 write_csv(all_nuts_all, "data-processed/traits-nuts-data-2020.csv") ### i think this is all the data (orig data plus CINE)
 
 names(all_nuts_all)
@@ -440,7 +446,7 @@ all_nuts_all2 <- all_nuts_all %>%
 write_csv(all_nuts_all2, "data-processed/new-traits-april10-2020.csv")
 
 #### models without part data
-all_traits_new <- read_csv("data-processed/new-traits-april10-2020.csv") 
+all_traits_new <- read_csv("data-processed/new-traits-april10-2020.csv") ### don't use this I don't think 
 
 ca_data <- all_traits_new %>% 
   filter(nutrient == "ca_mg") %>% 

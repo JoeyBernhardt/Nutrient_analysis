@@ -293,11 +293,38 @@ all_traits2 <- left_join(all_nuts, all_traits)
 
 
 
+# come back here ----------------------------------------------------------
+
+## deal with cine3
+cine3 <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
+  mutate(species1 = ifelse(is.na(species1), latin_name, species1)) %>% 
+  mutate(concentration = ifelse(is.na(concentration), exp(log_concentration), concentration)) %>%
+  mutate(Length = ifelse(is.na(Length), exp(log_length), Length)) 
+
+unique(cine3$nutrient) ### ok realizing why some of the species are missing is that AgeMatMin is missing
+
+cine3_traits <- cine3 %>% 
+  select(species1, 13:21) %>% 
+  group_by(species1, BodyShapeI, DemersPelag,
+           feeding_mode, feeding_level, EnvTemp) %>%
+  summarise_each(funs(mean), AgeMatMin, DepthRangeDeep, bulk_trophic_level, Length)
+
+cine3_nuts <- cine3 %>% 
+  select(species1, nutrient, concentration) %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "epa", "dha")) %>% 
+  group_by(species1, nutrient) %>% 
+  summarise_each(funs(mean), concentration) %>% 
+  filter(!is.na(concentration)) %>% 
+  spread(key = nutrient, value = concentration)
+
+all_cine_updated <- left_join(cine3_traits, cine3_nuts)
+
 cine_traits <- read_csv("data-processed/cine-traits.csv") %>% 
-  rename(bulk_trophic_level = FoodTroph) %>% 
-  rename(feeding_level = Herbivory2) %>% 
-  rename(feeding_mode = FeedingType) %>% 
-  distinct(latin_name, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep) 
+  # mutate(latin_name1 = species1) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>%
+  rename(feeding_level = Herbivory2) %>%
+  rename(feeding_mode = FeedingType) %>%
+  distinct(latin_name, latin_name, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep, nutrient) 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv") %>% 
   select(latin_name, epa, dha) %>% 
   filter(!is.na(epa)) %>% 
@@ -305,9 +332,9 @@ nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv") %>%
   summarise_each(funs(mean), epa, dha) 
 
 cine_nuts <- cine_traits %>% 
-  rename(bulk_trophic_level = FoodTroph) %>% 
-  rename(feeding_level = Herbivory2) %>% 
-  rename(feeding_mode = FeedingType) %>% 
+  # rename(bulk_trophic_level = FoodTroph) %>%
+  # rename(feeding_level = Herbivory2) %>%
+  # rename(feeding_mode = FeedingType) %>%
   ungroup() %>% 
   select(latin_name, nutrient, concentration) %>% 
   group_by(latin_name, nutrient) %>% 
@@ -318,13 +345,28 @@ all_cine <- left_join(cine_nuts, nuts_trad) %>%
   left_join(., cine_traits) %>% 
   rename(species1 = latin_name)
 
+all_cine <- left_join(cine_nuts, nuts_trad) %>% 
+  left_join(., cine_traits) %>% 
+  rename(species1 = latin_name)
+
+# all_traits_nuts <- bind_rows(all_cine, all_traits2) %>% 
+#   select(species1, ca_mg, zn_mg, fe_mg, epa, dha, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep) %>%
+#   ungroup() %>% 
+#   filter(complete.cases(.))
+
 all_traits_nuts <- bind_rows(all_cine, all_traits2) %>% 
   select(species1, ca_mg, zn_mg, fe_mg, epa, dha, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep) %>%
-  ungroup() %>% 
+  ungroup() %>% View
+filter(complete.cases(.))
+
+all_traits_nuts <- bind_rows(all_cine_updated, all_traits2) %>% 
+  select(species1, ca_mg, zn_mg, fe_mg, epa, dha, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep) %>%
+  ungroup() %>% View
   filter(complete.cases(.))
 
+write_csv(all_traits_nuts, "data-processed/all-traits-nuts-updated.csv")
 write_csv(all_traits_nuts, "data-processed/all-traits-nuts.csv")
-
+all_traits_nuts <- read_csv("data-processed/all-traits-nuts.csv")
 all_traits_nuts_incomplete <- bind_rows(all_cine, all_traits2)
 
 threshold <- 0.1
@@ -420,7 +462,77 @@ all_traits_nuts2 <- all_traits_nuts %>%
   ungroup() %>% 
   distinct(species1, .keep_all = TRUE)
 
-### this is where we caculate the fdis and the Ne for all the combos
+
+# this is where we caculate the fdis and the Ne for all the combos --------
+
+nuts_traits <- read_csv("data-processed/traits-nuts-data-2020.csv") %>% 
+  select(species1, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep, nutrient, concentration) %>% 
+  # filter(complete.cases(.)) %>% 
+  group_by(species1, BodyShapeI, DemersPelag,
+           feeding_mode, feeding_level, EnvTemp, nutrient) %>%
+  summarise_each(funs(mean), AgeMatMin, DepthRangeDeep, bulk_trophic_level, Length, concentration) %>% 
+  ungroup() %>%
+  spread(key = nutrient, value = concentration) %>% 
+  select(species1, AgeMatMin, DepthRangeDeep, bulk_trophic_level, Length, BodyShapeI, DemersPelag,
+         feeding_mode, feeding_level, EnvTemp, ca_mg, zn_mg, fe_mg, epa, dha) %>% 
+  filter(complete.cases(.)) 
+
+
+i <- 1
+results2 <- data.frame()
+for (i in 1:10) {
+  ntbl_sub1 <- nuts_traits %>% 
+    sample_n(size = 10, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(cal_total = (ca_mg/species_number)) %>% ## get the amount of calcium each species will contribute
+    mutate(zinc_total = (zn_mg/species_number)) %>% 
+    mutate(iron_total = (fe_mg/species_number)) %>% 
+    mutate(epa_total = (epa/species_number)) %>% 
+    mutate(dha_total = (dha/species_number)) %>%
+    summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
+    mutate(cal_grams = (cal_total/(1200/10))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
+    mutate(iron_grams = (iron_total/(18/10))) %>%
+    mutate(zinc_grams = (zinc_total/(11/10))) %>% 
+    mutate(epa_grams = (epa_total/(1/10))) %>%
+    mutate(dha_grams = (dha_total/(1/10))) %>%
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>%
+    mutate(grams_required = 100/min_percentage) 
+  
+  cn1 <- data.matrix(ntbl_sub1[, c(7, 8, 11, 15)])
+  rownames(cn1) <- ntbl_sub1$species1
+  hold <- data.frame(fdis = dbFD(cn1)$FDis[[1]][[1]], replicate = i, grams_required = resampling_15$grams_required[1])
+  results2 <- bind_rows(results2, hold)
+}
+
+
+
+
+
+
+
+
 
 results2 <- data.frame()
 for (i in 1:10) {

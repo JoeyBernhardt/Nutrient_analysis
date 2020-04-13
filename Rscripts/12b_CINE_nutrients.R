@@ -81,7 +81,7 @@ calcium <- CINE_rename %>%
 
 
 
-CINE_long <- CINE_rename %>% 
+CINE_long <- CINE_rename %>% View
   gather(key = nutrient, value = concentration, 9:17) %>% 
   filter(!is.na(concentration))
 unique(CINE_long$part)
