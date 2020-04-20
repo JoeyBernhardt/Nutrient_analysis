@@ -231,19 +231,32 @@ unique(cine_traits$part)
 
 unique(cine_traits$nutrient)
 
+cine_traits_new <- read_csv("data-processed/cine-traits-new-species2.csv")
+
+unique(cine_traits_new$nutrient)
+
+
 cine2 <- cine_traits_new %>% 
-  mutate(log_concentration = log(concentration)) %>% 
-  mutate(log_length = log(Length)) %>% 
-  rename(bulk_trophic_level = FoodTroph) %>% 
-  rename(feeding_level = Herbivory2) %>% 
-  rename(feeding_mode = FeedingType) %>% 
-  ungroup() %>%
+  filter(part != "not specified") %>% 
+  mutate(Length = ifelse(is.na(Length), exp(log_length), Length)) %>% 
+  filter(nutrient == "fat_g") %>% 
+  # mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length)) %>%
+  # rename(bulk_trophic_level = FoodTroph) %>% 
+  # rename(feeding_level = Herbivory2) %>% 
+  # rename(feeding_mode = FeedingType) %>% 
+  ungroup() %>% 
   filter(complete.cases(.)) %>% 
-  filter(nutrient == "ca_mg") %>% 
-  filter(part %in% c("muscle", "muscle + skin", "muscle + small bones", "whole")) %>% 
+  # filter(part %in% c("muscle", "muscle + skin", "muscle + small bones", "whole")) %>% 
   filter(log_concentration > 0) %>% 
   group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp) %>% 
   summarise_each(funs(mean), AgeMatMin, log_concentration, log_length, bulk_trophic_level, log_length, DepthRangeDeep) 
+
+
+cine2 %>% 
+  group_by(latin_name, part) %>% 
+  tally() %>% View
+  
 
 
 calcium <- cine_traits_new %>% 
@@ -271,13 +284,16 @@ epa <- epa_dha %>%
 full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
                  DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = epa, na.action=na.exclude)
 
+full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
+                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+
 summary(full_mod)
 anova(full_mod)
 visreg(full_mod)
 
 
 library(stargazer)
-stargazer(full_mod, title = "", type = "html", out="tables/dha-models-expanded-new.htm")
+stargazer(full_mod, title = "", type = "html", out="tables/cine-fat-models-expanded-new.htm")
 library(report)
 full_mod %>% 
   report() %>% 
@@ -440,29 +456,45 @@ all_nuts_all2 <- all_nuts_all %>%
 write_csv(all_nuts_all2, "data-processed/new-traits-april10-2020.csv")
 
 #### models without part data
-all_traits_new <- read_csv("data-processed/new-traits-april10-2020.csv") ### don't use this I don't think 
-
-ca_data <- all_traits_new %>% 
+ca_data <- read_csv("data-processed/new-traits-april10-2020.csv") %>% 
   filter(nutrient == "ca_mg") %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(EnvTemp = as.factor(EnvTemp)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>% 
-  mutate(BodyShapeI = as.factor(BodyShapeI))
+  mutate(BodyShapeI = as.factor(BodyShapeI)) ### don't use this I don't think 
+all_traits_new <- read_csv("data-processed/all-traits-nuts.csv") ### this the update from April 14th
+ca_data <- all_traits_new %>% 
+  filter(nutrient == "ca_mg") %>% 
+  rename(species1 = Species) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length)) %>% 
+  filter(part != "unknown") %>% 
+  group_by(species1, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp) %>% 
+  summarise_each(funs(mean), AgeMatMin, concentration,
+                 Length, bulk_trophic_level, log_length, DepthRangeDeep) 
+ 
 
 unique(ca_data$part)
 
-full_mod <- lm(log(concentration) ~ bulk_trophic_level + log(Length)  + feeding_mode + feeding_level +
+full_mod_wopart <- lm(log(concentration) ~ bulk_trophic_level + log(Length)  + feeding_mode + feeding_level +
                    DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp, data = ca_data, na.action=na.exclude)
+
+full_mod <- lm(log(concentration) ~ bulk_trophic_level + log(Length)  + feeding_mode + feeding_level +
+                        DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = ca_data, na.action=na.exclude)
 
 
 visreg(full_mod)
-summary(full_mod) 
-anova(full_mod)
+summary(full_mod_wopart) 
+anova(full_mod_wopart)
 
 library(stargazer)
-stargazer(full_mod, title = "", type = "html", out="tables/calcium-models-expanded-parts.htm")
+stargazer(full_mod_wopart, title = "", type = "html", out="~/Desktop/calcium-models-expanded-woparts.htm")
 
+stargazer(full_mod, title = "", type = "html", out="~/Desktop/calcium-models-expanded-withparts.htm")
 
 
 ca <- cine_traits %>% 

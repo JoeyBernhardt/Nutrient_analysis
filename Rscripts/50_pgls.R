@@ -47,20 +47,39 @@ traits <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>%
   mutate(species_name = str_replace(species_name, "()", ""))
 
 traits <- read_csv("data-processed/more_traits-finfish.csv")
+traits <- read_csv("data-processed/all-traits-nuts.csv") %>% 
+  rename(species1 = Species) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length))
+  ### update April 14 2020
 
 calcium <- traits %>% 
   filter(nutrient == "ca_mg") %>% 
-  group_by(species1, feeding_mode, feeding_level, subgroup, EnvTemp, DemersPelag, BodyShapeI) %>%
-  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, abs_lat, DepthRangeDeep, AgeMatMin) %>% 
-  ungroup() %>%
+  filter(!is.na(concentration)) %>% 
+  filter(!grepl("spp", species1)) %>% 
+  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
+  filter(part != "unknown") %>% 
+  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part) %>%
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
+  ungroup() %>% 
+  distinct(species1, .keep_all = TRUE) %>%
   filter(complete.cases(.))
 calcium$species1 <- str_to_lower(calcium$species1)
 
+length(unique(calcium$species1))
 
-full_mod <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + abs_lat + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
-mod1 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + abs_lat + EnvTemp + DemersPelag + BodyShapeI, data = calcium)
+cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
+tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
+tr_bl_cal <- compute.brlen(tr_cal)
+
+library(MuMIn)
+full_mod <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+mod1 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + EnvTemp + DemersPelag + BodyShapeI, data = calcium)
 model.sel(full_mod, mod1)
-
+summary(mod1)
 
 ### how do small fish compare to one another?
 
@@ -69,71 +88,40 @@ CINE_rename <- read_csv("data-processed/CINE-fish-nutrients-processed.csv")
 cine_names <- unique(CINE_rename$latin_name)
 (cine_names)
 
-library(rfishbase)
-
-(species("Micropterus salmoides"))
-
-
 full_mod <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + abs_lat + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
 
 calcium %>% View
   ggplot(aes(x = log_length, y = log_concentration)) + geom_point() + geom_smooth(method = "lm")
 
 
+  tr_bl_cal$tip.label
 
-summary(full_mod)
-anova(full_mod)
-confint(full_mod)
-
-options(na.action = "na.fail")
-results <- dredge(full_mod)
-res2 <- model.avg(results, subset = cumsum(weight) <= .95)
-res2$coefficients %>% View
-res2
-summary(res2)
-
-
-res3 <- dredge(full_mod, m.lim = c(NA, 1), extra = list(
-  "R^2", "*" = function(x) {
-    s <- summary(x)
-    c(Rsq = s$r.squared, adjRsq = s$adj.r.squared,
-      F = s$fstatistic[[1]])
-  })
-)
-
-res3 %>% View
-
-
-summary(full_mod)
-confint(full_mod)
-visreg(full_mod)
-anova(full_mod)
-summary(mod1)
-anova(mod1)
-
-
-cal_taxa <- tnrs_match_names(calcium$species1, context="Animals", names = calcium$species1, do_approximate_matching = TRUE) 
-tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
-tr_bl_cal <- compute.brlen(tr_cal)
-
-
-names(calcium)
-
+ thing <-  calcium %>% 
+    left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
+    mutate(unique_name2 = str_replace_all(unique_name, " ", "_"))
+ 
+ setdiff(thing$unique_name2, tr_bl_cal$tip.label)
+  
+  
 cal2 <- calcium %>% 
-  left_join(., cal_taxa, by = c("species1" = "search_string")) %>%
+  left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
   ungroup() %>% 
   mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
+  mutate(DemersPelag = as.factor(DemersPelag)) %>% 
+  mutate(BodyShapeI = as.factor(BodyShapeI)) %>% 
   mutate(EnvTemp = as.factor(EnvTemp))
 cal2$log_length <- scale(cal2$log_length)
-cal2$abs_lat <- scale(cal2$abs_lat)
+# cal2$abs_lat <- scale(cal2$abs_lat)
 cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
 cal2$DepthRangeDeep <- scale(cal2$DepthRangeDeep)
 cal2$AgeMatMin <- scale(cal2$AgeMatMin)
 
 rownames(cal2) <- cal2$unique_name2
+
+str(cal2)
 # models to compare -------------------------------------------------------
 library(visreg)
 
@@ -154,16 +142,27 @@ cal_plot2 <- calcium_points %>%
 
 cal3 <- cal2 %>% 
   filter(complete.cases(.))    
-mod1b <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat + EnvTemp, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
-mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
-mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + AgeMatMin + BodyShapeI + DemersPelag, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + AgeMatMin + DemersPelag, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod3 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + BodyShapeI + DemersPelag, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod4 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + BodyShapeI + DemersPelag + part, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod5 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + DemersPelag + part, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
 
-mod3 <- gls(log_concentration ~ log_length + feeding_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
-mod4 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
-mod5 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+model.sel(mod1, mod2, mod3, mod4, mod5, extra = "rsquared") %>% View
+
+summary(mod5)
+anova(mod5)
+
+mod1 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod2 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod2b <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level + DemersPelag, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+
+mod3 <- gls(log_concentration ~ log_length + feeding_level + feeding_mode, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod4 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+mod5 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
 mod6 <- gls(log_concentration ~ log_length + bulk_trophic_level + feeding_level, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML") 
-mod7 <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode + abs_lat, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
-ddfer <- model.sel(mod1, mod1b, mod2, mod3, mod4, mod5, mod6, mod7, extra = "rsquared") %>% 
+mod7 <- gls(log_concentration ~ bulk_trophic_level + feeding_level + feeding_mode, correlation = corBrownian(phy = tr_bl_cal), data = cal2, method = "ML")
+ddfer <- model.sel(mod1, mod1b, mod2, mod3, mod4, mod5, mod6, mod7, mod2b, extra = "rsquared") %>% 
   dplyr::select(-"rsquared.Response") %>% 
   dplyr::select(-"rsquared.family") %>% 
   dplyr::select(-"rsquared.link") %>% 

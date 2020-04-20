@@ -571,10 +571,11 @@ species310 %>%
   group_by(species_no, run) %>%
   summarise_each(funs(mean), grams_required, fdis) %>% 
   # filter(species_no == 10) %>% 
-  ggplot(aes(x = fdis, y = grams_required, color = factor(species_no))) + geom_point() + geom_smooth(color = "black", method = "lm") +
-  scale_color_viridis_d(name = "Species richness") + ylab("Grams required to reach 5 micronutrient targets") +
+  ggplot(aes(x = fdis, y = grams_required)) + geom_point() + geom_smooth(color = "black", method = "lm") +
+  # scale_color_viridis_d(name = "Species richness") +
+  ylab("Grams required to reach 5 micronutrient targets") +
   xlab("Ecological functional diversity (dispersion)")
-  ggsave("figures/fdis-ne-310-colours.pdf", width = 8, height = 6)
+  ggsave("figures/fdis-ne-310-black.pdf", width = 8, height = 6)
 
 species310 %>% 
   lm(grams_required ~ fdis, data = .) %>% summary()
@@ -664,7 +665,9 @@ all_fdis <- bind_rows(species310, results_3)
 all_fdis %>% 
   filter(!is.na(fdis)) %>% 
   ggplot(aes(x = fdis, y = grams_required, color = factor(species_number))) + geom_point(alpha = 0.5) +
-  geom_smooth( color = "black") + ylab("Nutritional efficiency") + xlab("Ecological functional diversity (dispersion)")
+  geom_smooth( color = "black", method ="lm") + ylab("Nutritional efficiency") + xlab("Ecological functional diversity (dispersion)") +
+  facet_wrap( ~ species_number, scales = "free_y")
+ggsave("figures/ne-fdis-multi-levels-facets-freey.pdf", width = 12, height = 8)
 ggsave("figures/ne-fdis-multi-levels.pdf", width = 8, height = 6)
 
 
