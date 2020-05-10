@@ -121,21 +121,26 @@ write_csv(CINE_merge, "data-processed/CINE-body-parts-2020.csv")
 write_csv(CINE_merge, "data-processed/CINE-body-parts.csv")
 
 CINE_merge <- read_csv("data-processed/CINE-body-parts.csv")
-
+CINE_merge2 <- read_csv("data-processed/CINE-body-parts-2020.csv")
 CINE_merge %>% 
   ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
   facet_wrap( ~ nutrient, scales = "free")+
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-CINE_merge %>% 
+CINE_merge2 %>% 
   filter(nutrient == "ca_mg") %>% 
+  filter(!is.na(concentration)) %>%
+  filter(latin_name == "Oncorhynchus mykiss") %>% View
   ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
   facet_wrap( ~ nutrient, scales = "free") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-
+  CINE_merge %>% 
+    filter(nutrient == "ca_mg") %>% 
+    filter(!is.na(concentration), !is.na(part)) %>% 
+    filter(!grepl("spp", latin_name)) %>% View
 
 # Micronutrients only -----------------------------------------------------
 

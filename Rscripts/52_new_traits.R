@@ -3,16 +3,18 @@
 ### new traits analysis
 library(rfishbase)
 library(tidyverse)
+library(cowplot)
+theme_set(theme_cowplot())
 
 
 data_sea <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% 
   mutate(concentration = exp(log_concentration)) %>% 
-  select(species1, nutrient, concentration, reference, abs_lat, seanuts_id2, subgroup) %>% 
+  dplyr::select(species1, nutrient, concentration, reference, abs_lat, seanuts_id2, subgroup) %>% 
   mutate(source = "seanuts") %>% 
   mutate(part = "unknown")
 data_cine <- read_csv("data-processed/trad-foods-cleaned-2020.csv") %>% 
   gather(key = nutrient, value = concentration, 9:19) %>% 
-  select(latin_name_cleaned, part, page_id, reference, level_1, level_2, nutrient, concentration) %>% 
+  dplyr::select(latin_name_cleaned, part, page_id, reference, level_1, level_2, nutrient, concentration) %>% 
   rename(species1 = latin_name_cleaned) %>% 
   mutate(source = "cine") %>% 
   mutate(reference = as.character(reference))
@@ -28,8 +30,8 @@ ecology2 <- ecology(data$species1)
 
 
 mt3 <- more_traits2 %>% 
-  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep, Length) %>% 
-  group_by(Species, BodyShapeI, DemersPelag) %>% 
+  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep, Length, Fresh, Brack, Saltwater) %>% 
+  group_by(Species, BodyShapeI, DemersPelag, Fresh, Brack, Saltwater) %>% 
   mutate(DepthRangeDeep = as.numeric(DepthRangeDeep)) %>% 
   mutate(Length = as.numeric(Length)) %>% 
   summarise_each(funs(mean), DepthRangeDeep, Length)
@@ -65,6 +67,21 @@ all_traits4 <- all_traits3 %>%
 
 
 write_csv(all_traits4, "data-processed/all-traits-nuts.csv") ### april 13 2020 -- this is the one!!
+
+
+### ok let's try to make fresh brack marine into one column
+
+all_traits5 <- all_traits4 %>% 
+  mutate(Fresh = ifelse(Fresh == "-1", "fresh", NA)) %>% 
+  mutate(Brack = ifelse(Brack == "-1", "brack", NA)) %>% 
+  mutate(Saltwater = ifelse(Saltwater == "-1", "marine", NA)) %>% 
+  mutate(realm = paste(Fresh, Brack, Saltwater, sep = "")) %>% 
+  mutate(realm = str_replace_all(realm, "NA", "")) %>% 
+  filter(realm != "")
+
+write_csv(all_traits5, "data-processed/all-traits-nuts2.csv") ### updated May 10 to include freshwater, brack, salt
+
+
 
 
 write_csv(more_traits, "data-processed/fb-traits-species.csv")
@@ -135,6 +152,8 @@ all_traits <- read_csv("data-processed/more_traits-finfish.csv")
 
 
 # CINE traits -------------------------------------------------------------
+library(rfishbase)
+
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned-2020.csv")
   data2 <- nuts_trad %>% 
     rename(species1 = latin_name_cleaned)
@@ -232,25 +251,102 @@ unique(cine_traits$part)
 unique(cine_traits$nutrient)
 
 cine_traits_new <- read_csv("data-processed/cine-traits-new-species2.csv")
+cine_traits_new2 <- read_csv("data-processed/all-traits-nuts.csv")
+unique(cine_traits_new1$nutrient)
 
-unique(cine_traits_new$nutrient)
 
+cine_traits_new2 %>% View
+cine_traits_new %>% View
 
 cine2 <- cine_traits_new %>% 
   filter(part != "not specified") %>% 
-  mutate(Length = ifelse(is.na(Length), exp(log_length), Length)) %>% 
-  filter(nutrient == "fat_g") %>% 
-  # mutate(log_concentration = log(concentration)) %>% 
-  mutate(log_length = log(Length)) %>%
-  # rename(bulk_trophic_level = FoodTroph) %>% 
-  # rename(feeding_level = Herbivory2) %>% 
+  filter(part != "unknown") %>% 
+  filter(!is.na(concentration)) %>% 
+  # filter(part != "muscle") %>% 
+  # rename(bulk_trophic_level = FoodTroph) %>%
+  # rename(feeding_level = Herbivory2) %>%
   # rename(feeding_mode = FeedingType) %>% 
+  # mutate(Length = ifelse(is.na(Length), exp(log_length), Length)) %>% 
+  filter(nutrient == "ca_mg") %>% 
+  mutate(log_concentration = log(concentration)) %>% 
+  mutate(log_length = log(Length)) %>%
   ungroup() %>% 
-  filter(complete.cases(.)) %>% 
+  # filter(complete.cases(.)) %>% 
   # filter(part %in% c("muscle", "muscle + skin", "muscle + small bones", "whole")) %>% 
-  filter(log_concentration > 0) %>% 
-  group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp) %>% 
-  summarise_each(funs(mean), AgeMatMin, log_concentration, log_length, bulk_trophic_level, log_length, DepthRangeDeep) 
+  # filter(log_concentration > 0) %>% 
+  group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, DemersPelag, part, EnvTemp) %>% 
+  summarise_each(funs(mean), AgeMatMin, log_concentration, log_length, Length, bulk_trophic_level, log_length, DepthRangeDeep) %>% 
+  ungroup() %>% 
+  filter(complete.cases(.))
+
+
+# Compare models ----------------------------------------------------------
+
+cine2 %>% 
+  filter(part == "muscle + skin") %>% View
+
+unique(cine2$part)
+
+mod1 <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode +
+                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod2 <- lm(log_concentration ~ log_length  + feeding_mode + feeding_level + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod3 <- lm(log_concentration ~ log_length  + feeding_level + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod4 <- lm(log_concentration ~ log_length  + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod5 <- lm(log_concentration ~ log_length + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod6 <- lm(log_concentration ~ log_length + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod7 <- lm(log_concentration ~ log_length + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod8 <- lm(log_concentration ~ log_length + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod9 <- lm(log_concentration ~ log_length + part, data = cine2, na.action=na.exclude)
+
+model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9) %>% View
+
+summary(mod1)
+library(MuMIn)
+library(patchwork)
+visreg(mod1, "log_length", by = c("part"), gg = TRUE, size = 4)  
+visreg(mod1, "DemersPelag", by = c("BodyShapeI"), gg = TRUE, size = 4)  
+plot1 <- visreg(mod1, "DemersPelag", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Habitat association") +
+  theme(axis.text.x = element_text(angle = 90))
+plot2 <- visreg(mod1, "log_length", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Log length (cm)")  +
+  theme(axis.text.x = element_text(angle = 90))
+plot3 <- visreg(mod1, "AgeMatMin", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Age at Maturity (years)") +
+  theme(axis.text.x = element_text(angle = 90))
+plot4 <- visreg(mod1, "DepthRangeDeep", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Depth (m)") +
+  theme(axis.text.x = element_text(angle = 90))
+plot5 <- visreg(mod1, "bulk_trophic_level", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Trophic position") +
+  theme(axis.text.x = element_text(angle = 90))
+plot6 <- visreg(mod1, "part", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Body part") +
+  theme(axis.text.x = element_text(angle = 90))
+plot7 <- visreg(mod1, "BodyShapeI", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Body shape") +
+  theme(axis.text.x = element_text(angle = 90))
+plot8 <- visreg(mod1, "feeding_mode", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Feeding mode") +
+  theme(axis.text.x = element_text(angle = 90))
+plot9 <- visreg(mod1, "feeding_level", gg = TRUE, size = 4) +
+  ylab("log(calcium) mg/100g ") + xlab("Feeding level") +
+  theme(axis.text.x = element_text(angle = 90))
+
+plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot7 + plot8 +
+  plot_annotation(tag_levels = 'A') + plot_layout(ncol = 4)
+ggsave("figures/calcium-partial-regressions-muscle.pdf", plot = plot_all, width = 14, height = 10)
+
+
+anova(mod1)
+zn_mod <- visreg(full_mod, "BodyShapeI", plot = "FALSE")
+zn_mod[1]
+fits_zn <- data.frame(zn_mod$fit)
+
+str(zn_mod)
+
+library(stargazer)
+stargazer(mod1, title = "", type = "html", out="tables/cine-cal-models-expanded-all-tissues3.htm")
 
 
 cine2 %>% 

@@ -76,10 +76,34 @@ tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name")
 tr_bl_cal <- compute.brlen(tr_cal)
 
 library(MuMIn)
-full_mod <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+full_mod <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+
+library(phytools)
+library(MCMCglmm)
+summary(full_mod)
+bio1_mod <- MCMCglmm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part, random = ~ species1, data=cal2, pedigree=tr_bl_cal, nitt=20000)
+?MCMCglmm
+
+is.ultrametric(tr_bl_cal)
+is.rooted(tr_bl_cal)
+any(duplicated(tr_bl_cal$node.label)) 
+
+mod1 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin, data = calcium)
+mod2 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + EnvTemp + DemersPelag + DepthRangeDeep + BodyShapeI, data = calcium)
+mod3 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + EnvTemp + DemersPelag + AgeMatMin + BodyShapeI, data = calcium)
+mod4 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + EnvTemp + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+mod5 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode  + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+mod6 <- lm(log_concentration ~ log_length + bulk_trophic_level  + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+mod7 <- lm(log_concentration ~ log_length + feeding_mode  + EnvTemp + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI, data = calcium)
+mod8 <- lm(log_concentration ~ log_length, data = calcium)
+
+model.sel(full_mod, mod1, mod2, mod3, mod4, mod5, mod6, mod7) %>% View
+
+
 mod1 <- lm(log_concentration ~ log_length + bulk_trophic_level + feeding_mode + feeding_level + EnvTemp + DemersPelag + BodyShapeI, data = calcium)
-model.sel(full_mod, mod1)
+model.sel(full_mod, mod1) %>% View
 summary(mod1)
+summary(full_mod)
 
 ### how do small fish compare to one another?
 
