@@ -7,10 +7,27 @@ library(rotl)
 library(nlme)
 library(visreg)
 
+library(piecewiseSEM)
+library(tidyverse)
+library(rotl)
+library(ape)
+library(stargazer)
+library(janitor)
+library(MuMIn)
+library(broom)
+library(forcats)
+library(tidyverse)
+library(xtable)
+library(stargazer)
+library(arm)
+library(nlme)
+library(cowplot)
+library(visreg)
+
 library(Rphylopars)
 ## find out which ones have multuple temps
 
-cine_traits_new <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
+cine_traits_new <- read_csv("data-processed/cine-traits-new-species3.csv") %>% 
   filter(part != "not specified") %>% 
   # read_csv("data-processed/all-traits-nuts.csv") %>% 
   # rename(species1 = Species) %>% 
@@ -25,9 +42,9 @@ cine_traits_new <- read_csv("data-processed/cine-traits-new-species2.csv") %>%
   mutate(species1 = ifelse(is.na(species1), latin_name, species1))
 
 
-seanuts_traits2 <- read_csv("data-processed/all-traits-nuts.csv") %>% 
+seanuts_traits2 <- read_csv("data-processed/all-traits-nuts2.csv") %>% 
   filter(!is.na(seanuts_id2)) %>% 
-  select(-part)
+  dplyr::select(-part)
 
 parts <- read_csv("data-processed/seanuts_parts.csv")
 
@@ -39,29 +56,50 @@ seanuts_traits3 <- left_join(seanuts_traits2, parts) %>%
   mutate(log_length = log(Length)) %>% 
   mutate(log_concentration = log(concentration))
 
-traits <- bind_rows(cine_traits_new, seanuts_traits3) %>%
-  select(species1, nutrient, concentration,feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,
-         log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
-  mutate(part = ifelse(part == "muscle-skinless", "muscle", part))
+traits <- bind_rows(cine_traits_new, seanuts_traits3) %>% 
+  dplyr::select(seanuts_id2, species1, nutrient, concentration,feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,
+         log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, realm) %>% 
+  mutate(part = ifelse(part == "muscle-skinless", "muscle", part)) %>% 
+  mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical"))) %>% 
+  group_by(species1, nutrient) %>% 
+  top_n(n = 1, wt = EnvTemp) ### chose only one EnvTemp per species
+
+
+# trait data ready for analysis -------------------------------------------
+
+
+write_csv(traits, "data-processed/trait-nutrient-data-analysis.csv")
+
+
+
+# traits <- cine_traits_new
 
 unique(traits$part)
 
-traits <- cine_traits_new
+traits2 <- traits %>% 
+  mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle, bone + inside","whole",
+                                         "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", NA)))
 
-unique(traits$nutrient)
+traits_one_part <- traits2 %>% 
+  group_by(species1, nutrient) %>% 
+  top_n(n = 1, wt = part)
 
-calcium <- traits %>% 
+calcium <- traits2 %>% 
+  dplyr::select(-seanuts_id2) %>% 
   filter(nutrient == "ca_mg") %>% 
   # filter(!is.na(concentration)) %>% 
   filter(!grepl("spp", species1)) %>% 
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
-  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part) %>%
+  filter(part == "muscle") %>% 
+  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
-  ungroup() %>% 
+  ungroup() %>%
   # distinct(species1, .keep_all = TRUE) %>%
   filter(complete.cases(.))
+str(calcium)
+
 calcium$species1 <- str_to_lower(calcium$species1)
 
 unique(calcium$part)
@@ -81,7 +119,8 @@ cal2 <- calcium %>%
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
   mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
-  mutate(EnvTemp = as.factor(EnvTemp))
+  mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+  mutate(realm = as.factor(realm))
 cal2$log_length <- scale(cal2$log_length)
 cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
 cal2$DepthRangeDeep <- scale(cal2$DepthRangeDeep)
@@ -130,16 +169,6 @@ Phylodata2 <- Phylodata %>%
 
 
 
-# cal_mod <- gls(log_concentration ~ log_length + BodyShapeI + bulk_trophic_level + part +
-#                  feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin, correlation = corBrownian(phy = tree), data = Phylodata2, method = "ML")
-# summary(cal_mod)
-# anova(cal_mod)
-# visreg(cal_mod)
-# 
-# vr <- visreg(cal_mod, plot = FALSE)
-
-
-
 
 library(Rphylopars)
 
@@ -147,10 +176,6 @@ Phylodata1 <- Phylodata %>%
   mutate(part = as.factor(part)) %>% 
 	rename(species = Phylospecies) 
 
-unique(Phylodata1$EnvTemp)
-
-?phylopars.lm
-unique(Phylodata1$part)
 
 (thing1 <- phylopars.lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode +
                           DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part, trait_data = Phylodata1, tree = tree, pheno_error = FALSE))
@@ -168,7 +193,7 @@ calcium_vect <- Phylodata1$log_concentration
 names(calcium_vect) <- Phylodata1$species
 
 calg <- Phylodata1 %>% 
-  group_by(species, EnvTemp, DemersPelag, feeding_level, feeding_mode, BodyShapeI, part) %>% 
+  group_by(species, EnvTemp, DemersPelag, feeding_level, feeding_mode, BodyShapeI, realm) %>% 
   summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
   ungroup() %>%
   mutate(EnvTemp = as.character(EnvTemp)) %>% 
@@ -176,7 +201,7 @@ calg <- Phylodata1 %>%
   mutate(part = as.character(part))
 
 calg_part <- Phylodata1 %>% 
-  group_by(species, EnvTemp, DemersPelag, feeding_level, feeding_mode, BodyShapeI, part) %>% 
+  group_by(species, EnvTemp, DemersPelag, feeding_level, feeding_mode, BodyShapeI, part, realm) %>% 
   summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
   ungroup() %>%
   mutate(EnvTemp = as.character(EnvTemp)) %>% 
@@ -187,14 +212,21 @@ calg_part %>%
   filter(species == "Oncorhynchus_tshawytscha") %>% 
   ggplot(aes(x = part, y = log_concentration))+ geom_point()
 
-
-com <- comparative.data(tree, as.data.frame(calg), "species")
-fitg <- fitContinuous(phy = tree, dat = calcium_vect, model = "lambda")
-phylosig(tree = tree, x = calcium_vect)
-fitg$opt
+?comparative.data
+com <- comparative.data(tree, as.data.frame(calg), "species", vcv.dim = 3)
+# fitg <- fitContinuous(phy = tree, dat = calcium_vect, model = "lambda")
+# phylosig(tree = tree, x = calcium_vect)
+# fitg$opt
 library(caper)
 
-calg2 <- calg
+calg2 <- calg %>% 
+  mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+  mutate(part = as.factor(part))
+
+unique(calg2$part)
+
+calg2 %>% 
+  ggplot(aes(x = part, y = log_concentration)) + geom_point()
 
 calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
@@ -204,16 +236,251 @@ calg3 <- calg2 %>%
 
 ### full model
 mod1 <- lm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
-             DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + EnvTemp, data = Phylodata1, na.action=na.exclude)
+             DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + EnvTemp + realm, data = Phylodata1, na.action=na.exclude)
+summary(mod1)
+mod2 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+              DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = com, lamba = "ML")
+mod3 <- pgls(log_concentration ~ 1, data = com)
+summary(mod2)
+AIC(mod2, mod3)
+model.sel(mod2, mod3, ex)
 
-mod2 <-pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
-              DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part, data = com,
-                  lambda="ML")
+# correlation = corBrownian(phy = tr_bl_dha), data = dha3, method = "ML"
+
+mod2c <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+       DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm,
+       correlation = corBrownian(phy = tree), data = calg2, method = "ML")
+
+mod2c2 <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm,
+             correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2)
+
+summary(mod2c2)
+mod2c3 <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm,
+              correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+
+library(MuMIn)
+
+rsquared(mod2c3)
+
+ddfer <- model.sel(mod2c2, mod2c3, mod2c, extra = "rsquared") %>% 
+  dplyr::select(-"rsquared.Response") %>% 
+  dplyr::select(-"rsquared.family") %>% 
+  dplyr::select(-"rsquared.link") %>% 
+  dplyr::select(-"rsquared.method")
+
+library(phylolm)
+mod1 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = com, lambda = "ML")
+mod2 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                DemersPelag + DepthRangeDeep + BodyShapeI + realm, data = com, lambda = "ML")
+mod3 <- pgls(log_concentration ~ log_length  + 
+               DemersPelag + DepthRangeDeep + BodyShapeI + realm, data = com, lambda = "ML")
+mod4 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode + BodyShapeI, data = com, lambda = "ML")
+mod5 <- pgls(log_concentration ~ 1, data = com, lambda = "ML")
+
+model.sel(mod1, mod2, mod3, mod4, mod5, extra = "rsquared") %>% View
+
+
+
+mod1 <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+mod2 <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+mod2 <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+
+mod3 <- gls(log_concentration ~ log_length  + DemersPelag + DepthRangeDeep + BodyShapeI + realm,  correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+mod4 <- gls(log_concentration ~ bulk_trophic_level +  log_length + EnvTemp , correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+mod5 <- gls(log_concentration ~ 1, data = calg2, method = "ML")
+mod4 <- gls(log_concentration ~ realm + bulk_trophic_level +  log_length, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+
+visreg(mod1)
+rsquared(mod1)
+model.sel(mod1, mod2, mod4, mod5, extra = "rsquared") %>% View
+
+summary(mod1)
+
+mod1b <- pgls(log_concentration ~  log_length + realm, data = com, lambda = "ML")
+mod1c <- pgls(log_concentration ~  log_length, data = com, lambda = "ML")
+mod1c <- pgls(log_concentration ~  1, data = com, lambda = "ML")
+summary(mod1b)
+summary(mod1c)
+
+model.sel(mod1a, mod1b, mod1c, extra = "rsquared") %>% View
+summary(mod1b)
+anova(mod1a)
+AIC(mod1a, mod1b, mod1c)
+
+
+summary(mod1d)
+mod1d <- pgls(log_concentration ~ realm + feeding_mode + BodyShapeI, data = com, lambda = "ML")
+mod1a <- pgls(log_concentration ~ part + realm, data = com, lambda = "ML")
+mod1b <- pgls(log_concentration ~ part, data = com, lambda = "ML")
+mod1e <- pgls(log_concentration ~ realm, data = com, lambda = "ML")
+mod1c <- pgls(log_concentration ~ 1, data = com, lambda = "ML")
+
+AIC(mod1d, mod1b, mod1c, mod1a, mod1e)
+model.sel(mod1a, mod1b, mod1c, mod1d, extra = "rsquared") %>% View
+
+
+mod1d <- lm(log_concentration ~ part + realm + feeding_mode + BodyShapeI, data = calg2)
+mod1a <- lm(log_concentration ~ part + realm, data = calg2)
+mod1b <- lm(log_concentration ~ part, data = calg2)
+mod1e <- lm(log_concentration ~ log_length, data = calg2)
+mod1c <- lm(log_concentration ~ 1, data = calg2)
+AICc(mod1d, mod1b, mod1c, mod1a, mod1e)
+model.sel(mod1a, mod1b, mod1c, mod1d, extra = "rsquared") %>% View
+
+
+mod1d <- lm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, data = calg2)
+
+mod1e <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+              DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, data = calg2)
+
+mod1b <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm,
+             correlation = corPagel(value = 0, phy = tree, fixed = TRUE),  data = calg2, method = "ML")
+mod1b1 <- gls(log_concentration ~ part, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+mod1b2 <- gls(log_concentration ~ 1, data = calg2, method = "ML")
+AICc(mod1b, mod1b1, mod1b2)
+model.sel(mod1b, mod1b1, mod1b2, extra = "rsquared") %>% View
+model.sel(mod1b, mod1b1, mod1b2) %>% View
+
+mod1b2 <- gls(log_concentration ~ part, data = calg2, method = "ML")
+AIC(mod1b, mod1b2)
+moda <- phylolm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                   DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+
+modb <- phylolm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                  DemersPelag + AgeMatMin + BodyShapeI, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+
+modc <- phylolm(log_concentration ~ 1, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+
+model.sel(moda, modb, modc) %>% View
+summary(modc)
+
+modb <- phylolm(log_concentration ~ log_length, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+modc <- phylolm(log_concentration ~  1, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+model.sel(moda, modb, modc, extra = "rsquared") %>% View
+AICc(moda, modb, modc)
+summary(moda)
+rsquared(moda)
+visreg(moda)
+
+mod1c <- lm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                   DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, data = calg2)
+mod1c2 <- lm(log_concentration ~ part, data = calg2)
+mod1c3 <- lm(log_concentration ~ 1, data = calg2)
+
+summary(mod1c2)
+AICc(mod1c)
+AIC(mod1c2, mod1c, mod1c3)
+
+model.sel(mod1c, mod1c2) %>% View 
+
+library(rr2)
+
+R2(mod1b, phy = tree)
+rsquared(mod1b)
+summary(b1)
+summary(mod1c)
+visreg(mod1b)
+mod1b$coefficients
+mod1c <- phylolm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+
+model.sel(mod1a, mod1b, mod1c, mod1d, mod1e) %>% View
+
+
+summary(mod1a)
+summary(mod1c)
+summary(mod1b)
+visreg(mod1b)
+rsquared(mod1a)
+rsquared(mod1b)
+
+mod1c$optpar
+mod1b
+summary(mod1b)
+summary(mod1c)
+summary(mod1a)
+
+
+summary(mod1c)
+summary(mod1b)
+confint(mod1c)
+fit = phylolm(trait~pred,data=dat,phy=tre,model="lambda")
+mod1c <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+              DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm,
+            correlation=corBrownian(1, tree), data = calg2, method = "ML")
+
+mod1d <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm,
+             correlation= corMartins(1, tree), data = calg2, method = "ML")
+summary(mod1)
+
+mod2 <- gls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+              DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm,
+            correlation = corPagel(value = 1, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod2 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+#               DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, data = com, lambda = "ML")
+rsquared(mod2)
+
+
+model.sel(mod1, mod2, mod1c, mod1d)
+mod2$aic
+AIC(mod1)
 summary(mod2)
 
+mod1b <- gls(log_concentration ~ part, data = calg2, method = "ML")
+
+mod1c <- gls(log_concentration ~  1, data = calg2, method = "ML")
+
+
+visreg(mod1)
+(mod1)
+
+str(calg2)
+
+ddfer <- model.sel(mod1, mod1b, mod1c, extra = "rsquared") %>% 
+  dplyr::select(-"rsquared.Response") %>% 
+  dplyr::select(-"rsquared.family") %>% 
+  dplyr::select(-"rsquared.link") %>% 
+  dplyr::select(-"rsquared.method")
+
+summary(mod1)
+AIC(mod1, mod1b, mod1c)
+
+library(cowplot)
+theme_set(theme_cowplot())
+confint(mod1)
+data.frame(confint(mod1), coef(mod1)) %>% 
+  rename(lower =  X2.5..) %>% 
+  rename(upper = X97.5..) %>% 
+  rename(estimate = coef.mod1.) %>% 
+  mutate(term = rownames(.)) %>% 
+  ggplot(aes(x = term, y = estimate)) + geom_point() +
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  geom_hline(yintercept = 0) + coord_flip()
+
+
+coef(mod2c2)
+confint(mod2c2)
+summary(mod2c)
+summary(mod2c3)
+summary(mod2c2)
+AIC(mod2c2, mod2c, mod2c3)
+?corBrownian
+summary(mod2c2)
+rsquared.gls(mod2c)
+
 mod2c <- phylopars.lm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
-                        DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part, 
+                        DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, 
              trait_data = calg_part , tree = tree, pheno_error = FALSE, REML = FALSE)
+
+mod2c <- phylopars.lm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+                        DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part + realm, 
+                      trait_data = calg3, tree = tree, pheno_error = TRUE, REML = FALSE)
 summary(mod2c)
 
 mod2c2 <- phylopars.lm(log_concentration ~ part, 
@@ -255,7 +522,7 @@ mod2c <- gls(log_concentration ~ log_length + BodyShapeI + bulk_trophic_level +
                AgeMatMin + DepthRangeDeep + feeding_level, correlation = corPagel(phy = tree, value = 1, fixed = FALSE),
              data = calg, method = "ML")
 mod2cb <- gls(log_concentration ~ log_length + BodyShapeI + bulk_trophic_level +
-               AgeMatMin + DepthRangeDeep + feeding_level, correlation = corPagel(phy = tree, value = 0, fixed = TRUE),
+               AgeMatMin + DepthRangeDeep + feeding_level, correlation = corPagel(phy = tree, value = 0, fixed = FALSE),
              data = Phylodata2, method = "ML")
 
 summary(mod2c)

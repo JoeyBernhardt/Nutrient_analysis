@@ -77,10 +77,21 @@ all_traits5 <- all_traits4 %>%
   mutate(Saltwater = ifelse(Saltwater == "-1", "marine", NA)) %>% 
   mutate(realm = paste(Fresh, Brack, Saltwater, sep = "")) %>% 
   mutate(realm = str_replace_all(realm, "NA", "")) %>% 
-  filter(realm != "")
+  filter(realm != "") %>% 
+  dplyr::select(-Fresh) %>% 
+  dplyr::select(-Brack) %>% 
+  dplyr::select(-Saltwater)
 
-write_csv(all_traits5, "data-processed/all-traits-nuts2.csv") ### updated May 10 to include freshwater, brack, salt
+all_traits6 <- all_traits5 %>% 
+  mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical")))
+  
 
+# update seanuts may 10 to include realm ----------------------------------
+
+
+write_csv(all_traits6, "data-processed/all-traits-nuts2.csv") ### updated May 10 to include freshwater, brack, salt
+
+all_traits6 %>% View
 
 
 
@@ -112,10 +123,10 @@ unique(more_traits$Species)
 intersect(traits$species1, more_traits$Species)
 
 more_traits2 <- more_traits %>% 
-  dplyr::select(BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep, everything()) %>% 
+  dplyr::select(BodyShapeI, DemersPelag, AnaCat, DepthRangeDeep, Fresh, Brack, Saltwater) %>% 
   mutate(DepthRangeDeep = as.numeric(DepthRangeDeep)) %>% 
   filter(!is.na(BodyShapeI), !is.na(DemersPelag), !is.na(DepthRangeDeep)) %>% 
-  select(Species, BodyShapeI, DemersPelag, DepthRangeDeep) %>% 
+  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep) %>% 
   distinct(Species, .keep_all = TRUE)
 
 mat2 <- mat %>% 
@@ -168,7 +179,7 @@ ecology2 <- ecology(data2$species1)
 
 
 mt3 <- more_traits2 %>% 
-  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep, Length) %>% 
+  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep, Length, Fresh, Brack, Saltwater) %>% 
   group_by(Species, BodyShapeI, DemersPelag) %>% 
   mutate(DepthRangeDeep = as.numeric(DepthRangeDeep)) %>% 
   mutate(Length = as.numeric(Length)) %>% 
@@ -192,14 +203,14 @@ stocks3 <- stocks12 %>%
   dplyr::distinct(Species, EnvTemp)
 
 all_traits2 <- mat3 %>% 
-  left_join(., ec3)
+  full_join(., ec3)
 
 all_traits3 <- all_traits2 %>% 
-  left_join(., stocks3)
+  full_join(., stocks3)
 
 all_traits4 <- all_traits3 %>% 
-  left_join(., mt3) %>% 
-  left_join(., nuts_trad, by = c("Species"= "species1"))
+  full_join(., mt3) %>% 
+  full_join(., nuts_trad, by = c("Species"= "latin_name"))
 
 write_csv(all_traits4, "data-processed/epa-dha-traits.csv")
 
@@ -243,14 +254,30 @@ epa_dha <- read_csv("data-processed/epa-dha-traits.csv") %>%
 
 cine_traits_new2 <- bind_rows(cine_traits_new, epa_dha)
 write_csv(cine_traits_new2, "data-processed/cine-traits-new-species2.csv") ### this is most updated cine trait data
-View(cine_traits_new2)
 
-unique(cine_traits$nutrient)
-unique(cine_traits$part)
+# get realm data ----------------------------------------------------------
+# update May 2020, grab the realm data
+cine_traits_species <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
+  dplyr::select(species1) %>% 
+  distinct() 
 
-unique(cine_traits$nutrient)
+realms <- species(cine_traits_species$species1) %>% 
+  mutate(Fresh = ifelse(Fresh == "-1", "fresh", NA)) %>% 
+  mutate(Brack = ifelse(Brack == "-1", "brack", NA)) %>% 
+  mutate(Saltwater = ifelse(Saltwater == "-1", "marine", NA)) %>% 
+  mutate(realm = paste(Fresh, Brack, Saltwater, sep = "")) %>% 
+  mutate(realm = str_replace_all(realm, "NA", "")) %>% 
+  filter(realm != "") %>% 
+  dplyr::select(-Fresh) %>% 
+  dplyr::select(-Brack) %>% 
+  dplyr::select(-Saltwater) %>% 
+  dplyr::select(Species, realm) 
 
-cine_traits_new <- read_csv("data-processed/cine-traits-new-species2.csv")
+cine_traits_new3 <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
+  left_join(., realms, by = c("species1" = "Species"))
+
+write_csv(cine_traits_new3, "data-processed/cine-traits-new-species3.csv")
+
 cine_traits_new2 <- read_csv("data-processed/all-traits-nuts.csv")
 unique(cine_traits_new1$nutrient)
 

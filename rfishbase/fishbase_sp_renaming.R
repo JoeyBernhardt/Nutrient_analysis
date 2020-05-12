@@ -32,7 +32,7 @@ ntbl <- ntbl_raw %>%
   select(species, taxon, max_size, max_length, TL, CA_mg, EPA_g, DHA_g,
          FE_mg, ZN_mg, HG_mcg, FAT, PROTCNT_g, lwA, lwB, Habitat, Subgroup, Abs_lat) %>% 
   filter(Subgroup == "Finfish")
-
+?revalue
 ###### import and clean data
 ntbl <- read_csv("ntbl.csv") 
 ntbl <- tbl_df(ntbl)
@@ -70,6 +70,8 @@ length(newvalues)
 ntbl$species <- mapvalues(ntbl$species, oldvalues, newvalues) ## change names in ntbl to match FB names
 View(as.data.frame(ntbl))
 write_csv(ntbl, "ntbl_FBrenames.csv")
+
+
 
 #### import new fb matches ####
 ntbl.fb <- read_csv("ntbl_FBrenames.csv") ## this is ntbl with names matched to fb
