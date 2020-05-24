@@ -7,7 +7,7 @@ library(cowplot)
 theme_set(theme_cowplot())
 
 
-data_sea <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% 
+data_sea <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% View
   mutate(concentration = exp(log_concentration)) %>% 
   dplyr::select(species1, nutrient, concentration, reference, abs_lat, seanuts_id2, subgroup) %>% 
   mutate(source = "seanuts") %>% 
@@ -165,7 +165,7 @@ all_traits <- read_csv("data-processed/more_traits-finfish.csv")
 # CINE traits -------------------------------------------------------------
 library(rfishbase)
 
-nuts_trad <- read_csv("data-processed/trad-foods-cleaned-2020.csv")
+nuts_trad <- read_csv("data-processed/trad-foods-cleaned-2020.csv") 
   data2 <- nuts_trad %>% 
     rename(species1 = latin_name_cleaned)
 
@@ -210,9 +210,19 @@ all_traits3 <- all_traits2 %>%
 
 all_traits4 <- all_traits3 %>% 
   full_join(., mt3) %>% 
-  full_join(., nuts_trad, by = c("Species"= "latin_name"))
+  filter(!is.na(EnvTemp)) %>% 
+  mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical"))) %>% 
+  group_by(Species) %>% 
+  top_n(n = 1, wt = EnvTemp) %>% 
+  ungroup()
+
+
+
+all_traits4b <- full_join(nuts_trad, all_traits4, by = c("latin_name_cleaned"= "Species"))
+
 
 write_csv(all_traits4, "data-processed/epa-dha-traits.csv")
+write_csv(all_traits4b, "data-processed/epa-dha-traits.csv") ## update May 24 2020
 
 # Multi trait regressions -------------------------------------------------
 
@@ -235,12 +245,13 @@ new_cine <- bind_cols(old_new_cine_species, cine_traits) %>%
 write_csv(cine_traits, "data-processed/cine-traits.csv")
 write_csv(new_cine, "data-processed/cine-traits-new-species.csv")
 cine_traits_old <- read_csv("data-processed/cine-traits.csv") 
+
 cine_traits_new <- read_csv("data-processed/cine-traits-new-species.csv") %>% 
   mutate(log_concentration = log(concentration)) %>% 
   mutate(log_length = log(Length)) %>% 
   rename(bulk_trophic_level = FoodTroph) %>% 
   rename(feeding_level = Herbivory2) %>% 
-  rename(feeding_mode = FeedingType) ### ok this is with the fixed species names
+  rename(feeding_mode = FeedingType)  ### ok this is with the fixed species names
 epa_dha <- read_csv("data-processed/epa-dha-traits.csv") %>% 
   gather(key = nutrient, value = concentration, epa, dha) %>% 
   mutate(log_concentration = log(concentration)) %>% 
@@ -248,12 +259,12 @@ epa_dha <- read_csv("data-processed/epa-dha-traits.csv") %>%
   rename(bulk_trophic_level = FoodTroph) %>% 
   rename(feeding_level = Herbivory2) %>% 
   rename(feeding_mode = FeedingType) %>% 
-  group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp, nutrient) %>% 
+  group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, part, DemersPelag, EnvTemp, nutrient, reference) %>% 
   summarise_each(funs(mean), AgeMatMin, log_concentration,
                  log_length, bulk_trophic_level, log_length, DepthRangeDeep)
 
 cine_traits_new2 <- bind_rows(cine_traits_new, epa_dha)
-write_csv(cine_traits_new2, "data-processed/cine-traits-new-species2.csv") ### this is most updated cine trait data
+write_csv(cine_traits_new2, "data-processed/cine-traits-new-species2.csv") ### this is most updated cine trait data, update May 24 2020
 
 # get realm data ----------------------------------------------------------
 # update May 2020, grab the realm data
@@ -274,7 +285,8 @@ realms <- species(cine_traits_species$species1) %>%
   dplyr::select(Species, realm) 
 
 cine_traits_new3 <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
-  left_join(., realms, by = c("species1" = "Species"))
+  left_join(., realms, by = c("species1" = "Species")) %>% 
+  filter(is.na(reference)) 
 
 write_csv(cine_traits_new3, "data-processed/cine-traits-new-species3.csv")
 

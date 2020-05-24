@@ -43,7 +43,40 @@ sea3 <- sea2 %>%
  
 
 
-
 write_csv(sea3, "data-processed/seanuts_parts.csv")
+
+
+### fix mistakes in body part
+
+parts <- read_csv("data-processed/seanuts_parts.csv")
+traits_raw_ids <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% 
+  select(seanuts_id2, reference)
+
+non_muscles <- parts %>% 
+  left_join(., traits_raw_ids, by = "seanuts_id2") %>% 
+  mutate(food_name_clean = ifelse(grepl("Belinsky", reference), paste(food_name_clean, "muscle"), food_name_clean)) %>% 
+  mutate(food_name_clean = ifelse(grepl("Nurhasan", reference), paste(food_name_clean, "muscle_with_skin"), food_name_clean)) %>% 
+  filter(!str_detect(food_name_clean, "fillet|muscle|whole")) %>% 
+  distinct(seanuts_id2, .keep_all = TRUE) %>% 
+  select(seanuts_id, species_name, food_name_clean, part, reference, )
+
+write_csv(non_muscles, "data-processed/non-parts-to-be-cleaned.csv")
+
+### after filling in from looking at papers May 23 2020
+
+parts2 <- read_csv("data-processed/non-parts-to-be-cleaned-filled-in.csv") %>% 
+  mutate(part_corrected = food_name_checked_in_paper) %>% 
+  dplyr::select(part_corrected, seanuts_id2)
+
+write_csv(parts2, "data-processed/seanuts_parts2.csv")
+
+### now merge the corrected parts with the parts dataset
+
+parts3 <- left_join(parts, parts2, by = "seanuts_id2") %>% 
+  mutate(part = ifelse(!is.na(part_corrected), part_corrected, part)) %>% 
+  dplyr::select(-part_corrected)
+
+
+write_csv(parts3, "data-processed/seanuts_parts3.csv")
 
   

@@ -41,6 +41,12 @@ nuts <- left_join(nutrients, table6)
 
 write.csv(nuts, "data-processed/bangladesh-micronutrients.csv")
 
+
+table7 %>% 
+  gather(key = species, value = concentration, 3:12) %>% View
+
+
+
 bang_data <- read.csv("data-processed/bangladesh-micronutrients.csv")
 
 names(nuts)

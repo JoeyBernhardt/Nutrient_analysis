@@ -23,12 +23,13 @@ library(arm)
 library(nlme)
 library(cowplot)
 library(visreg)
-
 library(Rphylopars)
-## find out which ones have multuple temps
+
+## find out which ones have multiple temps
 
 cine_traits_new <- read_csv("data-processed/cine-traits-new-species3.csv") %>% 
   filter(part != "not specified") %>% 
+  # filter(is.na(reference)) %>% View
   # read_csv("data-processed/all-traits-nuts.csv") %>% 
   # rename(species1 = Species) %>% 
   # rename(bulk_trophic_level = FoodTroph) %>% 
@@ -39,14 +40,26 @@ cine_traits_new <- read_csv("data-processed/cine-traits-new-species3.csv") %>%
   mutate(log_concentration = ifelse(is.na(log_concentration), log_concentration1, log_concentration)) %>% 
   mutate(log_length = ifelse(is.na(log_length), log_length1, log_length)) %>% 
   mutate(reference = as.character(reference)) %>% 
-  mutate(species1 = ifelse(is.na(species1), latin_name, species1))
+  mutate(species1 = ifelse(is.na(species1), latin_name, species1)) %>% 
+  mutate(source = "cine")
 
 
 seanuts_traits2 <- read_csv("data-processed/all-traits-nuts2.csv") %>% 
-  filter(!is.na(seanuts_id2)) %>% 
-  dplyr::select(-part)
+  # filter(!is.na(seanuts_id2)) %>% 
+  dplyr::select(-part) %>% 
+  mutate(source = "seanuts")
 
-parts <- read_csv("data-processed/seanuts_parts.csv")
+parts <- read_csv("data-processed/seanuts_parts2.csv")
+traits_raw_ids <- read_csv("data-processed/nutrients-traits-for-pgls.csv") %>% 
+  select(seanuts_id2, reference)
+
+# non_muscles <- parts %>% 
+#   left_join(., traits_raw_ids, by = "seanuts_id2") %>% 
+#   mutate(food_name_clean = ifelse(grepl("Belinsky", reference), paste(food_name_clean, "muscle"), food_name_clean)) %>% 
+#   mutate(food_name_clean = ifelse(grepl("Nurhasan", reference), paste(food_name_clean, "muscle_with_skin"), food_name_clean)) %>% 
+#   filter(!str_detect(food_name_clean, "fillet|muscle|whole")) %>% 
+#   distinct(seanuts_id2, .keep_all = TRUE)
+
 
 seanuts_traits3 <- left_join(seanuts_traits2, parts) %>% 
   rename(species1 = Species) %>%
@@ -57,27 +70,31 @@ seanuts_traits3 <- left_join(seanuts_traits2, parts) %>%
   mutate(log_concentration = log(concentration))
 
 traits <- bind_rows(cine_traits_new, seanuts_traits3) %>% 
-  dplyr::select(seanuts_id2, species1, nutrient, concentration,feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,
-         log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, realm) %>% 
-  mutate(part = ifelse(part == "muscle-skinless", "muscle", part)) %>% 
-  mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical"))) %>% 
-  group_by(species1, nutrient) %>% 
-  top_n(n = 1, wt = EnvTemp) ### chose only one EnvTemp per species
+  dplyr::select(seanuts_id2, species1, nutrient, concentration, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,
+         log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, realm, source, reference) %>% 
+  mutate(part = ifelse(part == "muscle-skinless", "muscle", part))  
+  # mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical"))) %>% 
+  # group_by(species1, nutrient) %>%
+  # top_n(n = 1, wt = EnvTemp) ### chose only one EnvTemp per species
 
+traits %>% 
+  filter(is.na(seanuts_id2)) %>% View
+
+unique(traits$part)
 
 # trait data ready for analysis -------------------------------------------
 
 
-write_csv(traits, "data-processed/trait-nutrient-data-analysis.csv")
+# write_csv(traits, "data-processed/trait-nutrient-data-analysis.csv")
 
-
+traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv")
 
 # traits <- cine_traits_new
 
 unique(traits$part)
 
 traits2 <- traits %>% 
-  mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle, bone + inside","whole",
+  mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle + bones", "muscle + head", "muscle, bone + inside","whole",
                                          "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", NA)))
 
 traits_one_part <- traits2 %>% 
@@ -109,6 +126,7 @@ cal_taxa <- tnrs_match_names(unique(calcium$species1), context="Animals", names 
 
 tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
 tr_bl_cal <- compute.brlen(tr_cal)
+
 phylo <- tr_bl_cal
 cal2 <- calcium %>% 
   left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
@@ -158,6 +176,11 @@ tree$node.label<-NULL
 Phylodata <- data[(data$Phylospecies %in% tree$tip.label),]
 
 
+Phylodata$species<- Phylodata$Phylospecies
+Phylodata$animal<- Phylodata$Phylospecies
+row.names(Phylodata)<- make.names(Phylodata$Phylospecies,unique=TRUE) #This makes each row, even with repeats, match the phylogeny 
+
+Phylodata <- as.data.frame(Phylodata)
 length(unique(Phylodata$Phylospecies))
 
 Phylodata2 <- Phylodata %>% 
@@ -167,8 +190,23 @@ Phylodata2 <- Phylodata %>%
   rename(species = Phylospecies) %>% 
   mutate(part = as.factor(part))
 
+prior <- list(R=list(V=matrix(1),nu=0.02), G=list(G1=list(V=matrix(1),nu= 0.02),G2=list(V=matrix(1),nu= 0.02))) 
+model <- MCMCglmm(Y~X,random=~species+animal,pedigree=tree,data=data,family="gaussian",nitt=200000,burnin=20000,thin=100,prior=prior)
 
+model2<-MCMCglmm(log_concentration ~ log_length + bulk_trophic_level + log_length  + feeding_mode +
+                   DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part , random = ~ species + animal, pedigree = tree,
+                 data=Phylodata, prior = prior, verbose=FALSE, nitt=40000, burnin=3000, thin=10)
+summary(model2)
+(autocorr(model2$VCV))
+(autocorr(model2$Sol))
 
+s1<-as.data.frame(model2[[1]])
+par(mfrow=c(2,2))
+for(i in 2:5) acf(s1[,i], lag.max=20)
+s1[, 2]
+str(s1)
+acf(s1[, 2])
+plot(model2)
 
 library(Rphylopars)
 
@@ -744,7 +782,7 @@ Phylodata1 <- Phylodata %>%
 
 rownames(Phylodata1) <- Phylodata1$animal
 
-model2<-MCMCglmm(log_concentration~1, random=~animal, pedigree = tree,
+model2<-MCMCglmm(log_concentration~1, random = ~animal, pedigree = tree,
                  data=Phylodata1, prior=prior, verbose=FALSE, nitt=1300, burnin=300, thin=1)
 
 str(ginverse)

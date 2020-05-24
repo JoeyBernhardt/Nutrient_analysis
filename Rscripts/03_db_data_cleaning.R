@@ -656,3 +656,5 @@ seanuts_new3 <- seanuts_new2 %>%
 unique(seanuts_new3$ca_mg)
   
 write_csv(seanuts_new3, "data-processed/seanuts_new3.csv")
+
+seanuts_new3 <- read_csv("data-processed/seanuts_new3.csv")

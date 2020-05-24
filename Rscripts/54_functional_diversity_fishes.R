@@ -9,8 +9,9 @@ theme_set(theme_cowplot())
 
 # all_traits <- read_csv("data-processed/more_traits-finfish.csv")
 # cine_traits <- read_csv("data-processed/cine-traits.csv")
-all_traits <- read_csv("data-processed/all-traits-nuts.csv")
-
+# all_traits <- read_csv("data-processed/all-traits-nuts.csv")
+all_traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv") %>% 
+  rename(species_name = species1)## update May 2020
 
 ### ok let's calculate functional diversity at the different levels of richness
 
@@ -25,7 +26,7 @@ reps <- rep(40, 1000)
 mean_nuts_rep <- reps %>% 
   map_df(sample_40_global, .id = "replicate") %>% 
   select(-species_name) %>%
-  select(- subgroup) %>% 
+  # select(- subgroup) %>% 
   ungroup() %>% 
   filter(replicate != 1) %>% 
   split(.$replicate)
@@ -439,14 +440,78 @@ results <- bind_rows(results, hold)
 }
 
 results %>% 
-  ggplot(aes(x = fdis, y = targets)) + geom_point(alpha =0.05) +
+  ggplot(aes(x = fdis, y = targets)) + geom_point(alpha = 0.05) +
   geom_smooth(color = "black", method = "lm") + ylab("Nutritional diversity") +
   xlab("Ecological functional diversity (dispersion)")
 ggsave("figures/nd-fdisp-4traits.pdf", width = 8, height = 6)
 
+results2 <- results %>% 
+  mutate(targets = as.factor(targets))
 lm(targets ~ fdis, data = results) %>% summary()
+
+
+# ordinal logistic regression (does ND increase with FD?) -----------------
+
+
+library(MASS)
+m <- polr(targets ~ fdis, data= results2)
+summary(m)
+(ctable <- coef(summary(m)))
+
+## calculate and store p values
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+(ci <- confint(m))
+## combined table
+(ctable <- cbind(ctable, "p value" = p))
+exp(coef(m))
+exp(cbind(OR = coef(m), ci))
+
+newdat <- data.frame(
+  fdis = seq(from = 1, to = 2, length.out = 100))
+
+newdat <- cbind(newdat, predict(m, newdat, type = "probs")) %>% 
+  gather(key = targets, value = probability, 2:5)
+
+newdat %>% 
+  ggplot(aes(x = fdis, y = probability, color = targets)) + geom_line(size = 1.5) +
+  xlab("Ecological functional diversity (dispersion)") + ylab("Probability") +
+  scale_color_viridis_d(option = "inferno", begin = 0.1, end = 0.8, name = "Nutritional diversity")
+ggsave("figures/fdis-nd.png", width = 6, height = 4)
+summary(polrMod)
+confint(polrMod)
+
+?polr
 write_csv(results, "data-processed/fdis-nd-4traits.csv")
 write_csv(results, "data-processed/fdis-nd-4traits2.csv")
+
+results <- read_csv("data-processed/fdis-nd-4traits.csv") %>% 
+  mutate(targets = as.character(targets))
+
+library(plotrix)
+library(ggridges)
+library(hrbrthemes)
+library(viridis)
+results %>% 
+  mutate(fdis_round = round(fdis, digits = 2)) %>% 
+  group_by(fdis_round) %>% 
+  summarise_each(funs(mean, std.error), targets) %>% 
+  ggplot(aes(x = fdis_round, y = mean)) + geom_point(alpha =1) +
+  geom_smooth(color = "black", method = "lm") + ylab("Nutritional diversity") +
+  xlab("Ecological functional diversity (dispersion)")
+
+resmod <- lmodel2::lmodel2(targets ~ fdis, data = results) 
+resmod
+cor(results$targets, results$fdis)
+results %>% 
+  mutate(fdis_round = as.character(round(fdis, digits = 2))) %>% 
+ggplot(aes(x = fdis, y = targets, fill = ..x..)) + 
+  geom_density_ridges_gradient(scale = 1, rel_min_height = 0.01) +
+  geom_point(aes(x = fdis, y = targets), alpha = 0.1) + 
+  # geom_smooth(aes(x = fdis, y = as.numeric(targets)), method = "lm", color = "black") +
+  scale_fill_viridis(name = "FDis", option = "C") +
+  theme_ridges() 
+ggsave("figures/fdis-ridges.png", width = 6, height = 4)
+
 
 #### do this same approach for the efficiency measure
 
@@ -573,12 +638,20 @@ species310 %>%
   # filter(species_no == 10) %>% 
   ggplot(aes(x = fdis, y = grams_required)) + geom_point() + geom_smooth(color = "black", method = "lm") +
   # scale_color_viridis_d(name = "Species richness") +
-  ylab("Grams required to reach 5 micronutrient targets") +
-  xlab("Ecological functional diversity (dispersion)")
+  ylab("Grams required to reach 5 micronutrient targets (bites per benefit)") +
+  xlab("Ecological functional diversity (dispersion)") + 
+    geom_abline(slope = -1993.7127, intercept = 3672.2944)
   ggsave("figures/fdis-ne-310-black.pdf", width = 8, height = 6)
+  ggsave("figures/fdis-ne-310-black-with-sma-slope.png", width = 8, height = 6)
 
-species310 %>% 
-  lm(grams_required ~ fdis, data = .) %>% summary()
+species3102 <- species310 %>% 
+  filter(!is.na(fdis))
+
+
+confint(m)
+cor(species3102$grams_required, species3102$fdis)
+lmodel2::lmodel2(grams_required ~ fdis, data = species310)
+
 
 ### ok let's turn the fdis thing into a function
 
@@ -665,10 +738,20 @@ all_fdis <- bind_rows(species310, results_3)
 all_fdis %>% 
   filter(!is.na(fdis)) %>% 
   ggplot(aes(x = fdis, y = grams_required, color = factor(species_number))) + geom_point(alpha = 0.5) +
-  geom_smooth( color = "black", method ="lm") + ylab("Nutritional efficiency") + xlab("Ecological functional diversity (dispersion)") +
+  geom_smooth( color = "black", method ="lm") + ylab("Nutritional efficiency") +
+  xlab("Ecological functional diversity (dispersion)") +
   facet_wrap( ~ species_number, scales = "free_y")
 ggsave("figures/ne-fdis-multi-levels-facets-freey.pdf", width = 12, height = 8)
 ggsave("figures/ne-fdis-multi-levels.pdf", width = 8, height = 6)
+ggsave("figures/ne-fdis-multi-levels.png", width = 8, height = 6)
+
+
+all_fdis %>% 
+  filter(!is.na(fdis)) %>% 
+  ggplot(aes(x = fdis, y = grams_required)) + geom_point(alpha = 0.1) +
+  geom_smooth( color = "black", method ="lm") + ylab("Nutritional efficiency") +
+  xlab("Ecological functional diversity (dispersion)")
+ggsave("figures/ne-fdis-multi-levels.png", width = 8, height = 6)
 
 
 results_3 %>% 

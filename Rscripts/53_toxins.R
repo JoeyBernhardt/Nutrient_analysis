@@ -69,12 +69,14 @@ ggsave("figures/tox-corr-plots-sum.pdf", width = 15, height = 15)
 
 
 tox_sum %>% 
-  gather(1:15, key = element, value = concentration) %>% 
-  mutate(concentration = ifelse(concentration == 0, 0.001, concentration)) %>% 
+  gather(1:15, key = element, value = concentration) %>%
+  filter(element %in% c("lead", "mercury")) %>% 
+  filter(concentration > 0) %>% 
+  # mutate(concentration = ifelse(concentration == 0, 0.001, concentration)) %>% 
   ggplot(aes(x = concentration)) + geom_histogram() +
   facet_wrap( ~ element, scales = "free") 
 ggsave("figures/elements-hist.pdf", width = 10, height = 8)
-
+ggsave("figures/elements-hist-lead-mercury.png", width = 8, height = 4)
 
 
 #### accumulate toxins

@@ -17,7 +17,7 @@ names(nuts_raw)
 
 
 nuts <- clean_names(nuts_raw) %>% 
-  select(- contains("sfa"))
+  dplyr::select(- contains("sfa"))
 nuts_inverts <- clean_names(nuts_raw_inverts) 
 
 nuts_all <- bind_rows(nuts, nuts_inverts)
@@ -62,6 +62,7 @@ nuts2 <- nuts_all %>%
 nutsraw <- nuts2 %>% 
   filter(preparation == "raw")
 
+unique(nuts2$preparation)
 
 nuts_raw_parts <- nutsraw %>% 
   mutate(part = str_replace(part, "fillet", "muscle")) %>% 
@@ -94,8 +95,11 @@ nuts_raw_parts <- nutsraw %>%
   mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
   mutate(species1 = ifelse(species1 == "Coregonus autumnalis and Coregonus sardinella", "Coregonus autumnalis", species1)) %>% 
   mutate(species1 = ifelse(species1 == "Centropristes striata", "Centropristis striata", species1)) %>% 
-  rename(latin_name_cleaned = species1)
+  rename(latin_name_cleaned = species1) %>% 
+  arrange(latin_name_cleaned) %>% 
+  mutate(cine_id = rownames(.))
 
 
 write_csv(nuts_raw_parts, "data-processed/trad-foods-cleaned-2020.csv")
+
 
