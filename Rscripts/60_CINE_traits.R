@@ -103,7 +103,16 @@ all_nuts <- bind_rows(traits, cine_traits_new_may)
 traits2 <- all_nuts %>% 
   mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle + bones", "muscle + head", "muscle, bone + inside","whole",
                                          "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", NA))) %>% 
-  mutate(nutrient = ifelse(nutrient == "protein", "protein_g", nutrient))
+  mutate(nutrient = ifelse(nutrient == "protein", "protein_g", nutrient)) %>% 
+  mutate(Species = ifelse(is.na(Species), latin_name_cleaned, Species)) %>% 
+  mutate(cine_id = ifelse(!is.na(cine_id), paste0("cine_id", cine_id), cine_id)) %>% 
+  mutate(seanuts_id2 = ifelse(is.na(seanuts_id2), cine_id, seanuts_id2)) 
+
+traits2 %>% 
+  filter(is.na(Species)) %>% View
 
 
-write_csv(traits2, "data-processed/all-seanuts-may-24-2020.csv")
+write_csv(traits2, "data-processed/all-seanuts-may-24-2020.csv") ### this is the latest dataset with cleaned up parts
+
+
+unique(traits2$part)
