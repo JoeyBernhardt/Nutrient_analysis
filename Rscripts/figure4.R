@@ -3,7 +3,10 @@
 data <- read_csv("data-processed/n.long_lat3.csv") %>% 
   filter(!grepl("^Mohanty, B. P.,", ref_info))
 
+View(data)
+
 n.long <- read_csv("data-processed/n.long_jan18.csv")
+View(n.long)
 
 mod_all <- n.long %>% 
   mutate(log_length = log(bulk_max_length),

@@ -78,7 +78,32 @@ write_csv(all_traits5, "data-processed/CINE-data-all.csv") ### CINE data as of M
 
 cine_traits_new_may <- read_csv("data-processed/CINE-data-all.csv") %>% 
   mutate(reference = as.character(reference)) %>% 
-  gather(key = nutrient, value = concentration, 9:19)
+  gather(key = nutrient, value = concentration, 9:19) %>% 
+  mutate(part = str_replace(part, "fillet", "muscle")) %>% 
+  mutate(part = str_replace(part, "meat", "muscle")) %>%
+  mutate(part = str_replace(part, "flesh + skin", "muscle + skin")) %>%
+  mutate(part = str_replace(part, "meat + skin", "muscle + skin")) %>%
+  mutate(part = str_replace(part, "flesh", "muscle")) %>%
+  mutate(part = str_replace(part, "middle cut", "middle")) %>%
+  mutate(part = str_replace(part, "roe", "eggs")) %>% 
+  mutate(part = str_replace(part, "grease", "oil")) %>% 
+  mutate(part = str_replace(part, "tail cut", "muscle")) %>% 
+  mutate(part = str_replace(part, "middle", "muscle")) %>%
+  mutate(part = str_replace(part, "tail end", "muscle")) %>% 
+  mutate(part = str_replace(part, "head end", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, dark meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, light meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "light meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "white meat", "muscle")) %>% 
+  mutate(part = str_replace(part, "white muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, dark muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "muscle, light muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "dark muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "light muscle", "muscle")) %>% 
+  mutate(part = str_replace(part, "tail", "muscle")) %>% 
+  mutate(part = ifelse(part == "muscle + small bones", "muscle + bones", part)) %>% 
+  mutate(part = ifelse(part == "muscle, bone + inside", "muscle + bones", part)) %>% 
+  mutate(part = str_replace(part, "muscle, cheeks", "muscle"))
 
 ### OK now bring in the latest seanuts database
 
@@ -98,21 +123,30 @@ traits <- seanuts_traits2 %>%
   mutate(part = ifelse(part == "muscle-skinless", "muscle", part))  ### this is the latest version as of May 24 2020
 
 
+
 all_nuts <- bind_rows(traits, cine_traits_new_may)
 
+unique(all_nuts$part)
+unique(traits$part)
+unique(cine_traits_new_may$part)
+
 traits2 <- all_nuts %>% 
-  mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle + bones", "muscle + head", "muscle, bone + inside","whole",
-                                         "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", NA))) %>% 
+  mutate(part_ordered = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle + bones", "muscle + head", "muscle, bone + inside","whole", "whole, no skin",
+                                         "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", "not specified", "esophagus", NA))) %>% 
   mutate(nutrient = ifelse(nutrient == "protein", "protein_g", nutrient)) %>% 
   mutate(Species = ifelse(is.na(Species), latin_name_cleaned, Species)) %>% 
   mutate(cine_id = ifelse(!is.na(cine_id), paste0("cine_id", cine_id), cine_id)) %>% 
   mutate(seanuts_id2 = ifelse(is.na(seanuts_id2), cine_id, seanuts_id2)) 
 
 traits2 %>% 
-  filter(is.na(Species)) %>% View
+  filter(is.na(part)) %>% View
 
 
 write_csv(traits2, "data-processed/all-seanuts-may-24-2020.csv") ### this is the latest dataset with cleaned up parts
 
 
-unique(traits2$part)
+seanuts_curr <- read_csv("data-processed/all-seanuts-may-24-2020.csv")
+
+unique(seanuts_curr$reference)[grepl("Bogard", unique(seanuts_curr$reference))]
+
+unique(seanuts_curr$part)

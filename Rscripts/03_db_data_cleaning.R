@@ -233,7 +233,7 @@ ggplot(data = ., aes(x = log(slmax), y = log(mean_ca))) + geom_point() +
 # starting november 16 2016 -----------------------------------------------
 
 a14 <- read_csv("data-processed/all_nuts_working14.csv")
-
+View(a14)
 
 #### now onto the proteins
 
@@ -344,7 +344,7 @@ sum(!is.na(a18$species_name))
 
 write_csv(a18, "data-processed/all_nuts_working18.csv")
 a18 <- read_csv( "data-processed/all_nuts_working18.csv")
-
+View(a18)
 
 ### write out just the species list in order to use it to wrangle the fishbase data
 seanuts_species <- as.data.frame(unique(a18$species_name))
@@ -426,6 +426,7 @@ write_csv(a22, "data-processed/all_nuts_working22.csv")
 #### now bringing in the new inverts data from last April
 a22 <- read_csv("data-processed/all_nuts_working22.csv")
 inverts.new <- read_csv("~/Documents/Nutrient_Analysis/data/aquatic_inverts_micronutrients.csv")
+View(inverts.new)
 ## or update March 14 2016 with new inverts data:
 inverts.new2 <- read_csv("~/Documents/Nutrient_Analysis/data/ntbl.inv.csv")
 
@@ -479,6 +480,7 @@ write_csv(a23b, "data-processed/all_nuts_working23b.csv")
 CINE <- read_csv("data-processed/CINE.csv")
 a23 <- read_csv("data-processed/all_nuts_working23.csv")
 a23b <- read_csv("data-processed/all_nuts_working23b.csv")
+View(a23b)
 
 names_CINE <- names(CINE)
 str_subset(names_CINE, "dha")
@@ -617,6 +619,7 @@ write_csv(a26, "data-processed/all_nuts_working26.csv")
 ### now make a subset file, where we just pull out the relevant columns and get rid of extra clutter
 
 a26 <- read_csv("data-processed/all_nuts_working26.csv")
+View(a26)
 
 cols26 <- names(a26)
 str_subset(cols26, "Reference")
@@ -638,7 +641,10 @@ write_csv(a27_subset, "data-processed/all_nuts_working27_subset.csv" )
 seanuts_new <- read_csv("data/seanuts_new.csv")
 
 seanuts_new2 <- seanuts_new %>% 
-  select(-food_name_clean_1)
+  dplyr::select(-food_name_clean_1)
+
+seanuts_new2 %>% View
+  filter(grepl("roos", ref_info)) %>% View
 
 ### now take out the entries from the bogard paper that have a's because they are replicates of data already published in Roos et a. 2001
 
@@ -658,3 +664,4 @@ unique(seanuts_new3$ca_mg)
 write_csv(seanuts_new3, "data-processed/seanuts_new3.csv")
 
 seanuts_new3 <- read_csv("data-processed/seanuts_new3.csv")
+View(seanuts_new3)

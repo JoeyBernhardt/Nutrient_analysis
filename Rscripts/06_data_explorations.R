@@ -58,6 +58,7 @@ write_csv(seanuts_select, "data-processed/seanuts_select.csv")
 # trimming and reordering the dataset now! ----------------------------------------------
 
 seanuts_select <- read_csv("data-processed/seanuts_select.csv")
+View(seanuts_select)
 
 seanuts_select2 <- seanuts_select %>% 
   unite(genus_species, Genus, Species, sep = " ", remove = FALSE) %>% 
@@ -365,7 +366,7 @@ write_csv(seanuts_select_10, "data-processed/seanuts_select_10.csv")
 ## Jan 16 update: so I uploaded the select_10 file as a csv to google sheets and went and filled in the missing values
 
 seanuts_select_11 <- read_csv("data-processed/seanuts_select_11.csv")
-     
+View(seanuts_select_11)     
 
 ##### EXTRA CODE
 

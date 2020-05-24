@@ -152,7 +152,9 @@ n.long_lat3 <- n.long_lat2 %>%
   mutate(concentration = ifelse(grepl("Bogard, J.R., Thilsted, S.H., Marks, G.C., Wahab", ref_info) & nutrient %in% c("epa", "dha"), concentration/1000, concentration))
   
 write_csv(n.long_lat3, "data-processed/n.long_lat3.csv")
+n.long_lat3 <- read_csv("data-processed/n.long_lat3.csv")
 
+View(n.long_lat3)
 ## prep the data
 mod_all <- n.long_lat2 %>% 
   filter(concentration > 0) %>% 
