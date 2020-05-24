@@ -139,14 +139,23 @@ traits2 <- all_nuts %>%
   mutate(seanuts_id2 = ifelse(is.na(seanuts_id2), cine_id, seanuts_id2)) 
 
 traits2 %>% 
-  filter(is.na(part)) %>% View
+  filter(is.na(seanuts_id2)) %>% View
 
 
 write_csv(traits2, "data-processed/all-seanuts-may-24-2020.csv") ### this is the latest dataset with cleaned up parts
 
 
-seanuts_curr <- read_csv("data-processed/all-seanuts-may-24-2020.csv")
+seanuts_curr <- read.csv("data-processed/all-seanuts-may-24-2020.csv")
 
-unique(seanuts_curr$reference)[grepl("Bogard", unique(seanuts_curr$reference))]
+seanuts_curr %>% 
+  filter(is.na(seanuts_id2)) %>% View
+### bring in reksten data
+reksten_traits <- read_csv("data-processed/reksten-traits.csv")
 
-unique(seanuts_curr$part)
+seanuts_curr2 <- bind_rows(seanuts_curr, reksten_traits) %>% 
+  mutate(seanuts_id2 = ifelse(source == "reksten", reksten_id, seanuts_id2)) 
+
+write_csv(seanuts_curr2, "data-processed/all-seanuts-may-24-2020-2.csv")
+
+
+

@@ -27,11 +27,56 @@ library(visreg)
 
 library(stargazer)
 library(rotl)
-traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv") ### this is the latest version as of May 24 2020
+traits_old <- read_csv("data-processed/trait-nutrient-data-analysis.csv") ### this is the latest version as of May 24 2020
+traits <- read_csv("data-processed/all-seanuts-may-24-2020-2.csv") %>% ### this is more updated with fixed parts and reksten data
+  rename(species1 = Species) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  rename(length = Length) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  mutate(log_length = log(length)) %>% 
+  mutate(log_concentration = log(concentration)) 
+parts_list <- c(unique(traits$part))
+
+
+traits_old %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(part == "muscle") %>% 
+  dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
+                log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
+  filter(complete.cases(.)) %>%
+  distinct(species1) %>% 
+  tally()
+
+traits_new2 <- traits %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(part == "muscle") %>% 
+  dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
+                log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, nutrient) %>% 
+  filter(complete.cases(.)) 
+
+
 
 traits2 <- traits %>% 
-  mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle + bones", "muscle + head", "muscle, bone + inside","whole",
-                                         "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", NA))) %>% 
+   mutate(part = ordered(part, levels = c("muscle",
+                                         "muscle + skin",
+                                         "muscle + small bones",
+                                         "muscle + bones",
+                                         "muscle + head",
+                                         "muscle, bone + inside",
+                                         "whole",
+                                         "whole, no skin",
+                                         "head, eyes, cheeks + soft bones",
+                                         "tongues + cheeks",
+                                         "skin",
+                                         "liver",
+                                         "offal",
+                                         "esophagus",
+                                         "eggs",
+                                         "oil",
+                                         "not specified",
+                                         "unknown",
+                                         NA))) %>% 
   mutate(nutrient = ifelse(nutrient == "protein", "protein_g", nutrient))
 
 unique(traits2$nutrient)
@@ -56,17 +101,17 @@ ggsave("figures/nutrient-ranges.png", width = 8, height = 6)
 
 # Calcium muscle only -----------------------------------------------------
 
-calcium <- traits2 %>% 
-  mutate(length = exp(log_length)) %>% 
+calcium <- traits_new2 %>% 
+  # mutate(length = exp(log_length)) %>% 
   # filter(length < 101) %>% 
-  dplyr::select(-seanuts_id2) %>% 
+  # dplyr::select(-seanuts_id2) %>% 
   filter(nutrient == "ca_mg") %>% 
   filter(!grepl("spp", species1)) %>% 
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
-  filter(part == "muscle") %>% 
-  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
+  filter(part %in% c("muscle", "muscle + skin")) %>% 
+  group_by(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
   ungroup() %>%
   filter(complete.cases(.))
@@ -89,7 +134,7 @@ cal2 <- calcium %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
   ungroup() %>% 
-  mutate(feeding_level = as.factor(feeding_level)) %>% 
+  # mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
   mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
@@ -135,7 +180,9 @@ Phylodata1 <- Phylodata %>%
   rename(species = Phylospecies) 
 
 calg <- Phylodata1 %>% 
-  group_by(species, EnvTemp, DemersPelag, feeding_level, feeding_mode, BodyShapeI, realm, part) %>% 
+  group_by(species, EnvTemp, DemersPelag, 
+           # feeding_level,
+           feeding_mode, BodyShapeI, realm, part) %>% 
   summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
   ungroup() %>%
   mutate(EnvTemp = as.character(EnvTemp)) %>% 

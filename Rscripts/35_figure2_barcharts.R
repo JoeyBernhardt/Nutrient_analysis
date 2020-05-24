@@ -63,7 +63,8 @@ figure2a <- rdi_prop %>%
   ggsave("figures/figure2b_number_targets_barchart.pdf")
   
   
-percentages <- read_csv("data-processed/percentages.csv")  
+percentages <- read_csv("data-processed/percentages.csv") 
+View(percentages)
 percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
 pp <- percentages %>% 
