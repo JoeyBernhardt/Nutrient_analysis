@@ -51,13 +51,13 @@ tox_sum <- tox %>%
 hall_mercury <- tox %>% 
   group_by(species) %>% 
   summarise_at(c(names_tox[6:20]), mean) %>% 
-  select(species, mercury) %>% 
+  dplyr::select(species, mercury) %>% 
   rename(mean_ug = mercury) 
 
 hall_lead <- tox %>% 
   group_by(species) %>% 
   summarise_at(c(names_tox[6:20]), mean) %>% 
-  select(species, lead) %>% 
+  dplyr::select(species, lead) %>% 
   rename(mean_ug = lead)
 
 karimi_mean <- tox_sum ### just doing this to run the analyssis on lead
@@ -79,6 +79,26 @@ karimi_mean %>%
   xlab("Mercury concentration (ug/100g)")
 ggsave("figures/mercury-histogram-karimi.png", width = 6, height = 4)
 
+
+karimi_mean2 <- karimi_mean %>% 
+  mutate(dataset = "karimi") %>% 
+  rename(species = taxon_common_name) 
+
+hall_mean2 <- hall_mercury %>% 
+  mutate(dataset = "hall") %>% 
+  rename(species = taxon_common_name)
+
+adams <- read_csv("data/tabula-Adams-2003.csv") %>% 
+  clean_names() %>% 
+  select(species, mean_hg_ppm) %>% 
+  rename(mean_ug = mean_hg_ppm) %>% 
+  mutate(dataset = "adams")
+
+all_merc <- bind_rows(karimi_mean2, adams, hall_mean2)
+
+all_merc %>% 
+  ggplot(aes(x = mean_ug, fill = dataset)) + geom_histogram() +
+  facet_wrap(~ dataset, ncol = 1, nrow = 3)
 
 dats <- data.frame(res = rlnorm(n = 1000, mean = 10, sd = 2))
 

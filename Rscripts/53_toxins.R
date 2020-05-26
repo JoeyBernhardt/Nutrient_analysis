@@ -52,6 +52,12 @@ m2 <- as.data.frame(M) %>%
   gather() %>% 
   distinct()
 
+
+
+m2 %>% 
+  filter(value != 1) %>% 
+  summarise(mean_corr = mean(value))
+
 m2 %>% 
   filter(value != 1) %>% 
   ggplot(aes(x = value)) + geom_histogram(bins = 35) +
@@ -63,9 +69,13 @@ library(GGally)
 ggcorr(tox_sum, method = c("everything", "pearson"), label = TRUE) 
 ggsave("figures/trace-elements-correlation_sum.pdf", width = 8, height = 6)
 
+tox_sum %>% 
+  ggplot(aes(x = copper, y = silver)) + geom_point()
+
 
 ggpairs(tox_sum) 
 ggsave("figures/tox-corr-plots-sum.pdf", width = 15, height = 15)
+
 
 
 tox_sum %>% 
@@ -77,6 +87,41 @@ tox_sum %>%
   facet_wrap( ~ element, scales = "free") 
 ggsave("figures/elements-hist.pdf", width = 10, height = 8)
 ggsave("figures/elements-hist-lead-mercury.png", width = 8, height = 4)
+
+
+
+### looks at multidimensional trade-offs
+library(vegan)
+
+
+
+tox_sum <- tox %>% 
+  group_by(species) %>% 
+  summarise_at(c(names_tox[6:20]), mean) %>% 
+  select(2:16)
+  
+tscale <- scale(tox_sum, center = TRUE, scale = TRUE)
+
+pca_size <- prcomp(tscale, scale. = FALSE)
+
+pca_size2 <- rda(tscale, scale. = FALSE)
+
+summary(pca_size)
+summary(pca_size2)
+
+
+pcas <- as.data.frame(scores(pca_size2, choices = 1:2)$sites)
+pcas1 <- as.data.frame(scores(pca_size2, choices = 1:2)$species) %>% 
+  mutate(trait = rownames(.))
+pcas %>% 
+  ggplot(aes(x = PC1, y = PC2)) + geom_point(size = 3, alpha = 0.5) +
+  geom_point(size = 3, color = "black", shape = 1) +
+  geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
+  geom_text(data = pcas1, aes(x = PC1, y = PC2, label = trait), col = 'cadetblue') +
+  geom_segment(aes(x = 0, y = 0, xend = PC1, yend = PC2, text =  trait), data = pcas1, color = "cadetblue",
+               arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
+  ylab("PC2 (13.22% variance)") + xlab("PC1 (26.31% variance)")
+ggsave("figures/toxin-pca.png", width = 8, height = 6)
 
 
 #### accumulate toxins

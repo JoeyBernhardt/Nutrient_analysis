@@ -36,6 +36,8 @@ traits <- read_csv("data-processed/all-seanuts-may-24-2020-2.csv") %>% ### this 
   rename(bulk_trophic_level = FoodTroph) %>% 
   mutate(log_length = log(length)) %>% 
   mutate(log_concentration = log(concentration)) 
+
+str(traits)
 parts_list <- c(unique(traits$part))
 
 
@@ -50,7 +52,7 @@ traits_old %>%
 
 traits_new2 <- traits %>% 
   filter(nutrient == "ca_mg") %>% 
-  filter(part == "muscle") %>% 
+  filter(part %in% c("muscle", "muscle + skin")) %>% 
   dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
                 log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, nutrient) %>% 
   filter(complete.cases(.)) 
@@ -219,13 +221,17 @@ mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tre
 
 ### full model
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
-               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, 
+             correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 mod1ab <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = calg2)
 rsquared(mod1a)
 summary(mod1a)
+visreg(mod1a)
+
 summary(mod1ab)
 confint(mod1a)
+mod1a$coefficients
 ### diet model
 mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 
@@ -236,7 +242,7 @@ mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation
 mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 model.sel(mod1a, mod1, mod2, mod3, rank = "AIC", extra = "rsquared") %>% View
 
-summary(mod1a)
+summary(mod2)
 
 
 confints_cal <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>% 
