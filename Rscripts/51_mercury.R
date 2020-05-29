@@ -48,15 +48,32 @@ tox_sum <- tox %>%
   select(species, mercury) %>% 
   rename(mean_ug = mercury)
 
+times_hundred <- function(x, na.rm = FALSE) (x*100)
 hall_mercury <- tox %>% 
   group_by(species) %>% 
   summarise_at(c(names_tox[6:20]), mean) %>% 
+  mutate_at(c(names_tox[6:20]), times_hundred) %>% 
   dplyr::select(species, mercury) %>% 
   rename(mean_ug = mercury) 
+
+hall_anti <- tox %>% 
+  group_by(species) %>% 
+  summarise_at(c(names_tox[6:20]), mean) %>% 
+  mutate_at(c(names_tox[6:20]), times_hundred) %>% 
+  dplyr::select(species, antimony) %>% 
+  rename(mean_ug = antimony) 
+
+hall_cad <- tox %>% 
+  group_by(species) %>% 
+  summarise_at(c(names_tox[6:20]), mean) %>% 
+  mutate_at(c(names_tox[6:20]), times_hundred) %>% 
+  dplyr::select(species, cadmium) %>% 
+  rename(mean_ug = cadmium) 
 
 hall_lead <- tox %>% 
   group_by(species) %>% 
   summarise_at(c(names_tox[6:20]), mean) %>% 
+  mutate_at(c(names_tox[6:20]), times_hundred) %>% 
   dplyr::select(species, lead) %>% 
   rename(mean_ug = lead)
 
@@ -110,7 +127,7 @@ dats %>%
 sample_size <- 10
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- hall_lead %>% 
+  ntbl_sub1 <- hall_cad %>% 
     sample_n(size = 40, replace = FALSE) %>%
     sample_n(size = sample_size, replace = FALSE)
   
@@ -150,6 +167,15 @@ samples_rep[1]
 
 global_10 <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") 
+
+hall_anti_acc <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run") %>% 
+  mutate(dataset = "GL")
+
+hall_cad_acc <- samples_rep %>% 
+  map_df(nutrient_fishing_function, .id = "run") %>% 
+  mutate(dataset = "GL")
+
 hall_merc_acc <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") %>% 
   mutate(dataset = "GL")
@@ -165,7 +191,7 @@ write_csv(global_10, "data-processed/global_10_40spp_mercury_efficiency.csv")
 
 
 # hall mercury ------------------------------------------------------------
-
+library(nlstools)
 
 hall_merc_med <- hall_merc_acc %>% 
   group_by(dataset, species_no) %>% 
@@ -190,18 +216,94 @@ merc_preds <- merc_boot_df %>%
 
 # hall lead ---------------------------------------------------------------
 
-
+library(nlstools)
 hall_lead_med <- hall_lead_acc %>% 
   group_by(dataset, species_no) %>% 
   summarise(grams_median = median(concentration))
+View(hall_lead_med)
 
-lead_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_lead_med,  start = c(a=1, b=0.5))
+hall_lead_acc %>% 
+  ggplot(aes(x = species_no, y = concentration, group = species_no)) + geom_violin(alpha = 0.1) +
+  geom_hline(yintercept = 285)
+
+lead_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_lead_med,  start = c(a=50, b=0.5))
 lead_boot <- nlsBoot(lead_mod)
 lead_boot$bootCI
 lead_boot_df <- as_data_frame(lead_boot$coefboot) 
 lead_b <- as_data_frame(lead_boot$bootCI) 
 lead_b$culture <- "GL"
 
+
+
+# antimony ----------------------------------------------------------------
+
+hall_anti_med <- hall_anti_acc %>% 
+  group_by(dataset, species_no) %>% 
+  summarise(grams_median = median(concentration))
+
+anti_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_anti_med,  start = c(a=50, b=0.5))
+anti_boot <- nlsBoot(anti_mod)
+anti_boot$bootCI
+anti_boot_df <- as_data_frame(anti_boot$coefboot) 
+anti_b <- as_data_frame(anti_boot$bootCI) 
+anti_b$culture <- "GL"
+
+anti_preds <- anti_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate) %>% 
+  map_df(prediction_function, .id = "replicate") %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required)) %>% 
+  mutate(dataset = "GL")
+
+
+hall_anti_med %>% 
+  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
+  geom_line(aes(x = species_no, y = mean), data = anti_preds) + 
+  # geom_hline(yintercept = 7) + 
+  # ylim(0, 30) +
+  # geom_hline(yintercept =  karimi_sum$median[1]) + 
+  geom_line(aes(x = species_no, y = q2.5), data = anti_preds, color = "grey") +
+  geom_line(aes(x = species_no, y = q97.5), data = anti_preds, color = "grey") +
+  ylab("Antimony concentration (ug/100g)") + xlab("Species richness") +
+  ggtitle("b = 0.041")
+
+# cadmium ----------------------------------------------------------------
+
+hall_cad_med <- hall_cad_acc %>% 
+  group_by(dataset, species_no) %>% 
+  summarise(grams_median = median(concentration))
+
+cad_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_cad_med,  start = c(a=50, b=0.5))
+cad_boot <- nlsBoot(cad_mod)
+cad_boot$bootCI
+cad_boot_df <- as_data_frame(cad_boot$coefboot) 
+cad_b <- as_data_frame(cad_boot$bootCI) 
+cad_b$culture <- "GL"
+
+cad_preds <- cad_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate) %>% 
+  map_df(prediction_function, .id = "replicate") %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required)) %>% 
+  mutate(dataset = "GL")
+
+
+hall_cad_med %>% 
+  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
+  geom_line(aes(x = species_no, y = mean), data = cad_preds) + 
+  # geom_hline(yintercept = 7) + 
+  # ylim(0, 30) +
+  # geom_hline(yintercept =  karimi_sum$median[1]) + 
+  geom_line(aes(x = species_no, y = q2.5), data = cad_preds, color = "grey") +
+  geom_line(aes(x = species_no, y = q97.5), data = cad_preds, color = "grey") +
+  ylab("cadmium concentration (ug/100g)") + xlab("Species richness") +
+  ggtitle("b = 0.041")
 
 #### plot
 

@@ -84,6 +84,8 @@ inf_all2 <- left_join(inf_all, species2, by = c("species_name" = "sciname"))
 # write_csv(inf_nuts_all, "data-processed/seanuts_ecology.csv")
 write_csv(inf_all2, "data-processed/seanuts_ecology2.csv")
 
+# thing <- read_csv("data-processed/seanuts_ecology2.csv")
+
 ### Dec 4 update, joining the new nutrient data with the new fishbase data
 ### Jan 5 update, joining the new nutrient data with the new fishbase data
 seanuts_new5 <- read_csv("data-processed/seanuts_new5.csv")

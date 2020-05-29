@@ -24,6 +24,7 @@ ufish_refs_sci <- ufish_refs %>%
   filter(str_detect(Type, "scientific")) 
   
 seanuts <- read_csv("data-processed/seanuts_select_8.csv") 
+length(unique(seanuts$seanuts_id2))
 
 seanuts_refs <- seanuts %>% 
   dplyr::select(biblioid2) %>% 

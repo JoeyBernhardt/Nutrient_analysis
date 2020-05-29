@@ -13,7 +13,8 @@ trait_data <- read_csv("data-processed/n.long_lat3.csv")
 length(unique(trait_data3b$species_name))
 
 trait_data2 <- trait_data %>% 
-  filter(!grepl("^Mohanty", ref_info))
+  filter(!grepl("^Mohanty", ref_info)) %>% 
+  filter(seanuts_id2 != 1737) 
 trait_data3b <- trait_data2 %>% 
   distinct(species_name, food_name_clean, ref_info, seanuts_id2, nutrient, concentration, .keep_all = TRUE) %>% 
   spread(key = nutrient, value = concentration) %>% 
@@ -66,8 +67,8 @@ seadiv <- bind_rows(trait_data4, cnuts2) %>%
 
 
 
-write_csv(seadiv, "data-processed/seadiv.csv")
-
+write_csv(seadiv, "data-processed/seadiv.csv") ### update May 29 2020
+seadiv <- read_csv("data-processed/seadiv.csv")
 mean_seadiv <- seadiv %>% 
   group_by(species_name, subgroup) %>% 
   summarise(calcium = mean(calcium, na.rm = TRUE),

@@ -134,10 +134,10 @@ tox_sum2 <- tox %>%
   mutate_at(c(names_tox[6:20]), times_hundred)
 
 data <- tox_sum2
-threshold <- 0.5
+threshold <- 1
 library(vegan)
 
-?specaccum
+
 
 accumulate <- function(data, threshold) {
   ntbl.RDI.all <- data %>% 
@@ -201,10 +201,72 @@ accumulate <- function(data, threshold) {
   
 }
 
+
+
+# try the accumulation with only 5 toxins ---------------------------------
+data <- tox_sum2 %>% 
+  select(species, cadmium, copper, chromium, arsenic, mercury, lead)
+threshold <- 1
+accumulate <- function(data, threshold) {
+  ntbl.RDI.all <- data %>% 
+    mutate(ul_cadmium = ifelse(cadmium > (28.57*threshold), 1, 0)) %>% 
+    mutate(ul_chromium = ifelse(chromium > (12000*threshold), 1, 0)) %>% 
+    mutate(ul_arsenic = ifelse(arsenic > (800*threshold), 1, 0)) %>%
+    mutate(ul_mercury = ifelse(mercury > (18.29*threshold), 1, 0)) %>%
+    mutate(ul_lead = ifelse(lead > (12.5*threshold), 1, 0)) %>%
+    ungroup() %>% 
+    mutate(RDI.micro.tot = rowSums(.[8:12])) %>% 
+    filter(!is.na(RDI.micro.tot)) 
+  
+  uls <- names(ntbl.RDI.all)[8:12]
+  
+  all_spa <- ntbl.RDI.all %>% 
+    dplyr::select(species, 8:12) %>% 
+    mutate(subgroup = "all") %>% 
+    split( .$subgroup) %>% 
+    map(.f = `[`, c(names(ntbl.RDI.all)[8:12])) %>%
+    map(.f = specaccum, method = "random", permutations = 1000)
+  
+  
+  accumulated_targets <- all_spa %>% 
+    map(.f = `[`, "richness") %>% 
+    unlist() %>% 
+    as.data.frame()
+  
+  accumulated_targets_sd <- all_spa %>% 
+    map(.f = `[`, "sd") %>% 
+    unlist() %>% 
+    as.data.frame()
+  
+  accumulated_targets$richness_level = rownames(accumulated_targets)
+  colnames(accumulated_targets) <- c("number_of_targets", "richness_level")
+  
+  accumulated_targets_sd$sd = rownames(accumulated_targets_sd)
+  colnames(accumulated_targets_sd) <- c("sd", "number_of_targets")
+  
+  accumulated_targets_sd <- accumulated_targets_sd %>% 
+    separate(number_of_targets, into = c("subgroup", "number_of_species")) %>%
+    mutate(number_of_species = str_replace(number_of_species, "sd", "")) %>%
+    mutate(number_of_species = as.numeric(number_of_species))
+  
+  
+  accumulated_targets <- accumulated_targets %>% 
+    separate(richness_level, into = c("subgroup", "number_of_species")) %>%
+    mutate(number_of_species = str_replace(number_of_species, "richness", "")) %>%
+    mutate(number_of_species = as.numeric(number_of_species))
+  
+  accumulated_targets_all <- left_join(accumulated_targets, accumulated_targets_sd)
+  accumulated_targets_all <- accumulated_targets_all %>% 
+    mutate(se = sd / sqrt(number_of_species))
+  return(accumulated_targets_all)
+  
+}
+
+
 accumulated_targets_all %>% 
   filter(number_of_species < 11) %>% 
-  ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_point() +
-  geom_errorbar(aes(x = number_of_species, ymin = number_of_targets - se, ymax = number_of_targets + se), width = 0.1)
+  ggplot(aes(x = number_of_species, y = number_of_targets)) + geom_line() +
+  geom_ribbon(aes(x = number_of_species, ymin = number_of_targets - se, ymax = number_of_targets + se), alpha = 0.1)
 
 
 accumulated_targets_all %>% 
@@ -274,6 +336,9 @@ write_csv(mean_target, "data-processed/global_40_species_resampled_accumulation_
 write_csv(mean_target_10, "data-processed/global_40_species_resampled_accumulation_mean_toxins_10percent.csv")
 write_csv(mean_target_20, "data-processed/global_40_species_resampled_accumulation_mean_toxins_20percent.csv")
 
+mean_target_50 <- read_csv("data-processed/global_40_species_resampled_accumulation_mean_toxins_50percent.csv")
+mean_target_20 <- read_csv("data-processed/global_40_species_resampled_accumulation_mean_toxins_20percent.csv")
+
 mean_target_10 <- mean_target_10 %>% 
   mutate(threshold = 10)
 mean_target_20 <- mean_target_20 %>% 
@@ -323,3 +388,30 @@ b_terms %>%
   scale_color_viridis_d(name = "Threshold")
 ggsave("figures/toxin-accumulation-b-estimates.pdf", width = 4, height = 3)
 
+library(broom)
+mean_target_100 %>% 
+filter(number_of_species < 11) %>% 
+  do(tidy(nls(formula = (mean_targets ~ a * number_of_species^b),data = .,  start = c(a=1, b=0.1)), conf.int = TRUE)) %>% 
+  filter(term == "b")
+
+mean_target_100 %>% 
+  filter(number_of_species < 11) %>% 
+  do(tidy(lm(log(mean_targets) ~ log(number_of_species), data = .,)))
+
+mean_target_100 %>% 
+  filter(number_of_species < 11) %>% 
+  do(tidy(nls(formula = (mean_targets ~ a * number_of_species^b),data = .,  start = c(a=1, b=0.1)), conf.int = TRUE)) %>% 
+  filter(term == "b")
+
+ggplot() +
+  # geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_20, color = "green") +
+  # geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_10, color = "orange") +
+  geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_100, color = "black") +
+  geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high), alpha = 0.5, data = mean_target_100) +
+  xlab("Species richness") +
+  ylab("Number of tolerable limits \nexceeded per 100g portion") +
+  scale_x_continuous(breaks = seq(1,10,1))+
+  scale_y_continuous(breaks = seq(1,12,1), limits = c(1, 4.5)) 
+ggsave("figures/tol-limits-bef.png", width = 6, height = 4)
+  
+  # geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_50, color = "pink") 

@@ -16,7 +16,7 @@ library(arm)
 
 # load data ---------------------------------------------------------------
 
-seanuts_ecology <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_11.csv")
+seanuts_ecology <- read_csv("~/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_11.csv")
 
 ## ok let's just get rid of the one super outlier ca and fe measurement for now
 
