@@ -27,7 +27,7 @@ library(visreg)
 
 library(stargazer)
 library(rotl)
-traits_old <- read_csv("data-processed/trait-nutrient-data-analysis.csv") ### this is the latest version as of May 24 2020
+traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv") ### this is the latest version as of May 24 2020
 traits <- read_csv("data-processed/all-seanuts-may-24-2020-2.csv") %>% ### this is more updated with fixed parts and reksten data
   rename(species1 = Species) %>% 
   rename(feeding_level = Herbivory2) %>% 
@@ -86,7 +86,7 @@ unique(traits2$part)
 unique(traits)
 
 traits2 %>% 
-  group_by(part) %>% 
+  group_by(nutrient) %>% 
   tally() %>% View
 
 traits2 %>% 
@@ -103,7 +103,14 @@ ggsave("figures/nutrient-ranges.png", width = 8, height = 6)
 
 # Calcium muscle only -----------------------------------------------------
 
-calcium <- traits_new2 %>% 
+traits_new2 <- traits %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(part %in% c("muscle", "muscle + skin")) %>% 
+  dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
+                log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, nutrient) %>% 
+  filter(complete.cases(.))
+
+calcium <- traits2 %>% 
   # mutate(length = exp(log_length)) %>% 
   # filter(length < 101) %>% 
   # dplyr::select(-seanuts_id2) %>% 
@@ -250,12 +257,12 @@ confints_cal <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>%
   rename(lower = X2.5..) %>% 
   rename(upper = X97.5..)
   
-confints_cal %>% 
+cal_plot <- confints_cal %>% 
   filter(term != "(Intercept)") %>% 
   ggplot(aes(x = term, y = estimate)) + 
   geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
   coord_flip() +
-  geom_hline(yintercept = 0)
+  geom_hline(yintercept = 0) + ggtitle("Calcium")
 
 model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
 
@@ -265,7 +272,7 @@ lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/calcium-models-expanded-muscle-only-pgls-lambda-fixed0.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/calcium-models-expanded-muscle-only-pgls-lambda-muscleskin.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 
@@ -278,7 +285,7 @@ calcium <- traits2 %>%
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
-  filter(part == "muscle") %>% 
+  filter(part %in% c("muscle", "muscle + skin")) %>%
   group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
   ungroup() %>%
@@ -394,15 +401,28 @@ model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
 model.avg(mod1a, mod3)
 
 summary(mod1a)
+confint(mod1a)
 lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 
 visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/iron-models-expanded-muscle-only-pgls.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/iron-models-expanded-muscle-only-pgls-muscleskin.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
+
+confints_iron <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>% 
+  mutate(term = rownames(.)) %>% 
+  rename(lower = X2.5..) %>% 
+  rename(upper = X97.5..)
+
+iron_plot <- confints_iron %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + 
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) + ggtitle("Iron")
 
 
 # Zinc muscle only --------------------------------------------------------
@@ -415,7 +435,7 @@ calcium <- traits2 %>%
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
-  filter(part == "muscle") %>% 
+  filter(part %in% c("muscle", "muscle + skin")) %>% 
   group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
   ungroup() %>%
@@ -515,8 +535,9 @@ mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation
 ### habitat model
 mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 model.sel(mod1a, mod1b, mod1, mod2, mod3, rank = "AIC", extra = "rsquared") %>% View
-model.sel(mod1a, mod1b, mod2, rank = "AIC") %>% View
+model.sel(mod1a, mod1, mod2, mod3, extra = "rsquared") %>% View
 
+confint(mod3)
 ### for zinc, it looks like the life history model is the best
 rsquared(mod)
 
@@ -532,15 +553,30 @@ model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
 
 
 summary(mod1a)
+
 lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 
 # visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/zinc-models-expanded-muscle-only-pgls.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/zinc-models-expanded-muscle-only-pgls-muscle-skin.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
+
+confints_zinc <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>% 
+  mutate(term = rownames(.)) %>% 
+  rename(lower = X2.5..) %>% 
+  rename(upper = X97.5..)
+
+zinc_plot <- confints_zinc %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + 
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) + ggtitle("Zinc")
+
+
 
 # epa muscle only --------------------------------------------------------
 
@@ -552,7 +588,7 @@ calcium <- traits2 %>%
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
-  filter(part == "muscle") %>% 
+  filter(part %in% c("muscle", "muscle + skin")) %>% 
   group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
   ungroup() %>%
@@ -656,10 +692,23 @@ lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 # visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/epa-models-expanded-muscle-only-pgls.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/epa-models-expanded-muscle-only-pgls-muscle-skin.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
+
+confints_epa <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>% 
+  mutate(term = rownames(.)) %>% 
+  rename(lower = X2.5..) %>% 
+  rename(upper = X97.5..)
+
+epa_plot <- confints_epa %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + 
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) + ggtitle("EPA")
+
 
 # dha muscle only --------------------------------------------------------
 
@@ -671,10 +720,10 @@ calcium <- traits2 %>%
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
-  filter(part == "muscle") %>% 
+  filter(part %in% c("muscle", "muscle + skin")) %>% 
   group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
-  ungroup() %>%
+  ungroup() %>% 
   filter(complete.cases(.))
 str(calcium)
 
@@ -753,13 +802,25 @@ calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
 
 
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.7, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+mod1b <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.8, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+mod1c <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.5, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+mod1d <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.6, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+mod1e <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.2, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+mod1f <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+
+
+AIC(mod1a, mod1b, mod1c, mod1d, mod1e, mod1f)
+
 mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 
 model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
 
+### this is the one
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
-               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.6, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+
+####
 mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
 mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
 mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
@@ -776,10 +837,88 @@ lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 # visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/dha-models-expanded-muscle-only-pgls.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/dha-models-expanded-muscle-only-pgls-muscle-skin.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
+theme_set(theme_cowplot())
+confints_dha <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>% 
+  mutate(term = rownames(.)) %>% 
+  rename(lower = X2.5..) %>% 
+  rename(upper = X97.5..)
+
+dha_plot <- confints_dha %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + 
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) + ggtitle("DHA")
+
+
+
+# plot all micronutrients -------------------------------------------------
+library(patchwork)
+micro_plots <- epa_plot + dha_plot + zinc_plot + cal_plot + iron_plot
+ggsave(plot = micro_plots, filename = "figures/microplots.png", width = 30, height = 14)
+
+devtools::install_github("ricardo-bion/ggradar", 
+                         dependencies = TRUE)
+
+library(ggradar)
+
+cf_zinc <- confints_zinc %>% 
+  mutate(nutrient = "zinc")
+
+cf_epa <- confints_epa %>% 
+  mutate(nutrient = "epa")
+
+cf_dha <- confints_dha %>% 
+  mutate(nutrient = "dha")
+
+
+cf_cal <- confints_cal %>% 
+  mutate(nutrient = "calcium")
+
+cf_iron <- confints_iron %>% 
+  mutate(nutrient = "iron")
+
+all_cf <- bind_rows(cf_cal, cf_iron, cf_epa, cf_dha, cf_zinc)
+
+
+all_cf %>% 
+  filter(term != "(Intercept)") %>% 
+  filter(nutrient %in% c("iron", "zinc", "calcium")) %>% 
+  ggplot(aes(x = term, y = estimate, color = nutrient)) + 
+  geom_pointrange(aes(x = term, y = estimate, color = nutrient, ymin = lower, ymax = upper), position = position_dodge(width = 1)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) +
+  scale_color_viridis_d(option = "inferno", begin = 0.6, end = 0.8)
+ggsave("figures/coef-iron-zinc-cal.png", width = 8, height = 10)
+
+all_cf %>% 
+  filter(term != "(Intercept)") %>% 
+  filter(nutrient %in% c("epa", "dha")) %>% 
+  ggplot(aes(x = term, y = estimate, color = nutrient)) + 
+  geom_pointrange(aes(x = term, y = estimate, color = nutrient, ymin = lower, ymax = upper), position = position_dodge(width = 1)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) +
+  scale_color_viridis_d(option = "inferno", begin = 0.2, end = 0.5)
+ggsave("figures/coef-epa-dha.png", width = 8, height = 10)
+
+write_csv(all_cf, "data-processed/old-traits-coefs.csv")
+
+all_cf %>% 
+  filter(term != "(Intercept)") %>% 
+  mutate(nutrient = factor(nutrient, levels = c("calcium", "iron", "zinc", "epa", "dha"))) %>% 
+  # filter(nutrient %in% c("iron", "zinc", "calcium")) %>% 
+  ggplot(aes(x = term, y = estimate, color = nutrient)) + 
+  geom_pointrange(aes(x = term, y = estimate, color = nutrient, ymin = lower, ymax = upper), position = position_dodge(width = 1)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) +
+  scale_color_manual(values = c("dodgerblue", "cadetblue", "blue", "darkorange", "darkred"))
+ggsave("figures/coef-all-micronutrients.png", width = 8, height = 10)
+
+ggradar(mtcars_radar)
 
 # protein muscle only --------------------------------------------------------
 
@@ -1010,6 +1149,7 @@ calcium <- traits2 %>%
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
+  filter(part != "not specified") %>% 
   # filter(part == "muscle") %>% 
   group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
@@ -1022,12 +1162,12 @@ mod_cal <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mod
 summary(mod_cal)
 visreg(mod_cal)
 
-
+tidy(mod_cal, conf.int = TRUE) %>% View
 
 mod_part <- lm(log_concentration ~ part, data = calcium)
 model.sel(mod_cal, mod_part, rank = "AIC") %>% View
 
-stargazer(mod_cal, title = "", type = "html", out="tables/calcium-models-expanded-all-parts-ols.htm")
+stargazer(mod_cal, title = "", type = "html", out="tables/calcium-models-expanded-all-parts-ols2.htm")
 
 
 
@@ -1152,13 +1292,13 @@ calcium <- traits2 %>%
   mutate(part = as.character(part))
 
 str(calcium)
-mod_cal <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm + part, data = calcium)
+mod_iron <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm + part, data = calcium)
 mod_part <- lm(log_concentration ~ part, data = calcium)
 model.sel(mod_cal, mod_part, rank = "AIC") %>% View
 
 stargazer(mod_cal, title = "", type = "html", out="tables/iron-models-expanded-all-parts-ols.htm")
 
-
+tidy(mod_iron, conf.int = TRUE) %>% View
 
 calcium$species1 <- str_to_lower(calcium$species1)
 
@@ -1270,13 +1410,15 @@ calcium <- traits2 %>%
   mutate(part = as.character(part))
 
 str(calcium)
-mod_cal <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm + part, data = calcium)
+mod_zinc <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm + part, data = calcium)
+summary(mod_zinc)
+
 mod_part <- lm(log_concentration ~ part, data = calcium)
 model.sel(mod_cal, mod_part, rank = "AIC") %>% View
 
 stargazer(mod_cal, title = "", type = "html", out="tables/zinc-models-expanded-all-parts-ols.htm")
 
-
+tidy(mod_zinc, conf.int = TRUE) %>% View
 
 calcium$species1 <- str_to_lower(calcium$species1)
 

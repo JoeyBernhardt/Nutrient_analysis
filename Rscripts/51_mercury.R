@@ -19,14 +19,25 @@ anf2 <- anf_raw %>%
 
 
 # Read in the Karimi data -------------------------------------------------
-
+library(readxl)
 karimi <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Database.data.xls", sheet = "Seafood Hg Database") %>% 
   clean_names() %>% 
   rename(ug_hg = mean_hg_concentration_ppm_wet_weight) %>% 
   mutate(ug_hg = ug_hg*100)
 
+karimi2 <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Database.data_JB.xls", sheet = "Seafood Hg Database") %>% 
+  clean_names() %>% 
+  rename(ug_hg = mean_hg_concentration_ppm_wet_weight) %>% 
+  mutate(ug_hg = ug_hg*100) %>% 
+  group_by(genus_species) %>% 
+  summarise(mean_hg = mean(ug_hg))
+
 names(karimi)
 
+burger <- read_csv("data/tabula-Burger.csv") %>% 
+  rename(species = species_name) %>% 
+  mutate(mean_hg = mean_hg_ppm*100) %>% 
+  mutate(dataset = "burger")
 
 tox <- read_excel("data/Hall-trace-elements.xlsx") %>% 
   clean_names() %>%
@@ -87,6 +98,14 @@ karimi_mean <- karimi %>%
 karimi_sum <- karimi_mean %>% 
   summarise_each(funs(mean, median), mean_ug)
 
+karimi2 %>% 
+  ggplot(aes(x = mean_hg)) + geom_histogram() +
+  # scale_x_log10() +
+  geom_vline(xintercept = karimi_sum$mean[1], color = "purple") +
+  geom_vline(xintercept = karimi_sum$median[1], color = "cadetblue") +
+  xlab("Mercury concentration (ug/100g)")
+
+
 karimi_mean %>% 
     ggplot(aes(x = mean_ug)) + geom_histogram() +
   geom_vline(xintercept = 7) + 
@@ -97,25 +116,30 @@ karimi_mean %>%
 ggsave("figures/mercury-histogram-karimi.png", width = 6, height = 4)
 
 
-karimi_mean2 <- karimi_mean %>% 
+karimi_mean2 <- karimi2 %>% 
   mutate(dataset = "karimi") %>% 
-  rename(species = taxon_common_name) 
+  rename(species = genus_species) 
 
 hall_mean2 <- hall_mercury %>% 
   mutate(dataset = "hall") %>% 
-  rename(species = taxon_common_name)
+  mutate(mean_hg = mean_ug) 
 
 adams <- read_csv("data/tabula-Adams-2003.csv") %>% 
   clean_names() %>% 
-  select(species, mean_hg_ppm) %>% 
+  dplyr::select(species, mean_hg_ppm) %>% 
   rename(mean_ug = mean_hg_ppm) %>% 
+  mutate(mean_hg = mean_ug*100) %>% 
   mutate(dataset = "adams")
 
-all_merc <- bind_rows(karimi_mean2, adams, hall_mean2)
+all_merc <- bind_rows(karimi_mean2, adams, hall_mean2, burger) %>% 
+  mutate(species = str_to_lower(species))
+
+write_csv(all_merc, "data-processed/mercury-data-compiled.csv")
 
 all_merc %>% 
-  ggplot(aes(x = mean_ug, fill = dataset)) + geom_histogram() +
-  facet_wrap(~ dataset, ncol = 1, nrow = 3)
+  group_by(species) %>% 
+  summarise(mean_hg = mean(mean_hg)) %>% 
+  ggplot(aes(x = mean_hg)) + geom_histogram()
 
 dats <- data.frame(res = rlnorm(n = 1000, mean = 10, sd = 2))
 

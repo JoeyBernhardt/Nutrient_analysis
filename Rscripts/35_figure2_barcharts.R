@@ -111,11 +111,14 @@ save_plot("figures/figure2.png", p,
           nrow = 2,
           base_height = 3.8, base_width = 6)
 
-ggplot(percentages, aes(dri_per)) + geom_histogram() +
+percentages %>% 
+  filter(nutrient %in% c("calcium", "protein")) %>% 
+ggplot(aes(x = dri_per)) + geom_histogram() +
   scale_fill_brewer(type = "qual", palette = "Paired") +
   # scale_x_log10(breaks = c(1, 10, 100)) +
   facet_wrap(~ nutrient, scales = "free") +
-  theme_bw() + geom_vline(xintercept = 10) +
+  theme_bw() + 
+  # geom_vline(xintercept = 10) +
   xlab("Percentage of DRI in 100g edible portion") +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
@@ -126,5 +129,5 @@ ggplot(percentages, aes(dri_per)) + geom_histogram() +
   # strip.text.x = element_text(size=16, face="plain")) +
   theme(strip.text.y = element_text(size = 12)) +
   theme(legend.position="none") +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 2))
-ggsave("figures/nutrient-distributions.png", width = 8, height = 6)
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 2)) 
+ggsave("figures/nutrient-distributions-calcium-protein.png", width = 6, height = 4)

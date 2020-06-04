@@ -126,7 +126,7 @@ newtrad <- read_csv("data-processed/newtrad.csv") %>%
 
 all_nuts <- bind_rows(mean_nuts, newtrad)
 
-seadiv <- read_csv("data-processed/mean_seadiv.csv") %>% 
+seadiv <- read_csv("data-processed/mean_seadiv.csv") %>%
   # filter(!is.na(protein)) %>% 
   select(-species_name) %>% 
   select(-subgroup) %>% 
@@ -236,7 +236,7 @@ ggplot() +
                arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
   geom_text(aes(x = CAP1, y = CAP2, label =  trait), data = trait_vectors) +
  geom_hline(yintercept = 0) + geom_vline(xintercept = 0) + 
-  scale_color_brewer(type = "qual") + ylab("RDA2") + xlab("RDA2")
+  scale_color_brewer(type = "qual") + ylab("RDA2") + xlab("RDA1")
 ggsave("figures/rda-subgroups.png", width = 8, height = 6)
 
 

@@ -21,7 +21,7 @@ fda_species <- fda %>%
   filter(!grepl("canned", sample_description)) %>% 
   filter(!grepl("fzn", sample_description)) %>% 
   filter(!grepl("farmed", sample_description)) %>% 
-  filter(grepl("[(]", sample_description)) %>% View
+  filter(grepl("[(]", sample_description)) 
 
 
 fda_species <- fda %>% 
@@ -52,3 +52,20 @@ fda_species_edited <- read_csv("data-processed/fda-mercury-species-edited.csv") 
   mutate(sample_description_edited = ifelse(is.na(sample_description_edited), sample_description, sample_description_edited))
 scis <- comm2sci(fda_species_edited$sample_description_edited, db = "worms")
 scis
+
+
+fda %>% 
+  mutate(sample_description = str_to_lower(sample_description)) %>% 
+  filter(!grepl("canned", sample_description)) %>%
+  filter(!grepl("farmed", sample_description)) %>%
+  filter(!grepl("fzn", sample_description)) %>%
+  filter(analyte_measured == "Methylmercury") %>% 
+  group_by(sample_description) %>% 
+  summarise(mean_merc  = mean(conc_ppm)) %>% 
+  ggplot(aes(x = mean_merc)) + geom_histogram(bins = 20) 
+
+library(rfishbase)
+
+common_to_sci("grey seatrout")
+
+

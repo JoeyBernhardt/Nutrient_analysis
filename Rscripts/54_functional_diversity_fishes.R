@@ -368,6 +368,7 @@ all_traits_nuts <- bind_rows(all_cine_updated, all_traits2) %>%
 write_csv(all_traits_nuts, "data-processed/all-traits-nuts-updated.csv")
 write_csv(all_traits_nuts, "data-processed/all-traits-nuts.csv")
 all_traits_nuts <- read_csv("data-processed/all-traits-nuts.csv")
+all_traits_nuts <- read_csv("data-processed/all-traits-nuts-updated.csv")
 all_traits_nuts_incomplete <- bind_rows(all_cine, all_traits2)
 
 threshold <- 0.1
@@ -493,6 +494,8 @@ library(hrbrthemes)
 library(viridis)
 results %>% 
   mutate(fdis_round = round(fdis, digits = 2)) %>% 
+  filter(!is.na(fdis_round)) %>% 
+  filter(!is.na(targets)) %>% 
   group_by(fdis_round) %>% 
   summarise_each(funs(mean, std.error), targets) %>% 
   ggplot(aes(x = fdis_round, y = mean)) + geom_point(alpha =1) +
@@ -529,7 +532,7 @@ all_traits_nuts2 <- all_traits_nuts %>%
 
 
 # this is where we caculate the fdis and the Ne for all the combos --------
-
+library(tidyverse)
 
 
 nuts_traits <- read_csv("data-processed/all-traits-nuts.csv") %>% 
@@ -646,6 +649,34 @@ species310 %>%
 
 species3102 <- species310 %>% 
   filter(!is.na(fdis))
+
+species310 %>% 
+  ungroup() %>% 
+  filter(!is.na(fdis)) %>% 
+  group_by(species_no, run) %>%
+  summarise_each(funs(mean), grams_required, fdis) %>% 
+  # filter(species_no == 10) %>% 
+  ggplot(aes(x = fdis, y = grams_required)) + geom_point() + geom_smooth(color = "black", method = "lm") +
+  # scale_color_viridis_d(name = "Species richness") +
+  ylab("Grams required to reach 5 micronutrient targets (bites per benefit)") +
+  xlab("Ecological functional diversity (dispersion)") 
+
+
+species310 %>% 
+  ungroup() %>% 
+  filter(!is.na(fdis)) %>% 
+  # filter(species_no == 10) %>%
+  mutate(fdis_round = round(fdis, digits = 2)) %>%
+  group_by(fdis_round) %>%
+  summarise_each(funs(mean), grams_required, fdis) %>%
+  ggplot(aes(x = fdis, y = grams_required)) + geom_point() + geom_smooth(color = "black", method = "lm") +
+  # scale_color_viridis_d(name = "Species richness") +
+  ylab("Grams required to reach 5 micronutrient targets (bites per benefit)") +
+  xlab("Ecological functional diversity (dispersion)") + 
+  geom_abline(slope = -1993.7127, intercept = 3672.2944)
+ggsave("figures/fdis-ne-310-black.pdf", width = 8, height = 6)
+
+
 
 
 confint(m)

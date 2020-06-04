@@ -24,8 +24,13 @@ names_tox <- names(tox)
 
 tox_sum <- tox %>% 
   group_by(species) %>% 
-  summarise_at(c(names_tox[6:20]), mean) %>% 
-  select(2:16)
+  summarise_at(c(names_tox[6:20]), mean) %>%
+  select(species, 2:16) %>% 
+  gather(key = nutrient, value = concentration, 2:16) %>% 
+  mutate(concentration = ifelse(concentration == 0, 0.00001, concentration)) %>%
+  spread(key= nutrient, value = concentration) %>% 
+  select(-species) %>% 
+  mutate_all(.funs = log)
   
 
 tox_sum4 <- tox %>% 
@@ -60,17 +65,16 @@ m2 %>%
 
 m2 %>% 
   filter(value != 1) %>% 
-  ggplot(aes(x = value)) + geom_histogram(bins = 35) +
+  ggplot(aes(x = value)) + geom_density(fill = "lightblue") +
   geom_vline(xintercept = 0) +
-  ylab("Frequency") + xlab("Correlation coefficient") 
-ggsave("figures/toxin-correlations.pdf", width = 8, height = 6)
+  ylab("Density") +
+  xlab("Correlation coefficient") 
+ggsave("figures/toxin-correlations.png", width = 8, height = 6)
 
 library(GGally)
 ggcorr(tox_sum, method = c("everything", "pearson"), label = TRUE) 
 ggsave("figures/trace-elements-correlation_sum.pdf", width = 8, height = 6)
 
-tox_sum %>% 
-  ggplot(aes(x = copper, y = silver)) + geom_point()
 
 
 ggpairs(tox_sum) 
@@ -79,7 +83,8 @@ ggsave("figures/tox-corr-plots-sum.pdf", width = 15, height = 15)
 
 
 tox_sum %>% 
-  gather(1:15, key = element, value = concentration) %>%
+  gather(1:15, key = element, value = concentration) %>% 
+  mutate(concentration = exp(concentration)) %>% 
   filter(element %in% c("lead", "mercury")) %>% 
   filter(concentration > 0) %>% 
   # mutate(concentration = ifelse(concentration == 0, 0.001, concentration)) %>% 
@@ -102,9 +107,9 @@ tox_sum <- tox %>%
   
 tscale <- scale(tox_sum, center = TRUE, scale = TRUE)
 
-pca_size <- prcomp(tscale, scale. = FALSE)
+pca_size <- prcomp(tox_sum, scale. = TRUE)
 
-pca_size2 <- rda(tscale, scale. = FALSE)
+pca_size2 <- rda(tox_sum, scale. = TRUE)
 
 summary(pca_size)
 summary(pca_size2)
@@ -284,7 +289,7 @@ do(tidy(nls(formula = (number_of_targets ~ a * number_of_species^b),data = .,  s
 rep_acc_function <- function(x) accumulate(sample_n(tox_sum2, size = x, replace = FALSE), threshold = 1)
 
 
-samples <- rep(40, 100)
+samples <- rep(40, 1000)
 
 
 repeat_global <- samples %>% 
@@ -298,38 +303,54 @@ mean_target <- repeat_global %>%
             high=quantile(number_of_targets, probs=0.975)) %>% 
   filter(number_of_species < 11) 
 
-mean_target_10 <- repeat_global %>% 
+mean_target_10 <-  samples %>% 
+  map_df(rep_acc_function, .id = "run") %>% 
+  group_by(number_of_species) %>%  
   group_by(number_of_species) %>% 
   summarise(mean_targets = mean(number_of_targets),
             low=quantile(number_of_targets, probs=0.025),
             high=quantile(number_of_targets, probs=0.975)) %>% 
-  filter(number_of_species < 11)
-mean_target_20 <- repeat_global %>% 
-  group_by(number_of_species) %>% 
-  summarise(mean_targets = mean(number_of_targets),
-            low=quantile(number_of_targets, probs=0.025),
-            high=quantile(number_of_targets, probs=0.975)) %>% 
-  filter(number_of_species < 11)
+  filter(number_of_species < 11) %>% 
+  mutate(threshold = "10")
 
-mean_target_50 <- repeat_global %>% 
+mean_target_25 <- samples %>% 
+  map_df(rep_acc_function, .id = "run") %>% 
+  group_by(number_of_species) %>%  
   group_by(number_of_species) %>% 
   summarise(mean_targets = mean(number_of_targets),
             low=quantile(number_of_targets, probs=0.025),
             high=quantile(number_of_targets, probs=0.975)) %>% 
-  filter(number_of_species < 11) 
-mean_target_70 <- repeat_global %>% 
-  group_by(number_of_species) %>% 
-  summarise(mean_targets = mean(number_of_targets),
-            low=quantile(number_of_targets, probs=0.025),
-            high=quantile(number_of_targets, probs=0.975)) %>% 
-  filter(number_of_species < 11)
+  filter(number_of_species < 11) %>% 
+  mutate(threshold = "25")
 
-mean_target_100 <- repeat_global %>% 
+mean_target_50 <- samples %>% 
+  map_df(rep_acc_function, .id = "run") %>% 
+  group_by(number_of_species) %>%  
   group_by(number_of_species) %>% 
   summarise(mean_targets = mean(number_of_targets),
             low=quantile(number_of_targets, probs=0.025),
             high=quantile(number_of_targets, probs=0.975)) %>% 
-  filter(number_of_species < 11)
+  filter(number_of_species < 11) %>% 
+  mutate(threshold = "50")
+mean_target_75 <- samples %>% 
+  map_df(rep_acc_function, .id = "run") %>% 
+  group_by(number_of_species) %>%  
+  group_by(number_of_species) %>% 
+  summarise(mean_targets = mean(number_of_targets),
+            low=quantile(number_of_targets, probs=0.025),
+            high=quantile(number_of_targets, probs=0.975)) %>% 
+  filter(number_of_species < 11) %>% 
+  mutate(threshold = "75")
+
+mean_target_100 <- samples %>% 
+  map_df(rep_acc_function, .id = "run") %>% 
+  group_by(number_of_species) %>%  
+  group_by(number_of_species) %>% 
+  summarise(mean_targets = mean(number_of_targets),
+            low=quantile(number_of_targets, probs=0.025),
+            high=quantile(number_of_targets, probs=0.975)) %>% 
+  filter(number_of_species < 11) %>% 
+  mutate(threshold = "100")
 
 
 write_csv(mean_target, "data-processed/global_40_species_resampled_accumulation_mean_toxins_50percent.csv")
@@ -341,16 +362,16 @@ mean_target_20 <- read_csv("data-processed/global_40_species_resampled_accumulat
 
 mean_target_10 <- mean_target_10 %>% 
   mutate(threshold = 10)
-mean_target_20 <- mean_target_20 %>% 
+mean_target_20 <- mean_target_25 %>% 
   mutate(threshold = 20)
 mean_target_50 <- mean_target_50 %>% 
   mutate(threshold = 50)
-mean_target_70 <- mean_target_70 %>% 
+mean_target_70 <- mean_target_75 %>% 
   mutate(threshold = 70)
 mean_target_100 <- mean_target_100 %>% 
   mutate(threshold = 100)
 
-all_targets <- bind_rows(mean_target_10, mean_target_20, mean_target_50, mean_target_70, mean_target_100)
+all_targets <- bind_rows(mean_target_10, mean_target_25, mean_target_50, mean_target_75, mean_target_100)
 
 mean_target %>% 
   ggplot(aes(x = number_of_species, y = mean_targets)) + geom_line() +
@@ -381,6 +402,8 @@ b_terms <- all_targets %>%
   filter(term == "b")
 
 b_terms %>% 
+  ungroup() %>% 
+  mutate(threshold = as.numeric(threshold)) %>% 
   ggplot(aes(x = threshold, y = estimate, color = factor(threshold))) + geom_point() +
   geom_errorbar(aes(x = threshold, ymin = conf.low, ymax = conf.high, color = factor(threshold)), width = 0.1) +
   ylab("b estimate (biodiversity effect)") +
@@ -407,11 +430,14 @@ ggplot() +
   # geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_20, color = "green") +
   # geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_10, color = "orange") +
   geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_100, color = "black") +
+  geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_50, color = "blue") +
   geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high), alpha = 0.5, data = mean_target_100) +
+  geom_ribbon(aes(x = number_of_species, ymin = low, ymax = high), alpha = 0.5, data = mean_target_50, fill = "blue") +
   xlab("Species richness") +
   ylab("Number of tolerable limits \nexceeded per 100g portion") +
   scale_x_continuous(breaks = seq(1,10,1))+
-  scale_y_continuous(breaks = seq(1,12,1), limits = c(1, 4.5)) 
-ggsave("figures/tol-limits-bef.png", width = 6, height = 4)
+  scale_y_continuous(breaks = seq(1,12,1))
+ggsave("figures/tol-limits-bef-50-100-thres.png", width = 6, height = 4)
+ggsave("figures/tol-limits-bef-50-100-thres.pdf", width = 6, height = 4)
   
   # geom_line(aes(x = number_of_species, y = mean_targets), data = mean_target_50, color = "pink") 
