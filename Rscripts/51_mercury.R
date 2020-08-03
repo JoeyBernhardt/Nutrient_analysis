@@ -28,8 +28,8 @@ karimi <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Dat
 karimi2 <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Database.data_JB.xls", sheet = "Seafood Hg Database") %>% 
   clean_names() %>% 
   rename(ug_hg = mean_hg_concentration_ppm_wet_weight) %>% 
-  mutate(ug_hg = ug_hg*100) %>% 
-  group_by(genus_species) %>% 
+  mutate(ug_hg = ug_hg*100) %>% View
+  group_by(genus_species, subgroup) %>% 
   summarise(mean_hg = mean(ug_hg))
 
 names(karimi)
@@ -54,17 +54,17 @@ str(tox)
 names_tox <- names(tox)
 
 tox_sum <- tox %>% 
-  group_by(species) %>% 
+  group_by(species, subgroup) %>% 
   summarise_at(c(names_tox[6:20]), mean) %>% 
-  select(species, mercury) %>% 
+  dplyr::select(species, mercury, subgroup) %>% 
   rename(mean_ug = mercury)
 
 times_hundred <- function(x, na.rm = FALSE) (x*100)
 hall_mercury <- tox %>% 
-  group_by(species) %>% 
+  group_by(species, subgroup) %>% 
   summarise_at(c(names_tox[6:20]), mean) %>% 
   mutate_at(c(names_tox[6:20]), times_hundred) %>% 
-  dplyr::select(species, mercury) %>% 
+  dplyr::select(species, mercury, subgroup) %>% 
   rename(mean_ug = mercury) 
 
 hall_anti <- tox %>% 
@@ -87,6 +87,13 @@ hall_lead <- tox %>%
   mutate_at(c(names_tox[6:20]), times_hundred) %>% 
   dplyr::select(species, lead) %>% 
   rename(mean_ug = lead)
+
+hall_arsenic <- tox %>% 
+  group_by(species) %>% 
+  summarise_at(c(names_tox[6:20]), mean) %>% 
+  mutate_at(c(names_tox[6:20]), times_hundred) %>% 
+  dplyr::select(species, arsenic) %>% 
+  rename(mean_ug = arsenic)
 
 karimi_mean <- tox_sum ### just doing this to run the analyssis on lead
 
@@ -126,20 +133,48 @@ hall_mean2 <- hall_mercury %>%
 
 adams <- read_csv("data/tabula-Adams-2003.csv") %>% 
   clean_names() %>% 
-  dplyr::select(species, mean_hg_ppm) %>% 
+  dplyr::select(species, mean_hg_ppm, subgroup) %>% 
   rename(mean_ug = mean_hg_ppm) %>% 
   mutate(mean_hg = mean_ug*100) %>% 
   mutate(dataset = "adams")
 
 all_merc <- bind_rows(karimi_mean2, adams, hall_mean2, burger) %>% 
-  mutate(species = str_to_lower(species))
+  mutate(species = str_to_lower(species)) %>% 
+  mutate(mean_hg = ifelse(subgroup == "mollusc", mean_hg*0.30, mean_hg*0.95))
 
 write_csv(all_merc, "data-processed/mercury-data-compiled.csv")
+all_merc <- read_csv("data-processed/mercury-data-compiled.csv")
+
+length(unique(all_merc$species))
+#### how many species in CINE are in mercury?
+
+cine <- read_csv("data-processed/CINE-data-all.csv") %>% 
+  mutate(species = str_to_lower(latin_name_cleaned)) %>% 
+  dplyr::select(species) %>% 
+  distinct(.)
+length(unique(cine$species))
+
+hall_species <- all_merc %>% 
+  filter(dataset == "hall")
+
+overlap <- data.frame(species = intersect(all_merc$species, cine$species)) 
+
+
+
+cine2 <- read_csv("data-processed/cine-traits-new-species2.csv") %>% 
+  mutate(species = str_to_lower(latin_name)) %>% 
+  dplyr::select(species) %>% 
+  distinct(.)
+
+
+
+length(unique(cine2$latin_name))
+cine2 
 
 all_merc %>% 
   group_by(species) %>% 
   summarise(mean_hg = mean(mean_hg)) %>% 
-  ggplot(aes(x = mean_hg)) + geom_histogram()
+  ggplot(aes(x = mean_hg)) + geom_histogram(bins = 20) + scale_x_log10()
 
 dats <- data.frame(res = rlnorm(n = 1000, mean = 10, sd = 2))
 
@@ -151,7 +186,8 @@ dats %>%
 sample_size <- 10
 
 nutrient_fishing_function <- function(sample_size) {
-  ntbl_sub1 <- hall_cad %>% 
+  ntbl_sub1 <- hall_arsenic %>% 
+    ungroup() %>% 
     sample_n(size = 40, replace = FALSE) %>%
     sample_n(size = sample_size, replace = FALSE)
   
@@ -174,11 +210,14 @@ nutrient_fishing_function <- function(sample_size) {
     group_by(species_number, sample_id) %>% 
     mutate(hg_total = (mean_ug/species_number)) %>% ## get the amount of calcium each species will contribute
     summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
-    mutate(hg_grams = (hg_total/(1))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
+    mutate(hg_grams = (hg_total/(150))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
-    select(-contains("total")) %>% 
-    gather(key = nutrient, value = concentration, contains("grams"))
+    dplyr::select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(max_percentage = max(concentration) + 0.001) %>%
+    mutate(grams_required = 100/max_percentage)
   # %>% 
   #   group_by(species_no, sample_id) %>% 
   #   summarise(max_percentage = max(concentration)) %>%
@@ -186,13 +225,13 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 100)
 samples_rep[1]
 
 global_10 <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") 
 
-hall_anti_acc <- samples_rep %>% 
+hall_arsenic_acc <- samples_rep %>% 
   map_df(nutrient_fishing_function, .id = "run") %>% 
   mutate(dataset = "GL")
 
@@ -217,11 +256,19 @@ write_csv(global_10, "data-processed/global_10_40spp_mercury_efficiency.csv")
 # hall mercury ------------------------------------------------------------
 library(nlstools)
 
-hall_merc_med <- hall_merc_acc %>% 
-  group_by(dataset, species_no) %>% 
-  summarise(grams_median = median(concentration))
+# hall_merc_med <- hall_merc_acc %>%
+#   group_by(dataset, species_no) %>% 
+#   summarise(grams_median = median(concentration))
 
-merc_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_merc_med,  start = c(a=1, b=0.5))
+hall_merc_med %>% 
+  ggplot(aes(x = species_no, y = grams_median)) + geom_point()
+
+hall_merc_med <- hall_merc_acc %>% 
+  # filter(max_percentage > 0.001) %>% 
+  group_by(dataset, species_no) %>% 
+  summarise(grams_median = median(grams_required))
+library(nlstools)
+merc_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_merc_med,  start = c(a=100, b=-0.5))
 merc_boot <- nlsBoot(merc_mod)
 merc_boot$bootCI
 merc_boot_df <- as_data_frame(merc_boot$coefboot) 
@@ -238,34 +285,81 @@ merc_preds <- merc_boot_df %>%
             mean = mean(grams_required)) %>% 
   mutate(dataset = "GL")
 
+hall_merc_med %>% 
+  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
+  geom_line(aes(x = species_no, y = mean), data = merc_preds) + 
+  # geom_hline(yintercept = 7) + 
+  # ylim(0, 30) +
+  # geom_hline(yintercept =  karimi_sum$median[1]) + 
+  geom_line(aes(x = species_no, y = q2.5), data = merc_preds, color = "grey") +
+  geom_line(aes(x = species_no, y = q97.5), data = merc_preds, color = "grey") +
+  ylab("Maximum portion size \nbefore exceeding PDTI (g)") + xlab("Species richness") +
+  ggtitle("b = -0.24")
+ggsave("figures/max-portion-size-mercury.png", width = 6, height = 4)
+
+
 # hall lead ---------------------------------------------------------------
 
 library(nlstools)
 hall_lead_med <- hall_lead_acc %>% 
   group_by(dataset, species_no) %>% 
-  summarise(grams_median = median(concentration))
+  summarise(grams_median = median(grams_required))
 View(hall_lead_med)
 
-hall_lead_acc %>% 
-  ggplot(aes(x = species_no, y = concentration, group = species_no)) + geom_violin(alpha = 0.1) +
-  geom_hline(yintercept = 285)
+hall_lead_med %>% 
+  ggplot(aes(x = species_no, y = grams_median, group = species_no)) + geom_point()
 
-lead_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_lead_med,  start = c(a=50, b=0.5))
+lead_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_lead_med,  start = c(a=515, b=-0.5))
 lead_boot <- nlsBoot(lead_mod)
 lead_boot$bootCI
 lead_boot_df <- as_data_frame(lead_boot$coefboot) 
 lead_b <- as_data_frame(lead_boot$bootCI) 
 lead_b$culture <- "GL"
 
+lead_preds <- lead_boot_df %>% 
+  mutate(replicate = rownames(.)) %>% 
+  split(.$replicate) %>% 
+  map_df(prediction_function, .id = "replicate") %>% 
+  group_by(species_no) %>% 
+  summarise(q2.5=quantile(grams_required, probs=0.025),
+            q97.5=quantile(grams_required, probs=0.975),
+            mean = mean(grams_required)) %>% 
+  mutate(dataset = "GL") 
+
+hall_lead_med %>% 
+  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
+  geom_line(aes(x = species_no, y = mean), data = lead_preds) + 
+  # geom_hline(yintercept = 7) + 
+  # ylim(0, 30) +
+  # geom_hline(yintercept =  karimi_sum$median[1]) + 
+  geom_line(aes(x = species_no, y = q2.5), data = lead_preds, color = "grey") +
+  geom_line(aes(x = species_no, y = q97.5), data = lead_preds, color = "grey") +
+  ylab("Lead concentration (ug/100g)") + xlab("Species richness") +
+  ggtitle("b = -0.039")
+
+
+
+hall_lead_med %>% 
+  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
+  geom_point(aes(x = species_no, y = grams_median), data = hall_merc_med) +
+  geom_line(aes(x = species_no, y = mean), data = lead_preds) + 
+  # geom_hline(yintercept = 7) + 
+  # ylim(0, 30) +
+  # geom_hline(yintercept =  karimi_sum$median[1]) + 
+  geom_line(aes(x = species_no, y = q2.5), data = lead_preds, color = "grey") +
+  geom_line(aes(x = species_no, y = q97.5), data = lead_preds, color = "grey") +
+  ylab("Lead concentration (ug/100g)") + xlab("Species richness") + scale_y_log10()
+
+
 
 
 # antimony ----------------------------------------------------------------
 
-hall_anti_med <- hall_anti_acc %>% 
+hall_anti_med <- hall_arsenic_acc %>% 
   group_by(dataset, species_no) %>% 
-  summarise(grams_median = median(concentration))
+  summarise(grams_median = median(grams_required))
 
-anti_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_anti_med,  start = c(a=50, b=0.5))
+anti_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_anti_med,  start = c(a=150, b=-0.5))
 anti_boot <- nlsBoot(anti_mod)
 anti_boot$bootCI
 anti_boot_df <- as_data_frame(anti_boot$coefboot) 
@@ -298,9 +392,9 @@ hall_anti_med %>%
 
 hall_cad_med <- hall_cad_acc %>% 
   group_by(dataset, species_no) %>% 
-  summarise(grams_median = median(concentration))
+  summarise(grams_median = median(grams_required))
 
-cad_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_cad_med,  start = c(a=50, b=0.5))
+cad_mod <- nls(formula = (grams_median ~ a * species_no^b), data = hall_cad_med,  start = c(a=150, b=-0.5))
 cad_boot <- nlsBoot(cad_mod)
 cad_boot$bootCI
 cad_boot_df <- as_data_frame(cad_boot$coefboot) 
@@ -331,40 +425,25 @@ hall_cad_med %>%
 
 #### plot
 
-lead_preds <- lead_boot_df %>% 
-  mutate(replicate = rownames(.)) %>% 
-  split(.$replicate) %>% 
-  map_df(prediction_function, .id = "replicate") %>% 
-  group_by(species_no) %>% 
-  summarise(q2.5=quantile(grams_required, probs=0.025),
-            q97.5=quantile(grams_required, probs=0.975),
-            mean = mean(grams_required)) %>% 
-  mutate(dataset = "GL") 
+cad_b$metal <- "cadmium"
+lead_b$metal <- "lead"
+anti_b$metal <- "arsenic"
+merc_b$metal <- "methylmercury"
+all_pmaxes <- bind_rows(cad_b, lead_b, anti_b, merc_b) %>% 
+  filter(Median < 1) %>% 
+  clean_names()
+
+all_pmaxes %>% 
+  ggplot(aes(x = metal, y = median)) +
+  geom_pointrange(aes(x = metal, ymin = x2_5_percent, ymax = x97_5_percent), data = all_pmaxes) +
+  ylab("b slope")
+
 
 lead_preds %>% 
   ggplot(aes(x = species_no, y = mean)) + geom_line()
 
-lead_plot <- hall_lead_med %>% 
-  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
-  geom_line(aes(x = species_no, y = mean), data = lead_preds) + 
-  # geom_hline(yintercept = 7) + 
-  # ylim(0, 30) +
-  # geom_hline(yintercept =  karimi_sum$median[1]) + 
-  geom_line(aes(x = species_no, y = q2.5), data = lead_preds, color = "grey") +
-  geom_line(aes(x = species_no, y = q97.5), data = lead_preds, color = "grey") +
-  ylab("Lead concentration (ug/100g)") + xlab("Species richness") +
-  ggtitle("b = 0.041")
 
-merc_plot <- hall_merc_med %>% 
-  ggplot(aes(x = species_no, y = grams_median)) + geom_point() +
-  geom_line(aes(x = species_no, y = mean), data = merc_preds) + 
-  # geom_hline(yintercept = 7) + 
-  # ylim(0, 30) +
-  # geom_hline(yintercept =  karimi_sum$median[1]) + 
-  geom_line(aes(x = species_no, y = q2.5), data = merc_preds, color = "grey") +
-  geom_line(aes(x = species_no, y = q97.5), data = merc_preds, color = "grey") +
-  ylab("Mercury concentration (ug/100g)") + xlab("Species richness") +
-  ggtitle("b = 0.27")
+
 
 
 library(patchwork)

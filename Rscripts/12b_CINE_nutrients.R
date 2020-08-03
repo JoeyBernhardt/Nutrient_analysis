@@ -120,8 +120,9 @@ unique(CINE_long$part)
 write_csv(CINE_merge, "data-processed/CINE-body-parts-2020.csv")
 write_csv(CINE_merge, "data-processed/CINE-body-parts.csv")
 
+library(tidyverse)
 CINE_merge <- read_csv("data-processed/CINE-body-parts.csv")
-CINE_merge2 <- read_csv("data-processed/CINE-body-parts-2020.csv")
+CINE_merge <- read_csv("data-processed/CINE-body-parts-2020.csv")
 CINE_merge %>% 
   ggplot(aes(x = part, y = concentration)) + geom_boxplot() + 
   facet_wrap( ~ nutrient, scales = "free")+
@@ -173,14 +174,26 @@ cine_calcium %>%
   filter(latin_name == "Thunnus spp.") %>% View
  
 
-CINE_merge %>% 
+mod1 <- CINE_merge %>% 
+  filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
+  filter(part != "not specified") %>% 
+  filter(nutrient == "zn_mg", concentration < 1000) %>% 
+  # filter(part != "tongues + cheeks") %>% 
+  filter(part != "whole, no skin") %>% 
+  mutate(nutrient = str_replace(nutrient, "ca_mg", "calcium")) %>% 
+  lm(concentration ~ part, data = .) 
+anova(mod1)
+
+
+
+ca_plot <- CINE_merge %>% 
   filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg", "mn_mg")) %>% 
   filter(part != "not specified") %>% 
   filter(nutrient == "ca_mg", concentration < 1000) %>% 
   # filter(part != "tongues + cheeks") %>% 
   filter(part != "whole, no skin") %>% 
   mutate(nutrient = str_replace(nutrient, "ca_mg", "calcium")) %>% 
-  group_by(nutrient, part) %>% 
+  group_by(nutrient, part) %>%  
   summarise_each(funs(mean, std.error), concentration) %>% 
   ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
@@ -204,7 +217,7 @@ fe_plot <- CINE_merge %>%
   # filter(part != "tongues + cheeks") %>% 
   # filter(part != "whole, no skin") %>% 
   mutate(nutrient = str_replace(nutrient, "fe_mg", "iron")) %>% 
-  group_by(nutrient, part) %>% 
+  group_by(nutrient, part) %>% View
   summarise_each(funs(mean, std.error), concentration) %>%
   ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
   geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
@@ -243,6 +256,27 @@ zn_plot <- CINE_merge %>%
         axis.text.x = element_text(angle=45, hjust=1)) + xlab("") + ylab("mg/100g edible portion")
 
 
+unique(CINE_merge$nutrient)
+epa_plot <- CINE_merge2 %>% 
+  # filter(part != "not specified") %>% 
+  filter(nutrient == "dha") %>% View
+  group_by(nutrient, part) %>% 
+  summarise_each(funs(mean, std.error), concentration) %>%
+  ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
+  geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2) +
+  facet_wrap( ~ nutrient, scales = "free")+
+  geom_hline(yintercept = 1/10) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(text=element_text(family="Helvetica", size=12)) +
+  theme(strip.background = element_blank()) +
+  theme(legend.title=element_blank()) +
+  theme(strip.text.y = element_text(size = 12)) +
+  theme(text = element_text(size=24),
+        axis.text.x = element_text(angle=45, hjust=1)) + xlab("") + ylab("g/100g edible portion")
+
+
 
 
   microlement_body_part_plot <- grid.arrange(ca_plot, zn_plot, fe_plot, ncol = 3)
@@ -252,27 +286,38 @@ zn_plot <- CINE_merge %>%
   body_parts_plot <- plot_grid(ca_plot, fe_plot, zn_plot, labels = "AUTO", align = 'h', nrow = 1)  
   save_plot("figures/figureS1_body_parts.pdf", body_parts_plot, base_width = 14, base_height = 7)
  
-  ?save_plot 
-  
+
+  library(plotrix)
   CINE_merge %>% 
-    filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg")) %>% 
+    filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg")) %>%
+    filter(!reference %in% c(88, 10, 21, 7, 9, 15, 79)) %>% 
     group_by(nutrient, part) %>% 
-    summarise_each(funs(mean, std.error), concentration) %>%
+    summarise_each(funs(mean, std.error), concentration) %>% 
     group_by(nutrient) %>% 
     arrange(mean) %>% 
     ggplot(aes(x = reorder(part, mean), y = mean)) + geom_point(size = 5) +
     facet_wrap( ~ nutrient, scales = "free") +
     geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.2)
-  
+  CINE_merge %>% 
+    filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg")) %>% 
+    filter(part == "whole") %>% View
   
   
   ### now stats
   
   unique(CINE_merge$nutrient)
-  
+  library(broom)
   CINE_merge %>% 
+    filter(nutrient %in% c("ca_mg", "zn_mg", "fe_mg")) %>%
+    filter(!reference %in% c(88, 10, 21, 7, 9, 15, 79)) %>%
     group_by(nutrient) %>% 
     do(glance(lm(concentration ~ part, data = .), conf.int = TRUE)) %>% View
+  
+  CINE_merge %>% 
+    filter(nutrient %in% c("ca_mg")) %>%
+    filter(!reference %in% c(88, 10, 21, 7, 9, 15, 79)) %>%
+    group_by(nutrient) %>% 
+    do(glance(lm(concentration ~ part, data = .), conf.int = TRUE)) 
   
   
   ?xtable

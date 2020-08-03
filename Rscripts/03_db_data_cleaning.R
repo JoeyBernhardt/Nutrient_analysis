@@ -612,6 +612,10 @@ a25 %>%
 
 a25$seanuts_id2 <- row.names(a25)
 
+a25 %>% 
+  dplyr::select(seanuts_id2, food_item_id) %>% View
+
+
 a26 <- a25
 
 write_csv(a26, "data-processed/all_nuts_working26.csv")

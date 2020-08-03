@@ -1,0 +1,25 @@
+terms
+(Intercept)
+bulk_trophic_level
+log_length
+feeding_modefiltering plankton
+feeding_modegrazing on aquatic plants
+feeding_modehunting macrofauna (predator)
+feeding_modeselective plankton feeding
+feeding_modevariable
+DemersPelagbathypelagic
+DemersPelagbenthopelagic
+DemersPelagdemersal
+DemersPelagpelagic
+DemersPelagpelagic-neritic
+DemersPelagpelagic-oceanic
+DemersPelagreef-associated
+DepthRangeDeep
+AgeMatMin
+BodyShapeIelongated
+BodyShapeIfusiform / normal
+BodyShapeIshort and / or deep
+realmfresh
+realmfreshbrack
+realmfreshbrackmarine
+realmmarine

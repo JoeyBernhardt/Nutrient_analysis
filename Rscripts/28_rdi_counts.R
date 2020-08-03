@@ -178,13 +178,15 @@ trait_data3 <- trait_data2 %>%
   mutate(protein = protcnt_g) %>% 
   mutate(protein = ifelse(is.na(protein), protein_g, protein)) %>% 
   mutate(protein = ifelse(is.na(protein), prot_g, protein)) %>% 
-  select(species_name, seanuts_id2, protein, fat_g, dha, epa, ca_mg, zn_mg, fe_mg, subgroup) %>% 
+  select(species_name, seanuts_id2, protein, fat_g, dha, epa, ca_mg, zn_mg, fe_mg, subgroup, ref_info) %>% 
   rename(fat = fat_g,
          calcium = ca_mg, 
          zinc = zn_mg,
          iron = fe_mg) %>% 
   gather(key = nutrient, value = concentration, 3:9) %>% 
   filter(!is.na(concentration))
+
+#### 
 
 percentages <- trait_data3 %>% 
   mutate(dri_per = NA) %>% 
@@ -197,6 +199,8 @@ percentages <- trait_data3 %>%
   mutate(dri_per = ifelse(nutrient == "fat", concentration/70, dri_per)) %>% 
   mutate(dri_per = dri_per*100) %>% 
   filter(dri_per < 2000) 
+
+write_csv(percentages, "data-processed/percentages_refs.csv")
 
 outliers <- trait_data3 %>% 
   mutate(dri_per = NA) %>% 

@@ -39,10 +39,10 @@ sam <- mean_nuts_rep[[1]]
 names(all_traits)
 
 traits <- all_traits %>% 
-  select(species_name, log_length, bulk_trophic_level, feeding_level, DemersPelag, BodyShapeI,
+  dplyr::select(species_name, log_length, bulk_trophic_level, feeding_level, DemersPelag, BodyShapeI,
          feeding_mode, EnvTemp, DepthRangeDeep, AgeMatMin) %>% 
   mutate(Length = exp(log_length)) %>% 
-  select(-log_length) %>% 
+  dplyr::select(-log_length) %>% 
   distinct(species_name, Length, bulk_trophic_level, feeding_level, DemersPelag, BodyShapeI,
                   feeding_mode, EnvTemp, DepthRangeDeep, AgeMatMin) %>% 
   group_by(species_name, bulk_trophic_level, feeding_level, DemersPelag, BodyShapeI,
@@ -327,7 +327,7 @@ cine_traits <- read_csv("data-processed/cine-traits.csv") %>%
   rename(feeding_mode = FeedingType) %>%
   distinct(latin_name, latin_name, Length, bulk_trophic_level, feeding_mode, feeding_level, AgeMatMin, EnvTemp, BodyShapeI, DemersPelag, DepthRangeDeep, nutrient) 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv") %>% 
-  select(latin_name, epa, dha) %>% 
+  dplyr::select(latin_name, epa, dha) %>% 
   filter(!is.na(epa)) %>% 
   group_by(latin_name) %>% 
   summarise_each(funs(mean), epa, dha) 
@@ -337,7 +337,7 @@ cine_nuts <- cine_traits %>%
   # rename(feeding_level = Herbivory2) %>%
   # rename(feeding_mode = FeedingType) %>%
   ungroup() %>% 
-  select(latin_name, nutrient, concentration) %>% 
+  dplyr::select(latin_name, nutrient, concentration) %>% 
   group_by(latin_name, nutrient) %>% 
   summarise(concentration = mean(concentration)) %>% 
   spread(key = nutrient, value = concentration)
@@ -446,6 +446,7 @@ results %>%
   xlab("Ecological functional diversity (dispersion)")
 ggsave("figures/nd-fdisp-4traits.pdf", width = 8, height = 6)
 
+results <- read_csv("data-processed/fdis-nd-4traits.csv")
 results2 <- results %>% 
   mutate(targets = as.factor(targets))
 lm(targets ~ fdis, data = results) %>% summary()
@@ -475,9 +476,11 @@ newdat <- cbind(newdat, predict(m, newdat, type = "probs")) %>%
 
 newdat %>% 
   ggplot(aes(x = fdis, y = probability, color = targets)) + geom_line(size = 1.5) +
-  xlab("Ecological functional diversity (dispersion)") + ylab("Probability") +
-  scale_color_viridis_d(option = "inferno", begin = 0.1, end = 0.8, name = "Nutritional diversity")
+  xlab("Ecological functional diversity") + ylab("Probability") +
+  scale_color_viridis_d(option = "inferno", begin = 0.1, end = 0.8, name = "NT") +
+  theme(legend.position = c(0.07, 0.95), legend.direction = "horizontal")
 ggsave("figures/fdis-nd.png", width = 6, height = 4)
+ggsave("figures/fdis-nd.png", width = 3.5, height = 3)
 summary(polrMod)
 confint(polrMod)
 
@@ -540,11 +543,11 @@ nuts_traits <- read_csv("data-processed/all-traits-nuts.csv") %>%
   rename(feeding_level = Herbivory2) %>% 
   rename(bulk_trophic_level = FoodTroph) %>% 
   rename(feeding_mode = FeedingType) %>% 
-  select(species1, Length, EnvTemp, DemersPelag, feeding_level) %>% 
+  dplyr::select(species1, Length, feeding_mode, DemersPelag, bulk_trophic_level) %>% 
   # filter(complete.cases(.)) %>% 
   group_by(species1, DemersPelag,
-           feeding_level, EnvTemp) %>%
-  summarise_each(funs(mean), Length) %>% 
+           feeding_mode) %>%
+  summarise_each(funs(mean), Length, bulk_trophic_level) %>% 
   ungroup() %>% 
   filter(complete.cases(.))
 
@@ -562,21 +565,31 @@ nuts_nuts <- read_csv("data-processed/all-traits-nuts.csv") %>%
 all_nuts_traits <- full_join(nuts_traits, nuts_nuts) %>% 
   filter(complete.cases(.)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>% 
-  mutate(EnvTemp = as.factor(EnvTemp)) %>% 
-  mutate(feeding_level = as.factor(feeding_level))
+  # mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+  mutate(feeding_mode = as.factor(feeding_mode))
 
+all_nuts_traits <- read_csv("data-processed/all-seanuts-may-24-2020-2.csv") %>% 
+  rename(species1 = Species) %>% 
+  rename(feeding_level = Herbivory2) %>% 
+  rename(feeding_mode = FeedingType) %>% 
+  rename(length = Length) %>% 
+  rename(bulk_trophic_level = FoodTroph) %>% 
+  mutate(log_length = log(length)) %>% 
+  mutate(log_concentration = log(concentration)) 
 
+library(FD)
 fdis <- function(df){
-  cn1 <- data.matrix(df[, c("DemersPelag", "Length", "EnvTemp", "feeding_level")])
+  # cn1 <- data.matrix(df[, c("DemersPelag", "Length", "EnvTemp", "feeding_level")])
+  cn1 <- data.matrix(df[, c("DemersPelag", "Length", "bulk_trophic_level", "feeding_mode")])
   rownames(cn1) <- df$species1
   results <- data.frame(fdis = dbFD(cn1)$FDis[[1]][[1]])
 }
 
 i <- 1
 results3 <- data.frame()
-for (j in 1:1) {
-  ntbl_sub1 <- all_nuts_traits %>% 
-    sample_n(size = 20, replace = FALSE)
+for (j in 1:10) {
+  ntbl_sub1 <- nuts_nuts %>% 
+    sample_n(size = 10, replace = FALSE)
   
   sample_list <- NULL
   for (i in 1:nrow(ntbl_sub1) ) {
@@ -600,7 +613,7 @@ for (j in 1:1) {
     mutate(zinc_total = (zn_mg/species_number)) %>% 
     mutate(iron_total = (fe_mg/species_number)) %>% 
     mutate(epa_total = (epa/species_number)) %>% 
-    mutate(dha_total = (dha/species_number)) %>%
+    mutate(dha_total = (dha/species_number)) %>% 
     summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
     mutate(cal_grams = (cal_total/(1200/10))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
     mutate(iron_grams = (iron_total/(18/10))) %>%
@@ -609,12 +622,15 @@ for (j in 1:1) {
     mutate(dha_grams = (dha_total/(1/10))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(unique_sample, species_no, sample_id) %>% 
-    select(-contains("total")) %>% 
+    dplyr::select(-contains("total")) %>% 
     gather(key = nutrient, value = concentration, contains("grams")) %>% 
     group_by(unique_sample, species_no, sample_id) %>% 
     summarise(min_percentage = min(concentration)) %>%
     mutate(grams_required = 100/min_percentage) %>% 
     mutate(run = j)
+  
+  resampling_15 %>% 
+    filter(species_no == 2) %>% View
   
   sample3 <- new_data_sub1 %>% 
     filter(subsample_size > 2) %>% 
@@ -633,20 +649,31 @@ for (j in 1:1) {
 write_csv(results2, "data-processed/fdis-ne-species-3-10.csv")
 
 species310 <- read_csv("data-processed/fdis-ne-species-3-10.csv")
+
 species310 %>% 
   ungroup() %>% 
   filter(!is.na(fdis)) %>% 
   group_by(species_no, run) %>%
-  summarise_each(funs(mean), grams_required, fdis) %>% 
+  summarise_each(funs(mean), grams_required, fdis) %>%
   # filter(species_no == 10) %>% 
-  ggplot(aes(x = fdis, y = grams_required)) + geom_point() + geom_smooth(color = "black", method = "lm") +
+  ggplot(aes(x = fdis, y = grams_required)) + geom_point(alpha = 0.5) +
+  geom_smooth(color = "black", method = "lm") +
   # scale_color_viridis_d(name = "Species richness") +
-  ylab("Grams required to reach 5 micronutrient targets (bites per benefit)") +
-  xlab("Ecological functional diversity (dispersion)") + 
-    geom_abline(slope = -1993.7127, intercept = 3672.2944)
-  ggsave("figures/fdis-ne-310-black.pdf", width = 8, height = 6)
+  ylab("Minimum portion size, Pmin") +
+  xlab("Ecological functional diversity") +
+  labs(y=expression(paste("Minimun portion size, ", italic(P[min]))))
+  ggsave("figures/fdis-ne-310-black.pdf", width = 6, height = 4)
   ggsave("figures/fdis-ne-310-black-with-sma-slope.png", width = 8, height = 6)
 
+  
+  
+  species310 %>% 
+    ungroup() %>% 
+    filter(!is.na(fdis)) %>% 
+    group_by(species_no, run) %>%
+    summarise_each(funs(mean), grams_required, fdis) %>% 
+    lm(grams_required ~ fdis, data = .) %>% summary
+  
 species3102 <- species310 %>% 
   filter(!is.na(fdis))
 

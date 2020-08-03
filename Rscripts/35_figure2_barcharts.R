@@ -64,13 +64,77 @@ figure2a <- rdi_prop %>%
   
   
 percentages <- read_csv("data-processed/percentages.csv") 
+percentages_raw <- read_csv("data-processed/percentages_refs.csv") ### same file but with refs (aug1 2020)
+percentages <- percentages_raw %>% 
+  select(-seanuts_id2, -ref_info) %>% 
+  distinct()
+
+refs <- percentages %>% 
+  select(seanuts_id2, ref_info) %>% 
+  mutate(ref_number = as.numeric(as.factor(ref_info))) 
+
+
+refs_nuts <- percentages_raw %>% 
+  select(seanuts_id2, ref_info, nutrient, concentration, dri_per, species_name, subgroup) %>% 
+  mutate(ref_number = as.numeric(as.factor(ref_info))) 
+
+refs_unique <- refs %>% 
+  distinct(ref_number, ref_info) 
+
+library(readxl)
+write_excel_csv(refs_unique, "data-processed/barchart-references2.csv")
+
+
+refs_google_scholar <- read_excel("data-processed/barchart-references2.xls") %>% 
+  mutate(unique_paper = paste(Title, Publication, sep = "_")) %>% 
+  # select(-ref_info) %>% 
+  mutate(ref_number = as.numeric(ref_number))
+
+
+
+length(unique(refs_google_scholar$unique_paper))
+duplicates <- refs_google_scholar %>% 
+  group_by(unique_paper) %>% 
+  tally() %>% 
+  filter(n > 1)
+
+refs_nuts_schol <- left_join(refs_nuts, refs_google_scholar) %>% 
+  mutate(concentration1 = concentration) %>% 
+  group_by(unique_paper, subgroup, species_name, nutrient, concentration1) %>% 
+  summarise_each(funs(mean), concentration, dri_per) 
+
+
+refs2 <- refs_google_scholar %>% 
+  # select(-ref_number) %>% 
+  distinct(unique_paper, .keep_all = TRUE) %>% 
+  filter(!is.na(Title))
+
+nuts_single <- refs_nuts_schol %>% 
+  left_join(., refs2, by= "unique_paper")
+
+write.csv(nuts_single, "data-processed/nuts_refs_single.csv") ### ok this is the barchart data with no duplicates
+
+length(unique(refs_google_scholar$unique_paper))
+
+length(unique(percentages$species_name))
+
 View(percentages)
+length(unique(percentages$species_name))
 percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
 pp <- percentages %>% 
   filter(species_name == "Chamelea gallina")
 
 length(unique(percentages$species_name))
+
+
+perc_mean <- percentages %>% 
+  group_by(species_name, subgroup, nutrient) %>% 
+  summarise_each(funs(mean), concentration, dri_per)
+
+max(percentages$seanuts_id2)
+
+
 
 
   figure2b <- ggplot(percentages, aes(dri_per, fill = subgroup)) + geom_histogram(binwidth = 0.07) +

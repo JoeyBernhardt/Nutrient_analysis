@@ -277,7 +277,7 @@ write_csv(seanuts_select_8, "data-processed/seanuts_select_8.csv")
 
 # Jan 14 2017, bring in new trait data from online searching --------------
 
-seanuts_ecology <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data-processed/seanuts_select_8.csv")
+seanuts_ecology <- read_csv("data-processed/seanuts_select_8.csv")
 
 ## ok let's just get rid of the one super outlier ca and fe measurement for now
 

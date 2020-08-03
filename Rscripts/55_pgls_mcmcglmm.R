@@ -42,7 +42,7 @@ cine_traits_new <- read_csv("data-processed/cine-traits-new-species3.csv") %>%
   mutate(reference = as.character(reference)) %>% 
   mutate(species1 = ifelse(is.na(species1), latin_name, species1)) %>% 
   mutate(source = "cine")
-
+View(cine_traits_new)
 
 seanuts_traits2 <- read_csv("data-processed/all-traits-nuts2.csv") %>% 
   # filter(!is.na(seanuts_id2)) %>% 
@@ -67,7 +67,7 @@ seanuts_traits3 <- left_join(seanuts_traits2, parts) %>%
   rename(feeding_level = Herbivory2) %>%
   rename(feeding_mode = FeedingType) %>% 
   mutate(log_length = log(Length)) %>% 
-  mutate(log_concentration = log(concentration))
+  mutate(log_concentration = log(concentration)) %>% View
 
 traits <- bind_rows(cine_traits_new, seanuts_traits3) %>% 
   dplyr::select(seanuts_id2, species1, nutrient, concentration, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,

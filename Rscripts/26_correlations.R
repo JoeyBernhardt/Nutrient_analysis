@@ -128,9 +128,11 @@ all_nuts <- bind_rows(mean_nuts, newtrad)
 
 seadiv <- read_csv("data-processed/mean_seadiv.csv") %>%
   # filter(!is.na(protein)) %>% 
-  select(-species_name) %>% 
-  select(-subgroup) %>% 
+  dplyr::select(-species_name) %>% 
+  dplyr::select(-subgroup) %>% 
   filter(complete.cases(.)) %>% 
+  rename(EPA = epa) %>% 
+  rename(DHA = dha) %>% 
   mutate_all(., .funs = log)
 
 tscale <- seadiv
@@ -149,9 +151,12 @@ m2 %>%
   filter(value != 1) %>% 
   summarise(mean_corr = mean(value))
 
+
 library(GGally)
-ggcorr(tscale, method = c("everything", "pearson"), label = TRUE) 
-ggsave("figures/nutrients_correlation_sum.png", width = 8, height = 6)
+plot1 <- ggcorr(tscale, method = c("everything", "pearson"), label = TRUE) +
+  ggtitle("A")
+ggsave("figures/nutrients_correlation_sum.png", width = 6, height = 4)
+ggsave("figures/nutrients_correlation_sum.pdf", width = 6, height = 4)
 
 ggpairs(seadiv) 
 ggsave("figures/nutrient-corr-plots-sum.png", width = 15, height = 15)
@@ -174,18 +179,20 @@ summary(pca_size2)
 pcas <- as.data.frame(scores(pca_size2, choices = 1:2)$sites)
 pcas1 <- as.data.frame(scores(pca_size2, choices = 1:2)$species) %>% 
   mutate(trait = rownames(.))
-pcas %>% 
+plot2 <- pcas %>% 
   ggplot(aes(x = PC1, y = PC2)) + geom_point(size = 3, alpha = 0.5) +
   geom_point(size = 3, color = "black", shape = 1) +
   geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
   geom_text(data = pcas1, aes(x = PC1, y = PC2, label = trait), col = 'cadetblue') +
   geom_segment(aes(x = 0, y = 0, xend = PC1, yend = PC2, text =  trait), data = pcas1, color = "cadetblue",
                arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
-  xlab("PC1 (37.83% of variance)") + ylab("PC2 (26.91% of variance)")
+  xlab("PC1 (37.83% of variance)") + ylab("PC2 (26.91% of variance)") +
+  ggtitle("B")
 ggsave("figures/nutrients-pca.png", width = 8, height = 6)
 
 
-
+cors <- plot1 + plot2 
+ggsave(plot = cors, "figures/nut-corrs.pdf", width = 9, height = 4)
 
 #### try an RDA
 

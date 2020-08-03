@@ -33,7 +33,7 @@ write_csv(mean_nuts, "data-processed/mean_nuts.csv") #### updating this May 29 2
 max(mean_nuts$epa)
 
 
-
+mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 scaled <- mean_nuts %>% 
   mutate(calcium = calcium/1300,
          zinc = zinc/169,
@@ -92,13 +92,13 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(rdi_micro_tot = rowSums(.[13:17])) %>%  ## add up all the targets reached in one sample
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
-    select(-contains("total")) %>% 
+    dplyr::select(-contains("total")) %>% 
     mutate(threshold_level = threshold)
   }
 
 
 
-samples_rep <- rep(12, 100)
+samples_rep <- rep(10, 1000)
 
 threshold <- 1
 output_100 <- samples_rep %>% 
@@ -124,12 +124,25 @@ all_sum <- all %>%
 all_sum %>% 
   ggplot(aes(x = species_no, y = mean, color = groups)) + geom_line() +
   # geom_line(aes(x = species_no, y = max, color = groups), data = all_sum) +
-  geom_ribbon(aes(ymin = mean - (std.error*1.96), ymax = mean + (std.error* 1.96), fill = groups), alpha = 0.5) +
+  # geom_ribbon(aes(ymin = mean - (std.error*1.96), ymax = mean + (std.error* 1.96), fill = groups), alpha = 0.5) +
   # ylim(1, 5) + 
   xlim(0, 10) +
   theme_bw()
-  
-  
+all_sum <- output_10 %>% 
+  group_by(species_no, run) %>% 
+  summarise_each(funs(mean, median, std.error, max), rdi_micro_tot) 
+all_sum %>% 
+  ungroup() %>% 
+  ggplot(aes(x = species_no, y = median)) + geom_line() +
+  geom_smooth() +
+  # geom_ribbon(aes(ymin = mean - (std.error*1.96), ymax = mean + (std.error* 1.96)), alpha = 0.5) +
+  # ylim(1, 5) + 
+  xlim(0, 10) +
+  theme_bw()
+
+  all_sum %>% 
+    lm(log(median) ~ log(species_no), data = .) %>% summary()
+  (tidy(nls(formula = (median ~ a * species_no^b),data = all_sum,  start = c(a=1, b=0.3)))) 
 
 
 threshold <- 0.25

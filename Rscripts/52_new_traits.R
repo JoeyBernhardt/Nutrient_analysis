@@ -297,22 +297,14 @@ unique(cine_traits_new1$nutrient)
 cine_traits_new2 %>% View
 cine_traits_new %>% View
 
-cine2 <- cine_traits_new %>% 
+cine2 <- cine_traits_new2 %>% 
   filter(part != "not specified") %>% 
   filter(part != "unknown") %>% 
   filter(!is.na(concentration)) %>% 
-  # filter(part != "muscle") %>% 
-  # rename(bulk_trophic_level = FoodTroph) %>%
-  # rename(feeding_level = Herbivory2) %>%
-  # rename(feeding_mode = FeedingType) %>% 
-  # mutate(Length = ifelse(is.na(Length), exp(log_length), Length)) %>% 
   filter(nutrient == "ca_mg") %>% 
   mutate(log_concentration = log(concentration)) %>% 
   mutate(log_length = log(Length)) %>%
   ungroup() %>% 
-  # filter(complete.cases(.)) %>% 
-  # filter(part %in% c("muscle", "muscle + skin", "muscle + small bones", "whole")) %>% 
-  # filter(log_concentration > 0) %>% 
   group_by(latin_name, feeding_mode, feeding_level, BodyShapeI, DemersPelag, part, EnvTemp) %>% 
   summarise_each(funs(mean), AgeMatMin, log_concentration, log_length, Length, bulk_trophic_level, log_length, DepthRangeDeep) %>% 
   ungroup() %>% 
@@ -321,13 +313,9 @@ cine2 <- cine_traits_new %>%
 
 # Compare models ----------------------------------------------------------
 
-cine2 %>% 
-  filter(part == "muscle + skin") %>% View
 
-unique(cine2$part)
-
-mod1 <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode +
-                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
+mod1 <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
+                 DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + part, data = cine2, na.action=na.exclude)
 mod2 <- lm(log_concentration ~ log_length  + feeding_mode + feeding_level + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
 mod3 <- lm(log_concentration ~ log_length  + feeding_level + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
 mod4 <- lm(log_concentration ~ log_length  + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = cine2, na.action=na.exclude)
@@ -338,6 +326,7 @@ mod8 <- lm(log_concentration ~ log_length + EnvTemp + part, data = cine2, na.act
 mod9 <- lm(log_concentration ~ log_length + part, data = cine2, na.action=na.exclude)
 
 model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9) %>% View
+stargazer(mod1, title = "", type = "html",single.row=TRUE,  out="tables/cine-fe-models-expanded-all-tissues6.htm", ci=TRUE, ci.level=0.95, digits = 2)
 
 summary(mod1)
 library(MuMIn)
@@ -372,9 +361,11 @@ plot9 <- visreg(mod1, "feeding_level", gg = TRUE, size = 4) +
   ylab("log(calcium) mg/100g ") + xlab("Feeding level") +
   theme(axis.text.x = element_text(angle = 90))
 
+library(patchwork)
 plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot7 + plot8 +
   plot_annotation(tag_levels = 'A') + plot_layout(ncol = 4)
 ggsave("figures/calcium-partial-regressions-muscle.pdf", plot = plot_all, width = 14, height = 10)
+ggsave("figures/calcium-partial-regressions.png", plot = plot_all, width = 14, height = 10)
 
 
 anova(mod1)
@@ -385,7 +376,6 @@ fits_zn <- data.frame(zn_mod$fit)
 str(zn_mod)
 
 library(stargazer)
-stargazer(mod1, title = "", type = "html", out="tables/cine-cal-models-expanded-all-tissues3.htm")
 
 
 cine2 %>% 
@@ -414,7 +404,7 @@ calcium <- cine_traits_new %>%
 
 
 epa <- epa_dha %>% 
-  filter(nutrient == "dha")
+  filter(nutrient == "fat_g")
 
 full_mod <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + feeding_level +
                  DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + EnvTemp + part, data = epa, na.action=na.exclude)
@@ -428,7 +418,7 @@ visreg(full_mod)
 
 
 library(stargazer)
-stargazer(full_mod, title = "", type = "html", out="tables/cine-fat-models-expanded-new.htm")
+stargazer(full_mod, title = "", type = "html", out="tables/cine-epa-models-expanded-new2.htm",ci=TRUE, ci.level=0.95, digits = 2, single.row = TRUE)
 library(report)
 full_mod %>% 
   report() %>% 

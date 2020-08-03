@@ -1,0 +1,25 @@
+terms,new_term
+(Intercept),Intercept
+bulk_trophic_level,Trophic position
+log_length,Length
+feeding_modefiltering plankton,Feeding: Filtering plankton
+feeding_modegrazing on aquatic plants,Feeding: Grazer
+feeding_modehunting macrofauna (predator),Feeding: Hunting predator
+feeding_modeselective plankton feeding,Feeding: Selective plankton feeding
+feeding_modevariable,Feeding: Variable
+DemersPelagbathypelagic,Diet source: Bathypelagic
+DemersPelagbenthopelagic,Diet source: Benthopelagic
+DemersPelagdemersal,Diet source: Demersal
+DemersPelagpelagic,Diet source: Pelagic
+DemersPelagpelagic-neritic,Diet source: Neritic
+DemersPelagpelagic-oceanic,Diet source: Oceanic
+DemersPelagreef-associated,Diet source: Reef-associated
+DepthRangeDeep,Depth
+AgeMatMin,Age at maturity
+BodyShapeIelongated,Body shape: Elongated
+BodyShapeIfusiform / normal,Body shape: Fusiform
+BodyShapeIshort and / or deep,Body shape: Short or deep
+realmfresh,Realm: Freshwater
+realmfreshbrack,Realm: Freshwater/brackish
+realmfreshbrackmarine,Realm: Freshwater/brackish/marine
+realmmarine,Realm: Marine
