@@ -1,15 +1,43 @@
 
 library(plotrix)
 library(tidyverse)
+library(cowplot)
 ### RDI accumulation for the global and local scales, with replacement design
+trad_nuts_mean_raw2 <- read_csv("data-processed/trad-foods-mean-aug2020c.csv") ### ok this one only has fully traceable cine data
+trad_nuts_mean_raw2 <- read_csv("data-processed/trad-foods-mean-aug2020d.csv")
+trad_nuts_mean_raw1 <- read_csv("data-processed/trad-foods-mean-aug2020.csv")
 trad_nuts_mean_raw <- read_csv("data-processed/trad-foods-mean.csv")
 species_numbers <- read_csv("data-processed/species_numbers.csv")
-mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 
+trad_nuts_mean <- read_csv("data-processed/tdata.csv") ### update with new extracted trad foods aug 8 2020
+
+mean_nuts <- read_csv("data-processed/mean_nuts.csv") %>% 
+  mutate(species_name = ifelse(species_name == "Tenualosa ilisha (juvenile)", "Tenualosa ilisha", species_name)) %>% 
+  mutate(species_name = ifelse(species_name == "Pangasianodon hypophthalmus (juvenile)", "Pangasianodon hypophthalmus", species_name)) %>% 
+  group_by(species_name, subgroup) %>% 
+  summarise_each(funs(mean), calcium, iron, zinc, epa, dha) %>% 
+  ungroup()
+  
+View(mean_nuts)
 mean_nuts$culture <- "global"
 
-trad_nuts_mean <- trad_nuts_mean_raw %>% 
-  filter(culture %in% species_numbers$culture)
+
+View(trad_nuts_mean_raw2)
+
+trad_nuts_mean <- trad_nuts_mean_raw2 %>% 
+  filter(grepl(" ", latin_name)) %>% 
+  filter(culture %in% species_numbers$culture) %>% 
+  dplyr::select(-common_name) 
+
+
+View(trad_nuts_mean)
+trad_nuts_mean %>% 
+  mutate(latin_name = str_replace(latin_name, "Octopoda", "Enteroctopus dofleini")) %>% 
+  filter(!grepl(" ", latin_name)) %>% 
+  dplyr::select(-culture) %>% 
+  distinct() %>% View
+
+unique(trad_nuts_mean$latin_name)
 
 nutrient_fishing_function <- function(sample_size) {
   ntbl_sub1 <- mean_nuts %>% 
@@ -54,7 +82,7 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(rdi_micro_tot = rowSums(.[13:17])) %>%  ## add up all the targets reached in one sample
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
-    select(-contains("total")) %>% 
+    dplyr::select(-contains("total")) %>% 
     mutate(threshold_level = threshold)
 }
 
@@ -116,7 +144,7 @@ nutrient_fishing_function <- function(sample_size, culture_name) {
     mutate(rdi_micro_tot = rowSums(.[13:17])) %>%  ## add up all the targets reached in one sample
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
-    select(-contains("total")) %>% 
+    dplyr::select(-contains("total")) %>% 
     mutate(threshold_level = threshold)
 }
 
@@ -251,9 +279,13 @@ unique(all_trad_accum$dataset)
 all_trad_accum <- all_trad_accum %>% 
   group_by(dataset, species_no) %>% 
   summarise(rdi_micro_tot_mean = mean(rdi_micro_tot_mean))
+
+all_trad_accum <- all_trad_accum %>% ### update aug 3 2020
+  group_by(dataset, species_no) %>% 
+  summarise(rdi_micro_tot_mean = mean(mean))
   
 
-
+library(nlstools)
 
 GL_mod <- nls(formula = (rdi_micro_tot_mean ~ a * species_no^b), data = filter(all_trad_accum, dataset == "GL"),  start = c(a=2, b=0.5))
 GL_boot <- nlsBoot(GL_mod)
@@ -380,6 +412,17 @@ CS_b$culture <- "CS"
         upper = x97_5percent) %>% 
 filter(median < 1)
 
+all_b_params <- bind_rows(CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, GL_b, KW_b, TS_b, TL_b, WA_b, YU_b, AB_b, MI_b) %>% 
+  clean_names() %>% 
+  rename(lower = x2_5_percent,
+         upper = x97_5_percent) %>% 
+  filter(median < 1)
+
+# View(all_b_params)
+
+ggplot(aes(x = reorder(culture, median), y = median), data = all_b_params) + geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +ylab("b estimate") + xlab("Region")
+
 # all_b_params_mean <- bind_rows(CS_b, CR_b, II_b, HA_b, MN_b, NO_b, BC_b, GL_b, KW_b, TS_b, TL_b, WA_b, YU_b, AB_b, MI_b) %>% 
 #   clean_names() %>% 
 #   rename(lower = x2_5percent,
@@ -387,7 +430,8 @@ filter(median < 1)
 #   filter(median < 1)
 
 write_csv(all_b_params, "data-processed/replacement_design_accumulation_b_params.csv")
-
+write_csv(all_b_params, "data-processed/replacement_design_accumulation_b_params_aug5.csv")
+write_csv(all_b_params, "data-processed/replacement_design_accumulation_b_params_aug8.csv")
 
 accum_b_params <- read_csv("data-processed/replacement_design_accumulation_b_params.csv")
 ### this is the plot for the appendix
@@ -578,6 +622,9 @@ all_accumulation_lims <- bind_rows(WA_preds, YU_preds, TL_preds, TS_preds, CS_pr
                             KW_preds, MN_preds, NO_preds, AB_preds, II_preds, MI_preds)
 
 write_csv(all_accumulation_lims, "data-processed/all_accumulation_lims.csv")
+write_csv(all_accumulation_lims, "data-processed/all_accumulation_lims-aug3.csv")
+write_csv(all_accumulation_lims, "data-processed/all_accumulation_lims-aug5.csv")
+write_csv(all_accumulation_lims, "data-processed/all_accumulation_lims-aug8.csv")
 all_accumulation_lims <- read_csv("data-processed/all_accumulation_lims.csv")
 all_trad_accum_sum %>% 
   ggplot(aes(x = species_no, y = rdi_micro_tot_mean)) + geom_line(size = 1) +

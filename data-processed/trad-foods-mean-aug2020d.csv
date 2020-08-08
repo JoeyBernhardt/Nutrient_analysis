@@ -1,0 +1,873 @@
+culture,latin_name,subgroup,common_name,calcium,zinc,iron,epa,dha
+Abenaki,Anguilla rostrata,Fish,American Eel,36.333333333333336,1.3075,0.5249999999999999,0.7000000000000001,1.1
+Abenaki,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Abenaki,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Abenaki,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Abenaki,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Abenaki,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Abenaki,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Abenaki,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Abenaki,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Abenaki,Nephropidae,Marine Invertebrates,Lobsters,34,2.54,0.935,0.161,0.10200000000000001
+Abenaki,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Abenaki,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Abenaki,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Abenaki,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Abenaki,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Abenaki,Ostreidae,Marine Invertebrates,Oysters,84.66666666666667,53.6,2731.4666666666667,0.22349999999999998,0.183
+Abenaki,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Abenaki,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Abenaki,Scomber scombrus,Fish,Atlantic Mackerel,9.666666666666666,0.3695,0.9533333333333334,1.1,2.385
+Abenaki,Thunnus spp.,Fish,Bluefin Tuna,9,0.08,1.5,0.4,1.2
+Ahtna,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Ahtna,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Ahtna,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Ahtna,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Ahtna,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Ahtna,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Ahtna,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Ahtna,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Ahtna,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Aleut,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Aleut,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Aleut,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Aleut,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Aleut,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Aleut,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Aleut,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Aleut,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Aleut,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Aleut,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Aleut,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Aleut,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Aleut,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Bella Coola,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Bella Coola,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Bella Coola,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Bella Coola,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Bella Coola,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Bella Coola,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Bella Coola,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Bella Coola,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Bella Coola,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Bella Coola,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Bella Coola,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Bella Coola,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Bella Coola,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Bella Coola,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Bella Coola,Octopoda,Marine Invertebrates,Octopus,22.75,1.675,1.5175,0.1,0.1
+Bella Coola,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Bella Coola,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Bella Coola,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Bella Coola,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Bella Coola,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Bella Coola,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Bella Coola,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Bella Coola,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Bella Coola,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Bella Coola,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Bella Coola,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Bella Coola,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Bella Coola,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Beothuk,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Beothuk,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Beothuk,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Beothuk,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Beothuk,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Beothuk,Nephropidae,Marine Invertebrates,Lobsters,34,2.54,0.935,0.161,0.10200000000000001
+Beothuk,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Beothuk,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Beothuk,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Beothuk,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Beothuk,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Beothuk,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Beothuk,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Carrier,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Carrier,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Carrier,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Carrier,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Carrier,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Carrier,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Carrier,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Carrier,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Carrier,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Carrier,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Carrier,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Carrier,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Carrier,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Carrier,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Central Salish,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Central Salish,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Central Salish,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Central Salish,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Central Salish,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Central Salish,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Central Salish,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Central Salish,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Central Salish,Cyprinus carpio,Fish,Common Carp,68,4.7,1.475,0.2,0.1
+Central Salish,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Central Salish,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Central Salish,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Central Salish,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Central Salish,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Central Salish,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Central Salish,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Central Salish,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Central Salish,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Central Salish,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Central Salish,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Central Salish,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Central Salish,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Central Salish,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Central Salish,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Central Salish,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Central Salish,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Central Salish,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Central Salish,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Central Salish,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Central Salish,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Central Salish,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Central Salish,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Chilcotin,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Chilcotin,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Chilcotin,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Chilcotin,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Chilcotin,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Chilcotin,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Chilcotin,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Chilcotin,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Chilcotin,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Chilcotin,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Chilcotin,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Chilcotin,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Chilcotin,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Chilcotin,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Chilcotin,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Chinook,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Chinook,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Chinook,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Chinook,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Chinook,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Chinook,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Chinook,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Chinook,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Chinook,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Chinook,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Chipewyan,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Chipewyan,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Chipewyan,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Chipewyan,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Chipewyan,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Chipewyan,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Chipewyan,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Chipewyan,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Chipewyan,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Chipewyan,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Chipewyan,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Chipewyan,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Chipewyan,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Coosan,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Coosan,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Coosan,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Coosan,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Coosan,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Coosan,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Coosan,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Cree,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Cree,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Cree,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Cree,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Cree,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Cree,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Cree,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Cree,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Cree,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Cree,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Cree,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Cree,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Cree,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Cree,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Cree,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Cree,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Cree,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Cree,Ostreidae,Marine Invertebrates,Oysters,84.66666666666667,53.6,2731.4666666666667,0.22349999999999998,0.183
+Cree,Perca flavescens,Fish,Yellow Perch,59.77,0.873,0.3845,0.1,0.2
+Cree,Percidae,Fish,Perch and Darters,110,642.76,0.6,0.054,0.245
+Cree,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Cree,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Cree,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Cree,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Cree,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Dogrib,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Dogrib,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Dogrib,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Dogrib,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Dogrib,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Dogrib,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Dogrib,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Dogrib,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Dogrib,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Dogrib,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Dogrib,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Dogrib,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Dogrib,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Dogrib,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Dogrib,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Dogrib,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Dogrib,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Eyak,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Eyak,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Eyak,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Eyak,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Eyak,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Eyak,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Eyak,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Eyak,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Eyak,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Eyak,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Eyak,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Eyak,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Eyak,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Eyak,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Eyak,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Gwich'in,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Gwich'in,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Gwich'in,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Gwich'in,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Gwich'in,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Gwich'in,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Gwich'in,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Gwich'in,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Gwich'in,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Gwich'in,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Gwich'in,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Gwich'in,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Gwich'in,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Gwich'in,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Gwich'in,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Gwich'in,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Gwich'in,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Gwich'in,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Gwich'in,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Gwich'in,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Haida,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Haida,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Haida,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Haida,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Haida,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Haida,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Haida,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Haida,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Haida,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Haida,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Haida,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Haida,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Haida,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Haida,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Haida,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Haida,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Haida,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Haida,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Haida,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Haida,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Haida,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Haida,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Haida,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Haida,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Haida,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Haida,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Haisla,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Haisla,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Haisla,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Haisla,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Haisla,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Haisla,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Haisla,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Haisla,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Haisla,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Haisla,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Han,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Han,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Han,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Han,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Han,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Han,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Han,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Han,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Han,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Han,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Han,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Han,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Han,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Han,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Han,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Heiltsuk,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Heiltsuk,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Heiltsuk,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Heiltsuk,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Heiltsuk,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Heiltsuk,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Heiltsuk,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Heiltsuk,Octopoda,Marine Invertebrates,Octopus,22.75,1.675,1.5175,0.1,0.1
+Heiltsuk,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Heiltsuk,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Heiltsuk,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Heiltsuk,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Heiltsuk,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Heiltsuk,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Heiltsuk,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Heiltsuk,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Huron,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Huron,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Huron,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Huron,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Huron,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Huron,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Huron,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Huron,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Huron,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Huron,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Huron,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Ingalik,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Ingalik,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Ingalik,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Ingalik,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Ingalik,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Ingalik,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Ingalik,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Ingalik,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Ingalik,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Ingalik,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Ingalik,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Ingalik,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Ingalik,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Ingalik,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Ingalik,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Interior Salish,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Interior Salish,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Interior Salish,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Interior Salish,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Interior Salish,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Interior Salish,Cyprinus carpio,Fish,Common Carp,68,4.7,1.475,0.2,0.1
+Interior Salish,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Interior Salish,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Interior Salish,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Interior Salish,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Interior Salish,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Interior Salish,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Interior Salish,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Interior Salish,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Interior Salish,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Interior Salish,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Interior Salish,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Inuit-Inupiaq,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Inuit-Inupiaq,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Inuit-Inupiaq,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Inuit-Inupiaq,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Inuit-Inupiaq,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Inuit-Inupiaq,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Inuit-Inupiaq,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Inuit-Inupiaq,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Inuit-Inupiaq,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Inuit-Inupiaq,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Inuit-Inupiaq,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Inuit-Inupiaq,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Inuit-Inupiaq,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Inuit-Inupiaq,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Inuit-Inupiaq,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Inuit-Inupiaq,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Inuit-Inupiaq,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Inuit-Inupiaq,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Inuit-Inupiaq,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Inuit-Inupiaq,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Inuit-Inupiaq,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Inuit-Inupiaq,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Inuit-Inupiaq,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Inuit-Inupiaq,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Inuit-Inupiaq,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Inuit-Inupiaq,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Inuit-Inupiaq,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Inuit-Inupiaq,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Inuit-Inupiaq,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Inuit-Inupiaq,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Inuit-Inupiaq,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Inuit-Inupiaq,Scomber scombrus,Fish,Atlantic Mackerel,9.666666666666666,0.3695,0.9533333333333334,1.1,2.385
+Inuit-Inupiaq,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Inuit-Inupiaq,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Inuit-Inupiaq,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Inuit-Inupiaq,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Inuit-Inupiaq,Thunnus spp.,Fish,Bluefin Tuna,9,0.08,1.5,0.4,1.2
+Inuit-Inupiaq,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Kolchan,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Kolchan,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Kolchan,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Kolchan,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Kolchan,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Kolchan,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Kolchan,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Kolchan,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Kolchan,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Kolchan,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Koyukon,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Koyukon,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Koyukon,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Koyukon,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Koyukon,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Koyukon,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Koyukon,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Koyukon,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Koyukon,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Koyukon,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Koyukon,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Koyukon,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Koyukon,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Koyukon,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Kwakiutl,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Kwakiutl,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Kwakiutl,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Kwakiutl,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Kwakiutl,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Kwakiutl,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Kwakiutl,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Kwakiutl,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Kwakiutl,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Kwakiutl,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Kwakiutl,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Kwakiutl,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Kwakiutl,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Kwakiutl,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Kwakiutl,Octopoda,Marine Invertebrates,Octopus,22.75,1.675,1.5175,0.1,0.1
+Kwakiutl,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Kwakiutl,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Kwakiutl,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Kwakiutl,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Kwakiutl,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Kwakiutl,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Kwakiutl,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Kwakiutl,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Kwakiutl,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Kwakiutl,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Kwakiutl,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Kwakiutl,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Kwakiutl,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Maliseet-Passamaquoddy,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Maliseet-Passamaquoddy,Nephropidae,Marine Invertebrates,Lobsters,34,2.54,0.935,0.161,0.10200000000000001
+Maliseet-Passamaquoddy,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Maliseet-Passamaquoddy,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Maliseet-Passamaquoddy,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Maliseet-Passamaquoddy,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Maliseet-Passamaquoddy,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Maliseet-Passamaquoddy,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Maliseet-Passamaquoddy,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Maliseet-Passamaquoddy,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Maliseet-Passamaquoddy,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Metis,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Metis,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Metis,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Metis,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Metis,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Metis,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Metis,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Metis,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Metis,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Metis,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Metis,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Metis,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Micmac,Anguilla rostrata,Fish,American Eel,36.333333333333336,1.3075,0.5249999999999999,0.7000000000000001,1.1
+Micmac,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Micmac,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Micmac,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Micmac,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Micmac,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Micmac,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Micmac,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Micmac,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Micmac,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Micmac,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Micmac,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Micmac,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Micmac,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Micmac,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Micmac,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Micmac,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Micmac,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Micmac,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Micmac,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Micmac,Nephropidae,Marine Invertebrates,Lobsters,34,2.54,0.935,0.161,0.10200000000000001
+Micmac,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Micmac,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Micmac,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Micmac,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Micmac,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Micmac,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Micmac,Ostreidae,Marine Invertebrates,Oysters,84.66666666666667,53.6,2731.4666666666667,0.22349999999999998,0.183
+Micmac,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Micmac,Perca flavescens,Fish,Yellow Perch,59.77,0.873,0.3845,0.1,0.2
+Micmac,Percidae,Fish,Perch and Darters,110,642.76,0.6,0.054,0.245
+Micmac,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Micmac,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Micmac,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Micmac,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Micmac,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Micmac,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Micmac,Scomber scombrus,Fish,Atlantic Mackerel,9.666666666666666,0.3695,0.9533333333333334,1.1,2.385
+Micmac,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Micmac,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Micmac,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Micmac,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Micmac,Thunnus spp.,Fish,Bluefin Tuna,9,0.08,1.5,0.4,1.2
+Montagnais-Naskapi,Anguilla rostrata,Fish,American Eel,36.333333333333336,1.3075,0.5249999999999999,0.7000000000000001,1.1
+Montagnais-Naskapi,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Montagnais-Naskapi,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Montagnais-Naskapi,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Montagnais-Naskapi,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Montagnais-Naskapi,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Montagnais-Naskapi,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Montagnais-Naskapi,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Montagnais-Naskapi,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Montagnais-Naskapi,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Montagnais-Naskapi,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Montagnais-Naskapi,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Montagnais-Naskapi,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Montagnais-Naskapi,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Montagnais-Naskapi,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Montagnais-Naskapi,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Montagnais-Naskapi,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Montagnais-Naskapi,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Montagnais-Naskapi,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Montagnais-Naskapi,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Montagnais-Naskapi,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Montagnais-Naskapi,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Nass-Gitksan,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Nass-Gitksan,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Nass-Gitksan,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Nass-Gitksan,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Nass-Gitksan,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Nass-Gitksan,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Nass-Gitksan,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Nass-Gitksan,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Nass-Gitksan,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Nass-Gitksan,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Nass-Gitksan,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Nass-Gitksan,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Nass-Gitksan,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Nass-Gitksan,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Nass-Gitksan,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Nass-Gitksan,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Nass-Gitksan,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Nass-Gitksan,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Nootkan,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Nootkan,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Nootkan,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Nootkan,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Nootkan,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Nootkan,Cyprinus carpio,Fish,Common Carp,68,4.7,1.475,0.2,0.1
+Nootkan,Engraulidae,Fish,Anchovies,1150,0.88,1.53,0.5,0.9
+Nootkan,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Nootkan,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Nootkan,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Nootkan,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Nootkan,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Nootkan,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Nootkan,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Nootkan,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Nootkan,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Nootkan,Octopoda,Marine Invertebrates,Octopus,22.75,1.675,1.5175,0.1,0.1
+Nootkan,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Nootkan,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Nootkan,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Nootkan,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Nootkan,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Nootkan,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Nootkan,Ostreidae,Marine Invertebrates,Oysters,84.66666666666667,53.6,2731.4666666666667,0.22349999999999998,0.183
+Nootkan,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Nootkan,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Nootkan,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Nootkan,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Nootkan,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Nootkan,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Nootkan,Scomber scombrus,Fish,Atlantic Mackerel,9.666666666666666,0.3695,0.9533333333333334,1.1,2.385
+Nootkan,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Nootkan,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Nootkan,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Nootkan,Thunnus spp.,Fish,Bluefin Tuna,9,0.08,1.5,0.4,1.2
+Ojibwa-Algonquin,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Ojibwa-Algonquin,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Ojibwa-Algonquin,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Ojibwa-Algonquin,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Ojibwa-Algonquin,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Ojibwa-Algonquin,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Ojibwa-Algonquin,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Ojibwa-Algonquin,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Ojibwa-Algonquin,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Ojibwa-Algonquin,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Ojibwa-Algonquin,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Ojibwa-Algonquin,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Ojibwa-Algonquin,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Ojibwa-Algonquin,Perca flavescens,Fish,Yellow Perch,59.77,0.873,0.3845,0.1,0.2
+Ojibwa-Algonquin,Percidae,Fish,Perch and Darters,110,642.76,0.6,0.054,0.245
+Ojibwa-Algonquin,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Ojibwa-Algonquin,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Ojibwa-Algonquin,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Ojibwa-Algonquin,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Onondaga,Anguilla rostrata,Fish,American Eel,36.333333333333336,1.3075,0.5249999999999999,0.7000000000000001,1.1
+Onondaga,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Onondaga,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Onondaga,Cyprinus carpio,Fish,Common Carp,68,4.7,1.475,0.2,0.1
+Powhatan,Anguilla rostrata,Fish,American Eel,36.333333333333336,1.3075,0.5249999999999999,0.7000000000000001,1.1
+Powhatan,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Powhatan,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Powhatan,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Powhatan,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Powhatan,Cyprinus carpio,Fish,Common Carp,68,4.7,1.475,0.2,0.1
+Powhatan,Lepisosteidae,Fish,Gar,29,0.5,0.4,0.14,0.72
+Powhatan,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Powhatan,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Powhatan,Perca flavescens,Fish,Yellow Perch,59.77,0.873,0.3845,0.1,0.2
+Powhatan,Percidae,Fish,Perch and Darters,110,642.76,0.6,0.054,0.245
+Powhatan,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Powhatan,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Quileute,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Quileute,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Quileute,Octopoda,Marine Invertebrates,Octopus,22.75,1.675,1.5175,0.1,0.1
+Quileute,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Quileute,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Quileute,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Quileute,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Quileute,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Quileute,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Quileute,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Quileute,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Quileute,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Quileute,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Quileute,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Sekani,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Sekani,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Sekani,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Sekani,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Sekani,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Sekani,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Sekani,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Sekani,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Sekani,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Sekani,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Sekani,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Sekani,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Sekani,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Sekani,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Sekani,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Siuslaw,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Siuslaw,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Siuslaw,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Siuslaw,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Siuslaw,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Siuslaw,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Siuslaw,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Slavey-Hare,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Slavey-Hare,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Slavey-Hare,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Slavey-Hare,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Slavey-Hare,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Slavey-Hare,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Slavey-Hare,Cyprinus carpio,Fish,Common Carp,68,4.7,1.475,0.2,0.1
+Slavey-Hare,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Slavey-Hare,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Slavey-Hare,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Slavey-Hare,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Slavey-Hare,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Slavey-Hare,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Slavey-Hare,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Slavey-Hare,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Tahltan-Kaska-Tagish,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Tahltan-Kaska-Tagish,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Tahltan-Kaska-Tagish,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Tahltan-Kaska-Tagish,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Tahltan-Kaska-Tagish,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Tahltan-Kaska-Tagish,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Tahltan-Kaska-Tagish,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Tahltan-Kaska-Tagish,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Tahltan-Kaska-Tagish,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tahltan-Kaska-Tagish,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tahltan-Kaska-Tagish,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tahltan-Kaska-Tagish,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Tahltan-Kaska-Tagish,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tahltan-Kaska-Tagish,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tahltan-Kaska-Tagish,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tahltan-Kaska-Tagish,Salvelinus alpinus,Fish,Arctic Char,52.285714285714285,2.3633333333333333,1.29625,0.6266666666666667,0.49666666666666665
+Tahltan-Kaska-Tagish,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Tahltan-Kaska-Tagish,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Tahltan-Kaska-Tagish,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Tahltan-Kaska-Tagish,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Tanaina,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Tanaina,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tanaina,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tanaina,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tanaina,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Tanaina,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tanaina,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tanaina,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tanaina,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Tanaina,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Tanaina,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Tanana,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Tanana,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Tanana,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Tanana,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Tanana,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Tanana,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Tanana,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tanana,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tanana,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tanana,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tanana,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tanana,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tanana,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Tanana,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Tillamook,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tillamook,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tillamook,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tillamook,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Tillamook,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tillamook,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tillamook,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tillamook,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Tillamook,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Tlingit,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Tlingit,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Tlingit,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Tlingit,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Tlingit,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Tlingit,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Tlingit,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Tlingit,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Tlingit,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Tlingit,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Tlingit,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Tlingit,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Tlingit,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Tlingit,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Tlingit,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Tlingit,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Tlingit,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Tlingit,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Tlingit,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Tlingit,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Tlingit,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Tlingit,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tlingit,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tlingit,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tlingit,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Tlingit,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tlingit,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tlingit,Ostreidae,Marine Invertebrates,Oysters,84.66666666666667,53.6,2731.4666666666667,0.22349999999999998,0.183
+Tlingit,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Tlingit,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Tlingit,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Tlingit,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tlingit,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Tlingit,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Tlingit,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Tlingit,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Tlingit,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Tlingit,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Tsimshian,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Tsimshian,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Tsimshian,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Tsimshian,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Tsimshian,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Tsimshian,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Tsimshian,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Tsimshian,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Tsimshian,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Tsimshian,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Tsimshian,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Tsimshian,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Tsimshian,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Tsimshian,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Tsimshian,Octopoda,Marine Invertebrates,Octopus,22.75,1.675,1.5175,0.1,0.1
+Tsimshian,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tsimshian,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tsimshian,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tsimshian,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Tsimshian,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tsimshian,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tsimshian,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Tsimshian,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Tsimshian,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tsimshian,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Tsimshian,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Tsimshian,Sebastes norvegicus,Fish,Golden Redfish,82,0.683,0.7015,0.046,0.073
+Tsimshian,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Tsimshian,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Tutchone,Catostomus catostomus,Fish,Longnose Sucker,63.1,0.5,0.3,0.075,0.212
+Tutchone,Catostomus commersonii,Fish,White Sucker,44.8,0.525,0.75,0.1365,0.23399999999999999
+Tutchone,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Tutchone,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Tutchone,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Tutchone,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Tutchone,Lota lota,Fish,Burbot,46.25,1.29875,0.9666666666666667,0.46555555555555556,0.6044
+Tutchone,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Tutchone,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Tutchone,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Tutchone,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Tutchone,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Tutchone,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Tutchone,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Tutchone,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Tutchone,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Tutchone,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2
+Tutchone,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Wampanoag,Anguilla rostrata,Fish,American Eel,36.333333333333336,1.3075,0.5249999999999999,0.7000000000000001,1.1
+Wampanoag,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Wampanoag,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Wampanoag,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Wampanoag,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Wampanoag,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Wampanoag,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Wampanoag,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Wampanoag,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Wampanoag,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Wampanoag,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Wampanoag,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Wampanoag,Mya arenaria,Marine Invertebrates,Softshell Clam,53,1.7,40.5,0.2,0.2
+Wampanoag,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Wampanoag,Nephropidae,Marine Invertebrates,Lobsters,34,2.54,0.935,0.161,0.10200000000000001
+Wampanoag,Ostreidae,Marine Invertebrates,Oysters,84.66666666666667,53.6,2731.4666666666667,0.22349999999999998,0.183
+Wampanoag,Pectinidae,Marine Invertebrates,Scallops,27.6,1.22,0.6035,0.1,0.1
+Wampanoag,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Wampanoag,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Wampanoag,Scomber scombrus,Fish,Atlantic Mackerel,9.666666666666666,0.3695,0.9533333333333334,1.1,2.385
+Wampanoag,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Wampanoag,Squalus acanthias,Fish,Spiny Dogfish,11,0.6695,1.25,0.7,1.2
+Wampanoag,Thunnus spp.,Fish,Bluefin Tuna,9,0.08,1.5,0.4,1.2
+Wampanoag,Thymallus arcticus,Fish,Arctic Grayling,281.5,0.7,1,0.1,0.1
+Yupik,Boreogadus saida,Fish,Arctic Cod,20.2,0.5,0.6,0.165,0.329
+Yupik,Callinectes sapidus,Marine Invertebrates,Blue Crab,94.5,4025,2.32,0.2,0.2
+Yupik,Cancer magister,Marine Invertebrates,Dungeness Crab,52,3.23,0.365,0.2,0.1
+Yupik,Centropristes striata,Fish,Black Sea Bass,60.8,0.2415,1.1680000000000001,0.1,0.3
+Yupik,Clupea harengus,Fish,Atlantic Herring,35,0.7755,1.15,0.635,1.075
+Yupik,Coregonus artedi,Fish,Lake Herring,17.3,2.29,0.34,0.095,0.257
+Yupik,Coregonus autumnalis,Fish,Arctic Cisco,30,0.4,1,0.3,0.3
+Yupik,Coregonus clupeaformis,Fish,Lake Whitefish,26.166666666666668,1.5,0.82,0.21180000000000002,0.4502
+Yupik,Esox lucius,Fish,Northern Pike,61.38675,1.7401250000000001,0.4196666666666667,0.05525,0.14266666666666666
+Yupik,Gadiformes,Fish,Cod and Relatives,29,0.71,0.364,0.1,0.2
+Yupik,Gadus morhua,Fish,Atlantic Cod,12.75,1.27725,1.8625,1.3094,1.1242
+Yupik,Hippoglossus hippoglossus,Fish,Atlantic Halibut,15,0.5,0.5,0.281,0.41
+Yupik,Hippoglossus stenolepis,Fish,Pacific Halibut,22,0.08,0.09,0.1,0.3
+Yupik,Melanogrammus aeglefinus,Fish,Haddock,22.5,0.544,0.6395,0.086,0.1865
+Yupik,Micropogonias undulatus,Fish,Atlantic Croaker,66.5,0.371,0.976,0.1,0.1
+Yupik,Mugil cephalus,Fish,Flathead Gray Mullet,123,0.398,1.7,0.4,0.4
+Yupik,Mytilus edulis,Marine Invertebrates,Blue Mussel,56.5,2.4875,9.3625,0.16125,0.17925
+Yupik,Oncorhynchus gorbuscha,Fish,Pink Salmon,13,0.55,0.9333333333333333,0.4095,0.593
+Yupik,Oncorhynchus keta,Fish,Chum Salmon,11.25,0.92,0.5125,0.3165,0.497
+Yupik,Oncorhynchus kisutch,Fish,Coho Salmon,57,0.41,449.1666666666667,0.3135,0.4935
+Yupik,Oncorhynchus mykiss,Fish,Rainbow Trout,57.8,3.6625,849.1675,0.2788,0.896
+Yupik,Oncorhynchus nerka,Fish,Sockeye Salmon,78,0.72,0.8166666666666667,0.7797499999999999,1.39825
+Yupik,Oncorhynchus tshawytscha,Fish,Chinook Salmon,21.818181818181817,0.62,1.4033333333333333,0.676,0.5723333333333334
+Yupik,Pleuronectinae,Fish,Flounders and Soles,23.5,0.78,0.55,0.192,0.1165
+Yupik,Pomatomus saltatrix,Fish,Bluefish,65.6,0.763,2.826,0.4,0.8
+Yupik,Salmo salar,Fish,Atlantic Salmon,14.65,0.7033333333333334,0.7875,0.377,1.0844
+Yupik,Salvelinus fontinalis,Fish,Brook Trout,16.575,0.55775,0.4815,0.13733333333333334,0.24066666666666667
+Yupik,Salvelinus namaycush,Fish,Lake Trout,13.4,2.05,1.2325714285714287,0.224,0.5773333333333334
+Yupik,Sparidae,Fish,Porgies,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865
+Yupik,Stenodus leucichthys,Fish,Inconnu,10,0.3,0.4,0.2,0.2

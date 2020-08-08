@@ -105,11 +105,20 @@ cine_traits_new_may <- read_csv("data-processed/CINE-data-all.csv") %>%
   mutate(part = ifelse(part == "muscle, bone + inside", "muscle + bones", part)) %>% 
   mutate(part = str_replace(part, "muscle, cheeks", "muscle"))
 
+
+
+### update August 3 2020 to remove non-peer-reviewed CINE refs
+
+cine2 <- cine_traits_new_may %>% 
+  filter(!reference %in% cine_discard_refs)
+
+
 ### OK now bring in the latest seanuts database
 
 seanuts_parts <- read_csv("data-processed/seanuts_parts3.csv") %>% 
   dplyr::select(seanuts_id2, part) %>% 
   rename(part_corr = part)
+
 
 seanuts_traits2 <- read_csv("data-processed/all-traits-nuts2.csv") %>% 
   # filter(!is.na(seanuts_id2)) %>% 
@@ -138,8 +147,7 @@ traits2 <- all_nuts %>%
   mutate(cine_id = ifelse(!is.na(cine_id), paste0("cine_id", cine_id), cine_id)) %>% 
   mutate(seanuts_id2 = ifelse(is.na(seanuts_id2), cine_id, seanuts_id2)) 
 
-traits2 %>% 
-  filter(is.na(seanuts_id2)) %>% View
+
 
 
 write_csv(traits2, "data-processed/all-seanuts-may-24-2020.csv") ### this is the latest dataset with cleaned up parts

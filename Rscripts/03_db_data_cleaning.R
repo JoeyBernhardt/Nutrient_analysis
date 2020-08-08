@@ -620,6 +620,8 @@ a26 <- a25
 
 write_csv(a26, "data-processed/all_nuts_working26.csv")
 
+unique(a25$food_item_id)
+
 ### now make a subset file, where we just pull out the relevant columns and get rid of extra clutter
 
 a26 <- read_csv("data-processed/all_nuts_working26.csv")
@@ -629,7 +631,7 @@ cols26 <- names(a26)
 str_subset(cols26, "Reference")
 
 a27_subset <- a26 %>% 
-  select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean, prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
+  dplyr::select(seanuts_id2, food_item_id_2, database, biblioid, biblioid.x, biblioid.y, biblioid_y, nutrient_ref, species_name, subgroup, food_name_clean, prot_g, protcnt_g, protein_g, fat_g, epa, dha, ca_mg, zn_mg, fe_mg, tl,
          length_from_study, length_source, abs_lat, latitude,
          slmax, slmax_nov28, slmax_source, lwa, lwb,
          country_region, isscaap_cat, isscaap,

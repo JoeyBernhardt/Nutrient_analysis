@@ -1,0 +1,149 @@
+common_name,latin_name_cleaned,found_in_new_search,trad_food_id
+Lake Sturgeon,Acipenser fulvescens,n,1
+Atlantic Sturgeon,Acipenser oxyrinchus,n,2
+Sturgeon,Acipenser spp.,n,3
+Alewife,Alosa pseudoharengus,n,4
+American Shad,Alosa sapidissima,y,5
+Shad,Aloseinae,n,6
+Brown Bullhead,Ameiurus nebulosus,n,7
+Bowfin,Amia calva,n,8
+Wolf-eel and Relatives,Anarhichadidae,n,9
+American Eel,Anguilla rostrata,y,10
+Sablefish,Anoplopoma fimbria,y,11
+Freshwater Drum,Aplodinotus grunniens,y,12
+Arctic Cod,Boreogadus saida,n,13
+Crabs,Brachyura,n,14
+Menhaden,Brevoortia tyrannus,n,15
+Blue Crab,Callinectes sapidus,y,16
+Jonah Crab,Cancer borealis,n,17
+Atlantic Rock Crab,Cancer irroratus,n,18
+Dungeness Crab,Cancer magister,y,19
+Goldfish,Carassius auratus,n,20
+Cockles,Cardiidae,n,21
+Suckers,Catostominae,n,22
+Longnose Sucker,Catostomus catostomus,n,23
+White Sucker,Catostomus commersonii,y,24
+Black Sea Bass,Centropristis striata,n,25
+Nuttall Cockle,Clinocardium nuttallii,y,26
+Atlantic Herring,Clupea harengus,y,27
+Pacific Herring,Clupea pallasii pallasii,y,28
+Lake Herring,Coregonus artedi,y,29
+Arctic Cisco,Coregonus autumnalis,n,30
+Lake Whitefish,Coregonus clupeaformis,y,31
+Broad Whitefish,Coregonus nasus,n,32
+Sculpins,Cottidae,n,33
+Lake Chub,Couesius plumbeus,n,34
+Eastern Oyster,Crassostrea virginica,y,35
+Giant Pacific Chiton,Cryptochiton stelleri,n,36
+Lumpfish,Cyclopterus lumpus,y,37
+Common Carp,Cyprinus carpio,y,38
+Alaska Blackfish,Dallia pectoralis,n,39
+Saffron Cod,Eleginus gracilis,n,40
+Anchovies,Engraulidae,n,41
+Atlantic Jackknife Clam,Ensis directus,n,42
+Pacific Giant Octopus,Enteroctopus dofleini,n,43
+Northern Pike,Esox lucius,y,44
+Pike,Esox spp.,n,45
+Cod and Relatives,Gadidae,n,46
+Cod and Relatives,Gadiformes,n,47
+Alaska Pollock,Gadus chalcogrammus,n,48
+Pacific Cod,Gadus macrocephalus,y,49
+Atlantic Cod,Gadus morhua,y,50
+Sea Snails and relatives,Gastropoda,n,51
+Abalones,Haliotididae,n,52
+Greenlings,Hexagrammos spp.,n,53
+Halibut,Hippoglossinae,n,54
+Atlantic Halibut,Hippoglossus hippoglossus,y,55
+Pacific Halibut,Hippoglossus stenolepis,y,56
+American lobster,Homarus americanus,y,57
+Ratfish,Hydrolagus spp.,n,58
+Pond Smelt,Hypomesus olidus,n,59
+Surf Smelt,Hypomesus pretiosus,y,60
+Catfish,Ictaluridae,n,61
+Channel Catfish,Ictalurus punctatus,y,62
+Northern Shortfin Squid,Illex illecebrosus,n,63
+Black Katy Chiton,Katharina turnicata,n,64
+Rock Sole,Lepidopsetta bilineata,y,65
+Gar,Lepisosteidae,n,66
+Sunfish,Lepomis spp.,y,67
+Common Periwinkle,Littorina littorea,n,68
+Periwinkles,Littorinidae,n,69
+Burbot,Lota lota,y,70
+Capelin,Mallotus villosus,y,71
+Haddock,Melanogrammus aeglefinus,y,72
+Northern Quahog,Mercenaria mercenariaξ,n,73
+Silver Hake,Merluccius bilinearis,n,74
+Pacific Hake,Merluccius productus,y,75
+Hakes,Merluccius spp.,n,76
+Atlantic Tomcod,Microgadus tomcod,n,77
+Atlantic Croaker,Micropogonias undulatus,y,78
+Largemouth Bass,Micropterus salmoides,n,79
+Bass,Micropterus spp.,n,80
+Dover Sole,Microstomus pacificus,y,81
+White Perch,Morone americana,n,82
+Striped Bass,Morone saxatilis,y,83
+Flathead Gray Mullet,Mugil cephalus,y,84
+Softshell Clam,Mya arenaria,n,85
+Truncate Softshell Clam,Mya truncata,n,86
+Shorthorn Sculpin,Myoxocephalus scorpius,n,87
+Shorthorn and Fourhorn Sculpins,Myoxocephalus spp.,n,88
+Mussels,Mytilidae,n,89
+Blue Mussel,Mytilus edulis,y,90
+Mudsnails,Nassarius spp.,n,91
+Lobsters,Nephropidae,n,92
+Spottail Shiner,Notropis hudsonius,n,93
+Octopus,Octopoda,n,94
+Pink Salmon,Oncorhynchus gorbuscha,y,95
+Chum Salmon,Oncorhynchus keta,y,96
+Coho Salmon,Oncorhynchus kisutch,y,97
+Rainbow Trout,Oncorhynchus mykiss,y,98
+Steelhead Trout,Oncorhynchus mykiss,y,99
+Sockeye Salmon,Oncorhynchus nerka,y,100
+Chinook Salmon,Oncorhynchus tshawytscha,y,101
+Lingcod,Ophiodon elongatus,y,102
+Rainbow Smelt,Osmerus mordax,y,103
+Olympia Oyster,Ostrea lurida,y,104
+Oysters,Ostreidae,n,105
+Giant California Sea Cucumber,Parastichopus californicus,n,106
+English Sole,Parophrys vetulus,n,107
+Scallops,Pectinidae,n,108
+Yellow Perch,Perca flavescens,y,109
+Perch and Darters,Percidae,n,110
+Lampreys,Petromyzontinae,n,111
+Starry Flounder,Platichthys stellatus,y,112
+Flounders and Soles,Pleuronectinae,n,113
+Bluefish,Pomatomus saltatrix,y,114
+Pacific Littleneck Clam,Protothaca staminea,y,115
+Winter Flounder,Pseudopleuronectes americanus,n,116
+Pikeminnows,Ptychocheilus spp.,n,117
+Ninespine Stickleback,Pungitius pungitius,n,118
+Skates,Rajidae,n,119
+Rays,Rajidae,n,120
+Greenland Halibut,Reinhardtius hippoglossoides,y,121
+Atlantic Salmon,Salmo salar,y,122
+Brown Trout,Salmo trutta,y,123
+Arctic Char,Salvelinus alpinus,y,124
+Brook Trout,Salvelinus fontinalis,y,125
+Dolly Varden Trout,Salvelinus malma,y,126
+Lake Trout,Salvelinus namaycush,y,127
+Sardine,Sardinops spp.,n,128
+Washington Butterclam,Saxidomus gigantea,n,129
+Atlantic Mackerel,Scomber scombrus,y,130
+Mackerel,Scomber spp.,n,131
+Tuna and Mackerel,Scombridae,n,132
+Yellowtail Rockfish,Sebastes flavidus,y,133
+Golden Redfish,Sebastes norvegicus,n,134
+Canary Rockfish,Sebastes pinniger,y,135
+Yelloweye Rockfish,Sebastes ruberrimus,y,136
+Rockfish,Sebastes spp.,n,137
+Greenland Shark,Somniosus microcephalus,n,138
+Porgies,Sparidae,n,139
+Atlantic Surf Clam,Spisula solidissima,n,140
+Sharks,Squaliformes,n,141
+Spiny Dogfish,Squalus acanthias,y,142
+Inconnu,Stenodus leucichthys,n,143
+Sea Urchins,Strongylocentrotidae,n,144
+Eulachon,Thaleichthys pacificus,y,145
+Albacore,Thunnus alalunga,y,146
+Bluefin Tuna,Thunnus thynnus,y,147
+Arctic Grayling,Thymallus arcticus,y,148

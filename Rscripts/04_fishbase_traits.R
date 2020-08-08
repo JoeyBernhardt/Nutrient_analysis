@@ -111,6 +111,7 @@ seanuts_new5 <- bind_rows(seanuts_new3, seanuts_new4)
 write_csv(seanuts_new5, "data-processed/seanuts_new5.csv")
 
 seanuts_new5 <- read_csv("data-processed/seanuts_new5.csv")
+View(seanuts_new5)
 
 new_species <- unique(intersect(fishbase_species_list$species_name, seanuts_new5$species_name))
 

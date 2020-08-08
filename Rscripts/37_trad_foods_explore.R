@@ -13,9 +13,12 @@ library(broom)
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv")
 culture_foods <- read_excel("~/Documents/traditional-foods/culture-foods.xlsx")
 
-
+View(nuts_trad)
 
 # data prep section -------------------------------------------------------
+
+nuts_trad %>% 
+  distinct(reference) %>% View
 
 
 nuts_trad %>% 
@@ -37,8 +40,8 @@ nuts_trad %>%
   filter(part != "eggs") %>% 
   gather(key = "nutrient", value = "concentration", 9:19) %>% 
   filter(!is.na(concentration)) %>% 
-  filter(nutrient == "ca_mg") %>% 
-  mutate(latin_name = factor(latin_name)) %>% 
+  filter(nutrient == "epa") %>% 
+  mutate(latin_name = factor(latin_name)) %>% View
   ggplot(aes(x = reorder(latin_name, concentration), y = concentration)) + geom_point() +
   facet_wrap( ~ nutrient, scales = "free") + theme_classic() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
@@ -49,8 +52,99 @@ cnuts <- left_join(culture_foods, nuts_trad)
 write_csv(cnuts, "data-processed/cnuts-trad-foods-culture.csv")
 cnuts <- read_csv("data-processed/cnuts-trad-foods-culture.csv")
 
+View(cnuts)
+cnuts_species <- cnuts %>% 
+  distinct(common_name, latin_name)
+write_csv(cnuts_species, "data-processed/cnuts_species.csv")
 
-nuts_mean <- cnuts %>% 
+percentages <- read_csv("data-processed/percentages.csv")
+
+### 12, 13 and 63, 88 are from USDA
+# cine_keep_ref3 <- c(1, 2, 3, 4, 5, 6, 8, 11, 12, 13, 17, 19, 20, 24, 25, 27, 28, 34, 37, 38, 39, 40, 41, 43,
+#                     44, 49, 52,53, 54,
+#                     63, 65, 66, 88, 90, 91)
+
+cine_keep_ref_trad <- c(1, 2, 3, 4, 5, 6, 8, 11, 17, 19, 20, 24, 25, 27,23,
+                   28, 34, 37, 38, 39, 40, 41, 43, 44, 49, 50, 52,53, 54, 58,
+            65, 66, 90, 91)
+
+###ok now bring in the updated researched source list
+
+updated_ref <- read_csv("data-processed/CINE-nutrients-fish-references-annotated.csv")
+
+keep_refs <- updated_ref %>% 
+  filter(grepl("yes", peer_reviewed))
+
+# cine_discard_refs3 <- setdiff(cine_refs$reference, cine_keep_ref_trad)
+
+cnuts %>% 
+  filter(grepl(" ", latin_name)) %>% 
+  filter(reference == 9) %>% View
+
+cnuts2 <-  cnuts %>% 
+  # filter(grepl(" ", latin_name)) %>% 
+  filter(reference %in% keep_refs$ref_number) 
+cnuts_fill_in <- cnuts %>% 
+# filter(grepl(" ", latin_name)) %>% 
+filter(reference %in% keep_refs$ref_number) %>% 
+  group_by(common_name, latin_name) %>% 
+  summarise(calcium = mean(ca_mg, na.rm = TRUE),
+            zinc = mean(zn_mg, na.rm = TRUE), 
+            iron = mean(fe_mg, na.rm = TRUE),
+            epa = mean(epa, na.rm = TRUE),
+            dha = mean(dha, na.rm = TRUE)) 
+write_csv(cnuts_fill_in, "data-processed/cnuts_fill_in.csv")
+
+
+
+cnuts %>% 
+  filter(reference %in% c(12, 13, 63, 88)) %>% 
+  dplyr::select(common_name, latin_name, part) %>% 
+  distinct() %>% View
+
+unique(cnuts2$reference)
+c2 <- cnuts2 %>% 
+  dplyr::select(latin_name, ca_mg, zn_mg, fe_mg, epa, dha) %>% 
+  rename(calcium = ca_mg,
+         zinc = zn_mg,
+         iron = fe_mg,
+         species_name = latin_name) %>% 
+  gather(key = nutrient, value = concentration, 2:6)
+
+
+
+c3 <- c2 %>% 
+  left_join(., percentages, by = c("nutrient", "species_name")) %>% 
+  distinct() %>% 
+  gather(key = source, value = concentration_all, concentration.x, concentration.y) %>% 
+  group_by(species_name, nutrient) %>% 
+  summarise(mean_concentration = mean(concentration_all, na.rm = TRUE)) %>% 
+  filter(!is.na(mean_concentration)) %>% 
+  spread(key = nutrient, value = mean_concentration) %>% 
+  summarise(calcium = mean(calcium, na.rm = TRUE),
+            zinc = mean(zinc, na.rm = TRUE), 
+            iron = mean(iron, na.rm = TRUE),
+            epa = mean(epa, na.rm = TRUE),
+            dha = mean(dha, na.rm = TRUE)) %>% 
+  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) 
+
+c4 <- cnuts %>% 
+  dplyr::select(culture, latin_name, common_name) %>% 
+  rename(species_name = latin_name) %>% 
+  distinct()
+
+c5 <- left_join(c3, c4) %>% 
+  rename(latin_name = species_name)
+
+c5 %>% 
+  filter(!grepl(" ", latin_name)) %>% View
+
+write_csv(c5, "data-processed/trad-foods-mean-aug2020b.csv")
+write_csv(c5, "data-processed/trad-foods-mean-aug2020c.csv")
+
+unique(c5$latin_name)
+nuts_mean <- cnuts %>%  
+  # filter(!reference %in% cine_discard_refs3) %>%
   group_by(culture, latin_name, level_1) %>% 
   summarise(calcium = mean(ca_mg, na.rm = TRUE),
             zinc = mean(zn_mg, na.rm = TRUE), 
@@ -61,6 +155,21 @@ nuts_mean <- cnuts %>%
   rename(subgroup = level_1)
 
 write_csv(nuts_mean, "data-processed/trad-foods-mean.csv")
+write_csv(nuts_mean, "data-processed/trad-foods-mean-aug2020.csv")
+
+
+nuts_mean <- cnuts %>%  
+  filter(reference %in% keep_refs$ref_number) %>% 
+  group_by(culture, latin_name, level_1, common_name) %>% 
+  summarise(calcium = mean(ca_mg, na.rm = TRUE),
+            zinc = mean(zn_mg, na.rm = TRUE), 
+            iron = mean(fe_mg, na.rm = TRUE),
+            epa = mean(epa, na.rm = TRUE),
+            dha = mean(dha, na.rm = TRUE)) %>% 
+  filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) %>% 
+  rename(subgroup = level_1)
+
+write_csv(nuts_mean, "data-processed/trad-foods-mean-aug2020d.csv")
 
 ### how many species per culture?
 
@@ -73,7 +182,7 @@ mean_nuts_global <- read_csv("data-processed/mean_nuts.csv")
 
 trad_means <- trad_nuts_mean %>% 
   distinct(latin_name, .keep_all = TRUE) %>%
-  select(-culture) %>% 
+  dplyr::select(-culture) %>% 
   rename(species_name = latin_name)
 
 ## ok this will be the new global dataset!

@@ -1,0 +1,148 @@
+common_name,latin_name
+Halibut,Hippoglossinae
+Pacific Halibut,Hippoglossus stenolepis
+Greenland Halibut,Reinhardtius hippoglossoides
+Atlantic Halibut,Hippoglossus hippoglossus
+Flounders and Soles,Pleuronectinae
+Winter Flounder,Pseudopleuronectes americanus
+Starry Flounder,Platichthys stellatus
+Dover Sole,Microstomus pacificus
+English Sole,Parophrys vetulus
+Rock Sole,Lepidopsetta bilineata
+Pacific Herring,Clupea pallasii
+Shad,Aloseinae
+American Shad,Alosa sapidissima
+Atlantic Herring,Clupea harengus
+Menhaden,Brevoortia spp.
+Sardine,Sardinops spp.
+Lingcod,Ophiodon elongatus
+Greenlings,Hexagrammos spp.
+Chum Salmon,Oncorhynchus keta
+Coho Salmon,Oncorhynchus kisutch
+Pink Salmon,Oncorhynchus gorbuscha
+Sockeye Salmon,Oncorhynchus nerka
+Chinook Salmon,Oncorhynchus tshawytscha
+Atlantic Salmon,Salmo salar
+Sculpins,Cottidae
+Shorthorn and Fourhorn Sculpins,Myoxocephalus spp.
+Shorthorn Sculpin,Myoxocephalus scorpius
+Washington Butterclam,Saxidomus gigantea
+Pacific Littleneck Clam,Protothaca staminea
+Atlantic Jackknife Clam,Ensis directus
+Softshell Clam,Mya arenaria
+Northern Quahog,Mercenaria mercenaria 
+Truncate Softshell Clam,Mya truncata
+Atlantic Surf Clam,Spisula solidissima
+NA,NA
+Mussels,Mytilidae
+Blue Mussel,Mytilus edulis
+Periwinkles,Littorinidae
+Common Periwinkle,Littorina littorea
+Scallops,Pectinidae
+Sea Urchins,Strongylocentrotidae
+Arctic Char,Salvelinus alpinus
+Arctic Grayling,Thymallus arcticus
+Burbot,Lota lota
+Cod and Relatives,Gadiformes
+Cod and Relatives,Gadidae
+Atlantic Cod,Gadus morhua
+Pacific Cod,Gadus macrocephalus
+Atlantic Tomcod,Microgadus tomcod
+Arctic Cod,Boreogadus saida
+Saffron Cod,Eleginus gracilis
+Alaska Pollock,Theragra chalcogramma
+Hakes,Merluccius spp.
+Pacific Hake,Merluccius productus
+Silver Hake,Merluccius bilinearis
+Haddock,Melanogrammus aeglefinus
+Eulachon,Thaleichthys pacificus
+Capelin,Mallotus villosus
+Surf Smelt,Hypomesus pretiosus
+Sablefish,Anoplopoma fimbria
+Striped Bass,Morone saxatillis
+Black Sea Bass,Centropristes striata
+Bluefish,Pomatomus saltatrix
+Atlantic Croaker,Micropogonias undulatus
+Flathead Gray Mullet,Mugil cephalus
+Lumpfish,Cyclopterus lumpus
+Porgies,Sparidae
+White Perch,Morone americana
+Pike,Esox spp.
+Northern Pike,Esox lucius
+Rockfish,Sebastes spp.
+Yelloweye Rockfish,Sebastes ruberrimus
+Golden Redfish,Sebastes norvegicus
+Canary Rockfish,Sebastes pinniger
+Yellowtail Rockfish,Sebastes flavidus
+Rainbow Smelt,Osmerus mordax
+Sharks,Squaliformes
+Spiny Dogfish,Squalus acanthias
+Greenland Shark,Somniosus microcephalus
+Sturgeon,Acipenser spp.
+Lake Sturgeon,Acipenser fulvenscens
+Atlantic Sturgeon,Acipenser oxyrhyncus
+Suckers,Catostominae
+Longnose Sucker,Catostomus catostomus
+White Sucker,Catostomus commersonii
+Lake Trout,Salvelinus namaycush
+Rainbow Trout,Oncorhynchus mykiss
+Steelhead Trout,Oncorhynchus mykiss irideus
+Brook Trout,Salvelinus fontinalis
+Dolly Varden Trout,Salvelinus malma
+Brown Trout,Salmo trutta
+Tuna and Mackerel,Scombridae
+Bluefin Tuna,Thunnus spp.
+Albacore,Thunnus alalunga
+Mackerel,Scomber spp.
+Atlantic Mackerel,Scomber scombrus
+Inconnu,Stenodus leucichthys
+Lake Whitefish,Coregonus clupeaformis
+Lake Herring,Coregonus artedi
+Arctic Cisco,Coregonus autumnalis
+Broad Whitefish,Coregonus nasus
+Giant California Sea Cucumber,Parastichopus californicus
+Northern Shortfin Squid,Illex illecebrosus
+Alaska Blackfish,Dallia pectoralis
+Pond Smelt,Hypomesus olidus
+Black Katy Chiton,Katharina turnicata
+Giant Pacific Chiton,Cryptochiton stelleri
+Crabs,Brachyura
+Dungeness Crab,Cancer magister
+Blue Crab,Callinectes sapidus
+Atlantic Rock Crab,Cancer irroratus
+Jonah Crab,Cancer borealis
+Skates,Rajidae
+Rays,Rajidae
+Octopus,Octopoda
+Pacific Giant Octopus,Enteroctopus dofleini
+Abalones,Haliotididae
+Mudsnails,Nassarius spp.
+Ratfish,Hydrolagus spp.
+Common Carp,Cyprinus carpio
+Lake Chub,Couesius plumbeus
+Goldfish,Carassius auratus
+Spottail Shiner,Notropis hudsonius
+Pikeminnows,Ptychocheilus spp.
+Wolf-eel and Relatives,Anarhichadidae
+Lampreys,Petromyzontinae
+Cockles,Cardiidae
+Nuttall Cockle,Clinocardium nuttallii
+Bass,Micropterus spp.
+Largemouth Bass,Micropterus salmoides
+Oysters,Ostreidae
+Eastern Oyster,Crassostrea virginica
+Olympia Oyster,Ostrea lurida
+Anchovies,Engraulidae
+Perch and Darters,Percidae
+Yellow Perch,Perca flavescens
+American Eel,Anguilla rostrata
+Catfish,Ictaluridae
+Channel Catfish,Ictalurus punctatus
+Brown Bullhead,Ameiurus nebulosus
+Lobsters,Nephropidae
+American lobster,Homarus americanus
+Alewife,Alosa pseudoharengus
+Sunfish,Lepomis spp.
+Gar,Lepisosteidae
+Bowfin,Amia calva
+Ninespine Stickleback,Gasterosteidae

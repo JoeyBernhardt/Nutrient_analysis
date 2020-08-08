@@ -3,7 +3,7 @@
 all_traits <- read_csv("data-processed/all-traits-nuts.csv")
 refs <- read_csv("data-processed/trait_data_refs.csv")
 mod_all <- read_csv("data-processed/mod_all.csv")
-
+a25_food_names <- read_csv("data-processed/a25_food_names.csv")
 
 modall2 <- mod_all %>% 
   select(seanuts_id2, food_name_clean, species_name) %>% 
@@ -11,7 +11,7 @@ modall2 <- mod_all %>%
   filter(!is.na(food_name_clean))
 
 refs2 <- refs %>% 
-  select(seanuts_id2, food_name_clean, species_name) %>% 
+  dplyr::select(seanuts_id2, food_name_clean, species_name) %>% 
   distinct(seanuts_id2, .keep_all = TRUE) %>% 
   filter(!is.na(food_name_clean))
 
@@ -20,7 +20,7 @@ write_csv(refs2, "data-processed/seanuts-body-parts.csv")
 
 seanuts_traits <- read_csv("data-processed/all-traits-nuts.csv") %>% 
   filter(!is.na(seanuts_id2)) %>% 
-  select(seanuts_id2, Species, subgroup) %>% 
+  dplyr::select(seanuts_id2, Species, subgroup) %>% 
   distinct(seanuts_id2, Species, subgroup)
 
 
@@ -58,7 +58,7 @@ non_muscles <- parts %>%
   mutate(food_name_clean = ifelse(grepl("Nurhasan", reference), paste(food_name_clean, "muscle_with_skin"), food_name_clean)) %>% 
   filter(!str_detect(food_name_clean, "fillet|muscle|whole")) %>% 
   distinct(seanuts_id2, .keep_all = TRUE) %>% 
-  select(seanuts_id, species_name, food_name_clean, part, reference, )
+  dplyr::select(seanuts_id, species_name, food_name_clean, part, reference)
 
 write_csv(non_muscles, "data-processed/non-parts-to-be-cleaned.csv")
 

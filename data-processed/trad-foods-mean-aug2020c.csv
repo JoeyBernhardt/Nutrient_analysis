@@ -1,0 +1,952 @@
+latin_name,calcium,zinc,iron,epa,dha,culture,common_name
+Anguilla rostrata,45.5,1.3075,0.35,0.33140656,0.5357228,Montagnais-Naskapi,American Eel
+Anguilla rostrata,45.5,1.3075,0.35,0.33140656,0.5357228,Abenaki,American Eel
+Anguilla rostrata,45.5,1.3075,0.35,0.33140656,0.5357228,Micmac,American Eel
+Anguilla rostrata,45.5,1.3075,0.35,0.33140656,0.5357228,Powhatan,American Eel
+Anguilla rostrata,45.5,1.3075,0.35,0.33140656,0.5357228,Wampanoag,American Eel
+Anguilla rostrata,45.5,1.3075,0.35,0.33140656,0.5357228,Onondaga,American Eel
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Inuit-Inupiaq,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Yupik,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Bella Coola,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Central Salish,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Tsimshian,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Haida,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Tlingit,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Kwakiutl,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Nootkan,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Cree,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Montagnais-Naskapi,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Abenaki,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Micmac,Arctic Cod
+Boreogadus saida,31.6,0.435,0.425,0.1325,0.2645,Wampanoag,Arctic Cod
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Yupik,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Bella Coola,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Tsimshian,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Tlingit,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Heiltsuk,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Kwakiutl,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Nootkan,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Micmac,Blue Crab
+Callinectes sapidus,87.5,1345.5633333333333,1.4966666666666666,0.2,0.2,Wampanoag,Blue Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Yupik,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Bella Coola,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Tsimshian,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Tlingit,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Heiltsuk,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Kwakiutl,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Nootkan,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Micmac,Dungeness Crab
+Cancer magister,52,3.23,0.365,0.2,0.1,Wampanoag,Dungeness Crab
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Inuit-Inupiaq,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Central Salish,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Interior Salish,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Tlingit,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Cree,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Montagnais-Naskapi,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Ojibwa-Algonquin,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Ahtna,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Chilcotin,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Chipewyan,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Dogrib,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Gwich'in,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Han,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Ingalik,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Koyukon,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Sekani,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Slavey-Hare,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Tahltan-Kaska-Tagish,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Tanana,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Tutchone,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Metis,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Micmac,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Powhatan,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Huron,Longnose Sucker
+Catostomus catostomus,63.1,0.5,0.3,0.075,0.212,Onondaga,Longnose Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Inuit-Inupiaq,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Central Salish,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Interior Salish,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Tlingit,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Cree,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Montagnais-Naskapi,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Ojibwa-Algonquin,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Ahtna,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Chilcotin,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Chipewyan,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Dogrib,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Gwich'in,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Han,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Ingalik,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Koyukon,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Sekani,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Slavey-Hare,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Tahltan-Kaska-Tagish,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Tanana,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Tutchone,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Metis,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Micmac,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Powhatan,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Huron,White Sucker
+Catostomus commersonii,44.8,0.525,0.75,0.1365,0.23399999999999999,Onondaga,White Sucker
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Inuit-Inupiaq,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Yupik,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Bella Coola,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Central Salish,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Tsimshian,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Haida,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Tlingit,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Kwakiutl,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Nootkan,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Micmac,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Powhatan,Black Sea Bass
+Centropristes striata,60.8,0.2415,1.1680000000000001,0.1,0.3,Wampanoag,Black Sea Bass
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Aleut,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Inuit-Inupiaq,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Yupik,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Eyak,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Bella Coola,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Central Salish,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Tsimshian,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Coosan,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Haida,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Siuslaw,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Tlingit,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Heiltsuk,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Kwakiutl,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Nootkan,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Gwich'in,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Slavey-Hare,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Tahltan-Kaska-Tagish,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Abenaki,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Micmac,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Ojibwa-Algonquin,Atlantic Herring
+Clupea harengus,35,0.7755,1.15,0.635,1.075,Powhatan,Atlantic Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Inuit-Inupiaq,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Yupik,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Eyak,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Central Salish,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Interior Salish,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Nass-Gitksan,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Tlingit,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Cree,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Montagnais-Naskapi,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Ojibwa-Algonquin,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Ahtna,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Carrier,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Chilcotin,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Chipewyan,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Dogrib,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Gwich'in,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Han,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Ingalik,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Kolchan,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Koyukon,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Sekani,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Slavey-Hare,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Tahltan-Kaska-Tagish,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Tanana,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Tutchone,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Metis,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Beothuk,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Micmac,Lake Herring
+Coregonus artedi,17.3,2.29,0.34,0.095,0.257,Huron,Lake Herring
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Inuit-Inupiaq,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Yupik,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Eyak,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Central Salish,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Interior Salish,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Nass-Gitksan,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Tlingit,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Cree,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Montagnais-Naskapi,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Ojibwa-Algonquin,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Ahtna,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Carrier,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Chilcotin,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Chipewyan,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Dogrib,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Gwich'in,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Han,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Ingalik,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Kolchan,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Koyukon,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Sekani,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Slavey-Hare,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Tahltan-Kaska-Tagish,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Tanana,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Tutchone,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Metis,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Beothuk,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Micmac,Arctic Cisco
+Coregonus autumnalis,23.733333333333334,0.6333333333333334,0.8200000000000001,0.3,0.3,Huron,Arctic Cisco
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Inuit-Inupiaq,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Yupik,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Eyak,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Central Salish,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Interior Salish,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Nass-Gitksan,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Tlingit,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Cree,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Montagnais-Naskapi,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Ojibwa-Algonquin,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Ahtna,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Carrier,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Chilcotin,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Chipewyan,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Dogrib,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Gwich'in,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Han,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Ingalik,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Kolchan,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Koyukon,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Sekani,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Slavey-Hare,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Tahltan-Kaska-Tagish,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Tanana,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Tutchone,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Metis,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Beothuk,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Micmac,Lake Whitefish
+Coregonus clupeaformis,19.98181818181818,0.9600000000000001,0.5854545454545454,0.15409090909090908,0.341,Huron,Lake Whitefish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Inuit-Inupiaq,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Yupik,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Bella Coola,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Central Salish,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Tsimshian,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Haida,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Tlingit,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Kwakiutl,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Nootkan,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Micmac,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Powhatan,Lumpfish
+Cyclopterus lumpus,8.65,0.8865000000000001,0.405,1.6074633333333335,1.6662066666666666,Wampanoag,Lumpfish
+Cyprinus carpio,54.1175,2.2886890666666666,0.977,0.13039518333333333,0.0943216,Central Salish,Common Carp
+Cyprinus carpio,54.1175,2.2886890666666666,0.977,0.13039518333333333,0.0943216,Interior Salish,Common Carp
+Cyprinus carpio,54.1175,2.2886890666666666,0.977,0.13039518333333333,0.0943216,Nootkan,Common Carp
+Cyprinus carpio,54.1175,2.2886890666666666,0.977,0.13039518333333333,0.0943216,Slavey-Hare,Common Carp
+Cyprinus carpio,54.1175,2.2886890666666666,0.977,0.13039518333333333,0.0943216,Powhatan,Common Carp
+Cyprinus carpio,54.1175,2.2886890666666666,0.977,0.13039518333333333,0.0943216,Onondaga,Common Carp
+Engraulidae,1150,0.88,1.53,0.5,0.9,Nootkan,Anchovies
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Inuit-Inupiaq,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Yupik,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Tlingit,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Cree,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Montagnais-Naskapi,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Ojibwa-Algonquin,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Chipewyan,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Dogrib,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Gwich'in,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Han,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Ingalik,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Koyukon,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Slavey-Hare,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Tahltan-Kaska-Tagish,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Tanaina,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Tanana,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Tutchone,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Metis,Northern Pike
+Esox lucius,69.12317647058823,1.2321802941176472,0.8389352941176471,0.05357693904761905,0.17080936363636365,Huron,Northern Pike
+Gadiformes,29,0.71,0.364,0.1,0.2,Inuit-Inupiaq,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Yupik,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Bella Coola,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Central Salish,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Tsimshian,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Haida,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Tlingit,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Kwakiutl,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Nootkan,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Cree,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Montagnais-Naskapi,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Abenaki,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Micmac,Cod and Relatives
+Gadiformes,29,0.71,0.364,0.1,0.2,Wampanoag,Cod and Relatives
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Inuit-Inupiaq,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Yupik,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Bella Coola,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Central Salish,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Tsimshian,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Haida,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Tlingit,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Kwakiutl,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Nootkan,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Cree,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Montagnais-Naskapi,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Abenaki,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Micmac,Pacific Cod
+Gadus macrocephalus,11.8,0.38393333333333335,0.18,0.0697866,0.129374,Wampanoag,Pacific Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Inuit-Inupiaq,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Yupik,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Bella Coola,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Central Salish,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Tsimshian,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Haida,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Tlingit,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Kwakiutl,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Nootkan,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Cree,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Montagnais-Naskapi,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Abenaki,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Micmac,Atlantic Cod
+Gadus morhua,10.828571428571427,0.7565555555555555,0.8944444444444445,0.6191999054545455,0.5726349563636364,Wampanoag,Atlantic Cod
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Aleut,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Inuit-Inupiaq,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Yupik,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Quileute,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Bella Coola,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Central Salish,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Nass-Gitksan,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Tsimshian,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Haida,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Tlingit,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Haisla,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Heiltsuk,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Kwakiutl,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Nootkan,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Abenaki,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Micmac,Atlantic Halibut
+Hippoglossus hippoglossus,15,0.5,0.5,0.10433333333333335,0.15866666666666665,Wampanoag,Atlantic Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Aleut,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Inuit-Inupiaq,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Yupik,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Quileute,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Bella Coola,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Central Salish,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Nass-Gitksan,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Tsimshian,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Haida,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Tlingit,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Haisla,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Heiltsuk,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Kwakiutl,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Nootkan,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Abenaki,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Micmac,Pacific Halibut
+Hippoglossus stenolepis,22,0.08,0.09,0.1,0.3,Wampanoag,Pacific Halibut
+Lepisosteidae,29,0.5,0.4,0.14,0.72,Powhatan,Gar
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Inuit-Inupiaq,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Interior Salish,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Tlingit,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Cree,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Chipewyan,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Dogrib,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Gwich'in,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Han,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Ingalik,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Slavey-Hare,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Tahltan-Kaska-Tagish,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Tutchone,Burbot
+Lota lota,34.727111111111114,0.9857405882352941,0.5711111111111111,0.51125,0.3967058823529412,Metis,Burbot
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Inuit-Inupiaq,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Yupik,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Bella Coola,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Central Salish,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Tsimshian,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Haida,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Tlingit,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Kwakiutl,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Nootkan,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Cree,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Montagnais-Naskapi,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Abenaki,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Micmac,Haddock
+Melanogrammus aeglefinus,13.68,0.3916,0.32180000000000003,0.061471325,0.13925465,Wampanoag,Haddock
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Inuit-Inupiaq,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Yupik,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Bella Coola,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Central Salish,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Tsimshian,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Haida,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Tlingit,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Kwakiutl,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Nootkan,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Cree,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Montagnais-Naskapi,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Abenaki,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Micmac,Pacific Hake
+Merluccius productus,21.866666666666667,0.35105,0.25,0.11297826666666667,0.14587333333333333,Wampanoag,Pacific Hake
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Inuit-Inupiaq,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Yupik,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Bella Coola,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Central Salish,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Tsimshian,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Haida,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Tlingit,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Kwakiutl,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Nootkan,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Micmac,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Powhatan,Atlantic Croaker
+Micropogonias undulatus,66.5,0.371,0.976,0.1,0.1,Wampanoag,Atlantic Croaker
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Aleut,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Inuit-Inupiaq,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Yupik,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Quileute,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Bella Coola,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Central Salish,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Nass-Gitksan,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Tsimshian,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Haida,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Tlingit,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Haisla,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Heiltsuk,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Kwakiutl,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Nootkan,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Abenaki,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Micmac,Dover Sole
+Microstomus pacificus,26.355555555555554,0.3887666666666667,0.21333333333333335,0.08,0.09,Wampanoag,Dover Sole
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Inuit-Inupiaq,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Yupik,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Bella Coola,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Central Salish,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Tsimshian,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Haida,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Tlingit,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Kwakiutl,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Nootkan,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Micmac,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Powhatan,Flathead Gray Mullet
+Mugil cephalus,58.62,1.5993333333333335,1.1,0.2330064888888889,0.20539184444444444,Wampanoag,Flathead Gray Mullet
+Mya arenaria,53,1.7,40.5,0.2,0.2,Aleut,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Inuit-Inupiaq,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Chinook,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Eyak,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Bella Coola,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Tsimshian,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Haida,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Tlingit,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Haisla,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Heiltsuk,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Kwakiutl,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Nootkan,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Beothuk,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Abenaki,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Maliseet-Passamaquoddy,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Micmac,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Wampanoag,Softshell Clam
+Mya arenaria,53,1.7,40.5,0.2,0.2,Huron,Softshell Clam
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Aleut,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Inuit-Inupiaq,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Yupik,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Bella Coola,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Tsimshian,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Haida,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Tlingit,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Heiltsuk,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Kwakiutl,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Nootkan,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Beothuk,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Micmac,Blue Mussel
+Mytilus edulis,51.857142857142854,1.8277777777777777,9.438888888888888,0.12722222222222224,0.13522222222222222,Wampanoag,Blue Mussel
+Nephropidae,34,2.54,0.935,0.161,0.10200000000000001,Beothuk,Lobsters
+Nephropidae,34,2.54,0.935,0.161,0.10200000000000001,Abenaki,Lobsters
+Nephropidae,34,2.54,0.935,0.161,0.10200000000000001,Maliseet-Passamaquoddy,Lobsters
+Nephropidae,34,2.54,0.935,0.161,0.10200000000000001,Micmac,Lobsters
+Nephropidae,34,2.54,0.935,0.161,0.10200000000000001,Wampanoag,Lobsters
+Octopoda,20.666666666666668,1.675,1.79,0.1,0.1,Quileute,Octopus
+Octopoda,20.666666666666668,1.675,1.79,0.1,0.1,Bella Coola,Octopus
+Octopoda,20.666666666666668,1.675,1.79,0.1,0.1,Tsimshian,Octopus
+Octopoda,20.666666666666668,1.675,1.79,0.1,0.1,Heiltsuk,Octopus
+Octopoda,20.666666666666668,1.675,1.79,0.1,0.1,Kwakiutl,Octopus
+Octopoda,20.666666666666668,1.675,1.79,0.1,0.1,Nootkan,Octopus
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Aleut,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Inuit-Inupiaq,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Yupik,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Quileute,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Chinook,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Eyak,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Bella Coola,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Central Salish,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Interior Salish,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tillamook,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Nass-Gitksan,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tsimshian,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Coosan,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Haida,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Siuslaw,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tlingit,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Haisla,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Heiltsuk,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Kwakiutl,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Nootkan,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Cree,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Montagnais-Naskapi,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Ojibwa-Algonquin,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Carrier,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Chilcotin,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Dogrib,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Gwich'in,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Han,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Ingalik,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Kolchan,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Koyukon,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Sekani,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tahltan-Kaska-Tagish,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tanaina,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tanana,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Tutchone,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Beothuk,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Abenaki,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Maliseet-Passamaquoddy,Pink Salmon
+Oncorhynchus gorbuscha,23.666666666666668,0.63,0.8571428571428572,0.3006318,0.5412518,Micmac,Pink Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Aleut,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Inuit-Inupiaq,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Yupik,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Quileute,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Chinook,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Eyak,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Bella Coola,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Central Salish,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Interior Salish,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tillamook,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Nass-Gitksan,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tsimshian,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Coosan,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Haida,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Siuslaw,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tlingit,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Haisla,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Heiltsuk,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Kwakiutl,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Nootkan,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Cree,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Montagnais-Naskapi,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Ojibwa-Algonquin,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Carrier,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Chilcotin,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Dogrib,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Gwich'in,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Han,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Ingalik,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Kolchan,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Koyukon,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Sekani,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tahltan-Kaska-Tagish,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tanaina,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tanana,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Tutchone,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Beothuk,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Abenaki,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Maliseet-Passamaquoddy,Chum Salmon
+Oncorhynchus keta,31,0.716,0.625,0.3165,0.497,Micmac,Chum Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Aleut,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Inuit-Inupiaq,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Yupik,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Quileute,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Chinook,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Eyak,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Bella Coola,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Central Salish,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Interior Salish,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tillamook,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Nass-Gitksan,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tsimshian,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Coosan,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Haida,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Siuslaw,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tlingit,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Haisla,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Heiltsuk,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Kwakiutl,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Nootkan,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Cree,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Montagnais-Naskapi,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Ojibwa-Algonquin,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Carrier,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Chilcotin,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Dogrib,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Gwich'in,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Han,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Ingalik,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Kolchan,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Koyukon,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Sekani,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tahltan-Kaska-Tagish,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tanaina,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tanana,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Tutchone,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Beothuk,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Abenaki,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Maliseet-Passamaquoddy,Coho Salmon
+Oncorhynchus kisutch,45,0.5033333333333333,192.78571428571428,0.3714,0.4935,Micmac,Coho Salmon
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Inuit-Inupiaq,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Yupik,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Quileute,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Chinook,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Eyak,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Bella Coola,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Central Salish,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Interior Salish,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Tillamook,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Nass-Gitksan,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Tsimshian,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Haida,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Tlingit,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Kwakiutl,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Nootkan,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Cree,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Montagnais-Naskapi,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Ojibwa-Algonquin,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Ahtna,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Carrier,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Chilcotin,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Chipewyan,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Dogrib,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Gwich'in,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Sekani,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Slavey-Hare,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Tahltan-Kaska-Tagish,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Tanaina,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Tutchone,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Metis,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Maliseet-Passamaquoddy,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Micmac,Rainbow Trout
+Oncorhynchus mykiss,57.45363636363636,1.9944444444444445,378.2272222222222,0.14043454545454545,0.5333796363636364,Huron,Rainbow Trout
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Aleut,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Inuit-Inupiaq,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Yupik,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Quileute,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Chinook,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Eyak,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Bella Coola,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Central Salish,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Interior Salish,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tillamook,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Nass-Gitksan,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tsimshian,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Coosan,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Haida,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Siuslaw,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tlingit,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Haisla,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Heiltsuk,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Kwakiutl,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Nootkan,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Cree,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Montagnais-Naskapi,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Ojibwa-Algonquin,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Carrier,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Chilcotin,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Dogrib,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Gwich'in,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Han,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Ingalik,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Kolchan,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Koyukon,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Sekani,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tahltan-Kaska-Tagish,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tanaina,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tanana,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Tutchone,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Beothuk,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Abenaki,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Maliseet-Passamaquoddy,Sockeye Salmon
+Oncorhynchus nerka,49.77142857142857,0.792,0.83,0.7797499999999999,1.028851851851852,Micmac,Sockeye Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Aleut,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Inuit-Inupiaq,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Yupik,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Quileute,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Chinook,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Eyak,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Bella Coola,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Central Salish,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Interior Salish,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tillamook,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Nass-Gitksan,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tsimshian,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Coosan,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Haida,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Siuslaw,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tlingit,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Haisla,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Heiltsuk,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Kwakiutl,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Nootkan,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Cree,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Montagnais-Naskapi,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Ojibwa-Algonquin,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Carrier,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Chilcotin,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Dogrib,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Gwich'in,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Han,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Ingalik,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Kolchan,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Koyukon,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Sekani,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tahltan-Kaska-Tagish,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tanaina,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tanana,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Tutchone,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Beothuk,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Abenaki,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Maliseet-Passamaquoddy,Chinook Salmon
+Oncorhynchus tshawytscha,24.545454545454547,0.512,0.7728571428571429,0.5411428571428571,0.5595714285714286,Micmac,Chinook Salmon
+Ostreidae,83,53.6,4094,0.22349999999999998,0.183,Tlingit,Oysters
+Ostreidae,83,53.6,4094,0.22349999999999998,0.183,Nootkan,Oysters
+Ostreidae,83,53.6,4094,0.22349999999999998,0.183,Cree,Oysters
+Ostreidae,83,53.6,4094,0.22349999999999998,0.183,Abenaki,Oysters
+Ostreidae,83,53.6,4094,0.22349999999999998,0.183,Micmac,Oysters
+Ostreidae,83,53.6,4094,0.22349999999999998,0.183,Wampanoag,Oysters
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Aleut,Scallops
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Haida,Scallops
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Tlingit,Scallops
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Heiltsuk,Scallops
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Nootkan,Scallops
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Micmac,Scallops
+Pectinidae,27.6,1.22,0.6035,0.1,0.1,Wampanoag,Scallops
+Perca flavescens,21.916666666666668,0.4304328,0.2078,0.03359,0.10433553333333334,Cree,Yellow Perch
+Perca flavescens,21.916666666666668,0.4304328,0.2078,0.03359,0.10433553333333334,Ojibwa-Algonquin,Yellow Perch
+Perca flavescens,21.916666666666668,0.4304328,0.2078,0.03359,0.10433553333333334,Micmac,Yellow Perch
+Perca flavescens,21.916666666666668,0.4304328,0.2078,0.03359,0.10433553333333334,Powhatan,Yellow Perch
+Percidae,110,642.76,0.6,0.054,0.245,Cree,Perch and Darters
+Percidae,110,642.76,0.6,0.054,0.245,Ojibwa-Algonquin,Perch and Darters
+Percidae,110,642.76,0.6,0.054,0.245,Micmac,Perch and Darters
+Percidae,110,642.76,0.6,0.054,0.245,Powhatan,Perch and Darters
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Aleut,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Inuit-Inupiaq,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Yupik,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Quileute,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Bella Coola,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Central Salish,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Nass-Gitksan,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Tsimshian,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Haida,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Tlingit,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Haisla,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Heiltsuk,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Kwakiutl,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Nootkan,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Abenaki,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Micmac,Flounders and Soles
+Pleuronectinae,35,0.78,0.3,0.192,0.1165,Wampanoag,Flounders and Soles
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Inuit-Inupiaq,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Yupik,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Bella Coola,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Central Salish,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Tsimshian,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Haida,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Tlingit,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Kwakiutl,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Nootkan,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Micmac,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Powhatan,Bluefish
+Pomatomus saltatrix,65.6,0.763,2.826,0.39425696666666665,1.1981193333333333,Wampanoag,Bluefish
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Aleut,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Inuit-Inupiaq,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Yupik,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Quileute,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Bella Coola,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Central Salish,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Nass-Gitksan,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Tsimshian,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Haida,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Tlingit,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Haisla,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Heiltsuk,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Kwakiutl,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Nootkan,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Abenaki,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Micmac,Greenland Halibut
+Reinhardtius hippoglossoides,12.266666666666667,0.32,0.14333333333333334,0.725,0.635,Wampanoag,Greenland Halibut
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Aleut,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Inuit-Inupiaq,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Yupik,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Quileute,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Chinook,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Eyak,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Bella Coola,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Central Salish,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Interior Salish,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tillamook,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Nass-Gitksan,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tsimshian,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Coosan,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Haida,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Siuslaw,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tlingit,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Haisla,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Heiltsuk,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Kwakiutl,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Nootkan,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Cree,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Montagnais-Naskapi,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Ojibwa-Algonquin,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Carrier,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Chilcotin,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Dogrib,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Gwich'in,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Han,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Ingalik,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Kolchan,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Koyukon,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Sekani,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tahltan-Kaska-Tagish,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tanaina,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tanana,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Tutchone,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Beothuk,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Abenaki,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Maliseet-Passamaquoddy,Atlantic Salmon
+Salmo salar,14.65,0.7033333333333334,0.7833333333333333,0.6000759090909091,1.9642645454545455,Micmac,Atlantic Salmon
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Inuit-Inupiaq,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Nass-Gitksan,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Cree,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Montagnais-Naskapi,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Carrier,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Chipewyan,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Gwich'in,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Tahltan-Kaska-Tagish,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Metis,Arctic Char
+Salvelinus alpinus,54.333333333333336,3.245,1.2449999999999999,0.6266666666666667,0.49666666666666665,Micmac,Arctic Char
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Inuit-Inupiaq,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Yupik,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Quileute,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Chinook,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Eyak,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Bella Coola,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Central Salish,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Interior Salish,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Tillamook,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Nass-Gitksan,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Tsimshian,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Haida,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Tlingit,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Kwakiutl,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Nootkan,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Cree,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Montagnais-Naskapi,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Ojibwa-Algonquin,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Ahtna,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Carrier,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Chilcotin,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Chipewyan,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Dogrib,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Gwich'in,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Sekani,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Slavey-Hare,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Tahltan-Kaska-Tagish,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Tanaina,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Tutchone,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Metis,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Maliseet-Passamaquoddy,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Micmac,Brook Trout
+Salvelinus fontinalis,11.755555555555556,0.6923333333333334,0.3556666666666667,0.1502857142857143,0.3534,Huron,Brook Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Inuit-Inupiaq,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Yupik,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Quileute,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Chinook,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Eyak,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Bella Coola,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Central Salish,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Interior Salish,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Tillamook,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Nass-Gitksan,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Tsimshian,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Haida,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Tlingit,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Kwakiutl,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Nootkan,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Cree,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Montagnais-Naskapi,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Ojibwa-Algonquin,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Ahtna,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Carrier,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Chilcotin,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Chipewyan,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Dogrib,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Gwich'in,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Sekani,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Slavey-Hare,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Tahltan-Kaska-Tagish,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Tanaina,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Tutchone,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Metis,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Maliseet-Passamaquoddy,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Micmac,Lake Trout
+Salvelinus namaycush,11.685714285714285,1.527922077922078,0.7283428571428572,0.1798095238095238,0.49504761904761907,Huron,Lake Trout
+Scomber scombrus,11.5,0.3695,0.88,0.60620938,1.5001654,Inuit-Inupiaq,Atlantic Mackerel
+Scomber scombrus,11.5,0.3695,0.88,0.60620938,1.5001654,Nootkan,Atlantic Mackerel
+Scomber scombrus,11.5,0.3695,0.88,0.60620938,1.5001654,Abenaki,Atlantic Mackerel
+Scomber scombrus,11.5,0.3695,0.88,0.60620938,1.5001654,Micmac,Atlantic Mackerel
+Scomber scombrus,11.5,0.3695,0.88,0.60620938,1.5001654,Wampanoag,Atlantic Mackerel
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Inuit-Inupiaq,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Bella Coola,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Central Salish,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Nass-Gitksan,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Tsimshian,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Tlingit,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Kwakiutl,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Nootkan,Golden Redfish
+Sebastes norvegicus,82,0.683,0.7015,0.046,0.073,Micmac,Golden Redfish
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Inuit-Inupiaq,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Yupik,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Bella Coola,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Central Salish,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Tsimshian,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Haida,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Tlingit,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Kwakiutl,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Nootkan,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Micmac,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Powhatan,Porgies
+Sparidae,48.333333333333336,1.17,0.785,0.14950000000000002,0.1865,Wampanoag,Porgies
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Inuit-Inupiaq,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Quileute,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Central Salish,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Tsimshian,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Haida,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Nootkan,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Slavey-Hare,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Micmac,Spiny Dogfish
+Squalus acanthias,11,0.6695,1.25,0.7,1.2,Wampanoag,Spiny Dogfish
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Inuit-Inupiaq,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Yupik,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Eyak,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Central Salish,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Interior Salish,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Nass-Gitksan,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Tlingit,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Cree,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Montagnais-Naskapi,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Ojibwa-Algonquin,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Ahtna,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Carrier,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Chilcotin,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Chipewyan,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Dogrib,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Gwich'in,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Han,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Ingalik,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Kolchan,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Koyukon,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Sekani,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Slavey-Hare,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Tahltan-Kaska-Tagish,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Tanana,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Tutchone,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Metis,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Beothuk,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Micmac,Inconnu
+Stenodus leucichthys,10,0.3,0.4,0.2,0.2,Huron,Inconnu
+Thunnus alalunga,18,0.5,0.6,0.3110266666666667,0.9405600000000001,Inuit-Inupiaq,Albacore
+Thunnus alalunga,18,0.5,0.6,0.3110266666666667,0.9405600000000001,Nootkan,Albacore
+Thunnus alalunga,18,0.5,0.6,0.3110266666666667,0.9405600000000001,Abenaki,Albacore
+Thunnus alalunga,18,0.5,0.6,0.3110266666666667,0.9405600000000001,Micmac,Albacore
+Thunnus alalunga,18,0.5,0.6,0.3110266666666667,0.9405600000000001,Wampanoag,Albacore
+Thunnus spp.,9,0.08,1.5,0.4,1.2,Inuit-Inupiaq,Bluefin Tuna
+Thunnus spp.,9,0.08,1.5,0.4,1.2,Nootkan,Bluefin Tuna
+Thunnus spp.,9,0.08,1.5,0.4,1.2,Abenaki,Bluefin Tuna
+Thunnus spp.,9,0.08,1.5,0.4,1.2,Micmac,Bluefin Tuna
+Thunnus spp.,9,0.08,1.5,0.4,1.2,Wampanoag,Bluefin Tuna
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Inuit-Inupiaq,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Central Salish,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Tlingit,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Chipewyan,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Gwich'in,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Han,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Ingalik,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Koyukon,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Slavey-Hare,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Tahltan-Kaska-Tagish,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Tanaina,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Tanana,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Tutchone,Arctic Grayling
+Thymallus arcticus,131.2,0.7,1,0.08233333333333334,0.15651851851851853,Wampanoag,Arctic Grayling

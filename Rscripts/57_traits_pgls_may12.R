@@ -2,7 +2,7 @@
 library(rotl)
 library(stargazer)
 traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv")
-
+# traits <- read.csv("data-processed/all-seanuts-may-24-2020.csv") ### adding this august 3, not sure why it wasn't here before
 traits2 <- traits %>% 
   mutate(part = ordered(part, levels = c("muscle", "muscle + skin", "muscle + small bones", "muscle, bone + inside","whole",
                                          "head, eyes, cheeks + soft bones", "tongues + cheeks", "skin", "liver", "offal", "eggs", "oil", NA)))
@@ -15,7 +15,7 @@ traits_one_part <- traits2 %>%
   top_n(n = 1, wt = part)
 
 calcium <- traits2 %>% 
-  dplyr::select(-seanuts_id2) %>% 
+  dplyr::select(-seanuts_id2) %>% View
   filter(nutrient == "ca_mg") %>% 
   filter(!grepl("spp", species1)) %>% 
   filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 

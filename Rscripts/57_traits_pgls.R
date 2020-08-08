@@ -1613,8 +1613,9 @@ rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
 stargazer(mod1a, title = "", type = "html", out="tables/epa-models-expanded-all-parts-pgls-lambda.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2, single.row = TRUE)
-
-
+stargazer(mod1a, title = "", type = "html", out="tables/epa-models-expanded-all-parts-pgls-lambda-aug3.htm", 
+          add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2, single.row = TRUE)
+summary(mod1a)
 # epa partial regressions all parts ---------------------------------------
 
 mod1 <- mod1a

@@ -67,7 +67,7 @@ seanuts_traits3 <- left_join(seanuts_traits2, parts) %>%
   rename(feeding_level = Herbivory2) %>%
   rename(feeding_mode = FeedingType) %>% 
   mutate(log_length = log(Length)) %>% 
-  mutate(log_concentration = log(concentration)) %>% View
+  mutate(log_concentration = log(concentration))
 
 traits <- bind_rows(cine_traits_new, seanuts_traits3) %>% 
   dplyr::select(seanuts_id2, species1, nutrient, concentration, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,
@@ -76,6 +76,13 @@ traits <- bind_rows(cine_traits_new, seanuts_traits3) %>%
   # mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical"))) %>% 
   # group_by(species1, nutrient) %>%
   # top_n(n = 1, wt = EnvTemp) ### chose only one EnvTemp per species
+#### august 3 taking out non-peerreviewed CINE
+traits <- bind_rows(cine_traits_new, seanuts_traits3) %>%
+  filter(!reference %in% cine_discard_refs) %>% 
+  dplyr::select(seanuts_id2, species1, nutrient, concentration, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part,
+                log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, realm, source, reference) %>% 
+  mutate(part = ifelse(part == "muscle-skinless", "muscle", part))  
+write_csv(traits, "data-processed/trait-nutrient-data-analysis-aug3-cine-removed.csv")
 
 traits %>% 
   filter(is.na(seanuts_id2)) %>% View

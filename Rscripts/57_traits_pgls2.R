@@ -28,6 +28,7 @@ library(visreg)
 library(stargazer)
 library(rotl)
 traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv") ### this is the latest version as of May 24 2020
+traits2 <- read_csv("data-processed/trait-nutrient-data-analysis-aug3-cine-removed.csv")
 traits <- read_csv("data-processed/all-seanuts-may-24-2020-2.csv") %>% ### this is more updated with fixed parts and reksten data
   rename(species1 = Species) %>% 
   rename(feeding_level = Herbivory2) %>% 
