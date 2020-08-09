@@ -17,6 +17,8 @@ mean_nuts <- read_csv("data-processed/mean_nuts.csv") %>%
   group_by(species_name, subgroup) %>% 
   summarise_each(funs(mean), calcium, iron, zinc, epa, dha) %>% 
   ungroup()
+
+mean_nuts <- read_csv("data-processed/mean_nuts_aug2020.csv") ## udpate aug 8 2020
   
 View(mean_nuts)
 mean_nuts$culture <- "global"

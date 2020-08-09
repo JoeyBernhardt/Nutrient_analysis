@@ -2,14 +2,32 @@
 
 #### biofood comp data for traits
 
-bc_raw <- read_csv("data-processed/biofood-comp-data.csv") %>% 
+bc_raw <- read_csv("data-processed/biocomp-raw-macro-micro.csv") %>% 
   clean_names() %>% 
   filter(!is.na(food_item_id)) %>% 
-  mutate(bc_id = rownames(.))
+  mutate(bc_id = rownames(.)) %>%
+  select(-protcnp_g) 
 
-bc <- bc_raw %>% 
+bc_refs <- read_excel("data-processed/biocom-refs.xlsx") %>% 
+  clean_names() %>% 
+  rename(biblio_id = biblioid)
+
+bc_raw2 <- bc_raw %>% 
+  left_join(., bc_refs) 
+
+bc_references <- bc_raw2 %>% 
+  select(biblio_id, bibliography)
+
+bc <- bc_raw2 %>% 
   rename(epa = f20d5n3_g) %>% 
   rename(dha = f22d6n3_g) %>% 
+  mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% 
+  mutate(fat = ifelse(is.na(fat_g), fatce_g, fat_g)) %>% 
+  mutate(fat = ifelse(is.na(fat), fat_g_2, fat)) %>% 
+  mutate(fat = str_replace(fat,"[\\[]", "")) %>% 
+  mutate(fat = str_replace(fat, "[\\]]", "")) %>% 
+  mutate(protein = str_replace(protein,"[\\[]", "")) %>% 
+  mutate(protein = str_replace(protein, "[\\]]", "")) %>% 
   mutate(epa = str_replace(epa,"[\\[]", "")) %>% 
   mutate(epa = str_replace(epa, "[\\]]", "")) %>% 
   mutate(dha = str_replace(dha,"[\\[]", "")) %>% 
@@ -25,8 +43,12 @@ bc <- bc_raw %>%
   mutate(fe_mg = as.numeric(fe_mg)) %>% 
   mutate(epa = as.numeric(epa)) %>% 
   mutate(dha = as.numeric(dha)) %>% 
-  select(bc_id, asfis_english_name, asfis_scientific_name, subgroup, food_name_in_english, ca_mg, fe_mg, zn_mg, epa, dha)
+  mutate(fat = as.numeric(fat)) %>% 
+  mutate(protein = as.numeric(protein)) %>% 
+  # rename(reference = biblio_id) %>% 
+  select(bc_id, asfis_english_name, asfis_scientific_name, scientific_name, subgroup, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein)
 
+unique(bc$reference)
 
 unique(bc$food_name_in_english)
 
@@ -40,6 +62,45 @@ muscle_samples <- bc %>%
   filter(!grepl("bones",food_name_in_english)) %>% 
   select(bc_id)
 
+egg_samples <- bc %>% 
+  # filter(grepl("roe",food_name_in_english)) %>% 
+  filter(grepl(c("egg"),food_name_in_english)) %>% 
+  filter(!grepl("bones",food_name_in_english)) %>% 
+  select(bc_id)
+
+roe_samples <- bc %>% 
+  # filter(grepl("roe",food_name_in_english)) %>% 
+  filter(grepl(c("roe"),food_name_in_english)) %>% 
+  filter(!grepl("bones",food_name_in_english)) %>% 
+  select(bc_id)
+
+whole_samples <- bc %>% 
+  # filter(grepl("roe",food_name_in_english)) %>% 
+  filter(grepl(c("whole"),food_name_in_english)) %>% 
+  select(bc_id)
+
+skin_samples <- bc %>% 
+  # filter(grepl("roe",food_name_in_english)) %>% 
+  filter(grepl(c("skin"),food_name_in_english)) %>% 
+  filter(!grepl("skinless",food_name_in_english)) %>% 
+  filter(!grepl("whole",food_name_in_english)) %>% 
+  filter(!grepl("skin-on",food_name_in_english)) %>% 
+  filter(!grepl("muscle",food_name_in_english)) %>% 
+  filter(!grepl("meat",food_name_in_english)) %>% 
+  filter(!grepl("fillet",food_name_in_english)) %>% 
+  filter(!grepl("skinned",food_name_in_english)) %>% 
+  select(bc_id)
+  
+  liver_samples <- bc %>% 
+    # filter(grepl("roe",food_name_in_english)) %>% 
+    filter(grepl(c("liver"),food_name_in_english)) %>% 
+    select(bc_id)
+  
+  head_samples <- bc %>% 
+    # filter(grepl("roe",food_name_in_english)) %>% 
+    filter(grepl(c("head"),food_name_in_english)) %>% 
+    select(bc_id)
+
 muscle_only <- bind_rows(fillet_samples, muscle_samples) %>% 
   distinct()
 
@@ -51,21 +112,165 @@ muscle_only_data <- bc %>%
 unique(muscle_only_data$asfis_scientific_name)
 
 
+# bring in AnFoods --------------------------------------------------------
+
+af_raw <- read_excel("data-processed/AnFood-macro-micro.xlsx") %>% 
+  clean_names() %>% 
+  mutate(farmed_finfish = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Finfish", "farmed_finfish", "other")) %>%
+  mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "other")) %>% 
+  filter(farmed_finfish != "farmed_finfish") %>% 
+  filter(farmed_crustacean != "farmed_crustacean") %>% 
+  filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english)) %>% 
+  filter(!is.na(food_item_id_1)) %>% 
+  mutate(af_id = rownames(.))
+
+af_refs <- read_excel("data-processed/anfood-refs.xlsx") %>% 
+  clean_names() 
+
+af2 <- af_raw %>% 
+  left_join(., af_refs) %>% 
+  rename(epa = f20d5n3_g) %>% 
+  rename(dha = f22d6n3_g) %>% 
+  mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% 
+  mutate(fat = ifelse(is.na(fat_g), fatce_g, fat_g)) %>% 
+  mutate(fat = ifelse(is.na(fat), fat_g_2, fat)) %>% 
+  mutate(fat = str_replace(fat,"[\\[]", "")) %>% 
+  mutate(fat = str_replace(fat, "[\\]]", "")) %>% 
+  mutate(protein = str_replace(protein,"[\\[]", "")) %>% 
+  mutate(protein = str_replace(protein, "[\\]]", "")) %>% 
+  mutate(epa = str_replace(epa,"[\\[]", "")) %>% 
+  mutate(epa = str_replace(epa, "[\\]]", "")) %>% 
+  mutate(dha = str_replace(dha,"[\\[]", "")) %>% 
+  mutate(dha = str_replace(dha, "[\\]]", "")) %>% 
+  mutate(ca_mg = str_replace(ca_mg,"[\\[]", "")) %>% 
+  mutate(ca_mg = str_replace(ca_mg, "[\\]]", "")) %>% 
+  mutate(fe_mg = str_replace(fe_mg,"[\\[]", "")) %>% 
+  mutate(fe_mg = str_replace(fe_mg, "[\\]]", "")) %>% 
+  mutate(zn_mg = str_replace(zn_mg,"[\\[]", "")) %>% 
+  mutate(zn_mg = str_replace(zn_mg, "[\\]]", "")) %>% 
+  mutate(zn_mg = as.numeric(zn_mg)) %>% 
+  mutate(ca_mg = as.numeric(ca_mg)) %>% 
+  mutate(fe_mg = as.numeric(fe_mg)) %>% 
+  mutate(epa = as.numeric(epa)) %>% 
+  mutate(dha = as.numeric(dha)) %>% 
+  mutate(fat = as.numeric(fat)) %>% 
+  mutate(protein = as.numeric(protein)) %>% 
+  select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein)
+
+
+af_refs <- unique(af2$biblio_id)
+bc_refs <- unique(bc_references$biblio_id)
+overlapping <- intersect(af_refs, bc_refs) ## ok there are 12 overlapping refs between anfood and biocomp
+
 ### ok now merge with CINE
 
 updated_ref <- read_csv("data-processed/CINE-nutrients-fish-references-annotated.csv")
 
 keep_refs_bio <- updated_ref %>% 
   filter(grepl("yes", use_in_analysis)) %>% 
-  filter(!grepl("y", already_in_biocomp))
+  filter(!grepl("y", already_in_biocomp)) %>% 
+  filter(ref_number != 27)
 
 nt <- read_csv("data-processed/trad-foods-cleaned-2020.csv")
 nt_keep_bio <- nt %>% 
+  mutate(part = ifelse(common_name == "Ninespine Stickleback", "whole", part)) %>% ## fixing data entry mistake
   rename(subgroup = level_1) %>% 
   filter(reference %in% c(keep_refs_bio$ref_number)) %>% 
   rename(genus_species = latin_name_cleaned) %>% 
-  select(cine_id, subgroup, genus_species, common_name, part, ca_mg, fe_mg, epa, dha, protein_g, fat_g, reference)
+  rename(fat = fat_g) %>% 
+  rename(protein = protein_g) %>% 
+  mutate(reference = as.character(reference)) %>% 
+  select(cine_id, subgroup, genus_species, common_name, reference, part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, reference) %>% 
+  rename(biblio_id = reference)
+View(nt_keep_bio)
 
-all_data_traits <- bind_rows(nt_keep_bio, bc)
+all_data_traits <- bind_rows(nt_keep_bio, bc, af2) 
+
+all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2) %>% 
+  filter(subgroup == "Marine Invertebrates") 
+
+write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
+
+unique(all_data_traits$subgroup)
+
+inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited.csv") %>% 
+  select(cine_id, subgroup2)
+
+all_data_traits2 <- all_data_traits %>% 
+ left_join(., inverts_cat) %>% 
+  mutate(subgroup = ifelse(is.na(subgroup2), subgroup, subgroup2)) %>% 
+  mutate(subgroup = ifelse(subgroup == "Fish", "Finfish", subgroup)) %>% 
+  mutate(subgroup = ifelse(subgroup == "Molluscs", "Mollusc", subgroup))
+
+unique(all_data_traits2$subgroup)
+# View(all_data_traits)
 
 
+percentages <- all_data_traits2 %>% 
+  rename(calcium = ca_mg,
+         zinc = zn_mg,
+         iron = fe_mg) %>%
+  gather(7:13, key = nutrient, value = concentration) %>% 
+  mutate(dri_per = NA) %>% 
+  mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "zinc", concentration/11, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "epa", concentration/1, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "dha", concentration/1, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "protein", concentration/50, dri_per)) %>% 
+  mutate(dri_per = ifelse(nutrient == "fat", concentration/70, dri_per)) %>% 
+  mutate(dri_per = dri_per*100) %>% 
+  filter(!is.na(concentration)) 
+
+unique(percentages$nutrient)
+
+percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
+
+
+perc2 <- percentages %>% 
+  mutate(genus_species = ifelse(is.na(genus_species), asfis_scientific_name, genus_species)) %>% 
+  mutate(genus_species = ifelse(is.na(genus_species), scientific_name, genus_species)) %>% 
+  mutate(food_name_in_english = ifelse(is.na(food_name_in_english), paste(common_name, part, sep = ", "), food_name_in_english)) %>% 
+  distinct(nutrient, concentration, genus_species, common_name, food_name_in_english, asfis_scientific_name, part, dri_per, subgroup, .keep_all = TRUE)
+
+perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
+
+perc2 %>% 
+  ggplot(aes(x = dri_per, fill = subgroup)) + 
+  geom_histogram(binwidth = 0.07) +
+  scale_fill_brewer(type = "qual", palette = "Paired") +
+  scale_x_log10(breaks = c(1, 10, 100)) +
+  facet_grid(nutrient ~ subgroup, scales = "free_y", switch = "x") + theme_bw() + geom_vline(xintercept = 10) +
+  xlab("Percentage of DRI in 100g edible portion") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(text=element_text(family="Helvetica", size=12)) +
+  theme(strip.background = element_blank()) +
+  theme(legend.title=element_blank()) +
+  theme(strip.text.y = element_text(size = 12)) +
+  theme(legend.position="none") +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 2))
+
+
+mean_nuts2 <- perc2 %>% 
+  mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
+  spread(nutrient, concentration) %>% 
+  group_by(genus_species, subgroup) %>% 
+  summarise(calcium = mean(calcium, na.rm = TRUE),
+            zinc = mean(zinc, na.rm = TRUE), 
+            iron = mean(iron, na.rm = TRUE),
+            epa = mean(epa, na.rm = TRUE),
+            dha = mean(dha, na.rm = TRUE)) %>% 
+  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha)) %>% 
+  ungroup()
+
+write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
+
+
+
+mean_nuts2 %>% 
+  gather(3:7, key = nutrient, value = concentration) %>% 
+  ggplot(aes(x = concentration)) + geom_histogram() +
+  facet_wrap( ~ nutrient, scales = "free")

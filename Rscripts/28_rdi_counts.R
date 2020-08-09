@@ -57,7 +57,7 @@ data %>%
 
 
 trait_data <- read_csv("data-processed/n.long_lat3.csv")
-
+View(trait_data)
 trait_data2 <- trait_data %>% 
   filter(!grepl("^Mohanty", ref_info))
 

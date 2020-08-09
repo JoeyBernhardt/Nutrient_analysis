@@ -1,0 +1,21 @@
+cine_id,subgroup,genus_species,common_name,part,ca_mg,fe_mg,zn_mg,epa,dha,protein,fat,reference,bc_id,asfis_english_name,asfis_scientific_name,food_name_in_english
+72,Marine Invertebrates,Callinectes sapidus,Blue Crab,muscle,74,NA,NA,NA,NA,16.4,0.77,65,NA,NA,NA,NA
+78,Marine Invertebrates,Cancer borealis,Jonah Crab,muscle,NA,NA,NA,0.28,0.1,NA,NA,55,NA,NA,NA,NA
+79,Marine Invertebrates,Cancer irroratus,Atlantic Rock Crab,muscle,NA,NA,NA,0.27,0.15,NA,1.2,55,NA,NA,NA,NA
+80,Marine Invertebrates,Cancer irroratus,Atlantic Rock Crab,muscle,NA,NA,NA,0.27,0.15,NA,NA,55,NA,NA,NA,NA
+114,Marine Invertebrates,Clinocardium nuttallii,Nuttall Cockle,muscle,30,16.2,NA,NA,NA,13.5,0.7,19,NA,NA,NA,NA
+190,Marine Invertebrates,Crassostrea virginica,Eastern Oyster,muscle,NA,NA,NA,0.11,0.09,NA,NA,55,NA,NA,NA,NA
+191,Marine Invertebrates,Crassostrea virginica,Eastern Oyster,muscle,61,7.65,82.5,NA,NA,8.59,2.36,65,NA,NA,NA,NA
+223,Marine Invertebrates,Enteroctopus dofleini,Pacific Giant Octopus,muscle,24,5.3,NA,NA,NA,11.9,0.6,19,NA,NA,NA,NA
+337,Marine Invertebrates,Homarus americanus,American lobster,muscle,NA,NA,NA,0.24,0.12,NA,NA,55,NA,NA,NA,NA
+359,Marine Invertebrates,Illex illecebrosus,Northern Shortfin Squid,muscle,NA,NA,NA,0.27,0.64,NA,NA,55,NA,NA,NA,NA
+361,Marine Invertebrates,Katharina turnicata,Black Katy Chiton,muscle,121,16,NA,NA,NA,17.1,1.6,19,NA,NA,NA,NA
+428,Marine Invertebrates,Mercenaria mercenaria ,Northern Quahog,muscle,NA,NA,NA,0.09,0.08,NA,0.8,55,NA,NA,NA,NA
+490,Marine Invertebrates,Mytilidae,Mussels,muscle,NA,NA,NA,0.13,0.17,NA,1.27,55,NA,NA,NA,NA
+496,Marine Invertebrates,Mytilus edulis,Blue Mussel,muscle,NA,NA,NA,0.13,0.17,NA,NA,55,NA,NA,NA,NA
+506,Marine Invertebrates,Nephropidae,Lobsters,muscle,NA,NA,NA,0.24,0.12,NA,1.2,55,NA,NA,NA,NA
+646,Marine Invertebrates,Parastichopus californicus,Giant California Sea Cucumber,muscle,30,0.6,NA,NA,NA,13,0.4,19,NA,NA,NA,NA
+655,Marine Invertebrates,Pectinidae,Scallops,muscle,NA,NA,NA,0.19,0.18,NA,1,55,NA,NA,NA,NA
+656,Marine Invertebrates,Pectinidae,Scallops,muscle,9.2,0.107,1.22,NA,NA,15.1,1,65,NA,NA,NA,NA
+856,Marine Invertebrates,Spisula solidissima,Atlantic Surf Clam,muscle,NA,NA,NA,0.15,0.21,NA,NA,55,NA,NA,NA,NA
+858,Marine Invertebrates,Spisula solidissima,Atlantic Surf Clam,muscle,NA,NA,NA,0.15,0.21,NA,1.4,55,NA,NA,NA,NA
