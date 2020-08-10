@@ -10,10 +10,14 @@ library(plotrix)
 
 trait_data <- read_csv("data-processed/n.long_lat3.csv")
 
+trait_data4 <- trait_data %>% 
+  filter(!grepl("^Mohanty", ref_info)) %>%  
+  filter(seanuts_id2 != 1737)
 
+write_csv(trait_data4, "data-processed/trait_data4.csv")
 
 mean_nuts <- trait_data %>% 
-  filter(!grepl("^Mohanty", ref_info)) %>% 
+  filter(!grepl("^Mohanty", ref_info)) %>%  
   filter(seanuts_id2 != 1737) %>% #### doing this because the units here were reported wrong (i.e. epa and dha should were in mg /100g when they should have been g / 100g)
   # filter(species_name != "Carcinus maenas") %>% 
   spread(nutrient, concentration) %>% 

@@ -1,8 +1,8 @@
-
+library(readxl)
 
 #### biofood comp data for traits
 
-bc_raw <- read_csv("data-processed/biocomp-raw-macro-micro.csv") %>% 
+bc_raw <- read_excel("data-processed/biocomp-raw-macro-micro.xlsx") %>% 
   clean_names() %>% 
   filter(!is.na(food_item_id)) %>% 
   mutate(bc_id = rownames(.)) %>%
@@ -62,6 +62,8 @@ muscle_samples <- bc %>%
   filter(!grepl("bones",food_name_in_english)) %>% 
   select(bc_id)
 
+View(muscle_samples)
+
 egg_samples <- bc %>% 
   # filter(grepl("roe",food_name_in_english)) %>% 
   filter(grepl(c("egg"),food_name_in_english)) %>% 
@@ -114,19 +116,23 @@ unique(muscle_only_data$asfis_scientific_name)
 
 # bring in AnFoods --------------------------------------------------------
 
+### check on the Anfoods crustaceans to see which ones are wild
 af_raw <- read_excel("data-processed/AnFood-macro-micro.xlsx") %>% 
   clean_names() %>% 
+  # filter(subgroup == "Crustacean") %>%
   mutate(farmed_finfish = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Finfish", "farmed_finfish", "other")) %>%
-  mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "other")) %>% 
+  mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "unfarmed_crustacean")) %>% 
   filter(farmed_finfish != "farmed_finfish") %>% 
   filter(farmed_crustacean != "farmed_crustacean") %>% 
-  filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english)) %>% 
+  filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english) | biblio_id %in% c("fi195", "fi159", "fi188", "fi203")) %>% 
   filter(!is.na(food_item_id_1)) %>% 
   mutate(af_id = rownames(.))
 
 af_refs <- read_excel("data-processed/anfood-refs.xlsx") %>% 
   clean_names() 
 
+
+### come back to anfoods data
 af2 <- af_raw %>% 
   left_join(., af_refs) %>% 
   rename(epa = f20d5n3_g) %>% 
@@ -182,11 +188,66 @@ nt_keep_bio <- nt %>%
   mutate(reference = as.character(reference)) %>% 
   select(cine_id, subgroup, genus_species, common_name, reference, part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, reference) %>% 
   rename(biblio_id = reference)
-View(nt_keep_bio)
+# View(nt_keep_bio)
 
-all_data_traits <- bind_rows(nt_keep_bio, bc, af2) 
+### bring in Reksten!
 
-all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2) %>% 
+reksten <- read_excel("data/reksten-2020.xlsx") %>% 
+  mutate(species_part = paste(species_name, part, sep = "_")) %>% 
+  select(-species_name, - part) %>% 
+  group_by(species_part, nutrient) %>%
+  summarise_each(funs(mean), concentration) %>% 
+  # mutate(part = ifelse(part == "fillet", "muscle", part)) %>% 
+  # mutate(reksten_id = paste0("reksten",rownames(.))) %>% 
+  spread(key = nutrient, value = concentration) %>% 
+  separate(species_part, into = c("genus_species", "part"), sep = "_") %>% 
+  mutate(subgroup = "Finfish") %>% 
+  # rename(calcium = ca_mg,
+  #        zinc = zn_mg,
+  #        iron = fe_mg) %>% 
+  mutate(reference = "Reksten, A.M., Somasundaram, T., Kjellevold, M., Nordhagen, A., BÃ¸kevoll, A., Pincus, L.M., Rizwan, A.A.M., Mamun, A., Thilsted, S.H., Htut, T. and Aakre, I., 2020. Nutrient composition of 19 fish species from Sri Lanka and potential contribution to food and nutrition security.Â Journal of Food Composition and Analysis, p.103508.")
+
+trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>% 
+  filter(keep == "yes") %>% 
+  select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup) %>% 
+  rename(genus_species = species_name) %>% 
+  mutate(subgroup = ifelse(subgroup == "finfish", "Finfish", subgroup)) %>% 
+  mutate(subgroup = ifelse(subgroup == "mollusc", "Mollusc", subgroup)) %>% 
+  mutate(subgroup = ifelse(subgroup == "crustacean", "Crustacean", subgroup)) %>% 
+  filter(nutrient %in% c("epa", "dha", "ca_mg", "fe_mg", "zn_mg", "protein_g", "fat_g")) %>% 
+  spread(key = nutrient, value = concentration) %>% 
+  rename(fat = fat_g,
+         protein = protein_g)
+
+
+all_data_traits <- bind_rows(nt_keep_bio, bc, af2, reksten, trait_data4_edited) 
+length(unique(all_data_traits$bibliography))
+new_refs <- unique(all_data_traits$bibliography)
+
+
+#### August 9 2020
+### check out these refs, bring in ones that we don't already have.
+missing_refs_new_data <- data.frame(diffs = setdiff(old_refs, new_refs))
+write_csv(missing_refs_new_data, "data-processed/missing_refs_new_data.csv")
+
+
+
+unique(trait_data4_edited$subgroup)
+missing_data <- trait_data2 %>% 
+  filter(ref_info %in% missing_refs_new_data)
+
+mean_nuts <-  read_csv("data-processed/mean_nuts.csv") %>% 
+  mutate(species_name = ifelse(species_name == "Tenualosa ilisha (juvenile)","Tenualosa ilisha", species_name)) %>% 
+  mutate(species_name = ifelse(species_name == "Pangasianodon hypophthalmus (juvenile)","Pangasianodon hypophthalmus", species_name)) %>% 
+  group_by(species_name) %>% 
+  summarise_each(funs(mean), calcium, epa, dha, zinc, iron) %>% 
+  filter(!species_name %in% mean_nuts2$genus_species) %>% View
+
+  
+
+
+
+all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, reksten, trait_data4_edited) %>% 
   filter(subgroup == "Marine Invertebrates") 
 
 write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
@@ -251,8 +312,9 @@ perc2 %>%
   theme(legend.position="none") +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 2))
 
-
+### joey come back here.
 mean_nuts2 <- perc2 %>% 
+  filter(grepl(" ", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
@@ -267,10 +329,27 @@ mean_nuts2 <- perc2 %>%
   ungroup()
 
 write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
+write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020b.csv")
+mean_nuts3 <- perc2 %>% 
+  filter(grepl(" ", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
+  spread(nutrient, concentration) %>% 
+  group_by(genus_species, subgroup) %>% 
+  summarise(calcium = mean(calcium, na.rm = TRUE),
+            zinc = mean(zinc, na.rm = TRUE), 
+            protein = mean(protein, na.rm = TRUE), 
+            fat = mean(fat, na.rm = TRUE), 
+            iron = mean(iron, na.rm = TRUE),
+            epa = mean(epa, na.rm = TRUE),
+            dha = mean(dha, na.rm = TRUE)) %>% 
+  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha), !is.na(protein), !is.na(fat)) %>% 
+  ungroup()
+write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
 
 
-
-mean_nuts2 %>% 
-  gather(3:7, key = nutrient, value = concentration) %>% 
-  ggplot(aes(x = concentration)) + geom_histogram() +
+mean_nuts3 %>% 
+  gather(3:9, key = nutrient, value = concentration) %>% 
+  ggplot(aes(x = concentration)) + geom_density(fill = "grey") +
   facet_wrap( ~ nutrient, scales = "free")

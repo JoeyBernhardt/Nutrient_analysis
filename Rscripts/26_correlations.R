@@ -72,6 +72,13 @@ mean_nuts <- mean_nuts %>%
 
 all_nuts <- bind_rows(mean_nuts, newtrad)
 
+all_nuts <- read_csv("data-processed/mean_nuts_new.csv") %>% 
+  select(-genus_species) %>% 
+  select(-subgroup) %>% 
+  select(calcium, iron, zinc, epa, dha, protein, fat) %>% 
+  rename(EPA = epa,
+         DHA = dha)### update aug 9 2020
+
 M <- cor(all_nuts, use = "pairwise.complete.obs")
 corrplot(M, method = "number")
 corrplot.mixed(M)
@@ -136,8 +143,9 @@ seadiv <- read_csv("data-processed/mean_seadiv.csv") %>%
   mutate_all(., .funs = log)
 
 tscale <- seadiv
-tscale <- scale(seadiv, center = TRUE, scale = TRUE)
 
+tscale <- scale(seadiv, center = TRUE, scale = TRUE)
+tscale <- scale(all_nuts, center = TRUE, scale = TRUE)
 
 M <- cor(tscale, use = "pairwise.complete.obs")
 corrplot(M, method = "number")
@@ -169,6 +177,7 @@ m2 %>%
   ylab("Density") + xlab("Pairwise correlation coefficient") 
 ggsave("figures/nutrients-pairwise-correlations-coefs.png", width = 6, height = 4)
 
+library(vegan)
 pca_size <- prcomp(tscale, scale. = TRUE)
 pca_size2 <- rda(tscale, scale. = TRUE)
 
@@ -190,9 +199,19 @@ plot2 <- pcas %>%
   ggtitle("B")
 ggsave("figures/nutrients-pca.png", width = 8, height = 6)
 
+plot2 <- pcas %>% 
+  ggplot(aes(x = PC1, y = PC2)) + geom_point(size = 3, alpha = 0.5) +
+  geom_point(size = 3, color = "black", shape = 1) +
+  geom_hline(yintercept = 0) + geom_vline(xintercept = 0) +
+  geom_text(data = pcas1, aes(x = PC1, y = PC2, label = trait), col = 'cadetblue') +
+  geom_segment(aes(x = 0, y = 0, xend = PC1, yend = PC2, text =  trait), data = pcas1, color = "cadetblue",
+               arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
+  xlab("PC1 (32.61% of variance)") + ylab("PC2 (27.14% of variance)") +
+  ggtitle("B")
 
+library(patchwork)
 cors <- plot1 + plot2 
-ggsave(plot = cors, "figures/nut-corrs.pdf", width = 9, height = 4)
+ggsave(plot = cors, "figures/nut-corrs-aug-updated.pdf", width = 9, height = 4)
 
 #### try an RDA
 

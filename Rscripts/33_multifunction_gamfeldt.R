@@ -11,11 +11,17 @@ library(grid)
 library(cowplot)
 library(nlstools)
 
-mean_nuts <- read_csv("data-processed/mean_nuts.csv")
+mean_nuts <- read_csv("data-processed/mean_nuts.csv") 
 mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
 new_global <- read_csv("data-processed/new_global.csv")
 mn_sp <- mean_nuts$species_name
+mean_nuts_new <- read_csv("data-processed/mean_nuts_aug2020b.csv") %>%
+  mutate(genus_species = ifelse(genus_species == "Dentex spp", "Dentex sp.", genus_species)) %>%
+  mutate(genus_species = ifelse(genus_species == "Mya spp.", "Mya spp", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "Sardinella spp", "Sardinella sp.", genus_species)) %>%
+  filter(genus_species %in% mean_nuts$species_name) ### update aug 2020
 
+mean_nuts <- mean_nuts_new
 new_global <- new_global %>% 
   filter(species_name != "Ostreidae") %>% 
   filter(iron < 100)
@@ -456,6 +462,12 @@ all_grams_median_nuts <- all_grams_mean_nuts %>%
   group_by(nutrient, species_no) %>% 
   summarise_each(funs(mean, median), grams_required) 
 
+all_grams_median_nuts <- all_grams_mean_nuts %>% 
+  mutate(grams_required = grams_required/10) %>% 
+  group_by(nutrient, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(grams_required_median = median)
+
 # 
 # all_grams_median_nuts <- all_grams_global %>% 
 #   group_by(nutrient, species_no) %>% 
@@ -491,19 +503,19 @@ cal_boot$bootCI
 cal_boot$estiboot
 cal_boot_df <- as_data_frame(cal_boot$coefboot) 
 
-cal_split <- cal_boot_df %>% 
-  mutate(replicate = rownames(.)) %>% 
-  split(.$replicate)
-
-
-cal_preds <- cal_split %>% 
-  map_df(prediction_function, .id = "replicate")
-
-cal_median <- all_grams_median_nuts %>% 
-  filter(nutrient == "calcium")
-cal_median %>% 
-ggplot(aes(x= species_no, y = grams_required_median)) +
-  geom_line(data = cal_preds, aes(x = species_no, y = grams_required, group = replicate), alpha = 0.01, color = "grey")
+# cal_split <- cal_boot_df %>% 
+#   mutate(replicate = rownames(.)) %>% 
+#   split(.$replicate)
+# 
+# 
+# cal_preds <- cal_split %>% 
+#   map_df(prediction_function, .id = "replicate")
+# 
+# cal_median <- all_grams_median_nuts %>% 
+#   filter(nutrient == "calcium")
+# cal_median %>% 
+# ggplot(aes(x= species_no, y = grams_required_median)) +
+#   geom_line(data = cal_preds, aes(x = species_no, y = grams_required, group = replicate), alpha = 0.01, color = "grey")
 
 all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "all_5_micronutrients"),  start = c(a=10000, b=-0.5))
 all_boot <- nlsBoot(all_mod)
@@ -570,8 +582,8 @@ library(janitor)
 library(viridis)
 all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %>% 
   clean_names() %>% 
-  rename(lower = x2_5percent,
-         upper = x97_5percent) %>% 
+  rename(lower = x2_5_percent,
+         upper = x97_5_percent) %>% 
   filter(median < 1) %>% 
   mutate(nutrient = ifelse(nutrient == "all", "5 Micronutrients", nutrient)) %>% 
   mutate(nutrient = ifelse(nutrient == "calcium", "Calcium", nutrient)) %>% 
@@ -773,6 +785,23 @@ all_preds2 %>%
   theme(axis.text = element_text(size=16))
  ggsave("figures/single_nutrient_plot.pdf", width = 5.5, height = 4)
 
+ p + 
+   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds2, alpha = 0.5) +
+   geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds2, alpha = 1, size = 1.5) +
+   geom_point(data = all_grams2, aes(x = species_no, y = median, color = nutrient), size = 2) + 
+   scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
+   scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
+   theme(legend.position="right") +
+   theme(axis.text = element_text(size=16))
+ 
+ p + 
+   geom_ribbon(aes(ymin = q2.5, ymax = q97.5, x = species_no, fill = nutrient), data = all_preds2, alpha = 0.5) +
+   geom_line(aes(y = mean, x = species_no, color= nutrient), data = all_preds2, alpha = 1, size = 1.5) +
+   geom_point(data = all_grams2, aes(x = species_no, y = median, color = nutrient), size = 2) + 
+   scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
+   scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
+   theme(legend.position="right") +
+   theme(axis.text = element_text(size=16))
  
  # other stuff -------------------------------------------------------------
  

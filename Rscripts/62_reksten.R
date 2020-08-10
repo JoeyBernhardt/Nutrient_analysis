@@ -6,6 +6,7 @@ reksten <- read_excel("data/reksten-2020.xlsx") %>%
   mutate(part = ifelse(part == "fillet", "muscle", part)) %>% 
   mutate(reksten_id = paste0("reksten",rownames(.))) 
 
+View(reksten)
 reksten_species <- unique(reksten$species_name)
 
 

@@ -79,7 +79,9 @@ refs_nuts <- percentages_raw %>%
   mutate(ref_number = as.numeric(as.factor(ref_info))) 
 
 refs_unique <- refs %>% 
-  distinct(ref_number, ref_info) 
+  distinct(ref_number, ref_info)
+
+old_refs <- refs_unique$ref_info
 
 library(readxl)
 write_excel_csv(refs_unique, "data-processed/barchart-references2.csv")
