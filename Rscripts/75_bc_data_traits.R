@@ -213,7 +213,7 @@ nt_keep_bio <- nt %>%
 
 trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>% 
   filter(keep == "yes") %>% 
-  select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup) %>% 
+  select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, location) %>% 
   rename(genus_species = species_name) %>% 
   mutate(subgroup = ifelse(subgroup == "finfish", "Finfish", subgroup)) %>% 
   mutate(subgroup = ifelse(subgroup == "mollusc", "Mollusc", subgroup)) %>% 
@@ -224,9 +224,17 @@ trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>%
          protein = protein_g) %>% 
   rename(bibliography = ref_info)
 
+write_csv(trait_data4_edited, "data-processed/new_refs_contribution_to_seanuts.csv")
 
+### going to check on the accuracy of these data and adding info on which parts are included
+
+trait_data5_edited <- read_excel("data-processed/new_refs_contribution_to_seanuts_edited.xlsx") %>% 
+  filter(is.na(exclude_for_wrong_units)) %>% 
+  mutate_at(8:12, as.numeric)
+
+View(trait_data5_edited)
 #### bind all datasets
-all_data_traits <- bind_rows(nt_keep_bio, bc, af2, trait_data4_edited) 
+all_data_traits <- bind_rows(nt_keep_bio, bc, af2, trait_data5_edited) 
 
 
 length(unique(all_data_traits$bibliography))
@@ -244,18 +252,11 @@ unique(trait_data4_edited$subgroup)
 missing_data <- trait_data2 %>% 
   filter(ref_info %in% missing_refs_new_data)
 
-# mean_nuts <-  read_csv("data-processed/mean_nuts.csv") %>% 
-#   mutate(species_name = ifelse(species_name == "Tenualosa ilisha (juvenile)","Tenualosa ilisha", species_name)) %>% 
-#   mutate(species_name = ifelse(species_name == "Pangasianodon hypophthalmus (juvenile)","Pangasianodon hypophthalmus", species_name)) %>% 
-#   group_by(species_name) %>% 
-#   summarise_each(funs(mean), calcium, epa, dha, zinc, iron) %>% 
-#   filter(!species_name %in% mean_nuts2$genus_species) %>% View
-
   
 
 
 
-all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, trait_data4_edited) %>% 
+all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, trait_data5_edited) %>% 
   filter(subgroup == "Marine Invertebrates") 
 
 write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
