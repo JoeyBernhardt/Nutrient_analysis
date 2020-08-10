@@ -2,6 +2,10 @@ library(readxl)
 
 #### biofood comp data for traits
 
+
+# bring in biocomp data ---------------------------------------------
+
+
 bc_raw <- read_excel("data-processed/biocomp-raw-macro-micro.xlsx") %>% 
   clean_names() %>% 
   filter(!is.na(food_item_id)) %>% 
@@ -187,25 +191,25 @@ nt_keep_bio <- nt %>%
   rename(protein = protein_g) %>% 
   mutate(reference = as.character(reference)) %>% 
   select(cine_id, subgroup, genus_species, common_name, reference, part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, reference) %>% 
-  rename(biblio_id = reference)
+  rename(biblio_id = reference) 
 # View(nt_keep_bio)
 
-### bring in Reksten!
+### bring in Reksten! coming back to say no to this, since it's past 2019
 
-reksten <- read_excel("data/reksten-2020.xlsx") %>% 
-  mutate(species_part = paste(species_name, part, sep = "_")) %>% 
-  select(-species_name, - part) %>% 
-  group_by(species_part, nutrient) %>%
-  summarise_each(funs(mean), concentration) %>% 
-  # mutate(part = ifelse(part == "fillet", "muscle", part)) %>% 
-  # mutate(reksten_id = paste0("reksten",rownames(.))) %>% 
-  spread(key = nutrient, value = concentration) %>% 
-  separate(species_part, into = c("genus_species", "part"), sep = "_") %>% 
-  mutate(subgroup = "Finfish") %>% 
-  # rename(calcium = ca_mg,
-  #        zinc = zn_mg,
-  #        iron = fe_mg) %>% 
-  mutate(reference = "Reksten, A.M., Somasundaram, T., Kjellevold, M., Nordhagen, A., BÃ¸kevoll, A., Pincus, L.M., Rizwan, A.A.M., Mamun, A., Thilsted, S.H., Htut, T. and Aakre, I., 2020. Nutrient composition of 19 fish species from Sri Lanka and potential contribution to food and nutrition security.Â Journal of Food Composition and Analysis, p.103508.")
+# reksten <- read_excel("data/reksten-2020.xlsx") %>% 
+#   mutate(species_part = paste(species_name, part, sep = "_")) %>% 
+#   select(-species_name, - part) %>% 
+#   group_by(species_part, nutrient) %>%
+#   summarise_each(funs(mean), concentration) %>% 
+#   # mutate(part = ifelse(part == "fillet", "muscle", part)) %>% 
+#   # mutate(reksten_id = paste0("reksten",rownames(.))) %>% 
+#   spread(key = nutrient, value = concentration) %>% 
+#   separate(species_part, into = c("genus_species", "part"), sep = "_") %>% 
+#   mutate(subgroup = "Finfish") %>% 
+#   # rename(calcium = ca_mg,
+#   #        zinc = zn_mg,
+#   #        iron = fe_mg) %>% 
+#   mutate(reference = "Reksten, A.M., Somasundaram, T., Kjellevold, M., Nordhagen, A., BÃ¸kevoll, A., Pincus, L.M., Rizwan, A.A.M., Mamun, A., Thilsted, S.H., Htut, T. and Aakre, I., 2020. Nutrient composition of 19 fish species from Sri Lanka and potential contribution to food and nutrition security.Â Journal of Food Composition and Analysis, p.103508.")
 
 trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>% 
   filter(keep == "yes") %>% 
@@ -217,10 +221,14 @@ trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>%
   filter(nutrient %in% c("epa", "dha", "ca_mg", "fe_mg", "zn_mg", "protein_g", "fat_g")) %>% 
   spread(key = nutrient, value = concentration) %>% 
   rename(fat = fat_g,
-         protein = protein_g)
+         protein = protein_g) %>% 
+  rename(bibliography = ref_info)
 
 
-all_data_traits <- bind_rows(nt_keep_bio, bc, af2, reksten, trait_data4_edited) 
+#### bind all datasets
+all_data_traits <- bind_rows(nt_keep_bio, bc, af2, trait_data4_edited) 
+
+
 length(unique(all_data_traits$bibliography))
 new_refs <- unique(all_data_traits$bibliography)
 
@@ -236,18 +244,18 @@ unique(trait_data4_edited$subgroup)
 missing_data <- trait_data2 %>% 
   filter(ref_info %in% missing_refs_new_data)
 
-mean_nuts <-  read_csv("data-processed/mean_nuts.csv") %>% 
-  mutate(species_name = ifelse(species_name == "Tenualosa ilisha (juvenile)","Tenualosa ilisha", species_name)) %>% 
-  mutate(species_name = ifelse(species_name == "Pangasianodon hypophthalmus (juvenile)","Pangasianodon hypophthalmus", species_name)) %>% 
-  group_by(species_name) %>% 
-  summarise_each(funs(mean), calcium, epa, dha, zinc, iron) %>% 
-  filter(!species_name %in% mean_nuts2$genus_species) %>% View
+# mean_nuts <-  read_csv("data-processed/mean_nuts.csv") %>% 
+#   mutate(species_name = ifelse(species_name == "Tenualosa ilisha (juvenile)","Tenualosa ilisha", species_name)) %>% 
+#   mutate(species_name = ifelse(species_name == "Pangasianodon hypophthalmus (juvenile)","Pangasianodon hypophthalmus", species_name)) %>% 
+#   group_by(species_name) %>% 
+#   summarise_each(funs(mean), calcium, epa, dha, zinc, iron) %>% 
+#   filter(!species_name %in% mean_nuts2$genus_species) %>% View
 
   
 
 
 
-all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, reksten, trait_data4_edited) %>% 
+all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, trait_data4_edited) %>% 
   filter(subgroup == "Marine Invertebrates") 
 
 write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
@@ -258,10 +266,16 @@ inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited.csv") %>%
   select(cine_id, subgroup2)
 
 all_data_traits2 <- all_data_traits %>% 
- left_join(., inverts_cat) %>% 
+ left_join(., inverts_cat) %>%
   mutate(subgroup = ifelse(is.na(subgroup2), subgroup, subgroup2)) %>% 
   mutate(subgroup = ifelse(subgroup == "Fish", "Finfish", subgroup)) %>% 
-  mutate(subgroup = ifelse(subgroup == "Molluscs", "Mollusc", subgroup))
+  mutate(subgroup = ifelse(subgroup == "Molluscs", "Mollusc", subgroup)) %>% 
+  mutate(genus_species = ifelse(is.na(genus_species), asfis_scientific_name, genus_species)) %>% 
+  mutate(genus_species = ifelse(is.na(genus_species), scientific_name, genus_species)) %>% 
+  mutate(food_name_in_english = ifelse(is.na(food_name_in_english), paste(common_name, part, sep = ", "), food_name_in_english)) 
+
+
+write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
 
 unique(all_data_traits2$subgroup)
 # View(all_data_traits)

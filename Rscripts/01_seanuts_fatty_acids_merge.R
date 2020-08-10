@@ -111,3 +111,5 @@ filter(food_name_in_english.y != food_name_in_english.x) %>% View
 write_csv(all_nuts4, "data-processed/all_nuts.csv")
 
 unique(all_nuts4$asfis_scientific_name_fishbase_swap.x)
+
+all_nuts4 <- read_csv("data-processed/all_nuts.csv")

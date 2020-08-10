@@ -15,7 +15,7 @@ mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
 new_global <- read_csv("data-processed/new_global.csv") 
 mn_sp <- mean_nuts$species_name
-mean_nuts_new <- read_csv("data-processed/mean_nuts_aug2020_micro_macro.csv") %>%
+mean_nuts_new <- read_csv("data-processed/mean_nuts_aug2020_micro_macro.csv") %>% 
   mutate(genus_species = ifelse(genus_species == "Dentex spp", "Dentex sp.", genus_species)) %>%
   mutate(genus_species = ifelse(genus_species == "Mya spp.", "Mya spp", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "Sardinella spp", "Sardinella sp.", genus_species)) %>%
@@ -119,7 +119,7 @@ nutrient_fishing_function <- function(sample_size) {
 }
 
 
-samples_rep <- rep(10, 100)
+samples_rep <- rep(10, 1000)
 
 
 output_all5m <- samples_rep %>% 
@@ -171,7 +171,7 @@ output_calciumm <- samples_rep %>%
 # write_csv(output_calcium, "data-processed/calcium_grams_required_mean_nuts.csv")
 # write_csv(output_calcium, "data-processed/calcium_grams_required.csv")
 # iron --------------------------------------------------------------------
-dataset <- mean_nuts
+
 nutrient_fishing_iron <- function(sample_size) {
   ntbl_sub1 <- mean_nuts_new %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -431,9 +431,9 @@ nutrient_fishing_fat <- function(sample_size) {
     mutate(grams_required = 100/min_percentage)
 }
 
-output_fatm <- samples_rep %>% 
-  map_df(nutrient_fishing_fat, .id = "run") %>% 
-  mutate(nutrient = "fat")
+# output_fatm <- samples_rep %>% 
+#   map_df(nutrient_fishing_fat, .id = "run") %>% 
+#   mutate(nutrient = "fat")
 
 # Get BEF params ----------------------------------------------------------
 
@@ -442,9 +442,12 @@ output_fatm <- samples_rep %>%
 
 all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham,
                                  output_epam, output_ironm, output_zincm, output_proteinm)  
+all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham,
+                                 output_epam, output_ironm, output_zincm, output_proteinm)  
 # all_grams_global <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm) %>% 
 #   filter(grams_required < 50000)
 
+write_csv(all_grams_mean_nuts, "~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required_aug2020_mean_nuts.csv")
 
 # write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 # write_csv(all_grams_mean_nuts, "~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required_aug2020.csv")
@@ -692,7 +695,7 @@ all_preds <- bind_rows(limits_all, limits_cal, limits_dha, limits_epa, limits_ir
 
 # all_preds <- read_csv("data-processed/single_nutrient_prediction_limits.csv")
 
-library(viridis)
+# library(viridis)
 
 all_grams <- all_grams_median_nuts %>% 
   ungroup() %>% 

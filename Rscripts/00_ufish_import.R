@@ -24,6 +24,11 @@ ufish_refs_sci <- ufish_refs %>%
   filter(str_detect(Type, "scientific")) 
   
 seanuts <- read_csv("data-processed/seanuts_select_8.csv") 
+other_refs <- seanuts %>% 
+  filter(is.na(food_item_id_2)) %>% 
+  filter(is.na(biblioid2))
+write_csv(other_refs, "data-processed/seanuts_not_in_infoods.csv")
+
 length(unique(seanuts$seanuts_id2))
 
 seanuts_refs <- seanuts %>% 
