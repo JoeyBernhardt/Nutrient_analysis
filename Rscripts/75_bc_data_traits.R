@@ -65,7 +65,8 @@ bc_raw1b <- bc_all2 %>%
 
 bc_raw1c <- bc_raw1b %>% 
   select(-prot_g, - fatce_g, -fatrn_g, -fat_g, -fat_g_2, -protcnt_g) %>% ## get rid of columns we no longer need
-  filter(processing == "r") ### only keep raw samples
+  filter(processing == "r") %>%  ### only keep raw samples
+  mutate(publication_year = as.character(publication_year))
  
 
 
@@ -323,55 +324,125 @@ unique(muscle_only_data$asfis_scientific_name)
 
 # bring in AnFoods --------------------------------------------------------
 
-### check on the Anfoods crustaceans to see which ones are wild
-af_raw <- read_excel("data-processed/AnFood-macro-micro.xlsx") %>% 
+af_raw_sheet1 <- read_excel("data/AnFood2.0_read_only.xlsx", sheet = "09 Fish & Shellfish", col_names = TRUE) %>% 
   clean_names() %>% 
-  # filter(subgroup == "Crustacean") %>%
+  filter(!is.na(food_item_id)) ## gets rid of second header row and any unidentified samples
+
+af_raw_sheet2 <- read_excel("data/AnFood2.0_read_only.xlsx", sheet = "09 Fish & Shellfish_fatty acids", col_names = TRUE) %>% 
+  clean_names() %>% 
+  filter(!is.na(food_item_id)) %>% ## gets rid of second header row and any unidentified samples
+  rename(epa = f20d5n3_g) %>% 
+  rename(dha = f22d6n3_g) %>% 
+  select(food_item_id, epa, dha)
+
+
+af_all <- af_raw_sheet1 %>% 
+  left_join(., af_raw_sheet2, by = "food_item_id") %>% ### here we join the datasheet with the minerals, protein and fat with the fatty acids
+  # select(food_item_id, biblio_id, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha) %>% 
+  mutate(af_id = paste0("af", rownames(.))) %>% 
+  filter(processing == "r") %>% 
   mutate(farmed_finfish = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Finfish", "farmed_finfish", "other")) %>%
   mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "unfarmed_crustacean")) %>% 
   filter(farmed_finfish != "farmed_finfish") %>% 
   filter(farmed_crustacean != "farmed_crustacean") %>% 
   filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english) | biblio_id %in% c("fi195", "fi159", "fi188", "fi203")) %>% 
-  filter(!is.na(food_item_id_1)) %>% 
-  mutate(af_id = paste0("af", rownames(.)))
-
-WriteXLS(af_raw, "data-processed/af_all.xlsx")
-
-af_refs <- read_excel("data-processed/anfood-refs.xlsx") %>% 
-  clean_names() 
+  filter(!is.na(food_item_id)) %>% 
+  select(food_item_id, af_id, biblio_id, type, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha)
+  
 
 
-### come back to anfoods data
-af2 <- af_raw %>% 
-  left_join(., af_refs) %>% 
-  rename(epa = f20d5n3_g) %>% 
-  rename(dha = f22d6n3_g) %>% 
-  mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% 
+WriteXLS(af_all, "data-processed/af_all.xlsx")
+
+af_parts_edited <- read_excel("data-processed/af_all_edited.xlsx") %>% 
+  clean_names() %>% 
+  select(food_item_id, part_edited)
+
+af_all2 <- af_all %>% 
+  left_join(., af_parts_edited, by = "food_item_id")
+
+
+af_raw1b <- af_all2 %>% 
+  select(-protcnp_g) %>% 
+  mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% ### these rows merge the various methods of measuring protein and fat
   mutate(fat = ifelse(is.na(fat_g), fatce_g, fat_g)) %>% 
   mutate(fat = ifelse(is.na(fat), fat_g_2, fat)) %>% 
-  mutate(fat = str_replace(fat,"[\\[]", "")) %>% 
-  mutate(fat = str_replace(fat, "[\\]]", "")) %>% 
-  mutate(protein = str_replace(protein,"[\\[]", "")) %>% 
-  mutate(protein = str_replace(protein, "[\\]]", "")) %>% 
-  mutate(epa = str_replace(epa,"[\\[]", "")) %>% 
-  mutate(epa = str_replace(epa, "[\\]]", "")) %>% 
-  mutate(dha = str_replace(dha,"[\\[]", "")) %>% 
-  mutate(dha = str_replace(dha, "[\\]]", "")) %>% 
-  mutate(ca_mg = str_replace(ca_mg,"[\\[]", "")) %>% 
-  mutate(ca_mg = str_replace(ca_mg, "[\\]]", "")) %>% 
-  mutate(fe_mg = str_replace(fe_mg,"[\\[]", "")) %>% 
-  mutate(fe_mg = str_replace(fe_mg, "[\\]]", "")) %>% 
-  mutate(zn_mg = str_replace(zn_mg,"[\\[]", "")) %>% 
-  mutate(zn_mg = str_replace(zn_mg, "[\\]]", "")) %>% 
-  mutate(zn_mg = as.numeric(zn_mg)) %>% 
+  separate(ca_mg, into = c("ca_mg", "extra_ca"), sep =  "±") %>% ### these rows get rid of the plus minus ranges, and only retain the mean, which is what we want
+  separate(epa, into = c("epa", "extra_epa"), sep =  "±") %>% 
+  separate(dha, into = c("dha", "extra_dha"), sep =  "±") %>% 
+  separate(fe_mg, into = c("fe_mg", "extra_fe"), sep =  "±") %>% 
+  separate(zn_mg, into = c("zn_mg", "extra_zn"), sep =  "±") %>% 
+  separate(fat, into = c("fat", "extra_fat"), sep =  "±") %>% 
+  separate(protein, into = c("protein", "extra_protein"), sep =  "±") %>% 
+  # select(food_item_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein, everything()) %>% 
+  select(-contains("extra")) %>% 
+  filter(!is.na(food_item_id)) %>% 
+  mutate(zn_mg = as.numeric(zn_mg)) %>% ### these 'as.numeric' rows get rid of the entries with ranges and that are in brackets, which are poor quality data
   mutate(ca_mg = as.numeric(ca_mg)) %>% 
   mutate(fe_mg = as.numeric(fe_mg)) %>% 
   mutate(epa = as.numeric(epa)) %>% 
   mutate(dha = as.numeric(dha)) %>% 
   mutate(fat = as.numeric(fat)) %>% 
-  mutate(protein = as.numeric(protein)) %>% 
-  select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, country_region, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
-  rename(location = country_region)
+  mutate(protein = as.numeric(protein)) %>%
+  rename(location = country_region) 
+
+
+af_raw1c <- af_raw1b %>% 
+  select(-prot_g, - fatce_g, -fatrn_g, -fat_g, -fat_g_2, -protcnt_g) %>% ## get rid of columns we no longer need
+  filter(processing == "r") %>% 
+  mutate(publication_year = as.character(publication_year))### only keep raw samples
+
+
+
+View(af_raw1c)
+
+# af_raw <- read_excel("data-processed/AnFood-macro-micro.xlsx") %>% 
+#   clean_names() %>% 
+#   # filter(subgroup == "Crustacean") %>%
+#   mutate(farmed_finfish = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Finfish", "farmed_finfish", "other")) %>%
+#   mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "unfarmed_crustacean")) %>% 
+#   filter(farmed_finfish != "farmed_finfish") %>% 
+#   filter(farmed_crustacean != "farmed_crustacean") %>% 
+#   filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english) | biblio_id %in% c("fi195", "fi159", "fi188", "fi203")) %>% 
+#   filter(!is.na(food_item_id_1)) %>% 
+#   mutate(af_id = paste0("af", rownames(.)))
+
+
+
+af_refs <- read_excel("data-processed/anfood-refs.xlsx") %>% 
+  clean_names() 
+
+
+# ### come back to anfoods data
+# af2 <- af_raw %>% 
+#   left_join(., af_refs) %>% 
+#   rename(epa = f20d5n3_g) %>% 
+#   rename(dha = f22d6n3_g) %>% 
+#   mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% 
+#   mutate(fat = ifelse(is.na(fat_g), fatce_g, fat_g)) %>% 
+#   mutate(fat = ifelse(is.na(fat), fat_g_2, fat)) %>% 
+#   mutate(fat = str_replace(fat,"[\\[]", "")) %>% 
+#   mutate(fat = str_replace(fat, "[\\]]", "")) %>% 
+#   mutate(protein = str_replace(protein,"[\\[]", "")) %>% 
+#   mutate(protein = str_replace(protein, "[\\]]", "")) %>% 
+#   mutate(epa = str_replace(epa,"[\\[]", "")) %>% 
+#   mutate(epa = str_replace(epa, "[\\]]", "")) %>% 
+#   mutate(dha = str_replace(dha,"[\\[]", "")) %>% 
+#   mutate(dha = str_replace(dha, "[\\]]", "")) %>% 
+#   mutate(ca_mg = str_replace(ca_mg,"[\\[]", "")) %>% 
+#   mutate(ca_mg = str_replace(ca_mg, "[\\]]", "")) %>% 
+#   mutate(fe_mg = str_replace(fe_mg,"[\\[]", "")) %>% 
+#   mutate(fe_mg = str_replace(fe_mg, "[\\]]", "")) %>% 
+#   mutate(zn_mg = str_replace(zn_mg,"[\\[]", "")) %>% 
+#   mutate(zn_mg = str_replace(zn_mg, "[\\]]", "")) %>% 
+#   mutate(zn_mg = as.numeric(zn_mg)) %>% 
+#   mutate(ca_mg = as.numeric(ca_mg)) %>% 
+#   mutate(fe_mg = as.numeric(fe_mg)) %>% 
+#   mutate(epa = as.numeric(epa)) %>% 
+#   mutate(dha = as.numeric(dha)) %>% 
+#   mutate(fat = as.numeric(fat)) %>% 
+#   mutate(protein = as.numeric(protein)) %>% 
+#   select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, country_region, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+#   rename(location = country_region)
 
 
 # af_refs <- unique(af2$biblio_id)
@@ -397,7 +468,20 @@ nt_keep_bio <- nt %>%
   rename(protein = protein_g) %>% 
   mutate(reference = as.character(reference)) %>% 
   select(cine_id, subgroup, genus_species, common_name, reference, part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, reference) %>% 
-  rename(biblio_id = reference) %>% 
+  rename(biblio_id = reference)
+
+WriteXLS(nt_keep_bio, "data-processed/nt_keep_bio.xlsx")
+
+
+cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited.xlsx") %>% 
+  clean_names() %>% 
+  select(cine_id, part_edited)
+
+cine_all2 <- nt_keep_bio %>% 
+  left_join(., cine_parts_edited, by = "cine_id")
+
+
+# unique(nt_keep_bio$part)
 # View(nt_keep_bio)
 
 ### bring in Reksten! coming back to say no to this, since it's past 2019
@@ -437,13 +521,13 @@ trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>%
 trait_data5_edited <- read_excel("data-processed/new_refs_contribution_to_seanuts_edited.xlsx") %>% 
   filter(is.na(exclude_for_wrong_units)) %>% 
   mutate(sea_id = paste0("seadata", rownames(.))) %>% 
-  mutate_at(9:13, as.numeric)
+  mutate_at(10:14, as.numeric) 
 
 View(trait_data5_edited)
 #### bind all datasets
-all_data_traits <- bind_rows(nt_keep_bio, bc, af2, trait_data5_edited) 
+all_data_traits <- bind_rows(cine_all2, bc_raw1c, af_raw1c, trait_data5_edited) 
 
-
+names(all_data_traits)
 length(unique(all_data_traits$bibliography))
 new_refs <- unique(all_data_traits$bibliography)
 
@@ -463,7 +547,7 @@ new_refs <- unique(all_data_traits$bibliography)
 
 
 
-all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, trait_data5_edited) %>% 
+all_data_traits_inverts <- all_data_traits %>% 
   filter(subgroup == "Marine Invertebrates") 
 
 # write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
@@ -473,17 +557,19 @@ unique(all_data_traits$subgroup)
 inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited.csv") %>% 
   select(cine_id, subgroup2)
 
+View(inverts_cat)
+
 all_data_traits2 <- all_data_traits %>% 
- left_join(., inverts_cat) %>%
+  left_join(., inverts_cat, by = "cine_id") %>% 
   mutate(subgroup = ifelse(is.na(subgroup2), subgroup, subgroup2)) %>% 
   mutate(subgroup = ifelse(subgroup == "Fish", "Finfish", subgroup)) %>% 
   mutate(subgroup = ifelse(subgroup == "Molluscs", "Mollusc", subgroup)) %>% 
   mutate(genus_species = ifelse(is.na(genus_species), asfis_scientific_name, genus_species)) %>% 
   mutate(genus_species = ifelse(is.na(genus_species), scientific_name, genus_species)) %>% 
   mutate(food_name_in_english = ifelse(is.na(food_name_in_english), paste(common_name, part, sep = ", "), food_name_in_english)) %>% 
+  # mutate(bc_id = ifelse(!is.na(bc_id), paste0("bc", bc_id), bc_id)) %>% 
+  # mutate(af_id = ifelse(!is.na(af_id), paste0("af", af_id), af_id)) %>% 
   mutate(cine_id = ifelse(!is.na(cine_id), paste0("c", cine_id), cine_id)) %>% 
-  mutate(bc_id = ifelse(!is.na(bc_id), paste0("bc", bc_id), bc_id)) %>% 
-  mutate(af_id = ifelse(!is.na(af_id), paste0("af", af_id), af_id)) %>% 
   mutate(obs_id = bc_id) %>% 
   mutate(obs_id = ifelse(is.na(bc_id), af_id, bc_id)) %>% 
   mutate(obs_id = ifelse(is.na(obs_id), cine_id, obs_id)) %>% 
@@ -498,43 +584,30 @@ all_data_traits2 <- all_data_traits %>%
 
 View(all_data_traits2)
 
+
 # write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
 library(WriteXLS)
 WriteXLS(all_data_traits2, "data-processed/seanuts-rebuild.xlsx")
 
-seanuts_parts <- read_excel("data-processed/seanuts-rebuild-edited.xlsx") %>% 
-  filter(biblio_id != "fi151") ### this file contains the edited parts
-View(seanuts_parts)
+# seanuts_parts <- read_excel("data-processed/seanuts-rebuild-edited.xlsx") %>% 
+#   filter(biblio_id != "fi151") ### this file contains the edited parts
+# View(seanuts_parts)
 
 
-seanuts_parts %>% 
-  mutate(part_edited = ifelse(part_edited == "muscle + small bones", "muscle + organs", part_edited)) %>% 
+
+all_data_traits2 %>% 
   group_by(part_edited) %>% 
   filter(subgroup == "Finfish") %>% 
-  summarise(mean_ca = mean(fe_mg, na.rm = TRUE),
-            stde_ca = std.error(fe_mg, na.rm = TRUE)) %>% 
-  filter(!is.na(mean_ca)) %>% 
-  ggplot(aes(x = reorder(part_edited, mean_ca), y = mean_ca)) + geom_point() +
-  geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca)) 
-
-sn2 <- seanuts_parts %>% 
-  mutate(part_edited = ifelse(part_edited == "muscle + small bones", "muscle + organs", part_edited)) %>% 
-  mutate(part_edited = ifelse(part_edited == "head, eyes, cheeks + soft bones", "muscle + organs", part_edited)) %>% 
-  mutate(part_edited = ifelse(part_edited %in% c("viscera", "hepatopancreas", "liver", "skin"), "internal organs", part_edited)) 
-
-sn2 %>% 
-  group_by(part_edited) %>% 
-  filter(subgroup == "Finfish") %>% 
-  select(fe_mg) %>% 
-  filter(!is.na(fe_mg)) %>% 
-  summarise(mean_ca = mean(fe_mg, na.rm = TRUE),
-            stde_ca = std.error(fe_mg, na.rm = TRUE)) %>% 
+  select(ca_mg) %>% 
+  filter(!is.na(ca_mg)) %>% 
+  summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
+            stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 
   filter(!is.na(mean_ca)) %>% 
   ggplot(aes(x = reorder(part_edited, mean_ca), y = mean_ca)) + geom_point() +
   geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1)
 
 
-mod <- aov(zn_mg ~ part_edited, data = filter(sn2, subgroup == "Finfish")) 
+mod <- aov(fe_mg ~ part_edited, data = filter(all_data_traits2, subgroup == "Finfish")) 
 summary(mod)
 aov(mod)
 
