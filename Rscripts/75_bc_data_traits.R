@@ -50,7 +50,8 @@ bc <- bc_raw2 %>%
   mutate(fat = as.numeric(fat)) %>% 
   mutate(protein = as.numeric(protein)) %>% 
   # rename(reference = biblio_id) %>% 
-  select(bc_id, asfis_english_name, asfis_scientific_name, scientific_name, subgroup, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein)
+  select(bc_id, asfis_english_name, asfis_scientific_name, scientific_name, subgroup, country_region, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+  rename(location = country_region)
 
 unique(bc$reference)
 
@@ -165,12 +166,13 @@ af2 <- af_raw %>%
   mutate(dha = as.numeric(dha)) %>% 
   mutate(fat = as.numeric(fat)) %>% 
   mutate(protein = as.numeric(protein)) %>% 
-  select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein)
+  select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, country_region, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+  rename(location = country_region)
 
 
-af_refs <- unique(af2$biblio_id)
-bc_refs <- unique(bc_references$biblio_id)
-overlapping <- intersect(af_refs, bc_refs) ## ok there are 12 overlapping refs between anfood and biocomp
+# af_refs <- unique(af2$biblio_id)
+# bc_refs <- unique(bc_references$biblio_id)
+# overlapping <- intersect(af_refs, bc_refs) ## ok there are 12 overlapping refs between anfood and biocomp
 
 ### ok now merge with CINE
 
@@ -224,13 +226,14 @@ trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>%
          protein = protein_g) %>% 
   rename(bibliography = ref_info)
 
-write_csv(trait_data4_edited, "data-processed/new_refs_contribution_to_seanuts.csv")
+# write_csv(trait_data4_edited, "data-processed/new_refs_contribution_to_seanuts.csv")
 
 ### going to check on the accuracy of these data and adding info on which parts are included
 
 trait_data5_edited <- read_excel("data-processed/new_refs_contribution_to_seanuts_edited.xlsx") %>% 
   filter(is.na(exclude_for_wrong_units)) %>% 
-  mutate_at(8:12, as.numeric)
+  mutate(sea_id = paste0("seadata", rownames(.))) %>% 
+  mutate_at(9:13, as.numeric)
 
 View(trait_data5_edited)
 #### bind all datasets
@@ -243,14 +246,14 @@ new_refs <- unique(all_data_traits$bibliography)
 
 #### August 9 2020
 ### check out these refs, bring in ones that we don't already have.
-missing_refs_new_data <- data.frame(diffs = setdiff(old_refs, new_refs))
-write_csv(missing_refs_new_data, "data-processed/missing_refs_new_data.csv")
-
-
-
-unique(trait_data4_edited$subgroup)
-missing_data <- trait_data2 %>% 
-  filter(ref_info %in% missing_refs_new_data)
+# missing_refs_new_data <- data.frame(diffs = setdiff(old_refs, new_refs))
+# write_csv(missing_refs_new_data, "data-processed/missing_refs_new_data.csv")
+# 
+# 
+# 
+# unique(trait_data4_edited$subgroup)
+# missing_data <- trait_data2 %>% 
+#   filter(ref_info %in% missing_refs_new_data)
 
   
 
@@ -259,7 +262,7 @@ missing_data <- trait_data2 %>%
 all_data_traits_inverts <- bind_rows(nt_keep_bio, bc, af2, trait_data5_edited) %>% 
   filter(subgroup == "Marine Invertebrates") 
 
-write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
+# write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
 
 unique(all_data_traits$subgroup)
 
@@ -273,10 +276,63 @@ all_data_traits2 <- all_data_traits %>%
   mutate(subgroup = ifelse(subgroup == "Molluscs", "Mollusc", subgroup)) %>% 
   mutate(genus_species = ifelse(is.na(genus_species), asfis_scientific_name, genus_species)) %>% 
   mutate(genus_species = ifelse(is.na(genus_species), scientific_name, genus_species)) %>% 
-  mutate(food_name_in_english = ifelse(is.na(food_name_in_english), paste(common_name, part, sep = ", "), food_name_in_english)) 
+  mutate(food_name_in_english = ifelse(is.na(food_name_in_english), paste(common_name, part, sep = ", "), food_name_in_english)) %>% 
+  mutate(cine_id = ifelse(!is.na(cine_id), paste0("c", cine_id), cine_id)) %>% 
+  mutate(bc_id = ifelse(!is.na(bc_id), paste0("bc", bc_id), bc_id)) %>% 
+  mutate(af_id = ifelse(!is.na(af_id), paste0("af", af_id), af_id)) %>% 
+  mutate(obs_id = bc_id) %>% 
+  mutate(obs_id = ifelse(is.na(bc_id), af_id, bc_id)) %>% 
+  mutate(obs_id = ifelse(is.na(obs_id), cine_id, obs_id)) %>% 
+  mutate(obs_id = ifelse(is.na(obs_id), sea_id, obs_id)) %>% 
+  mutate(common_name = ifelse(is.na(common_name), asfis_english_name, common_name)) %>% 
+  select(obs_id, subgroup, genus_species, common_name, part, food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, everything()) %>% 
+  mutate(part = ifelse(grepl("skinless", food_name_in_english), "muscle", part)) %>% 
+  mutate(part = ifelse(grepl("muscle fillet", food_name_in_english), "muscle", part))
+ 
 
 
-write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
+
+View(all_data_traits2)
+
+# write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
+library(WriteXLS)
+WriteXLS(all_data_traits2, "data-processed/seanuts-rebuild.xlsx")
+
+seanuts_parts <- read_excel("data-processed/seanuts-rebuild-edited.xlsx") %>% 
+  filter(biblio_id != "fi151") ### this file contains the edited parts
+View(seanuts_parts)
+
+
+seanuts_parts %>% 
+  mutate(part_edited = ifelse(part_edited == "muscle + small bones", "muscle + organs", part_edited)) %>% 
+  group_by(part_edited) %>% 
+  filter(subgroup == "Finfish") %>% 
+  summarise(mean_ca = mean(fe_mg, na.rm = TRUE),
+            stde_ca = std.error(fe_mg, na.rm = TRUE)) %>% 
+  filter(!is.na(mean_ca)) %>% 
+  ggplot(aes(x = reorder(part_edited, mean_ca), y = mean_ca)) + geom_point() +
+  geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca)) 
+
+sn2 <- seanuts_parts %>% 
+  mutate(part_edited = ifelse(part_edited == "muscle + small bones", "muscle + organs", part_edited)) %>% 
+  mutate(part_edited = ifelse(part_edited == "head, eyes, cheeks + soft bones", "muscle + organs", part_edited)) %>% 
+  mutate(part_edited = ifelse(part_edited %in% c("viscera", "hepatopancreas", "liver", "skin"), "internal organs", part_edited)) 
+
+sn2 %>% 
+  group_by(part_edited) %>% 
+  filter(subgroup == "Finfish") %>% 
+  select(fe_mg) %>% 
+  filter(!is.na(fe_mg)) %>% 
+  summarise(mean_ca = mean(fe_mg, na.rm = TRUE),
+            stde_ca = std.error(fe_mg, na.rm = TRUE)) %>% 
+  filter(!is.na(mean_ca)) %>% 
+  ggplot(aes(x = reorder(part_edited, mean_ca), y = mean_ca)) + geom_point() +
+  geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1)
+
+
+mod <- aov(zn_mg ~ part_edited, data = filter(sn2, subgroup == "Finfish")) 
+summary(mod)
+aov(mod)
 
 unique(all_data_traits2$subgroup)
 # View(all_data_traits)
