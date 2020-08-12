@@ -1,0 +1,610 @@
+user_supplied_name	submitted_name	matched_name2	score
+Acipenser fulvescens	Acipenser fulvescens	Acipenser fulvescens	0.988
+Acipenser oxyrinchus	Acipenser oxyrinchus	Acipenser oxyrinchus	0.988
+Acipenser spp.	Acipenser spp.	Acipenser	0.75
+Alosa pseudoharengus	Alosa pseudoharengus	Alosa pseudoharengus	0.988
+Ameiurus nebulosus	Ameiurus nebulosus	Ameiurus nebulosus	0.988
+Anarhichadidae	Anarhichadidae	Anarhichadidae	0.75
+Anguilla rostrata	Anguilla rostrata	Anguilla rostrata	0.988
+Anoplopoma fimbria	Anoplopoma fimbria	Anoplopoma fimbria	0.988
+Boreogadus saida	Boreogadus saida	Boreogadus saida	0.988
+Callinectes sapidus	Callinectes sapidus	Callinectes sapidus	0.988
+Cancer borealis	Cancer borealis	Cancer borealis	0.988
+Cancer irroratus	Cancer irroratus	Cancer irroratus	0.988
+Catostominae	Catostominae	Catostominae	0.75
+Catostomus catostomus	Catostomus catostomus	Catostomus catostomus	0.988
+Catostomus commersonii	Catostomus commersonii	Catostomus commersonii	0.988
+Centropristis striata	Centropristis striata	Centropristis striata	0.988
+Clinocardium nuttallii	Clinocardium nuttallii	Clinocardium nuttallii	0.988
+Clupea harengus	Clupea harengus	Clupea harengus	0.988
+Clupea pallasii pallasii	Clupea pallasii pallasii	Clupea pallasii pallasii	0.999
+Coregonus clupeaformis	Coregonus clupeaformis	Coregonus clupeaformis	0.988
+Coregonus nasus	Coregonus nasus	Coregonus nasus	0.988
+Crassostrea virginica	Crassostrea virginica	Crassostrea virginica	0.988
+Dallia pectoralis	Dallia pectoralis	Dallia pectoralis	0.988
+Eleginus gracilis	Eleginus gracilis	Eleginus gracilis	0.988
+Enteroctopus dofleini	Enteroctopus dofleini	Enteroctopus dofleini	0.988
+Esox lucius	Esox lucius	Esox lucius	0.988
+Esox spp.	Esox spp.	Esox	0.75
+Gadiformes	Gadiformes	Gadiformes	0.75
+Gadus morhua	Gadus morhua	Gadus morhua	0.988
+Hippoglossinae	Hippoglossinae	Hippoglossinae	0.75
+Hippoglossus hippoglossus	Hippoglossus hippoglossus	Hippoglossus hippoglossus	0.988
+Homarus americanus	Homarus americanus	Homarus americanus	0.988
+Illex illecebrosus	Illex illecebrosus	Illex illecebrosus	0.988
+Katharina turnicata	Katharina turnicata	Katharina tunicata	0.75
+Lota lota	Lota lota	Lota lota	0.988
+Mallotus villosus	Mallotus villosus	Mallotus villosus	0.988
+Melanogrammus aeglefinus	Melanogrammus aeglefinus	Melanogrammus aeglefinus	0.988
+Mercenaria mercenaria 	Mercenaria mercenaria 	Mercenaria	0.75
+Merluccius spp.	Merluccius spp.	Merluccius	0.75
+Microgadus tomcod	Microgadus tomcod	Microgadus tomcod	0.988
+Micropogonias undulatus	Micropogonias undulatus	Micropogonias undulatus	0.988
+Micropterus spp.	Micropterus spp.	Micropterus	0.75
+Microstomus pacificus	Microstomus pacificus	Microstomus pacificus	0.988
+Myoxocephalus scorpius	Myoxocephalus scorpius	Myoxocephalus scorpius	0.988
+Myoxocephalus spp.	Myoxocephalus spp.	Myoxocephalus	0.75
+Mytilidae	Mytilidae	Mytilidae	0.75
+Mytilus edulis	Mytilus edulis	Mytilus edulis	0.988
+Nephropidae	Nephropidae	Nephropidae	0.75
+Oncorhynchus gorbuscha	Oncorhynchus gorbuscha	Oncorhynchus gorbuscha	0.988
+Oncorhynchus keta	Oncorhynchus keta	Oncorhynchus keta	0.988
+Oncorhynchus kisutch	Oncorhynchus kisutch	Oncorhynchus kisutch	0.988
+Oncorhynchus mykiss	Oncorhynchus mykiss	Oncorhynchus mykiss	0.988
+Oncorhynchus nerka	Oncorhynchus nerka	Oncorhynchus nerka	0.988
+Oncorhynchus tshawytscha	Oncorhynchus tshawytscha	Oncorhynchus tshawytscha	0.988
+Ophiodon elongatus	Ophiodon elongatus	Ophiodon elongatus	0.988
+Osmerus mordax	Osmerus mordax	Osmerus mordax	0.988
+Parastichopus californicus	Parastichopus californicus	Parastichopus californicus	0.988
+Pectinidae	Pectinidae	Pectinidae	0.75
+Perca flavescens	Perca flavescens	Perca flavescens	0.988
+Percidae	Percidae	Percidae	0.75
+Pomatomus saltatrix	Pomatomus saltatrix	Pomatomus saltatrix	0.988
+Pseudopleuronectes americanus	Pseudopleuronectes americanus	Pseudopleuronectes americanus	0.988
+Pungitius pungitius	Pungitius pungitius	Pungitius pungitius	0.988
+Salmo salar	Salmo salar	Salmo salar	0.988
+Salvelinus alpinus	Salvelinus alpinus	Salvelinus alpinus	0.988
+Salvelinus fontinalis	Salvelinus fontinalis	Salvelinus fontinalis	0.988
+Salvelinus malma	Salvelinus malma	Salvelinus malma	0.988
+Salvelinus namaycush	Salvelinus namaycush	Salvelinus namaycush	0.988
+Scomber scombrus	Scomber scombrus	Scomber scombrus	0.988
+Scomber spp.	Scomber spp.	Scomber	0.75
+Sebastes norvegicus	Sebastes norvegicus	Sebastes norvegicus	0.988
+Sebastes spp.	Sebastes spp.	Sebastes	0.75
+Sparidae	Sparidae	Sparidae	0.75
+Spisula solidissima	Spisula solidissima	Spisula solidissima	0.988
+Thaleichthys pacificus	Thaleichthys pacificus	Thaleichthys pacificus	0.988
+Thymallus arcticus	Thymallus arcticus	Thymallus arcticus	0.988
+Barbonymus goniontus	Barbonymus goniontus	Barbonymus gonionotus	0.75
+Oreochromis niloticus	Oreochromis niloticus	Oreochromis niloticus	0.988
+Pangasius hypophthalamus	Pangasius hypophthalamus	Pangasius hypophthalmus	0.75
+Clarias macrocephalus	Clarias macrocephalus	Clarias macrocephalus	0.988
+Channa striata	Channa striata	Channa striata	0.988
+Monopterus albus	Monopterus albus	Monopterus albus	0.988
+Notopterus spp	Notopterus spp	Notopterus	0.75
+Lates calcarifer	Lates calcarifer	Lates calcarifer	0.988
+Lutjanus malabaricus	Lutjanus malabaricus	Lutjanus malabaricus	0.988
+Epinephelus sexfasciatus	Epinephelus sexfasciatus	Epinephelus sexfasciatus	0.988
+Scomberomorus commerson	Scomberomorus commerson	Scomberomorus commerson	0.988
+Seriolina nigrofasciata	Seriolina nigrofasciata	Seriolina nigrofasciata	0.988
+Parastromateus niger	Parastromateus niger	Parastromateus niger	0.988
+Rastrelliger brachysoma	Rastrelliger brachysoma	Rastrelliger brachysoma	0.988
+Pampus argenteus	Pampus argenteus	Pampus argenteus	0.988
+Perca fluviatilis	Perca fluviatilis	Perca fluviatilis	0.988
+Sander lucioperca	Sander lucioperca	Sander lucioperca	0.988
+Pinirampus pinirampu	Pinirampus pinirampu	Pinirampus pirinampu	0.75
+Pinirampus pinirampu	Pinirampus pinirampu	Pinirampus pirinampus	0.75
+Paulicea luetkeni	Paulicea luetkeni	Paulicea luetkeni	0.988
+Sorubim lima	Sorubim lima	Sorubim lima	0.988
+Hemisorubim platyrhynchos	Hemisorubim platyrhynchos	Hemisorubim platyrhynchos	0.988
+Pimelodus maculatus	Pimelodus maculatus	Pimelodus maculatus	0.988
+Siluroidei	Siluroidei	Siluroidei	0.75
+Ageneiosus brevifilis	Ageneiosus brevifilis	Ageneiosus brevifilis	0.988
+Macrourus berglax	Macrourus berglax	Macrourus berglax	0.988
+Mora moro	Mora moro	Mora moro	0.988
+Centroscymnus coelolepis	Centroscymnus coelolepis	Centroscymnus coelolepis	0.988
+Centroscyllium fabricii	Centroscyllium fabricii	Centroscyllium fabricii	0.988
+Centrophorus squamosus	Centrophorus squamosus	Centrophorus squamosus	0.988
+Etmopterus princeps	Etmopterus princeps	Etmopterus princeps	0.988
+Hydrolagus affinis	Hydrolagus affinis	Hydrolagus affinis	0.988
+Deania calceus	Deania calceus	Deania calceus	0.988
+Alepocephalus bairdii	Alepocephalus bairdii	Alepocephalus bairdii	0.988
+Alepocephalus spp	Alepocephalus spp	Alepocephalus	0.75
+Cyprinus carpio	Cyprinus carpio	Cyprinus carpio	0.988
+Silurus glanis	Silurus glanis	Silurus glanis	0.988
+Notothenia neglecta	Notothenia neglecta	Notothenia neglecta	0.988
+Notothenia gibberifrons	Notothenia gibberifrons	Notothenia gibberifrons	0.988
+Chaenocephalus aceratus	Chaenocephalus aceratus	Chaenocephalus aceratus	0.988
+Champsocephalus gunnari	Champsocephalus gunnari	Champsocephalus gunnari	0.988
+Pseudoplatystoma fasciatum	Pseudoplatystoma fasciatum	Pseudoplatystoma fasciatum	0.988
+Lates niloticus	Lates niloticus	Lates niloticus	0.988
+Protopterus aethiopicus	Protopterus aethiopicus	Protopterus aethiopicus	0.988
+Synodontis spp	Synodontis spp	Synodontis	0.75
+Clarias gariepinus	Clarias gariepinus	Clarias gariepinus	0.988
+Bagrus docmak	Bagrus docmak	Bagrus docmak	0.988
+Tilapia zilli	Tilapia zilli	Tilapia zilli	0.988
+Aphanopus carbo	Aphanopus carbo	Aphanopus carbo	0.988
+Rutilus rutilus	Rutilus rutilus	Rutilus rutilus	0.988
+Abramis brama	Abramis brama	Abramis brama	0.988
+Coregonus albula	Coregonus albula	Coregonus albula	0.988
+Rutilus frisii	Rutilus frisii	Rutilus frisii	0.988
+Liza aurata	Liza aurata	Liza aurata	0.988
+Clupeonella cultriventris	Clupeonella cultriventris	Clupeonella cultriventris	0.988
+Rastrineobola argentea	Rastrineobola argentea	Rastrineobola argentea	0.988
+Albatrossia pectoralis	Albatrossia pectoralis	Albatrossia pectoralis	0.988
+Atheresthes stomias	Atheresthes stomias	Atheresthes stomias	0.988
+Gadus macrocephalus	Gadus macrocephalus	Gadus macrocephalus	0.988
+Theragra chalcogramma	Theragra chalcogramma	Theragra chalcogramma	0.988
+Aspius aspius	Aspius aspius	Aspius aspius	0.988
+Carassius carassius	Carassius carassius	Carassius carassius	0.988
+Leuciscus cephalus	Leuciscus cephalus	Leuciscus cephalus	0.988
+Leuciscus idus	Leuciscus idus	Leuciscus idus	0.988
+Chondrostoma nasus	Chondrostoma nasus	Chondrostoma nasus	0.988
+Scardinius erythrophthalmus	Scardinius erythrophthalmus	Scardinius erythrophthalmus	0.988
+tinca tinca	Tinca tinca	Tinca tinca	0.988
+Clarias batrachus	Clarias batrachus	Clarias batrachus	0.988
+Heteropneustes fossilis	Heteropneustes fossilis	Heteropneustes fossilis	0.988
+Anabas testudineus	Anabas testudineus	Anabas testudineus	0.988
+Notopterus notopterus	Notopterus notopterus	Notopterus notopterus	0.988
+Nandus nandus	Nandus nandus	Nandus nandus	0.988
+Channa punctata	Channa punctata	Channa punctata	0.988
+Mystus vittatus	Mystus vittatus	Mystus vittatus	0.988
+Coregonus spp	Coregonus spp	Coregonus	0.75
+Coregonus macrophthalmus	Coregonus macrophthalmus	Coregonus macrophthalmus	0.988
+Mormyrus rume	Mormyrus rume	Mormyrus rume	0.988
+Hyperoglyphe antarctica	Hyperoglyphe antarctica	Hyperoglyphe antarctica	0.988
+Odax pullus	Odax pullus	Odax pullus	0.988
+Hyporhamphus ihi	Hyporhamphus ihi	Hyporhamphus ihi	0.988
+Polyprion oxygeneios	Polyprion oxygeneios	Polyprion oxygeneios	0.988
+Arripis trutta	Arripis trutta	Arripis trutta	0.988
+Mustelus lenticulatus	Mustelus lenticulatus	Mustelus lenticulatus	0.988
+Triakidae	Triakidae	Triakidae	0.75
+Squalus acanthias	Squalus acanthias	Squalus acanthias	0.988
+Sardina pilchardus	Sardina pilchardus	Sardina pilchardus	0.988
+Cyprinidae	Cyprinidae	Cyprinidae	0.75
+Puntius spp	Puntius spp	Puntius	0.75
+Macrobrachium nipponense	Macrobrachium nipponense	Macrobrachium nipponense	0.988
+Dicentrarchus labrax	Dicentrarchus labrax	Dicentrarchus labrax	0.988
+Trachurus mediterraneus	Trachurus mediterraneus	Trachurus mediterraneus	0.988
+Etrumeus teres	Etrumeus teres	Etrumeus teres	0.988
+Chelidonichthyus lucernus	Chelidonichthyus lucernus	Chelidonichthys lucernus	0.75
+Chelidonichthyus lucernus	Chelidonichthyus lucernus	Chlidonichthys lucernus	0.75
+Chelidonichthyus lucernus	Chelidonichthyus lucernus	Chelidonichthys lucerna	0.75
+Pampus spp	Pampus spp	Pampus	0.75
+Euthynnus alletteratus	Euthynnus alletteratus	Euthynnus alletteratus	0.988
+Thunnus orientalis	Thunnus orientalis	Thunnus orientalis	0.988
+Engraulis encrasicolus	Engraulis encrasicolus	Engraulis encrasicolus	0.988
+Sprattus sprattus	Sprattus sprattus	Sprattus sprattus	0.988
+Merlangius merlangus	Merlangius merlangus	Merlangius merlangus	0.988
+Mullus barbatus	Mullus barbatus	Mullus barbatus	0.988
+Belone belone	Belone belone	Belone belone	0.988
+Alosa alosa	Alosa alosa	Alosa alosa	0.988
+Spicara smaris	Spicara smaris	Spicara smaris	0.988
+Sarda sarda	Sarda sarda	Sarda sarda	0.988
+Sardinella maderensis	Sardinella maderensis	Sardinella maderensis	0.988
+Sardinella aurita	Sardinella aurita	Sardinella aurita	0.988
+Cephalopholis taeniops	Cephalopholis taeniops	Cephalopholis taeniops	0.988
+Merluccius productus	Merluccius productus	Merluccius productus	0.988
+Hypomesus pretious	Hypomesus pretious	Hypomesus pretiosus	0.75
+Sebastes pinniger	Sebastes pinniger	Sebastes pinniger	0.988
+Oncorhynchus gorbusha	Oncorhynchus gorbusha	Oncorhynchus gorbuscha	0.75
+Sardinops sagax	Sardinops sagax	Sardinops sagax	0.988
+Clupea pallasi	Clupea pallasi	Clupea pallasi	0.988
+Dentex dentex	Dentex dentex	Dentex dentex	0.988
+Sciaena umbra	Sciaena umbra	Sciaena umbra	0.988
+Diplodus puntazzo	Diplodus puntazzo	Diplodus puntazzo	0.988
+Scomber japonicus	Scomber japonicus	Scomber japonicus	0.988
+Merluccius merluccius	Merluccius merluccius	Merluccius merluccius	0.988
+Palinurus elephas	Palinurus elephas	Palinurus elephas	0.988
+Sepia officinalis	Sepia officinalis	Sepia officinalis	0.988
+Scorppaena scrofa	Scorppaena scrofa	Scorpaena scrofa	0.75
+Scorpaena porcus	Scorpaena porcus	Scorpaena porcus	0.988
+Boops boops	Boops boops	Boops boops	0.988
+Mugil cephalus	Mugil cephalus	Mugil cephalus	0.988
+Pagelius erythrinus	Pagelius erythrinus	Pagellus erythrinus	0.75
+Scorpaena scrofa	Scorpaena scrofa	Scorpaena scrofa	0.988
+Scophthalmidae	Scophthalmidae	Scophthalmidae	0.75
+Solea solea	Solea solea	Solea solea	0.988
+Alectis alexandrinus	Alectis alexandrinus	Alectis alexandrinus	0.988
+Aspitrigla cuculus	Aspitrigla cuculus	Aspitrigla cuculus	0.988
+Balistidae	Balistidae	Balistidae	0.75
+Sarpa salpa	Sarpa salpa	Sarpa salpa	0.988
+Bothus podus	Bothus podus	Bothus podas	0.75
+Caranx crysos	Caranx crysos	Caranx crysos	0.988
+Chelon labrosus	Chelon labrosus	Chelon labrosus	0.988
+Diplodus annularis	Diplodus annularis	Diplodus annularis	0.988
+Diplodus vulgaris	Diplodus vulgaris	Diplodus vulgaris	0.988
+Echelus myrus	Echelus myrus	Echelus myrus	0.988
+Epinephelus coioides	Epinephelus coioides	Epinephelus coioides	0.988
+Helicolenus dacthlopterus	Helicolenus dacthlopterus	Helicolenus dactylopterus	0.75
+Lagocepahlus lagocephalus	Lagocepahlus lagocephalus	Lagocephalus lagocephalus	0.75
+Lithognathus mormyrus	Lithognathus mormyrus	Lithognathus mormyrus	0.988
+Liza spp	Liza spp	Liza	0.75
+Liza ramada	Liza ramada	Liza ramada	0.988
+Liza saliens	Liza saliens	Liza saliens	0.988
+Lophius budegassa	Lophius budegassa	Lophius budegassa	0.988
+Mycteroperca rubra	Mycteroperca rubra	Mycteroperca rubra	0.988
+Pagrus caeruleosticuts	Pagrus caeruleosticuts	Pagrus caeruleostictus	0.75
+Pagrus caeruleosticuts	Pagrus caeruleosticuts	Pagrus coeruleostictus	0.75
+Solea lascaris	Solea lascaris	Solea lascaris	0.988
+Phycis phycis	Phycis phycis	Phycis phycis	0.988
+Saurida undosquamis	Saurida undosquamis	Saurida undosquamis	0.988
+Sillago sihama	Sillago sihama	Sillago sihama	0.988
+Sphyraena chrysotaenia	Sphyraena chrysotaenia	Sphyraena chrysotaenia	0.988
+Sphyraena sphyraena	Sphyraena sphyraena	Sphyraena sphyraena	0.988
+Spicara maena	Spicara maena	Spicara maena	0.988
+Trachinotus ovatus	Trachinotus ovatus	Trachinotus ovatus	0.988
+Umbrina cirrosa	Umbrina cirrosa	Umbrina cirrosa	0.988
+Upeneus moluccensis	Upeneus moluccensis	Upeneus moluccensis	0.988
+Trachurus trachurus	Trachurus trachurus	Trachurus trachurus	0.988
+Limanda aspera	Limanda aspera	Limanda aspera	0.988
+Pagellus bogaraveo	Pagellus bogaraveo	Pagellus bogaraveo	0.988
+Psetta maxima	Psetta maxima	Psetta maxima	0.988
+Sarda orientalis	Sarda orientalis	Sarda orientalis	0.988
+Spondyliosoma cantharus	Spondyliosoma cantharus	Spondyliosoma cantharus	0.988
+Zeus faber	Zeus faber	Zeus faber	0.988
+Anguilla anguilla	Anguilla anguilla	Anguilla anguilla	0.988
+Phycis blennoides	Phycis blennoides	Phycis blennoides	0.988
+Pagrus auratus	Pagrus auratus	Pagrus auratus	0.988
+Chelidonichthys lucerna	Chelidonichthys lucerna	Chelidonichthys lucerna	0.988
+Atrobucca nibe	Atrobucca nibe	Atrobucca nibe	0.988
+Sparisoma cretense	Sparisoma cretense	Sparisoma cretense	0.988
+Spicara spp	Spicara spp	Spicara	0.75
+Trisopterus minutus	Trisopterus minutus	Trisopterus minutus	0.988
+Oblada melanura	Oblada melanura	Oblada melanura	0.988
+Arnoglossus laterna	Arnoglossus laterna	Arnoglossus laterna	0.988
+Katsuwonus pelamis	Katsuwonus pelamis	Katsuwonus pelamis	0.988
+Homarus gammarus	Homarus gammarus	Homarus gammarus	0.988
+Nephrops norvegicus	Nephrops norvegicus	Nephrops norvegicus	0.988
+Aristeus antennatus	Aristeus antennatus	Aristeus antennatus	0.988
+Mytilus galloprovincialis	Mytilus galloprovincialis	Mytilus galloprovincialis	0.988
+Ostrea edulis	Ostrea edulis	Ostrea edulis	0.988
+Todarodes sagittatus	Todarodes sagittatus	Todarodes sagittatus	0.988
+Octopus vulgaris	Octopus vulgaris	Octopus vulgaris	0.988
+Loligo vulgaris	Loligo vulgaris	Loligo vulgaris	0.988
+Somber japonicus	Somber japonicus	Scomber japonicus	0.75
+Patagonotothen ramsayi	Patagonotothen ramsayi	Patagonotothen ramsayi	0.988
+Siganus rivulatus	Siganus rivulatus	Siganus rivulatus	0.988
+Diplodus sargus	Diplodus sargus	Diplodus sargus	0.988
+Megalaspis cordyla	Megalaspis cordyla	Megalaspis cordyla	0.988
+Rastrelliger kanagurta	Rastrelliger kanagurta	Rastrelliger kanagurta	0.988
+Chirocentrus dorab	Chirocentrus dorab	Chirocentrus dorab	0.988
+Selaroides leptolepis	Selaroides leptolepis	Selaroides leptolepis	0.988
+Eleutheronema tetradactylum	Eleutheronema tetradactylum	Eleutheronema tetradactylum	0.988
+Sardinella fimbriata	Sardinella fimbriata	Sardinella fimbriata	0.988
+Scomberomorus guttatus	Scomberomorus guttatus	Scomberomorus guttatus	0.988
+Tenualosa macrura	Tenualosa macrura	Tenualosa macrura	0.988
+Lutjanus johnii	Lutjanus johnii	Lutjanus johnii	0.988
+Nemipterus japonicus	Nemipterus japonicus	Nemipterus japonicus	0.988
+Leptomelanosoma indicum	Leptomelanosoma indicum	Leptomelanosoma indicum	0.988
+Lutjanus argentimaculatus	Lutjanus argentimaculatus	Lutjanus argentimaculatus	0.988
+Trachinotus blochii	Trachinotus blochii	Trachinotus blochii	0.988
+Cynoglossus arel	Cynoglossus arel	Cynoglossus arel	0.988
+Metapenaeus affinis	Metapenaeus affinis	Metapenaeus affinis	0.988
+Anadara granosa	Anadara granosa	Anadara granosa	0.988
+Coregonus lavaretus	Coregonus lavaretus	Coregonus lavaretus	0.988
+Pogonias cromis	Pogonias cromis	Pogonias cromis	0.988
+Menticirrhus americanus	Menticirrhus americanus	Menticirrhus americanus	0.988
+Macrodon ancylodon	Macrodon ancylodon	Macrodon ancylodon	0.988
+Parona signata	Parona signata	Parona signata	0.988
+Micorpogonias furnieri	Micorpogonias furnieri	Micropogonias furnieri	0.75
+Huso huso	Huso huso	Huso huso	0.988
+Oreochromis macrochir	Oreochromis macrochir	Oreochromis macrochir	0.988
+Tilapia rendalli	Tilapia rendalli	Tilapia rendalli	0.988
+Mullus surmuletus	Mullus surmuletus	Mullus surmuletus	0.988
+Pagellus erythrinus	Pagellus erythrinus	Pagellus erythrinus	0.988
+Pagrus caeruleostictus	Pagrus caeruleostictus	Pagrus caeruleostictus	0.988
+Dentex maroccanus	Dentex maroccanus	Dentex maroccanus	0.988
+Cipangopaludina chinensis	Cipangopaludina chinensis	Cipangopaludina chinensis	0.988
+Rapana spp	Rapana spp	Rapana	0.75
+Epinephelus aeneus	Epinephelus aeneus	Epinephelus aeneus	0.988
+Serranus scriba	Serranus scriba	Serranus scriba	0.988
+Lophius piscatorius	Lophius piscatorius	Lophius piscatorius	0.988
+Scophthalmus rhombus	Scophthalmus rhombus	Scophthalmus rhombus	0.988
+Platichthys flesus	Platichthys flesus	Platichthys flesus	0.988
+Microstomus kitt	Microstomus kitt	Microstomus kitt	0.988
+Molva molva	Molva molva	Molva molva	0.988
+Molva dypterygia	Molva dypterygia	Molva dypterygia	0.988
+Pleuronectes platessa	Pleuronectes platessa	Pleuronectes platessa	0.988
+Pollachius pollachius	Pollachius pollachius	Pollachius pollachius	0.988
+Brosme brosme	Brosme brosme	Brosme brosme	0.988
+Micromesistius poutassou	Micromesistius poutassou	Micromesistius poutassou	0.988
+Eutrigla gurnardus	Eutrigla gurnardus	Eutrigla gurnardus	0.988
+Lepidorhombus whiffiagonis	Lepidorhombus whiffiagonis	Lepidorhombus whiffiagonis	0.988
+Sebastes viviparus	Sebastes viviparus	Sebastes viviparus	0.988
+Sebastes mentella	Sebastes mentella	Sebastes mentella	0.988
+Sebastes marinus	Sebastes marinus	Sebastes marinus	0.988
+Pollachius virens	Pollachius virens	Pollachius virens	0.988
+Reinhardtius hippoglossoides	Reinhardtius hippoglossoides	Reinhardtius hippoglossoides	0.988
+Characidae	Characidae	Characidae	0.75
+Brycon orbignyanus	Brycon orbignyanus	Brycon orbignyanus	0.988
+Pseudoplatystoma coruscans	Pseudoplatystoma coruscans	Pseudoplatystoma coruscans	0.988
+Piaractus mesopotamicus	Piaractus mesopotamicus	Piaractus mesopotamicus	0.988
+Anguilla japonica	Anguilla japonica	Anguilla japonica	0.988
+Thunnus alalunga	Thunnus alalunga	Thunnus alalunga	0.988
+Gasterochisma melampus	Gasterochisma melampus	Gasterochisma melampus	0.988
+Isurus oxyrinchus	Isurus oxyrinchus	Isurus oxyrinchus	0.988
+Lampris guttatus	Lampris guttatus	Lampris guttatus	0.988
+Lamna nasus	Lamna nasus	Lamna nasus	0.988
+Xiphias gladius	Xiphias gladius	Xiphias gladius	0.988
+Tilapia zillii	Tilapia zillii	Tilapia zillii	0.988
+Lates angustifrons	Lates angustifrons	Lates angustifrons	0.988
+Stolothrissa tanganicae	Stolothrissa tanganicae	Stolothrissa tanganicae	0.988
+Limnothrissa miodon	Limnothrissa miodon	Limnothrissa miodon	0.988
+Ictalurus punctatus	Ictalurus punctatus	Ictalurus punctatus	0.988
+Procambarus clarkii	Procambarus clarkii	Procambarus clarkii	0.988
+Procambarus acutus	Procambarus acutus	Procambarus acutus	0.988
+Atherina boyeri	Atherina boyeri	Atherina boyeri	0.988
+Atherinidae	Atherinidae	Atherinidae	0.75
+Arius spp	Arius spp	Arius	0.75
+Pagrus pagrus	Pagrus pagrus	Pagrus pagrus	0.988
+Trachinus draco	Trachinus draco	Trachinus draco	0.988
+Trigla lyra	Trigla lyra	Trigla lyra	0.988
+Brama japonica	Brama japonica	Brama japonica	0.988
+Pleurogrammus monopterygius	Pleurogrammus monopterygius	Pleurogrammus monopterygius	0.988
+Alosa sapidissima	Alosa sapidissima	Alosa sapidissima	0.988
+Rasbora tawarensis	Rasbora tawarensis	Rasbora tawarensis	0.988
+Clupeoides borneensis	Clupeoides borneensis	Clupeoides borneensis	0.988
+Henicorhynchus siamensis	Henicorhynchus siamensis	Henicorhynchus siamensis	0.988
+Thynnichthys thynnoides	Thynnichthys thynnoides	Thynnichthys thynnoides	0.988
+Anguilla bicolor	Anguilla bicolor	Anguilla bicolor	0.988
+Hemiramphidae	Hemiramphidae	Hemiramphidae	0.75
+Mycteroperca acutirostris	Mycteroperca acutirostris	Mycteroperca acutirostris	0.988
+Opisthonema oglinum	Opisthonema oglinum	Opisthonema oglinum	0.988
+Sardinella brasiliensis	Sardinella brasiliensis	Sardinella brasiliensis	0.988
+Trichiurus lepturus	Trichiurus lepturus	Trichiurus lepturus	0.988
+Aluterus monoceros	Aluterus monoceros	Aluterus monoceros	0.988
+Mugil liza	Mugil liza	Mugil liza	0.988
+Brevoortia aurea	Brevoortia aurea	Brevoortia aurea	0.988
+Auxis thazard	Auxis thazard	Auxis thazard	0.988
+Cynoscion jamaicensis	Cynoscion jamaicensis	Cynoscion jamaicensis	0.988
+Thunnus thynnus	Thunnus thynnus	Thunnus thynnus	0.988
+Morone saxatilis	Morone saxatilis	Morone saxatilis	0.988
+Merluccius hubbsi	Merluccius hubbsi	Merluccius hubbsi	0.988
+Trachurus lathami	Trachurus lathami	Trachurus lathami	0.988
+Decapterus punctatus	Decapterus punctatus	Decapterus punctatus	0.988
+Ariomma bondi	Ariomma bondi	Ariomma bondi	0.988
+Catostomus commersoni	Catostomus commersoni	Catostomus commersoni	0.988
+Pomoxis nigromaculatus	Pomoxis nigromaculatus	Pomoxis nigromaculatus	0.988
+Sander vitreus	Sander vitreus	Sander vitreus	0.988
+Tenualosa ilisha	Tenualosa ilisha	Tenualosa ilisha	0.988
+Sparus aurata	Sparus aurata	Sparus aurata	0.988
+Lepidopsetta bilineata	Lepidopsetta bilineata	Lepidopsetta bilineata	0.988
+Upeneus parvus	Upeneus parvus	Upeneus parvus	0.988
+Syacium gunteri	Syacium gunteri	Syacium gunteri	0.988
+Cynoscion arenarius	Cynoscion arenarius	Cynoscion arenarius	0.988
+Anchoa hepsetus	Anchoa hepsetus	Anchoa hepsetus	0.988
+Synodontidae	Synodontidae	Synodontidae	0.75
+Selene vomer	Selene vomer	Selene vomer	0.988
+Loligo pealeii	Loligo pealeii	Loligo pealeii	0.988
+Branchiostegidae	Branchiostegidae	Branchiostegidae	0.75
+Cynoscion nothus	Cynoscion nothus	Cynoscion nothus	0.988
+Elops saurus	Elops saurus	Elops saurus	0.988
+Prochilodus reticulatus	Prochilodus reticulatus	Prochilodus reticulatus	0.988
+Sebastes flavidus	Sebastes flavidus	Sebastes flavidus	0.988
+Sebastes melanops	Sebastes melanops	Sebastes melanops	0.988
+Isopsetta isolepis	Isopsetta isolepis	Isopsetta isolepis	0.988
+Pleuronectes vetulus	Pleuronectes vetulus	Pleuronectes vetulus	0.988
+Platichthys stellatus	Platichthys stellatus	Platichthys stellatus	0.988
+Pandalus jordani	Pandalus jordani	Pandalus jordani	0.988
+Crassostrea gigas	Crassostrea gigas	Crassostrea gigas	0.988
+Panopea abrupta	Panopea abrupta	Panopea abrupta	0.988
+Chamelea gallina	Chamelea gallina	Chamelea gallina	0.988
+Auxis rochei	Auxis rochei	Auxis rochei	0.988
+Ficus subintermedia	Ficus subintermedia	Ficus subintermedia	0.988
+Carcinus maenas	Carcinus maenas	Carcinus maenas	0.988
+Paralithodes camtschaticus	Paralithodes camtschaticus	Paralithodes camtschaticus	0.988
+Paralithodes platypus	Paralithodes platypus	Paralithodes platypus	0.988
+Chionoecetes opilio	Chionoecetes opilio	Chionoecetes opilio	0.988
+Chionoecetes spp	Chionoecetes spp	Chionoecetes	0.75
+Dasyatis sabina	Dasyatis sabina	Dasyatis sabina	0.988
+Dasyatis americana	Dasyatis americana	Dasyatis americana	0.988
+Rhizoprionodon terraenovae	Rhizoprionodon terraenovae	Rhizoprionodon terraenovae	0.988
+Carcharhinus limbatus	Carcharhinus limbatus	Carcharhinus limbatus	0.988
+Penaeus kerathurus	Penaeus kerathurus	Penaeus kerathurus	0.988
+Pandalus borealis	Pandalus borealis	Pandalus borealis	0.988
+Trachypenaeus curvirostris	Trachypenaeus curvirostris	Trachypenaeus curvirostris	0.988
+Penaeus semisulcatus	Penaeus semisulcatus	Penaeus semisulcatus	0.988
+Metapenaeus monoceros	Metapenaeus monoceros	Metapenaeus monoceros	0.988
+Portunus pelagicus	Portunus pelagicus	Portunus pelagicus	0.988
+Mactra violacea	Mactra violacea	Mactra violacea	0.988
+Loligo plei	Loligo plei	Loligo plei	0.988
+Perca Fluviatilis	Perca fluviatilis	Perca fluviatilis	0.988
+Channa marulius	Channa marulius	Channa marulius	0.988
+Channa micropeltes	Channa micropeltes	Channa micropeltes	0.988
+Cyclocheilichthys apogon	Cyclocheilichthys apogon	Cyclocheilichthys apogon	0.988
+Hemiramphus spp	Hemiramphus spp	Hemiramphus	0.75
+Soleidae	Soleidae	Soleidae	0.75
+Helostoma temminckii	Helostoma temminckii	Helostoma temminckii	0.988
+Osteochilus hasselti	Osteochilus hasselti	Osteochilus hasselti	0.988
+Parachela siamensis	Parachela siamensis	Parachela siamensis	0.988
+Trichogaster spp	Trichogaster spp	Trichogaster	0.75
+Ambassidae	Ambassidae	Ambassidae	0.75
+Puntioplites proctozystron	Puntioplites proctozystron	Puntioplites proctozystron	0.988
+Parapenaeopsis atlantica	Parapenaeopsis atlantica	Parapenaeopsis atlantica	0.988
+Penaeus notialis	Penaeus notialis	Penaeus notialis	0.988
+Palaemon serratus	Palaemon serratus	Palaemon serratus	0.988
+Crassostrea rhizophorae	Crassostrea rhizophorae	Crassostrea rhizophorae	0.988
+Euphausia superba	Euphausia superba	Euphausia superba	0.988
+Xiphopenaeus kroyeri	Xiphopenaeus kroyeri	Xiphopenaeus kroyeri	0.988
+Panaeus brasiliensis	Panaeus brasiliensis	Penaeus brasiliensis	0.75
+Penaeus schmitti	Penaeus schmitti	Penaeus schmitti	0.988
+Crangon crangon	Crangon crangon	Crangon crangon	0.988
+Tellina palatam	Tellina palatam	Tellina palatam	0.988
+Pinctada radiata	Pinctada radiata	Pinctada radiata	0.988
+Bivalvia	Bivalvia	Bivalvia	0.75
+Perna viridis	Perna viridis	Perna viridis	0.988
+Gastropoda	Gastropoda	Gastropoda	0.75
+Moroteuthis ingens	Moroteuthis ingens	Moroteuthis ingens	0.988
+Eriocheir sinensis	Eriocheir sinensis	Eriocheir sinensis	0.988
+Parapenaeus longirostris	Parapenaeus longirostris	Parapenaeus longirostris	0.988
+Aristaeomorpha foliacea	Aristaeomorpha foliacea	Aristaeomorpha foliacea	0.988
+Eledone moschata	Eledone moschata	Eledone moschata	0.988
+Orconectes limosus	Orconectes limosus	Orconectes limosus	0.988
+Penaeus monodon	Penaeus monodon	Penaeus monodon	0.988
+Penaeus indicus	Penaeus indicus	Penaeus indicus	0.988
+Metapenaeus dobsoni	Metapenaeus dobsoni	Metapenaeus dobsoni	0.988
+Parapenaeopsis stylifera	Parapenaeopsis stylifera	Parapenaeopsis stylifera	0.988
+Strombus gracilior	Strombus gracilior	Strombus gracilior	0.988
+Cyclopterus lumpus	Cyclopterus lumpus	Cyclopterus lumpus	0.988
+Anarhichas lupus	Anarhichas lupus	Anarhichas lupus	0.988
+Arctica islandica	Arctica islandica	Arctica islandica	0.988
+Velesunio ambiguus	Velesunio ambiguus	Velesunio ambiguus	0.988
+Protopterus spp	Protopterus spp	Protopterus	0.75
+Scomber spp	Scomber spp	Scomber	0.75
+Gymnura spp	Gymnura spp	Gymnura	0.75
+Plotosus spp	Plotosus spp	Plotosus	0.75
+Brevoortia spp	Brevoortia spp	Brevoortia	0.75
+Palaemonidae	Palaemonidae	Palaemonidae	0.75
+Abramis spp	Abramis spp	Abramis	0.75
+Sardinella spp	Sardinella spp	Sardinella	0.75
+Dentex spp	Dentex spp	Dentex	0.75
+Oreochromis =Tilapia spp	Oreochromis =tilapia spp	Oreochromis	0.75
+Euphausia spp	Euphausia spp	Euphausia	0.75
+Danio dangila	Danio dangila	Danio dangila	0.988
+Mytilus spp	Mytilus spp	Mytilus	0.75
+Chanda nama	Chanda nama	Chanda nama	0.988
+Gudusia chapra	Gudusia chapra	Gudusia chapra	0.988
+Colisha lalius	Colisha lalius	Colisha lalius	0.988
+Chela cachius	Chela cachius	Chela cachius	0.988
+Macrognathus aculeatus	Macrognathus aculeatus	Macrognathus aculeatus	0.988
+Mastacembelus armatus	Mastacembelus armatus	Mastacembelus armatus	0.988
+Mastacembelus pancalus	Mastacembelus pancalus	Mastacembelus pancalus	0.988
+Macrobrachium spp.	Macrobrachium spp.	Macrobrachium	0.75
+Esomus danricus	Esomus danricus	Esomus danricus	0.988
+Lepidocephalus guntea	Lepidocephalus guntea	Lepidocephalus guntea	0.988
+Xenentodon cancila	Xenentodon cancila	Xenentodon cancila	0.988
+Corica soborna	Corica soborna	Corica soborna	0.988
+Colisa fasciatus	Colisa fasciatus	Colisa fasciatus	0.988
+Puntius sophore	Puntius sophore	Puntius sophore	0.988
+Puntius ticto	Puntius ticto	Puntius ticto	0.988
+Mystus spp	Mystus spp	Mystus	0.75
+Amblypharyngodon mola	Amblypharyngodon mola	Amblypharyngodon mola	0.988
+Glossogobius giuris	Glossogobius giuris	Glossogobius giuris	0.988
+Pseudambassis ranga	Pseudambassis ranga	Pseudambassis ranga	0.988
+Osteobrama cotio	Osteobrama cotio	Osteobrama cotio	0.988
+Hyporhamphus limbatus	Hyporhamphus limbatus	Hyporhamphus limbatus	0.988
+Mystus cavasius	Mystus cavasius	Mystus cavasius	0.988
+Lepidocephalichthys guntea	Lepidocephalichthys guntea	Lepidocephalichthys guntea	0.988
+Ailia coila	Ailia coila	Ailia coila	0.988
+Xenontedon cancila	Xenontedon cancila	Xenentodon cancila	0.75
+Eleotris fusca	Eleotris fusca	Eleotris fusca	0.988
+Ompok pabda	Ompok pabda	Ompok pabda	0.988
+Botia dario	Botia dario	Botia dario	0.988
+Channa striatus	Channa striatus	Channa striatus	0.988
+Macrobrachium malcolmsonii	Macrobrachium malcolmsonii	Macrobrachium malcolmsonii	0.988
+Stolephorus tri	Stolephorus tri	Stolephorus tri	0.988
+Pennahia argentata	Pennahia argentata	Pennahia argentata	0.988
+Platycephalus indicus	Platycephalus indicus	Platycephalus indicus	0.988
+Liza parsia	Liza parsia	Liza parsia	0.988
+Sillaginopsis panijus	Sillaginopsis panijus	Sillaginopsis panijus	0.988
+Salvelinus alpinus [naresi]	Salvelinus alpinus [naresi]	Salvelinus alpinus	0.988
+Salmo and Salvelinus sp.	Salmo and salvelinus sp.	Salmo	0.75
+Coregonus sp.: clupeaformis, nasus	Coregonus sp.: clupeaformis, nasus	Coregonus	0.75
+Salvelinus naresi	Salvelinus naresi	Salvelinus	0.75
+Acanthocottus groenlandicus	Acanthocottus groenlandicus	Acanthocottus	0.75
+Mya spp.	Mya spp.	Mya	0.75
+Coregonus autumnalis	Coregonus autumnalis	Coregonus autumnalis	0.988
+Stenodus leucichtys	Stenodus leucichtys	Stenodus leucichthys	0.75
+Coregonus sp.	Coregonus sp.	Coregonus	0.75
+Stenodus leucichthys	Stenodus leucichthys	Stenodus leucichthys	0.988
+Coregonos nasus	Coregonos nasus	Coregonus nasus	0.75
+Coregonos spp.	Coregonos spp.	Coregonus	0.5
+Loricariidae	Loricariidae	Loricariidae	0.75
+Pterodoras granulosus	Pterodoras granulosus	Pterodoras granulosus	0.988
+Plagioscion squamosissimus	Plagioscion squamosissimus	Plagioscion squamosissimus	0.988
+Prochilodus lineatus	Prochilodus lineatus	Prochilodus lineatus	0.988
+Salminus maxillosus	Salminus maxillosus	Salminus maxillosus	0.988
+Anostomidae	Anostomidae	Anostomidae	0.75
+Leporinus friderici	Leporinus friderici	Leporinus friderici	0.988
+Pseudoplatystoma corruscans	Pseudoplatystoma corruscans	Pseudoplatystoma corruscans	0.988
+Erythrinidae	Erythrinidae	Erythrinidae	0.75
+Salmo spp	Salmo spp	Salmo	0.75
+Oreochromis mossambicus	Oreochromis mossambicus	Oreochromis mossambicus	0.988
+Glossogobius giurias	Glossogobius giurias	Glossogobius giuris	0.75
+Glossogobius giurias	Glossogobius giurias	Glossogobius giurus	0.75
+Glossogobius giurias	Glossogobius giurias	Glossigobius giuris	0.75
+Glossogobius giurias	Glossogobius giurias	Glossogabius giuris	0.75
+Callorhinchidae	Callorhinchidae	Callorhinchidae	0.75
+Pecten maximus	Pecten maximus	Pecten maximus	0.988
+Thryssa purava	Thryssa purava	Thryssa purava	0.988
+Protonibea diacanthus	Protonibea diacanthus	Protonibea diacanthus	0.988
+Muraenesox spp	Muraenesox spp	Muraenesox	0.75
+Caranx spp	Caranx spp	Caranx	0.75
+Harpadon nehereus	Harpadon nehereus	Harpadon nehereus	0.988
+Carcharhinidae	Carcharhinidae	Carcharhinidae	0.75
+Ariidae	Ariidae	Ariidae	0.75
+Labeo rohita	Labeo rohita	Labeo rohita	0.988
+Catla catla	Catla catla	Catla catla	0.988
+Lethrinus spp	Lethrinus spp	Lethrinus	0.75
+Siganus spp	Siganus spp	Siganus	0.75
+Megalops cyprinoides	Megalops cyprinoides	Megalops cyprinoides	0.988
+Natantia	Natantia	Natantia	0.75
+Hypophthalmichthys spp	Hypophthalmichthys spp	Hypophthalmichthys	0.75
+Sepia aculeata	Sepia aculeata	Sepia aculeata	0.988
+Loligo duvauceli	Loligo duvauceli	Loligo duvaucelii	0.75
+Haliotis spp	Haliotis spp	Haliotis	0.75
+Saxidomus nuttalli	Saxidomus nuttalli	Saxidomus nuttalli	0.988
+Protothaca staminea	Protothaca staminea	Protothaca staminea	0.988
+Cancer magister	Cancer magister	Cancer magister	0.988
+Holothurioidea	Holothurioidea	Holothurioidea	0.75
+Hippoglossus stenolepis	Hippoglossus stenolepis	Hippoglossus stenolepis	0.988
+Clupea pallasii	Clupea pallasii	Clupea pallasii	0.988
+Octopodidae	Octopodidae	Octopodidae	0.75
+Ostrea lurida	Ostrea lurida	Ostrea lurida	0.988
+Hydrolagus colliei	Hydrolagus colliei	Hydrolagus colliei	0.988
+Sebastes crameri	Sebastes crameri	Sebastes crameri	0.988
+Sebastes aleutianus	Sebastes aleutianus	Sebastes aleutianus	0.988
+Sebastes paucispinis	Sebastes paucispinis	Sebastes paucispinis	0.988
+Sebastes goodei	Sebastes goodei	Sebastes goodei	0.988
+Sebastes spp	Sebastes spp	Sebastes	0.75
+Sebastes elongatus	Sebastes elongatus	Sebastes elongatus	0.988
+Sebastes alutus	Sebastes alutus	Sebastes alutus	0.988
+Sebastes ruberrimus	Sebastes ruberrimus	Sebastes ruberrimus	0.988
+Sebastes rosaceus	Sebastes rosaceus	Sebastes rosaceus	0.988
+Sebastes entomelas	Sebastes entomelas	Sebastes entomelas	0.988
+Raja spp	Raja spp	Raja	0.75
+Hippoglossoides elassodon	Hippoglossoides elassodon	Hippoglossoides elassodon	0.988
+Eopsetta jordani	Eopsetta jordani	Eopsetta jordani	0.988
+Glyptocephalus zachirus	Glyptocephalus zachirus	Glyptocephalus zachirus	0.988
+Psettichthys melanostictus	Psettichthys melanostictus	Psettichthys melanostictus	0.988
+Asteroidea	Asteroidea	Asteroidea	0.75
+Oncorhynchus clarki	Oncorhynchus clarki	Oncorhynchus clarki	0.988
+Venerupis spp	Venerupis spp	Venerupis	0.75
+Loligo opalescens	Loligo opalescens	Loligo opalescens	0.988
+Argopecten irradians	Argopecten irradians	Argopecten irradians	0.988
+Ruditapes decussatus	Ruditapes decussatus	Ruditapes decussatus	0.988
+Brachyura	Brachyura	Brachyura	0.75
+Donax trunculus	Donax trunculus	Donax trunculus	0.988
+Ommastrephes bartrami	Ommastrephes bartrami	Ommastrephes bartrami	0.988
+Dosidicus gigas	Dosidicus gigas	Dosidicus gigas	0.988
+Ucides cordatus	Ucides cordatus	Ucides cordatus	0.988
+Haliotis rubra	Haliotis rubra	Haliotis rubra	0.988
+Perna perna	Perna perna	Perna perna	0.988
+Scapharca broughtonii	Scapharca broughtonii	Scapharca broughtonii	0.988
+Corbicula japonica	Corbicula japonica	Corbicula japonica	0.988
+Ruditapes philippinarum	Ruditapes philippinarum	Ruditapes philippinarum	0.988
+Mytilus coruscus	Mytilus coruscus	Mytilus coruscus	0.988
+Meretrix lusoria	Meretrix lusoria	Meretrix lusoria	0.988
+Patinopecten yessoensis	Patinopecten yessoensis	Patinopecten yessoensis	0.988
+Turbo cornutus	Turbo cornutus	Turbo cornutus	0.988
+Rapana venosa	Rapana venosa	Rapana venosa	0.988
+Sinonovacula constricta	Sinonovacula constricta	Sinonovacula constricta	0.988
+Strombus galeatus	Strombus galeatus	Strombus galeatus	0.988
+Cyclopteridae	Cyclopteridae	Cyclopteridae	0.75
+Mercenaria mercenaria	Mercenaria mercenaria	Mercenaria mercenaria	0.988
+Placopectens magellanicus	Placopectens magellanicus	Placopecten magellanicus	0.75
+Nacella deaurata	Nacella deaurata	Nacella deaurata	0.988
+Mytilus chilensis	Mytilus chilensis	Mytilus chilensis	0.988
+Acanthina monodon	Acanthina monodon	Acanthina monodon	0.988
+Aulacomya ater	Aulacomya ater	Aulacomya ater	0.988
+Fissurella picta	Fissurella picta	Fissurella picta	0.988
+Perunytitus purpuratus	Perunytitus purpuratus	Perumytilus purpuratus	0.75
+Scorpena scrofa	Scorpena scrofa	Scorpaena scrofa	0.75
+Trigla lucerna	Trigla lucerna	Trigla lucerna	0.988
+Eriphia verrucosa	Eriphia verrucosa	Eriphia verrucosa	0.988
+Calappa granulata	Calappa granulata	Calappa granulata	0.988
+Scyllarides latus	Scyllarides latus	Scyllarides latus	0.988
+Palinurus vulgaris	Palinurus vulgaris	Palinurus vulgaris	0.988
+Illex coindetii	Illex coindetii	Illex coindetii	0.988
+Chlamys glabra	Chlamys glabra	Chlamys glabra	0.988

@@ -43,6 +43,7 @@ View(traits)
 str(traits)
 parts_list <- c(unique(traits$part))
 
+traits2b %>% View
 
 traits_old %>% 
   filter(nutrient == "ca_mg") %>% 
@@ -62,7 +63,7 @@ traits_new2 <- traits %>%
 
 
 
-traits2 <- traits %>% ### or traits2b
+traits2 <- traits2b %>% ### or traits2b or traits2
    mutate(part = ordered(part, levels = c("muscle",
                                          "muscle + skin",
                                          "muscle + small bones",
@@ -129,7 +130,7 @@ calcium <- traits2 %>%
   group_by(species1, feeding_mode, DemersPelag, BodyShapeI, part, realm, DepthRangeDeep, AgeMatMin) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>%
-  filter(complete.cases(.))
+  filter(complete.cases(.)) 
 
 
 calcium$species1 <- str_to_lower(calcium$species1)
@@ -193,24 +194,20 @@ Phylodata1 <- Phylodata %>%
   rename(species = Phylospecies) 
 
 calg <- Phylodata1 %>% 
-  group_by(species, EnvTemp, DemersPelag, 
+  group_by(species, DemersPelag, 
            # feeding_level,
            feeding_mode, BodyShapeI, realm, part) %>% 
   summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
   ungroup() %>%
-  mutate(EnvTemp = as.character(EnvTemp)) %>% 
+  # mutate(EnvTemp = as.character(EnvTemp)) %>% 
   distinct(species, .keep_all = TRUE) 
 
 calg2 <- calg %>% 
-  mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+  # mutate(EnvTemp = as.factor(EnvTemp)) %>% 
   mutate(part = as.factor(part))
 
 calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
-
-cor(as.numeric(as.factor(calg2$DemersPelag)), as.numeric(as.factor(calg2$EnvTemp)))
-
-library(nlme)
 
 
 
@@ -237,7 +234,7 @@ mod1ab <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode
                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = calg2)
 rsquared(mod1a)
 summary(mod1a)
-visreg(mod1a)
+# visreg(mod1a)
 
 summary(mod1ab)
 confint(mod1a)

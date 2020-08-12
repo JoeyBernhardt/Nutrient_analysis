@@ -455,8 +455,9 @@ updated_ref <- read_csv("data-processed/CINE-nutrients-fish-references-annotated
 
 keep_refs_bio <- updated_ref %>% 
   filter(grepl("yes", use_in_analysis)) %>% 
-  filter(!grepl("y", already_in_biocomp)) %>% 
-  filter(ref_number != 27)
+  filter(!grepl("y", already_in_biocomp)) 
+# %>% 
+  # filter(ref_number != 27)
 
 nt <- read_csv("data-processed/trad-foods-cleaned-2020.csv")
 nt_keep_bio <- nt %>% 
@@ -559,6 +560,8 @@ inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited.csv") %>%
 
 View(inverts_cat)
 
+### note observation of blackfish, obs_id c211 should be whole,not muscle
+
 all_data_traits2 <- all_data_traits %>% 
   left_join(., inverts_cat, by = "cine_id") %>% 
   mutate(subgroup = ifelse(is.na(subgroup2), subgroup, subgroup2)) %>% 
@@ -577,7 +580,7 @@ all_data_traits2 <- all_data_traits %>%
   mutate(common_name = ifelse(is.na(common_name), asfis_english_name, common_name)) %>% 
   select(obs_id, subgroup, genus_species, common_name, part, food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, everything()) %>% 
   mutate(part = ifelse(grepl("skinless", food_name_in_english), "muscle", part)) %>% 
-  mutate(part = ifelse(grepl("muscle fillet", food_name_in_english), "muscle", part))
+  mutate(part = ifelse(grepl("muscle fillet", food_name_in_english), "muscle", part)) 
  
 
 
@@ -585,9 +588,100 @@ all_data_traits2 <- all_data_traits %>%
 View(all_data_traits2)
 
 
+# clean species names -----------------------------------------------------
+
+
+all_data_traits3 <- all_data_traits2 %>% 
+  select(obs_id, subgroup, genus_species, asfis_scientific_name, scientific_name, everything()) %>% 
+  mutate(genus_species = str_replace(genus_species,"[\\(]", "")) %>% 
+  mutate(genus_species = str_replace(genus_species,"[\\)]", "")) 
+
+library(taxize)
+specieslist <- unique(all_data_traits3$genus_species)
+
+hot <- classification(specieslist, db = 'itis')
+hot2 <- classification(result.short$matched_name2, db = 'itis')
+outputlst2 <- hot2
+outputlst <- hot
+
+# Parse out the taxonomy levels that you require
+taxdata <- data.frame()
+for(x in 1:length(outputlst)){
+  tryCatch({
+    kingdom=filter(outputlst[[x]], rank =="kingdom")$name
+    phylum=filter(outputlst[[x]], rank =="phylum")$name
+    class=filter(outputlst[[x]], rank =="class")$name
+    order=filter(outputlst[[x]], rank =="order")$name
+    family=filter(outputlst[[x]], rank =="family")$name
+    genus=filter(outputlst[[x]], rank =="genus")$name
+    species=filter(outputlst[[x]], rank =="species")$name
+    
+    row <- data.frame(cbind(kingdom = kingdom, phylum=phylum,class=class,order=order,family=family,genus=genus, species = species))
+    taxdata <- bind_rows(taxdata, row)    
+  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
+}
+
+View(taxdata)
+
+gnr_datasources() %>% View
+
+src <- c("EOL", "NCBI", "ITIS")
+subset(gnr_datasources(), title %in% src) %>% View
+
+length(specieslist)
+result.long <- specieslist %>%
+  gnr_resolve(data_source_ids = c(3,4, 177, 9, 155), 
+              with_canonical_ranks=T)
+
+result.short <- result.long %>%
+  select(user_supplied_name, submitted_name, matched_name2, score)%>%
+  distinct()
+write.table(result.short,
+            "data-processed/species_names_resolved.txt", 
+            sep="\t", row.names = F, quote = F)
+
+result.itis <- specieslist %>%
+  gnr_resolve(data_source_ids = c(3), 
+              with_canonical_ranks=T)
+
+itis_tax_output <- classification(result.itis$matched_name2, db = 'itis')
+outputlst <- itis_tax_output
+
+taxdata2 <- data.frame()
+for(x in 1:length(outputlst)){
+  tryCatch({
+    kingdom=filter(outputlst[[x]], rank =="kingdom")$name
+    phylum=filter(outputlst[[x]], rank =="phylum")$name
+    class=filter(outputlst[[x]], rank =="class")$name
+    order=filter(outputlst[[x]], rank =="order")$name
+    family=filter(outputlst[[x]], rank =="family")$name
+    genus=filter(outputlst[[x]], rank =="genus")$name
+    species=filter(outputlst[[x]], rank =="species")$name
+    
+    row <- data.frame(cbind(kingdom = kingdom, phylum=phylum,class=class,order=order,family=family,genus=genus, species = species))
+    taxdata2 <- bind_rows(taxdata2, row)    
+  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
+}
+
+
+
+
+
+result.short <- result.long %>%
+  select(user_supplied_name, submitted_name, matched_name2, score)%>%
+  distinct()
+
+
+result.fishbase <- specieslist %>%
+  gnr_resolve(data_source_ids = c(155), 
+              with_canonical_ranks=T)
+
+write_csv(result.fishbase, "data-processed/fishbase-species.csv")
+
+
 # write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
 library(WriteXLS)
-WriteXLS(all_data_traits2, "data-processed/seanuts-rebuild.xlsx")
+WriteXLS(all_data_traits3, "data-processed/seanuts-rebuild.xlsx") ### ok this is the new dataset! next need to taxize it.
 
 # seanuts_parts <- read_excel("data-processed/seanuts-rebuild-edited.xlsx") %>% 
 #   filter(biblio_id != "fi151") ### this file contains the edited parts
@@ -618,8 +712,8 @@ unique(all_data_traits2$subgroup)
 percentages <- all_data_traits2 %>% 
   rename(calcium = ca_mg,
          zinc = zn_mg,
-         iron = fe_mg) %>%
-  gather(7:13, key = nutrient, value = concentration) %>% 
+         iron = fe_mg) %>% 
+  gather(8:14, key = nutrient, value = concentration) %>% 
   mutate(dri_per = NA) %>% 
   mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
@@ -660,12 +754,15 @@ perc2 %>%
   theme(legend.position="none") +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 2))
 
+# var. spp.: Mallotus, Oncorphyncus and Salmo
+
 ### joey come back here.
 mean_nuts2 <- perc2 %>% 
   filter(grepl(" ", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "var. spp.: Mallotus, Oncorphyncus and Salmo", "Oncorhynchus spp.", genus_species)) %>% 
   spread(nutrient, concentration) %>% 
   group_by(genus_species, subgroup) %>% 
   summarise(calcium = mean(calcium, na.rm = TRUE),
@@ -676,12 +773,15 @@ mean_nuts2 <- perc2 %>%
   filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha)) %>% 
   ungroup()
 
+View(mean_nuts2)
+
 write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
-write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020b.csv")
+# write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020b.csv")
 mean_nuts3 <- perc2 %>% 
   filter(grepl(" ", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
+  mutate(genus_species = ifelse(genus_species == "var. spp.: Mallotus, Oncorphyncus and Salmo", "Oncorhynchus spp.", genus_species)) %>% 
   mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
   spread(nutrient, concentration) %>% 
   group_by(genus_species, subgroup) %>% 
@@ -695,9 +795,9 @@ mean_nuts3 <- perc2 %>%
   filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha), !is.na(protein), !is.na(fat)) %>% 
   ungroup()
 write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
-
+View(mean_nuts3)
 
 mean_nuts3 %>% 
   gather(3:9, key = nutrient, value = concentration) %>% 
-  ggplot(aes(x = concentration)) + geom_density(fill = "grey") +
+  ggplot(aes(x = concentration)) + geom_histogram(fill = "grey") +
   facet_wrap( ~ nutrient, scales = "free")

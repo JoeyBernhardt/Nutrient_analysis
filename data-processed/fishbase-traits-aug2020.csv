@@ -1,0 +1,365 @@
+Species,AgeMatMin,Herbivory2,FeedingType,FoodTroph,EnvTemp,BodyShapeI,DemersPelag,DepthRangeDeep,Length,user_supplied_name,submitted_name,data_source_title,score,realm
+Abramis brama,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.1500000953674316,temperate,fusiform / normal,benthopelagic,NA,82,Abramis brama,Abramis brama,FishBase,0.988,freshbrack
+Acipenser fulvescens,18,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.27999997138977,temperate,elongated,demersal,9,274,Acipenser fulvescens,Acipenser fulvescens,FishBase,0.988,freshbrack
+Acipenser oxyrinchus,15.11111111111111,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.325,subtropical,elongated,demersal,46,403,Acipenser oxyrinchus,Acipenser oxyrinchus,FishBase,0.988,freshbrackmarine
+Albatrossia pectoralis,5.666666666666667,mainly animals (troph. 2.8 and up),variable,3.86,deep-water,elongated,bathydemersal,3500,210,Albatrossia pectoralis,Albatrossia pectoralis,FishBase,0.988,marine
+Alosa alosa,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.62,temperate,fusiform / normal,pelagic-neritic,300,69,Alosa alosa,Alosa alosa,FishBase,0.988,freshbrackmarine
+Alosa pseudoharengus,2.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.29,temperate,fusiform / normal,pelagic-neritic,145,40,Alosa pseudoharengus,Alosa pseudoharengus,FishBase,0.988,freshbrackmarine
+Alosa sapidissima,3.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.6099998950958248,subtropical,fusiform / normal,pelagic-neritic,250,76,Alosa sapidissima,Alosa sapidissima,FishBase,0.988,freshbrackmarine
+Ameiurus nebulosus,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.27999997138977,subtropical,fusiform / normal,demersal,40,55,Ameiurus nebulosus,Ameiurus nebulosus,FishBase,0.988,fresh
+Anarhichas lupus,6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.73,temperate,elongated,demersal,600,150,Anarhichas lupus,Anarhichas lupus,FishBase,0.988,marine
+Anguilla anguilla,8.833333333333334,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.67,temperate,eel-like,demersal,700,121.5,Anguilla anguilla,Anguilla anguilla,FishBase,0.988,freshbrackmarine
+Anguilla rostrata,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.62,subtropical,eel-like,demersal,464,152,Anguilla rostrata,Anguilla rostrata,FishBase,0.988,freshbrackmarine
+Anoplopoma fimbria,5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.12,deep-water,fusiform / normal,bathydemersal,2740,120,Anoplopoma fimbria,Anoplopoma fimbria,FishBase,0.988,marine
+Aphanopus carbo,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.48,deep-water,eel-like,bathypelagic,2300,151,Aphanopus carbo,Aphanopus carbo,FishBase,0.988,marine
+Arnoglossus laterna,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.490000009536743,subtropical,fusiform / normal,demersal,200,25,Arnoglossus laterna,Arnoglossus laterna,FishBase,0.988,marine
+Arripis trutta,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.7,subtropical,fusiform / normal,pelagic-neritic,39,89,Arripis trutta,Arripis trutta,FishBase,0.988,brackmarine
+Atheresthes stomias,5.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,polar,short and / or deep,demersal,950,84,Atheresthes stomias,Atheresthes stomias,FishBase,0.988,marine
+Atherina boyeri,1,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.22,subtropical,elongated,demersal,NA,20,Atherina boyeri,Atherina boyeri,FishBase,0.988,freshbrackmarine
+Auxis rochei,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.4,tropical,fusiform / normal,pelagic-neritic,NA,50,Auxis rochei,Auxis rochei,FishBase,0.988,brackmarine
+Bagrus docmak,2.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.08,tropical,fusiform / normal,benthopelagic,80,127,Bagrus docmak,Bagrus docmak,FishBase,0.988,fresh
+Belone belone,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,temperate,elongated,pelagic-oceanic,NA,103.5,Belone belone,Belone belone,FishBase,0.988,brackmarine
+Boreogadus saida,2.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.27,polar,elongated,demersal,400,40,Boreogadus saida,Boreogadus saida,FishBase,0.988,brackmarine
+Brosme brosme,8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.08,temperate,elongated,demersal,1000,120,Brosme brosme,Brosme brosme,FishBase,0.988,marine
+Carassius carassius,2.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.11,temperate,fusiform / normal,demersal,NA,64,Carassius carassius,Carassius carassius,FishBase,0.988,freshbrack
+Carcharhinus limbatus,4.333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.46,subtropical,fusiform / normal,reef-associated,100,275,Carcharhinus limbatus,Carcharhinus limbatus,FishBase,0.988,brackmarine
+Catostomus catostomus,4.6,plants/detritus+animals (troph. 2.2-2.79),grazing on aquatic plants,3.1099998950958248,temperate,fusiform / normal,demersal,180,64,Catostomus catostomus,Catostomus catostomus,FishBase,0.988,freshbrack
+Catostomus commersonii,4,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),2.46,temperate,fusiform / normal,demersal,NA,65,Catostomus commersonii,Catostomus commersonii,FishBase,0.988,freshbrack
+Champsocephalus gunnari,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.49,polar,elongated,benthopelagic,700,66,Champsocephalus gunnari,Champsocephalus gunnari,FishBase,0.988,marine
+Channa striata,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.36,tropical,elongated,benthopelagic,10,100,Channa striata,Channa striata,FishBase,0.988,freshbrack
+Chelon labrosus,2.5,plants/detritus+animals (troph. 2.2-2.79),browsing on substrate,2.59,subtropical,elongated,demersal,NA,75,Chelon labrosus,Chelon labrosus,FishBase,0.988,freshbrackmarine
+Chondrostoma nasus,4,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2,temperate,fusiform / normal,benthopelagic,NA,50,Chondrostoma nasus,Chondrostoma nasus,FishBase,0.988,fresh
+Clarias gariepinus,2.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.5,subtropical,elongated,benthopelagic,80,170,Clarias gariepinus,Clarias gariepinus,FishBase,0.988,fresh
+Clupea harengus,2.5555555555555554,mainly animals (troph. 2.8 and up),selective plankton feeding,3.294999980926515,temperate,fusiform / normal,benthopelagic,364,45,Clupea harengus,Clupea harengus,FishBase,0.988,brackmarine
+Clupea pallasii pallasii,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,temperate,fusiform / normal,pelagic-neritic,475,46,Clupea pallasii pallasii,Clupea pallasii pallasii,FishBase,0.999,freshbrackmarine
+Clupeonella cultriventris,2,mainly animals (troph. 2.8 and up),selective plankton feeding,3.03,temperate,fusiform / normal,pelagic-neritic,13,14.5,Clupeonella cultriventris,Clupeonella cultriventris,FishBase,0.988,freshbrackmarine
+Coregonus albula,2,mainly animals (troph. 2.8 and up),selective plankton feeding,3.0599999427795406,temperate,fusiform / normal,benthopelagic,NA,48,Coregonus albula,Coregonus albula,FishBase,0.988,freshbrackmarine
+Coregonus autumnalis,5.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.329999923706055,polar,fusiform / normal,pelagic-neritic,NA,65,Coregonus autumnalis,Coregonus autumnalis,FishBase,0.988,freshbrackmarine
+Coregonus lavaretus,2.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.1500000953674316,temperate,fusiform / normal,demersal,NA,73,Coregonus lavaretus,Coregonus lavaretus,FishBase,0.988,freshbrack
+Coregonus nasus,5.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.28,polar,fusiform / normal,pelagic-neritic,NA,71,Coregonus nasus,Coregonus nasus,FishBase,0.988,freshbrack
+Coregonus nasus,5.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.28,polar,fusiform / normal,pelagic-neritic,NA,71,Coregonos nasus,Coregonos nasus,FishBase,0.75,freshbrack
+Cyclopterus lumpus,3.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.64,polar,short and / or deep,benthopelagic,868,61,Cyclopterus lumpus,Cyclopterus lumpus,FishBase,0.988,marine
+Cynoglossus arel,2,mainly animals (troph. 2.8 and up),variable,3.259999990463257,tropical,elongated,demersal,125,40,Cynoglossus arel,Cynoglossus arel,FishBase,0.988,brackmarine
+Cyprinus carpio,1.9742857142857142,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.05,subtropical,fusiform / normal,benthopelagic,NA,120,Cyprinus carpio,Cyprinus carpio,FishBase,0.988,freshbrack
+Dallia pectoralis,2,mainly animals (troph. 2.8 and up),variable,3.31,boreal,fusiform / normal,demersal,NA,33,Dallia pectoralis,Dallia pectoralis,FishBase,0.988,fresh
+Decapterus punctatus,0.33,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.26,subtropical,fusiform / normal,reef-associated,100,30,Decapterus punctatus,Decapterus punctatus,FishBase,0.988,marine
+Dentex dentex,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,subtropical,fusiform / normal,benthopelagic,200,100,Dentex dentex,Dentex dentex,FishBase,0.988,marine
+Dicentrarchus labrax,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.47,subtropical,fusiform / normal,demersal,100,103,Dicentrarchus labrax,Dicentrarchus labrax,FishBase,0.988,freshbrackmarine
+Diplodus annularis,1.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.21,subtropical,fusiform / normal,benthopelagic,90,27.5,Diplodus annularis,Diplodus annularis,FishBase,0.988,brackmarine
+Diplodus sargus,3.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.24,subtropical,fusiform / normal,demersal,50,45,Diplodus sargus,Diplodus sargus,FishBase,0.988,brackmarine
+Eleginus gracilis,2.2,mainly animals (troph. 2.8 and up),variable,3.78,polar,fusiform / normal,demersal,300,55,Eleginus gracilis,Eleginus gracilis,FishBase,0.988,freshbrackmarine
+Engraulis encrasicolus,1,mainly animals (troph. 2.8 and up),selective plankton feeding,3.12,temperate,elongated,pelagic-neritic,400,20,Engraulis encrasicolus,Engraulis encrasicolus,FishBase,0.988,brackmarine
+Eopsetta jordani,5.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.1,temperate,short and / or deep,demersal,550,53,Eopsetta jordani,Eopsetta jordani,FishBase,0.988,marine
+Epinephelus aeneus,5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.02,subtropical,fusiform / normal,demersal,200,120,Epinephelus aeneus,Epinephelus aeneus,FishBase,0.988,brackmarine
+Epinephelus coioides,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.95,subtropical,fusiform / normal,reef-associated,100,120,Epinephelus coioides,Epinephelus coioides,FishBase,0.988,brackmarine
+Esox lucius,1.9444444444444444,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.400000095367432,subtropical,elongated,demersal,30,137,Esox lucius,Esox lucius,FishBase,0.988,freshbrack
+Eutrigla gurnardus,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.37,temperate,elongated,demersal,340,60,Eutrigla gurnardus,Eutrigla gurnardus,FishBase,0.988,brackmarine
+Gadus macrocephalus,4.0625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.115,boreal,fusiform / normal,demersal,1280,119,Gadus macrocephalus,Gadus macrocephalus,FishBase,0.988,brackmarine
+Gadus morhua,3.625,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.29,temperate,fusiform / normal,benthopelagic,600,200,Gadus morhua,Gadus morhua,FishBase,0.988,brackmarine
+Glyptocephalus zachirus,3.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.41,temperate,short and / or deep,demersal,900,60,Glyptocephalus zachirus,Glyptocephalus zachirus,FishBase,0.988,marine
+Helicolenus dactylopterus,15,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.8,deep-water,fusiform / normal,bathydemersal,1100,50,Helicolenus dacthlopterus,Helicolenus dacthlopterus,FishBase,0.75,marine
+Heteropneustes fossilis,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.89,tropical,elongated,demersal,1,31,Heteropneustes fossilis,Heteropneustes fossilis,FishBase,0.988,freshbrack
+Hippoglossoides elassodon,2.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.46,temperate,short and / or deep,demersal,1050,52,Hippoglossoides elassodon,Hippoglossoides elassodon,FishBase,0.988,marine
+Hippoglossus hippoglossus,7.2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.28,temperate,fusiform / normal,demersal,2000,470,Hippoglossus hippoglossus,Hippoglossus hippoglossus,FishBase,0.988,marine
+Hippoglossus stenolepis,8.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.92,temperate,fusiform / normal,demersal,1200,258,Hippoglossus stenolepis,Hippoglossus stenolepis,FishBase,0.988,marine
+Huso huso,11.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.06,temperate,elongated,pelagic-neritic,180,800,Huso huso,Huso huso,FishBase,0.988,freshbrackmarine
+Hyperoglyphe antarctica,5.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.95,deep-water,fusiform / normal,benthopelagic,1500,140,Hyperoglyphe antarctica,Hyperoglyphe antarctica,FishBase,0.988,marine
+Hypomesus pretiosus,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4300000667572017,temperate,elongated,benthopelagic,NA,30.5,Hypomesus pretious,Hypomesus pretious,FishBase,0.75,brackmarine
+Ictalurus punctatus,3,mainly animals (troph. 2.8 and up),variable,3.4000000953674316,subtropical,fusiform / normal,benthopelagic,NA,132,Ictalurus punctatus,Ictalurus punctatus,FishBase,0.988,fresh
+Isurus oxyrinchus,14.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.32,subtropical,fusiform / normal,pelagic-oceanic,750,445,Isurus oxyrinchus,Isurus oxyrinchus,FishBase,0.988,marine
+Katsuwonus pelamis,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.03,tropical,fusiform / normal,pelagic-oceanic,260,110,Katsuwonus pelamis,Katsuwonus pelamis,FishBase,0.988,marine
+Labeo rohita,2,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2.19,tropical,fusiform / normal,benthopelagic,NA,200,Labeo rohita,Labeo rohita,FishBase,0.988,freshbrack
+Lamna nasus,9.2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.36,boreal,fusiform / normal,pelagic-oceanic,1360,350,Lamna nasus,Lamna nasus,FishBase,0.988,marine
+Lates angustifrons,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,tropical,fusiform / normal,demersal,NA,200,Lates angustifrons,Lates angustifrons,FishBase,0.988,fresh
+Lates calcarifer,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.829999923706055,tropical,fusiform / normal,demersal,40,200,Lates calcarifer,Lates calcarifer,FishBase,0.988,freshbrackmarine
+Lates niloticus,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.95,tropical,fusiform / normal,demersal,60,200,Lates niloticus,Lates niloticus,FishBase,0.988,fresh
+Lepidorhombus whiffiagonis,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.51,deep-water,fusiform / normal,bathydemersal,700,60,Lepidorhombus whiffiagonis,Lepidorhombus whiffiagonis,FishBase,0.988,marine
+Leporinus friderici,1.5,plants/detritus+animals (troph. 2.2-2.79),variable,3.26,subtropical,fusiform / normal,benthopelagic,NA,40,Leporinus friderici,Leporinus friderici,FishBase,0.988,fresh
+Leuciscus idus,5.571428571428571,mainly animals (troph. 2.8 and up),variable,3.79,temperate,fusiform / normal,benthopelagic,NA,85,Leuciscus idus,Leuciscus idus,FishBase,0.988,freshbrack
+Limanda aspera,6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,temperate,short and / or deep,demersal,700,49,Limanda aspera,Limanda aspera,FishBase,0.988,marine
+Lithognathus mormyrus,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.42,subtropical,fusiform / normal,demersal,150,55,Lithognathus mormyrus,Lithognathus mormyrus,FishBase,0.988,brackmarine
+Lophius budegassa,7,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.23,deep-water,fusiform / normal,bathydemersal,1013,100,Lophius budegassa,Lophius budegassa,FishBase,0.988,marine
+Lophius piscatorius,10,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.55,deep-water,short and / or deep,bathydemersal,1000,200,Lophius piscatorius,Lophius piscatorius,FishBase,0.988,marine
+Lota lota,3.7916666666666665,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,temperate,elongated,demersal,700,152,Lota lota,Lota lota,FishBase,0.988,freshbrack
+Macrodon ancylodon,2.7,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.9,subtropical,fusiform / normal,demersal,60,45,Macrodon ancylodon,Macrodon ancylodon,FishBase,0.988,brackmarine
+Macrourus berglax,14.8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.57,temperate,elongated,benthopelagic,1000,110,Macrourus berglax,Macrourus berglax,FishBase,0.988,marine
+Mallotus villosus,2,mainly animals (troph. 2.8 and up),selective plankton feeding,3.2,polar,elongated,pelagic-oceanic,725,20,Mallotus villosus,Mallotus villosus,FishBase,0.988,freshbrackmarine
+Melanogrammus aeglefinus,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.56,temperate,fusiform / normal,demersal,450,112,Melanogrammus aeglefinus,Melanogrammus aeglefinus,FishBase,0.988,marine
+Merlangius merlangus,1.6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.57,temperate,fusiform / normal,benthopelagic,200,91.5,Merlangius merlangus,Merlangius merlangus,FishBase,0.988,brackmarine
+Merluccius hubbsi,6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.23,temperate,elongated,benthopelagic,800,95,Merluccius hubbsi,Merluccius hubbsi,FishBase,0.988,marine
+Merluccius merluccius,4.291666666666667,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.43,temperate,elongated,demersal,1075,140,Merluccius merluccius,Merluccius merluccius,FishBase,0.988,marine
+Merluccius productus,3.2666666666666666,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.980000019073486,temperate,elongated,pelagic-neritic,1000,91,Merluccius productus,Merluccius productus,FishBase,0.988,brackmarine
+Micromesistius poutassou,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.700000047683716,temperate,elongated,bathypelagic,3000,55.5,Micromesistius poutassou,Micromesistius poutassou,FishBase,0.988,marine
+Micropogonias furnieri,2.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.27,subtropical,fusiform / normal,demersal,60,60,Micorpogonias furnieri,Micorpogonias furnieri,FishBase,0.75,brackmarine
+Microstomus kitt,3,mainly animals (troph. 2.8 and up),sucking food-containing material,3.21,temperate,short and / or deep,demersal,200,65,Microstomus kitt,Microstomus kitt,FishBase,0.988,marine
+Microstomus pacificus,5.875,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.34,temperate,short and / or deep,demersal,1370,76,Microstomus pacificus,Microstomus pacificus,FishBase,0.988,marine
+Molva dypterygia,8.8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.13,temperate,elongated,demersal,1000,155,Molva dypterygia,Molva dypterygia,FishBase,0.988,marine
+Molva molva,5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.2,temperate,elongated,demersal,1000,200,Molva molva,Molva molva,FishBase,0.988,marine
+Mugil cephalus,3.5555555555555554,mainly plants/detritus (troph. 2-2.19),variable,2.48,subtropical,fusiform / normal,benthopelagic,120,100,Mugil cephalus,Mugil cephalus,FishBase,0.988,freshbrackmarine
+Mullus surmuletus,1.3333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.46,subtropical,fusiform / normal,demersal,409,40,Mullus surmuletus,Mullus surmuletus,FishBase,0.988,marine
+Mustelus lenticulatus,2.45,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.5,subtropical,elongated,demersal,860,125,Mustelus lenticulatus,Mustelus lenticulatus,FishBase,0.988,marine
+Myoxocephalus scorpius,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.85,polar,fusiform / normal,demersal,451,60,Myoxocephalus scorpius,Myoxocephalus scorpius,FishBase,0.988,brackmarine
+Nemipterus japonicus,0.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.12,tropical,fusiform / normal,demersal,80,32,Nemipterus japonicus,Nemipterus japonicus,FishBase,0.988,marine
+Notothenia neglecta,7,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.26,polar,fusiform / normal,benthopelagic,95,45,Notothenia neglecta,Notothenia neglecta,FishBase,0.988,marine
+Oblada melanura,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.38,subtropical,fusiform / normal,benthopelagic,30,36.6,Oblada melanura,Oblada melanura,FishBase,0.988,marine
+Odax pullus,2.35,mainly plants/detritus (troph. 2-2.19),browsing on substrate,2.73,subtropical,fusiform / normal,demersal,NA,40,Odax pullus,Odax pullus,FishBase,0.988,marine
+Oncorhynchus gorbuscha,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.39,subtropical,fusiform / normal,demersal,250,76,Oncorhynchus gorbuscha,Oncorhynchus gorbuscha,FishBase,0.988,freshbrackmarine
+Oncorhynchus gorbuscha,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.39,subtropical,fusiform / normal,demersal,250,76,Oncorhynchus gorbusha,Oncorhynchus gorbusha,FishBase,0.75,freshbrackmarine
+Oncorhynchus keta,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.54,temperate,fusiform / normal,benthopelagic,250,100,Oncorhynchus keta,Oncorhynchus keta,FishBase,0.988,freshbrackmarine
+Oncorhynchus kisutch,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.18,temperate,fusiform / normal,demersal,250,107.95,Oncorhynchus kisutch,Oncorhynchus kisutch,FishBase,0.988,freshbrackmarine
+Oncorhynchus mykiss,2.6,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.53,subtropical,fusiform / normal,benthopelagic,200,122,Oncorhynchus mykiss,Oncorhynchus mykiss,FishBase,0.988,freshbrackmarine
+Oncorhynchus tshawytscha,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.83,temperate,fusiform / normal,benthopelagic,375,150,Oncorhynchus tshawytscha,Oncorhynchus tshawytscha,FishBase,0.988,freshbrackmarine
+Ophiodon elongatus,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.3,temperate,elongated,demersal,475,152,Ophiodon elongatus,Ophiodon elongatus,FishBase,0.988,marine
+Opisthonema oglinum,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.6,tropical,fusiform / normal,reef-associated,50,38,Opisthonema oglinum,Opisthonema oglinum,FishBase,0.988,marine
+Oreochromis macrochir,0.7,mainly plants/detritus (troph. 2-2.19),filtering plankton,2.21,tropical,fusiform / normal,benthopelagic,14,43,Oreochromis macrochir,Oreochromis macrochir,FishBase,0.988,fresh
+Oreochromis mossambicus,0.47333333333333333,mainly plants/detritus (troph. 2-2.19),browsing on substrate,2.77,tropical,fusiform / normal,benthopelagic,12,39,Oreochromis mossambicus,Oreochromis mossambicus,FishBase,0.988,freshbrack
+Oreochromis niloticus,0.86,mainly plants/detritus (troph. 2-2.19),browsing on substrate,2.0199999809265137,tropical,fusiform / normal,benthopelagic,20,60,Oreochromis niloticus,Oreochromis niloticus,FishBase,0.988,freshbrack
+Oreochromis niloticus,0.86,NA,NA,NA,tropical,fusiform / normal,benthopelagic,20,60,Oreochromis niloticus,Oreochromis niloticus,FishBase,0.988,freshbrack
+Osmerus mordax,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.44,temperate,elongated,pelagic-oceanic,425,35.6,Osmerus mordax,Osmerus mordax,FishBase,0.988,freshbrackmarine
+Pagellus bogaraveo,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.73,subtropical,fusiform / normal,benthopelagic,700,70,Pagellus bogaraveo,Pagellus bogaraveo,FishBase,0.988,marine
+Pagellus erythrinus,1.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.46,subtropical,fusiform / normal,benthopelagic,300,60,Pagelius erythrinus,Pagelius erythrinus,FishBase,0.75,marine
+Pagellus erythrinus,1.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.46,subtropical,fusiform / normal,benthopelagic,300,60,Pagellus erythrinus,Pagellus erythrinus,FishBase,0.988,marine
+Pagrus auratus,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.47,subtropical,short and / or deep,reef-associated,200,130,Pagrus auratus,Pagrus auratus,FishBase,0.988,brackmarine
+Pagrus pagrus,1.7,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.55,subtropical,fusiform / normal,benthopelagic,250,91,Pagrus pagrus,Pagrus pagrus,FishBase,0.988,marine
+Perca fluviatilis,1.8666666666666667,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,temperate,fusiform / normal,demersal,30,60,Perca fluviatilis,Perca fluviatilis,FishBase,0.988,freshbrack
+Perca fluviatilis,1.8666666666666667,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,temperate,fusiform / normal,demersal,30,60,Perca Fluviatilis,Perca fluviatilis,FishBase,0.988,freshbrack
+Phycis blennoides,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,temperate,fusiform / normal,benthopelagic,1200,110,Phycis blennoides,Phycis blennoides,FishBase,0.988,marine
+Platichthys flesus,2.933333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.3,temperate,short and / or deep,demersal,100,60,Platichthys flesus,Platichthys flesus,FishBase,0.988,freshbrackmarine
+Platichthys stellatus,2.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.5,polar,short and / or deep,demersal,375,91,Platichthys stellatus,Platichthys stellatus,FishBase,0.988,freshbrackmarine
+Pleurogrammus monopterygius,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.64,boreal,fusiform / normal,demersal,720,56.5,Pleurogrammus monopterygius,Pleurogrammus monopterygius,FishBase,0.988,marine
+Pleuronectes platessa,3.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.23,temperate,short and / or deep,demersal,200,100,Pleuronectes platessa,Pleuronectes platessa,FishBase,0.988,brackmarine
+Pogonias cromis,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.78,subtropical,fusiform / normal,demersal,NA,170,Pogonias cromis,Pogonias cromis,FishBase,0.988,brackmarine
+Pollachius virens,4.4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.61,temperate,fusiform / normal,demersal,364,130,Pollachius virens,Pollachius virens,FishBase,0.988,marine
+Polyprion oxygeneios,10,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.45,subtropical,fusiform / normal,demersal,854,160,Polyprion oxygeneios,Polyprion oxygeneios,FishBase,0.988,marine
+Pomatomus saltatrix,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.08,subtropical,fusiform / normal,pelagic-oceanic,200,130,Pomatomus saltatrix,Pomatomus saltatrix,FishBase,0.988,brackmarine
+Pseudoplatystoma fasciatum,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.38,tropical,fusiform / normal,demersal,NA,104.5,Pseudoplatystoma fasciatum,Pseudoplatystoma fasciatum,FishBase,0.988,fresh
+Pungitius pungitius,0.7666666666666666,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.35,temperate,elongated,benthopelagic,110,9,Pungitius pungitius,Pungitius pungitius,FishBase,0.988,freshbrackmarine
+Reinhardtius hippoglossoides,9,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.09,boreal,fusiform / normal,benthopelagic,2200,110,Reinhardtius hippoglossoides,Reinhardtius hippoglossoides,FishBase,0.988,marine
+Rhizoprionodon terraenovae,2.1333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,subtropical,fusiform / normal,demersal,280,110,Rhizoprionodon terraenovae,Rhizoprionodon terraenovae,FishBase,0.988,brackmarine
+Rutilus frisii,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.3,temperate,fusiform / normal,benthopelagic,NA,70,Rutilus frisii,Rutilus frisii,FishBase,0.988,freshbrack
+Rutilus rutilus,2.7142857142857144,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),2.87,subtropical,fusiform / normal,benthopelagic,NA,50.2,Rutilus rutilus,Rutilus rutilus,FishBase,0.988,freshbrack
+Salmo salar,2.15,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.76,temperate,fusiform / normal,benthopelagic,210,150,Salmo salar,Salmo salar,FishBase,0.988,freshbrackmarine
+Salvelinus alpinus,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,temperate,fusiform / normal,benthopelagic,70,107,Salvelinus alpinus,Salvelinus alpinus,FishBase,0.988,freshbrackmarine
+Salvelinus alpinus,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4600000381469727,temperate,fusiform / normal,benthopelagic,70,107,Salvelinus alpinus [naresi],Salvelinus alpinus [naresi],FishBase,0.988,freshbrackmarine
+Salvelinus fontinalis,1.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.74,temperate,fusiform / normal,benthopelagic,27,86,Salvelinus fontinalis,Salvelinus fontinalis,FishBase,0.988,freshbrackmarine
+Salvelinus malma,4,mainly animals (troph. 2.8 and up),filtering plankton,3.4,temperate,fusiform / normal,benthopelagic,200,127,Salvelinus malma,Salvelinus malma,FishBase,0.988,freshbrackmarine
+Salvelinus malma,4,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.539999961853028,temperate,fusiform / normal,benthopelagic,200,127,Salvelinus malma,Salvelinus malma,FishBase,0.988,freshbrackmarine
+Salvelinus namaycush,8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.77,temperate,fusiform / normal,benthopelagic,53,150,Salvelinus namaycush,Salvelinus namaycush,FishBase,0.988,fresh
+Sander lucioperca,3.6458333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.04,temperate,fusiform / normal,pelagic,30,100,Sander lucioperca,Sander lucioperca,FishBase,0.988,freshbrack
+Sander vitreus,2.9633333333333334,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.16,subtropical,elongated,demersal,27,107,Sander vitreus,Sander vitreus,FishBase,0.988,freshbrack
+Sardinella aurita,0.66,plants/detritus+animals (troph. 2.2-2.79),selective plankton feeding,3.04,subtropical,fusiform / normal,reef-associated,350,36,Sardinella aurita,Sardinella aurita,FishBase,0.988,brackmarine
+Sardinops sagax,1,plants/detritus+animals (troph. 2.2-2.79),selective plankton feeding,2.61,subtropical,fusiform / normal,pelagic-neritic,200,39.5,Sardinops sagax,Sardinops sagax,FishBase,0.988,marine
+Scardinius erythrophthalmus,4,mainly animals (troph. 2.8 and up),variable,2.89,temperate,fusiform / normal,benthopelagic,NA,NA,Scardinius erythrophthalmus,Scardinius erythrophthalmus,FishBase,0.988,freshbrack
+Scomber japonicus,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.42,subtropical,fusiform / normal,pelagic-neritic,300,64,Scomber japonicus,Scomber japonicus,FishBase,0.988,marine
+Scomber japonicus,2,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.42,subtropical,fusiform / normal,pelagic-neritic,300,64,Somber japonicus,Somber japonicus,FishBase,0.75,marine
+Scomber scombrus,1.75,mainly animals (troph. 2.8 and up),variable,3.73,temperate,fusiform / normal,pelagic-neritic,1000,60,Scomber scombrus,Scomber scombrus,FishBase,0.988,brackmarine
+Scomberomorus commerson,1.8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.380000114440918,tropical,fusiform / normal,pelagic-neritic,70,240,Scomberomorus commerson,Scomberomorus commerson,FishBase,0.988,marine
+Scophthalmus rhombus,5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.22,temperate,short and / or deep,demersal,50,75,Scophthalmus rhombus,Scophthalmus rhombus,FishBase,0.988,marine
+Scorpaena porcus,1.25,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.78,temperate,fusiform / normal,demersal,800,40.5,Scorpaena porcus,Scorpaena porcus,FishBase,0.988,marine
+Sebastes alutus,8.14,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.62,deep-water,fusiform / normal,bathydemersal,825,53,Sebastes alutus,Sebastes alutus,FishBase,0.988,marine
+Sebastes crameri,3,NA,NA,NA,temperate,fusiform / normal,bathydemersal,600,58,Sebastes crameri,Sebastes crameri,FishBase,0.988,marine
+Sebastes elongatus,5,NA,NA,NA,temperate,fusiform / normal,demersal,425,39,Sebastes elongatus,Sebastes elongatus,FishBase,0.988,marine
+Sebastes entomelas,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.29,temperate,fusiform / normal,pelagic-neritic,549,60,Sebastes entomelas,Sebastes entomelas,FishBase,0.988,marine
+Sebastes flavidus,6.333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.51,temperate,fusiform / normal,reef-associated,549,66,Sebastes flavidus,Sebastes flavidus,FishBase,0.988,marine
+Sebastes goodei,2.5,mainly animals (troph. 2.8 and up),variable,3.46,temperate,fusiform / normal,demersal,425,56,Sebastes goodei,Sebastes goodei,FishBase,0.988,brackmarine
+Sebastes melanops,6.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.9,temperate,fusiform / normal,reef-associated,366,63,Sebastes melanops,Sebastes melanops,FishBase,0.988,marine
+Sebastes mentella,11,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.12,deep-water,fusiform / normal,bathypelagic,1441,77.5,Sebastes mentella,Sebastes mentella,FishBase,0.988,marine
+Sebastes norvegicus,10,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.04,temperate,fusiform / normal,pelagic-oceanic,1000,100,Sebastes norvegicus,Sebastes norvegicus,FishBase,0.988,marine
+Sebastes paucispinis,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.51,subtropical,fusiform / normal,reef-associated,476,91,Sebastes paucispinis,Sebastes paucispinis,FishBase,0.988,marine
+Sebastes pinniger,4.333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.8,subtropical,fusiform / normal,demersal,838,76,Sebastes pinniger,Sebastes pinniger,FishBase,0.988,marine
+Sebastes rosaceus,4,NA,NA,NA,subtropical,fusiform / normal,demersal,128,36,Sebastes rosaceus,Sebastes rosaceus,FishBase,0.988,marine
+Sebastes ruberrimus,8,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.99,subtropical,fusiform / normal,reef-associated,549,104,Sebastes ruberrimus,Sebastes ruberrimus,FishBase,0.988,marine
+Sebastes viviparus,20,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.03,temperate,short and / or deep,demersal,300,66.5,Sebastes viviparus,Sebastes viviparus,FishBase,0.988,marine
+Sillago sihama,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.18,tropical,elongated,reef-associated,60,31,Sillago sihama,Sillago sihama,FishBase,0.988,brackmarine
+Silurus glanis,2.8333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.12,temperate,elongated,benthopelagic,30,500,Silurus glanis,Silurus glanis,FishBase,0.988,freshbrack
+Solea solea,2.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.299999952316284,subtropical,short and / or deep,demersal,150,70,Solea solea,Solea solea,FishBase,0.988,brackmarine
+Sparus aurata,1.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.39,subtropical,fusiform / normal,demersal,150,70,Sparus aurata,Sparus aurata,FishBase,0.988,brackmarine
+Spondyliosoma cantharus,2,mainly animals (troph. 2.8 and up),variable,3.27,subtropical,fusiform / normal,benthopelagic,300,60,Spondyliosoma cantharus,Spondyliosoma cantharus,FishBase,0.988,marine
+Sprattus sprattus,1.5,mainly animals (troph. 2.8 and up),selective plankton feeding,NA,temperate,fusiform / normal,pelagic-neritic,150,16,Sprattus sprattus,Sprattus sprattus,FishBase,0.988,brackmarine
+Squalus acanthias,8.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,temperate,elongated,benthopelagic,1460,95,Squalus acanthias,Squalus acanthias,FishBase,0.988,brackmarine
+Stenodus leucichthys,7.7,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.15,boreal,fusiform / normal,demersal,NA,150,Stenodus leucichtys,Stenodus leucichtys,FishBase,0.75,freshbrackmarine
+Stenodus leucichthys,7.7,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.15,boreal,fusiform / normal,demersal,NA,150,Stenodus leucichthys,Stenodus leucichthys,FishBase,0.988,freshbrackmarine
+Thaleichthys pacificus,3,mainly animals (troph. 2.8 and up),filtering plankton,3.25,temperate,elongated,pelagic-neritic,300,34,Thaleichthys pacificus,Thaleichthys pacificus,FishBase,0.988,freshbrackmarine
+Thunnus alalunga,4.666666666666667,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.3,subtropical,fusiform / normal,pelagic-oceanic,600,140,Thunnus alalunga,Thunnus alalunga,FishBase,0.988,marine
+Thunnus orientalis,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),NA,subtropical,fusiform / normal,pelagic-oceanic,550,300,Thunnus orientalis,Thunnus orientalis,FishBase,0.988,brackmarine
+Thunnus thynnus,5.333333333333333,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.21,subtropical,fusiform / normal,pelagic-oceanic,985,458,Thunnus thynnus,Thunnus thynnus,FishBase,0.988,brackmarine
+Thymallus arcticus,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.32,temperate,fusiform / normal,benthopelagic,NA,76,Thymallus arcticus,Thymallus arcticus,FishBase,0.988,fresh
+Tinca tinca,2.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.27,temperate,fusiform / normal,demersal,NA,70,tinca tinca,Tinca tinca,FishBase,0.988,freshbrack
+Trachurus trachurus,3.3333333333333335,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.18,subtropical,fusiform / normal,pelagic-neritic,1050,70,Trachurus trachurus,Trachurus trachurus,FishBase,0.988,marine
+Trichiurus lepturus,1.75,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.2,subtropical,eel-like,benthopelagic,589,234,Trichiurus lepturus,Trichiurus lepturus,FishBase,0.988,brackmarine
+Trisopterus minutus,1,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.67,temperate,fusiform / normal,benthopelagic,440,40,Trisopterus minutus,Trisopterus minutus,FishBase,0.988,marine
+Xiphias gladius,5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,subtropical,elongated,pelagic-oceanic,2878,455,Xiphias gladius,Xiphias gladius,FishBase,0.988,marine
+Zeus faber,3,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.239999771118164,temperate,short and / or deep,benthopelagic,400,90,Zeus faber,Zeus faber,FishBase,0.988,brackmarine
+Ailia coila,NA,NA,NA,NA,tropical,elongated,pelagic,NA,30,Ailia coila,Ailia coila,FishBase,0.988,freshbrack
+Alepocephalus bairdii,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.69,deep-water,elongated,bathydemersal,1700,100,Alepocephalus bairdii,Alepocephalus bairdii,FishBase,0.988,marine
+Aluterus monoceros,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.49,subtropical,short and / or deep,reef-associated,80,76.2,Aluterus monoceros,Aluterus monoceros,FishBase,0.988,marine
+Amblypharyngodon mola,NA,NA,NA,NA,tropical,fusiform / normal,benthopelagic,NA,20,Amblypharyngodon mola,Amblypharyngodon mola,FishBase,0.988,fresh
+Anabas testudineus,NA,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),2.76,tropical,fusiform / normal,demersal,NA,25,Anabas testudineus,Anabas testudineus,FishBase,0.988,freshbrack
+Anchoa hepsetus,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.25,subtropical,elongated,pelagic-neritic,70,15.3,Anchoa hepsetus,Anchoa hepsetus,FishBase,0.988,brackmarine
+Anguilla bicolor,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.55,tropical,eel-like,demersal,NA,123,Anguilla bicolor,Anguilla bicolor,FishBase,0.988,freshbrackmarine
+Anguilla japonica,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.55,subtropical,eel-like,demersal,400,150,Anguilla japonica,Anguilla japonica,FishBase,0.988,freshbrackmarine
+Ariomma bondi,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.5,subtropical,fusiform / normal,demersal,500,30,Ariomma bondi,Ariomma bondi,FishBase,0.988,marine
+Atrobucca nibe,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.96,deep-water,fusiform / normal,demersal,200,45,Atrobucca nibe,Atrobucca nibe,FishBase,0.988,marine
+Auxis thazard,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.360000133514403,tropical,fusiform / normal,pelagic-neritic,NA,65,Auxis thazard,Auxis thazard,FishBase,0.988,marine
+Barbonymus gonionotus,NA,plants/detritus+animals (troph. 2.2-2.79),grazing on aquatic plants,2.3599998950958248,tropical,fusiform / normal,benthopelagic,NA,40.5,Barbonymus goniontus,Barbonymus goniontus,FishBase,0.75,fresh
+Boops boops,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.11,subtropical,fusiform / normal,demersal,350,40,Boops boops,Boops boops,FishBase,0.988,marine
+Bothus podas,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.369999885559082,subtropical,short and / or deep,demersal,400,45,Bothus podus,Bothus podus,FishBase,0.75,marine
+Botia dario,NA,NA,NA,NA,tropical,fusiform / normal,demersal,NA,15.1,Botia dario,Botia dario,FishBase,0.988,fresh
+Brama japonica,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.84,subtropical,short and / or deep,pelagic-oceanic,620,61,Brama japonica,Brama japonica,FishBase,0.988,marine
+Brevoortia aurea,NA,plants/detritus+animals (troph. 2.2-2.79),filtering plankton,2.75,subtropical,fusiform / normal,pelagic-neritic,NA,34.4,Brevoortia aurea,Brevoortia aurea,FishBase,0.988,marine
+Brycon orbignyanus,NA,plants/detritus+animals (troph. 2.2-2.79),NA,NA,tropical,fusiform / normal,benthopelagic,NA,79.5,Brycon orbignyanus,Brycon orbignyanus,FishBase,0.988,fresh
+Caranx crysos,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.63,subtropical,fusiform / normal,reef-associated,100,70,Caranx crysos,Caranx crysos,FishBase,0.988,brackmarine
+Centrophorus squamosus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.4,temperate,elongated,bathydemersal,2400,164,Centrophorus squamosus,Centrophorus squamosus,FishBase,0.988,marine
+Centropristis striata,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,temperate,fusiform / normal,reef-associated,NA,66,Centropristis striata,Centropristis striata,FishBase,0.988,marine
+Centroscyllium fabricii,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.13,deep-water,elongated,bathydemersal,NA,107,Centroscyllium fabricii,Centroscyllium fabricii,FishBase,0.988,marine
+Centroscymnus coelolepis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.19,temperate,elongated,bathydemersal,3700,120,Centroscymnus coelolepis,Centroscymnus coelolepis,FishBase,0.988,marine
+Cephalopholis taeniops,NA,NA,NA,NA,tropical,fusiform / normal,demersal,200,70,Cephalopholis taeniops,Cephalopholis taeniops,FishBase,0.988,marine
+Chaenocephalus aceratus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.96,polar,elongated,demersal,770,72,Chaenocephalus aceratus,Chaenocephalus aceratus,FishBase,0.988,marine
+Chanda nama,NA,mainly animals (troph. 2.8 and up),NA,3.59,tropical,short and / or deep,benthopelagic,NA,11,Chanda nama,Chanda nama,FishBase,0.988,freshbrack
+Channa marulius,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,tropical,elongated,benthopelagic,NA,183,Channa marulius,Channa marulius,FishBase,0.988,fresh
+Channa micropeltes,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.85,tropical,elongated,benthopelagic,NA,130,Channa micropeltes,Channa micropeltes,FishBase,0.988,fresh
+Channa punctata,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.84,tropical,elongated,benthopelagic,NA,31,Channa punctata,Channa punctata,FishBase,0.988,freshbrack
+Chela cachius,NA,NA,NA,NA,tropical,fusiform / normal,benthopelagic,NA,9.6,Chela cachius,Chela cachius,FishBase,0.988,freshbrack
+Chelidonichthys lucerna,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.58,subtropical,elongated,demersal,318,75.1,Chelidonichthyus lucernus,Chelidonichthyus lucernus,FishBase,0.75,marine
+Chelidonichthys lucerna,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.58,subtropical,elongated,demersal,318,75.1,Chelidonichthys lucerna,Chelidonichthys lucerna,FishBase,0.988,marine
+Chirocentrus dorab,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.4,tropical,elongated,reef-associated,120,100,Chirocentrus dorab,Chirocentrus dorab,FishBase,0.988,brackmarine
+Clarias batrachus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.42,tropical,elongated,demersal,NA,47,Clarias batrachus,Clarias batrachus,FishBase,0.988,freshbrack
+Clarias macrocephalus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.7,tropical,elongated,benthopelagic,NA,120,Clarias macrocephalus,Clarias macrocephalus,FishBase,0.988,freshbrack
+Clupeoides borneensis,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.1,tropical,fusiform / normal,pelagic,NA,8,Clupeoides borneensis,Clupeoides borneensis,FishBase,0.988,freshbrack
+Coregonus clupeaformis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4300000667572017,temperate,fusiform / normal,demersal,128,100,Coregonus clupeaformis,Coregonus clupeaformis,FishBase,0.988,freshbrack
+Coregonus macrophthalmus,NA,NA,NA,3.3,temperate,fusiform / normal,pelagic,NA,30,Coregonus macrophthalmus,Coregonus macrophthalmus,FishBase,0.988,fresh
+Corica soborna,NA,NA,NA,NA,tropical,fusiform / normal,pelagic-neritic,NA,5.3,Corica soborna,Corica soborna,FishBase,0.988,freshbrackmarine
+Cyclocheilichthys apogon,NA,plants/detritus+animals (troph. 2.2-2.79),NA,3.1,tropical,fusiform / normal,benthopelagic,NA,28.7,Cyclocheilichthys apogon,Cyclocheilichthys apogon,FishBase,0.988,fresh
+Cynoscion arenarius,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),NA,subtropical,fusiform / normal,demersal,NA,63.5,Cynoscion arenarius,Cynoscion arenarius,FishBase,0.988,brackmarine
+Cynoscion jamaicensis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.84,subtropical,fusiform / normal,demersal,70,50,Cynoscion jamaicensis,Cynoscion jamaicensis,FishBase,0.988,brackmarine
+Cynoscion nothus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),NA,subtropical,fusiform / normal,demersal,18,36,Cynoscion nothus,Cynoscion nothus,FishBase,0.988,brackmarine
+Danio dangila,NA,NA,NA,NA,tropical,fusiform / normal,benthopelagic,NA,15,Danio dangila,Danio dangila,FishBase,0.988,fresh
+Dentex maroccanus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.85,subtropical,fusiform / normal,demersal,500,45,Dentex maroccanus,Dentex maroccanus,FishBase,0.988,marine
+Diplodus puntazzo,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.07,subtropical,fusiform / normal,benthopelagic,150,60,Diplodus puntazzo,Diplodus puntazzo,FishBase,0.988,brackmarine
+Diplodus vulgaris,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.34,subtropical,fusiform / normal,benthopelagic,160,45,Diplodus vulgaris,Diplodus vulgaris,FishBase,0.988,marine
+Echelus myrus,NA,NA,NA,NA,subtropical,eel-like,demersal,550,100,Echelus myrus,Echelus myrus,FishBase,0.988,brackmarine
+Eleotris fusca,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.62,tropical,elongated,demersal,5,26,Eleotris fusca,Eleotris fusca,FishBase,0.988,freshbrackmarine
+Eleutheronema tetradactylum,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.11,tropical,elongated,pelagic-neritic,23,200,Eleutheronema tetradactylum,Eleutheronema tetradactylum,FishBase,0.988,freshbrackmarine
+Elops saurus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.11,subtropical,elongated,reef-associated,50,100,Elops saurus,Elops saurus,FishBase,0.988,brackmarine
+Epinephelus sexfasciatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),NA,tropical,fusiform / normal,reef-associated,80,40,Epinephelus sexfasciatus,Epinephelus sexfasciatus,FishBase,0.988,marine
+Etmopterus princeps,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),NA,deep-water,elongated,bathydemersal,2213,75,Etmopterus princeps,Etmopterus princeps,FishBase,0.988,marine
+Euthynnus alletteratus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.98,tropical,fusiform / normal,reef-associated,150,122,Euthynnus alletteratus,Euthynnus alletteratus,FishBase,0.988,brackmarine
+Gasterochisma melampus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.35,subtropical,fusiform / normal,pelagic-oceanic,NA,164,Gasterochisma melampus,Gasterochisma melampus,FishBase,0.988,marine
+Glossogobius giuris,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.57,tropical,fusiform / normal,benthopelagic,5,50,Glossogobius giuris,Glossogobius giuris,FishBase,0.988,freshbrackmarine
+Glossogobius giuris,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.57,tropical,fusiform / normal,benthopelagic,5,50,Glossogobius giurias,Glossogobius giurias,FishBase,0.75,freshbrackmarine
+Gudusia chapra,NA,NA,NA,NA,subtropical,fusiform / normal,pelagic,NA,20,Gudusia chapra,Gudusia chapra,FishBase,0.988,freshbrack
+Harpadon nehereus,NA,mainly animals (troph. 2.8 and up),NA,4.2,tropical,elongated,benthopelagic,NA,40,Harpadon nehereus,Harpadon nehereus,FishBase,0.988,brackmarine
+Helostoma temminckii,NA,plants/detritus+animals (troph. 2.2-2.79),NA,2.8199999332427974,tropical,short and / or deep,benthopelagic,NA,30,Helostoma temminckii,Helostoma temminckii,FishBase,0.988,fresh
+Hemisorubim platyrhynchos,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,subtropical,elongated,demersal,NA,NA,Hemisorubim platyrhynchos,Hemisorubim platyrhynchos,FishBase,0.988,fresh
+Henicorhynchus siamensis,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2,tropical,fusiform / normal,benthopelagic,NA,20,Henicorhynchus siamensis,Henicorhynchus siamensis,FishBase,0.988,fresh
+Hydrolagus affinis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4,deep-water,elongated,bathydemersal,3000,130,Hydrolagus affinis,Hydrolagus affinis,FishBase,0.988,marine
+Hydrolagus colliei,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.68,temperate,elongated,demersal,913,100,Hydrolagus colliei,Hydrolagus colliei,FishBase,0.988,marine
+Hyporhamphus ihi,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.22,temperate,eel-like,pelagic-neritic,NA,26,Hyporhamphus ihi,Hyporhamphus ihi,FishBase,0.988,marine
+Hyporhamphus limbatus,NA,mainly animals (troph. 2.8 and up),NA,3.2,tropical,elongated,pelagic-neritic,NA,35,Hyporhamphus limbatus,Hyporhamphus limbatus,FishBase,0.988,freshbrackmarine
+Isopsetta isolepis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.59,temperate,short and / or deep,demersal,425,55,Isopsetta isolepis,Isopsetta isolepis,FishBase,0.988,marine
+Lagocephalus lagocephalus,NA,mainly animals (troph. 2.8 and up),variable,3.73,subtropical,fusiform / normal,benthopelagic,476,61,Lagocepahlus lagocephalus,Lagocepahlus lagocephalus,FishBase,0.75,marine
+Lampris guttatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.22,deep-water,short and / or deep,bathypelagic,500,200,Lampris guttatus,Lampris guttatus,FishBase,0.988,marine
+Lepidocephalichthys guntea,NA,NA,NA,NA,tropical,elongated,demersal,NA,15,Lepidocephalichthys guntea,Lepidocephalichthys guntea,FishBase,0.988,freshbrack
+Lepidopsetta bilineata,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.48,temperate,short and / or deep,demersal,575,58,Lepidopsetta bilineata,Lepidopsetta bilineata,FishBase,0.988,marine
+Leptomelanosoma indicum,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.86,tropical,elongated,demersal,100,142,Leptomelanosoma indicum,Leptomelanosoma indicum,FishBase,0.988,brackmarine
+Limnothrissa miodon,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,2.71,tropical,fusiform / normal,pelagic,60,17,Limnothrissa miodon,Limnothrissa miodon,FishBase,0.988,fresh
+Lutjanus argentimaculatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.85,subtropical,fusiform / normal,reef-associated,120,150,Lutjanus argentimaculatus,Lutjanus argentimaculatus,FishBase,0.988,freshbrackmarine
+Lutjanus johnii,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.19,tropical,fusiform / normal,reef-associated,80,97,Lutjanus johnii,Lutjanus johnii,FishBase,0.988,brackmarine
+Lutjanus malabaricus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.09,tropical,fusiform / normal,reef-associated,100,100,Lutjanus malabaricus,Lutjanus malabaricus,FishBase,0.988,brackmarine
+Macrognathus aculeatus,NA,NA,NA,NA,tropical,eel-like,benthopelagic,NA,38,Macrognathus aculeatus,Macrognathus aculeatus,FishBase,0.988,freshbrack
+Mastacembelus armatus,NA,plants/detritus+animals (troph. 2.2-2.79),variable,2.78,tropical,eel-like,demersal,NA,90,Mastacembelus armatus,Mastacembelus armatus,FishBase,0.988,freshbrack
+Megalaspis cordyla,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.91,tropical,fusiform / normal,reef-associated,100,80,Megalaspis cordyla,Megalaspis cordyla,FishBase,0.988,brackmarine
+Megalops cyprinoides,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.9100000858306885,tropical,fusiform / normal,benthopelagic,NA,150,Megalops cyprinoides,Megalops cyprinoides,FishBase,0.988,freshbrackmarine
+Menticirrhus americanus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),NA,subtropical,fusiform / normal,demersal,40,50,Menticirrhus americanus,Menticirrhus americanus,FishBase,0.988,brackmarine
+Microgadus tomcod,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.81,temperate,elongated,demersal,69,38.1,Microgadus tomcod,Microgadus tomcod,FishBase,0.988,freshbrackmarine
+Micropogonias undulatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4,subtropical,fusiform / normal,demersal,100,55,Micropogonias undulatus,Micropogonias undulatus,FishBase,0.988,brackmarine
+Monopterus albus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),2.880000114440918,tropical,eel-like,demersal,NA,100,Monopterus albus,Monopterus albus,FishBase,0.988,freshbrack
+Mora moro,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.75,deep-water,fusiform / normal,bathypelagic,2500,80,Mora moro,Mora moro,FishBase,0.988,marine
+Mormyrus rume,NA,plants/detritus+animals (troph. 2.2-2.79),grazing on aquatic plants,2.48,tropical,fusiform / normal,demersal,NA,100,Mormyrus rume,Mormyrus rume,FishBase,0.988,fresh
+Morone saxatilis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.47,temperate,fusiform / normal,demersal,NA,200,Morone saxatilis,Morone saxatilis,FishBase,0.988,freshbrackmarine
+Mugil liza,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2,subtropical,fusiform / normal,demersal,NA,80,Mugil liza,Mugil liza,FishBase,0.988,freshbrackmarine
+Mycteroperca acutirostris,NA,mainly animals (troph. 2.8 and up),NA,3.4,subtropical,fusiform / normal,reef-associated,40,80,Mycteroperca acutirostris,Mycteroperca acutirostris,FishBase,0.988,marine
+Mycteroperca rubra,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.13,subtropical,fusiform / normal,demersal,200,144,Mycteroperca rubra,Mycteroperca rubra,FishBase,0.988,marine
+Mystus cavasius,NA,NA,NA,NA,tropical,elongated,demersal,NA,40,Mystus cavasius,Mystus cavasius,FishBase,0.988,freshbrack
+Mystus vittatus,NA,mainly animals (troph. 2.8 and up),variable,3.97,tropical,elongated,demersal,NA,21,Mystus vittatus,Mystus vittatus,FishBase,0.988,freshbrack
+Nandus nandus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.89,tropical,fusiform / normal,benthopelagic,NA,20,Nandus nandus,Nandus nandus,FishBase,0.988,freshbrack
+Notopterus notopterus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.4,tropical,elongated,demersal,NA,60,Notopterus notopterus,Notopterus notopterus,FishBase,0.988,freshbrack
+Ompok pabda,NA,NA,NA,NA,tropical,elongated,demersal,NA,30,Ompok pabda,Ompok pabda,FishBase,0.988,fresh
+Oncorhynchus nerka,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.23,temperate,fusiform / normal,pelagic-oceanic,250,84,Oncorhynchus nerka,Oncorhynchus nerka,FishBase,0.988,freshbrackmarine
+Osteobrama cotio,NA,NA,NA,NA,tropical,fusiform / normal,benthopelagic,NA,15,Osteobrama cotio,Osteobrama cotio,FishBase,0.988,fresh
+Pagrus caeruleostictus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,subtropical,short and / or deep,benthopelagic,200,90,Pagrus caeruleosticuts,Pagrus caeruleosticuts,FishBase,0.75,brackmarine
+Pagrus caeruleostictus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,subtropical,short and / or deep,benthopelagic,200,90,Pagrus caeruleostictus,Pagrus caeruleostictus,FishBase,0.988,brackmarine
+Pampus argenteus,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.23,subtropical,short and / or deep,benthopelagic,110,60,Pampus argenteus,Pampus argenteus,FishBase,0.988,marine
+Parachela siamensis,NA,mainly animals (troph. 2.8 and up),NA,NA,tropical,elongated,pelagic,NA,15,Parachela siamensis,Parachela siamensis,FishBase,0.988,fresh
+Parastromateus niger,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,2.9300000667572017,tropical,short and / or deep,reef-associated,105,75,Parastromateus niger,Parastromateus niger,FishBase,0.988,brackmarine
+Parona signata,NA,mainly animals (troph. 2.8 and up),NA,3.4,subtropical,fusiform / normal,demersal,NA,60,Parona signata,Parona signata,FishBase,0.988,marine
+Patagonotothen ramsayi,NA,mainly animals (troph. 2.8 and up),browsing on substrate,3.49,temperate,fusiform / normal,benthopelagic,500,44,Patagonotothen ramsayi,Patagonotothen ramsayi,FishBase,0.988,marine
+Pennahia argentata,NA,mainly animals (troph. 2.8 and up),variable,3.74,temperate,fusiform / normal,benthopelagic,140,40,Pennahia argentata,Pennahia argentata,FishBase,0.988,marine
+Perca flavescens,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.36,temperate,fusiform / normal,benthopelagic,56,50,Perca flavescens,Perca flavescens,FishBase,0.988,freshbrack
+Phycis phycis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.91,subtropical,fusiform / normal,benthopelagic,614,65,Phycis phycis,Phycis phycis,FishBase,0.988,marine
+Piaractus mesopotamicus,NA,mainly plants/detritus (troph. 2-2.19),other,2,subtropical,short and / or deep,demersal,NA,40.5,Piaractus mesopotamicus,Piaractus mesopotamicus,FishBase,0.988,fresh
+Pimelodus maculatus,NA,mainly animals (troph. 2.8 and up),NA,2.87,subtropical,fusiform / normal,benthopelagic,NA,51,Pimelodus maculatus,Pimelodus maculatus,FishBase,0.988,fresh
+Pinirampus pirinampu,NA,mainly animals (troph. 2.8 and up),NA,4.5,tropical,fusiform / normal,demersal,NA,120,Pinirampus pinirampu,Pinirampus pinirampu,FishBase,0.75,fresh
+Plagioscion squamosissimus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.97,tropical,fusiform / normal,benthopelagic,NA,80,Plagioscion squamosissimus,Plagioscion squamosissimus,FishBase,0.988,fresh
+Platycephalus indicus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.09,subtropical,elongated,reef-associated,200,100,Platycephalus indicus,Platycephalus indicus,FishBase,0.988,brackmarine
+Pollachius pollachius,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.91,temperate,fusiform / normal,benthopelagic,200,130,Pollachius pollachius,Pollachius pollachius,FishBase,0.988,marine
+Pomoxis nigromaculatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.81,temperate,short and / or deep,benthopelagic,NA,49,Pomoxis nigromaculatus,Pomoxis nigromaculatus,FishBase,0.988,fresh
+Prochilodus lineatus,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2.18,subtropical,fusiform / normal,benthopelagic,NA,80,Prochilodus lineatus,Prochilodus lineatus,FishBase,0.988,fresh
+Prochilodus reticulatus,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2,tropical,fusiform / normal,benthopelagic,NA,28,Prochilodus reticulatus,Prochilodus reticulatus,FishBase,0.988,freshbrack
+Protonibea diacanthus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.93,tropical,fusiform / normal,demersal,100,150,Protonibea diacanthus,Protonibea diacanthus,FishBase,0.988,brackmarine
+Protopterus aethiopicus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.43,tropical,elongated,demersal,60,200,Protopterus aethiopicus,Protopterus aethiopicus,FishBase,0.988,fresh
+Protopterus aethiopicus,NA,NA,NA,NA,tropical,elongated,demersal,60,200,Protopterus aethiopicus,Protopterus aethiopicus,FishBase,0.988,fresh
+Psettichthys melanostictus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.06,temperate,short and / or deep,demersal,325,63,Psettichthys melanostictus,Psettichthys melanostictus,FishBase,0.988,marine
+Pseudoplatystoma corruscans,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.5,subtropical,fusiform / normal,demersal,NA,166,Pseudoplatystoma corruscans,Pseudoplatystoma corruscans,FishBase,0.988,fresh
+Pseudopleuronectes americanus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.08,temperate,short and / or deep,demersal,143,64,Pseudopleuronectes americanus,Pseudopleuronectes americanus,FishBase,0.988,marine
+Pterodoras granulosus,NA,plants/detritus+animals (troph. 2.2-2.79),variable,2.55,subtropical,fusiform / normal,demersal,NA,70,Pterodoras granulosus,Pterodoras granulosus,FishBase,0.988,fresh
+Puntioplites proctozystron,NA,plants/detritus+animals (troph. 2.2-2.79),variable,2.7,tropical,fusiform / normal,benthopelagic,NA,30,Puntioplites proctozystron,Puntioplites proctozystron,FishBase,0.988,fresh
+Puntius sophore,NA,NA,NA,NA,tropical,fusiform / normal,benthopelagic,NA,20,Puntius sophore,Puntius sophore,FishBase,0.988,freshbrack
+Rasbora tawarensis,NA,NA,NA,NA,tropical,fusiform / normal,benthopelagic,NA,12,Rasbora tawarensis,Rasbora tawarensis,FishBase,0.988,fresh
+Rastrelliger brachysoma,NA,plants/detritus+animals (troph. 2.2-2.79),selective plankton feeding,2.72,tropical,fusiform / normal,pelagic-neritic,200,34.5,Rastrelliger brachysoma,Rastrelliger brachysoma,FishBase,0.988,brackmarine
+Rastrelliger kanagurta,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.1900000572204594,tropical,fusiform / normal,pelagic-neritic,90,NA,Rastrelliger kanagurta,Rastrelliger kanagurta,FishBase,0.988,marine
+Rastrineobola argentea,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.4100000858306885,tropical,fusiform / normal,pelagic,NA,9,Rastrineobola argentea,Rastrineobola argentea,FishBase,0.988,fresh
+Sarda orientalis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.210000038146973,subtropical,fusiform / normal,pelagic-neritic,167,102,Sarda orientalis,Sarda orientalis,FishBase,0.988,marine
+Sarda sarda,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.34,subtropical,fusiform / normal,pelagic-neritic,200,91.4,Sarda sarda,Sarda sarda,FishBase,0.988,brackmarine
+Sardina pilchardus,NA,plants/detritus+animals (troph. 2.2-2.79),selective plankton feeding,2.94,subtropical,fusiform / normal,pelagic-neritic,100,27.5,Sardina pilchardus,Sardina pilchardus,FishBase,0.988,freshbrackmarine
+Sardinella brasiliensis,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.1,subtropical,fusiform / normal,pelagic-neritic,60,27,Sardinella brasiliensis,Sardinella brasiliensis,FishBase,0.988,brackmarine
+Sardinella fimbriata,NA,plants/detritus+animals (troph. 2.2-2.79),selective plankton feeding,2.700000047683716,tropical,fusiform / normal,pelagic-neritic,50,13,Sardinella fimbriata,Sardinella fimbriata,FishBase,0.988,brackmarine
+Sardinella maderensis,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.2,subtropical,fusiform / normal,pelagic-neritic,80,30,Sardinella maderensis,Sardinella maderensis,FishBase,0.988,brackmarine
+Sarpa salpa,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2.14,subtropical,fusiform / normal,benthopelagic,70,51,Sarpa salpa,Sarpa salpa,FishBase,0.988,brackmarine
+Saurida undosquamis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.25,subtropical,elongated,reef-associated,350,50,Saurida undosquamis,Saurida undosquamis,FishBase,0.988,marine
+Sciaena umbra,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.83,subtropical,fusiform / normal,demersal,200,70,Sciaena umbra,Sciaena umbra,FishBase,0.988,brackmarine
+Scomberomorus guttatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.28,tropical,fusiform / normal,pelagic-neritic,200,76,Scomberomorus guttatus,Scomberomorus guttatus,FishBase,0.988,brackmarine
+Scorpaena scrofa,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.95,subtropical,fusiform / normal,demersal,500,50,Scorppaena scrofa,Scorppaena scrofa,FishBase,0.75,brackmarine
+Scorpaena scrofa,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.95,subtropical,fusiform / normal,demersal,500,50,Scorpaena scrofa,Scorpaena scrofa,FishBase,0.988,brackmarine
+Scorpaena scrofa,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.95,subtropical,fusiform / normal,demersal,500,50,Scorpena scrofa,Scorpena scrofa,FishBase,0.75,brackmarine
+Sebastes aleutianus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.66,deep-water,fusiform / normal,bathydemersal,900,97,Sebastes aleutianus,Sebastes aleutianus,FishBase,0.988,marine
+Selaroides leptolepis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.6099998950958248,tropical,fusiform / normal,reef-associated,50,22,Selaroides leptolepis,Selaroides leptolepis,FishBase,0.988,brackmarine
+Selene vomer,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.67,subtropical,fusiform / normal,demersal,53,48.3,Selene vomer,Selene vomer,FishBase,0.988,brackmarine
+Seriolina nigrofasciata,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.17,tropical,short and / or deep,reef-associated,150,70,Seriolina nigrofasciata,Seriolina nigrofasciata,FishBase,0.988,brackmarine
+Serranus scriba,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.58,subtropical,fusiform / normal,demersal,150,36,Serranus scriba,Serranus scriba,FishBase,0.988,marine
+Siganus rivulatus,NA,mainly plants/detritus (troph. 2-2.19),browsing on substrate,2,subtropical,fusiform / normal,reef-associated,30,27,Siganus rivulatus,Siganus rivulatus,FishBase,0.988,brackmarine
+Sillaginopsis panijus,NA,plants/detritus+animals (troph. 2.2-2.79),variable,3.27,tropical,elongated,demersal,NA,44,Sillaginopsis panijus,Sillaginopsis panijus,FishBase,0.988,freshbrackmarine
+Sorubim lima,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.099999904632568,tropical,elongated,demersal,NA,54.2,Sorubim lima,Sorubim lima,FishBase,0.988,fresh
+Sparisoma cretense,NA,plants/detritus+animals (troph. 2.2-2.79),variable,2.86,subtropical,fusiform / normal,reef-associated,50,50,Sparisoma cretense,Sparisoma cretense,FishBase,0.988,marine
+Sphyraena chrysotaenia,NA,NA,NA,NA,subtropical,elongated,pelagic-neritic,NA,32.2,Sphyraena chrysotaenia,Sphyraena chrysotaenia,FishBase,0.988,marine
+Sphyraena sphyraena,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.04,subtropical,elongated,pelagic-neritic,100,165,Sphyraena sphyraena,Sphyraena sphyraena,FishBase,0.988,marine
+Spicara maena,NA,mainly animals (troph. 2.8 and up),selective plankton feeding,3.5,subtropical,fusiform / normal,pelagic-neritic,130,25,Spicara maena,Spicara maena,FishBase,0.988,marine
+Spicara smaris,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.1600000858306885,subtropical,fusiform / normal,pelagic-neritic,328,20,Spicara smaris,Spicara smaris,FishBase,0.988,marine
+Stolephorus tri,NA,NA,NA,NA,tropical,fusiform / normal,pelagic-neritic,50,9.5,Stolephorus tri,Stolephorus tri,FishBase,0.988,brackmarine
+Stolothrissa tanganicae,NA,plants/detritus+animals (troph. 2.2-2.79),variable,2.74,tropical,elongated,pelagic,60,10,Stolothrissa tanganicae,Stolothrissa tanganicae,FishBase,0.988,fresh
+Syacium gunteri,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.26,tropical,short and / or deep,reef-associated,95,20,Syacium gunteri,Syacium gunteri,FishBase,0.988,brackmarine
+Tenualosa ilisha,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2.89,tropical,fusiform / normal,pelagic-neritic,200,60,Tenualosa ilisha,Tenualosa ilisha,FishBase,0.988,freshbrackmarine
+Tenualosa macrura,NA,NA,NA,NA,tropical,fusiform / normal,pelagic-neritic,50,52,Tenualosa macrura,Tenualosa macrura,FishBase,0.988,freshbrackmarine
+Thryssa purava,NA,mainly animals (troph. 2.8 and up),variable,3.549999952316284,tropical,elongated,pelagic-neritic,50,15.5,Thryssa purava,Thryssa purava,FishBase,0.988,brackmarine
+Thynnichthys thynnoides,NA,mainly plants/detritus (troph. 2-2.19),NA,2.31,tropical,fusiform / normal,benthopelagic,NA,25,Thynnichthys thynnoides,Thynnichthys thynnoides,FishBase,0.988,fresh
+Trachinotus blochii,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.74,tropical,short and / or deep,reef-associated,7,110,Trachinotus blochii,Trachinotus blochii,FishBase,0.988,brackmarine
+Trachinotus ovatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.73,subtropical,fusiform / normal,pelagic-neritic,200,70,Trachinotus ovatus,Trachinotus ovatus,FishBase,0.988,brackmarine
+Trachinus draco,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.18,temperate,fusiform / normal,demersal,150,53,Trachinus draco,Trachinus draco,FishBase,0.988,marine
+Trachurus lathami,NA,mainly animals (troph. 2.8 and up),variable,3.27,subtropical,fusiform / normal,reef-associated,200,40,Trachurus lathami,Trachurus lathami,FishBase,0.988,marine
+Trachurus mediterraneus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.369999885559082,subtropical,fusiform / normal,pelagic-oceanic,500,60,Trachurus mediterraneus,Trachurus mediterraneus,FishBase,0.988,brackmarine
+Trigla lyra,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.509999990463257,deep-water,fusiform / normal,bathydemersal,700,60,Trigla lyra,Trigla lyra,FishBase,0.988,marine
+Umbrina cirrosa,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.41,subtropical,fusiform / normal,demersal,100,73,Umbrina cirrosa,Umbrina cirrosa,FishBase,0.988,marine
+Upeneus moluccensis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.6,subtropical,fusiform / normal,reef-associated,120,22,Upeneus moluccensis,Upeneus moluccensis,FishBase,0.988,brackmarine
+Upeneus parvus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.05,tropical,fusiform / normal,demersal,100,30,Upeneus parvus,Upeneus parvus,FishBase,0.988,marine
+Xenentodon cancila,NA,mainly animals (troph. 2.8 and up),NA,3.86,tropical,elongated,pelagic-neritic,2,40,Xenentodon cancila,Xenentodon cancila,FishBase,0.988,freshbrackmarine
+Xenentodon cancila,NA,mainly animals (troph. 2.8 and up),NA,3.86,tropical,elongated,pelagic-neritic,2,40,Xenontedon cancila,Xenontedon cancila,FishBase,0.75,freshbrackmarine
