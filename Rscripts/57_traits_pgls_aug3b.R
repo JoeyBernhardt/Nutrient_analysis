@@ -1195,9 +1195,14 @@ traits_one_part <- traits2 %>%
   group_by(species1, nutrient) %>% 
   top_n(n = 1, wt = part)
 
+traits_one_part <- s2 %>% 
+  group_by(species1, nutrient) %>% 
+  top_n(n = 1, wt = part_edited)
 
-calcium <- traits_nut %>% 
-  filter(datasource1 == "seanuts") %>% 
+
+
+calcium <- traits_one_part %>% 
+  # filter(datasource1 == "seanuts") %>% 
   filter(part != "unknown") %>%
   filter(part != "unspecified") %>% 
   filter(part != "not specified") %>% 
@@ -1302,6 +1307,10 @@ rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
 stargazer(mod1a, title = "", type = "html", out="tables/1calcium-models-expanded-all-parts-pgls-lambda-aug3c.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2, single.row = TRUE)
+
+anova(mod1a)
+
+
 
 # Iron all parts pgls -----------------------------------------------------
 calcium <- traits1b %>% 

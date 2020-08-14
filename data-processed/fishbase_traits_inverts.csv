@@ -1,0 +1,88 @@
+Species,AgeMatMin,Herbivory2,FeedingType,FoodTroph,EnvTemp,DemersPelag,DepthRangeDeep,Length,user_supplied_name,submitted_name,score,realm
+Carcinus maenas,2,mainly animals (troph. 2.8 and up),browsing on substrate,3.15,subtropical,benthic,200,6,Carcinus maenas,Carcinus maenas,0.988,brackmarine
+Eriocheir sinensis,2,plants/detritus+animals (troph. 2.2-2.79),NA,2.85,temperate,benthic,25,7.5,Eriocheir sinensis,Eriocheir sinensis,0.988,freshbrackmarine
+Haliotis rubra,4,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2,temperate,benthic,50,20,Haliotis rubra,Haliotis rubra,0.988,marine
+Illex coindetii,0.442163,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.27,temperate,pelagic,1000,32,Illex coindetii,Illex coindetii,0.988,marine
+Nephrops norvegicus,4,mainly animals (troph. 2.8 and up),variable,3.67,temperate,benthic,800,24,Nephrops norvegicus,Nephrops norvegicus,0.988,marine
+Octopus vulgaris,1.19,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.74,tropical,reef-associated,347,24.9,Octopus vulgaris,Octopus vulgaris,0.988,marine
+Palinurus elephas,4,plants/detritus+animals (troph. 2.2-2.79),browsing on substrate,3.34,subtropical,benthic,200,50,Palinurus elephas,Palinurus elephas,0.988,marine
+Pandalus borealis,5,plants/detritus+animals (troph. 2.2-2.79),variable,3.07,polar,benthopelagic,1450,12,Pandalus borealis,Pandalus borealis,0.988,marine
+Paralithodes platypus,5.5,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.9,temperate,benthic,489,22,Paralithodes platypus,Paralithodes platypus,0.988,marine
+Parapenaeus longirostris,0.535,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.68,subtropical,benthic,828,16,Parapenaeus longirostris,Parapenaeus longirostris,0.988,marine
+Ruditapes philippinarum,1.5,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,tropical,benthic,100,8,Ruditapes philippinarum,Ruditapes philippinarum,0.988,brackmarine
+Xiphopenaeus kroyeri,0.25825,NA,NA,NA,tropical,benthic,70,11.5,Xiphopenaeus kroyeri,Xiphopenaeus kroyeri,0.988,brackmarine
+Acanthina monodon,NA,NA,NA,3.1,temperate,benthic,20,NA,Acanthina monodon,Acanthina monodon,0.988,marine
+Arctica islandica,NA,mainly plants/detritus (troph. 2-2.19),variable,2,temperate,benthic,482,12.7,Arctica islandica,Arctica islandica,0.988,marine
+Argopecten irradians,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,tropical,benthic,20,7.5,Argopecten irradians,Argopecten irradians,0.988,marine
+Aristaeomorpha foliacea,NA,mainly animals (troph. 2.8 and up),variable,3.77,tropical,benthopelagic,1300,4,Aristaeomorpha foliacea,Aristaeomorpha foliacea,0.988,marine
+Aristeus antennatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.3,temperate,demersal,2200,22,Aristeus antennatus,Aristeus antennatus,0.988,marine
+Aulacomya ater,NA,NA,NA,NA,temperate,benthic,100,6.3,Aulacomya ater,Aulacomya ater,0.988,marine
+Calappa granulata,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.94,subtropical,benthic,400,10,Calappa granulata,Calappa granulata,0.988,marine
+Callinectes sapidus,NA,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.35,tropical,benthopelagic,90,22.7,Callinectes sapidus,Callinectes sapidus,0.988,freshbrackmarine
+Cancer borealis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.98,subtropical,benthic,800,16,Cancer borealis,Cancer borealis,0.988,marine
+Cancer irroratus,NA,plants/detritus+animals (troph. 2.2-2.79),NA,3.29,temperate,benthic,575,NA,Cancer irroratus,Cancer irroratus,0.988,marine
+Chamelea gallina,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,subtropical,benthic,25,5,Chamelea gallina,Chamelea gallina,0.988,marine
+Chionoecetes opilio,NA,mainly animals (troph. 2.8 and up),variable,3.49,boreal,benthic,1400,9.1,Chionoecetes opilio,Chionoecetes opilio,0.988,marine
+Clinocardium nuttallii,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,temperate,benthic,200,14,Clinocardium nuttallii,Clinocardium nuttallii,0.988,marine
+Corbicula japonica,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,subtropical,benthic,6,NA,Corbicula japonica,Corbicula japonica,0.988,brackmarine
+Crangon crangon,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.23,subtropical,benthic,50,8.89999961853027,Crangon crangon,Crangon crangon,0.988,brackmarine
+Crassostrea gigas,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,subtropical,benthic,15,45,Crassostrea gigas,Crassostrea gigas,0.988,brackmarine
+Crassostrea rhizophorae,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,tropical,benthic,50,12,Crassostrea rhizophorae,Crassostrea rhizophorae,0.988,brackmarine
+Crassostrea virginica,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,subtropical,benthic,79,30,Crassostrea virginica,Crassostrea virginica,0.988,brackmarine
+Donax trunculus,NA,NA,NA,NA,temperate,benthic,25,4.4,Donax trunculus,Donax trunculus,0.988,marine
+Dosidicus gigas,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.11,tropical,pelagic,1200,400,Dosidicus gigas,Dosidicus gigas,0.988,marine
+Eledone moschata,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.98,subtropical,benthic,496,19.4,Eledone moschata,Eledone moschata,0.988,marine
+Enteroctopus dofleini,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.33,temperate,benthic,1500,300,Enteroctopus dofleini,Enteroctopus dofleini,0.988,marine
+Eriphia verrucosa,NA,NA,NA,NA,subtropical,benthic,NA,8,Eriphia verrucosa,Eriphia verrucosa,0.988,marine
+Euphausia superba,NA,plants/detritus+animals (troph. 2.2-2.79),filtering plankton,2.25,polar,pelagic,130,3,Euphausia superba,Euphausia superba,0.988,marine
+Ficus subintermedia,NA,mainly animals (troph. 2.8 and up),NA,NA,tropical,benthic,40,13,Ficus subintermedia,Ficus subintermedia,0.988,marine
+Fissurella picta,NA,mainly plants/detritus (troph. 2-2.19),NA,2,temperate,benthic,105,8.6,Fissurella picta,Fissurella picta,0.988,marine
+Fissurella picta,NA,NA,NA,NA,temperate,benthic,105,8.6,Fissurella picta,Fissurella picta,0.988,marine
+Homarus americanus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.36,temperate,benthic,480,64,Homarus americanus,Homarus americanus,0.988,marine
+Homarus gammarus,NA,plants/detritus+animals (troph. 2.2-2.79),variable,3.7,subtropical,benthic,150,65,Homarus gammarus,Homarus gammarus,0.988,marine
+Illex illecebrosus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.98,tropical,pelagic,1000,27,Illex illecebrosus,Illex illecebrosus,0.988,marine
+Katharina tunicata,NA,mainly plants/detritus (troph. 2-2.19),browsing on substrate,2,temperate,benthic,40,13,Katharina turnicata,Katharina turnicata,0.75,marine
+Loligo vulgaris,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.3149999999999995,temperate,benthopelagic,500,42,Loligo vulgaris,Loligo vulgaris,0.988,marine
+Macrobrachium nipponense,NA,mainly plants/detritus (troph. 2-2.19),NA,2,tropical,benthic,NA,NA,Macrobrachium nipponense,Macrobrachium nipponense,0.988,freshbrackmarine
+Mactra violacea,NA,NA,NA,NA,tropical,benthic,NA,9.5,Mactra violacea,Mactra violacea,0.988,marine
+Mercenaria mercenaria,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,NA,subtropical,benthic,36,13,Mercenaria mercenaria,Mercenaria mercenaria,0.988,marine
+Meretrix lusoria,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,NA,temperate,benthic,20,5,Meretrix lusoria,Meretrix lusoria,0.988,freshmarine
+Metapenaeus affinis,NA,plants/detritus+animals (troph. 2.2-2.79),variable,3.93,tropical,benthic,92,22.2000007629395,Metapenaeus affinis,Metapenaeus affinis,0.988,brackmarine
+Metapenaeus dobsoni,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.5,tropical,benthic,37,11.8000001907349,Metapenaeus dobsoni,Metapenaeus dobsoni,0.988,brackmarine
+Metapenaeus monoceros,NA,plants/detritus+animals (troph. 2.2-2.79),NA,3.35,tropical,benthic,170,15,Metapenaeus monoceros,Metapenaeus monoceros,0.988,brackmarine
+Mytilus chilensis,NA,NA,NA,NA,temperate,benthic,100,18,Mytilus chilensis,Mytilus chilensis,0.988,brackmarine
+Mytilus coruscus,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,temperate,benthic,100,10,Mytilus coruscus,Mytilus coruscus,0.988,marine
+Mytilus edulis,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,subtropical,benthic,60,11,Mytilus edulis,Mytilus edulis,0.988,brackmarine
+Mytilus galloprovincialis,NA,plants/detritus+animals (troph. 2.2-2.79),filtering plankton,2.69,tropical,benthic,200,15,Mytilus galloprovincialis,Mytilus galloprovincialis,0.988,marine
+Nacella deaurata,NA,NA,grazing on aquatic plants,NA,temperate,benthic,96,6.1,Nacella deaurata,Nacella deaurata,0.988,marine
+Orconectes limosus,NA,NA,NA,NA,temperate,demersal,NA,NA,Orconectes limosus,Orconectes limosus,0.988,marine
+Ostrea edulis,NA,mainly plants/detritus (troph. 2-2.19),selective plankton feeding,2,subtropical,benthic,200,12,Ostrea edulis,Ostrea edulis,0.988,brackmarine
+Ostrea lurida,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,temperate,benthic,71,9,Ostrea lurida,Ostrea lurida,0.988,marine
+Palaemon serratus,NA,plants/detritus+animals (troph. 2.2-2.79),browsing on substrate,2.69,subtropical,benthic,40,11,Palaemon serratus,Palaemon serratus,0.988,brackmarine
+Pandalus jordani,NA,mainly animals (troph. 2.8 and up),NA,3.23,tropical,benthic,457,3,Pandalus jordani,Pandalus jordani,0.988,marine
+Panopea abrupta,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,temperate,benthic,110,NA,Panopea abrupta,Panopea abrupta,0.988,marine
+Paralithodes camtschaticus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.79,temperate,benthic,240,22,Paralithodes camtschaticus,Paralithodes camtschaticus,0.988,marine
+Parapenaeopsis atlantica,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.56,tropical,benthic,60,12,Parapenaeopsis atlantica,Parapenaeopsis atlantica,0.988,marine
+Parapenaeopsis stylifera,NA,plants/detritus+animals (troph. 2.2-2.79),NA,2.66,tropical,benthic,90,14.5,Parapenaeopsis stylifera,Parapenaeopsis stylifera,0.988,marine
+Pecten maximus,NA,mainly plants/detritus (troph. 2-2.19),other,NA,temperate,benthic,125,17,Pecten maximus,Pecten maximus,0.988,marine
+Penaeus monodon,NA,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.36,tropical,benthic,150,33.5999984741211,Penaeus monodon,Penaeus monodon,0.988,marine
+Penaeus semisulcatus,NA,plants/detritus+animals (troph. 2.2-2.79),NA,2.92,tropical,benthic,300,18,Penaeus semisulcatus,Penaeus semisulcatus,0.988,marine
+Perna perna,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2.48,tropical,benthic,50,17,Perna perna,Perna perna,0.988,marine
+Perna viridis,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,NA,tropical,benthic,100,16.5,Perna viridis,Perna viridis,0.988,brackmarine
+Perumytilus purpuratus,NA,NA,NA,NA,temperate,benthic,NA,NA,Perunytitus purpuratus,Perunytitus purpuratus,0.75,marine
+Pinctada radiata,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,NA,tropical,benthic,150,NA,Pinctada radiata,Pinctada radiata,0.988,marine
+Placopecten magellanicus,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,temperate,benthic,300,20,Placopectens magellanicus,Placopectens magellanicus,0.75,marine
+Portunus pelagicus,NA,plants/detritus+animals (troph. 2.2-2.79),hunting macrofauna (predator),3.54,tropical,reef-associated,65,20,Portunus pelagicus,Portunus pelagicus,0.988,brackmarine
+Procambarus acutus,NA,NA,NA,NA,tropical,demersal,NA,NA,Procambarus acutus,Procambarus acutus,0.988,marine
+Rapana venosa,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.1,tropical,benthic,60,16.1,Rapana venosa,Rapana venosa,0.988,brackmarine
+Ruditapes decussatus,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,tropical,benthic,1,6,Ruditapes decussatus,Ruditapes decussatus,0.988,brackmarine
+Saxidomus nuttalli,NA,NA,NA,NA,tropical,benthic,NA,NA,Saxidomus nuttalli,Saxidomus nuttalli,0.988,marine
+Scyllarides latus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.86,subtropical,benthic,100,45,Scyllarides latus,Scyllarides latus,0.988,marine
+Sepia aculeata,NA,NA,NA,3.39,tropical,benthic,60,23,Sepia aculeata,Sepia aculeata,0.988,marine
+Sepia officinalis,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),3.71,tropical,benthic,242,49,Sepia officinalis,Sepia officinalis,0.988,marine
+Sinonovacula constricta,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,2,tropical,benthic,10,NA,Sinonovacula constricta,Sinonovacula constricta,0.988,marine
+Spisula solidissima,NA,mainly plants/detritus (troph. 2-2.19),filtering plankton,NA,temperate,benthic,70,20,Spisula solidissima,Spisula solidissima,0.988,marine
+Strombus gracilior,NA,NA,NA,NA,tropical,benthic,NA,NA,Strombus gracilior,Strombus gracilior,0.988,marine
+Todarodes sagittatus,NA,mainly animals (troph. 2.8 and up),hunting macrofauna (predator),4.4,tropical,benthopelagic,2500,75,Todarodes sagittatus,Todarodes sagittatus,0.988,marine
+Turbo cornutus,NA,mainly plants/detritus (troph. 2-2.19),grazing on aquatic plants,2,temperate,benthic,30,7,Turbo cornutus,Turbo cornutus,0.988,marine
+Ucides cordatus,NA,mainly plants/detritus (troph. 2-2.19),browsing on substrate,2,tropical,benthic,1,10,Ucides cordatus,Ucides cordatus,0.988,brackmarine

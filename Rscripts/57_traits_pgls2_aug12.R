@@ -27,105 +27,39 @@ library(visreg)
 
 library(stargazer)
 library(rotl)
-traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv") ### this is the latest version as of May 24 2020
-traits2 <- read_csv("data-processed/trait-nutrient-data-analysis-aug3-cine-removed.csv")
-traits <- read_csv("data-processed/all-seanuts-may-24-2020-2.csv") %>% ### this is more updated with fixed parts and reksten data
+library(readxl)
+
+all_traits6 <- read_csv("data-processed/fishbase-traits-aug2020.csv")
+seanuts <- read_excel("data-processed/seanuts-rebuild.xlsx")
+
+
+### merge nuts and traits
+
+s2 <- seanuts %>% 
+  left_join(., all_traits6, by = c("genus_species" = "user_supplied_name")) %>%
+  # filter(biblio_id != "27") %>% 
+  gather(10:16, key = nutrient, value = concentration) %>% 
   rename(species1 = Species) %>% 
   rename(feeding_level = Herbivory2) %>% 
   rename(feeding_mode = FeedingType) %>% 
   rename(length = Length) %>% 
   rename(bulk_trophic_level = FoodTroph) %>% 
   mutate(log_length = log(length)) %>% 
-  mutate(log_concentration = log(concentration)) 
-
-str(traits)
-parts_list <- c(unique(traits$part))
-
-
-traits_old %>% 
-  filter(nutrient == "ca_mg") %>% 
-  filter(part == "muscle") %>% 
-  dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
-                log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
-  filter(complete.cases(.)) %>%
-  distinct(species1) %>% 
-  tally()
-
-traits_new2 <- traits %>% 
-  filter(nutrient == "ca_mg") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>% 
-  dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
-                log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, nutrient) %>% 
-  filter(complete.cases(.)) 
+  mutate(log_concentration = log(concentration)) %>% 
+  filter(!is.na(concentration)) %>% 
+  mutate(part = part_edited)
 
 
 
-traits2 <- traits %>% 
-   mutate(part = ordered(part, levels = c("muscle",
-                                         "muscle + skin",
-                                         "muscle + small bones",
-                                         "muscle + bones",
-                                         "muscle + head",
-                                         "muscle, bone + inside",
-                                         "whole",
-                                         "whole, no skin",
-                                         "head, eyes, cheeks + soft bones",
-                                         "tongues + cheeks",
-                                         "skin",
-                                         "liver",
-                                         "offal",
-                                         "esophagus",
-                                         "eggs",
-                                         "oil",
-                                         "not specified",
-                                         "unknown",
-                                         NA))) %>% 
-  mutate(nutrient = ifelse(nutrient == "protein", "protein_g", nutrient))
 
-unique(traits2$nutrient)
-unique(traits2$part)
-unique(traits)
-
-traits2 %>% 
-  group_by(nutrient) %>% 
-  tally() %>% View
-
-traits2 %>% 
-  filter(nutrient == "ca_mg") %>% View
-  ggplot(aes(x = part, y = concentration)) + geom_point() +
-  facet_wrap( ~ nutrient, nrow = 4)
-
-
-traits2 %>% 
-  mutate(outlier = ifelse(nutrient %in% c("epa", "dha") & concentration > 20, "outlier", "fine")) %>% 
-  # mutate(outlier = ifelse(nutrient == "dha" & concentration > 100, "outlier", "fine")) %>% 
-  filter(outlier != "outlier") %>% 
-  filter(nutrient %in% c("protein_g", "fat_g", "ca_mg", "fe_mg", "zn_mg", "epa", "dha")) %>% 
-  ggplot(aes(x = concentration)) + geom_histogram() +
-  facet_wrap( ~ nutrient, scale = "free")
-ggsave("figures/nutrient-ranges.png", width = 8, height = 6)
 
 # Calcium muscle only -----------------------------------------------------
 
-traits_new2 <- traits %>% 
-  filter(nutrient == "ca_mg") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>% 
-  dplyr::select(species1, feeding_mode, EnvTemp, DemersPelag, BodyShapeI, part, realm, log_concentration,
-                log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin, nutrient) %>% 
-  filter(complete.cases(.))
 
-calcium <- traits2 %>% 
-  filter(species1 != "Pungitius pungitius") %>% 
-  # mutate(length = exp(log_length)) %>% 
-  # filter(length < 101) %>% 
-  # dplyr::select(-seanuts_id2) %>% 
+calcium <- s2 %>% 
   filter(nutrient == "ca_mg") %>% 
-  filter(!grepl("spp", species1)) %>% 
-  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
-  filter(part != "unknown") %>%
-  filter(part != "unspecified") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>% 
-  group_by(species1, feeding_mode, DemersPelag, BodyShapeI, part, realm, EnvTemp, DepthRangeDeep, AgeMatMin) %>%
+  filter(part %in% c("muscle", "muscle_skinless")) %>% 
+  group_by(species1, feeding_mode, BodyShapeI, part, realm, DemersPelag, AgeMatMin, DepthRangeDeep, EnvTemp) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>%
   filter(complete.cases(.))
@@ -207,7 +141,6 @@ calg2 <- calg %>%
 calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
 
-cor(as.numeric(as.factor(calg2$DemersPelag)), as.numeric(as.factor(calg2$EnvTemp)))
 
 library(nlme)
 
@@ -215,6 +148,9 @@ library(nlme)
 
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+rsquared(mod1a)
+
+
 mod1a1 <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 1, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 
@@ -273,26 +209,21 @@ lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 
 visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
-library(stargazer)
-stargazer(mod1a, title = "", type = "html", out="tables/calcium-models-expanded-muscle-only-pgls-lambda-muscleskin-aug12.htm", 
-          add.lines = list(c("R2", rsq_mod1a), c("Lambda", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
+
+stargazer(mod1a, title = "", type = "html", out="tables/calcium-models-expanded-muscle-only-pgls-lambda-muscleskin-aug2020.htm", 
+          add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 
 # Iron muscle only --------------------------------------------------------
 
-calcium <- traits2 %>% 
-  filter(species1 != "Pungitius pungitius") %>%
-  dplyr::select(-seanuts_id2) %>% 
+calcium <- s2 %>% 
   filter(nutrient == "fe_mg") %>% 
-  filter(!grepl("spp", species1)) %>% 
-  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
-  filter(part != "unknown") %>%
-  filter(part != "unspecified") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>%
-  group_by(species1, feeding_mode, DemersPelag, BodyShapeI, part, realm, feeding_level, DepthRangeDeep) %>%
+  filter(part %in% c("muscle", "muscle_skinless")) %>% 
+  group_by(species1, feeding_mode, feeding_level, BodyShapeI, part, realm, DemersPelag, AgeMatMin, DepthRangeDeep, EnvTemp) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>%
   filter(complete.cases(.))
+
 str(calcium)
 
 calcium$species1 <- str_to_lower(calcium$species1)
@@ -373,44 +304,44 @@ row.names(calg2) <- calg2$species
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length + feeding_mode + DemersPelag
              + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE),
              data = calg2, method = "ML")
-mod1b <- gls(log_concentration ~ 1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE),
-             data = calg2, method = "ML")
-
-### diet model
-mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-### life history model
-mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-### habitat model
-mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-model.sel(mod1a, mod1b, mod1, mod2, mod3, rank = "AIC") %>% View
+# mod1b <- gls(log_concentration ~ 1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE),
+#              data = calg2, method = "ML")
+# 
+# ### diet model
+# mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# ### life history model
+# mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# ### habitat model
+# mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# model.sel(mod1a, mod1b, mod1, mod2, mod3, rank = "AIC") %>% View
 
 ### for iron, it looks like the habitat model is the best
 rsquared(mod3)
 
-mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
-
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
-               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
-model.avg(mod1a, mod3)
-
-summary(mod1a)
-confint(mod1a)
+# mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
+# 
+# mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
+#                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
+# model.avg(mod1a, mod3)
+# 
+# summary(mod1a)
+# confint(mod1a)
 lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
-
-visreg(mod1a)
+# 
+# visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/iron-models-expanded-muscle-only-pgls-muscleskin.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/iron-models-expanded-muscle-only-pgls-muscleskin-aug2020.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
@@ -431,19 +362,15 @@ iron_plot <- confints_iron %>%
 # Zinc muscle only --------------------------------------------------------
 
 
-calcium <- traits2 %>% 
-  dplyr::select(-seanuts_id2) %>% 
+
+calcium <- s2 %>% 
   filter(nutrient == "zn_mg") %>% 
-  filter(!grepl("spp", species1)) %>% 
-  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
-  filter(part != "unknown") %>%
-  filter(part != "unspecified") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>% 
-  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
-  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
+  filter(part %in% c("muscle", "muscle_skinless")) %>% 
+  group_by(species1, feeding_mode, feeding_level, BodyShapeI, part, realm, DemersPelag, AgeMatMin, DepthRangeDeep, EnvTemp) %>%
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>%
   filter(complete.cases(.))
-str(calcium)
+
 
 calcium$species1 <- str_to_lower(calcium$species1)
 
@@ -519,40 +446,40 @@ calg2 <- calg %>%
 calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
 
-
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
-
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length + feeding_mode + DemersPelag
-             + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE),
-             data = calg2, method = "ML")
-mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-### diet model
-mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-### life history model
-mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-### habitat model
-mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-model.sel(mod1a, mod1b, mod1, mod2, mod3, rank = "AIC", extra = "rsquared") %>% View
-model.sel(mod1a, mod1, mod2, mod3, extra = "rsquared") %>% View
-
-confint(mod3)
-### for zinc, it looks like the life history model is the best
-rsquared(mod)
+# 
+# mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
+# 
+# mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length + feeding_mode + DemersPelag
+#              + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE),
+#              data = calg2, method = "ML")
+# mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# ### diet model
+# mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# ### life history model
+# mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# ### habitat model
+# mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# model.sel(mod1a, mod1b, mod1, mod2, mod3, rank = "AIC", extra = "rsquared") %>% View
+# model.sel(mod1a, mod1, mod2, mod3, extra = "rsquared") %>% View
+# 
+# confint(mod3)
+# ### for zinc, it looks like the life history model is the best
+# rsquared(mod)
 
 
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
+# mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# # 
+# model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
 
 
 summary(mod1a)
@@ -562,7 +489,7 @@ lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 # visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/zinc-models-expanded-muscle-only-pgls-muscle-skin.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/zinc-models-expanded-muscle-only-pgls-muscle-skin-aug2020.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
@@ -584,16 +511,12 @@ zinc_plot <- confints_zinc %>%
 # epa muscle only --------------------------------------------------------
 
 
-calcium <- traits2 %>% 
-  dplyr::select(-seanuts_id2) %>% 
+
+calcium <- s2 %>% 
   filter(nutrient == "epa") %>% 
-  filter(!grepl("spp", species1)) %>% 
-  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
-  filter(part != "unknown") %>%
-  filter(part != "unspecified") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>% 
-  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
-  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
+  filter(part %in% c("muscle", "muscle_skinless")) %>% 
+  group_by(species1, feeding_mode, feeding_level, BodyShapeI, part, realm, DemersPelag, AgeMatMin, DepthRangeDeep, EnvTemp) %>%
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>%
   filter(complete.cases(.))
 
@@ -674,20 +597,20 @@ row.names(calg2) <- calg2$species
 
 
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
-
-
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
-               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
-
+# mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
+# 
+# 
+# mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
+#                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
+# 
 
 summary(mod1a)
 lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
@@ -695,7 +618,7 @@ lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 # visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/epa-models-expanded-muscle-only-pgls-muscle-skin.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/epa-models-expanded-muscle-only-pgls-muscle-skin-aug2020.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
@@ -716,17 +639,13 @@ epa_plot <- confints_epa %>%
 # dha muscle only --------------------------------------------------------
 
 
-calcium <- traits2 %>% 
-  dplyr::select(-seanuts_id2) %>% 
+
+calcium <- s2 %>% 
   filter(nutrient == "dha") %>% 
-  filter(!grepl("spp", species1)) %>% 
-  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
-  filter(part != "unknown") %>%
-  filter(part != "unspecified") %>% 
-  filter(part %in% c("muscle", "muscle + skin")) %>% 
-  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
-  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
-  ungroup() %>% 
+  filter(part %in% c("muscle", "muscle_skinless")) %>% 
+  group_by(species1, feeding_mode, feeding_level, BodyShapeI, part, realm, DemersPelag, AgeMatMin, DepthRangeDeep, EnvTemp) %>%
+  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
+  ungroup() %>%
   filter(complete.cases(.))
 str(calcium)
 
@@ -805,42 +724,42 @@ calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
 
 
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.7, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1b <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.8, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1c <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.5, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1d <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.6, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1e <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.2, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-mod1f <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-
-AIC(mod1a, mod1b, mod1c, mod1d, mod1e, mod1f)
-
-mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
+# mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.7, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1b <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.8, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1c <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.5, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1d <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.6, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1e <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.2, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# mod1f <- gls(log_concentration ~ bulk_trophic_level + log_length+ feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# 
+# AIC(mod1a, mod1b, mod1c, mod1d, mod1e, mod1f)
+# 
+# mod1b <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1b, extra = "rsquared", rank = "AIC") %>% View
 
 ### this is the one
 mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0.6, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 
-####
-mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
-mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
-
-model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
-
-
-
-AIC(mod1a, mod1b)
-summary(mod1a)
+# ####
+# mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod2 <- gls(log_concentration ~ log_length + AgeMatMin + BodyShapeI, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod3 <- gls(log_concentration ~  DemersPelag + DepthRangeDeep + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
+# mod4 <- gls(log_concentration ~  1, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+# 
+# model.sel(mod1a, mod1, mod2, mod3, mod4, rank = "AIC") %>% View
+# 
+# 
+# 
+# AIC(mod1a, mod1b)
+# summary(mod1a)
 lambda <- round(mod1a$modelStruct[[1]][[1]], digits = 2)
 
 # visreg(mod1a)
 rsq_mod1a <- round(rsquared(mod1a)['R.squared'][[1]], digits = 2)
 
-stargazer(mod1a, title = "", type = "html", out="tables/dha-models-expanded-muscle-only-pgls-muscle-skin.htm", 
+stargazer(mod1a, title = "", type = "html", out="tables/dha-models-expanded-muscle-only-pgls-muscle-skin-aug2020.htm", 
           add.lines = list(c("R2", rsq_mod1a), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2)
 
 anova(mod1a)
@@ -1143,20 +1062,18 @@ stargazer(mod1a, title = "", type = "html", out="tables/fat-models-expanded-musc
 anova(mod1a)
 # Calcium all parts -------------------------------------------------------
 
-traits_one_part <- traits2 %>% 
+traits_one_part <- s2 %>% 
   group_by(species1, nutrient) %>% 
   top_n(n = 1, wt = part)
 
-calcium <- traits2 %>% 
-  dplyr::select(-seanuts_id2) %>% 
+calcium <-  s2 %>% 
   filter(nutrient == "ca_mg") %>% 
-  filter(!grepl("spp", species1)) %>% 
-  filter(!species1 %in% c("Pleuronectinae", "Petromyzontinae", "Ensis directus", "Osmerus mordax")) %>% 
-  filter(part != "unknown") %>%
-  filter(part != "unspecified") %>% 
-  filter(part != "not specified") %>% 
-  # filter(part == "muscle") %>% 
-  group_by(species1, feeding_mode, feeding_level, EnvTemp, DemersPelag, BodyShapeI, part, realm) %>%
+  filter(!is.na(concentration)) %>% 
+  dplyr::select(-part) %>% 
+  rename(part = part_edited) %>% 
+  mutate(part = ifelse(part == "muscle_bones", "muscle_organs", part)) %>%
+  mutate(part = ifelse(part == "muscle_skinless", "muscle", part)) %>% 
+  group_by(species1, feeding_mode, feeding_level, DemersPelag, BodyShapeI, part, realm) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level, DepthRangeDeep, AgeMatMin) %>% 
   ungroup() %>%
   # filter(complete.cases(.)) %>% 
@@ -1164,15 +1081,19 @@ calcium <- traits2 %>%
 
 str(calcium)
 mod_cal <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm + part, data = calcium)
+mod_cal <- lm(log_concentration ~ bulk_trophic_level + feeding_mode + DemersPelag + part, data = calcium)
+sum1 <- anova(mod_cal)
+confint(mod_cal)
+stargazer(sum1, title = "", type = "html", out="tables/calcium-models-expanded-all-parts-ols2_aug2020_aov.htm")
 summary(mod_cal)
 visreg(mod_cal)
-
+library(broom)
 tidy(mod_cal, conf.int = TRUE) %>% View
-
+library(MuMIn)
 mod_part <- lm(log_concentration ~ part, data = calcium)
 model.sel(mod_cal, mod_part, rank = "AIC") %>% View
 
-stargazer(mod_cal, title = "", type = "html", out="tables/calcium-models-expanded-all-parts-ols2.htm")
+stargazer(mod_cal, title = "", type = "html", out="tables/calcium-models-expanded-all-parts-ols2_aug2020.htm")
 
 
 

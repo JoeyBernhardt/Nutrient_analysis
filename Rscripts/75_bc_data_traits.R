@@ -1,4 +1,6 @@
 library(readxl)
+library(tidyverse)
+library(janitor)
 
 #### biofood comp data for traits
 
@@ -474,7 +476,7 @@ nt_keep_bio <- nt %>%
 WriteXLS(nt_keep_bio, "data-processed/nt_keep_bio.xlsx")
 
 
-cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited.xlsx") %>% 
+cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx") %>% ### ok this file has the corrected sidwell refs; use this one!
   clean_names() %>% 
   select(cine_id, part_edited)
 
@@ -551,16 +553,16 @@ new_refs <- unique(all_data_traits$bibliography)
 all_data_traits_inverts <- all_data_traits %>% 
   filter(subgroup == "Marine Invertebrates") 
 
-# write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts.csv")
+write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts2.csv")
 
 unique(all_data_traits$subgroup)
 
-inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited.csv") %>% 
+inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited2.csv") %>% 
   select(cine_id, subgroup2)
 
 View(inverts_cat)
 
-### note observation of blackfish, obs_id c211 should be whole,not muscle
+### note observation of blackfish, obs_id c211 should be whole, not muscle -- fix this!!
 
 all_data_traits2 <- all_data_traits %>% 
   left_join(., inverts_cat, by = "cine_id") %>% 
@@ -671,12 +673,12 @@ result.short <- result.long %>%
   select(user_supplied_name, submitted_name, matched_name2, score)%>%
   distinct()
 
-
+library(taxize)
 result.fishbase <- specieslist %>%
   gnr_resolve(data_source_ids = c(155), 
               with_canonical_ranks=T)
 
-write_csv(result.fishbase, "data-processed/fishbase-species.csv")
+write_csv(result.fishbase, "data-processed/fishbase-species2.csv")
 
 
 # write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
