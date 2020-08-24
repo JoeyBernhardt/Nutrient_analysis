@@ -476,12 +476,14 @@ nt_keep_bio <- nt %>%
 WriteXLS(nt_keep_bio, "data-processed/nt_keep_bio.xlsx")
 
 
-cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx") %>% ### ok this file has the corrected sidwell refs; use this one!
-  clean_names() %>% 
-  select(cine_id, part_edited)
+cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx") %>% 
+  mutate(biblio_id = as.character(biblio_id))
+### ok this file has the corrected sidwell refs; use this one!
+  # clean_names() %>% 
+  # select(cine_id, part_edited)
 
-cine_all2 <- nt_keep_bio %>% 
-  left_join(., cine_parts_edited, by = "cine_id")
+# cine_all2 <- nt_keep_bio %>% 
+#   left_join(., cine_parts_edited, by = "cine_id") ### or just use cine_parts_edited
 
 
 # unique(nt_keep_bio$part)
@@ -506,7 +508,7 @@ cine_all2 <- nt_keep_bio %>%
 
 trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>% 
   filter(keep == "yes") %>% 
-  select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, location) %>% 
+  dplyr::select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, location) %>% 
   rename(genus_species = species_name) %>% 
   mutate(subgroup = ifelse(subgroup == "finfish", "Finfish", subgroup)) %>% 
   mutate(subgroup = ifelse(subgroup == "mollusc", "Mollusc", subgroup)) %>% 
@@ -528,7 +530,7 @@ trait_data5_edited <- read_excel("data-processed/new_refs_contribution_to_seanut
 
 View(trait_data5_edited)
 #### bind all datasets
-all_data_traits <- bind_rows(cine_all2, bc_raw1c, af_raw1c, trait_data5_edited) 
+all_data_traits <- bind_rows(cine_parts_edited, bc_raw1c, af_raw1c, trait_data5_edited) 
 
 names(all_data_traits)
 length(unique(all_data_traits$bibliography))
@@ -582,7 +584,8 @@ all_data_traits2 <- all_data_traits %>%
   mutate(common_name = ifelse(is.na(common_name), asfis_english_name, common_name)) %>% 
   select(obs_id, subgroup, genus_species, common_name, part, food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, everything()) %>% 
   mutate(part = ifelse(grepl("skinless", food_name_in_english), "muscle", part)) %>% 
-  mutate(part = ifelse(grepl("muscle fillet", food_name_in_english), "muscle", part)) 
+  mutate(part = ifelse(grepl("muscle fillet", food_name_in_english), "muscle", part)) %>% 
+  mutate(part_edited = ifelse(obs_id == "c211", "whole", part_edited))
  
 
 
@@ -631,6 +634,7 @@ src <- c("EOL", "NCBI", "ITIS")
 subset(gnr_datasources(), title %in% src) %>% View
 
 length(specieslist)
+library(taxize)
 result.long <- specieslist %>%
   gnr_resolve(data_source_ids = c(3,4, 177, 9, 155), 
               with_canonical_ranks=T)
@@ -683,15 +687,15 @@ write_csv(result.fishbase, "data-processed/fishbase-species2.csv")
 
 # write_csv(all_data_traits2, "data-processed/seanuts-rebuild.csv") ### this is the complete seanuts dataset, after rebuilding in August 2020
 library(WriteXLS)
-WriteXLS(all_data_traits3, "data-processed/seanuts-rebuild.xlsx") ### ok this is the new dataset! next need to taxize it.
+WriteXLS(all_data_traits3, "data-processed/seanuts-rebuild-aug14.xlsx") ### ok this is the new dataset! next need to taxize it.
 
 # seanuts_parts <- read_excel("data-processed/seanuts-rebuild-edited.xlsx") %>% 
 #   filter(biblio_id != "fi151") ### this file contains the edited parts
 # View(seanuts_parts)
 
+library(plotrix)
 
-
-all_data_traits2 %>% 
+all_data_traits3 %>% 
   group_by(part_edited) %>% 
   filter(subgroup == "Finfish") %>% 
   select(ca_mg) %>% 
@@ -703,7 +707,7 @@ all_data_traits2 %>%
   geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1)
 
 
-mod <- aov(fe_mg ~ part_edited, data = filter(all_data_traits2, subgroup == "Finfish")) 
+mod <- aov(fe_mg ~ part_edited, data = filter(all_data_traits3, subgroup == "Finfish")) 
 summary(mod)
 aov(mod)
 
@@ -711,11 +715,11 @@ unique(all_data_traits2$subgroup)
 # View(all_data_traits)
 
 
-percentages <- all_data_traits2 %>% 
+percentages <- all_data_traits3 %>% 
   rename(calcium = ca_mg,
          zinc = zn_mg,
          iron = fe_mg) %>% 
-  gather(8:14, key = nutrient, value = concentration) %>% 
+  gather(10:16, key = nutrient, value = concentration) %>% 
   mutate(dri_per = NA) %>% 
   mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
@@ -794,7 +798,7 @@ mean_nuts3 <- perc2 %>%
             iron = mean(iron, na.rm = TRUE),
             epa = mean(epa, na.rm = TRUE),
             dha = mean(dha, na.rm = TRUE)) %>% 
-  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha), !is.na(protein), !is.na(fat)) %>% 
+  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha), !is.na(protein)) %>% 
   ungroup()
 write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
 View(mean_nuts3)
