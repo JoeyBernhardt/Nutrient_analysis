@@ -694,20 +694,30 @@ WriteXLS(all_data_traits3, "data-processed/seanuts-rebuild-aug14.xlsx") ### ok t
 # View(seanuts_parts)
 
 library(plotrix)
+library(cowplot)
+theme_set(theme_cowplot())
 
-all_data_traits3 %>% 
+all_data_traits3 <- read_excel("data-processed/seanuts-rebuild-aug14.xlsx")
+
+species_names_resolved <- read_excel("data-processed/species_names_resolved_edited.xlsx") %>% 
+  filter(is.na(exclude))
+
+all4 <- all_data_traits3 %>% 
+  left_join(., species_names_resolved, by = c("genus_species" = "user_supplied_name")) 
+
+all4 %>% 
   group_by(part_edited) %>% 
   filter(subgroup == "Finfish") %>% 
-  select(ca_mg) %>% 
-  filter(!is.na(ca_mg)) %>% 
-  summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
-            stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 
+  select(fe_mg) %>% 
+  filter(!is.na(fe_mg)) %>% 
+  summarise(mean_ca = mean(fe_mg, na.rm = TRUE),
+            stde_ca = std.error(fe_mg, na.rm = TRUE)) %>% 
   filter(!is.na(mean_ca)) %>% 
   ggplot(aes(x = reorder(part_edited, mean_ca), y = mean_ca)) + geom_point() +
   geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1)
 
 
-mod <- aov(fe_mg ~ part_edited, data = filter(all_data_traits3, subgroup == "Finfish")) 
+mod <- aov(ca_mg ~ part_edited, data = filter(all_data_traits3, subgroup == "Finfish")) 
 summary(mod)
 aov(mod)
 
