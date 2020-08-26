@@ -214,12 +214,12 @@ bc_raw1d <- bc_raw1c %>%
 bc_refs <- read_excel("data-processed/biocom-refs.xlsx") %>% 
   clean_names() %>% 
   rename(biblio_id = biblioid)
-
-bc_raw2 <- bc_raw1 %>% 
-  left_join(., bc_refs) 
-
-bc_references <- bc_raw2 %>% 
-  select(biblio_id, bibliography) 
+# 
+# bc_raw2 <- bc_raw1 %>% 
+#   left_join(., bc_refs) 
+# 
+# bc_references <- bc_raw2 %>% 
+#   select(biblio_id, bibliography) 
 
 
 
@@ -395,7 +395,7 @@ af_raw1c <- af_raw1b %>%
 
 
 
-View(af_raw1c)
+# View(af_raw1c)
 
 # af_raw <- read_excel("data-processed/AnFood-macro-micro.xlsx") %>% 
 #   clean_names() %>% 
@@ -707,6 +707,29 @@ all4 <- all_data_traits3 %>%
   rename(taxize_name = matched_name2)
 WriteXLS(all4, "data-processed/seanuts-rebuild-aug14-taxized.xlsx") ### ok this is the new dataset, taxized
 
+
+all5 <- all4 %>% 
+  dplyr::select(obs_id, taxize_name, submitted_name, subgroup, common_name, part_edited,
+                food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, biblio_id, season, comments_on_data_processing_methods, publication_year, food_item_id) %>% 
+  mutate(part_edited = ifelse(part_edited == "muscle_bones", "muscle_organs", part_edited)) %>% 
+  rename(body_part = part_edited) %>% 
+  mutate(taxize_name = ifelse(obs_id == "c428", "Mercenaria mercenaria", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id == "bc864", "Scomber colias", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id %in% c("af563", "af564"), "Panopea generosa", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id == "af802", "Spisula sachalinensis", taxize_name)) 
+
+### c428 is Mercenaria mercenaria
+## bc864 is Scomber colias
+## af563, af564 is Panopea generosa
+## af802 is Spisula sachalinensis
+## bc1415, bc1424, bc 1426, bc1542, is not id'ed to species
+
+WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this is the new dataset, taxized; a few last taxized species names filled in
+
+all5 %>% 
+  filter(is.na(taxize_name)) %>% View
+
+unique(all5$part_edited)
 length(unique(all4$taxize_name))
 
 all4 %>% 
