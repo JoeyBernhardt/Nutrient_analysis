@@ -44,8 +44,8 @@ write_csv(result.fishbase, "data-processed/fishbase-species3.csv")
 fishbase_species <- read_csv("data-processed/fishbase-species3.csv")
 
 library(rfishbase)
-data <- fishbase_species %>% 
-  rename(species1 = matched_name2)
+# data <- fishbase_species %>% 
+#   rename(species1 = matched_name2)
 
 data <- all4 %>% 
   rename(species1 = taxize_name)
@@ -145,36 +145,14 @@ calcium <-  s2 %>%
   filter(nutrient == "ca_mg") %>% 
   filter(!is.na(concentration)) %>% 
   filter(part_edited %in% c("muscle", "muscle_skinless")) %>% 
-  group_by(Species, feeding_mode, DemersPelag, realm, DepthRangeDeep, AgeMatMin, EnvTemp) %>%
+  group_by(Species, feeding_mode, DemersPelag, BodyShapeI, realm, DepthRangeDeep, AgeMatMin) %>%
+  # group_by(Species, feeding_mode, DemersPelag, realm, DepthRangeDeep, AgeMatMin) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>% 
   filter(complete.cases(.)) %>% 
   # rename(part = part_edited) %>% 
   rename(species1 = Species)
 
-
-# OLS version all parts ---------------------------------------------------
-
-calcium_parts <-  s2 %>% 
-  filter(nutrient == "ca_mg") %>% 
-  filter(!is.na(concentration)) %>% 
-  # filter(part_edited %in% c("muscle", "muscle_skinless")) %>% 
-  group_by(Species, feeding_mode, DemersPelag, realm, DepthRangeDeep, AgeMatMin, part_edited) %>%
-  summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
-  ungroup() %>% 
-  filter(complete.cases(.)) %>% 
-  # rename(part = part_edited) %>% 
-  rename(species1 = Species)
-
-mod1a_parts <- lm(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
-               DepthRangeDeep + AgeMatMin + BodyShapeI + realm + part_edited, data =calcium_parts)
-
-summary(mod1a_parts)
-confint(mod1a_parts)
-
-
-
-# PGLS calcium muscle only ------------------------------------------------------------
 
 
 calcium$species1 <- str_to_lower(calcium$species1)
@@ -194,7 +172,7 @@ cal2 <- calcium %>%
   # mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
-  # mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
+  mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
   # mutate(EnvTemp = as.factor(EnvTemp)) %>% 
   mutate(realm = as.factor(realm))
 cal2$log_length <- scale(cal2$log_length)
@@ -220,35 +198,42 @@ nameslist <- phylo$tip.label
 treenameslist <- as.data.frame(table(data$Phylospecies))
 Speciestoretain <- intersect(treenameslist$Var1, nameslist)
 pruned.tree <- drop.tip(phylo,phylo$tip.label[-match(Speciestoretain,phylo$tip.label)])
-cal_tree <- pruned.tree
-# plot(tree)
-# is.ultrametric(tree) # has to be TRUE
-# is.rooted(tree) # TRUE
+tree <- pruned.tree
+plot(tree)
+is.ultrametric(tree) # has to be TRUE
+is.rooted(tree) # TRUE
 
 any(duplicated(tree$node.label)) # FALSE
 
 tree$node.label<-NULL
 
 #prune data to match treetips
-Phylodata <- data[(data$Phylospecies %in% cal_tree$tip.label),]
+Phylodata <- data[(data$Phylospecies %in% tree$tip.label),]
 
 Phylodata1 <- Phylodata %>% 
   # mutate(part = as.factor(part)) %>% 
   rename(species = Phylospecies) 
 
-calg <- Phylodata1 %>% 
-  group_by(species, DemersPelag, 
+calg <- Phylodata1 %>%
+  group_by(species, DemersPelag,
            # feeding_level,
-           feeding_mode, realm, EnvTemp) %>% 
-  summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
+           feeding_mode, BodyShapeI, realm) %>%
+  summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>%
   ungroup() %>%
-  distinct(species, .keep_all = TRUE) 
+  distinct(species, .keep_all = TRUE)
 
-
+# 
+# calg <- Phylodata1 %>% 
+#   group_by(species, DemersPelag, 
+#            # feeding_level,
+#            feeding_mode, realm) %>% 
+#   summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
+#   ungroup() %>%
+#   distinct(species, .keep_all = TRUE) 
 
 
 calg2 <- calg 
-calg2 <- calg2[match(cal_tree$tip.label, calg2$species),]
+calg2 <- calg2[match(tree$tip.label, calg2$species),]
 row.names(calg2) <- calg2$species
 
 
@@ -259,53 +244,37 @@ row.names(calg2) <- calg2$species
 # mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
 #                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
 
-# calcium pgls ------------------------------------------------------------
-library(car)
-com_cal <- comparative.data(cal_tree, as.data.frame(calg), "species", vcv.dim = 3)
-mod1 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + DepthRangeDeep + AgeMatMin + realm, data = com_cal, lambda = "ML")
-mod1b <- pgls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level + DepthRangeDeep, data = com_cal, lambda = "ML")
 
-intercept <- pgls(log_concentration ~ 1, data = com_cal, lambda = "ML")
-diet <- pgls(log_concentration ~ bulk_trophic_level + feeding_mode + DemersPelag, data = com_cal, lambda = "ML")
-life <- pgls(log_concentration ~ log_length + AgeMatMin, data = com_cal, lambda = "ML")
-hab <- pgls(log_concentration ~   DepthRangeDeep + realm, data = com_cal, lambda = "ML")
-model.sel(mod1, diet, life, hab, rank = AICc, extra = "rsquared") %>%  
-  mutate(model_number = rownames(.)) %>% 
-  mutate(cumsum = cumsum(weight)) %>% View
-
-
-
-summary(life)
-
-mod1b <- lm(log_concentration ~  DemersPelag + bulk_trophic_level + log_length + DepthRangeDeep, data = calg)
-summary(mod1b)
-rsquared(mod1b)
-Anova(mod1b)
-anova(mod1b)
-res <- dredge(mod1, extra = "rsquared", rank = "AICc", m.lim = c(5,5))
-summary(model.avg(res,  subset= cumsum(weight) <= .95))
-confint(model.avg(res,  subset= cumsum(weight) <= .95))
 
 ### full model
-mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode  +
-               DepthRangeDeep + AgeMatMin + realm + EnvTemp, 
+mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
+               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, 
              correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
+               DepthRangeDeep + AgeMatMin + realm, 
+             correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
+
+mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
+               DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = calg2)
 summary(mod1a)
 confint(mod1a)
 rsquared(mod1a)
 
-com <- comparative.data(tree, as.data.frame(calg), "species", vcv.dim = 3)
-mod1 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
-               DepthRangeDeep + AgeMatMin + realm + BodyShapeI + DemersPelag, data = com, lambda = "ML")
-
-summary(mod1)
-
 moda <- phylolm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
-                  DemersPelag + DepthRangeDeep + AgeMatMin + realm + BodyShapeI, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+                  DemersPelag + DepthRangeDeep + AgeMatMin + realm, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
 summary(moda)
 
+com <- comparative.data(tree, as.data.frame(calg), "species", vcv.dim = 3)
+mod1 <- pgls(log_concentration ~ log_length + bulk_trophic_level +  feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + realm + BodyShapeI, data = com, lambda = "ML")
 
-
+summary(mod1)
+anova(mod1)
+mod1$sterr
+mod1 <- lm(log_concentration ~ log_length + bulk_trophic_level +  feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + realm + BodyShapeI, data = calg2)
+anova(mod1)
+confint(mod1)
 
 # ### diet model
 # mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
@@ -322,7 +291,7 @@ rsquared(mod1a)
 summary(mod1a)
 # visreg(mod1a)
 
-anova(mod1a)
+anova(mod1)
 
 confints_cal <- data.frame(confint(mod1a), estimate = coef(mod1a)) %>% 
   mutate(term = rownames(.)) %>% 
@@ -341,11 +310,11 @@ cal_plot
 
 # iron --------------------------------------------------------------------
 
-iron <- s2 %>% 
+calcium <- s2 %>% 
   filter(nutrient == "fe_mg") %>% 
   filter(!is.na(concentration)) %>% 
   filter(part_edited %in% c("muscle", "muscle_skinless")) %>% 
-  group_by(Species, feeding_mode, DemersPelag, BodyShapeI, realm, DepthRangeDeep, AgeMatMin, feeding_level, EnvTemp) %>%
+  group_by(Species, feeding_mode, DemersPelag, realm, DepthRangeDeep, AgeMatMin, BodyShapeI) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
   ungroup() %>% 
   filter(complete.cases(.)) %>% 
@@ -353,32 +322,32 @@ iron <- s2 %>%
   rename(species1 = Species)
 
 
-iron$species1 <- str_to_lower(iron$species1)
-# unique(iron$part)
-length(unique(iron$species1))
+calcium$species1 <- str_to_lower(calcium$species1)
+# unique(calcium$part)
+length(unique(calcium$species1))
 
-iron_taxa <- tnrs_match_names(unique(iron$species1), context="Animals", names = unique(iron$species1), do_approximate_matching = TRUE) 
+cal_taxa <- tnrs_match_names(unique(calcium$species1), context="Animals", names = unique(calcium$species1), do_approximate_matching = TRUE) 
 
-  tr_iron <- tol_induced_subtree(ott_ids = ott_id(iron_taxa), label_format="name") 
-  tr_bl_iron <- compute.brlen(tr_iron)
-  phylo <- tr_bl_iron
-  iron2 <- iron %>% 
-    left_join(., iron_taxa, by = c("species1" = "search_string")) %>% 
+  tr_cal <- tol_induced_subtree(ott_ids = ott_id(cal_taxa), label_format="name") 
+  tr_bl_cal <- compute.brlen(tr_cal)
+  phylo <- tr_bl_cal
+  cal2 <- calcium %>% 
+    left_join(., cal_taxa, by = c("species1" = "search_string")) %>% 
     mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
-    filter(unique_name2 %in% c(tr_bl_iron$tip.label)) %>% 
+    filter(unique_name2 %in% c(tr_bl_cal$tip.label)) %>% 
     ungroup() %>% 
     # mutate(feeding_level = as.factor(feeding_level)) %>% 
     mutate(feeding_mode = as.factor(feeding_mode)) %>% 
     mutate(DemersPelag = as.factor(DemersPelag)) %>%
     mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
-    mutate(EnvTemp = as.factor(EnvTemp)) %>% 
+    # mutate(EnvTemp = as.factor(EnvTemp)) %>% 
     mutate(realm = as.factor(realm))
-  iron2$log_length <- scale(iron2$log_length)
-  iron2$bulk_trophic_level <- scale(iron2$bulk_trophic_level)
-  iron2$DepthRangeDeep <- scale(iron2$DepthRangeDeep)
-  iron2$AgeMatMin <- scale(iron2$AgeMatMin)
+  cal2$log_length <- scale(cal2$log_length)
+  cal2$bulk_trophic_level <- scale(cal2$bulk_trophic_level)
+  cal2$DepthRangeDeep <- scale(cal2$DepthRangeDeep)
+  cal2$AgeMatMin <- scale(cal2$AgeMatMin)
   
-  data <- iron2
+  data <- cal2
   data$sp_name <- data$unique_name2
   # check overlap between tree and species in data
   data$Phylospecies <- "not in tree" 
@@ -412,103 +381,47 @@ iron_taxa <- tnrs_match_names(unique(iron$species1), context="Animals", names = 
     # mutate(part = as.factor(part)) %>% 
     rename(species = Phylospecies) 
   
-  irong <- Phylodata1 %>% 
+  calg <- Phylodata1 %>% 
     group_by(species, DemersPelag, 
              # feeding_level,
-             feeding_mode, BodyShapeI, realm, feeding_level, EnvTemp) %>% 
-    summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, AgeMatMin, bulk_trophic_level) %>% 
+             feeding_mode, realm) %>% 
+    summarise_each(funs(mean), DepthRangeDeep, log_concentration, log_length, BodyShapeI, AgeMatMin, bulk_trophic_level) %>% 
     ungroup() %>%
     distinct(species, .keep_all = TRUE) 
   
   
   
-  irong2 <- irong 
-  irong2 <- irong2[match(tree$tip.label, irong2$species),]
-  row.names(irong2) <- irong2$species
+  calg2 <- calg 
+  calg2 <- calg2[match(tree$tip.label, calg2$species),]
+  row.names(calg2) <- calg2$species
   
   
 
 # mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
 #                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, 
-#              correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = irong2, method = "ML")
+#              correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 # mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
-#                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = irong2, method = "ML")
+#                DepthRangeDeep + AgeMatMin + BodyShapeI + realm, correlation = corPagel(value = 0, phy = tree, fixed = FALSE), data = calg2, method = "ML")
 
 
 
 ### full model
-mod1a <- gls(log_concentration ~  log_length  + feeding_mode + DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm + feeding_level, 
-             correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = irong2, method = "ML")
+mod1a <- gls(log_concentration ~ bulk_trophic_level + log_length  + feeding_mode + DemersPelag +
+               DepthRangeDeep + AgeMatMin + realm + BodyShapeI, 
+             correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 moda <- phylolm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
-                  DemersPelag + DepthRangeDeep + AgeMatMin + BodyShapeI + realm, data = irong2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
-summary(mod1a)
-rsquared(mod1a)
-confint(mod1a)
+                  DemersPelag + DepthRangeDeep + AgeMatMin + realm+ BodyShapeI, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
+summary(moda)
+rsquared(moda)
 
-com <- comparative.data(tree, as.data.frame(irong), "species", vcv.dim = 3)
-mod1 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + DepthRangeDeep + AgeMatMin + realm, data = com, lambda = "ML")
-mod2 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + DepthRangeDeep, data = com, lambda = "ML")
-mod3 <- pgls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level + DepthRangeDeep, data = com, lambda = "ML")
-mod4 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level, data = com, lambda = "ML")
-mod5 <- pgls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level + feeding_mode, data = com, lambda = "ML")
-mod6 <- pgls(log_concentration ~  log_length + DemersPelag, data = com, lambda = "ML")
-mod7 <- pgls(log_concentration ~  log_length + DemersPelag + AgeMatMin, data = com, lambda = "ML")
-mod8 <- pgls(log_concentration ~  bulk_trophic_level + DemersPelag, data = com, lambda = "ML")
-mod9 <- pgls(log_concentration ~  feeding_level + DemersPelag, data = com, lambda = "ML")
-mod10 <- pgls(log_concentration ~  DemersPelag + feeding_mode + bulk_trophic_level, data = com, lambda = "ML")
-mod11 <- pgls(log_concentration ~  1, data = com, lambda = "ML")
-# mod9 <- pgls(log_concentration ~  1, data = com, lambda = "ML")
+com <- comparative.data(tree, as.data.frame(calg), "species", vcv.dim = 3)
+mod1 <- pgls(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
+               DemersPelag + DepthRangeDeep + AgeMatMin + realm + BodyShapeI, data = com, lambda = "ML")
 
-cor(irong2$log_length, irong2$DepthRangeDeep)
-### or try based on hypotheses
-mod1 <- pgls(log_concentration ~  log_length + DemersPelag + feeding_mode + DepthRangeDeep + AgeMatMin + realm + bulk_trophic_level, data = com, lambda = "ML")
-mod2 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level, data = com, lambda = "ML")
-mod3 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + DepthRangeDeep, data = com, lambda = "ML")
-mod4 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + AgeMatMin, data = com, lambda = "ML")
-mod5 <- pgls(log_concentration ~  feeding_mode + log_length + DemersPelag + realm, data = com, lambda = "ML")
-
-
-msel <- model.sel(mod1, mod2, mod3, mod4, mod5, rank = AICc, extra = "rsquared") %>% 
-  mutate(model_number = rownames(.)) %>% 
-  mutate(cumsum = cumsum(weight))
-summary(model.avg(mod4, mod3, mod2))
-confint(model.avg(mod4, mod3, mod2))
-
-msel <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, rank = AICc, extra = "rsquared") %>% 
-  mutate(model_number = rownames(.)) %>% 
-  mutate(cumsum = cumsum(weight))
-View(msel)
-
-summary(model.avg(mod6, mod7, mod3, mod8))
-confint(model.avg(mod6, mod7, mod11, mod8))
-
-res <- dredge(mod1, extra = "rsquared", rank = "AICc", m.lim = c(5,5))
-summary(model.avg(res,  subset= cumsum(weight) <= .95))
-confint(model.avg(res,  subset= cumsum(weight) <= .95))
-
-
-confint(mod1)
 summary(mod1)
-summary(mod7)
-summary(mod3)
-mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + DepthRangeDeep, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = irong2, method = "ML")
-AIC(mod1)
-summary(mod1)
-confint(mod1)
-rsquared(mod1)
+library(stargazer)
+stargazer(mod1)
 
-confints_fe <- data.frame(confint(mod1), estimate = coef(mod1)) %>% 
-  mutate(term = rownames(.)) %>% 
-  rename(lower = X2.5..) %>% 
-  rename(upper = X97.5..)
-
-fe_plot <- confints_fe %>% 
-  filter(term != "(Intercept)") %>% 
-  ggplot(aes(x = term, y = estimate)) + 
-  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
-  coord_flip() +
-  geom_hline(yintercept = 0) + ggtitle("Calcium")
-fe_plot
 # ### diet model
 mod1 <- gls(log_concentration ~ bulk_trophic_level + feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = tree, fixed = TRUE), data = calg2, method = "ML")
 # 

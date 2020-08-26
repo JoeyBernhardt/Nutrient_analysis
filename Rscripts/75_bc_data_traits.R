@@ -703,7 +703,11 @@ species_names_resolved <- read_excel("data-processed/species_names_resolved_edit
   filter(is.na(exclude))
 
 all4 <- all_data_traits3 %>% 
-  left_join(., species_names_resolved, by = c("genus_species" = "user_supplied_name")) 
+  left_join(., species_names_resolved, by = c("genus_species" = "user_supplied_name")) %>% 
+  rename(taxize_name = matched_name2)
+WriteXLS(all4, "data-processed/seanuts-rebuild-aug14-taxized.xlsx") ### ok this is the new dataset, taxized
+
+length(unique(all4$taxize_name))
 
 all4 %>% 
   group_by(part_edited) %>% 

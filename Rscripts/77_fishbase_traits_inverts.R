@@ -64,3 +64,5 @@ all_traits6_inverts <- all_traits5 %>%
   mutate(EnvTemp = ordered(EnvTemp, levels = c("temperate", "boreal", "polar", "deep-water", "subtropical", "tropical")))
 
 write_csv(all_traits6_inverts, "data-processed/fishbase_traits_inverts.csv")
+
+all_traits6_inverts <- read_csv("data-processed/fishbase_traits_inverts.csv")
