@@ -10,64 +10,68 @@ library(gridExtra)
 library(grid)
 library(cowplot)
 library(nlstools)
+theme_set(theme_cowplot())
 
 mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
 new_global <- read_csv("data-processed/new_global.csv") 
 mn_sp <- mean_nuts$species_name
-mean_nuts_new <- read_csv("data-processed/mean_nuts_aug-26-2020_micro_macro.csv") 
+mean_nuts_new <- read_csv("data-processed/mean_nuts_aug-26-2020_micro_macro.csv") %>% 
+  filter(grepl(" ", taxize_name))
+
+View(mean_nuts_new)
 
   # filter(genus_species %in% new_global$species_name) ### update aug 2020
 
 write_csv(mean_nuts_new, "data-processed/mean_nuts_new.csv")
 
-new_global <- new_global %>% 
-  filter(species_name != "Ostreidae") %>% 
-  filter(iron < 100)
-
-mean(new_global$zinc)
-mean(mean_nuts$zinc)
-
-mean_seadiv2 <- mean_seadiv_raw %>% 
-  filter(species_name %in% mn_sp) 
-
-protein_data <- mean_seadiv2 %>% 
-  select(species_name, protein) %>%
-  filter(!is.na(protein)) 
-
-mean_nuts_protein <- left_join(mean_nuts, protein_data, by = "species_name") %>% 
-  filter(!is.na(protein))
-
-mean_seadiv <- mean_seadiv_raw %>% 
-  filter(!grepl("juvenile", species_name)) %>% 
-  filter(species_name != "Ostreidae")
-
-length(unique(mean_seadiv$species_name))
-
-hist(mean_seadiv$iron)
-hist(mean_nuts$iron)
-
-
-mn2 <- mean_nuts
-mn2$dataset <- "mean_nuts"
-
-sd2 <- mean_seadiv
-sd2$dataset <- "mean_seadiv"
-
-
-
-all_nuts <- bind_rows(mn2, sd2)
-
-all_nuts %>% 
-  select(-protein) %>% 
-  select(-fat) %>% 
-  gather(key = nutrient, value = concentration, 3:7) %>% 
-  group_by(nutrient) %>% 
-  ggplot(aes(x = nutrient, y = log(concentration), group = dataset, color = dataset)) + geom_boxplot() +
-  facet_wrap( ~ nutrient, scales = "free")
-
-
-sample_size <- 10
+# new_global <- new_global %>% 
+#   filter(species_name != "Ostreidae") %>% 
+#   filter(iron < 100)
+# 
+# mean(new_global$zinc)
+# mean(mean_nuts$zinc)
+# 
+# mean_seadiv2 <- mean_seadiv_raw %>% 
+#   filter(species_name %in% mn_sp) 
+# 
+# protein_data <- mean_seadiv2 %>% 
+#   select(species_name, protein) %>%
+#   filter(!is.na(protein)) 
+# 
+# mean_nuts_protein <- left_join(mean_nuts, protein_data, by = "species_name") %>% 
+#   filter(!is.na(protein))
+# 
+# mean_seadiv <- mean_seadiv_raw %>% 
+#   filter(!grepl("juvenile", species_name)) %>% 
+#   filter(species_name != "Ostreidae")
+# 
+# length(unique(mean_seadiv$species_name))
+# 
+# hist(mean_seadiv$iron)
+# hist(mean_nuts$iron)
+# 
+# 
+# mn2 <- mean_nuts
+# mn2$dataset <- "mean_nuts"
+# 
+# sd2 <- mean_seadiv
+# sd2$dataset <- "mean_seadiv"
+# 
+# 
+# 
+# all_nuts <- bind_rows(mn2, sd2)
+# 
+# all_nuts %>% 
+#   select(-protein) %>% 
+#   select(-fat) %>% 
+#   gather(key = nutrient, value = concentration, 3:7) %>% 
+#   group_by(nutrient) %>% 
+#   ggplot(aes(x = nutrient, y = log(concentration), group = dataset, color = dataset)) + geom_boxplot() +
+#   facet_wrap( ~ nutrient, scales = "free")
+# 
+# 
+# sample_size <- 10
 
 dataset <- mean_nuts
 
@@ -440,30 +444,49 @@ nutrient_fishing_fat <- function(sample_size) {
 
 all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham,
                                  output_epam, output_ironm, output_zincm, output_proteinm)  
-all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham,
-                                 output_epam, output_ironm, output_zincm, output_proteinm)  
+all_grams_mean_nuts_species <- bind_rows(output_all5m, output_calciumm, output_dham,
+                                 output_epam, output_ironm, output_zincm, output_proteinm) 
+
+all_grams_mean_nuts_genus_species2 <- bind_rows(output_all5m, output_calciumm, output_dham,
+                                         output_epam, output_ironm, output_zincm, output_proteinm) 
 # all_grams_global <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm) %>% 
 #   filter(grams_required < 50000)
 
 write_csv(all_grams_mean_nuts, "~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required_aug2020_mean_nuts.csv")
+write_csv(all_grams_mean_nuts_species, "~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required_aug2020_mean_nuts_species.csv")
 
 # write_csv(all_grams_mean_nuts, "data-processed/single_nutrient_grams_required.csv")
 # write_csv(all_grams_mean_nuts, "~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required_aug2020.csv")
 # read in single nut grams required ---------------------------------------
 
 
-all_grams_mean_nuts <- read_csv("~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required.csv")
+all_grams_mean_nuts <- read_csv("~/Documents/Nutrient_Analysis_large_files/single_nutrient_grams_required_aug2020_mean_nuts_species.csv")
 all_grams_mean_nuts %>% 
   group_by(species_no, nutrient) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
   ggplot(aes(x = species_no, y = median, color = nutrient, group = nutrient))  + geom_point(size = 2) + geom_line()
 
 
+all_grams_median_nuts <- all_grams_mean_nuts_genus_species2 %>% 
+  mutate(grams_required = grams_required/10) %>% 
+  group_by(nutrient, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(grams_required_median = median)
+
+all_grams_median_nuts <- all_grams_mean_nuts_species %>% 
+  mutate(grams_required = grams_required/10) %>% 
+  group_by(nutrient, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(grams_required_median = median)
+
 all_grams_median_nuts <- all_grams_mean_nuts %>% 
   mutate(grams_required = grams_required/10) %>% 
   group_by(nutrient, species_no) %>% 
   summarise_each(funs(mean, median), grams_required) %>% 
   rename(grams_required_median = median)
+
+all_grams_median_nuts %>% 
+  ggplot(aes(x = species_no, y = grams_required_median, color = nutrient, group = nutrient))  + geom_point(size = 2) + geom_line()
 
 
 # all_grams_median_nuts <- all_grams_global %>%
@@ -493,6 +516,7 @@ prediction_function <- function(df) {
 
 # fit power functions -----------------------------------------------------
 library(nlstools)
+## maybe try with nls multstart?
 
 cal_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "calcium"),  start = c(a=10000, b=-0.2))
 cal_boot <- nlsBoot(cal_mod)
@@ -500,13 +524,48 @@ cal_boot$bootCI
 cal_boot$estiboot
 cal_boot_df <- as_data_frame(cal_boot$coefboot) 
 
+all5 <- output_all5m %>% 
+  mutate(grams_required = grams_required/10) %>% 
+  group_by(nutrient, species_no) %>% 
+  summarise_each(funs(mean, median), grams_required) %>% 
+  rename(grams_required_median = median)
 
-
-all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "all_5_micronutrients"),  start = c(a=10000, b=-0.2))
+all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_grams_median_nuts, nutrient == "all_5_micronutrients"),  start = c(a=500, b=-0.6))
 all_boot <- nlsBoot(all_mod)
 all_boot$bootCI
 all_boot$estiboot
 all_boot_df <- as_data_frame(all_boot$coefboot) 
+
+
+# nls multstart -----------------------------------------------------------
+
+
+
+fit <- nls_multstart(grams_required_median ~ a * species_no^b,
+                     data = all5,
+                     iter = 1000,
+                     start_lower = c(a = 100, b = -1),
+                     start_upper = c(a = 10000, b = 1),
+                     supp_errors = 'Y',
+                     convergence_count = 100,
+                     na.action = na.omit,
+                     lower = c(a = 10, b = -1))
+fit
+params <- tidy(fit)
+
+# get confidence intervals using nlstools
+CI <- confint2(fit) %>%
+  data.frame() %>%
+  rename(., conf.low = X2.5.., conf.high = X97.5..)
+params <- bind_cols(params, CI)
+select(params, -c(statistic, p.value))
+preds <- augment(fit)
+preds
+ggplot() +
+  geom_point(aes(species_no, grams_required_median), filter(all_grams_median_nuts, nutrient == "all_5_micronutrients")) +
+  geom_line(aes(species_no, .fitted), preds)
+
+library(nls.multstart)
 
 
 zinc_mod <- nls(formula = (grams_required_median ~ a * species_no^b), data = filter(all_grams_median_nuts, nutrient == "zinc"),  start = c(a=10000, b=-0.5))
@@ -589,7 +648,7 @@ ggplot(aes(x = reorder(nutrient, -median), y = median, color = nutrient), data =
   scale_color_viridis(discrete = TRUE) + coord_flip() + ylab("") +
   theme(legend.position="none")
   
-# ggsave("figures/BEF_params.pdf", width = 4, height = 3)
+# ggsave("figures/BEF_params_update_species_aug2020.pdf", width = 4, height = 3)
 
 
 cal_split <- cal_boot_df %>% 
@@ -761,9 +820,11 @@ all_grams2$nutrient <- factor(all_grams2$nutrient, levels = c("5 Micronutrients"
   geom_point(data = all_grams2, aes(x = species_no, y = grams_required_median, color = nutrient), size = 2, alpha = 0.5) + 
   scale_color_viridis(discrete = TRUE, option = "viridis") +  scale_fill_viridis(discrete = TRUE, option = "viridis") +
   scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
-  theme(legend.position="right") +
+  theme(legend.position="none") +
   theme(axis.text = element_text(size=16)) 
- ggsave("figures/pmin-plot.pdf", width = 7, height = 4)
+ ggsave("figures/pmin-plot.pdf", width = 6, height = 4)
+ 
+ 
 
  
  # other stuff -------------------------------------------------------------

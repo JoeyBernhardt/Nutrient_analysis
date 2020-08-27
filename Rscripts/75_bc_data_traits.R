@@ -707,16 +707,18 @@ all4 <- all_data_traits3 %>%
   rename(taxize_name = matched_name2)
 WriteXLS(all4, "data-processed/seanuts-rebuild-aug14-taxized.xlsx") ### ok this is the new dataset, taxized
 
+all4 <- read_excel("data-processed/seanuts-rebuild-aug14-taxized.xlsx")
 
 all5 <- all4 %>% 
   dplyr::select(obs_id, taxize_name, submitted_name, subgroup, common_name, part_edited,
-                food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, biblio_id, season, comments_on_data_processing_methods, publication_year, food_item_id) %>% 
+                food_name_in_english, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, biblio_id, location, season, comments_on_data_processing_methods, publication_year, food_item_id) %>% 
   mutate(part_edited = ifelse(part_edited == "muscle_bones", "muscle_organs", part_edited)) %>% 
   rename(body_part = part_edited) %>% 
   mutate(taxize_name = ifelse(obs_id == "c428", "Mercenaria mercenaria", taxize_name)) %>% 
   mutate(taxize_name = ifelse(obs_id == "bc864", "Scomber colias", taxize_name)) %>% 
   mutate(taxize_name = ifelse(obs_id %in% c("af563", "af564"), "Panopea generosa", taxize_name)) %>% 
-  mutate(taxize_name = ifelse(obs_id == "af802", "Spisula sachalinensis", taxize_name)) 
+  mutate(taxize_name = ifelse(obs_id == "af802", "Spisula sachalinensis", taxize_name)) %>% 
+  arrange(obs_id)
 
 ### c428 is Mercenaria mercenaria
 ## bc864 is Scomber colias
@@ -732,19 +734,20 @@ all5 %>%
 unique(all5$part_edited)
 length(unique(all4$taxize_name))
 
-all4 %>% 
-  group_by(part_edited) %>% 
+library(plotrix)
+all5 %>% 
+  group_by(body_part) %>% 
   filter(subgroup == "Finfish") %>% 
-  select(fe_mg) %>% 
-  filter(!is.na(fe_mg)) %>% 
-  summarise(mean_ca = mean(fe_mg, na.rm = TRUE),
-            stde_ca = std.error(fe_mg, na.rm = TRUE)) %>% 
+  select(ca_mg) %>% 
+  filter(!is.na(ca_mg)) %>% 
+  summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
+            stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 
   filter(!is.na(mean_ca)) %>% 
-  ggplot(aes(x = reorder(part_edited, mean_ca), y = mean_ca)) + geom_point() +
-  geom_errorbar(aes(x = reorder(part_edited, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1)
+  ggplot(aes(x = reorder(body_part, mean_ca), y = mean_ca)) + geom_point() +
+  geom_errorbar(aes(x = reorder(body_part, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1)
 
 
-mod <- aov(ca_mg ~ part_edited, data = filter(all_data_traits3, subgroup == "Finfish")) 
+mod <- aov(zn_mg ~ body_part, data = filter(all5, subgroup == "Finfish")) 
 summary(mod)
 aov(mod)
 
@@ -752,11 +755,12 @@ unique(all_data_traits2$subgroup)
 # View(all_data_traits)
 
 
-percentages <- all_data_traits3 %>% 
+percentages <- all5 %>% 
   rename(calcium = ca_mg,
          zinc = zn_mg,
          iron = fe_mg) %>% 
-  gather(10:16, key = nutrient, value = concentration) %>% 
+  filter(!is.na(taxize_name)) %>% 
+  gather(9:15, key = nutrient, value = concentration) %>% 
   mutate(dri_per = NA) %>% 
   mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
@@ -774,10 +778,7 @@ percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat"
 
 
 perc2 <- percentages %>% 
-  mutate(genus_species = ifelse(is.na(genus_species), asfis_scientific_name, genus_species)) %>% 
-  mutate(genus_species = ifelse(is.na(genus_species), scientific_name, genus_species)) %>% 
-  mutate(food_name_in_english = ifelse(is.na(food_name_in_english), paste(common_name, part, sep = ", "), food_name_in_english)) %>% 
-  distinct(nutrient, concentration, genus_species, common_name, food_name_in_english, asfis_scientific_name, part, dri_per, subgroup, .keep_all = TRUE)
+  distinct(nutrient, concentration, taxize_name, common_name, food_name_in_english, body_part, dri_per, subgroup, .keep_all = TRUE)
 
 perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
@@ -801,33 +802,23 @@ perc2 %>%
 
 ### joey come back here.
 mean_nuts2 <- perc2 %>% 
-  filter(grepl(" ", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "var. spp.: Mallotus, Oncorphyncus and Salmo", "Oncorhynchus spp.", genus_species)) %>% 
   spread(nutrient, concentration) %>% 
-  group_by(genus_species, subgroup) %>% 
+  group_by(taxize_name, subgroup) %>% 
   summarise(calcium = mean(calcium, na.rm = TRUE),
             zinc = mean(zinc, na.rm = TRUE), 
             iron = mean(iron, na.rm = TRUE),
             epa = mean(epa, na.rm = TRUE),
             dha = mean(dha, na.rm = TRUE)) %>% 
-  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha)) %>% 
-  ungroup()
+  filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha)) 
 
 View(mean_nuts2)
 
 write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
+write_csv(mean_nuts2, "data-processed/mean_nuts_aug-26-2020.csv") 
 # write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020b.csv")
 mean_nuts3 <- perc2 %>% 
-  filter(grepl(" ", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "Oreochromis (=Tilapia) spp", "Oreochromis niloticus", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "var. spp.: Boreogadus, Eleginus, Gadus, Microgadus", "Microgadus tomcod", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "var. spp.: Mallotus, Oncorphyncus and Salmo", "Oncorhynchus spp.", genus_species)) %>% 
-  mutate(genus_species = ifelse(genus_species == "tinca tinca", "Tinca tinca", genus_species)) %>% 
   spread(nutrient, concentration) %>% 
-  group_by(genus_species, subgroup) %>% 
+  group_by(taxize_name, subgroup) %>% 
   summarise(calcium = mean(calcium, na.rm = TRUE),
             zinc = mean(zinc, na.rm = TRUE), 
             protein = mean(protein, na.rm = TRUE), 
@@ -838,9 +829,10 @@ mean_nuts3 <- perc2 %>%
   filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha), !is.na(protein)) %>% 
   ungroup()
 write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
+write_csv(mean_nuts3, "data-processed/mean_nuts_aug-26-2020_micro_macro.csv")
 View(mean_nuts3)
 
 mean_nuts3 %>% 
   gather(3:9, key = nutrient, value = concentration) %>% 
-  ggplot(aes(x = concentration)) + geom_histogram(fill = "grey") +
+  ggplot(aes(x = concentration)) + geom_density(fill = "grey") +
   facet_wrap( ~ nutrient, scales = "free")
