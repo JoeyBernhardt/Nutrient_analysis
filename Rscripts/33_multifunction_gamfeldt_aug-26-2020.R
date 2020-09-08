@@ -646,9 +646,10 @@ all_params$nutrient <- factor(all_params$nutrient, levels = c("5 Micronutrients"
 ggplot(aes(x = reorder(nutrient, -median), y = median, color = nutrient), data = all_params) + geom_point(size = 4) +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +
   scale_color_viridis(discrete = TRUE) + coord_flip() + ylab("") +
-  theme(legend.position="none")
+  theme(legend.position="none") + ylab("b_pmin") + xlab("")
   
-# ggsave("figures/BEF_params_update_species_aug2020.pdf", width = 4, height = 3)
+ggsave("figures/BEF_params_update_species_aug2020.pdf", width = 4, height = 3)
+ggsave("figures/BEF_params_update_species_aug2020.png", width = 4, height = 3)
 
 
 cal_split <- cal_boot_df %>% 
@@ -688,11 +689,11 @@ all_split <- all_boot_df %>%
 all_preds <- all_split %>% 
   map_df(prediction_function, .id = "replicate")
 
-protein_split <- protein_boot_df %>% 
-  mutate(replicate = rownames(.)) %>% 
-  split(.$replicate)
-protein_preds <- protein_split %>% 
-  map_df(prediction_function, .id = "replicate")
+  protein_split <- protein_boot_df %>% 
+    mutate(replicate = rownames(.)) %>% 
+    split(.$replicate)
+  protein_preds <- protein_split %>% 
+    map_df(prediction_function, .id = "replicate")
 
 limits_protein <- protein_preds %>% 
   group_by(species_no) %>% 
@@ -823,6 +824,7 @@ all_grams2$nutrient <- factor(all_grams2$nutrient, levels = c("5 Micronutrients"
   theme(legend.position="none") +
   theme(axis.text = element_text(size=16)) 
  ggsave("figures/pmin-plot.pdf", width = 6, height = 4)
+ ggsave("figures/pmin-plot.png", width = 5, height = 4)
  
  
 
