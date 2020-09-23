@@ -2,9 +2,23 @@ library(purrr)
 library(tidyverse)
 
 
-trad_data <- read_csv("data-processed/trad-foods-mean.csv")
+trad_data_old <- read_csv("data-processed/trad-foods-mean.csv")
 trad_data1 <- read_csv("data-processed/tdata.csv") ### update with new extracted trad foods aug 8 2020
-cultures_keep <- trad_data %>% 
+
+trad_data <- read_csv("data-processed/traditional_foods_nutrients_cultures.csv") %>% 
+  gather(key = nutrient, value = concentration, ca_mg, fe_mg, zn_mg, epa, dha) %>% 
+  group_by(culture, genus_species, nutrient) %>% 
+  filter(!is.na(concentration)) %>% 
+  summarise_each(funs(mean), concentration) %>% 
+  spread(key = nutrient, value = concentration) %>% View
+  select(-cine_id) %>% 
+  distinct(., .keep_all = TRUE)
+
+  unique(trad_data1$genus_species)
+  unique(trad_data$genus_species)
+  
+  
+  cultures_keep <- trad_data %>% 
   group_by(culture) %>% 
   mutate(number_species = length(unique(latin_name))) %>% 
   distinct(number_species) %>% 
@@ -64,7 +78,7 @@ nutrient_fishing_function <- function(sample_size, dataset) {
 }
 
 
-samples_rep <- rep(10, 1000)
+samples_rep <- rep(10, 10)
 
 #1
 yupik_data <- trad_data %>% 

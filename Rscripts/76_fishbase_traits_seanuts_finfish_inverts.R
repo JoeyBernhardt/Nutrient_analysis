@@ -28,8 +28,9 @@ library(visreg)
 library(stargazer)
 library(rotl)
 library(rfishbase)
+library(readxl)
 
-all4 <- read_excel("data-processed/seanuts-rebuild-aug14-taxized.xlsx") %>% 
+all4 <- read_excel("data-processed/seanuts-rebuild-aug26-taxized.xlsx") %>% 
   mutate(taxize_name = ifelse(grepl("Clupea pall", taxize_name), "Clupea pallasii pallasii", taxize_name))
 
 library(taxize)
@@ -108,13 +109,16 @@ all_traits6 <- all_traits5 %>%
 
 write_csv(all_traits6, "data-processed/fishbase-traits-aug2020.csv")
 write_csv(all_traits6, "data-processed/fishbase-traits-aug-24-2020.csv") ### update Aug 24 2020
+write_csv(all_traits6, "data-processed/fishbase-traits-aug-26-2020.csv") ### update with Aug 26 2020 data
 all_traits6 <- read_csv("data-processed/fishbase-traits-aug2020.csv")
-all_traits6 <- read_csv("data-processed/fishbase-traits-aug-24-2020.csv")
+all_traits6 <- read_csv("data-processed/fishbase-traits-aug-26-2020.csv")
 
 all_traits7 <- bind_rows(all_traits6, all_traits6_inverts)
 
 all_traits6_inverts <- read_csv("data-processed/fishbase_traits_inverts.csv") %>% 
-  left_join(all4, by = "submitted_name")
+  left_join(all4, by = "submitted_name") 
+
+write_csv(all_traits6_inverts, "data-processed/fishbase_traits_inverts_nutrients.csv")
 library(readxl)
 seanuts <- read_excel("data-processed/seanuts-rebuild.xlsx")
 seanuts <- read_excel("data-processed/seanuts-rebuild-aug14-taxized.xlsx")
@@ -124,7 +128,7 @@ straits <- seanuts %>%
 
 s2 <- all_traits6 %>% 
   # filter(biblio_id != 27) %>% 
-  gather(20:26, key = nutrient, value = concentration) %>% 
+  gather(17:23, key = nutrient, value = concentration) %>% 
   rename(feeding_level = Herbivory2) %>% 
   rename(feeding_mode = FeedingType) %>% 
   rename(length = Length) %>% 
@@ -144,7 +148,7 @@ unique(s2$nutrient)
 calcium <-  s2 %>% 
   filter(nutrient == "ca_mg") %>% 
   filter(!is.na(concentration)) %>% 
-  filter(part_edited %in% c("muscle", "muscle_skinless")) %>% 
+  filter(body_part %in% c("muscle", "muscle_skinless")) %>% 
   group_by(Species, feeding_mode, DemersPelag, BodyShapeI, realm, DepthRangeDeep, AgeMatMin) %>%
   # group_by(Species, feeding_mode, DemersPelag, realm, DepthRangeDeep, AgeMatMin) %>%
   summarise_each(funs(mean), log_concentration, log_length, bulk_trophic_level) %>% 
@@ -260,6 +264,7 @@ summary(mod1a)
 confint(mod1a)
 rsquared(mod1a)
 
+library(phylolm)
 moda <- phylolm(log_concentration ~ bulk_trophic_level +  log_length  + feeding_mode +
                   DemersPelag + DepthRangeDeep + AgeMatMin + realm, data = calg2, phy = tree, model = "lambda", lower.bound = 0, upper.bound = 2)
 summary(moda)

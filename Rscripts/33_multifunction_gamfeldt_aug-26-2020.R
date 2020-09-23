@@ -16,6 +16,8 @@ mean_nuts <- read_csv("data-processed/mean_nuts.csv")
 mean_seadiv_raw <- read_csv("data-processed/mean_seadiv.csv")
 new_global <- read_csv("data-processed/new_global.csv") 
 mn_sp <- mean_nuts$species_name
+
+
 mean_nuts_new <- read_csv("data-processed/mean_nuts_aug-26-2020_micro_macro.csv") %>% 
   filter(grepl(" ", taxize_name))
 
@@ -25,56 +27,8 @@ View(mean_nuts_new)
 
 write_csv(mean_nuts_new, "data-processed/mean_nuts_new.csv")
 
-# new_global <- new_global %>% 
-#   filter(species_name != "Ostreidae") %>% 
-#   filter(iron < 100)
-# 
-# mean(new_global$zinc)
-# mean(mean_nuts$zinc)
-# 
-# mean_seadiv2 <- mean_seadiv_raw %>% 
-#   filter(species_name %in% mn_sp) 
-# 
-# protein_data <- mean_seadiv2 %>% 
-#   select(species_name, protein) %>%
-#   filter(!is.na(protein)) 
-# 
-# mean_nuts_protein <- left_join(mean_nuts, protein_data, by = "species_name") %>% 
-#   filter(!is.na(protein))
-# 
-# mean_seadiv <- mean_seadiv_raw %>% 
-#   filter(!grepl("juvenile", species_name)) %>% 
-#   filter(species_name != "Ostreidae")
-# 
-# length(unique(mean_seadiv$species_name))
-# 
-# hist(mean_seadiv$iron)
-# hist(mean_nuts$iron)
-# 
-# 
-# mn2 <- mean_nuts
-# mn2$dataset <- "mean_nuts"
-# 
-# sd2 <- mean_seadiv
-# sd2$dataset <- "mean_seadiv"
-# 
-# 
-# 
-# all_nuts <- bind_rows(mn2, sd2)
-# 
-# all_nuts %>% 
-#   select(-protein) %>% 
-#   select(-fat) %>% 
-#   gather(key = nutrient, value = concentration, 3:7) %>% 
-#   group_by(nutrient) %>% 
-#   ggplot(aes(x = nutrient, y = log(concentration), group = dataset, color = dataset)) + geom_boxplot() +
-#   facet_wrap( ~ nutrient, scales = "free")
-# 
-# 
-# sample_size <- 10
 
-dataset <- mean_nuts
-
+#### fishing function for all five micronutrients
 nutrient_fishing_function <- function(sample_size) {
   ntbl_sub1 <- mean_nuts_new %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -100,8 +54,6 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(zinc_total = (zinc/species_number)) %>% 
     mutate(iron_total = (iron/species_number)) %>% 
     mutate(epa_total = (epa/species_number)) %>% 
-    # mutate(protein_total = (protein/species_number)) %>%
-    # mutate(fat_total = (fat/species_number)) %>%
     mutate(dha_total = (dha/species_number)) %>%
     summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
     mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
@@ -109,8 +61,6 @@ nutrient_fishing_function <- function(sample_size) {
     mutate(zinc_grams = (zinc_total/(11))) %>% 
     mutate(epa_grams = (epa_total/(1))) %>%
     mutate(dha_grams = (dha_total/(1))) %>%
-    # mutate(fat_grams = (fat_total/(78))) %>%
-    # mutate(protein_grams = (protein_total/(56))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
@@ -133,7 +83,6 @@ output_all5m <- samples_rep %>%
 
 
 # calcium -----------------------------------------------------------------
-dataset <- mean_nuts
 nutrient_fishing_calcium <- function(sample_size) {
   ntbl_sub1 <- mean_nuts_new %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -344,7 +293,6 @@ output_dham <- samples_rep %>%
 # write_csv(output_dha, "data-processed/dha_grams_required.csv")
 # protein -----------------------------------------------------------------
 
-dataset <- mean_nuts_protein
 nutrient_fishing_protein <- function(sample_size) {
   ntbl_sub1 <- mean_nuts_new %>% 
     sample_n(size = sample_size, replace = FALSE)
@@ -409,21 +357,9 @@ nutrient_fishing_fat <- function(sample_size) {
   resampling_15 <- new_data_sub1 %>% 
     dplyr::rename(species_number = subsample_size) %>%
     group_by(species_number, sample_id) %>% 
-    # mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
-    # mutate(zinc_total = (zinc/species_number)) %>% 
-    # mutate(iron_total = (iron/species_number)) %>% 
-    # mutate(epa_total = (epa/species_number)) %>% 
-    # mutate(protein_total = (protein/species_number)) %>%
     mutate(fat_total = (fat/species_number)) %>%
-    # mutate(dha_total = (dha/species_number)) %>%
     summarise_each(funs(sum), contains("total")) %>%  ## sum up all of each of the nutrients
-    # mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
-    # mutate(iron_grams = (iron_total/(18))) %>%
-    # mutate(zinc_grams = (zinc_total/(11))) %>% 
-    # mutate(epa_grams = (epa_total/(1))) %>%
-    # mutate(dha_grams = (dha_total/(1))) %>%
     mutate(fat_grams = (fat_total/(78))) %>%
-    # mutate(protein_grams = (protein_total/(56))) %>%
     dplyr::rename(species_no = species_number) %>% 
     group_by(species_no, sample_id) %>% 
     select(-contains("total")) %>% 
@@ -441,14 +377,9 @@ nutrient_fishing_fat <- function(sample_size) {
 
 # all_grams_seadiv <- bind_rows(output_all5s, output_calciums, output_dhas, output_epas, output_irons, output_zincs, output_proteins) %>% 
 #   filter(grams_required < 50000)
-
-all_grams_mean_nuts <- bind_rows(output_all5m, output_calciumm, output_dham,
-                                 output_epam, output_ironm, output_zincm, output_proteinm)  
 all_grams_mean_nuts_species <- bind_rows(output_all5m, output_calciumm, output_dham,
                                  output_epam, output_ironm, output_zincm, output_proteinm) 
 
-all_grams_mean_nuts_genus_species2 <- bind_rows(output_all5m, output_calciumm, output_dham,
-                                         output_epam, output_ironm, output_zincm, output_proteinm) 
 # all_grams_global <- bind_rows(output_all5m, output_calciumm, output_dham, output_epam, output_ironm, output_zincm) %>% 
 #   filter(grams_required < 50000)
 
@@ -643,6 +574,8 @@ all_params <- bind_rows(dha_b, epa_b, cal_b, iron_b, zinc_b, all_b, protein_b) %
 all_params$nutrient <- factor(all_params$nutrient, levels = c("5 Micronutrients", "Calcium", "Iron", "Zinc", "EPA", "DHA", "Protein"))
 # all_params$nutrient <- factor(all_params$nutrient, levels = c("Protein", "DHA", "EPA", "Zinc", "Iron", "Calcium", "5 Micronutrients"))
 
+library(cowplot)
+theme_set(theme_cowplot())
 ggplot(aes(x = reorder(nutrient, -median), y = median, color = nutrient), data = all_params) + geom_point(size = 4) +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) +
   scale_color_viridis(discrete = TRUE) + coord_flip() + ylab("") +
@@ -823,7 +756,7 @@ all_grams2$nutrient <- factor(all_grams2$nutrient, levels = c("5 Micronutrients"
   scale_x_continuous(breaks = seq(1,10,1)) + xlab("") + ylab("") +
   theme(legend.position="none") +
   theme(axis.text = element_text(size=16)) 
- ggsave("figures/pmin-plot.pdf", width = 6, height = 4)
+ ggsave("figures/pmin-plot.pdf", width = 5, height = 4)
  ggsave("figures/pmin-plot.png", width = 5, height = 4)
  
  

@@ -13,6 +13,15 @@ theme_set(theme_cowplot())
 all_traits <- read_csv("data-processed/trait-nutrient-data-analysis.csv") %>% 
   rename(species_name = species1)## update May 2020
 
+
+inverts_traits <- read_csv("data-processed/fishbase_traits_inverts_nutrients.csv")
+all_traits6 <- read_csv("data-processed/fishbase-traits-aug-26-2020.csv")
+names(inverts_traits)
+names(all_traits6)
+
+all_traits_ff_inv <- bind_rows(inverts_traits, all_traits6)
+
+write_csv(all_traits_ff_inv, "data-processed/all-traits-inv-ff.csv")
 ### ok let's calculate functional diversity at the different levels of richness
 
 

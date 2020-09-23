@@ -149,6 +149,23 @@ at3 <- all_trad3 %>%
 
 write_csv(at3, "data-processed/traditional_foods_nutrients_cultures.csv")
 
+at4 <- at3 %>% 
+  select(genus_species, culture, ca_mg, zn_mg, fe_mg, epa, dha) %>% 
+  group_by(genus_species, culture) %>% 
+  summarise_all(funs(mean), na.rm = TRUE) %>% 
+  mutate(ca_na = ifelse(is.na(ca_mg), 1, 0)) %>% 
+  mutate(fe_na = ifelse(is.na(fe_mg), 1, 0)) %>% 
+  mutate(zn_na = ifelse(is.na(zn_mg), 1, 0)) %>% 
+  mutate(epa_na = ifelse(is.na(epa), 1, 0)) %>% 
+  mutate(dha_na = ifelse(is.na(dha), 1, 0)) %>% 
+  mutate(nutrient_na = ca_na + fe_na + zn_na + epa_na + dha_na) %>% 
+  filter(nutrient_na < 1)
+length(unique(at4$genus_species))
+
+write_csv(at4, "data-processed/traditional_foods_nutrients_cultures_all5.csv")
+write_csv(at4, "data-processed/traditional_foods_nutrients_cultures_for_analysis.csv") ### note this is the same as the above file, just renamed for code review
+
+at3 <- read_csv("data-processed/traditional_foods_nutrients_cultures.csv")
 View(at3)
 
 trad_nuts_mean_raw_old <- read_csv("data-processed/trad-foods-mean.csv") %>% 
@@ -178,3 +195,5 @@ tdata <- culture_foods %>%
   left_join(., at3) %>% 
   filter(!is.na(genus_species)) ### ok this is the cleaned up trad foods with cultures
 write_csv(tdata, "data-processed/tdata.csv")
+
+tdata <- read_csv("data-processed/tdata.csv")
