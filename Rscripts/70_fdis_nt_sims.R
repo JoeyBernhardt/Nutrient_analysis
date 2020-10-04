@@ -1,5 +1,6 @@
-
+library(tidyverse)
 all_mean_nuts_traits_all <- read_csv("data-processed/all_mean_nuts_traits_all.csv")
+View(all_mean_nuts_traits_all)
 library(FD)
 
 fdis_function <- function(df){

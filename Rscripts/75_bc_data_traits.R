@@ -728,6 +728,11 @@ all5 <- all4 %>%
 
 WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this is the new dataset, taxized; a few last taxized species names filled in
 
+
+# read in complete dataset ------------------------------------------------
+
+
+all5 <- read_excel("data-processed/seanuts-rebuild-aug26-taxized.xlsx")
 all5 %>% 
   filter(is.na(taxize_name)) %>% View
 
@@ -738,7 +743,7 @@ library(plotrix)
 all5 %>% 
   group_by(body_part) %>% 
   filter(subgroup == "Finfish") %>% 
-  select(ca_mg) %>% 
+  dplyr::select(ca_mg) %>% 
   filter(!is.na(ca_mg)) %>% 
   summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
             stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 
@@ -760,10 +765,10 @@ percentages <- all5 %>%
          zinc = zn_mg,
          iron = fe_mg) %>% 
   filter(!is.na(taxize_name)) %>% 
-  gather(9:15, key = nutrient, value = concentration) %>% 
+  gather(8:14, key = nutrient, value = concentration) %>% 
   mutate(dri_per = NA) %>% 
   mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
-  mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>%
+  mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "zinc", concentration/11, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "epa", concentration/1, dri_per)) %>%
   mutate(dri_per = ifelse(nutrient == "dha", concentration/1, dri_per)) %>% 
@@ -781,6 +786,8 @@ perc2 <- percentages %>%
   distinct(nutrient, concentration, taxize_name, common_name, food_name_in_english, body_part, dri_per, subgroup, .keep_all = TRUE)
 
 perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
+
+write_csv(perc2, "data-processed/seafood-rda-percentages.csv")
 
 perc2 %>% 
   ggplot(aes(x = dri_per, fill = subgroup)) + 

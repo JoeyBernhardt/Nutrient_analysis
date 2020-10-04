@@ -252,7 +252,7 @@ g3 %>%
   geom_smooth(method = "lm")
 
 library(MASS)
-m <- polr(nt ~ fdis, data= g2)
+m <- polr(factor(nt) ~ fdis, data= g2)
 summary(m)
 (ctable <- coef(summary(m)))
 
