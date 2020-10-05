@@ -508,7 +508,7 @@ cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx")
 #   #        iron = fe_mg) %>% 
 #   mutate(reference = "Reksten, A.M., Somasundaram, T., Kjellevold, M., Nordhagen, A., BÃ¸kevoll, A., Pincus, L.M., Rizwan, A.A.M., Mamun, A., Thilsted, S.H., Htut, T. and Aakre, I., 2020. Nutrient composition of 19 fish species from Sri Lanka and potential contribution to food and nutrition security.Â Journal of Food Composition and Analysis, p.103508.")
 
-trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>% 
+trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>%
   filter(keep == "yes") %>% 
   dplyr::dplyr::select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, location) %>% 
   rename(genus_species = species_name) %>% 
@@ -531,7 +531,7 @@ trait_data5_edited <- read_excel("data-processed/new_refs_contribution_to_seanut
   mutate_at(10:14, as.numeric) 
 
 View(trait_data5_edited)
-#### bind all datasets
+  #### bind all datasets
 all_data_traits <- bind_rows(cine_parts_edited, bc_raw1c, af_raw1c, trait_data5_edited) 
 
 names(all_data_traits)
@@ -785,6 +785,7 @@ all5 <- all4 %>%
   mutate(taxize_name = ifelse(scientific_name == "Synodus foetens", "Synodus foetens", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Trichogaster microlepis", "Trichogaster microlepis", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Venerupis japonica", "Venerupis japonica", taxize_name)) %>%
+  mutate(taxize_name = ifelse(obs_id == "bc1270", "Brevoortia aurea", taxize_name)) %>%
   mutate(taxize_name = ifelse(is.na(taxize_name), genus_species, taxize_name)) %>% 
   filter(!grepl("spp", taxize_name)) %>% 
   filter(!grepl("[.]", taxize_name)) %>% 
@@ -792,35 +793,156 @@ all5 <- all4 %>%
   dplyr::select(taxize_name, scientific_name, asfis_scientific_name, genus_species, everything()) %>% 
   mutate(taxize_name = ifelse(grepl("Merce", taxize_name), "Mercenaria mercenaria", taxize_name))
 
-
-unique(all5$taxize_name)
-
+WriteXLS(all5, "data-processed/seanuts-rebuild-oct-taxized.xlsx")
 ### c428 is Mercenaria mercenaria
 ## bc864 is Scomber colias
 ## af563, af564 is Panopea generosa
 ## af802 is Spisula sachalinensis
 ## bc1415, bc1424, bc 1426, bc1542, is not id'ed to species
 
-WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this is the new dataset, taxized; a few last taxized species names filled in
-WriteXLS(all5, "data-processed/seanuts-rebuild-oct-taxized.xlsx")
+# WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this is the new dataset, taxized; a few last taxized species names filled in
+
+##### Here bringing in some data that was lost at some point due to misspelling of species name
+percentages_skon <- read_csv("data-processed/percentages_refs.csv") %>% 
+  mutate(keep = NA) %>% 
+  filter(grepl("Skonberg", ref_info)) %>% 
+  mutate(species_name = ifelse(species_name == "Carcinus maenus", "Carcinus maenas", species_name)) %>%
+  mutate(biblio_id = "sea14") %>% 
+  rename(taxize_name = species_name) %>% 
+  dplyr::select(-ref_info) ### this is the old percentages, but I'm going to pull the Skonberg elements from here, bc they were missing from biocomp
+
+skon_refs <- read_csv("data-processed/percentages_refs.csv") %>% 
+  mutate(keep = NA) %>% 
+  filter(grepl("Skonberg", ref_info)) %>% 
+  distinct(ref_info)
+
+percentages_mart <- read_csv("data-processed/percentages_refs.csv") %>% 
+  mutate(keep = NA) %>% 
+  filter(grepl("Crassostrea rhizophorae", species_name)) %>% 
+  rename(taxize_name = species_name) %>% 
+  group_by(taxize_name, nutrient) %>% 
+  spread(key = nutrient, value = concentration) %>% 
+  mutate(subgroup = "Mollusc") %>% 
+  dplyr::select(-dri_per, -keep) %>% 
+  rename(ca_mg = calcium,
+         zn_mg = zinc,
+         fe_mg = iron) %>% 
+  mutate(obs_id = paste0("seadata", seanuts_id2)) %>% 
+  dplyr::select(-seanuts_id2) %>% 
+  rename(biblio_id = ref_info) %>% 
+  group_by(obs_id, biblio_id, subgroup, taxize_name) %>% 
+  summarise_each(funs(mean, .args = list(na.rm = TRUE)), ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+  mutate(biblio_id2 = ifelse(grepl("Farias", biblio_id), "sea12", "sea13")) %>% 
+  mutate(biblio_id = biblio_id2) %>% 
+  dplyr::select(-biblio_id2)
+
+mart_refs <- read_csv("data-processed/percentages_refs.csv") %>% 
+  mutate(keep = NA) %>% 
+  filter(grepl("Crassostrea rhizophorae", species_name)) %>% 
+  rename(taxize_name = species_name) %>% 
+  group_by(taxize_name, nutrient) %>% 
+  spread(key = nutrient, value = concentration) %>% 
+  mutate(subgroup = "Mollusc") %>% 
+  dplyr::select(-dri_per, -keep) %>% 
+  rename(ca_mg = calcium,
+         zn_mg = zinc,
+         fe_mg = iron) %>% 
+  mutate(obs_id = paste0("seadata", seanuts_id2)) %>% 
+  dplyr::select(-seanuts_id2) %>% 
+  distinct(ref_info)
+
+unique(percentages_mart$biblio_id)
+
+
+perc_skon <- percentages_skon %>%
+  mutate(obs_id = paste0("seadata", seanuts_id2)) %>% 
+  dplyr::select(taxize_name, nutrient, concentration, obs_id, biblio_id) %>% 
+  spread(key = nutrient, value = concentration) %>% 
+  dplyr::select(-protein, -fat) %>% 
+  mutate(subgroup = "Crustacean") %>% 
+  rename(ca_mg = calcium,
+         zn_mg = zinc,
+         fe_mg = iron) 
+
+all6 <- all5 %>% 
+  bind_rows(perc_skon) %>% 
+  bind_rows(percentages_mart)
+
+WriteXLS(all6, "data-processed/all6-seanuts-rebuild-oct-taxized.xlsx")
+
+
+#### ok let's get the references in here. 
+
+unique(all6$biblio_id)
+
+anfood_refs <- read_excel("data-processed/anfood-refs.xlsx") %>% 
+  clean_names() %>% 
+  dplyr::select(biblio_id, bibliography)
+biocomp_refs <- read_excel("data-processed/biocom-refs.xlsx") %>% 
+  clean_names() %>% 
+  rename(biblio_id = biblioid) %>% 
+  dplyr::select(biblio_id, bibliography)
+cine_refs <- read_csv("data-processed/CINE-nutrients-fish-references-annotated.csv") %>% 
+  clean_names() %>% 
+  rename(biblio_id = ref_number) %>% 
+  rename(bibliography = reference) %>% 
+  dplyr::select(biblio_id, bibliography) %>% 
+  mutate(biblio_id = as.character(biblio_id))
+sea_refs <- trait_data5_edited %>% 
+  dplyr::select(biblio_id, bibliography) %>% 
+  mutate(biblio_id = as.character(biblio_id))
+
+extra_refs <- data.frame(biblio_id = c("sea12", "sea13", "sea14"), bibliography = c(skon_refs$ref_info[1], mart_refs$ref_info))
+
+all_refs <- bind_rows(anfood_refs, biocomp_refs, cine_refs, sea_refs, extra_refs) %>% 
+  filter(biblio_id %in% c(unique(all6$biblio_id))) %>% 
+  distinct()
+
+length(unique(all_refs$biblio_id))
+length(unique(all6$biblio_id))
+
+all6b <- all6 %>% 
+  left_join(., all_refs, by = "biblio_id") %>% 
+  mutate(bibliography = ifelse(is.na(bibliography), biblio_id, bibliography)) %>% 
+  dplyr::select(obs_id, taxize_name, subgroup, food_name_in_english, body_part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, biblio_id, bibliography, everything())
+
+
+all7 <- all6b %>% 
+  mutate(caldata = ifelse(is.na(ca_mg), 0, 1)) %>% 
+  mutate(irondata = ifelse(is.na(fe_mg), 0, 1)) %>% 
+  mutate(zincdata = ifelse(is.na(zn_mg), 0, 1)) %>% 
+  mutate(epadata = ifelse(is.na(epa), 0, 1)) %>% 
+  mutate(dhadata = ifelse(is.na(dha), 0, 1)) %>% 
+  mutate(proteindata = ifelse(is.na(protein), 0, 1)) %>%
+  mutate(fatdata = ifelse(is.na(fat), 0, 1)) %>% 
+  mutate(data_here = caldata + irondata + zincdata + epadata + dhadata + fatdata + proteindata) %>% 
+  filter(data_here > 0)
+
+
+WriteXLS(all7, "data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")
+
+length(unique(all7$taxize_name))
+length(unique(all6$taxize_name))
+
 library(WriteXLS)
 
 # read in complete dataset ------------------------------------------------
 
 
-all5 <- read_excel("data-processed/seanuts-rebuild-oct-taxized.xlsx")
-View(all5)
+all7 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")
+str(all7)
 all5 %>% 
-  filter(is.na(taxize_name)) %>% View
+  filter(!grepl(" ", taxize_name)) %>% 
+  dplyr::select(food_name_in_english, common_name, scientific_name, taxize_name, genus_species, everything()) %>% View
 
 unique(all5$part_edited)
 length(unique(all4$taxize_name))
 
 library(plotrix)
-all5 %>% 
+all7 %>% 
   group_by(body_part) %>% 
   filter(subgroup == "Finfish") %>% 
-  dplyr::dplyr::select(ca_mg) %>% 
+  dplyr::select(ca_mg) %>% 
   filter(!is.na(ca_mg)) %>% 
   summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
             stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 
@@ -837,12 +959,12 @@ unique(all_data_traits2$subgroup)
 # View(all_data_traits)
 
 
-percentages <- all5 %>% 
+percentages <- all7 %>% 
   rename(calcium = ca_mg,
          zinc = zn_mg,
          iron = fe_mg) %>% 
   filter(!is.na(taxize_name)) %>% 
-  gather(11:17, key = nutrient, value = concentration) %>% 
+  gather(6:12, key = nutrient, value = concentration) %>% 
   mutate(dri_per = NA) %>% 
   mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>% 
@@ -855,12 +977,16 @@ percentages <- all5 %>%
   filter(!is.na(concentration)) 
 
   unique(percentages$nutrient)
+  
+length(unique(percentages$taxize_name))
 
 percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
 
 perc2 <- percentages %>% 
   distinct(nutrient, concentration, taxize_name, common_name, food_name_in_english, body_part, dri_per, subgroup, .keep_all = TRUE)
+
+length(unique(perc2$taxize_name))
 
 perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
@@ -898,8 +1024,8 @@ mean_nuts2 <- perc2 %>%
 unique(mean_nuts2$taxize_name)
 View(mean_nuts2)
 
-write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
-write_csv(mean_nuts2, "data-processed/mean_nuts_aug-26-2020.csv") 
+# write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods; eeks note that I wrote over this one, by accident
+# write_csv(mean_nuts2, "data-processed/mean_nuts_aug-26-2020.csv") 
 write_csv(mean_nuts2, "data-processed/mean_nuts_oct-4-2020.csv") 
 # write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020b.csv")
 mean_nuts3 <- perc2 %>% 
@@ -914,8 +1040,8 @@ mean_nuts3 <- perc2 %>%
             dha = mean(dha, na.rm = TRUE)) %>% 
   filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha), !is.na(protein)) %>% 
   ungroup()
-write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
-write_csv(mean_nuts3, "data-processed/mean_nuts_aug-26-2020_micro_macro.csv")
+# write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
+# write_csv(mean_nuts3, "data-processed/mean_nuts_aug-26-2020_micro_macro.csv")
 write_csv(mean_nuts3, "data-processed/mean_nuts_oct-4-2020_micro_macro.csv")
 View(mean_nuts3)
 
