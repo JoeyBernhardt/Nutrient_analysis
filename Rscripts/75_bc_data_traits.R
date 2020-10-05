@@ -770,17 +770,29 @@ all5 <- all4 %>%
   mutate(taxize_name = ifelse(scientific_name == "Pisaster ochraceus", "Pisaster ochraceus", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Pomacea canaliculata", "Pomacea canaliculata", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
-  mutate(taxize_name = ifelse(obs_id == "", "", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Puntius chola", "Puntius chola", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Pycnopodia helianthoides", "Pycnopodia helianthoides", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Rasbora borapetensis", "Rasbora borapetensis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Salvelinus naresi", "Salvelinus naresi", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Scomber japonicus/colias", "Scomber japonicus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Scopthalmus maeticus", "Scophthalmus maeoticus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Sebastes alascanus", "Sebastolobus alascanus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Sebastes rubrivincuts", "Sebastes rubrivinctus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Spicara alcedo", "Spicara alcedo", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Spicara vulgaris", "Spicara smaris", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Sulculus diversicolor aquatieis", "Sulculus diversicolor", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Synodontis victoriae", "Synodontis victoriae", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Synodus foetens", "Synodus foetens", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Trichogaster microlepis", "Trichogaster microlepis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Venerupis japonica", "Venerupis japonica", taxize_name)) %>%
+  mutate(taxize_name = ifelse(is.na(taxize_name), genus_species, taxize_name)) %>%
+  filter(!grepl("spp", taxize_name)) %>% 
+  filter(!grepl("[.]", taxize_name)) %>% 
   arrange(obs_id) %>% 
-  dplyr::select(taxize_name, scientific_name, asfis_scientific_name, genus_species, everything()) %>% 
-  filter(!grepl(" ", taxize_name)) %>% View
-filter(is.na(taxize_name)) %>% 
+  dplyr::select(taxize_name, scientific_name, asfis_scientific_name, genus_species, everything()) 
+
+
+unique(all5$taxize_name)
 
 ### c428 is Mercenaria mercenaria
 ## bc864 is Scomber colias
@@ -789,7 +801,7 @@ filter(is.na(taxize_name)) %>%
 ## bc1415, bc1424, bc 1426, bc1542, is not id'ed to species
 
 WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this is the new dataset, taxized; a few last taxized species names filled in
-
+library(WriteXLS)
 
 # read in complete dataset ------------------------------------------------
 
