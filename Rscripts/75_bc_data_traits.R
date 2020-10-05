@@ -767,7 +767,7 @@ all5 <- all4 %>%
   mutate(taxize_name = ifelse(scientific_name == "Paroctopus hongkongensis", "Octopus hongkongensis", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Peronidia venulosa", "Peronidia venulosa", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Pimelodus argenteus", "Pimelodus argenteus", taxize_name)) %>%
-  mutate(taxize_name = ifelse(scientific_name == "Pisaster ochraceus", "Pisaster ochraceus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Pisaster ochraceus", "Pisaster ochraceus", taxize_name)) %>% 
   mutate(taxize_name = ifelse(scientific_name == "Pomacea canaliculata", "Pomacea canaliculata", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Puntius chola", "Puntius chola", taxize_name)) %>%
@@ -785,11 +785,12 @@ all5 <- all4 %>%
   mutate(taxize_name = ifelse(scientific_name == "Synodus foetens", "Synodus foetens", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Trichogaster microlepis", "Trichogaster microlepis", taxize_name)) %>%
   mutate(taxize_name = ifelse(scientific_name == "Venerupis japonica", "Venerupis japonica", taxize_name)) %>%
-  mutate(taxize_name = ifelse(is.na(taxize_name), genus_species, taxize_name)) %>%
+  mutate(taxize_name = ifelse(is.na(taxize_name), genus_species, taxize_name)) %>% 
   filter(!grepl("spp", taxize_name)) %>% 
   filter(!grepl("[.]", taxize_name)) %>% 
   arrange(obs_id) %>% 
-  dplyr::select(taxize_name, scientific_name, asfis_scientific_name, genus_species, everything()) 
+  dplyr::select(taxize_name, scientific_name, asfis_scientific_name, genus_species, everything()) %>% 
+  mutate(taxize_name = ifelse(grepl("Merce", taxize_name), "Mercenaria mercenaria", taxize_name))
 
 
 unique(all5$taxize_name)
@@ -801,12 +802,13 @@ unique(all5$taxize_name)
 ## bc1415, bc1424, bc 1426, bc1542, is not id'ed to species
 
 WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this is the new dataset, taxized; a few last taxized species names filled in
+WriteXLS(all5, "data-processed/seanuts-rebuild-oct-taxized.xlsx")
 library(WriteXLS)
 
 # read in complete dataset ------------------------------------------------
 
 
-all5 <- read_excel("data-processed/seanuts-rebuild-aug26-taxized.xlsx")
+all5 <- read_excel("data-processed/seanuts-rebuild-oct-taxized.xlsx")
 View(all5)
 all5 %>% 
   filter(is.na(taxize_name)) %>% View
@@ -840,7 +842,7 @@ percentages <- all5 %>%
          zinc = zn_mg,
          iron = fe_mg) %>% 
   filter(!is.na(taxize_name)) %>% 
-  gather(8:14, key = nutrient, value = concentration) %>% 
+  gather(11:17, key = nutrient, value = concentration) %>% 
   mutate(dri_per = NA) %>% 
   mutate(dri_per = ifelse(nutrient == "calcium", concentration/1200, dri_per)) %>% 
   mutate(dri_per = ifelse(nutrient == "iron", concentration/18, dri_per)) %>% 
@@ -852,7 +854,7 @@ percentages <- all5 %>%
   mutate(dri_per = dri_per*100) %>% 
   filter(!is.na(concentration)) 
 
-unique(percentages$nutrient)
+  unique(percentages$nutrient)
 
 percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
@@ -893,10 +895,12 @@ mean_nuts2 <- perc2 %>%
             dha = mean(dha, na.rm = TRUE)) %>% 
   filter(!is.na(calcium), !is.na(zinc), !is.na(iron), !is.na(epa), !is.na(dha)) 
 
+unique(mean_nuts2$taxize_name)
 View(mean_nuts2)
 
 write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
 write_csv(mean_nuts2, "data-processed/mean_nuts_aug-26-2020.csv") 
+write_csv(mean_nuts2, "data-processed/mean_nuts_oct-4-2020.csv") 
 # write_csv(mean_nuts2, "data-processed/mean_nuts_aug2020b.csv")
 mean_nuts3 <- perc2 %>% 
   spread(nutrient, concentration) %>% 
@@ -912,6 +916,7 @@ mean_nuts3 <- perc2 %>%
   ungroup()
 write_csv(mean_nuts3, "data-processed/mean_nuts_aug2020_micro_macro.csv") ## ok this is the new mean_nuts, after rebuilding from infoods
 write_csv(mean_nuts3, "data-processed/mean_nuts_aug-26-2020_micro_macro.csv")
+write_csv(mean_nuts3, "data-processed/mean_nuts_oct-4-2020_micro_macro.csv")
 View(mean_nuts3)
 
 mean_nuts3 %>% 
