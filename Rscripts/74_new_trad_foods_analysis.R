@@ -12,7 +12,7 @@ nt_species <- nt %>%
 write_csv(nt_species, "data-processed/nt_species.csv")
 
 cine_ids <- nt %>% 
-  select(cine_id, page_id)
+  dplyr::select(cine_id, page_id)
 
 new_trad_search_raw <- read_csv("data-processed/new-extracted-trad-foods.csv") %>% 
   clean_names() 
@@ -68,14 +68,14 @@ updated_ref <- read_csv("data-processed/CINE-nutrients-fish-references-annotated
 #   filter(reference %in% c(keep_refs$ref_number))
 
 nt2 <- cine_parts_edited %>% 
-  select(genus_species, common_name, part_edited, biblio_id, cine_id, ca_mg, fe_mg, zn_mg, epa, dha, page_id) 
+  dplyr::select(genus_species, common_name, part_edited, biblio_id, cine_id, ca_mg, fe_mg, zn_mg, epa, dha, page_id) 
 
 # %>% 
 #   left_join(., trad_foods_key)
 
 
 nt3 <- nt1 %>% 
-  select(trad_food_id, subgroup, asfis_scientific_name, biblio_id, ca_mg, fe_mg, zn_mg, epa, dha) %>% 
+  dplyr::select(trad_food_id, subgroup, asfis_scientific_name, biblio_id, ca_mg, fe_mg, zn_mg, epa, dha) %>% 
   rename(genus_species = asfis_scientific_name)
 
 all_trad <- bind_rows(nt2, nt3)

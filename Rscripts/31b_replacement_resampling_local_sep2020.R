@@ -14,7 +14,7 @@ trad_nuts_mean <- read_csv("data-processed/traditional_foods_nutrients_cultures_
   rename(calcium = ca_mg,
          iron = fe_mg,
          zinc = zn_mg) %>% 
-  select(-contains("na")) ### update with new extracted trad foods sep22 2020
+  dplyr::select(-contains("na")) ### update with new extracted trad foods sep22 2020
 
 # mean_nuts <- read_csv("data-processed/mean_nuts.csv") %>% 
 #   mutate(species_name = ifelse(species_name == "Tenualosa ilisha (juvenile)", "Tenualosa ilisha", species_name)) %>% 

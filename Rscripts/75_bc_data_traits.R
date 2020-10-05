@@ -17,22 +17,22 @@ bc_raw_sheet2 <- read_excel("data/BioFoodComp4.0_read_only.xlsx", sheet = "09 Fi
   filter(!is.na(food_item_id)) %>% ## gets rid of second header row and any unidentified samples
   rename(epa = f20d5n3_g) %>% 
   rename(dha = f22d6n3_g) %>% 
-  select(food_item_id, epa, dha)
+  dplyr::dplyr::select(food_item_id, epa, dha)
 
 
 bc_all <- bc_raw_sheet1 %>% 
   left_join(., bc_raw_sheet2, by = "food_item_id") %>% ### here we join the datasheet with the minerals, protein and fat with the fatty acids
-  select(food_item_id, biblio_id, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha) %>% 
+  dplyr::dplyr::select(food_item_id, biblio_id, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha) %>% 
   mutate(bc_id = paste0("bc", rownames(.)))
 
 
 WriteXLS(bc_all, "data-processed/bc_all.xlsx")
 
-
+bc_all <- read_excel("data-processed/bc_all.xlsx")
 # read in part key edited in excel ----------------------------------------
 parts_edited <- read_excel("data-processed/bc_all_edited.xlsx") %>% 
   clean_names() %>% 
-  select(food_item_id, part_edited)
+  dplyr::dplyr::select(food_item_id, part_edited)
 
 bc_all2 <- bc_all %>% 
   left_join(., parts_edited, by = "food_item_id")
@@ -41,7 +41,7 @@ bc_all2 <- bc_all %>%
 # bc_raw <- read_excel("data-processed/biocomp-raw-macro-micro.xlsx")
 
 bc_raw1b <- bc_all2 %>% 
-  select(-protcnp_g) %>% 
+  dplyr::dplyr::select(-protcnp_g) %>% 
   mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% ### these rows merge the various methods of measuring protein and fat
   mutate(fat = ifelse(is.na(fat_g), fatce_g, fat_g)) %>% 
   mutate(fat = ifelse(is.na(fat), fat_g_2, fat)) %>% 
@@ -52,8 +52,8 @@ bc_raw1b <- bc_all2 %>%
   separate(zn_mg, into = c("zn_mg", "extra_zn"), sep =  "±") %>% 
   separate(fat, into = c("fat", "extra_fat"), sep =  "±") %>% 
   separate(protein, into = c("protein", "extra_protein"), sep =  "±") %>% 
-  # select(food_item_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein, everything()) %>% 
-  select(-contains("extra")) %>% 
+  # dplyr::select(food_item_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein, everything()) %>% 
+  dplyr::dplyr::select(-contains("extra")) %>% 
   filter(!is.na(food_item_id)) %>% 
   mutate(zn_mg = as.numeric(zn_mg)) %>% ### these 'as.numeric' rows get rid of the entries with ranges and that are in brackets, which are poor quality data
   mutate(ca_mg = as.numeric(ca_mg)) %>% 
@@ -66,7 +66,7 @@ bc_raw1b <- bc_all2 %>%
 
 
 bc_raw1c <- bc_raw1b %>% 
-  select(-prot_g, - fatce_g, -fatrn_g, -fat_g, -fat_g_2, -protcnt_g) %>% ## get rid of columns we no longer need
+  dplyr::dplyr::select(-prot_g, - fatce_g, -fatrn_g, -fat_g, -fat_g_2, -protcnt_g) %>% ## get rid of columns we no longer need
   filter(processing == "r") %>%  ### only keep raw samples
   mutate(publication_year = as.character(publication_year))
  
@@ -82,7 +82,7 @@ bc_raw1c <- bc_raw1b %>%
   filter(!grepl("muscle",food_name_in_english)) %>% 
   filter(!grepl("skinless",food_name_in_english)) %>% 
   mutate(part_edited = "muscle") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 muscle_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
@@ -91,7 +91,7 @@ muscle_samples <- bc_raw1c %>%
   filter(!grepl("fillet",food_name_in_english)) %>% 
   filter(!grepl("skinless",food_name_in_english)) %>% 
   mutate(part_edited = "muscle") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 muscle_skinless_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
@@ -99,7 +99,7 @@ muscle_skinless_samples <- bc_raw1c %>%
   # filter(!grepl("bones",food_name_in_english)) %>% 
   filter(grepl("skinless",food_name_in_english)) %>% 
   mutate(part_edited = "muscle_skinless") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 muscle_skinned_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
@@ -107,7 +107,7 @@ muscle_skinned_samples <- bc_raw1c %>%
   filter(!grepl("bones",food_name_in_english)) %>% 
   filter(grepl("skinned",food_name_in_english)) %>% 
   mutate(part_edited = "muscle_skinless") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 muscle_bones_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
@@ -115,7 +115,7 @@ muscle_bones_samples <- bc_raw1c %>%
   filter(grepl("bones",food_name_in_english)) %>% 
   filter(!grepl("skinless",food_name_in_english)) %>% 
   mutate(part_edited = "muscle_bones") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 muscle_organs_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
@@ -124,7 +124,7 @@ muscle_organs_samples <- bc_raw1c %>%
   filter(!grepl("flesh",food_name_in_english)) %>% 
   filter(grepl("cleaned",food_name_in_english)) %>%
   mutate(part_edited = "muscle_organs") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 muscle_other_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
@@ -134,7 +134,7 @@ muscle_other_samples <- bc_raw1c %>%
   filter(!grepl("skinned",food_name_in_english)) %>%
   filter(!grepl("muscle",food_name_in_english)) %>%
   mutate(part_edited = "muscle_organs") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 meat_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>%
@@ -146,7 +146,7 @@ meat_samples <- bc_raw1c %>%
   filter(!grepl("skin",food_name_in_english)) %>% 
   filter(!grepl("muscle",food_name_in_english)) %>%
   mutate(part_edited = "muscle") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 flesh_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>%
@@ -158,44 +158,44 @@ flesh_samples <- bc_raw1c %>%
   filter(!grepl("skin",food_name_in_english)) %>% 
   filter(!grepl("muscle",food_name_in_english)) %>%
   mutate(part_edited = "muscle") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 whole_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
   filter(!grepl("fillet",food_name_in_english)) %>% 
   filter(grepl("whole",food_name_in_english)) %>% 
   mutate(part_edited = "whole") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 liver_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
   filter(grepl("liver",food_name_in_english)) %>% 
   mutate(part_edited = "liver") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 egg_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
   filter(grepl("egg",food_name_in_english)) %>% 
   mutate(part_edited = "egg") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english)
 
 roe_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
   filter(grepl("roe",food_name_in_english)) %>% 
   mutate(part_edited = "egg") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 caviar_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
   filter(grepl("caviar",food_name_in_english)) %>% 
   mutate(part_edited = "egg") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 oil_samples <- bc_raw1c %>% 
   filter(subgroup == "Finfish") %>% 
   filter(grepl("oil",food_name_in_english)) %>% 
   mutate(part_edited = "oil") %>% 
-  select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
+  dplyr::select(food_item_id, bc_id, part_edited, subgroup, food_name_in_english) 
 
 all_parts <- bind_rows(fillet_samples, muscle_samples, flesh_samples, meat_samples, muscle_skinned_samples, muscle_skinless_samples, muscle_organs_samples, muscle_other_samples, 
                        oil_samples, liver_samples, caviar_samples, egg_samples, roe_samples, whole_samples, muscle_bones_samples) 
@@ -219,7 +219,7 @@ bc_refs <- read_excel("data-processed/biocom-refs.xlsx") %>%
 #   left_join(., bc_refs) 
 # 
 # bc_references <- bc_raw2 %>% 
-#   select(biblio_id, bibliography) 
+#   dplyr::select(biblio_id, bibliography) 
 
 
 
@@ -250,7 +250,7 @@ bc_refs <- read_excel("data-processed/biocom-refs.xlsx") %>%
 #   mutate(fat = as.numeric(fat)) %>% 
 #   mutate(protein = as.numeric(protein)) %>% 
 #   # rename(reference = biblio_id) %>% 
-#   select(food_item_id, bc_id, asfis_english_name, asfis_scientific_name, scientific_name, subgroup, country_region, food_name_in_english, biblio_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+#   dplyr::select(food_item_id, bc_id, asfis_english_name, asfis_scientific_name, scientific_name, subgroup, country_region, food_name_in_english, biblio_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
 #   rename(location = country_region)
 
 View(bc)
@@ -265,12 +265,12 @@ unique(bc$food_name_in_english)
 fillet_samples <- bc %>% 
   filter(grepl("fillet",food_name_in_english)) %>% 
   filter(!grepl("bones",food_name_in_english)) %>% 
-  select(bc_id)
+  dplyr::select(bc_id)
 
 muscle_samples <- bc %>% 
   filter(grepl("muscle",food_name_in_english)) %>% 
   filter(!grepl("bones",food_name_in_english)) %>% 
-  select(bc_id)
+  dplyr::select(bc_id)
 
 View(muscle_samples)
 
@@ -278,18 +278,18 @@ egg_samples <- bc %>%
   # filter(grepl("roe",food_name_in_english)) %>% 
   filter(grepl(c("egg"),food_name_in_english)) %>% 
   filter(!grepl("bones",food_name_in_english)) %>% 
-  select(bc_id)
+  dplyr::select(bc_id)
 
 roe_samples <- bc %>% 
   # filter(grepl("roe",food_name_in_english)) %>% 
   filter(grepl(c("roe"),food_name_in_english)) %>% 
   filter(!grepl("bones",food_name_in_english)) %>% 
-  select(bc_id)
+  dplyr::select(bc_id)
 
 whole_samples <- bc %>% 
   # filter(grepl("roe",food_name_in_english)) %>% 
   filter(grepl(c("whole"),food_name_in_english)) %>% 
-  select(bc_id)
+  dplyr::select(bc_id)
 
 skin_samples <- bc %>% 
   # filter(grepl("roe",food_name_in_english)) %>% 
@@ -301,17 +301,17 @@ skin_samples <- bc %>%
   filter(!grepl("meat",food_name_in_english)) %>% 
   filter(!grepl("fillet",food_name_in_english)) %>% 
   filter(!grepl("skinned",food_name_in_english)) %>% 
-  select(bc_id)
+  dplyr::select(bc_id)
   
   liver_samples <- bc %>% 
     # filter(grepl("roe",food_name_in_english)) %>% 
     filter(grepl(c("liver"),food_name_in_english)) %>% 
-    select(bc_id)
+    dplyr::select(bc_id)
   
   head_samples <- bc %>% 
     # filter(grepl("roe",food_name_in_english)) %>% 
     filter(grepl(c("head"),food_name_in_english)) %>% 
-    select(bc_id)
+    dplyr::select(bc_id)
 
 muscle_only <- bind_rows(fillet_samples, muscle_samples) %>% 
   distinct()
@@ -335,21 +335,23 @@ af_raw_sheet2 <- read_excel("data/AnFood2.0_read_only.xlsx", sheet = "09 Fish & 
   filter(!is.na(food_item_id)) %>% ## gets rid of second header row and any unidentified samples
   rename(epa = f20d5n3_g) %>% 
   rename(dha = f22d6n3_g) %>% 
-  select(food_item_id, epa, dha)
+  dplyr::dplyr::select(food_item_id, epa, dha) 
 
 
 af_all <- af_raw_sheet1 %>% 
-  left_join(., af_raw_sheet2, by = "food_item_id") %>% ### here we join the datasheet with the minerals, protein and fat with the fatty acids
-  # select(food_item_id, biblio_id, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha) %>% 
+  left_join(., af_raw_sheet2, by = "food_item_id") %>%
+  dplyr::dplyr::select(epa, dha, ca_mg, zn_mg, fe_mg, everything()) %>% ### here we join the datasheet with the minerals, protein and fat with the fatty acids
+  # dplyr::select(food_item_id, biblio_id, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha) %>% 
   mutate(af_id = paste0("af", rownames(.))) %>% 
   filter(processing == "r") %>% 
   mutate(farmed_finfish = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Finfish", "farmed_finfish", "other")) %>%
-  mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "unfarmed_crustacean")) %>% 
+  mutate(farmed_crustacean = ifelse(grepl("farmed", food_name_in_english) & subgroup == "Crustacean", "farmed_crustacean", "unfarmed_crustacean")) %>%
   filter(farmed_finfish != "farmed_finfish") %>% 
+  dplyr::dplyr::select(farmed_crustacean, everything()) %>% 
   filter(farmed_crustacean != "farmed_crustacean") %>% 
-  filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english) | biblio_id %in% c("fi195", "fi159", "fi188", "fi203")) %>% 
+  filter(subgroup == "Molluscs" | grepl("wild", food_name_in_english) | biblio_id %in% c("fi195", "fi159", "fi188", "fi203", "fi45")) %>%  ### this is the step
   filter(!is.na(food_item_id)) %>% 
-  select(food_item_id, af_id, biblio_id, type, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha)
+  dplyr::dplyr::select(food_item_id, af_id, biblio_id, type, subgroup, country_region, food_name_in_english, processing, scientific_name, asfis_english_name, asfis_scientific_name, season, other, comments_on_data_processing_methods, publication_year, contains("prot"), contains("fat"), ca_mg, fe_mg, zn_mg, epa, dha)
   
 
 
@@ -357,14 +359,14 @@ WriteXLS(af_all, "data-processed/af_all.xlsx")
 
 af_parts_edited <- read_excel("data-processed/af_all_edited.xlsx") %>% 
   clean_names() %>% 
-  select(food_item_id, part_edited)
+  dplyr::select(food_item_id, part_edited)
 
 af_all2 <- af_all %>% 
   left_join(., af_parts_edited, by = "food_item_id")
 
 
 af_raw1b <- af_all2 %>% 
-  select(-protcnp_g) %>% 
+  dplyr::select(-protcnp_g) %>% 
   mutate(protein = ifelse(is.na(prot_g), protcnt_g, prot_g)) %>% ### these rows merge the various methods of measuring protein and fat
   mutate(fat = ifelse(is.na(fat_g), fatce_g, fat_g)) %>% 
   mutate(fat = ifelse(is.na(fat), fat_g_2, fat)) %>% 
@@ -375,8 +377,8 @@ af_raw1b <- af_all2 %>%
   separate(zn_mg, into = c("zn_mg", "extra_zn"), sep =  "±") %>% 
   separate(fat, into = c("fat", "extra_fat"), sep =  "±") %>% 
   separate(protein, into = c("protein", "extra_protein"), sep =  "±") %>% 
-  # select(food_item_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein, everything()) %>% 
-  select(-contains("extra")) %>% 
+  # dplyr::select(food_item_id, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein, everything()) %>% 
+  dplyr::select(-contains("extra")) %>% 
   filter(!is.na(food_item_id)) %>% 
   mutate(zn_mg = as.numeric(zn_mg)) %>% ### these 'as.numeric' rows get rid of the entries with ranges and that are in brackets, which are poor quality data
   mutate(ca_mg = as.numeric(ca_mg)) %>% 
@@ -389,7 +391,7 @@ af_raw1b <- af_all2 %>%
 
 
 af_raw1c <- af_raw1b %>% 
-  select(-prot_g, - fatce_g, -fatrn_g, -fat_g, -fat_g_2, -protcnt_g) %>% ## get rid of columns we no longer need
+  dplyr::select(-prot_g, - fatce_g, -fatrn_g, -fat_g, -fat_g_2, -protcnt_g) %>% ## get rid of columns we no longer need
   filter(processing == "r") %>% 
   mutate(publication_year = as.character(publication_year))### only keep raw samples
 
@@ -443,7 +445,7 @@ af_refs <- read_excel("data-processed/anfood-refs.xlsx") %>%
 #   mutate(dha = as.numeric(dha)) %>% 
 #   mutate(fat = as.numeric(fat)) %>% 
 #   mutate(protein = as.numeric(protein)) %>% 
-#   select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, country_region, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+#   dplyr::select(af_id, asfis_english_name, scientific_name, asfis_scientific_name, subgroup, country_region, food_name_in_english, biblio_id, bibliography, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
 #   rename(location = country_region)
 
 
@@ -470,7 +472,7 @@ nt_keep_bio <- nt %>%
   rename(fat = fat_g) %>% 
   rename(protein = protein_g) %>% 
   mutate(reference = as.character(reference)) %>% 
-  select(cine_id, subgroup, genus_species, common_name, reference, part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, reference) %>% 
+  dplyr::select(cine_id, subgroup, genus_species, common_name, reference, part, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, reference) %>% 
   rename(biblio_id = reference)
 
 WriteXLS(nt_keep_bio, "data-processed/nt_keep_bio.xlsx")
@@ -480,7 +482,7 @@ cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx")
   mutate(biblio_id = as.character(biblio_id))
 ### ok this file has the corrected sidwell refs; use this one!
   # clean_names() %>% 
-  # select(cine_id, part_edited)
+  # dplyr::select(cine_id, part_edited)
 
 # cine_all2 <- nt_keep_bio %>% 
 #   left_join(., cine_parts_edited, by = "cine_id") ### or just use cine_parts_edited
@@ -493,7 +495,7 @@ cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx")
 
 # reksten <- read_excel("data/reksten-2020.xlsx") %>% 
 #   mutate(species_part = paste(species_name, part, sep = "_")) %>% 
-#   select(-species_name, - part) %>% 
+#   dplyr::select(-species_name, - part) %>% 
 #   group_by(species_part, nutrient) %>%
 #   summarise_each(funs(mean), concentration) %>% 
 #   # mutate(part = ifelse(part == "fillet", "muscle", part)) %>% 
@@ -508,7 +510,7 @@ cine_parts_edited <- read_excel("data-processed/nt_keep_bio_edited_with27.xlsx")
 
 trait_data4_edited <- read_csv("data-processed/trait_data4_edited.csv") %>% 
   filter(keep == "yes") %>% 
-  dplyr::select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, location) %>% 
+  dplyr::dplyr::select(ref_info, seanuts_id2, species_name, nutrient, concentration, subgroup, location) %>% 
   rename(genus_species = species_name) %>% 
   mutate(subgroup = ifelse(subgroup == "finfish", "Finfish", subgroup)) %>% 
   mutate(subgroup = ifelse(subgroup == "mollusc", "Mollusc", subgroup)) %>% 
@@ -560,7 +562,7 @@ write_csv(all_data_traits_inverts, "data-processed/all_data_traits_inverts2.csv"
 unique(all_data_traits$subgroup)
 
 inverts_cat <- read_csv("data-processed/all_data_traits_inverts_edited2.csv") %>% 
-  select(cine_id, subgroup2)
+  dplyr::select(cine_id, subgroup2)
 
 View(inverts_cat)
 
@@ -582,7 +584,7 @@ all_data_traits2 <- all_data_traits %>%
   mutate(obs_id = ifelse(is.na(obs_id), cine_id, obs_id)) %>% 
   mutate(obs_id = ifelse(is.na(obs_id), sea_id, obs_id)) %>% 
   mutate(common_name = ifelse(is.na(common_name), asfis_english_name, common_name)) %>% 
-  select(obs_id, subgroup, genus_species, common_name, part, food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, everything()) %>% 
+  dplyr::select(obs_id, subgroup, genus_species, common_name, part, food_name_in_english, location, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, everything()) %>% 
   mutate(part = ifelse(grepl("skinless", food_name_in_english), "muscle", part)) %>% 
   mutate(part = ifelse(grepl("muscle fillet", food_name_in_english), "muscle", part)) %>% 
   mutate(part_edited = ifelse(obs_id == "c211", "whole", part_edited))
@@ -597,7 +599,7 @@ View(all_data_traits2)
 
 
 all_data_traits3 <- all_data_traits2 %>% 
-  select(obs_id, subgroup, genus_species, asfis_scientific_name, scientific_name, everything()) %>% 
+  dplyr::select(obs_id, subgroup, genus_species, asfis_scientific_name, scientific_name, everything()) %>% 
   mutate(genus_species = str_replace(genus_species,"[\\(]", "")) %>% 
   mutate(genus_species = str_replace(genus_species,"[\\)]", "")) 
 
@@ -640,7 +642,7 @@ result.long <- specieslist %>%
               with_canonical_ranks=T)
 
 result.short <- result.long %>%
-  select(user_supplied_name, submitted_name, matched_name2, score)%>%
+  dplyr::select(user_supplied_name, submitted_name, matched_name2, score)%>%
   distinct()
 write.table(result.short,
             "data-processed/species_names_resolved.txt", 
@@ -674,7 +676,7 @@ for(x in 1:length(outputlst)){
 
 
 result.short <- result.long %>%
-  select(user_supplied_name, submitted_name, matched_name2, score)%>%
+  dplyr::select(user_supplied_name, submitted_name, matched_name2, score)%>%
   distinct()
 
 library(taxize)
@@ -710,7 +712,7 @@ WriteXLS(all4, "data-processed/seanuts-rebuild-aug14-taxized.xlsx") ### ok this 
 all4 <- read_excel("data-processed/seanuts-rebuild-aug14-taxized.xlsx")
 
 all5 <- all4 %>% 
-  dplyr::select(obs_id, taxize_name, submitted_name, subgroup, common_name, part_edited,
+  dplyr::select(obs_id, taxize_name, genus_species, asfis_scientific_name, scientific_name, submitted_name, subgroup, common_name, part_edited,
                 food_name_in_english, ca_mg, fe_mg, zn_mg, epa, dha, protein, fat, biblio_id, location, season, comments_on_data_processing_methods, publication_year, food_item_id) %>% 
   mutate(part_edited = ifelse(part_edited == "muscle_bones", "muscle_organs", part_edited)) %>% 
   rename(body_part = part_edited) %>% 
@@ -718,7 +720,67 @@ all5 <- all4 %>%
   mutate(taxize_name = ifelse(obs_id == "bc864", "Scomber colias", taxize_name)) %>% 
   mutate(taxize_name = ifelse(obs_id %in% c("af563", "af564"), "Panopea generosa", taxize_name)) %>% 
   mutate(taxize_name = ifelse(obs_id == "af802", "Spisula sachalinensis", taxize_name)) %>% 
-  arrange(obs_id)
+  mutate(taxize_name = ifelse(obs_id == "af231", "Muraenesox talabon", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id == "af233", "Caranx sansun", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id == "af239", "Scoliodon sorrakowah", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id == "af240", "Tachysurus zona", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id %in% c("bc1439", "bc1504"), "Myoxocephalus scorpius", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(obs_id == "bc83", "Alepocephalus agassizii", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Aquapecten grandis", "Placopecten magellanicus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Arius madagascariensis", "Arius madagascariensis", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Atherina lagunae", "Atherina lagunae", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Balistes capriscus", "Balistes capriscus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Balsistes capriscus", "Balistes capriscus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Barbodes altus", "Barbodes altus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Barbodes gonionotus", "Barbonymus gonionotus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Barbus intermedius", "Labeobarbus intermedius", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Brachidontes pharaonis", "Brachidontes pharaonis", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Brycon microlepis", "Brycon microlepis", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Caulolatilus intermedius", "Caulolatilus intermedius", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Brycon microlepis", "Brycon microlepis", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Chanda ranga", "Parambassis ranga", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Chionoecetes angulatus", "Chionoecetes angulatus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Chionoecetes japonicus", "Chionoecetes japonicus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Dermogenys pusilla", "Dermogenys pusilla", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Dermogenys pusilla juv.", "Dermogenys pusilla", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Esomus longilamus", "Esomus longilamus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Egeria radiata", "Egeria radiata", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Euryglossa panoides", "Euryglossa panoides", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Evasterias troschelii", "Evasterias troschelii", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Galeorhinus australis", "Galeorhinus australis", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Haliotis laevigata", "Haliotis laevigata", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Hexaplex trunculus", "Hexaplex trunculus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Hoplias malabaricus", "Hoplias malabaricus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Leporinus elongatus", "Megaleporinus elongatus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Liza carinata", "Liza carinata", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Maja brachydactyla", "Maja brachydactyla", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Megaloancistrus aculeatus", "Megaloancistrus aculeatus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Serrasalmus marginatus", "Serrasalmus marginatus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Stichopus californicus", "Stichopus californicus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Mystus bleekeri", "Mystus bleekeri", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Nodipecten subnodosus", "Nodipecten subnodosus", taxize_name)) %>% 
+  mutate(taxize_name = ifelse(scientific_name == "Nordotis discus", "Haliotis discus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Notopterus chitala", "Notopterus chitala", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Pampus punctatissimus", "Pampus punctatissimus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Parachela siamensis", "Parachela siamensis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Parambassis wollfi", "Parambassis wolffii", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Paroctopus hongkongensis", "Octopus hongkongensis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Peronidia venulosa", "Peronidia venulosa", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Pimelodus argenteus", "Pimelodus argenteus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Pisaster ochraceus", "Pisaster ochraceus", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Pomacea canaliculata", "Pomacea canaliculata", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(scientific_name == "Puntius brevis", "Puntius brevis", taxize_name)) %>%
+  mutate(taxize_name = ifelse(obs_id == "", "", taxize_name)) %>% 
+  arrange(obs_id) %>% 
+  dplyr::select(taxize_name, scientific_name, asfis_scientific_name, genus_species, everything()) %>% 
+  filter(!grepl(" ", taxize_name)) %>% View
+filter(is.na(taxize_name)) %>% 
 
 ### c428 is Mercenaria mercenaria
 ## bc864 is Scomber colias
@@ -733,6 +795,7 @@ WriteXLS(all5, "data-processed/seanuts-rebuild-aug26-taxized.xlsx") ### ok this 
 
 
 all5 <- read_excel("data-processed/seanuts-rebuild-aug26-taxized.xlsx")
+View(all5)
 all5 %>% 
   filter(is.na(taxize_name)) %>% View
 
@@ -743,7 +806,7 @@ library(plotrix)
 all5 %>% 
   group_by(body_part) %>% 
   filter(subgroup == "Finfish") %>% 
-  dplyr::select(ca_mg) %>% 
+  dplyr::dplyr::select(ca_mg) %>% 
   filter(!is.na(ca_mg)) %>% 
   summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
             stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 

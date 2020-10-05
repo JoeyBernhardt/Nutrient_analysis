@@ -14,6 +14,11 @@ nuts <- read_csv("data-processed/mean_nuts.csv")
 View(nuts)
 font_import()
 
+nuts %>% 
+  filter(subgroup == "mollusc") %>% View
+
+table(nuts$subgroup)
+
 rdis <- nuts %>% 
   mutate(calcium_rdi = ifelse(calcium > (1200*.1), 1, 0)) %>% 
   mutate(zinc_rdi = ifelse(zinc > (11*.1), 1, 0)) %>% 
