@@ -1049,3 +1049,49 @@ mean_nuts3 %>%
   gather(3:9, key = nutrient, value = concentration) %>% 
   ggplot(aes(x = concentration)) + geom_density(fill = "grey") +
   facet_wrap( ~ nutrient, scales = "free")
+
+
+
+# calculating CVs ---------------------------------------------------------
+
+#### here are the results for the geometric CV
+
+perc2 %>% 
+  filter(grepl(" ", taxize_name)) %>% 
+  filter(dri_per > 0) %>% 
+  mutate(log_dri_per = log(dri_per)) %>% 
+  group_by(nutrient) %>% 
+  summarise_each(funs(mean, sd), log_dri_per) %>% 
+  mutate(cv = sd/mean) %>% 
+  mutate(log_cv = (exp(sd^2)-1)^1/2) %>% View
+
+
+
+##### percentage of each group that reaches RDAs
+rdis <- all7 %>% 
+  filter(grepl(" ", taxize_name)) %>% 
+  group_by(taxize_name, subgroup) %>% 
+  summarise_each(funs(mean, .args = list(na.rm = TRUE)), ca_mg, zn_mg, fe_mg, epa, dha, fat, protein) %>% 
+  mutate(RDI.CA = ifelse(ca_mg > (1200*percentage), 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(fe_mg > (18*percentage), 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(zn_mg > (11*percentage), 1, 0)) %>%
+  mutate(RDI.EPA = ifelse(epa > (1*percentage), 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(dha > (1*percentage), 1, 0)) %>%
+  mutate(RDI.fat = ifelse(fat > (70*percentage), 1, 0)) %>%
+  mutate(RDI.protein = ifelse(protein > (56*percentage), 1, 0)) %>% 
+  ungroup() %>% 
+  mutate(RDI.micro.tot = rowSums(.[10:16])) 
+
+
+### proportion that reach RDI targets
+proportions <- rdis %>% 
+  gather(key = nutrient, value = rdi, 10:16) %>% 
+  filter(!is.na(rdi)) %>% 
+  dplyr::select(-contains("mean")) %>% 
+  group_by(nutrient, rdi, subgroup) %>% 
+  tally() %>% 
+  group_by(nutrient, subgroup) %>% 
+  mutate(total = cumsum(n)) %>% 
+  filter(rdi == 1) %>% 
+  mutate(proportion_that_reach_RDI = n*100/total) 
+write_csv(proportions, "data-processed/proportion-species-reaching-rdas.csv")

@@ -1,0 +1,657 @@
+genus_species,common_name,part_edited,biblio_id,cine_id,ca_mg,fe_mg,zn_mg,epa,dha,page_id,trad_food_id,subgroup
+Acipenser fulvescens,Lake Sturgeon,muscle,27,1,NA,NA,NA,NA,NA,6447,NA,NA
+Acipenser fulvescens,Lake Sturgeon,muscle,44,2,6.61,0.139,0.443,NA,NA,6447,NA,NA
+Acipenser oxyrinchus,Atlantic Sturgeon,muscle,55,5,NA,NA,NA,1.4,0.57,6447,NA,NA
+Acipenser spp.,Sturgeon,muscle,55,7,NA,NA,NA,1.4,0.57,6447,NA,NA
+Acipenser spp.,Sturgeon,muscle,27,8,NA,NA,NA,NA,NA,6447,NA,NA
+Acipenser spp.,Sturgeon,eggs,27,9,NA,NA,NA,NA,NA,6447,NA,NA
+Alosa pseudoharengus,Alewife,muscle,55,10,NA,NA,NA,0.1,0.27,6453,NA,NA
+Alosa pseudoharengus,Alewife,muscle,55,11,NA,NA,NA,0.1,0.27,6453,NA,NA
+Alosa pseudoharengus,Alewife,muscle,27,12,NA,NA,NA,NA,NA,6453,NA,NA
+Alosa pseudoharengus,Alewife,whole,27,13,NA,NA,NA,NA,NA,6453,NA,NA
+Alosa pseudoharengus,Alewife,viscera,27,14,NA,NA,NA,NA,NA,6453,NA,NA
+Alosa pseudoharengus,Alewife,eggs,27,15,NA,NA,NA,NA,NA,6453,NA,NA
+Alosa sapidissima,American Shad,muscle,27,18,NA,0.7,NA,NA,NA,6431,NA,NA
+Alosa sapidissima,American Shad,viscera,27,20,NA,NA,NA,NA,NA,6431,NA,NA
+Aloseinae,Shad,muscle,27,23,NA,0.57,NA,NA,NA,6431,NA,NA
+Aloseinae,Shad,eggs,27,24,NA,NA,NA,NA,NA,6431,NA,NA
+Ameiurus nebulosus,Brown Bullhead,muscle,44,25,12,0.653,0.403,NA,NA,6410,NA,NA
+Amia calva,Bowfin,muscle,27,27,NA,NA,NA,NA,NA,6416,NA,NA
+Amia calva,Bowfin,whole,27,28,NA,NA,NA,NA,NA,6416,NA,NA
+Anarhichadidae,Wolf-eel and Relatives,muscle,55,29,NA,NA,NA,0.11,0.06,6443,NA,NA
+Anarhichadidae,Wolf-eel and Relatives,muscle,27,32,6,NA,NA,NA,NA,6443,NA,NA
+Anguilla rostrata,American Eel,muscle,55,38,NA,NA,NA,0.3,0.66,6450,NA,NA
+Anguilla rostrata,American Eel,muscle,55,42,NA,NA,NA,0.3,0.66,6450,NA,NA
+Anguilla rostrata,American Eel,muscle,27,45,NA,NA,NA,NA,NA,6450,NA,NA
+Anguilla rostrata,American Eel,muscle,27,46,NA,NA,NA,NA,NA,6450,NA,NA
+Anguilla rostrata,American Eel,muscle,27,47,56,NA,0.615,NA,NA,6450,NA,NA
+Anoplopoma fimbria,Sablefish,muscle,25,51,NA,NA,NA,0.35,0.42,6437,NA,NA
+Anoplopoma fimbria,Sablefish,muscle,27,52,35,1.2,NA,NA,NA,6437,NA,NA
+Anoplopoma fimbria,Sablefish,viscera,27,53,NA,NA,NA,NA,NA,6437,NA,NA
+Aplodinotus grunniens,Freshwater Drum,muscle,27,58,52,1.05,0.7,NA,NA,6414,NA,NA
+Aplodinotus grunniens,Freshwater Drum,whole,27,59,NA,NA,NA,NA,NA,6414,NA,NA
+Boreogadus saida,Arctic Cod,muscle,2,61,20.2,0.6,0.5,0.165,0.329,6432,NA,NA
+Brachyura,Crabs,muscle,27,63,NA,NA,NA,NA,NA,6518,NA,NA
+Brachyura,Crabs,muscle,27,64,60,5.2,2.83,NA,NA,6518,NA,NA
+Brachyura,Crabs,whole,27,65,NA,NA,NA,NA,NA,6518,NA,NA
+Brevoortia tyrannus,Menhaden,whole,27,66,NA,NA,NA,NA,NA,6431,NA,NA
+Brevoortia tyrannus,Menhaden,whole,27,67,NA,NA,NA,NA,NA,6431,NA,NA
+Brevoortia tyrannus,Menhaden,muscle,27,68,60,NA,NA,NA,NA,6431,NA,NA
+Callinectes sapidus,Blue Crab,muscle,65,72,74,NA,NA,NA,NA,6518,NA,NA
+Callinectes sapidus,Blue Crab,muscle,27,73,115,2.32,4.025,NA,NA,6518,NA,NA
+Callinectes sapidus,Blue Crab,viscera,27,74,NA,NA,NA,NA,NA,6518,NA,NA
+Callinectes sapidus,Blue Crab,eggs,27,75,NA,NA,NA,NA,NA,6518,NA,NA
+Cancer borealis,Jonah Crab,muscle,27,76,96,NA,NA,NA,NA,6518,NA,NA
+Cancer borealis,Jonah Crab,muscle,55,78,NA,NA,NA,0.28,0.1,6518,NA,NA
+Cancer irroratus,Atlantic Rock Crab,muscle,55,79,NA,NA,NA,0.27,0.15,6518,NA,NA
+Cancer irroratus,Atlantic Rock Crab,muscle,55,80,NA,NA,NA,0.27,0.15,6518,NA,NA
+Cancer magister,Dungeness Crab,muscle,27,83,52,0.365,3.76,NA,NA,6518,NA,NA
+Cancer magister,Dungeness Crab,whole,27,84,NA,NA,2.7,NA,NA,6518,NA,NA
+Cancer magister,Dungeness Crab,viscera,27,85,NA,NA,NA,NA,NA,6518,NA,NA
+Carassius auratus,Goldfish,muscle,27,86,76,NA,NA,NA,NA,6408,NA,NA
+Carassius auratus,Goldfish,whole,27,87,NA,5.6,6,NA,NA,6408,NA,NA
+Cardiidae,Cockles,muscle,27,88,NA,7.8,NA,NA,NA,6506,NA,NA
+Cardiidae,Cockles,whole,27,90,116,NA,NA,NA,NA,6506,NA,NA
+Catostominae,Suckers,muscle,27,91,NA,NA,NA,NA,NA,6403,NA,NA
+Catostominae,Suckers,viscera,27,92,NA,NA,NA,NA,NA,6403,NA,NA
+Catostominae,Suckers,muscle,40,93,NA,NA,NA,NA,NA,6403,NA,NA
+Catostomus catostomus,Longnose Sucker,muscle,2,96,63.1,0.3,0.5,0.075,0.212,6403,NA,NA
+Catostomus commersonii,White Sucker,muscle,27,98,NA,NA,NA,NA,NA,6403,NA,NA
+Catostomus commersonii,White Sucker,muscle,2,99,19.6,0.2,0.3,0.083,0.179,6403,NA,NA
+Catostomus commersonii,White Sucker,whole,27,100,NA,NA,NA,NA,NA,6403,NA,NA
+Centropristis striata,Black Sea Bass,muscle,65,106,10.4,0.136,0.341,NA,NA,6437,NA,NA
+Centropristis striata,Black Sea Bass,muscle,27,107,41,NA,NA,NA,NA,6437,NA,NA
+Centropristis striata,Black Sea Bass,muscle,27,108,NA,NA,0.142,NA,NA,6437,NA,NA
+Centropristis striata,Black Sea Bass,whole,27,109,NA,NA,NA,NA,NA,6437,NA,NA
+Centropristis striata,Black Sea Bass,viscera,27,110,NA,NA,NA,NA,NA,6437,NA,NA
+Centropristis striata,Black Sea Bass,eggs,27,111,NA,NA,NA,NA,NA,6437,NA,NA
+Clinocardium nuttallii,Nuttall Cockle,muscle,19,114,30,16.2,NA,NA,NA,6506,NA,NA
+Clinocardium nuttallii,Nuttall Cockle,whole,27,116,NA,NA,NA,NA,NA,6506,NA,NA
+Clupea harengus,Atlantic Herring,muscle,27,121,20,1,0.701,NA,NA,6431,NA,NA
+Clupea harengus,Atlantic Herring,whole,27,123,NA,NA,NA,NA,NA,6431,NA,NA
+Clupea harengus,Atlantic Herring,muscle,55,127,NA,NA,NA,1.05,1.29,6431,NA,NA
+Clupea pallasii pallasii,Pacific Herring,eggs,19,131,19,2.7,NA,NA,NA,6431,NA,NA
+Clupea pallasii pallasii,Pacific Herring,eggs,27,132,NA,NA,NA,NA,NA,6431,NA,NA
+Clupea pallasii pallasii,Pacific Herring,eggs,34,134,NA,0.9,NA,NA,NA,6431,NA,NA
+Clupea pallasii pallasii,Pacific Herring,muscle,27,135,83,1.7,NA,NA,NA,6431,NA,NA
+Clupea pallasii pallasii,Pacific Herring,whole,27,136,NA,NA,NA,NA,NA,6431,NA,NA
+Coregonus artedi,Lake Herring,muscle,27,143,12,NA,NA,NA,NA,6388,NA,NA
+Coregonus artedi,Lake Herring,whole,27,144,NA,NA,NA,NA,NA,6388,NA,NA
+Coregonus artedi,Lake Herring,viscera,27,145,NA,NA,NA,NA,NA,6388,NA,NA
+Coregonus clupeaformis,Lake Whitefish,muscle,27,169,NA,NA,1.3,NA,NA,6388,NA,NA
+Coregonus clupeaformis,Lake Whitefish,muscle,2,170,25.7,0.3,0.3,0.059,0.251,6388,NA,NA
+Coregonus clupeaformis,Lake Whitefish,viscera,27,172,NA,NA,NA,NA,NA,6388,NA,NA
+Coregonus nasus,Broad Whitefish,muscle,34,176,NA,NA,NA,NA,NA,6388,NA,NA
+Coregonus nasus,Broad Whitefish,muscle_organs,34,179,NA,3.9,NA,NA,NA,6388,NA,NA
+Coregonus nasus,Broad Whitefish,liver,34,181,NA,8.6,NA,NA,NA,6388,NA,NA
+Coregonus nasus,Broad Whitefish,eggs,34,183,NA,0.9,NA,NA,NA,6388,NA,NA
+Cottidae,Sculpins,muscle,27,186,NA,NA,NA,NA,NA,6438,NA,NA
+Couesius plumbeus,Lake Chub,muscle,27,188,NA,NA,NA,NA,NA,6408,NA,NA
+Crassostrea virginica,Eastern Oyster,muscle,55,190,NA,NA,NA,0.11,0.09,6507,NA,NA
+Crassostrea virginica,Eastern Oyster,muscle,65,191,61,7.65,82.5,NA,NA,6507,NA,NA
+Cyclopterus lumpus,Lumpfish,muscle,27,196,NA,NA,NA,NA,NA,6437,NA,NA
+Cyclopterus lumpus,Lumpfish,eggs,27,197,NA,NA,NA,NA,NA,6437,NA,NA
+Cyclopterus lumpus,Lumpfish,whole,27,198,NA,NA,NA,NA,NA,6437,NA,NA
+Cyprinus carpio,Common Carp,muscle,27,203,37,1.25,4.7,NA,NA,6408,NA,NA
+Cyprinus carpio,Common Carp,whole,27,204,NA,NA,NA,NA,NA,6408,NA,NA
+Dallia pectoralis,Alaska Blackfish,whole,34,210,236,4.6,NA,NA,NA,6413,NA,NA
+Dallia pectoralis,Alaska Blackfish,muscle,11,211,880,NA,NA,NA,NA,6413,NA,NA
+Eleginus gracilis,Saffron Cod,muscle,34,213,NA,NA,NA,NA,NA,6432,NA,NA
+Eleginus gracilis,Saffron Cod,liver,34,214,6,3.8,NA,NA,NA,6432,NA,NA
+Engraulidae,Anchovies,muscle,27,217,150,1.53,0.88,NA,NA,6445,NA,NA
+Engraulidae,Anchovies,whole,27,218,2150,NA,NA,NA,NA,6445,NA,NA
+Ensis directus,Atlantic Jackknife Clam,whole,27,221,50,11,6.32,NA,NA,6504,NA,NA
+Enteroctopus dofleini,Pacific Giant Octopus,muscle,19,223,24,5.3,NA,NA,NA,6527,NA,NA
+Esox lucius,Northern Pike,muscle,34,232,NA,0.55,NA,NA,NA,6404,NA,NA
+Esox lucius,Northern Pike,muscle,44,233,19.894,0.217,0.581,NA,NA,6404,NA,NA
+Esox lucius,Northern Pike,muscle,59,236,NA,NA,NA,0.044,0.217,6404,NA,NA
+Esox lucius,Northern Pike,muscle,27,239,259,0.47,1.11,NA,NA,6404,NA,NA
+Esox lucius,Northern Pike,muscle,2,240,32.6,0.2,0.4,0.044,0.165,6404,NA,NA
+Esox lucius,Northern Pike,viscera,27,241,NA,NA,NA,NA,NA,6404,NA,NA
+Esox lucius,Northern Pike,liver,34,246,NA,NA,NA,NA,NA,6404,NA,NA
+Esox spp.,Pike,muscle,40,248,NA,NA,NA,NA,NA,6404,NA,NA
+Esox spp.,Pike,muscle,11,252,80,NA,NA,NA,NA,6404,NA,NA
+Esox spp.,Pike,muscle,11,254,62,NA,NA,NA,NA,6404,NA,NA
+Esox spp.,Pike,muscle,11,256,28,NA,NA,NA,NA,6404,NA,NA
+Esox spp.,Pike,muscle,27,259,40,0.59,NA,NA,NA,6404,NA,NA
+Gadidae,Cod and Relatives,muscle,27,262,30,NA,0.793,NA,NA,6432,NA,NA
+Gadidae,Cod and Relatives,whole,27,264,NA,NA,NA,NA,NA,6432,NA,NA
+Gadiformes,Cod and Relatives,muscle,55,266,NA,NA,NA,0.08,0.23,6432,NA,NA
+Gadiformes,Cod and Relatives,muscle,27,270,15,0.478,1.05,NA,NA,6432,NA,NA
+Gadiformes,Cod and Relatives,eggs,27,272,NA,NA,NA,NA,NA,6432,NA,NA
+Gadus macrocephalus,Pacific Cod,muscle,27,278,NA,NA,NA,NA,NA,6432,NA,NA
+Gadus macrocephalus,Pacific Cod,viscera,27,279,NA,NA,NA,NA,NA,6432,NA,NA
+Gadus macrocephalus,Pacific Cod,eggs,27,280,NA,NA,NA,NA,NA,6432,NA,NA
+Gadus morhua,Atlantic Cod,muscle,55,283,NA,NA,NA,0.08,0.23,6432,NA,NA
+Gadus morhua,Atlantic Cod,muscle,59,284,NA,NA,NA,0.087,0.195,6432,NA,NA
+Gadus morhua,Atlantic Cod,muscle,27,288,16,1.75,0.589,NA,NA,6432,NA,NA
+Gadus morhua,Atlantic Cod,muscle,55,290,NA,NA,NA,NA,NA,6432,NA,NA
+Gadus morhua,Atlantic Cod,whole,27,295,NA,NA,NA,NA,NA,6432,NA,NA
+Gadus morhua,Atlantic Cod,viscera,27,296,NA,NA,NA,NA,NA,6432,NA,NA
+Gastropoda,Sea Snails and relatives,whole,27,306,179,2.5,NA,NA,NA,2223,NA,NA
+Haliotididae,Abalones,muscle,27,311,34,2.06,1.42,NA,NA,6510,NA,NA
+Hexagrammos spp.,Greenlings,muscle,27,312,12,1,NA,NA,NA,6433,NA,NA
+Hippoglossinae,Halibut,muscle,55,313,NA,NA,NA,0.16,0.22,6152,NA,NA
+Hippoglossinae,Halibut,muscle,27,318,19,1,NA,NA,NA,6152,NA,NA
+Hippoglossus hippoglossus,Atlantic Halibut,muscle,27,321,NA,NA,NA,NA,NA,6152,NA,NA
+Hippoglossus hippoglossus,Atlantic Halibut,muscle,27,322,NA,NA,NA,NA,NA,6152,NA,NA
+Hippoglossus hippoglossus,Atlantic Halibut,muscle,27,324,NA,NA,NA,NA,NA,6152,NA,NA
+Hippoglossus hippoglossus,Atlantic Halibut,muscle,55,325,NA,NA,NA,0.16,0.22,6152,NA,NA
+Hippoglossus stenolepis,Pacific Halibut,muscle,27,331,NA,NA,NA,NA,NA,6152,NA,NA
+Hippoglossus stenolepis,Pacific Halibut,muscle,27,332,NA,NA,NA,NA,NA,6152,NA,NA
+Hippoglossus stenolepis,Pacific Halibut,muscle,27,333,22,0.09,0.08,NA,NA,6152,NA,NA
+Homarus americanus,American lobster,muscle,55,337,NA,NA,NA,0.24,0.12,6520,NA,NA
+Hydrolagus spp.,Ratfish,muscle,27,342,NA,NA,NA,NA,NA,6444,NA,NA
+Hypomesus olidus,Pond Smelt,whole,27,344,750,NA,NA,NA,NA,6418,NA,NA
+Hypomesus olidus,Pond Smelt,muscle,27,345,NA,5,NA,NA,NA,6418,NA,NA
+Ictaluridae,Catfish,muscle,27,351,225,1.58,NA,NA,NA,6410,NA,NA
+Ictalurus punctatus,Channel Catfish,muscle,27,356,46,NA,0.83,NA,NA,6410,NA,NA
+Illex illecebrosus,Northern Shortfin Squid,muscle,27,357,NA,NA,NA,NA,NA,6528,NA,NA
+Illex illecebrosus,Northern Shortfin Squid,muscle,55,359,NA,NA,NA,0.27,0.64,6528,NA,NA
+Katharina turnicata,Black Katy Chiton,muscle,19,361,121,16,NA,NA,NA,6548,NA,NA
+Lepidopsetta bilineata,Rock Sole,muscle,27,362,NA,NA,NA,NA,NA,6152,NA,NA
+Lepisosteidae,Gar,muscle,27,364,33,NA,NA,NA,NA,6417,NA,NA
+Lepomis spp.,Sunfish,muscle,27,369,NA,0.34,NA,NA,NA,6415,NA,NA
+Littorina littorea,Common Periwinkle,whole,27,371,NA,1.51,NA,NA,NA,6512,NA,NA
+Littorinidae,Periwinkles,whole,27,374,NA,NA,NA,NA,NA,6512,NA,NA
+Lota lota,Burbot,muscle,40,375,NA,NA,NA,NA,NA,6405,NA,NA
+Lota lota,Burbot,muscle,34,378,NA,0.6,NA,NA,NA,6405,NA,NA
+Lota lota,Burbot,muscle,59,383,NA,NA,NA,0.063,0.135,6405,NA,NA
+Lota lota,Burbot,liver,59,394,NA,NA,NA,0.484,0.773,6405,NA,NA
+Lota lota,Burbot,eggs,59,399,NA,NA,NA,0.673,1.14,6405,NA,NA
+Lota lota,Burbot,muscle,27,403,NA,NA,NA,NA,NA,6405,NA,NA
+Lota lota,Burbot,whole,27,404,NA,NA,NA,NA,NA,6405,NA,NA
+Mallotus villosus,Capelin,muscle,55,408,NA,NA,NA,0.65,0.2,6439,NA,NA
+Melanogrammus aeglefinus,Haddock,muscle,27,411,27,0.679,0.788,NA,NA,6432,NA,NA
+Melanogrammus aeglefinus,Haddock,whole,27,414,NA,NA,NA,NA,NA,6432,NA,NA
+Melanogrammus aeglefinus,Haddock,muscle,55,417,NA,NA,NA,0.07,0.14,6432,NA,NA
+Melanogrammus aeglefinus,Haddock,muscle,55,419,NA,NA,NA,0.07,0.14,6432,NA,NA
+Mercenaria mercenaria ,Northern Quahog,muscle,55,428,NA,NA,NA,0.09,0.08,6504,NA,NA
+Merluccius productus,Pacific Hake,muscle,27,433,46,NA,NA,NA,NA,6432,NA,NA
+Merluccius productus,Pacific Hake,whole,27,434,NA,NA,NA,NA,NA,6432,NA,NA
+Merluccius spp.,Hakes,muscle,55,436,NA,NA,NA,0.05,0.22,6432,NA,NA
+Merluccius spp.,Hakes,muscle,27,438,93,1.85,NA,NA,NA,6432,NA,NA
+Merluccius spp.,Hakes,whole,27,439,NA,NA,NA,NA,NA,6432,NA,NA
+Merluccius spp.,Hakes,eggs,27,440,NA,NA,NA,NA,NA,6432,NA,NA
+Microgadus tomcod,Atlantic Tomcod,muscle,11,441,372,NA,NA,NA,NA,6432,NA,NA
+Microgadus tomcod,Atlantic Tomcod,muscle,27,446,NA,NA,NA,NA,NA,6432,NA,NA
+Micropogonias undulatus,Atlantic Croaker,muscle,65,451,15,0.372,0.371,NA,NA,6437,NA,NA
+Micropogonias undulatus,Atlantic Croaker,muscle,27,452,118,1.58,NA,NA,NA,6437,NA,NA
+Micropogonias undulatus,Atlantic Croaker,whole,27,453,NA,NA,NA,NA,NA,6437,NA,NA
+Micropterus spp.,Bass,muscle,44,456,14.8,0.283,0.419,NA,NA,6409,NA,NA
+Microstomus pacificus,Dover Sole,muscle,25,457,NA,NA,NA,0.08,0.09,6152,NA,NA
+Microstomus pacificus,Dover Sole,muscle,27,458,50,NA,NA,NA,NA,6152,NA,NA
+Microstomus pacificus,Dover Sole,whole,27,459,NA,NA,NA,NA,NA,6152,NA,NA
+Microstomus pacificus,Dover Sole,viscera,27,460,NA,NA,NA,NA,NA,6152,NA,NA
+Morone saxatilis,Striped Bass,muscle,27,466,15,NA,0.27,NA,NA,6437,NA,NA
+Morone saxatilis,Striped Bass,viscera,27,467,NA,NA,NA,NA,NA,6437,NA,NA
+Mugil cephalus,Flathead Gray Mullet,muscle,27,474,51,1.7,0.398,NA,NA,6437,NA,NA
+Mugil cephalus,Flathead Gray Mullet,whole,27,475,195,NA,NA,NA,NA,6437,NA,NA
+Mya arenaria,Softshell Clam,whole,27,479,53,40.5,1.7,NA,NA,6504,NA,NA
+Myoxocephalus scorpius,Shorthorn Sculpin,muscle,50,484,NA,NA,4.3,NA,NA,6438,NA,NA
+Myoxocephalus scorpius,Shorthorn Sculpin,liver,50,485,NA,NA,10,NA,NA,6438,NA,NA
+Myoxocephalus spp.,Shorthorn and Fourhorn Sculpins,muscle,11,486,329,NA,NA,NA,NA,6438,NA,NA
+Myoxocephalus spp.,Shorthorn and Fourhorn Sculpins,muscle,34,489,12,0.4,NA,NA,NA,6438,NA,NA
+Mytilidae,Mussels,muscle,55,490,NA,NA,NA,0.13,0.17,6505,NA,NA
+Mytilidae,Mussels,whole,27,491,101,17,3.63,NA,NA,6505,NA,NA
+Mytilidae,Mussels,whole,27,492,NA,NA,NA,NA,NA,6505,NA,NA
+Mytilus edulis,Blue Mussel,muscle,55,496,NA,NA,NA,0.13,0.17,6505,NA,NA
+Mytilus edulis,Blue Mussel,whole,27,500,85,10.8,3.95,NA,NA,6505,NA,NA
+Nassarius spp.,Mudsnails,whole,27,504,NA,NA,NA,NA,NA,6515,NA,NA
+Nephropidae,Lobsters,muscle,55,506,NA,NA,NA,0.24,0.12,6520,NA,NA
+Nephropidae,Lobsters,muscle,27,508,39,1.57,0.82,NA,NA,6520,NA,NA
+Nephropidae,Lobsters,whole,27,509,NA,NA,2.2,NA,NA,6520,NA,NA
+Notropis hudsonius,Spottail Shiner,whole,27,510,NA,NA,NA,NA,NA,6408,NA,NA
+Octopoda,Octopus,muscle,27,518,22,1.27,1.73,NA,NA,6527,NA,NA
+Octopoda,Octopus,eggs,27,519,NA,NA,NA,NA,NA,6527,NA,NA
+Oncorhynchus gorbuscha,Pink Salmon,muscle,27,526,13,0.93,NA,NA,NA,6446,NA,NA
+Oncorhynchus gorbuscha,Pink Salmon,eggs,27,527,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus gorbuscha,Pink Salmon,muscle,55,530,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus keta,Chum Salmon,muscle,34,534,11,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus keta,Chum Salmon,muscle,27,536,12,0.475,1.37,NA,NA,6446,NA,NA
+Oncorhynchus keta,Chum Salmon,whole,27,537,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus keta,Chum Salmon,eggs,27,538,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus keta,Chum Salmon,muscle,55,541,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus kisutch,Coho Salmon,muscle,8,543,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus kisutch,Coho Salmon,muscle,27,547,36,1.345,NA,NA,NA,6446,NA,NA
+Oncorhynchus kisutch,Coho Salmon,muscle,55,548,NA,NA,NA,7.6,18.6,6446,NA,NA
+Oncorhynchus kisutch,Coho Salmon,muscle,55,549,NA,NA,NA,6.2,15.8,6446,NA,NA
+Oncorhynchus kisutch,Coho Salmon,eggs,27,550,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,muscle,11,553,54,NA,NA,NA,NA,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,muscle,8,557,NA,NA,NA,NA,NA,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,muscle,59,559,NA,NA,NA,0.377,1.05,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,liver,11,561,9,NA,NA,NA,NA,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,muscle,27,564,32,2.37,1.28,NA,NA,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,whole,27,566,NA,3.392,11.8,NA,NA,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,eggs,27,567,NA,NA,NA,NA,NA,6151,NA,NA
+Oncorhynchus mykiss,Rainbow Trout,eggs,59,568,NA,NA,NA,0.459,1.44,6151,NA,NA
+Oncorhynchus nerka,Sockeye Salmon,muscle,28,579,NA,NA,NA,0.22,0.57,6446,NA,NA
+Oncorhynchus nerka,Sockeye Salmon,muscle,28,580,NA,NA,NA,1.88,3.67,6446,NA,NA
+Oncorhynchus nerka,Sockeye Salmon,muscle,27,581,176,1.18,NA,NA,NA,6446,NA,NA
+Oncorhynchus nerka,Sockeye Salmon,whole,27,582,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus nerka,Sockeye Salmon,viscera,27,583,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus nerka,Sockeye Salmon,eggs,27,584,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,eggs,34,588,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,eggs,27,589,NA,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,eggs,11,590,30,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,25,595,NA,NA,NA,0.44,0.55,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,liver,11,598,28,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,11,600,20,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,11,602,22,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,11,604,14,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,27,606,20,0.9,0.8,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,liver,34,611,NA,2.6,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,11,612,20,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,11,613,22,NA,NA,NA,NA,6446,NA,NA
+Oncorhynchus tshawytscha,Chinook Salmon,muscle,11,614,14,NA,NA,NA,NA,6446,NA,NA
+Ophiodon elongatus,Lingcod,liver,34,619,5,1,NA,NA,NA,6433,NA,NA
+Ophiodon elongatus,Lingcod,muscle,27,622,35,0.49,0.03,NA,NA,6433,NA,NA
+Osmerus mordax,Rainbow Smelt,muscle,55,625,NA,0.9,1.65,0.12,0.18,6451,NA,NA
+Osmerus mordax,Rainbow Smelt,muscle,27,626,NA,NA,2,NA,NA,6451,NA,NA
+Osmerus mordax,Rainbow Smelt,whole,27,628,NA,NA,NA,NA,NA,6451,NA,NA
+Osmerus mordax,Rainbow Smelt,muscle_organs,34,634,74,0.6,NA,NA,NA,6451,NA,NA
+Ostrea lurida,Olympia Oyster,whole,27,635,68,10.3,NA,NA,NA,6507,NA,NA
+Ostreidae,Oysters,muscle,27,643,NA,NA,NA,NA,NA,6507,NA,NA
+Ostreidae,Oysters,whole,27,644,111,8.185,23.2,NA,NA,6507,NA,NA
+Parastichopus californicus,Giant California Sea Cucumber,muscle,19,646,30,0.6,NA,NA,NA,6524,NA,NA
+Parophrys vetulus,English Sole,muscle,27,648,NA,NA,NA,NA,NA,6152,NA,NA
+Parophrys vetulus,English Sole,viscera,27,649,NA,NA,NA,NA,NA,6152,NA,NA
+Pectinidae,Scallops,muscle,55,655,NA,NA,NA,0.19,0.18,6508,NA,NA
+Pectinidae,Scallops,muscle,65,656,9.2,0.107,1.22,NA,NA,6508,NA,NA
+Pectinidae,Scallops,muscle,27,657,46,1.1,NA,NA,NA,6508,NA,NA
+Perca flavescens,Yellow Perch,muscle,44,660,59.77,0.209,0.546,NA,NA,6411,NA,NA
+Perca flavescens,Yellow Perch,muscle,27,662,NA,0.56,1.2,NA,NA,6411,NA,NA
+Perca flavescens,Yellow Perch,whole,27,663,NA,NA,NA,NA,NA,6411,NA,NA
+Perca flavescens,Yellow Perch,viscera,27,664,NA,NA,NA,NA,NA,6411,NA,NA
+Percidae,Perch and Darters,muscle,59,667,NA,NA,NA,0.054,0.245,6411,NA,NA
+Percidae,Perch and Darters,muscle,27,669,NA,NA,1.285,NA,NA,6411,NA,NA
+Petromyzontinae,Lampreys,muscle,27,670,16,NA,NA,NA,NA,6452,NA,NA
+Platichthys stellatus,Starry Flounder,muscle,27,672,NA,NA,NA,NA,NA,6152,NA,NA
+Pleuronectinae,Flounders and Soles,muscle,27,679,NA,NA,NA,NA,NA,6152,NA,NA
+Pleuronectinae,Flounders and Soles,eggs,27,680,NA,NA,NA,NA,NA,6152,NA,NA
+Pleuronectinae,Flounders and Soles,whole,27,681,NA,NA,NA,NA,NA,6152,NA,NA
+Pomatomus saltatrix,Bluefish,muscle,65,685,6.8,0.452,0.763,NA,NA,6437,NA,NA
+Pomatomus saltatrix,Bluefish,muscle,27,686,59,5.2,NA,NA,NA,6437,NA,NA
+Pseudopleuronectes americanus,Winter Flounder,muscle,65,689,13.2,0.103,0.394,NA,NA,6152,NA,NA
+Pseudopleuronectes americanus,Winter Flounder,muscle,55,690,NA,NA,NA,0.07,0.12,6152,NA,NA
+Pseudopleuronectes americanus,Winter Flounder,muscle,55,691,NA,NA,NA,0.07,0.12,6152,NA,NA
+Pseudopleuronectes americanus,Winter Flounder,muscle,27,692,NA,NA,NA,NA,NA,6152,NA,NA
+Pseudopleuronectes americanus,Winter Flounder,viscera,27,693,NA,NA,NA,NA,NA,6152,NA,NA
+Ptychocheilus spp.,Pikeminnows,muscle,27,695,NA,NA,NA,NA,NA,6408,NA,NA
+Pungitius pungitius,Ninespine Stickleback,whole,11,696,901,NA,NA,NA,NA,6419,NA,NA
+Pungitius pungitius,Ninespine Stickleback,whole,34,699,93,6.2,NA,NA,NA,6419,NA,NA
+Rajidae,Skates,muscle,27,700,38,0.075,0.98,NA,NA,6441,NA,NA
+Rajidae,Rays,muscle,27,701,123,NA,NA,NA,NA,6441,NA,NA
+Salmo salar,Atlantic Salmon,muscle,59,713,NA,NA,NA,0.345,1,6446,NA,NA
+Salmo salar,Atlantic Salmon,muscle,27,717,15,1.15,0.47,NA,NA,6446,NA,NA
+Salmo salar,Atlantic Salmon,muscle,2,720,11.6,0.4,0.6,0.269,0.612,6446,NA,NA
+Salmo trutta,Brown Trout,muscle,27,725,20,1,0.46,NA,NA,6151,NA,NA
+Salvelinus alpinus,Arctic Char,muscle,30,729,34,1.8,0.8,NA,NA,6449,NA,NA
+Salvelinus alpinus,Arctic Char,muscle,9,732,18.8,0.32,0.6,NA,NA,6449,NA,NA
+Salvelinus alpinus,Arctic Char,muscle,2,743,7.2,0.7,0.6,0.78,0.69,6449,NA,NA
+Salvelinus alpinus,Arctic Char,muscle,50,744,NA,NA,2.3,NA,NA,6449,NA,NA
+Salvelinus alpinus,Arctic Char,muscle,27,745,NA,NA,NA,NA,NA,6449,NA,NA
+Salvelinus alpinus,Arctic Char,liver,50,748,NA,NA,13,NA,NA,6449,NA,NA
+Salvelinus fontinalis,Brook Trout,muscle,65,753,14.3,0.226,0.471,NA,NA,6151,NA,NA
+Salvelinus fontinalis,Brook Trout,whole,27,757,NA,NA,NA,NA,NA,6151,NA,NA
+Salvelinus fontinalis,Brook Trout,whole,27,759,NA,NA,NA,NA,NA,6151,NA,NA
+Salvelinus fontinalis,Brook Trout,muscle,27,763,NA,NA,NA,NA,NA,6151,NA,NA
+Salvelinus fontinalis,Brook Trout,muscle,2,765,9.3,0.3,0.5,0.112,0.322,6151,NA,NA
+Salvelinus fontinalis,Brook Trout,muscle,27,766,38,1.2,0.46,NA,NA,6151,NA,NA
+Salvelinus malma,Dolly Varden Trout,muscle,34,768,NA,NA,NA,NA,NA,6151,NA,NA
+Salvelinus malma,Dolly Varden Trout,muscle,27,769,NA,NA,NA,NA,NA,6151,NA,NA
+Salvelinus namaycush,Lake Trout,muscle,2,780,6.1,0.3,0.4,0.072,0.232,6151,NA,NA
+Salvelinus namaycush,Lake Trout,muscle,27,781,NA,0.478,0.21,NA,NA,6151,NA,NA
+Salvelinus namaycush,Lake Trout,viscera,27,782,NA,NA,NA,NA,NA,6151,NA,NA
+Sardinops spp.,Sardine,whole,27,788,554,5.25,NA,NA,NA,6431,NA,NA
+Sardinops spp.,Sardine,muscle,27,789,73,2.313,1.03,NA,NA,6431,NA,NA
+Saxidomus gigantea,Washington Butterclam,whole,27,791,41,NA,NA,NA,NA,6504,NA,NA
+Scomber scombrus,Atlantic Mackerel,muscle,27,797,8,1.01,0.639,NA,NA,6442,NA,NA
+Scomber scombrus,Atlantic Mackerel,muscle,55,799,NA,NA,NA,NA,NA,6442,NA,NA
+Scomber scombrus,Atlantic Mackerel,muscle,27,800,NA,NA,NA,NA,NA,6442,NA,NA
+Scomber scombrus,Atlantic Mackerel,muscle,55,801,NA,NA,NA,NA,NA,6442,NA,NA
+Scomber scombrus,Atlantic Mackerel,viscera,27,802,NA,NA,NA,NA,NA,6442,NA,NA
+Scomber scombrus,Atlantic Mackerel,muscle,55,808,NA,NA,NA,1.45,2.16,6442,NA,NA
+Scomber spp.,Mackerel,muscle,55,811,NA,NA,NA,1.45,2.16,6442,NA,NA
+Scomber spp.,Mackerel,muscle,27,812,22,1.409,0.538,NA,NA,6442,NA,NA
+Scombridae,Tuna and Mackerel,muscle,27,816,12,1,1.13,NA,NA,6442,NA,NA
+Sebastes flavidus,Yellowtail Rockfish,muscle,27,817,8,NA,NA,NA,NA,6436,NA,NA
+Sebastes flavidus,Yellowtail Rockfish,muscle,27,818,NA,NA,NA,NA,NA,6436,NA,NA
+Sebastes norvegicus,Golden Redfish,muscle,27,821,141,0.633,0.683,NA,NA,6436,NA,NA
+Sebastes norvegicus,Golden Redfish,whole,27,823,NA,NA,NA,NA,NA,6436,NA,NA
+Sebastes norvegicus,Golden Redfish,viscera,27,825,NA,NA,NA,NA,NA,6436,NA,NA
+Sebastes norvegicus,Golden Redfish,muscle,55,827,NA,NA,NA,0.14,0.07,6436,NA,NA
+Sebastes pinniger,Canary Rockfish,muscle,27,834,NA,NA,NA,NA,NA,6436,NA,NA
+Sebastes spp.,Rockfish,muscle,59,840,NA,NA,NA,0.373,0.649,6436,NA,NA
+Sebastes spp.,Rockfish,muscle,55,841,NA,NA,NA,0.14,0.07,6436,NA,NA
+Sebastes spp.,Rockfish,muscle,27,844,NA,NA,0.147,NA,NA,6436,NA,NA
+Sebastes spp.,Rockfish,viscera,27,845,NA,NA,NA,NA,NA,6436,NA,NA
+Somniosus microcephalus,Greenland Shark,muscle,27,846,NA,NA,NA,NA,NA,6440,NA,NA
+Sparidae,Porgies,muscle,27,847,35,0.933,NA,NA,NA,6437,NA,NA
+Sparidae,Porgies,muscle,27,848,47,0.982,1.92,NA,NA,6437,NA,NA
+Sparidae,Porgies,muscle,59,849,NA,NA,NA,0.199,0.273,6437,NA,NA
+Sparidae,Porgies,eggs,27,852,NA,NA,NA,NA,NA,6437,NA,NA
+Spisula solidissima,Atlantic Surf Clam,muscle,55,856,NA,NA,NA,0.15,0.21,6504,NA,NA
+Spisula solidissima,Atlantic Surf Clam,muscle,55,858,NA,NA,NA,0.15,0.21,6504,NA,NA
+Spisula solidissima,Atlantic Surf Clam,muscle,27,859,41,NA,NA,NA,NA,6504,NA,NA
+Squaliformes,Sharks,muscle,27,863,48,1.4,NA,NA,NA,6440,NA,NA
+Squalus acanthias,Spiny Dogfish,eggs,27,864,NA,NA,NA,NA,NA,6440,NA,NA
+Squalus acanthias,Spiny Dogfish,muscle,27,867,NA,NA,0.52,NA,NA,6440,NA,NA
+Squalus acanthias,Spiny Dogfish,muscle,27,869,11,1.25,0.819,NA,NA,6440,NA,NA
+Squalus acanthias,Spiny Dogfish,eggs,27,870,NA,NA,NA,NA,NA,6440,NA,NA
+Stenodus leucichthys,Inconnu,muscle,27,879,NA,NA,NA,NA,NA,6388,NA,NA
+Thaleichthys pacificus,Eulachon,muscle,38,882,273,1.6,1.3,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,muscle,5,883,NA,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,muscle,55,886,NA,NA,NA,0.12,0.18,6448,NA,NA
+Thaleichthys pacificus,Eulachon,oil,6,888,NA,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,oil,5,889,NA,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,oil,38,890,NA,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,oil,39,892,6.8,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,whole,27,895,NA,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,whole,11,897,476,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,muscle,27,899,NA,NA,NA,NA,NA,6448,NA,NA
+Thaleichthys pacificus,Eulachon,eggs,11,900,32,NA,NA,NA,NA,6448,NA,NA
+Thunnus alalunga,Albacore,muscle,27,905,NA,NA,NA,NA,NA,6442,NA,NA
+Thunnus thynnus,Bluefin Tuna,muscle,27,909,NA,NA,NA,NA,NA,6442,NA,NA
+Thunnus thynnus,Bluefin Tuna,muscle,27,910,NA,NA,NA,NA,NA,6442,NA,NA
+Thunnus thynnus,Bluefin Tuna,muscle,27,911,8,1.5,NA,NA,NA,6442,NA,NA
+Thymallus arcticus,Arctic Grayling,muscle,34,915,NA,NA,NA,NA,NA,6406,NA,NA
+Thymallus arcticus,Arctic Grayling,muscle,11,917,532,NA,NA,NA,NA,6406,NA,NA
+Alosa sapidissima,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,5,Finfish
+Alosa sapidissima,NA,NA,fi125,NA,14.4,0.9444,0.3792,NA,NA,NA,5,Finfish
+Alosa sapidissima,NA,NA,SR27,NA,47,0.97,0.37,1.086,1.321,NA,5,Finfish
+Anguilla rostrata,NA,NA,fi21,NA,NA,NA,NA,0.0856776,0.1595376,NA,10,Finfish
+Anoplopoma fimbria,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,11,Finfish
+Anoplopoma fimbria,NA,NA,fi36,NA,NA,NA,NA,0.35,0.42,NA,11,Finfish
+Anoplopoma fimbria,NA,NA,SR27,NA,35,1.28,0.32,0.677,0.718,NA,11,Finfish
+Aplodinotus grunniens,NA,NA,SR27,NA,60,0.9,0.66,0.23,0.287,NA,12,Finfish
+Callinectes sapidus,NA,NA,fi221,NA,NA,NA,NA,NA,NA,NA,16,Crustacean
+Callinectes sapidus,NA,NA,fi221,NA,NA,NA,NA,NA,NA,NA,16,Crustacean
+Callinectes sapidus,NA,NA,SR27,NA,89,0.74,3.54,0.17,0.15,NA,16,Crustacean
+Cancer magister,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,19,Crustacean
+Cancer magister,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,19,Crustacean
+Cancer magister,NA,NA,SR27,NA,46,0.37,4.27,0.219,0.088,NA,19,Crustacean
+Catostomus commersoni,NA,NA,fi141,NA,NA,NA,NA,NA,NA,NA,24,Finfish
+Catostomus commersoni,NA,NA,SR27,NA,70,1.3,0.75,0.19,0.289,NA,24,Finfish
+Clinocardium nuttallii,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,26,Molluscs
+Clupea harengus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi244,NA,47.7,0.88,0.44,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi244,NA,23.8,0.87,0.5,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi74,NA,NA,NA,NA,0.205817752,0.679594407,NA,27,Finfish
+Clupea harengus,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi119,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi119,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,27,Finfish
+Clupea harengus,NA,NA,fi146,NA,NA,NA,NA,0.146682,0.32103,NA,27,Finfish
+Clupea harengus,NA,NA,DK7,NA,50,1.3,0.85,2.8,2.52,NA,27,Finfish
+Clupea harengus,NA,NA,DK7,NA,50,1.3,0.85,0.583,1.34,NA,27,Finfish
+Clupea harengus,NA,NA,SR27,NA,57,1.1,0.99,0.709,0.862,NA,27,Finfish
+Clupea pallasii,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,28,Finfish
+Clupea pallasi,NA,NA,fi59,NA,NA,NA,NA,0.866548276,0.850684692,NA,28,Finfish
+Clupea pallasii,NA,NA,SR27,NA,83,1.12,0.53,0.969,0.689,NA,28,Finfish
+Coregonus artedi,NA,NA,SR27,NA,12,0.4,0.37,0.095,0.257,NA,29,Finfish
+Coregonus clupeaformis,NA,NA,fi4,NA,7,0.23,0.4,NA,NA,NA,31,Finfish
+Coregonus clupeaformis,NA,NA,fi4,NA,5,0.3,0.6,NA,NA,NA,31,Finfish
+Coregonus clupeaformis,NA,NA,fi4,NA,5,0.2,0.4,NA,NA,NA,31,Finfish
+Crassostrea virginica,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,35,Molluscs
+Crassostrea virginica,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,35,Molluscs
+Crassostrea virginica,NA,NA,SR27,NA,59,4.61,39.3,0.177,0.136,NA,35,Mollusc
+Crassostrea virginica,NA,NA,SR27,NA,44,5.78,37.92,0.188,0.203,NA,35,Mollusc
+Cyclopterus lumpus,NA,NA,im11,NA,7.9,0.46,0.61,NA,NA,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,16,0.34,1.35,NA,NA,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,4.5,1.93,2.61,NA,NA,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,NA,NA,NA,0.922597746,1.582811631,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,NA,NA,NA,0.716296458,1.111066476,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,NA,NA,NA,0.790729074,1.095857717,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,NA,NA,NA,1.988751156,2.012968768,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,NA,NA,NA,1.436085114,1.522607588,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,im11,NA,NA,NA,NA,1.39754671,1.463037526,NA,37,Finfish
+Cyclopterus lumpus,NA,NA,DK7,NA,20,0.5,NA,1.1,0.944,NA,37,Finfish
+Cyprinus carpio,NA,NA,fi17,NA,NA,NA,NA,NA,0.014040524,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi41,NA,NA,NA,NA,NA,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi44,NA,NA,NA,NA,NA,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi75,NA,NA,NA,NA,0.1597524,0.2380624,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi16,NA,NA,NA,1.25,NA,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi27,NA,NA,NA,NA,0.171254403,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi32,NA,52,0.6,0.9,NA,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi32,NA,69,0.6,0.9,NA,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi34,NA,NA,NA,NA,0.039733144,0.055667084,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi47,NA,NA,NA,NA,0.011632,0.05816,NA,38,Finfish
+Cyprinus carpio,NA,NA,fi71,NA,NA,NA,0.165168,NA,NA,NA,38,Finfish
+Cyprinus carpio,NA,NA,SR27,NA,41,1.24,1.48,0.238,0.114,NA,38,Finfish
+Esox lucius,NA,NA,fi41,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi4,NA,7,0.1,1.1,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi4,NA,8,0.1,1,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi26,NA,11.8859,0.10481,0.62663,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi26,NA,10.6455,0.106455,0.613815,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi26,NA,10.4566,0.08624,1.155616,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi110,NA,NA,NA,NA,0.008528929,0.035752452,NA,44,Finfish
+Esox lucius,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,DK7,NA,50,0.3,0.96,NA,NA,NA,44,Finfish
+Esox lucius,NA,NA,SR27,NA,57,0.55,0.67,0.033,0.074,NA,44,Finfish
+Gadus macrocephalus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,49,Finfish
+Gadus macrocephalus,NA,NA,fi30,NA,NA,NA,NA,0.054679898,0.144061265,NA,49,Finfish
+Gadus macrocephalus,NA,NA,fi125,NA,10.8,0.2099,0.416,NA,NA,NA,49,Finfish
+Gadus macrocephalus,NA,NA,fi125,NA,11.3,0.165,0.3627,NA,NA,NA,49,Finfish
+Gadus macrocephalus,NA,NA,fi125,NA,13.3,0.1581,0.3731,NA,NA,NA,49,Finfish
+Gadus macrocephalus,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,49,Finfish
+Gadus macrocephalus,NA,NA,SR27,NA,8,0.16,0.31,0.034,0.096,NA,49,Finfish
+Gadus morhua,NA,NA,fi74,NA,NA,NA,NA,0.004089305,0.027430143,NA,50,Finfish
+Gadus morhua,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,fi45,NA,NA,NA,NA,0.028,0.075,NA,50,Finfish
+Gadus morhua,NA,NA,fi244,NA,1.6,0.5,0.37,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,fi122,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,fi146,NA,NA,NA,NA,0.063226,0.152914,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,8.7,0.12,0.34,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,8.2,0.66,4.27,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,0.05697345,0.129272235,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,0.057327117,0.14931632,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,0.073775946,0.18396877,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,im11,NA,NA,NA,NA,NA,NA,NA,50,Finfish
+Gadus morhua,NA,NA,DK7,NA,15,0.2,0.38,0.132,0.132,NA,50,Finfish
+Gadus morhua,NA,NA,DK7,NA,10,4,1.94,6.41,4.76,NA,50,Finfish
+Gadus morhua,NA,NA,DK7,NA,10,1.5,2.2,0.345,0.575,NA,50,Finfish
+Gadus morhua,NA,NA,SR27,NA,16,0.38,0.45,0.064,0.12,NA,50,Finfish
+Hippoglossus hippoglossus,NA,NA,fi77,NA,NA,NA,NA,0.016,0.033,NA,55,Finfish
+Hippoglossus hippoglossus,NA,NA,fi78,NA,NA,NA,NA,NA,NA,NA,55,Finfish
+Hippoglossus hippoglossus,NA,NA,fi361,NA,4.3,0.18,0.42,0.34,0.5,NA,55,Finfish
+Hippoglossus hippoglossus,NA,NA,DK7,NA,15,0.5,0.5,0.187,0.272,NA,55,Finfish
+Hippoglossus stenolepis,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,56,Finfish
+Homarus americanus,NA,NA,fi159,NA,47.3,0.23,2.9,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi159,NA,29.3,2.9,3.1,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi159,NA,17.3,1.2,1.7,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi190,NA,NA,NA,NA,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi190,NA,NA,NA,NA,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi190,NA,NA,NA,NA,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi190,NA,NA,NA,NA,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,fi190,NA,NA,NA,NA,NA,NA,NA,57,Crustacean
+Homarus americanus,NA,NA,DK7,NA,48,0.3,4.6,0.251,0.118,NA,57,Crustacean
+Homarus americanus,NA,NA,SR27,NA,84,0.26,3.53,0.102,0.068,NA,57,Crustacean
+Hypomesus pretious,NA,NA,fi59,NA,NA,NA,NA,0.35548449,0.56855524,NA,60,Finfish
+Ictalurus punctatus,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,62,Finfish
+Ictalurus punctatus,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,62,Finfish
+Ictalurus punctatus,NA,NA,SR27,NA,14,0.3,0.51,0.13,0.234,NA,62,Finfish
+Lepidopsetta bilineata,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,65,Finfish
+Lepidopsetta bilineata,NA,NA,fi146,NA,NA,NA,NA,0.174717,0.111537,NA,65,Finfish
+Lepomis gibbosus,NA,NA,SR27,NA,80,1.2,1.55,0.037,0.072,NA,67,Finfish
+Lota lota,NA,NA,fi26,NA,11.5947,0.146668,0.82253,NA,NA,NA,70,Finfish
+Lota lota,NA,NA,fi141,NA,NA,NA,NA,NA,NA,NA,70,Finfish
+Lota lota,NA,NA,DK7,NA,38,0.4,0.53,NA,NA,NA,70,Finfish
+Lota lota,NA,NA,SR27,NA,50,0.9,0.76,0.07,0.096,NA,70,Finfish
+Mallotus villosus,NA,NA,fi59,NA,NA,NA,NA,0.36230105,0.45922235,NA,71,Finfish
+Mallotus villosus,NA,NA,im11,NA,39,0.16,2.3,NA,NA,NA,71,Finfish
+Melanogrammus aeglefinus,NA,NA,fi45,NA,NA,NA,NA,0.018,0.06,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,fi244,NA,9.2,0.28,0.32,NA,NA,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,im11,NA,7.8,0.11,0.29,NA,NA,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,im11,NA,NA,NA,NA,0.060220439,0.137400308,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,im11,NA,NA,NA,NA,0.044520072,0.115993934,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,im11,NA,NA,NA,NA,0.057734954,0.117637353,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,im11,NA,NA,NA,NA,NA,NA,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,DK7,NA,18,0.6,0.3,0.129,0.387,NA,72,Finfish
+Melanogrammus aeglefinus,NA,NA,SR27,NA,11,0.17,0.32,0.042,0.089,NA,72,Finfish
+Merluccius productus,NA,NA,fi59,NA,NA,NA,NA,0.069467419,0.118810272,NA,75,Finfish
+Merluccius productus,NA,NA,fi125,NA,9.2,0.2579,0.3969,NA,NA,NA,75,Finfish
+Merluccius productus,NA,NA,fi125,NA,10.4,0.2437,0.3052,NA,NA,NA,75,Finfish
+Merluccius productus,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,75,Finfish
+Micropogonias undulatus,NA,NA,SR27,NA,15,0.37,0.42,0.123,0.097,NA,78,Finfish
+Microstomus pacificus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,81,Finfish
+Microstomus pacificus,NA,NA,fi36,NA,NA,NA,NA,0.08,0.09,NA,81,Finfish
+Microstomus pacificus,NA,NA,fi125,NA,11.5,0.1984,0.3428,NA,NA,NA,81,Finfish
+Microstomus pacificus,NA,NA,fi125,NA,11.9,0.1795,0.3179,NA,NA,NA,81,Finfish
+Microstomus pacificus,NA,NA,fi125,NA,20.2,0.256,0.5056,NA,NA,NA,81,Finfish
+Microstomus pacificus,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,81,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.108376051,0.137723084,NA,83,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.116950645,0.127684165,NA,83,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.109320718,0.092059552,NA,83,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.153419175,0.2022475,NA,83,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.030294607,0.039406969,NA,83,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.202316218,0.217035819,NA,83,Finfish
+Morone saxatilis,NA,NA,fi132,NA,NA,NA,NA,0.144192955,0.0885191,NA,83,Finfish
+Morone saxatilis,NA,NA,SR27,NA,15,0.84,0.4,0.169,0.585,NA,83,Finfish
+Mugil cephalus,NA,NA,fi98,NA,15.7,0.8,2.2,NA,NA,NA,84,Finfish
+Mugil cephalus,NA,NA,fi66,NA,NA,NA,NA,0.18973185,0.138955993,NA,84,Finfish
+Mugil cephalus,NA,NA,fi67,NA,NA,NA,NA,0.170965683,0.086497201,NA,84,Finfish
+Mugil cephalus,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,84,Finfish
+Mugil cephalus,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,84,Finfish
+Mugil cephalus,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,84,Finfish
+Mugil cephalus,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,84,Finfish
+Mugil cephalus,NA,NA,SR27,NA,41,1.02,0.52,0.217,0.108,NA,84,Finfish
+Mytilus edulis,NA,NA,DK7,NA,30,7.7,3.4,0.209,0.085,NA,90,Mollusc
+Mytilus edulis,NA,NA,SR27,NA,26,3.95,1.6,0.188,0.253,NA,90,Mollusc
+Oncorhynchus gorbuscha,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,95,Finfish
+Oncorhynchus gorbusha,NA,NA,fi59,NA,NA,NA,NA,0.289409995,0.68509049,NA,95,Finfish
+Oncorhynchus gorbusha,NA,NA,fi84,NA,NA,NA,NA,0.166696,0.328416,NA,95,Finfish
+Oncorhynchus gorbuscha,NA,NA,SR27,NA,7,0.38,0.39,0.182,0.333,NA,95,Finfish
+Oncorhynchus keta,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,96,Finfish
+Oncorhynchus keta,NA,NA,SR27,NA,11,0.55,0.47,0.233,0.394,NA,96,Finfish
+Oncorhynchus kisutch,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,97,Finfish
+Oncorhynchus kisutch,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,97,Finfish
+Oncorhynchus kisutch,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,97,Finfish
+Oncorhynchus kisutch,NA,NA,SR27,NA,36,0.56,0.41,0.429,0.656,NA,97,Finfish
+Oncorhynchus mykiss,NA,NA,fi99,NA,71.33,1.45,NA,0.02513,0.231196,NA,98,Finfish
+Oncorhynchus mykiss,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,98,Finfish
+Oncorhynchus mykiss,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,98,Finfish
+Oncorhynchus mykiss,NA,NA,fi120,NA,NA,NA,NA,NA,NA,NA,98,Finfish
+Oncorhynchus mykiss,NA,NA,fi141,NA,NA,NA,NA,NA,NA,NA,98,Finfish
+Oncorhynchus mykiss,NA,NA,DK7,NA,127,0.4,0.48,0.322,1.16,NA,98,Finfish
+Oncorhynchus mykiss,NA,NA,SR27,NA,67,0.7,1.08,0.167,0.42,NA,98,Finfish
+Oncorhynchus nerka,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,100,Finfish
+Oncorhynchus nerka,NA,NA,SR27,NA,10,0.42,0.42,0.348,0.681,NA,100,Finfish
+Oncorhynchus tshawytscha,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,101,Finfish
+Oncorhynchus tshawytscha,NA,NA,fi36,NA,NA,NA,NA,0.44,0.55,NA,101,Finfish
+Oncorhynchus tshawytscha,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,101,Finfish
+Oncorhynchus tshawytscha,NA,NA,SR27,NA,26,0.25,0.44,1.008,0.944,NA,101,Finfish
+Ophiodon elongatus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,102,Finfish
+Ophiodon elongatus,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,102,Finfish
+Ophiodon elongatus,NA,NA,SR27,NA,14,0.32,0.45,0,0,NA,102,Finfish
+Osmerus mordax,NA,NA,SR27,NA,60,0.9,1.65,0.275,0.418,NA,103,Finfish
+Ostrea lurida,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,104,Molluscs
+Perca flavescens,NA,NA,fi128,NA,2.992,0.086955,0.135388,3.84852e-4,0.056503323,NA,109,Finfish
+Perca flavescens,NA,NA,fi141,NA,NA,NA,NA,NA,NA,NA,109,Finfish
+Platichthys stellatus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,112,Finfish
+Platichthys stellatus,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,112,Finfish
+Pomatomus saltatrix,NA,NA,fi34,NA,NA,NA,NA,0.034770855,0.28855813,NA,114,Finfish
+Pomatomus saltatrix,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,114,Finfish
+Pomatomus saltatrix,NA,NA,fi131,NA,NA,NA,NA,0.748,2.5058,NA,114,Finfish
+Pomatomus saltatrix,NA,NA,SR27,NA,7,0.48,0.81,0.252,0.519,NA,114,Finfish
+Protothaca staminea,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,115,Molluscs
+Reinhardtius hippoglossoides,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,121,Finfish
+Reinhardtius hippoglossoides,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,121,Finfish
+Reinhardtius hippoglossoides,NA,NA,im11,NA,5.9,0.09,0.32,NA,NA,NA,121,Finfish
+Reinhardtius hippoglossoides,NA,NA,fi361,NA,5.5,0.1,0.3,0.33,0.36,NA,121,Finfish
+Reinhardtius hippoglossoides,NA,NA,DK7,NA,25,0.25,NA,1.07,0.975,NA,121,Finfish
+Reinhardtius hippoglossoides,NA,NA,SR27,NA,3,0.66,0.4,0.526,0.393,NA,121,Finfish
+Salmo salar,NA,NA,fi45,NA,NA,NA,NA,1.112,2.164,NA,122,Finfish
+Salmo salar,NA,NA,fi74,NA,NA,NA,NA,0.459944842,3.23096521,NA,122,Finfish
+Salmo salar,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,122,Finfish
+Salmo salar,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,122,Finfish
+Salmo salar,NA,NA,DK7,NA,20,0.8,1.04,0.713,1.85,NA,122,Finfish
+Salmo salar,NA,NA,SR27,NA,12,0.8,0.64,0.321,1.115,NA,122,Finfish
+Salmo trutta,NA,NA,fi44,NA,NA,NA,NA,NA,NA,NA,123,Finfish
+Salmo trutta,NA,NA,DK7,NA,NA,0.75,0.44,NA,NA,NA,123,Finfish
+Salmo trutta,NA,NA,DK7,NA,20,0.7,0.44,NA,NA,NA,123,Finfish
+Salvelinus alpinus,NA,NA,fi197,NA,11,0.3,0.4,NA,NA,NA,124,Finfish
+Salvelinus alpinus,NA,NA,fi197,NA,7,0.7,0.6,NA,NA,NA,124,Finfish
+Salvelinus alpinus,NA,NA,DK7,NA,NA,0.75,0.67,NA,NA,NA,124,Finfish
+Salvelinus fontinalis,NA,NA,fi4,NA,12.7,0.33,0.8,NA,NA,NA,125,Finfish
+Salvelinus fontinalis,NA,NA,fi4,NA,3.1,0.18,0.8,NA,NA,NA,125,Finfish
+Salvelinus malma,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,126,Finfish
+Salvelinus namaycush,NA,NA,fi4,NA,3,0.2,0.5,NA,NA,NA,127,Finfish
+Scomber scombrus,NA,NA,fi34,NA,NA,NA,NA,0.044521872,0.33062656,NA,130,Finfish
+Scomber scombrus,NA,NA,fi45,NA,NA,NA,NA,0.662,1.404,NA,130,Finfish
+Scomber scombrus,NA,NA,fi244,NA,4.9,0.48,0.6,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi80,NA,NA,NA,NA,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi105,NA,NA,NA,NA,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi116,NA,NA,NA,NA,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi116,NA,NA,NA,NA,NA,NA,NA,130,Finfish
+Scomber scombrus,NA,NA,fi361,NA,15,0.8,0.62,1.76,2.8,NA,130,Finfish
+Scomber scombrus,NA,NA,DK7,NA,15,0.75,0.1,1.22,3.28,NA,130,Finfish
+Scomber scombrus,NA,NA,SR27,NA,12,1.63,0.63,0.898,1.401,NA,130,Finfish
+Sebastes flavidus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,133,Finfish
+Sebastes flavidus,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,133,Finfish
+Sebastes pinniger,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,135,Finfish
+Sebastes pinniger,NA,NA,fi59,NA,NA,NA,NA,0.342824772,0.534559245,NA,135,Finfish
+Sebastes pinniger,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,135,Finfish
+Sebastes ruberrimus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,136,Finfish
+Squalus acanthias,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,142,Finfish
+Squalus acanthias,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,142,Finfish
+Squalus acanthias,NA,NA,fi42,NA,NA,NA,NA,NA,NA,NA,142,Finfish
+Squalus acanthias,NA,NA,DK7,NA,13,1.32,0.52,NA,NA,NA,142,Finfish
+Thaleichthys pacificus,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,145,Finfish
+Thunnus alalunga,NA,NA,fi152,NA,NA,NA,NA,0.33915,0.9625,NA,146,Finfish
+Thunnus alalunga,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,146,Finfish
+Thunnus alalunga,NA,NA,fi195,NA,NA,NA,NA,NA,NA,NA,146,Finfish
+Thunnus alalunga,NA,NA,fi244,NA,2.9,0.94,0.36,NA,NA,NA,146,Finfish
+Thunnus alalunga,NA,NA,fi117,NA,18,0.6,0.5,0.29393,0.85918,NA,146,Finfish
+Thunnus alalunga,NA,NA,fi153,NA,NA,NA,NA,NA,NA,NA,146,Finfish
+Thunnus alalunga,NA,NA,fi156,NA,NA,NA,NA,NA,NA,NA,146,Finfish
+Thunnus thynnus,NA,NA,fi45,NA,NA,NA,NA,0.035,0.131,NA,147,Finfish
+Thunnus thynnus,NA,NA,fi152,NA,NA,NA,NA,0.01337,0.15624,NA,147,Finfish
+Thunnus thynnus,NA,NA,fi131,NA,NA,NA,NA,0.22137,1.70973,NA,147,Finfish
+Thunnus thynnus,NA,NA,DK7,NA,10,1.5,0.08,NA,NA,NA,147,Finfish
+Thunnus thynnus,NA,NA,SR27,NA,8,1.02,0.6,0.283,0.89,NA,147,Finfish
+Thymallus arcticus,NA,NA,fi197,NA,31,1,0.7,NA,0.1,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.102,0.22,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.078,0.237,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.06,0.138,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.092,0.157,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.079,0.176,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.078,0.18,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.07,0.228,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.071,0.177,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.072,0.173,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.069,0.163,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.085,0.205,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.046,0.139,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.044,0.11,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.062,0.186,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.081,0.194,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.056,0.167,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.064,0.21,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.064,0.292,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.056,0.158,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.077,0.201,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.072,0.192,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.096,0.285,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.104,0.245,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.092,0.235,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.041,0.121,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.307,0.573,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.454,1.184,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.178,0.57,NA,148,Finfish
+Thymallus arcticus,NA,NA,fi186,NA,NA,NA,NA,0.326,0.714,NA,148,Finfish

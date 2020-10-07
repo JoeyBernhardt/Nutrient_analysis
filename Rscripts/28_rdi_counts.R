@@ -62,7 +62,7 @@ trait_data2 <- trait_data %>%
   filter(!grepl("^Mohanty", ref_info))
 
 wide <- trait_data2 %>% 
-  select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
+  dplyr::select(species_name, subgroup, seanuts_id2, nutrient, concentration, ref_info) %>% 
   distinct(species_name, nutrient, concentration, .keep_all = TRUE) %>% 
   spread(key = nutrient, value = concentration) 
 
@@ -93,13 +93,13 @@ rdis <- wide2 %>%
 rdis %>% 
   gather(key = nutrient, value = rdi, 10:16) %>% 
   filter(!is.na(rdi)) %>% 
-  select(-contains("mean")) %>% 
+  dplyr::select(-contains("mean")) %>% 
   group_by(nutrient, rdi, subgroup) %>% 
   tally() %>% 
   group_by(nutrient, subgroup) %>% 
   mutate(total = cumsum(n)) %>% 
   filter(rdi == 1) %>% 
-  mutate(proportion_that_reach_RDI = n*100/total) %>% 
+  mutate(proportion_that_reach_RDI = n*100/total) %>%
   xtable(type = "latex", digits = 0)
  
 rdis1 <- rdis %>% 

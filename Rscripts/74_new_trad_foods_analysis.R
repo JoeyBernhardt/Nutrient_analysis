@@ -39,6 +39,9 @@ nt1 <- new_trad_search_raw %>%
 
 str(nt1)
 
+nt1 %>% 
+  filter(is.na(asfis_scientific_name)) %>% View #### JB come back here to get refs for trad foods
+
 trad_foods_key <- read_csv("data-processed/nt_species_edited.csv")
 
 names(new_trad_search)
@@ -79,11 +82,13 @@ nt3 <- nt1 %>%
   rename(genus_species = asfis_scientific_name)
 
 all_trad <- bind_rows(nt2, nt3)
+write_csv(all_trad, "data-processed/traditional-foods-compiled.csv")
+length(unique(all_trad$genus_species))
 
 ## ok let's grab the page ids from all_trad and use them to fill in the missing page_ids for the non-cine data
 
 culture_key <- all_trad %>% 
-  select(genus_species, page_id) %>% 
+  dplyr::select(genus_species, page_id) %>% 
   distinct() %>% 
   filter(!is.na(page_id))
 
@@ -111,7 +116,7 @@ all_trad3 <- all_trad %>%
   left_join(., culture_key, by = "genus_species") %>% 
   mutate(culture_page_id = ifelse(is.na(page_id.x), page_id.y, page_id.x)) 
 
-
+length(unique(all_trad3$genus_species))
 
 
 at2 <- all_trad3 %>% 
@@ -124,6 +129,8 @@ at2 <- all_trad3 %>%
             epa = mean(epa, na.rm = TRUE),
             dha = mean(dha, na.rm = TRUE)) %>% 
   filter(!is.na(calcium), !is.na(iron), !is.na(zinc), !is.na(epa), !is.na(dha)) 
+
+length(unique(at2$genus_species))
 
 View(at2)
 library(readxl)
@@ -145,12 +152,13 @@ at3 <- all_trad3 %>%
   mutate(dha_na = ifelse(is.na(dha), 1, 0)) %>% 
   mutate(nutrient_na = ca_na + fe_na + zn_na + epa_na + dha_na) %>% 
   filter(nutrient_na < 5) %>% 
-  select(cine_id, genus_species, ca_mg, fe_mg, zn_mg, epa, dha, biblio_id, culture, culture_page_id)
+  dplyr::select(cine_id, genus_species, ca_mg, fe_mg, zn_mg, epa, dha, biblio_id, culture, culture_page_id)
 
 write_csv(at3, "data-processed/traditional_foods_nutrients_cultures.csv")
+length(unique(at3$genus_species))
 
 at4 <- at3 %>% 
-  select(genus_species, culture, ca_mg, zn_mg, fe_mg, epa, dha) %>% 
+  dplyr::select(genus_species, culture, ca_mg, zn_mg, fe_mg, epa, dha) %>% 
   group_by(genus_species, culture) %>% 
   summarise_all(funs(mean), na.rm = TRUE) %>% 
   mutate(ca_na = ifelse(is.na(ca_mg), 1, 0)) %>% 
@@ -159,12 +167,13 @@ at4 <- at3 %>%
   mutate(epa_na = ifelse(is.na(epa), 1, 0)) %>% 
   mutate(dha_na = ifelse(is.na(dha), 1, 0)) %>% 
   mutate(nutrient_na = ca_na + fe_na + zn_na + epa_na + dha_na) %>% 
-  filter(nutrient_na < 1)
+  filter(nutrient_na < 1) %>% 
+  filter(grepl(" ", genus_species))
 length(unique(at4$genus_species))
 
 write_csv(at4, "data-processed/traditional_foods_nutrients_cultures_all5.csv")
 write_csv(at4, "data-processed/traditional_foods_nutrients_cultures_for_analysis.csv") ### note this is the same as the above file, just renamed for code review
-
+at4 <- read_csv("data-processed/traditional_foods_nutrients_cultures_for_analysis.csv")
 at3 <- read_csv("data-processed/traditional_foods_nutrients_cultures.csv")
 View(at3)
 
