@@ -172,9 +172,10 @@ write_csv(obs_exp_local, "data-processed/observed-expected-functional-evenness-o
 mean(obs_exp_local$n_species)
 
 obs_exp_local %>% 
-  ggplot(aes(x = expected_feve, y = FEve, color = culture)) + geom_point() +
-  geom_abline(slope = 1, intercept = 0) + xlim(0.5, 1) + ylim(0.5, 1) +
+  ggplot(aes(x = expected_feve, y = FEve, color = culture)) + geom_point(size = 3) +
+  geom_abline(slope = 1, intercept = 0) + xlim(0.5, 0.9) + ylim(0.5, 0.9) +
   ylab("Observed FEve") + xlab("Expected FEve")
+ggsave("figures/obs-expected-functional-evenness-oct2020.pdf", width = 6, height = 4)
   
 
 # feve results ------------------------------------------------------------

@@ -143,19 +143,12 @@ write_csv(all_fds, "data-processed/all_fds_october.csv")
 
 
 all_fds <- read_csv("data-processed/all_fds.csv")
+all_feves <- read_csv("data-processed/observed-expected-functional-evenness-october2020.csv")
 all_fds %>% 
   filter(region != "global_resampled") %>% 
   summarise_each(funs(mean, std.error), FD) %>% View
 
-?qualpal
-
-colors <- lacroix_palette("PeachPear", type = "continuous", n = 15) 
-
-colorsp <- c(unique(lacroix_palette(type = "paired")), "yellow", "cadetblue", "purple") 
-
-length(unique(colorsp))
-theme_set(theme_cowplot())
-obs_eve_FD <- all_fds %>% 
+obs_exp_FD <- all_fds %>% 
   rename(Region = region) %>% 
   # mutate(FD = ifelse(Region == "global_resampled", exp_df, FD)) %>% 
   # mutate(Region = ifelse(Region == "global_resampled", "Global (40 species)", Region)) %>% 
@@ -171,11 +164,26 @@ ylim(2, 5.1) + xlim(2, 5.1) +
   theme(plot.title = element_text(hjust = 0))
 ggsave("figures/expected_vs_observed_FD_october.pdf", width = 7, height = 5)
 
+obs_exp_FEve <- all_feves %>% 
+  rename(Region = culture) %>% 
+  # mutate(FD = ifelse(Region == "global_resampled", exp_df, FD)) %>% 
+  # mutate(Region = ifelse(Region == "global_resampled", "Global (40 species)", Region)) %>% 
+  ggplot(aes(x = expected_feve, y = FEve, color = Region)) +
+  geom_abline(slope = 1, intercept = 0) +
+  geom_point(size = 4) +
+  geom_point(size = 4, shape = 1, color = "black") +
+  xlim(0.5, 0.9) + ylim(0.5, 0.9) +
+  xlab("Expected Feve") + ylab("Observed Feve") + 
+  # scale_color_manual(values = colorsp) +
+  # scale_color_discrete(name = "Region") +
+  ggtitle("A") +
+  theme(plot.title = element_text(hjust = 0))
+
 
 library(patchwork)
 
-obs_exp_plot <- obs_eve_FD + obs_exp_feve_plot + plot_layout(ncol = 2)
-ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD_no_order.pdf", device = "pdf", width =10, height = 3)
+obs_exp_plot <- obs_exp_FD + obs_exp_FEve + plot_layout(ncol = 2)
+ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD_no_order-october.pdf", device = "pdf", width =10, height = 3)
 
 
 
