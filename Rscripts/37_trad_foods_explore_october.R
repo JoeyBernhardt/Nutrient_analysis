@@ -10,11 +10,16 @@ library(cowplot)
 library(broom)
 library(plotrix)
 theme_set(theme_cowplot())
+library(FD)
 
 
 nuts_trad <- read_csv("data-processed/trad-foods-cleaned.csv")
 culture_foods <- read_excel("~/Documents/traditional-foods/culture-foods.xlsx")
-species_numbers <- read_csv("data-processed/species_numbers_october.csv")
+global_df <- data.frame(culture = "global", n_species = 40)
+species_numbers <- read_csv("data-processed/species_numbers_october.csv") %>% 
+  bind_rows(global_df)
+
+
 
 View(nuts_trad)
 
@@ -112,7 +117,7 @@ return(results)
 }
 
 
-sample_sizes <- rep(species_numbers$n_species, 1000)
+sample_sizes <- rep(unique(species_numbers$n_species), 100)
 
 feves <- sample_sizes %>% 
   map_df(repeat_feve, .id = "replicate")
@@ -128,8 +133,8 @@ feves_summ <- feves %>%
   rename(expected_feve = res)
 
 
-# FEve_cultures <- left_join(fEve, species_numbers) %>% 
-#   filter(!is.na(n_species)) 
+FEve_cultures <- left_join(fEve, species_numbers) %>%
+  filter(!is.na(n_species))
 
 obs_exp_feve <- left_join(FEve_cultures, feves_summ, by = c("n_species" = "sample_size"))
 
@@ -142,7 +147,7 @@ obs_exp_feve_global <- fEve_global %>%
   mutate(culture = "Global (40 spcies)") %>% 
   mutate(FEve = res_mean)
 
-
+### create fEve
 fEve <- fds %>% 
   map("FEve") %>% 
   unlist() %>% 
@@ -163,17 +168,21 @@ feve2 <- fEve %>%
 
 
 obs_exp_local <- feve2 %>% 
-  left_join(., feves_summ, by = c("n_species" = "sample_size")) %>% 
-  bind_rows(., obs_exp_feve_global) %>% 
-  mutate(expected_feve = ifelse(grepl("Global", culture), FEve, expected_feve))
+  full_join(., feves_summ, by = c("n_species" = "sample_size")) %>% 
+  mutate(culture = ifelse(is.na(culture), "global", culture)) %>%
+  mutate(FEve = ifelse(is.na(FEve), expected_feve, FEve))
+  # bind_rows(., obs_exp_feve_global) %>% 
+  # mutate(expected_feve = ifelse(grepl("Global", culture), FEve, expected_feve))
 
-write_csv(obs_exp_local, "data-processed/observed-expected-functional-evenness-october2020.csv")
+write_csv(obs_exp_local, "data-processed/observed-expected-functional-evenness-october20202.csv")
 
 mean(obs_exp_local$n_species)
 
+
+#### functional evenness plot
 obs_exp_local %>% 
   ggplot(aes(x = expected_feve, y = FEve, color = culture)) + geom_point(size = 3) +
-  geom_abline(slope = 1, intercept = 0) + xlim(0.5, 0.9) + ylim(0.5, 0.9) +
+  geom_abline(slope = 1, intercept = 0) + xlim(0.55, 0.85) + ylim(0.55, 0.85) +
   ylab("Observed FEve") + xlab("Expected FEve")
 ggsave("figures/obs-expected-functional-evenness-oct2020.pdf", width = 6, height = 4)
   
