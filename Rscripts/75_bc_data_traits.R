@@ -959,6 +959,89 @@ unique(all_data_traits2$subgroup)
 # View(all_data_traits)
 
 
+
+# Body parts figure -------------------------------------------------------
+
+cal_plot <- all7 %>% 
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  group_by(body_part) %>% 
+  filter(subgroup == "Finfish") %>% 
+  dplyr::select(ca_mg) %>% 
+  filter(!is.na(ca_mg)) %>% 
+  summarise(mean_ca = mean(ca_mg, na.rm = TRUE),
+            stde_ca = std.error(ca_mg, na.rm = TRUE)) %>% 
+  filter(!is.na(mean_ca)) %>% 
+  ggplot(aes(x = reorder(body_part, mean_ca), y = mean_ca)) + geom_point() +
+  geom_errorbar(aes(x = reorder(body_part, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1) +
+  ylab("Calcium (mg/100g)") + xlab("Body part")
+
+cal <- all7 %>% 
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  group_by(body_part) %>% 
+  filter(subgroup == "Finfish") %>% 
+  dplyr::select(ca_mg) %>% 
+  filter(!is.na(ca_mg))
+
+mod_cal <- aov(ca_mg ~ body_part, data = cal)
+summary(mod_cal)
+
+aov(mod_cal)
+
+iron_plot <- all7 %>% 
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  group_by(body_part) %>% 
+  filter(subgroup == "Finfish") %>% 
+  dplyr::select(fe_mg) %>% 
+  filter(!is.na(fe_mg)) %>% 
+  summarise(mean_fe = mean(fe_mg, na.rm = TRUE),
+            stde_fe = std.error(fe_mg, na.rm = TRUE)) %>% 
+  filter(!is.na(mean_fe)) %>% 
+  ggplot(aes(x = reorder(body_part, mean_fe), y = mean_fe)) + geom_point() +
+  geom_errorbar(aes(x = reorder(body_part, mean_fe), ymin = mean_fe - stde_fe, ymax = mean_fe + stde_fe), width = 0.1) +
+  ylab("Iron (mg/100g)") + xlab("Body part")
+
+
+iron <- all7 %>% 
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  group_by(body_part) %>% 
+  filter(subgroup == "Finfish") %>% 
+  dplyr::select(fe_mg) %>% 
+  filter(!is.na(fe_mg))
+mod_iron <- aov(fe_mg ~ body_part, data = iron)
+summary(mod_iron)
+
+zinc_plot <- all7 %>% 
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  group_by(body_part) %>% 
+  filter(subgroup == "Finfish") %>% 
+  dplyr::select(zn_mg) %>% 
+  filter(!is.na(zn_mg)) %>% 
+  summarise(mean_zn = mean(zn_mg, na.rm = TRUE),
+            stde_zn = std.error(zn_mg, na.rm = TRUE)) %>% 
+  filter(!is.na(mean_zn)) %>% 
+  ggplot(aes(x = reorder(body_part, mean_zn), y = mean_zn)) + geom_point() +
+  geom_errorbar(aes(x = reorder(body_part, mean_zn), ymin = mean_zn - stde_zn, ymax = mean_zn + stde_zn), width = 0.1) +
+  ylab("Zinc (mg/100g)") + xlab("Body part")
+
+zinc <- all7 %>% 
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  group_by(body_part) %>% 
+  filter(subgroup == "Finfish") %>% 
+  dplyr::select(zn_mg) %>% 
+  filter(!is.na(zn_mg))
+mod_zinc <- aov(zn_mg ~ body_part, data = zinc)
+summary(mod_zinc)
+
+library(patchwork)
+body_part_plot <- cal_plot / iron_plot / zinc_plot
+ggplot2::ggsave(plot = body_part_plot, filename = "figures/body_part_plot", device = "pdf", width =8, height = 10)
+
 percentages <- all7 %>% 
   rename(calcium = ca_mg,
          zinc = zn_mg,
