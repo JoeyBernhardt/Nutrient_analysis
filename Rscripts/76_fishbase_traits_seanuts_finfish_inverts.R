@@ -30,7 +30,7 @@ library(rotl)
 library(rfishbase)
 library(readxl)
 
-all4 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx") %>% 
+all4 <- read_excel("data-processed/seanuts-rebuild-aug26-taxized.xlsx") %>% 
   mutate(taxize_name = ifelse(grepl("Clupea pall", taxize_name), "Clupea pallasii pallasii", taxize_name))
 
 library(taxize)
@@ -59,8 +59,8 @@ ecology2 <- ecology(data$species1)
 
 
 mt3 <- more_traits2 %>% 
-  dplyr::select(Species, DemersPelag, DepthRangeDeep, Length, Fresh, Brack, Saltwater) %>% 
-  group_by(Species, DemersPelag, Fresh, Brack, Saltwater) %>% 
+  dplyr::select(Species, BodyShapeI, DemersPelag, DepthRangeDeep, Length, Fresh, Brack, Saltwater) %>% 
+  group_by(Species, BodyShapeI, DemersPelag, Fresh, Brack, Saltwater) %>% 
   mutate(DepthRangeDeep = as.numeric(DepthRangeDeep)) %>% 
   mutate(Length = as.numeric(Length)) %>% 
   summarise_each(funs(mean), DepthRangeDeep, Length)
