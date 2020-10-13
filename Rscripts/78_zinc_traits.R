@@ -191,7 +191,7 @@ zinc_plot
 
 zinc_all <-  s2 %>% 
   filter(nutrient == "zn_mg") %>% 
-  filter(body_part != "liver") %>% 
+  mutate(body_part = ifelse(body_part %in% c("eggs", "liver"), "eggs or liver", body_part)) %>%
   mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
   mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
   mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
