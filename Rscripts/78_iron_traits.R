@@ -347,8 +347,9 @@ plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot7+
 ggsave("figures/all-parts-pgls-iron-partial-regressions-oct.pdf", plot = plot_all, width = 8, height = 11)
 
 
+#################### END OF ANALYSIS SCRIPT ##############
 
-
+#### Extra code
 
 mod1 <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, phy = iron_tree, data = irong2, model = "lambda")
 mod2 <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, phy = iron_tree, data = irong2, model = "lambda")
