@@ -15,7 +15,7 @@ library(arm)
 library(nlme)
 library(cowplot)
 library(visreg)
-
+library(phylolm)
 library(stargazer)
 library(rotl)
 library(rfishbase)
@@ -66,6 +66,12 @@ zinc2 <- zinc %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_zinc$tip.label)) %>% 
   ungroup() %>% 
+	mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>% 
+	mutate(DemersPelag = ifelse(DemersPelag == "bathypelagic", "pelagic-oceanic", DemersPelag)) %>% 
+	mutate(EnvTemp = ifelse(EnvTemp == "deep-water", "polar", EnvTemp)) %>% 
+	mutate(feeding_mode = ifelse(feeding_mode == "filtering plankton", "selective plankton feeding", feeding_mode)) %>% 
+	mutate(feeding_mode = ifelse(feeding_mode == "grazing on aquatic plants", "variable", feeding_mode)) %>% 
+	mutate(DemersPelag = ifelse(DemersPelag == "reef-associated", "pelagic-neritic", DemersPelag)) %>%
   # mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
@@ -76,6 +82,8 @@ zinc2$log_length <- scale(zinc2$log_length)
 zinc2$bulk_trophic_level <- scale(zinc2$bulk_trophic_level)
 # zinc2$DepthRangeDeep <- szince(zinc2$DepthRangeDeep)
 # zinc2$AgeMatMin <- szince(zinc2$AgeMatMin)
+
+table(zinc2$EnvTemp)
 
 data <- zinc2
 data$sp_name <- data$unique_name2
@@ -125,11 +133,101 @@ zincg <- Phylodata1 %>%
 zincg2 <- zincg 
 zincg2 <- zincg2[match(zinc_tree$tip.label, zincg2$species),]
 row.names(zincg2) <- zincg2$species
+table(zincg2$EnvTemp)
+
+
+# model selection zinc ----------------------------------------------------
+
+mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod2 <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod2b <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod3 <- gls(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod4 <- gls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod5 <- gls(log_concentration ~  log_length + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod6 <- gls(log_concentration ~  log_length + feeding_mode, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod7 <- gls(log_concentration ~  bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod8 <- gls(log_concentration ~  log_length + DemersPelag, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod9 <- gls(log_concentration ~  feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod10 <- gls(log_concentration ~  bulk_trophic_level + DemersPelag, corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod11 <- gls(log_concentration ~  log_length + EnvTemp, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod12 <- gls(log_concentration ~  feeding_mode + EnvTemp, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod13 <- gls(log_concentration ~  bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
+mod14 <- gls(log_concentration ~  1, corPagel(value = 0, phy = zinc_tree, fixed = TRUE), data = zincg2, method = "ML")
 
 
 
-mod1 <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, phy = zinc_tree, data = zincg2, model = "lambda")
-mod2 <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, phy = zinc_tree, data = zincg2, model = "lambda")
+
+R2(mod11, phy = zinc_tree)
+
+### model selection
+msel_zinc <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+	mutate(model_num = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+
+
+
+confints_zinc <- data.frame(confint(model.avg(get.models(msel_zinc, subset = cumsum(weight) <= .95))),
+							   estimate = coef(model.avg(get.models(msel_zinc, subset = cumsum(weight) <= .95)))) %>% 
+	mutate(term = rownames(.)) %>% 
+	rename(lower = X2.5..) %>% 
+	rename(upper = X97.5..) %>% 
+	mutate(nutrient = "zinc")
+write_csv(confints_zinc, "data-processed/zinc-traits-confints.csv")
+
+zinc_plot <- confints_zinc %>% 
+	filter(term != "(Intercept)") %>% 
+	ggplot(aes(x = term, y = estimate)) + 
+	geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+	coord_flip() +
+	geom_hline(yintercept = 0) + ggtitle("zinc")
+zinc_plot
+
+
+# model averaging with dredge for zinc ------------------------------------------------
+
+
+mod1_zinc <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corBrownian(phy = zinc_tree, value = 1), data = zincg2, method = "ML")
+summary(mod1_zinc)
+dd_zinc <- dredge(mod1_zinc, m.lim = c(1, 5), extra = "R2") %>% 
+	mutate(mod_number = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+View(dd_zinc)
+mods_zinc <- get.models(dd_zinc, subset= cumsum(weight) <= .95)
+sw(mods_zinc)
+ci_avg_zinc <- rownames_to_column(as.data.frame(confint(model.avg(dd_zinc, subset = cumsum(weight) <= .95))), var = "term")
+slopes_avg_zinc <- enframe(coef(model.avg(dd_zinc, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+zinc_mod_out <- left_join(ci_avg, slopes_avg) %>% 
+	rename(lower = `2.5 %`,
+		   upper = `97.5 %`) %>% 
+	filter(term != "(Intercept)") %>% 
+	mutate(nutrient = "zinc") %>% 
+	mutate(conf_int_overlap_0 = ifelse(upper < 0 & slope < 0 | lower > 0 & slope > 0, "yes", "no")) 
+
+zinc_mod_out %>% 
+	ggplot(aes(x = term, y = slope)) + 
+	geom_pointrange(aes(x = term, y = slope, ymin = lower, ymax = upper), fill = "transparent") +
+	geom_point(aes(x = term, y = slope, shape = conf_int_overlap_0, color = conf_int_overlap_0)) +
+	scale_color_manual(values = c("black", "white")) +
+	scale_shape_manual(values = c(1, 19)) +
+	geom_hline(yintercept = 0) + coord_flip() +
+	theme(legend.position = "none")
+
+
+# ok this is just extra from here on out ----------------------------------
+
+
+
+summary(mod1)
+mod2 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, correlation = corBrownian(phy = zinc_tree), data = zincg2, method = "ML")
+
+
+dd <- dredge(mod1)
+
+
+# mod2 <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, phy = zinc_tree, data = zincg2, model = "lambda")
+
+# mod2b <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, phy = zinc_tree, data = zincg2, model = "lambda")
 
 mod3 <- phylolm(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, phy = zinc_tree, data = zincg2, model = "lambda")
 mod4 <- phylolm(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, phy = zinc_tree, data = zincg2, model = "lambda")
@@ -145,7 +243,7 @@ mod12 <- phylolm(log_concentration ~  feeding_mode + EnvTemp, phy = zinc_tree, d
 mod13 <- phylolm(log_concentration ~  bulk_trophic_level + EnvTemp, phy = zinc_tree, data = zincg2, model = "lambda")
 mod14 <- phylolm(log_concentration ~  1, phy = zinc_tree, data = zincg2, model = "lambda")
 
-model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod14, rank = AICc, extra = "rsquared") %>%  
+model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod14,mod2b, rank = AICc) %>%  
   mutate(model_number = rownames(.)) %>% 
   mutate(cumsum = cumsum(weight)) %>% View
 # summary(model.avg(mod9, mod6))
@@ -154,7 +252,7 @@ model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mo
 # 
 # R2(mod6, phy = zinc_tree)
 
-
+summary(mod1)
 confints_zinc <- data.frame(confint(model.avg(mod11, mod12, mod13)), estimate = coef(model.avg(mod11, mod12, mod13))) %>% 
   mutate(term = rownames(.)) %>% 
   rename(lower = X2.5..) %>% 

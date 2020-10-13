@@ -63,7 +63,14 @@ iron2 <- iron %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_iron$tip.label)) %>% 
   ungroup() %>% 
-  # mutate(feeding_level = as.factor(feeding_level)) %>% 
+	mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathypelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "reef-associated", "pelagic-neritic", DemersPelag)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "filtering plankton", "selective plankton feeding", feeding_mode)) %>% 
+	mutate(feeding_mode = ifelse(feeding_mode == "grazing on aquatic plants", "variable", feeding_mode)) %>% 
+	mutate(feeding_mode = ifelse(feeding_mode == "browsing on substrate", "variable", feeding_mode)) %>% 
+	mutate(EnvTemp = ifelse(EnvTemp == "deep-water", "polar", EnvTemp)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
   # mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
@@ -73,6 +80,8 @@ iron2$log_length <- scale(iron2$log_length)
 iron2$bulk_trophic_level <- scale(iron2$bulk_trophic_level)
 # iron2$DepthRangeDeep <- sirone(iron2$DepthRangeDeep)
 # iron2$AgeMatMin <- sirone(iron2$AgeMatMin)
+
+table(iron2$DemersPelag)
 
 data <- iron2
 data$sp_name <- data$unique_name2
@@ -122,9 +131,60 @@ irong <- Phylodata1 %>%
 irong2 <- irong 
 irong2 <- irong2[match(iron_tree$tip.label, irong2$species),]
 row.names(irong2) <- irong2$species
+table(irong2$DemersPelag)
 
-library(MuMIn)
-library(phylolm)
+
+# model selection iron ----------------------------------------------------
+mod1p <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, phy = iron_tree, data = irong2, model = "lambda")
+summary(mod1p) #### tells us lamba ~ 0
+
+mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod2 <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod2b <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod3 <- gls(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod4 <- gls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod5 <- gls(log_concentration ~  log_length + bulk_trophic_level, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod6 <- gls(log_concentration ~  log_length + feeding_mode, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod7 <- gls(log_concentration ~  bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod8 <- gls(log_concentration ~  log_length + DemersPelag, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod9 <- gls(log_concentration ~  feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod10 <- gls(log_concentration ~  bulk_trophic_level + DemersPelag, corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod11 <- gls(log_concentration ~  log_length + EnvTemp, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod12 <- gls(log_concentration ~  feeding_mode + EnvTemp, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod13 <- gls(log_concentration ~  bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+mod14 <- gls(log_concentration ~  1, corPagel(value = 0, phy = iron_tree, fixed = TRUE), data = irong2, method = "ML")
+
+
+
+
+R2(mod11, phy = iron_tree)
+
+### model selection
+msel_iron <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+	mutate(model_num = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+
+
+
+confints_iron <- data.frame(confint(model.avg(get.models(msel_iron, subset = cumsum(weight) <= .95))),
+							estimate = coef(model.avg(get.models(msel_iron, subset = cumsum(weight) <= .95)))) %>% 
+	mutate(term = rownames(.)) %>% 
+	rename(lower = X2.5..) %>% 
+	rename(upper = X97.5..) %>% 
+	mutate(nutrient = "iron")
+write_csv(confints_iron, "data-processed/iron-traits-confints.csv")
+
+iron_plot <- confints_iron %>% 
+	filter(term != "(Intercept)") %>% 
+	ggplot(aes(x = term, y = estimate)) + 
+	geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+	coord_flip() +
+	geom_hline(yintercept = 0) + ggtitle("iron")
+iron_plot
+
+
+##### end model selection here. 
+
 
 
 mod1 <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, phy = iron_tree, data = irong2, model = "lambda")

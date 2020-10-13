@@ -66,6 +66,15 @@ epa2 <- epa %>%
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_epa$tip.label)) %>% 
   ungroup() %>% 
+	mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(EnvTemp = ifelse(EnvTemp == "boreal", "polar", EnvTemp)) %>%
+	mutate(EnvTemp = ifelse(EnvTemp == "deep-water", "polar", EnvTemp)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathypelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "reef-associated", "pelagic-neritic", DemersPelag)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "other", "variable", feeding_mode)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "browsing on substrate", "variable", feeding_mode)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "selective plankton feeding", "filtering plankton", feeding_mode)) %>%
   # mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
@@ -74,9 +83,11 @@ epa2 <- epa %>%
   mutate(realm = as.factor(realm))
 epa2$log_length <- scale(epa2$log_length)
 epa2$bulk_trophic_level <- scale(epa2$bulk_trophic_level)
+
 # epa2$DepthRangeDeep <- sepae(epa2$DepthRangeDeep)
 # epa2$AgeMatMin <- sepae(epa2$AgeMatMin)
 
+table(epa2$DemersPelag)
 data <- epa2
 data$sp_name <- data$unique_name2
 # check overlap between tree and species in data
@@ -126,6 +137,65 @@ epag2 <- epag
 epag2 <- epag2[match(epa_tree$tip.label, epag2$species),]
 row.names(epag2) <- epag2$species
 
+
+
+
+
+
+# model selection epa ----------------------------------------------------
+mod1p <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, phy = epa_tree, data = epag2, model = "lambda")
+summary(mod1p) #### tells us lamba ~ 0
+
+mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod2 <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod2b <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod3 <- gls(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod4 <- gls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod5 <- gls(log_concentration ~  log_length + bulk_trophic_level, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod6 <- gls(log_concentration ~  log_length + feeding_mode, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod7 <- gls(log_concentration ~  bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod8 <- gls(log_concentration ~  log_length + DemersPelag, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod9 <- gls(log_concentration ~  feeding_mode + DemersPelag, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod10 <- gls(log_concentration ~  bulk_trophic_level + DemersPelag, corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod11 <- gls(log_concentration ~  log_length + EnvTemp, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod12 <- gls(log_concentration ~  feeding_mode + EnvTemp, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod13 <- gls(log_concentration ~  bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+mod14 <- gls(log_concentration ~  1, corPagel(value = 0.43, phy = epa_tree, fixed = TRUE), data = epag2, method = "ML")
+
+
+
+
+R2(mod11, phy = epa_tree)
+
+### model selection
+msel_epa <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+	mutate(model_num = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+
+
+
+confints_epa <- data.frame(confint(model.avg(get.models(msel_epa, subset = cumsum(weight) <= .95))),
+							estimate = coef(model.avg(get.models(msel_epa, subset = cumsum(weight) <= .95)))) %>% 
+	mutate(term = rownames(.)) %>% 
+	rename(lower = X2.5..) %>% 
+	rename(upper = X97.5..) %>% 
+	mutate(nutrient = "epa")
+
+confints_epa <- data.frame(confint(mod2),
+						   estimate = coef(mod2)) %>% 
+	mutate(term = rownames(.)) %>% 
+	rename(lower = X2.5..) %>% 
+	rename(upper = X97.5..) %>% 
+	mutate(nutrient = "epa")
+write_csv(confints_epa, "data-processed/epa-traits-confints.csv")
+
+epa_plot <- confints_epa %>% 
+	filter(term != "(Intercept)") %>% 
+	ggplot(aes(x = term, y = estimate)) + 
+	geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+	coord_flip() +
+	geom_hline(yintercept = 0) + ggtitle("epa")
+epa_plot
 
 mod1 <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, phy = epa_tree, data = epag2, model = "lambda")
 mod2 <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, phy = epa_tree, data = epag2, model = "lambda")

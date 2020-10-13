@@ -3,6 +3,12 @@ library(cowplot)
 theme_set(theme_cowplot())
 
 
+confints_dha <- read_csv("data-processed/dha-traits-confints.csv")
+confints_epa <- read_csv("data-processed/epa-traits-confints.csv")
+confints_calcium <- read_csv("data-processed/calcium-traits-confints.csv")
+confints_iron <- read_csv("data-processed/iron-traits-confints.csv")
+confints_zinc <- read_csv("data-processed/zinc-traits-confints.csv")
+
 ### all traits plots
 
 
@@ -33,8 +39,10 @@ all_confints %>%
   scale_color_manual(values = c("black", "white")) +
   scale_shape_manual(values = c(1, 19)) +
   coord_flip() +
-  geom_hline(yintercept = 0) + facet_wrap( ~ nutrient, nrow = 1, ncol = 5, scales = "free_x")
+  geom_hline(yintercept = 0) + facet_wrap( ~ nutrient, nrow = 1, ncol = 5, scales = "free_x") +
+	theme(legend.position = "none")
 ggsave("figures/coef-plots.pdf", width = 12, height = 6)
+ggsave("figures/coef-plots.png", width = 12, height = 6)
 
 
 

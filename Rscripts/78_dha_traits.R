@@ -65,6 +65,15 @@ dha2 <- dha %>%
   left_join(., dha_taxa, by = c("species1" = "search_string")) %>% 
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_dha$tip.label)) %>% 
+	mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(EnvTemp = ifelse(EnvTemp == "boreal", "polar", EnvTemp)) %>%
+	mutate(EnvTemp = ifelse(EnvTemp == "deep-water", "polar", EnvTemp)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathypelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "reef-associated", "pelagic-neritic", DemersPelag)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "other", "variable", feeding_mode)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "browsing on substrate", "variable", feeding_mode)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "selective plankton feeding", "filtering plankton", feeding_mode)) %>%
   ungroup() %>% 
   # mutate(feeding_level = as.factor(feeding_level)) %>% 
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
@@ -76,6 +85,8 @@ dha2$log_length <- scale(dha2$log_length)
 dha2$bulk_trophic_level <- scale(dha2$bulk_trophic_level)
 # dha2$DepthRangeDeep <- sdhae(dha2$DepthRangeDeep)
 # dha2$AgeMatMin <- sdhae(dha2$AgeMatMin)
+table(dha2$DemersPelag)
+cor(as.numeric(as.factor(dha2$DemersPelag)), as.numeric(as.factor(dha2$EnvTemp)))
 
 data <- dha2
 data$sp_name <- data$unique_name2
@@ -125,6 +136,58 @@ dhag <- Phylodata1 %>%
 dhag2 <- dhag 
 dhag2 <- dhag2[match(dha_tree$tip.label, dhag2$species),]
 row.names(dhag2) <- dhag2$species
+
+# model selection dha ----------------------------------------------------
+mod1p <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, phy = dha_tree, data = dhag2, model = "lambda")
+summary(mod1p) #### tells us lamba ~ 0
+summary(mod9)
+mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod2 <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod2b <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod3 <- gls(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod4 <- gls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod5 <- gls(log_concentration ~  log_length + bulk_trophic_level, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod6 <- gls(log_concentration ~  log_length + feeding_mode, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod7 <- gls(log_concentration ~  bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod8 <- gls(log_concentration ~  log_length + DemersPelag, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod9 <- gls(log_concentration ~  feeding_mode + DemersPelag, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod10 <- gls(log_concentration ~  bulk_trophic_level + DemersPelag, corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod11 <- gls(log_concentration ~  log_length + EnvTemp, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod12 <- gls(log_concentration ~  feeding_mode + EnvTemp, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod13 <- gls(log_concentration ~  bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+mod14 <- gls(log_concentration ~  1, corPagel(value = 0.33, phy = dha_tree, fixed = TRUE), data = dhag2, method = "ML")
+
+
+
+
+R2(mod11, phy = dha_tree)
+
+### model selection
+msel_dha <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+	mutate(model_num = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+
+
+
+confints_dha <- data.frame(confint(model.avg(get.models(msel_dha, subset = cumsum(weight) <= .95))),
+							estimate = coef(model.avg(get.models(msel_dha, subset = cumsum(weight) <= .95)))) %>% 
+	mutate(term = rownames(.)) %>% 
+	rename(lower = X2.5..) %>% 
+	rename(upper = X97.5..) %>% 
+	mutate(nutrient = "dha")
+write_csv(confints_dha, "data-processed/dha-traits-confints.csv")
+
+dha_plot <- confints_dha %>% 
+	filter(term != "(Intercept)") %>% 
+	ggplot(aes(x = term, y = estimate)) + 
+	geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+	coord_flip() +
+	geom_hline(yintercept = 0) + ggtitle("dha")
+dha_plot
+
+
+
+
 
 
 mod1 <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, phy = dha_tree, data = dhag2, model = "lambda")

@@ -22,9 +22,11 @@ library(readxl)
 library(rr2)
 
 
+
+#### this script contains the phylogenetic regressions for calcium concentration as a function of species' traits
+
 all_traits6 <- read_csv("data-processed/fishbase-traits-aug-26-2020.csv")
 s2 <- all_traits6 %>% 
-  # filter(biblio_id != 27) %>% 
   gather(17:23, key = nutrient, value = concentration) %>% 
   rename(feeding_level = Herbivory2) %>% 
   rename(feeding_mode = FeedingType) %>% 
@@ -38,9 +40,6 @@ s2 <- all_traits6 %>%
 ## calcium traits
 
 
-
-
-
 calcium <-  s2 %>% 
   filter(nutrient == "ca_mg") %>% 
   filter(!is.na(concentration)) %>% 
@@ -51,6 +50,8 @@ calcium <-  s2 %>%
   filter(complete.cases(.)) %>% 
   # rename(part = part_edited) %>% 
   rename(species1 = Species)
+
+
 
 
 # PGLS calcium muscle only ------------------------------------------------------------
@@ -69,17 +70,25 @@ calcium2 <- calcium %>%
   left_join(., calcium_taxa, by = c("species1" = "search_string")) %>% 
   mutate(unique_name2 = str_replace_all(unique_name, " ", "_")) %>% 
   filter(unique_name2 %in% c(tr_bl_calcium$tip.label)) %>% 
-  ungroup() %>% 
-  # mutate(feeding_level = as.factor(feeding_level)) %>% 
+  ungroup() %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "browsing on substrate", "variable", feeding_mode)) %>%
+	mutate(feeding_mode = ifelse(feeding_mode == "filtering plankton", "selective plankton feeding", feeding_mode)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "bathypelagic", "pelagic-oceanic", DemersPelag)) %>%
+	mutate(DemersPelag = ifelse(DemersPelag == "reef-associated", "pelagic-neritic", DemersPelag)) %>%
+	mutate(EnvTemp = ifelse(EnvTemp == "deep-water", "polar", EnvTemp)) %>%
   mutate(feeding_mode = as.factor(feeding_mode)) %>% 
   mutate(DemersPelag = as.factor(DemersPelag)) %>%
-  # mutate(BodyShapeI = as.factor(BodyShapeI)) %>%
   mutate(EnvTemp = as.factor(EnvTemp)) %>% 
   mutate(realm = as.factor(realm))
 calcium2$log_length <- scale(calcium2$log_length)
 calcium2$bulk_trophic_level <- scale(calcium2$bulk_trophic_level)
-# calcium2$DepthRangeDeep <- scalciume(calcium2$DepthRangeDeep)
-# calcium2$AgeMatMin <- scalciume(calcium2$AgeMatMin)
+
+table(calcium2$DemersPelag)
+
+
+
 
 data <- calcium2
 data$sp_name <- data$unique_name2
@@ -131,17 +140,48 @@ calciumg2 <- calciumg2[match(calcium_tree$tip.label, calciumg2$species),]
 row.names(calciumg2) <- calciumg2$species
 
 
+
+# model averaging for calcium ------------------------------------------------
+
+
+mod1_calcium <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corBrownian(phy = calcium_tree), data = calciumg2, method = "ML")
+summary(mod1_calcium)
+confint(mod1_calcium)
+dd_calcium <- dredge(mod1_calcium, m.lim = c(2, 5), extra = "R2") %>% 
+	mutate(mod_number = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+View(dd_calcium)
+mods_calcium <- get.models(dd_calcium, subset= cumsum(weight) <= .95)
+R2(mods_calcium$`5`)
+sw(mods_calcium)
+ci_avg_calcium <- rownames_to_column(as.data.frame(confint(model.avg(dd_calcium, subset = cumsum(weight) <= .95))), var = "term")
+slopes_avg_calcium <- enframe(coef(model.avg(dd_calcium, subset = cumsum(weight) <= .95)), name = "term", value = "slope")
+
+calcium_mod_out <- left_join(ci_avg_calcium, slopes_avg_calcium) %>% 
+	rename(lower = `2.5 %`,
+		   upper = `97.5 %`) %>% 
+	filter(term != "(Intercept)") %>% 
+	mutate(nutrient = "calcium") %>% 
+	mutate(conf_int_overlap_0 = ifelse(upper < 0 & slope < 0 | lower > 0 & slope > 0, "yes", "no")) 
+
+calcium_mod_out %>% 
+	ggplot(aes(x = term, y = slope)) + 
+	geom_pointrange(aes(x = term, y = slope, ymin = lower, ymax = upper), fill = "transparent") +
+	geom_point(aes(x = term, y = slope, shape = conf_int_overlap_0, color = conf_int_overlap_0)) +
+	scale_color_manual(values = c("black", "white")) +
+	scale_shape_manual(values = c(1, 19)) +
+	geom_hline(yintercept = 0) + coord_flip() +
+	theme(legend.position = "none")
+
+
+
+
+
+
 mod1 <- phylolm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, phy = calcium_tree, data = calciumg2, model = "lambda")
-# mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm, correlation = corPagel(1, calcium_tree), data = calciumg2, method = "ML")
-class(mod1)
-dd <- dredge(mod1)
-importance(model.avg(dd, subset = cumsum(weight) <= .95))
-
+R2(mod1, phy = calcium_tree)
 mod2 <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, phy = calcium_tree, data = calciumg2, model = "lambda")
-
-model.avg(mod1)
-?model.avg
-
+mod2b <- phylolm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, phy = calcium_tree, data = calciumg2, model = "lambda")
 mod3 <- phylolm(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, phy = calcium_tree, data = calciumg2, model = "lambda")
 mod4 <- phylolm(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, phy = calcium_tree, data = calciumg2, model = "lambda")
 
@@ -156,28 +196,44 @@ mod12 <- phylolm(log_concentration ~  feeding_mode + EnvTemp, phy = calcium_tree
 mod13 <- phylolm(log_concentration ~  bulk_trophic_level + EnvTemp, phy = calcium_tree, data = calciumg2, model = "lambda")
 mod14 <- phylolm(log_concentration ~  1, phy = calcium_tree, data = calciumg2, model = "lambda")
 
-R2(mod1, phy = calcium_tree)
+#### try the same with gls
+library(caper)
+com_calcium <- comparative.data(calcium_tree, as.data.frame(calciumg2), "species", vcv.dim = 3)
+mod1 <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod2 <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod2b <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod3 <- gls(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod4 <- gls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod5 <- gls(log_concentration ~  log_length + bulk_trophic_level, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod6 <- gls(log_concentration ~  log_length + feeding_mode, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod7 <- gls(log_concentration ~  bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod8 <- gls(log_concentration ~  log_length + DemersPelag, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod9 <- gls(log_concentration ~  feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod10 <- gls(log_concentration ~  bulk_trophic_level + DemersPelag, corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod11 <- gls(log_concentration ~  log_length + EnvTemp, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod12 <- gls(log_concentration ~  feeding_mode + EnvTemp, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod13 <- gls(log_concentration ~  bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
+mod14 <- gls(log_concentration ~  1, corPagel(value = 0, phy = calcium_tree, fixed = TRUE), data = calciumg2, method = "ML")
 
-model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod14, rank = AICc) %>%  
-  mutate(model_number = rownames(.)) %>% 
-  mutate(cumsum = cumsum(weight)) %>% View
-
-mod1 <- lm(log_concentration ~ bulk_trophic_level, data = calciumg2)
-mod2 <- lm(log_concentration ~ feeding_mode + bulk_trophic_level, data = calciumg2)
-importance(model.avg(mod1, mod2)) 
-library(MuMIn)
-summary(model.avg(mod5, mod11, mod6))
-confint(model.avg(mod14, mod9, mod12))
-coef(model.avg(mod9, mod10, mod6, mod7))
-
-R2(mod7, phy = calcium_tree)
-logLik(mod1)
 
 
-confints_calcium <- data.frame(confint(model.avg(mod5, mod11, mod6)), estimate = coef(model.avg(mod5, mod11, mod6))) %>% 
+
+R2(mod11, phy = calcium_tree)
+
+### model selection
+msel_calcium <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+	mutate(model_num = rownames(.)) %>% 
+	mutate(cum_weight = cumsum(weight))
+
+
+
+confints_calcium <- data.frame(confint(model.avg(get.models(msel_calcium, subset = cumsum(weight) <= .95))),
+							   estimate = coef(model.avg(get.models(msel_calcium, subset = cumsum(weight) <= .95)))) %>% 
   mutate(term = rownames(.)) %>% 
   rename(lower = X2.5..) %>% 
-  rename(upper = X97.5..)
+  rename(upper = X97.5..) %>% 
+	mutate(nutrient = "calcium")
+write_csv(confints_calcium, "data-processed/calcium-traits-confints.csv")
 
 calcium_plot <- confints_calcium %>% 
   filter(term != "(Intercept)") %>% 
