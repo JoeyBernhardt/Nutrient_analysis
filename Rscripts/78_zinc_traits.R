@@ -205,7 +205,7 @@ zinc_all <-  s2 %>%
   mutate(feeding_mode = ifelse(feeding_mode == "selective plankton feeding", "plankton feeding", feeding_mode)) %>%
   mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
   mutate(body_part = ifelse(body_part == "whole", "muscle_organs", body_part)) %>% 
-  mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  # mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
   filter(!is.na(concentration)) %>%
   rename(species1 = Species) %>% 
   group_by(species1, feeding_mode, EnvTemp, DemersPelag, body_part, realm, feeding_level) %>%
@@ -350,6 +350,20 @@ plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot7+
 ggsave("figures/all-parts-pgls-zinc-partial-regressions-oct.pdf", plot = plot_all, width = 8, height = 12)
 
 
+# model summary table -----------------------------------------------------
+
+lambda <- round(mod1p$modelStruct[[1]][[1]], digits = 2)
+
+# visreg(mod1a)
+rsq_mod1p <- round(rsquared(mod1p)['R.squared'][[1]], digits = 2)
+
+stargazer(mod1p, title = "", type = "html", out="tables/zinc-pgls-all-parts-oct.htm", 
+          add.lines = list(c("R2", rsq_mod1p), c("Lamba", lambda)), ci=TRUE, ci.level=0.95, digits = 2, single.row = TRUE)
+
+
+
+
+
 #################### END OF ANALYSIS SCRIPT ##############
 
 
@@ -436,3 +450,113 @@ zinc_plot <- confints_zinc %>%
   coord_flip() +
   geom_hline(yintercept = 0) + ggtitle("zinc")
 zinc_plot
+
+
+
+# zinc all parts ----------------------------------------------------------
+
+##### zinc all parrts model sel
+
+mod1 <- gls(log_concentration ~  body_part + feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod2 <- gls(log_concentration ~  body_part + feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod2b <- gls(log_concentration ~  body_part + feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod3 <- gls(log_concentration ~  body_part + feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod4 <- gls(log_concentration ~  body_part + log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod5 <- gls(log_concentration ~  body_part + log_length + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod5b <- gls(log_concentration ~   log_length + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+
+mod6 <- gls(log_concentration ~  body_part + log_length + feeding_mode, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod7 <- gls(log_concentration ~  body_part + bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod8 <- gls(log_concentration ~  body_part + log_length + DemersPelag, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod9 <- gls(log_concentration ~  body_part + feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod10 <- gls(log_concentration ~  body_part + bulk_trophic_level + DemersPelag, corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod11 <- gls(log_concentration ~  body_part + log_length + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod12 <- gls(log_concentration ~  body_part + feeding_mode + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod13 <- gls(log_concentration ~  body_part + bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+
+
+mod1b <- gls(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod2b <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod2bb <- gls(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod3b <- gls(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod4b <- gls(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod5b <- gls(log_concentration ~  log_length + bulk_trophic_level, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod6b <- gls(log_concentration ~  log_length + feeding_mode, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod7b <- gls(log_concentration ~ bulk_trophic_level + feeding_mode, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod8b <- gls(log_concentration ~  log_length + DemersPelag, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod9b <- gls(log_concentration ~  feeding_mode + DemersPelag, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod10b <- gls(log_concentration ~  bulk_trophic_level + DemersPelag, corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod11b <- gls(log_concentration ~  log_length + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod12b <- gls(log_concentration ~  feeding_mode + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+mod13b <- gls(log_concentration ~  bulk_trophic_level + EnvTemp, correlation = corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+
+
+
+mod14 <- gls(log_concentration ~  1, corPagel(value = 0, phy = zinc_all_tree, fixed = TRUE), data = zinc_allg2, method = "ML")
+
+
+
+
+R2(mod11, phy = zinc_all_tree)
+
+### model selection
+msel_zinc_all <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14,
+                              mod1b, mod3b, mod4b, mod5b, mod6b, mod7b, mod8b, mod9b, mod10b, mod11b, mod12b, mod13b, mod2bb, rank = AICc) 
+
+msel_zinc_all2 <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14,
+                               mod1b, mod3b, mod4b, mod5b, mod6b, mod7b, mod8b, mod9b, mod10b, mod11b, mod12b, mod13b, mod2bb, rank = AICc, extra = "R2") %>% 
+  mutate(model_num = rownames(.)) %>% 
+  mutate(cum_weight = cumsum(weight)) %>%
+  filter(cum_weight <= .95)
+
+model_table_zinc_all <- msel_zinc_all2 %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(term = rownames(.)) %>% 
+  dplyr::select(term, everything())
+
+str(model_table_zinc_all)
+
+
+confints_zinc_all <- data.frame(confint(model.avg(get.models(msel_zinc_all, subset = cumsum(weight) <= .95))),
+                                   estimate = coef(model.avg(get.models(msel_zinc_all, subset = cumsum(weight) <= .95)))) %>% 
+  mutate(term = rownames(.)) %>% 
+  rename(lower = X2.5..) %>% 
+  rename(upper = X97.5..) %>% 
+  mutate(nutrient = "zinc") %>% 
+  mutate(term2 = case_when(grepl("body_part", term) ~ "body_part",
+                           grepl("feeding_mode", term) ~ "feeding_mode",
+                           grepl("EnvTemp", term) ~ "EnvTemp",
+                           grepl("DemersPelag", term) ~ "DemersPelag",
+                           grepl("realm", term) ~ "realm",
+                           TRUE ~ term))
+
+View(confints_zinc_all)
+
+zinc_all_weights <- data.frame(wip = sw(get.models(msel_zinc_all, subset = cumsum(weight) <= .95))) %>% 
+  mutate(term2 = rownames(.))
+
+zinc_all_outputs <- full_join(confints_zinc_all, model_table_zinc_all, by = c("term2" = "term")) %>% 
+  left_join(., zinc_all_weights) %>% 
+  filter(term2 != "model_num") %>% 
+  filter(term2 != "(Intercept)") %>% 
+  filter(term2 != "AICc") %>% 
+  filter(term2 != "logLik") %>% 
+  filter(term2 != "df") %>% 
+  filter(term2 != "R2.R2_lik") %>% 
+  filter(term2 != "R2.R2_resid") %>% 
+  mutate(term = ifelse(is.na(term), term2, term)) %>% 
+  dplyr::select(term2, term, contains("V"), estimate, lower, upper, everything(), wip, -nutrient, -term2) %>% 
+  mutate(across(.cols = where(is.numeric), .funs = round, .digits = 2))
+
+write_csv(zinc_all_outputs, "tables/zinc-pgls-all-parts.csv")
+
+
+
+zinc_plot_all <- confints_zinc_all %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + 
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) + ggtitle("zinc")
+zinc_plot_all
