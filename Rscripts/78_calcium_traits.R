@@ -533,5 +533,141 @@ sw(top_models_calcium_all)
 
 
 
+# calcium small fish ------------------------------------------------------
+
+# calcium all parts small fish -----------------------------------------------
+calcium_small <-  s2 %>% 
+  filter(nutrient == "ca_mg") %>% 
+  filter(length < 50) %>% 
+  # filter(body_part != "skin") %>% 
+  mutate(body_part = ifelse(body_part %in% c("eggs", "liver"), "eggs or liver", body_part)) %>%
+  mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
+  mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
+  mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
+  mutate(DemersPelag = ifelse(DemersPelag == "bathypelagic", "pelagic-oceanic", DemersPelag)) %>%
+  mutate(DemersPelag = ifelse(DemersPelag == "reef-associated", "pelagic-neritic", DemersPelag)) %>%
+  mutate(feeding_mode = ifelse(feeding_mode == "filtering plankton", "selective plankton feeding", feeding_mode)) %>% 
+  mutate(feeding_mode = ifelse(feeding_mode == "grazing on aquatic plants", "variable", feeding_mode)) %>% 
+  mutate(feeding_mode = ifelse(feeding_mode == "browsing on substrate", "variable", feeding_mode)) %>% 
+  mutate(EnvTemp = ifelse(EnvTemp == "deep-water", "polar", EnvTemp)) %>% 
+  mutate(feeding_mode = ifelse(feeding_mode == "hunting macrofauna (predator)", "predator", feeding_mode)) %>%
+  mutate(feeding_mode = ifelse(feeding_mode == "selective plankton feeding", "plankton feeding", feeding_mode)) %>%
+  mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
+  mutate(body_part = ifelse(body_part == "whole", "muscle_organs", body_part)) %>% 
+  # mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
+  filter(!is.na(concentration)) %>%
+  dplyr::select(Species, body_part, log_length, feeding_mode, DemersPelag, bulk_trophic_level, realm, EnvTemp, log_concentration) %>%
+  filter(complete.cases(.))
+
+table(calcium_small$body_part)
+
+
+
+##### calcium all parrts model sel
+
+mod1 <- lm(log_concentration ~  body_part + feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, data = calcium_small)
+mod2 <- lm(log_concentration ~  body_part + feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, data = calcium_small)
+mod2b <- lm(log_concentration ~  body_part + feeding_mode + log_length + EnvTemp + bulk_trophic_level, data = calcium_small)
+mod3 <- lm(log_concentration ~  body_part + feeding_mode + DemersPelag + bulk_trophic_level, data = calcium_small)
+mod4 <- lm(log_concentration ~  body_part + log_length + DemersPelag + bulk_trophic_level, data = calcium_small)
+mod5 <- lm(log_concentration ~  body_part + log_length + bulk_trophic_level, data = calcium_small)
+mod5b <- lm(log_concentration ~   log_length + bulk_trophic_level, data = calcium_small)
+
+mod6 <- lm(log_concentration ~  body_part + log_length + feeding_mode, data = calcium_small)
+mod7 <- lm(log_concentration ~  body_part + bulk_trophic_level + feeding_mode, data = calcium_small)
+mod8 <- lm(log_concentration ~  body_part + log_length + DemersPelag, data = calcium_small)
+mod9 <- lm(log_concentration ~  body_part + feeding_mode + DemersPelag, data = calcium_small)
+mod10 <- lm(log_concentration ~  body_part + bulk_trophic_level + DemersPelag, data = calcium_small)
+mod11 <- lm(log_concentration ~  body_part + log_length + EnvTemp, data = calcium_small)
+mod12 <- lm(log_concentration ~  body_part + feeding_mode + EnvTemp, data = calcium_small)
+mod13 <- lm(log_concentration ~  body_part + bulk_trophic_level + EnvTemp, data = calcium_small)
+
+
+mod1b <- lm(log_concentration ~  feeding_mode + log_length + DemersPelag + bulk_trophic_level + realm + EnvTemp, data = calcium_small)
+mod2b <- lm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level + realm, data = calcium_small)
+mod2bb <- lm(log_concentration ~  feeding_mode + log_length + EnvTemp + bulk_trophic_level, data = calcium_small)
+mod3b <- lm(log_concentration ~  feeding_mode + DemersPelag + bulk_trophic_level, data = calcium_small)
+mod4b <- lm(log_concentration ~  log_length + DemersPelag + bulk_trophic_level, data = calcium_small)
+mod5b <- lm(log_concentration ~  log_length + bulk_trophic_level, data = calcium_small)
+mod6b <- lm(log_concentration ~  log_length + feeding_mode, data = calcium_small)
+mod7b <- lm(log_concentration ~ bulk_trophic_level + feeding_mode, data = calcium_small)
+mod8b <- lm(log_concentration ~  log_length + DemersPelag, data = calcium_small)
+mod9b <- lm(log_concentration ~  feeding_mode + DemersPelag, data = calcium_small)
+mod10b <- lm(log_concentration ~  bulk_trophic_level + DemersPelag, data = calcium_small)
+mod11b <- lm(log_concentration ~  log_length + EnvTemp, data = calcium_small)
+mod12b <- lm(log_concentration ~  feeding_mode + EnvTemp, data = calcium_small)
+mod13b <- lm(log_concentration ~  bulk_trophic_level + EnvTemp, data = calcium_small)
+mod14 <- lm(log_concentration ~  1, data = calcium_small)
+
+summary(mod1)
+
+
+R2(mod11, phy = calcium_small_tree)
+
+### model selection
+msel_calcium_small <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14,
+                             mod1b, mod3b, mod4b, mod5b, mod6b, mod7b, mod8b, mod9b, mod10b, mod11b, mod12b, mod13b, mod2bb, rank = AICc) 
+
+msel_calcium_small2 <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14,
+                              mod1b, mod3b, mod4b, mod5b, mod6b, mod7b, mod8b, mod9b, mod10b, mod11b, mod12b, mod13b, mod2bb, rank = AICc, extra = "R2") %>% 
+  mutate(model_num = rownames(.)) %>% 
+  mutate(cum_weight = cumsum(weight)) %>%
+  filter(cum_weight <= .95)
+
+model_table_calcium_small <- msel_calcium_small2 %>% 
+  t() %>% 
+  as.data.frame() %>% 
+  mutate(term = rownames(.)) %>% 
+  dplyr::select(term, everything())
+
+str(model_table_calcium_small)
+
+
+confints_calcium_small <- data.frame(confint(model.avg(get.models(msel_calcium_small, subset = cumsum(weight) <= .95))),
+                                  estimate = coef(model.avg(get.models(msel_calcium_small, subset = cumsum(weight) <= .95)))) %>% 
+  mutate(term = rownames(.)) %>% 
+  rename(lower = X2.5..) %>% 
+  rename(upper = X97.5..) %>% 
+  mutate(nutrient = "calcium") %>% 
+  mutate(term2 = case_when(grepl("body_part", term) ~ "body_part",
+                           grepl("feeding_mode", term) ~ "feeding_mode",
+                           grepl("EnvTemp", term) ~ "EnvTemp",
+                           grepl("DemersPelag", term) ~ "DemersPelag",
+                           grepl("realm", term) ~ "realm",
+                           TRUE ~ term))
+
+# View(confints_calcium_small)
+
+calcium_small_weights <- data.frame(wip = sw(get.models(msel_calcium_small, subset = cumsum(weight) <= .95))) %>% 
+  mutate(term2 = rownames(.))
+
+calcium_small_outputs <- full_join(confints_calcium_small, model_table_calcium_small, by = c("term2" = "term")) %>% 
+  left_join(., calcium_small_weights) %>% 
+  filter(term2 != "model_num") %>% 
+  filter(term2 != "(Intercept)") %>% 
+  filter(term2 != "AICc") %>% 
+  filter(term2 != "logLik") %>% 
+  filter(term2 != "df") %>% 
+  filter(term2 != "R2.R2_lik") %>% 
+  filter(term2 != "R2.R2_resid") %>% 
+  mutate(term = ifelse(is.na(term), term2, term)) %>% 
+  dplyr::select(term2, term, contains("V"), estimate, lower, upper, everything(), wip, -nutrient, -term2) %>% 
+  mutate(across(.cols = where(is.numeric), .funs = round, .digits = 2))
+
+
+write_csv(calcium_small_outputs, "tables/calcium-pgls-small-parts.csv")
+
+
+
+calcium_plot_small <- confints_calcium_small %>% 
+  filter(term != "(Intercept)") %>% 
+  ggplot(aes(x = term, y = estimate)) + 
+  geom_pointrange(aes(x = term, y = estimate, ymin = lower, ymax = upper)) +
+  coord_flip() +
+  geom_hline(yintercept = 0) + ggtitle("calcium")
+calcium_plot_small
+
+
+
 #################### END OF ANALYSIS SCRIPT ##############
 
