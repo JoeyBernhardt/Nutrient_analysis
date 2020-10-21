@@ -1189,9 +1189,19 @@ View(proportions)
 
 
 # get datasets ready for export -------------------------------------------
-
+library(readxl)
 #### this is the global dataset
 all7 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")  ### this one has the skon and mart refs added back in 
+
+all7b <- all7 %>% 
+  rename(taxon_name = taxize_name) %>%
+  rename(sample_info = food_name_in_english) %>% 
+  dplyr::select(obs_id, taxon_name, common_name, subgroup, sample_info, body_part, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein, location, season, everything()) %>% 
+  dplyr::select(-scientific_name, -asfis_scientific_name, -submitted_name, -genus_species)
+  
+
+write_csv(all7b, "data-to-share/global-seafood-nutrient-dataset-raw.csv") 
+
 
 ### get the traditional foods data
 
@@ -1211,11 +1221,6 @@ trad_data_all <- trad_data %>%
   rename(taxon_name = genus_species)
 
 write_csv(trad_data_all, "data-processed/traditional-foods-dataset.csv") #### this is the complete traditional foods dataset before averages
-
-View(trad_data)
-View(trad_refs)
-
-  rename(calcium = ca_mg,
-         iron = fe_mg,
-         zinc = zn_mg) %>% 
-  dplyr::select(-contains("na")) 
+write_csv(trad_data_all, "data-to-share/traditional-foods-dataset-raw.csv") 
+trad_nuts_mean <- read_csv("data-processed/traditional_foods_nutrients_cultures_for_analysis.csv")
+write_csv(trad_nuts_mean, "data-to-share/traditional-foods-dataset-for-analysis.csv") 
