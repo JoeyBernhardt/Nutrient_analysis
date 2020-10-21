@@ -95,6 +95,10 @@ fEve_global <- fEve_global %>%
 write_csv(fEve_global, "data-processed/functional_evenness_global_october.csv")
 
 fEve_global <- read_csv("data-processed/functional_evenness_global_october.csv") #### expected nutritional functional evenness at the global level
+fEve_global %>% 
+  summarise_each(funs(mean, std.error), FEve) %>% View
+
+
 
 # Calculate expected functional evenness ----------------------------------
 mean_nuts <- read_csv("data-processed/mean_nuts_oct-4-2020.csv") %>% 

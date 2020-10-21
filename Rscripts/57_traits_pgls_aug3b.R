@@ -930,7 +930,7 @@ all_cf$term2 <- new_terms$new_term
 
 
 
-all_cf2 %>% View
+all_cf2 %>% 
   mutate(variable = NA) %>% 
   mutate(nutrient = str_replace(nutrient, "epa", "EPA")) %>% 
   mutate(nutrient = str_replace(nutrient, "dha", "DHA")) %>% 

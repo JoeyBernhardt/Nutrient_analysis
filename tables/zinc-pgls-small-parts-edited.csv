@@ -1,0 +1,15 @@
+term,wip,V1,V2,V3,V4,V5,V6,estimate,lower,upper
+log_length,0.47,-0.36,NA,NA,-0.37,NA,NA,-0.36,-0.93,0.21
+feeding_modepredator,1.00,+,+,+,+,+,+,0.30,-0.35,0.94
+feeding_modevariable,1.00,+,+,+,+,+,+,0.93,0.25,1.61
+bulk_trophic_level,0.44,NA,0.38,NA,NA,0.38,0.40,0.38,-0.28,1.03
+DemersPelagdemersal,0.12,NA,NA,+,NA,NA,+,-0.22,-0.82,0.38
+DemersPelagpelagic-neritic,0.12,NA,NA,+,NA,NA,+,0.26,-0.44,0.97
+DemersPelagpelagic-oceanic,0.12,NA,NA,+,NA,NA,+,0.53,-0.24,1.31
+body_partmuscle_organs,0.15,NA,NA,NA,+,+,NA,-0.04,-0.54,0.46
+EnvTemp,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+realm,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+R2.R2_pred,NA,0.33,0.32,0.41,0.33,0.32,0.46,NA,NA,NA
+delta,NA,0.00,0.31,3.07,3.21,3.57,4.85,NA,NA,NA
+weight,NA,0.36,0.31,0.08,0.07,0.06,0.03,NA,NA,NA
+cum_weight,NA,0.36,0.68,0.75,0.83,0.89,0.92,NA,NA,NA

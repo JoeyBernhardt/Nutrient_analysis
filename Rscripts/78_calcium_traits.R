@@ -540,7 +540,7 @@ calcium_small <-  s2 %>%
   filter(nutrient == "ca_mg") %>% 
   filter(length < 50) %>% 
   # filter(body_part != "skin") %>% 
-  mutate(body_part = ifelse(body_part %in% c("eggs", "liver"), "eggs or liver", body_part)) %>%
+  mutate(body_part = ifelse(body_part %in% c("eggs", "liver", "oil"), "eggs, liver or oil", body_part)) %>%
   mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
   mutate(DemersPelag = ifelse(DemersPelag == "pelagic", "pelagic-oceanic", DemersPelag)) %>%
   mutate(DemersPelag = ifelse(DemersPelag == "bathydemersal", "demersal", DemersPelag)) %>%
@@ -601,8 +601,6 @@ mod14 <- lm(log_concentration ~  1, data = calcium_small)
 
 summary(mod1)
 
-
-R2(mod11, phy = calcium_small_tree)
 
 ### model selection
 msel_calcium_small <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14,

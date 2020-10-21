@@ -142,9 +142,16 @@ all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample
 
 write_csv(all_fds, "data-processed/all_fds_october.csv")
 
-
+library(plotrix)
 all_fds <- read_csv("data-processed/all_fds.csv")
 all_feves <- read_csv("data-processed/observed-expected-functional-evenness-october20202.csv")
+
+
+#### main text results
+all_feves %>% 
+  filter(culture == "global") %>% View
+  summarise_each(funs(mean, std.error), FEve) %>% View
+
 all_fds %>% 
   filter(region != "global_resampled") %>% 
   summarise_each(funs(mean, std.error), FD) %>% View

@@ -6,7 +6,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 2,Acipenser fulvescens,6.61,0.139,0.443,NA,NA,44,Cree,6447
 2,Acipenser fulvescens,6.61,0.139,0.443,NA,NA,44,Montagnais-Naskapi,6447
 2,Acipenser fulvescens,6.61,0.139,0.443,NA,NA,44,Abenaki,6447
-2,Acipenser fulvescens,6.61,0.139,0.443,NA,NA,44,Micmac,6447
+2,Acipenser fulvescens,6.61,0.139,0.443,NA,NA,44,Mi'kmaq,6447
 2,Acipenser fulvescens,6.61,0.139,0.443,NA,NA,44,Wampanoag,6447
 5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Inuit-Inupiaq,6447
 5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Bella Coola,6447
@@ -15,7 +15,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Cree,6447
 5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Montagnais-Naskapi,6447
 5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Abenaki,6447
-5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Micmac,6447
+5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Mi'kmaq,6447
 5,Acipenser oxyrinchus,NA,NA,NA,1.4,0.57,55,Wampanoag,6447
 7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Inuit-Inupiaq,6447
 7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Bella Coola,6447
@@ -24,13 +24,13 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Cree,6447
 7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Montagnais-Naskapi,6447
 7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Abenaki,6447
-7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Micmac,6447
+7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Mi'kmaq,6447
 7,Acipenser spp.,NA,NA,NA,1.4,0.57,55,Wampanoag,6447
 10,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Abenaki,6453
-10,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Micmac,6453
+10,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Mi'kmaq,6453
 10,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Wampanoag,6453
 11,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Abenaki,6453
-11,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Micmac,6453
+11,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Mi'kmaq,6453
 11,Alosa pseudoharengus,NA,NA,NA,0.1,0.27,55,Wampanoag,6453
 18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Inuit-Inupiaq,6431
 18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Yupik,6431
@@ -42,7 +42,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Kwakiutl,6431
 18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Nootkan,6431
 18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Abenaki,6431
-18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Micmac,6431
+18,Alosa sapidissima,NA,0.7,NA,NA,NA,27,Mi'kmaq,6431
 23,Aloseinae,NA,0.57,NA,NA,NA,27,Inuit-Inupiaq,6431
 23,Aloseinae,NA,0.57,NA,NA,NA,27,Yupik,6431
 23,Aloseinae,NA,0.57,NA,NA,NA,27,Bella Coola,6431
@@ -53,7 +53,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 23,Aloseinae,NA,0.57,NA,NA,NA,27,Kwakiutl,6431
 23,Aloseinae,NA,0.57,NA,NA,NA,27,Nootkan,6431
 23,Aloseinae,NA,0.57,NA,NA,NA,27,Abenaki,6431
-23,Aloseinae,NA,0.57,NA,NA,NA,27,Micmac,6431
+23,Aloseinae,NA,0.57,NA,NA,NA,27,Mi'kmaq,6431
 25,Ameiurus nebulosus,12,0.653,0.403,NA,NA,44,Montagnais-Naskapi,6410
 29,Anarhichadidae,NA,NA,NA,0.11,0.06,55,Central Salish,6443
 29,Anarhichadidae,NA,NA,NA,0.11,0.06,55,Tlingit,6443
@@ -63,15 +63,15 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 32,Anarhichadidae,6,NA,NA,NA,NA,27,Nootkan,6443
 38,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Montagnais-Naskapi,6450
 38,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Abenaki,6450
-38,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Micmac,6450
+38,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Mi'kmaq,6450
 38,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Wampanoag,6450
 42,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Montagnais-Naskapi,6450
 42,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Abenaki,6450
-42,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Micmac,6450
+42,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Mi'kmaq,6450
 42,Anguilla rostrata,NA,NA,NA,0.3,0.66,55,Wampanoag,6450
 47,Anguilla rostrata,56,NA,0.615,NA,NA,27,Montagnais-Naskapi,6450
 47,Anguilla rostrata,56,NA,0.615,NA,NA,27,Abenaki,6450
-47,Anguilla rostrata,56,NA,0.615,NA,NA,27,Micmac,6450
+47,Anguilla rostrata,56,NA,0.615,NA,NA,27,Mi'kmaq,6450
 47,Anguilla rostrata,56,NA,0.615,NA,NA,27,Wampanoag,6450
 51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Inuit-Inupiaq,6437
 51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Yupik,6437
@@ -82,7 +82,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Tlingit,6437
 51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Kwakiutl,6437
 51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Nootkan,6437
-51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Micmac,6437
+51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Mi'kmaq,6437
 51,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,25,Wampanoag,6437
 52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Inuit-Inupiaq,6437
 52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Yupik,6437
@@ -93,7 +93,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Tlingit,6437
 52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Kwakiutl,6437
 52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Nootkan,6437
-52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Micmac,6437
+52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Mi'kmaq,6437
 52,Anoplopoma fimbria,35,1.2,NA,NA,NA,27,Wampanoag,6437
 61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Inuit-Inupiaq,6432
 61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Yupik,6432
@@ -107,7 +107,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Cree,6432
 61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Montagnais-Naskapi,6432
 61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Abenaki,6432
-61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Micmac,6432
+61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Mi'kmaq,6432
 61,Boreogadus saida,20.2,0.6,0.5,0.165,0.329,2,Wampanoag,6432
 64,Brachyura,60,5.2,2.83,NA,NA,27,Yupik,6518
 64,Brachyura,60,5.2,2.83,NA,NA,27,Bella Coola,6518
@@ -115,7 +115,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 64,Brachyura,60,5.2,2.83,NA,NA,27,Tlingit,6518
 64,Brachyura,60,5.2,2.83,NA,NA,27,Kwakiutl,6518
 64,Brachyura,60,5.2,2.83,NA,NA,27,Nootkan,6518
-64,Brachyura,60,5.2,2.83,NA,NA,27,Micmac,6518
+64,Brachyura,60,5.2,2.83,NA,NA,27,Mi'kmaq,6518
 64,Brachyura,60,5.2,2.83,NA,NA,27,Wampanoag,6518
 68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Inuit-Inupiaq,6431
 68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Yupik,6431
@@ -127,14 +127,14 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Kwakiutl,6431
 68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Nootkan,6431
 68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Abenaki,6431
-68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Micmac,6431
+68,Brevoortia tyrannus,60,NA,NA,NA,NA,27,Mi'kmaq,6431
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Yupik,6518
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Bella Coola,6518
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Tsimshian,6518
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Tlingit,6518
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Kwakiutl,6518
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Nootkan,6518
-72,Callinectes sapidus,74,NA,NA,NA,NA,65,Micmac,6518
+72,Callinectes sapidus,74,NA,NA,NA,NA,65,Mi'kmaq,6518
 72,Callinectes sapidus,74,NA,NA,NA,NA,65,Wampanoag,6518
 73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Yupik,6518
 73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Bella Coola,6518
@@ -142,7 +142,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Tlingit,6518
 73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Kwakiutl,6518
 73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Nootkan,6518
-73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Micmac,6518
+73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Mi'kmaq,6518
 73,Callinectes sapidus,115,2.32,4.025,NA,NA,27,Wampanoag,6518
 76,Cancer borealis,96,NA,NA,NA,NA,27,Yupik,6518
 76,Cancer borealis,96,NA,NA,NA,NA,27,Bella Coola,6518
@@ -150,7 +150,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 76,Cancer borealis,96,NA,NA,NA,NA,27,Tlingit,6518
 76,Cancer borealis,96,NA,NA,NA,NA,27,Kwakiutl,6518
 76,Cancer borealis,96,NA,NA,NA,NA,27,Nootkan,6518
-76,Cancer borealis,96,NA,NA,NA,NA,27,Micmac,6518
+76,Cancer borealis,96,NA,NA,NA,NA,27,Mi'kmaq,6518
 76,Cancer borealis,96,NA,NA,NA,NA,27,Wampanoag,6518
 78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Yupik,6518
 78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Bella Coola,6518
@@ -158,7 +158,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Tlingit,6518
 78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Kwakiutl,6518
 78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Nootkan,6518
-78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Micmac,6518
+78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Mi'kmaq,6518
 78,Cancer borealis,NA,NA,NA,0.28,0.1,55,Wampanoag,6518
 79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Yupik,6518
 79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Bella Coola,6518
@@ -166,7 +166,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Tlingit,6518
 79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Kwakiutl,6518
 79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Nootkan,6518
-79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Micmac,6518
+79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Mi'kmaq,6518
 79,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Wampanoag,6518
 80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Yupik,6518
 80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Bella Coola,6518
@@ -174,7 +174,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Tlingit,6518
 80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Kwakiutl,6518
 80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Nootkan,6518
-80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Micmac,6518
+80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Mi'kmaq,6518
 80,Cancer irroratus,NA,NA,NA,0.27,0.15,55,Wampanoag,6518
 83,Cancer magister,52,0.365,3.76,NA,NA,27,Yupik,6518
 83,Cancer magister,52,0.365,3.76,NA,NA,27,Bella Coola,6518
@@ -182,7 +182,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 83,Cancer magister,52,0.365,3.76,NA,NA,27,Tlingit,6518
 83,Cancer magister,52,0.365,3.76,NA,NA,27,Kwakiutl,6518
 83,Cancer magister,52,0.365,3.76,NA,NA,27,Nootkan,6518
-83,Cancer magister,52,0.365,3.76,NA,NA,27,Micmac,6518
+83,Cancer magister,52,0.365,3.76,NA,NA,27,Mi'kmaq,6518
 83,Cancer magister,52,0.365,3.76,NA,NA,27,Wampanoag,6518
 84,Cancer magister,NA,NA,2.7,NA,NA,27,Yupik,6518
 84,Cancer magister,NA,NA,2.7,NA,NA,27,Bella Coola,6518
@@ -190,7 +190,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 84,Cancer magister,NA,NA,2.7,NA,NA,27,Tlingit,6518
 84,Cancer magister,NA,NA,2.7,NA,NA,27,Kwakiutl,6518
 84,Cancer magister,NA,NA,2.7,NA,NA,27,Nootkan,6518
-84,Cancer magister,NA,NA,2.7,NA,NA,27,Micmac,6518
+84,Cancer magister,NA,NA,2.7,NA,NA,27,Mi'kmaq,6518
 84,Cancer magister,NA,NA,2.7,NA,NA,27,Wampanoag,6518
 86,Carassius auratus,76,NA,NA,NA,NA,27,Central Salish,6408
 86,Carassius auratus,76,NA,NA,NA,NA,27,Nootkan,6408
@@ -211,13 +211,13 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 96,Catostomus catostomus,63.1,0.3,0.5,0.075,0.212,2,Tlingit,6403
 96,Catostomus catostomus,63.1,0.3,0.5,0.075,0.212,2,Cree,6403
 96,Catostomus catostomus,63.1,0.3,0.5,0.075,0.212,2,Montagnais-Naskapi,6403
-96,Catostomus catostomus,63.1,0.3,0.5,0.075,0.212,2,Micmac,6403
+96,Catostomus catostomus,63.1,0.3,0.5,0.075,0.212,2,Mi'kmaq,6403
 99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Inuit-Inupiaq,6403
 99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Central Salish,6403
 99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Tlingit,6403
 99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Cree,6403
 99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Montagnais-Naskapi,6403
-99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Micmac,6403
+99,Catostomus commersonii,19.6,0.2,0.3,0.083,0.179,2,Mi'kmaq,6403
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Inuit-Inupiaq,6437
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Yupik,6437
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Bella Coola,6437
@@ -227,7 +227,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Tlingit,6437
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Kwakiutl,6437
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Nootkan,6437
-106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Micmac,6437
+106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Mi'kmaq,6437
 106,Centropristis striata,10.4,0.136,0.341,NA,NA,65,Wampanoag,6437
 107,Centropristis striata,41,NA,NA,NA,NA,27,Inuit-Inupiaq,6437
 107,Centropristis striata,41,NA,NA,NA,NA,27,Yupik,6437
@@ -238,7 +238,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 107,Centropristis striata,41,NA,NA,NA,NA,27,Tlingit,6437
 107,Centropristis striata,41,NA,NA,NA,NA,27,Kwakiutl,6437
 107,Centropristis striata,41,NA,NA,NA,NA,27,Nootkan,6437
-107,Centropristis striata,41,NA,NA,NA,NA,27,Micmac,6437
+107,Centropristis striata,41,NA,NA,NA,NA,27,Mi'kmaq,6437
 107,Centropristis striata,41,NA,NA,NA,NA,27,Wampanoag,6437
 108,Centropristis striata,NA,NA,0.142,NA,NA,27,Inuit-Inupiaq,6437
 108,Centropristis striata,NA,NA,0.142,NA,NA,27,Yupik,6437
@@ -249,7 +249,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 108,Centropristis striata,NA,NA,0.142,NA,NA,27,Tlingit,6437
 108,Centropristis striata,NA,NA,0.142,NA,NA,27,Kwakiutl,6437
 108,Centropristis striata,NA,NA,0.142,NA,NA,27,Nootkan,6437
-108,Centropristis striata,NA,NA,0.142,NA,NA,27,Micmac,6437
+108,Centropristis striata,NA,NA,0.142,NA,NA,27,Mi'kmaq,6437
 108,Centropristis striata,NA,NA,0.142,NA,NA,27,Wampanoag,6437
 114,Clinocardium nuttallii,30,16.2,NA,NA,NA,19,Tsimshian,6506
 114,Clinocardium nuttallii,30,16.2,NA,NA,NA,19,Haida,6506
@@ -266,7 +266,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 121,Clupea harengus,20,1,0.701,NA,NA,27,Kwakiutl,6431
 121,Clupea harengus,20,1,0.701,NA,NA,27,Nootkan,6431
 121,Clupea harengus,20,1,0.701,NA,NA,27,Abenaki,6431
-121,Clupea harengus,20,1,0.701,NA,NA,27,Micmac,6431
+121,Clupea harengus,20,1,0.701,NA,NA,27,Mi'kmaq,6431
 127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Inuit-Inupiaq,6431
 127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Yupik,6431
 127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Bella Coola,6431
@@ -277,7 +277,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Kwakiutl,6431
 127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Nootkan,6431
 127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Abenaki,6431
-127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Micmac,6431
+127,Clupea harengus,NA,NA,NA,1.05,1.29,55,Mi'kmaq,6431
 131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Inuit-Inupiaq,6431
 131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Yupik,6431
 131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Bella Coola,6431
@@ -288,7 +288,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Kwakiutl,6431
 131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Nootkan,6431
 131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Abenaki,6431
-131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Micmac,6431
+131,Clupea pallasii pallasii,19,2.7,NA,NA,NA,19,Mi'kmaq,6431
 134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Inuit-Inupiaq,6431
 134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Yupik,6431
 134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Bella Coola,6431
@@ -299,7 +299,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Kwakiutl,6431
 134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Nootkan,6431
 134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Abenaki,6431
-134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Micmac,6431
+134,Clupea pallasii pallasii,NA,0.9,NA,NA,NA,34,Mi'kmaq,6431
 135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Inuit-Inupiaq,6431
 135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Yupik,6431
 135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Bella Coola,6431
@@ -310,60 +310,60 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Kwakiutl,6431
 135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Nootkan,6431
 135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Abenaki,6431
-135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Micmac,6431
+135,Clupea pallasii pallasii,83,1.7,NA,NA,NA,27,Mi'kmaq,6431
 143,Coregonus artedi,12,NA,NA,NA,NA,27,Inuit-Inupiaq,6388
 143,Coregonus artedi,12,NA,NA,NA,NA,27,Yupik,6388
 143,Coregonus artedi,12,NA,NA,NA,NA,27,Central Salish,6388
 143,Coregonus artedi,12,NA,NA,NA,NA,27,Tlingit,6388
 143,Coregonus artedi,12,NA,NA,NA,NA,27,Cree,6388
 143,Coregonus artedi,12,NA,NA,NA,NA,27,Montagnais-Naskapi,6388
-143,Coregonus artedi,12,NA,NA,NA,NA,27,Micmac,6388
+143,Coregonus artedi,12,NA,NA,NA,NA,27,Mi'kmaq,6388
 169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Inuit-Inupiaq,6388
 169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Yupik,6388
 169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Central Salish,6388
 169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Tlingit,6388
 169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Cree,6388
 169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Montagnais-Naskapi,6388
-169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Micmac,6388
+169,Coregonus clupeaformis,NA,NA,1.3,NA,NA,27,Mi'kmaq,6388
 170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Inuit-Inupiaq,6388
 170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Yupik,6388
 170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Central Salish,6388
 170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Tlingit,6388
 170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Cree,6388
 170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Montagnais-Naskapi,6388
-170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Micmac,6388
+170,Coregonus clupeaformis,25.7,0.3,0.3,0.059,0.251,2,Mi'kmaq,6388
 179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Inuit-Inupiaq,6388
 179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Yupik,6388
 179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Central Salish,6388
 179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Tlingit,6388
 179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Cree,6388
 179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Montagnais-Naskapi,6388
-179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Micmac,6388
+179,Coregonus nasus,NA,3.9,NA,NA,NA,34,Mi'kmaq,6388
 181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Inuit-Inupiaq,6388
 181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Yupik,6388
 181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Central Salish,6388
 181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Tlingit,6388
 181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Cree,6388
 181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Montagnais-Naskapi,6388
-181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Micmac,6388
+181,Coregonus nasus,NA,8.6,NA,NA,NA,34,Mi'kmaq,6388
 183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Inuit-Inupiaq,6388
 183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Yupik,6388
 183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Central Salish,6388
 183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Tlingit,6388
 183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Cree,6388
 183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Montagnais-Naskapi,6388
-183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Micmac,6388
+183,Coregonus nasus,NA,0.9,NA,NA,NA,34,Mi'kmaq,6388
 190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Tlingit,6507
 190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Nootkan,6507
 190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Cree,6507
 190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Abenaki,6507
-190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Micmac,6507
+190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Mi'kmaq,6507
 190,Crassostrea virginica,NA,NA,NA,0.11,0.09,55,Wampanoag,6507
 191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Tlingit,6507
 191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Nootkan,6507
 191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Cree,6507
 191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Abenaki,6507
-191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Micmac,6507
+191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Mi'kmaq,6507
 191,Crassostrea virginica,61,7.65,82.5,NA,NA,65,Wampanoag,6507
 203,Cyprinus carpio,37,1.25,4.7,NA,NA,27,Central Salish,6408
 203,Cyprinus carpio,37,1.25,4.7,NA,NA,27,Nootkan,6408
@@ -381,7 +381,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 214,Eleginus gracilis,6,3.8,NA,NA,NA,34,Cree,6432
 214,Eleginus gracilis,6,3.8,NA,NA,NA,34,Montagnais-Naskapi,6432
 214,Eleginus gracilis,6,3.8,NA,NA,NA,34,Abenaki,6432
-214,Eleginus gracilis,6,3.8,NA,NA,NA,34,Micmac,6432
+214,Eleginus gracilis,6,3.8,NA,NA,NA,34,Mi'kmaq,6432
 214,Eleginus gracilis,6,3.8,NA,NA,NA,34,Wampanoag,6432
 217,Engraulidae,150,1.53,0.88,NA,NA,27,Nootkan,6445
 218,Engraulidae,2150,NA,NA,NA,NA,27,Nootkan,6445
@@ -393,7 +393,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 221,Ensis directus,50,11,6.32,NA,NA,27,Kwakiutl,6504
 221,Ensis directus,50,11,6.32,NA,NA,27,Nootkan,6504
 221,Ensis directus,50,11,6.32,NA,NA,27,Abenaki,6504
-221,Ensis directus,50,11,6.32,NA,NA,27,Micmac,6504
+221,Ensis directus,50,11,6.32,NA,NA,27,Mi'kmaq,6504
 221,Ensis directus,50,11,6.32,NA,NA,27,Wampanoag,6504
 223,Enteroctopus dofleini,24,5.3,NA,NA,NA,19,Bella Coola,6527
 223,Enteroctopus dofleini,24,5.3,NA,NA,NA,19,Tsimshian,6527
@@ -456,7 +456,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 262,Gadidae,30,NA,0.793,NA,NA,27,Cree,6432
 262,Gadidae,30,NA,0.793,NA,NA,27,Montagnais-Naskapi,6432
 262,Gadidae,30,NA,0.793,NA,NA,27,Abenaki,6432
-262,Gadidae,30,NA,0.793,NA,NA,27,Micmac,6432
+262,Gadidae,30,NA,0.793,NA,NA,27,Mi'kmaq,6432
 262,Gadidae,30,NA,0.793,NA,NA,27,Wampanoag,6432
 266,Gadiformes,NA,NA,NA,0.08,0.23,55,Inuit-Inupiaq,6432
 266,Gadiformes,NA,NA,NA,0.08,0.23,55,Yupik,6432
@@ -470,7 +470,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 266,Gadiformes,NA,NA,NA,0.08,0.23,55,Cree,6432
 266,Gadiformes,NA,NA,NA,0.08,0.23,55,Montagnais-Naskapi,6432
 266,Gadiformes,NA,NA,NA,0.08,0.23,55,Abenaki,6432
-266,Gadiformes,NA,NA,NA,0.08,0.23,55,Micmac,6432
+266,Gadiformes,NA,NA,NA,0.08,0.23,55,Mi'kmaq,6432
 266,Gadiformes,NA,NA,NA,0.08,0.23,55,Wampanoag,6432
 270,Gadiformes,15,0.478,1.05,NA,NA,27,Inuit-Inupiaq,6432
 270,Gadiformes,15,0.478,1.05,NA,NA,27,Yupik,6432
@@ -484,7 +484,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 270,Gadiformes,15,0.478,1.05,NA,NA,27,Cree,6432
 270,Gadiformes,15,0.478,1.05,NA,NA,27,Montagnais-Naskapi,6432
 270,Gadiformes,15,0.478,1.05,NA,NA,27,Abenaki,6432
-270,Gadiformes,15,0.478,1.05,NA,NA,27,Micmac,6432
+270,Gadiformes,15,0.478,1.05,NA,NA,27,Mi'kmaq,6432
 270,Gadiformes,15,0.478,1.05,NA,NA,27,Wampanoag,6432
 283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Inuit-Inupiaq,6432
 283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Yupik,6432
@@ -498,7 +498,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Cree,6432
 283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Montagnais-Naskapi,6432
 283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Abenaki,6432
-283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Micmac,6432
+283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Mi'kmaq,6432
 283,Gadus morhua,NA,NA,NA,0.08,0.23,55,Wampanoag,6432
 284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Inuit-Inupiaq,6432
 284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Yupik,6432
@@ -512,7 +512,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Cree,6432
 284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Montagnais-Naskapi,6432
 284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Abenaki,6432
-284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Micmac,6432
+284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Mi'kmaq,6432
 284,Gadus morhua,NA,NA,NA,0.087,0.195,59,Wampanoag,6432
 288,Gadus morhua,16,1.75,0.589,NA,NA,27,Inuit-Inupiaq,6432
 288,Gadus morhua,16,1.75,0.589,NA,NA,27,Yupik,6432
@@ -526,7 +526,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 288,Gadus morhua,16,1.75,0.589,NA,NA,27,Cree,6432
 288,Gadus morhua,16,1.75,0.589,NA,NA,27,Montagnais-Naskapi,6432
 288,Gadus morhua,16,1.75,0.589,NA,NA,27,Abenaki,6432
-288,Gadus morhua,16,1.75,0.589,NA,NA,27,Micmac,6432
+288,Gadus morhua,16,1.75,0.589,NA,NA,27,Mi'kmaq,6432
 288,Gadus morhua,16,1.75,0.589,NA,NA,27,Wampanoag,6432
 311,Haliotididae,34,2.06,1.42,NA,NA,27,Bella Coola,6510
 311,Haliotididae,34,2.06,1.42,NA,NA,27,Tsimshian,6510
@@ -552,7 +552,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 313,Hippoglossinae,NA,NA,NA,0.16,0.22,55,Kwakiutl,6152
 313,Hippoglossinae,NA,NA,NA,0.16,0.22,55,Nootkan,6152
 313,Hippoglossinae,NA,NA,NA,0.16,0.22,55,Abenaki,6152
-313,Hippoglossinae,NA,NA,NA,0.16,0.22,55,Micmac,6152
+313,Hippoglossinae,NA,NA,NA,0.16,0.22,55,Mi'kmaq,6152
 313,Hippoglossinae,NA,NA,NA,0.16,0.22,55,Wampanoag,6152
 318,Hippoglossinae,19,1,NA,NA,NA,27,Inuit-Inupiaq,6152
 318,Hippoglossinae,19,1,NA,NA,NA,27,Yupik,6152
@@ -564,7 +564,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 318,Hippoglossinae,19,1,NA,NA,NA,27,Kwakiutl,6152
 318,Hippoglossinae,19,1,NA,NA,NA,27,Nootkan,6152
 318,Hippoglossinae,19,1,NA,NA,NA,27,Abenaki,6152
-318,Hippoglossinae,19,1,NA,NA,NA,27,Micmac,6152
+318,Hippoglossinae,19,1,NA,NA,NA,27,Mi'kmaq,6152
 318,Hippoglossinae,19,1,NA,NA,NA,27,Wampanoag,6152
 325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Inuit-Inupiaq,6152
 325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Yupik,6152
@@ -576,7 +576,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Kwakiutl,6152
 325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Nootkan,6152
 325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Abenaki,6152
-325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Micmac,6152
+325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Mi'kmaq,6152
 325,Hippoglossus hippoglossus,NA,NA,NA,0.16,0.22,55,Wampanoag,6152
 333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Inuit-Inupiaq,6152
 333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Yupik,6152
@@ -588,10 +588,10 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Kwakiutl,6152
 333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Nootkan,6152
 333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Abenaki,6152
-333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Micmac,6152
+333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Mi'kmaq,6152
 333,Hippoglossus stenolepis,22,0.09,0.08,NA,NA,27,Wampanoag,6152
 337,Homarus americanus,NA,NA,NA,0.24,0.12,55,Abenaki,6520
-337,Homarus americanus,NA,NA,NA,0.24,0.12,55,Micmac,6520
+337,Homarus americanus,NA,NA,NA,0.24,0.12,55,Mi'kmaq,6520
 337,Homarus americanus,NA,NA,NA,0.24,0.12,55,Wampanoag,6520
 344,Hypomesus olidus,750,NA,NA,NA,NA,27,Yupik,6418
 345,Hypomesus olidus,NA,5,NA,NA,NA,27,Yupik,6418
@@ -600,7 +600,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 359,Illex illecebrosus,NA,NA,NA,0.27,0.64,55,Inuit-Inupiaq,6528
 359,Illex illecebrosus,NA,NA,NA,0.27,0.64,55,Tlingit,6528
 359,Illex illecebrosus,NA,NA,NA,0.27,0.64,55,Kwakiutl,6528
-359,Illex illecebrosus,NA,NA,NA,0.27,0.64,55,Micmac,6528
+359,Illex illecebrosus,NA,NA,NA,0.27,0.64,55,Mi'kmaq,6528
 359,Illex illecebrosus,NA,NA,NA,0.27,0.64,55,Wampanoag,6528
 361,Katharina turnicata,121,16,NA,NA,NA,19,Yupik,6548
 361,Katharina turnicata,121,16,NA,NA,NA,19,Bella Coola,6548
@@ -639,7 +639,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 411,Melanogrammus aeglefinus,27,0.679,0.788,NA,NA,27,Cree,6432
 411,Melanogrammus aeglefinus,27,0.679,0.788,NA,NA,27,Montagnais-Naskapi,6432
 411,Melanogrammus aeglefinus,27,0.679,0.788,NA,NA,27,Abenaki,6432
-411,Melanogrammus aeglefinus,27,0.679,0.788,NA,NA,27,Micmac,6432
+411,Melanogrammus aeglefinus,27,0.679,0.788,NA,NA,27,Mi'kmaq,6432
 411,Melanogrammus aeglefinus,27,0.679,0.788,NA,NA,27,Wampanoag,6432
 417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Inuit-Inupiaq,6432
 417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Yupik,6432
@@ -653,7 +653,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Cree,6432
 417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Montagnais-Naskapi,6432
 417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Abenaki,6432
-417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Micmac,6432
+417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Mi'kmaq,6432
 417,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Wampanoag,6432
 419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Inuit-Inupiaq,6432
 419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Yupik,6432
@@ -667,7 +667,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Cree,6432
 419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Montagnais-Naskapi,6432
 419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Abenaki,6432
-419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Micmac,6432
+419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Mi'kmaq,6432
 419,Melanogrammus aeglefinus,NA,NA,NA,0.07,0.14,55,Wampanoag,6432
 428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Inuit-Inupiaq,6504
 428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Bella Coola,6504
@@ -677,7 +677,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Kwakiutl,6504
 428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Nootkan,6504
 428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Abenaki,6504
-428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Micmac,6504
+428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Mi'kmaq,6504
 428,Mercenaria mercenaria ,NA,NA,NA,0.09,0.08,55,Wampanoag,6504
 433,Merluccius productus,46,NA,NA,NA,NA,27,Inuit-Inupiaq,6432
 433,Merluccius productus,46,NA,NA,NA,NA,27,Yupik,6432
@@ -691,7 +691,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 433,Merluccius productus,46,NA,NA,NA,NA,27,Cree,6432
 433,Merluccius productus,46,NA,NA,NA,NA,27,Montagnais-Naskapi,6432
 433,Merluccius productus,46,NA,NA,NA,NA,27,Abenaki,6432
-433,Merluccius productus,46,NA,NA,NA,NA,27,Micmac,6432
+433,Merluccius productus,46,NA,NA,NA,NA,27,Mi'kmaq,6432
 433,Merluccius productus,46,NA,NA,NA,NA,27,Wampanoag,6432
 436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Inuit-Inupiaq,6432
 436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Yupik,6432
@@ -705,7 +705,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Cree,6432
 436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Montagnais-Naskapi,6432
 436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Abenaki,6432
-436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Micmac,6432
+436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Mi'kmaq,6432
 436,Merluccius spp.,NA,NA,NA,0.05,0.22,55,Wampanoag,6432
 438,Merluccius spp.,93,1.85,NA,NA,NA,27,Inuit-Inupiaq,6432
 438,Merluccius spp.,93,1.85,NA,NA,NA,27,Yupik,6432
@@ -719,7 +719,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 438,Merluccius spp.,93,1.85,NA,NA,NA,27,Cree,6432
 438,Merluccius spp.,93,1.85,NA,NA,NA,27,Montagnais-Naskapi,6432
 438,Merluccius spp.,93,1.85,NA,NA,NA,27,Abenaki,6432
-438,Merluccius spp.,93,1.85,NA,NA,NA,27,Micmac,6432
+438,Merluccius spp.,93,1.85,NA,NA,NA,27,Mi'kmaq,6432
 438,Merluccius spp.,93,1.85,NA,NA,NA,27,Wampanoag,6432
 441,Microgadus tomcod,372,NA,NA,NA,NA,11,Inuit-Inupiaq,6432
 441,Microgadus tomcod,372,NA,NA,NA,NA,11,Yupik,6432
@@ -733,7 +733,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 441,Microgadus tomcod,372,NA,NA,NA,NA,11,Cree,6432
 441,Microgadus tomcod,372,NA,NA,NA,NA,11,Montagnais-Naskapi,6432
 441,Microgadus tomcod,372,NA,NA,NA,NA,11,Abenaki,6432
-441,Microgadus tomcod,372,NA,NA,NA,NA,11,Micmac,6432
+441,Microgadus tomcod,372,NA,NA,NA,NA,11,Mi'kmaq,6432
 441,Microgadus tomcod,372,NA,NA,NA,NA,11,Wampanoag,6432
 451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Inuit-Inupiaq,6437
 451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Yupik,6437
@@ -744,7 +744,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Tlingit,6437
 451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Kwakiutl,6437
 451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Nootkan,6437
-451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Micmac,6437
+451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Mi'kmaq,6437
 451,Micropogonias undulatus,15,0.372,0.371,NA,NA,65,Wampanoag,6437
 452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Inuit-Inupiaq,6437
 452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Yupik,6437
@@ -755,11 +755,11 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Tlingit,6437
 452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Kwakiutl,6437
 452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Nootkan,6437
-452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Micmac,6437
+452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Mi'kmaq,6437
 452,Micropogonias undulatus,118,1.58,NA,NA,NA,27,Wampanoag,6437
 456,Micropterus spp.,14.8,0.283,0.419,NA,NA,44,Tlingit,6409
 456,Micropterus spp.,14.8,0.283,0.419,NA,NA,44,Nootkan,6409
-456,Micropterus spp.,14.8,0.283,0.419,NA,NA,44,Micmac,6409
+456,Micropterus spp.,14.8,0.283,0.419,NA,NA,44,Mi'kmaq,6409
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Inuit-Inupiaq,6152
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Yupik,6152
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Bella Coola,6152
@@ -770,7 +770,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Kwakiutl,6152
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Nootkan,6152
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Abenaki,6152
-457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Micmac,6152
+457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Mi'kmaq,6152
 457,Microstomus pacificus,NA,NA,NA,0.08,0.09,25,Wampanoag,6152
 458,Microstomus pacificus,50,NA,NA,NA,NA,27,Inuit-Inupiaq,6152
 458,Microstomus pacificus,50,NA,NA,NA,NA,27,Yupik,6152
@@ -782,7 +782,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 458,Microstomus pacificus,50,NA,NA,NA,NA,27,Kwakiutl,6152
 458,Microstomus pacificus,50,NA,NA,NA,NA,27,Nootkan,6152
 458,Microstomus pacificus,50,NA,NA,NA,NA,27,Abenaki,6152
-458,Microstomus pacificus,50,NA,NA,NA,NA,27,Micmac,6152
+458,Microstomus pacificus,50,NA,NA,NA,NA,27,Mi'kmaq,6152
 458,Microstomus pacificus,50,NA,NA,NA,NA,27,Wampanoag,6152
 466,Morone saxatilis,15,NA,0.27,NA,NA,27,Inuit-Inupiaq,6437
 466,Morone saxatilis,15,NA,0.27,NA,NA,27,Yupik,6437
@@ -793,7 +793,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 466,Morone saxatilis,15,NA,0.27,NA,NA,27,Tlingit,6437
 466,Morone saxatilis,15,NA,0.27,NA,NA,27,Kwakiutl,6437
 466,Morone saxatilis,15,NA,0.27,NA,NA,27,Nootkan,6437
-466,Morone saxatilis,15,NA,0.27,NA,NA,27,Micmac,6437
+466,Morone saxatilis,15,NA,0.27,NA,NA,27,Mi'kmaq,6437
 466,Morone saxatilis,15,NA,0.27,NA,NA,27,Wampanoag,6437
 474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Inuit-Inupiaq,6437
 474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Yupik,6437
@@ -804,7 +804,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Tlingit,6437
 474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Kwakiutl,6437
 474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Nootkan,6437
-474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Micmac,6437
+474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Mi'kmaq,6437
 474,Mugil cephalus,51,1.7,0.398,NA,NA,27,Wampanoag,6437
 475,Mugil cephalus,195,NA,NA,NA,NA,27,Inuit-Inupiaq,6437
 475,Mugil cephalus,195,NA,NA,NA,NA,27,Yupik,6437
@@ -815,7 +815,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 475,Mugil cephalus,195,NA,NA,NA,NA,27,Tlingit,6437
 475,Mugil cephalus,195,NA,NA,NA,NA,27,Kwakiutl,6437
 475,Mugil cephalus,195,NA,NA,NA,NA,27,Nootkan,6437
-475,Mugil cephalus,195,NA,NA,NA,NA,27,Micmac,6437
+475,Mugil cephalus,195,NA,NA,NA,NA,27,Mi'kmaq,6437
 475,Mugil cephalus,195,NA,NA,NA,NA,27,Wampanoag,6437
 479,Mya arenaria,53,40.5,1.7,NA,NA,27,Inuit-Inupiaq,6504
 479,Mya arenaria,53,40.5,1.7,NA,NA,27,Bella Coola,6504
@@ -825,7 +825,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 479,Mya arenaria,53,40.5,1.7,NA,NA,27,Kwakiutl,6504
 479,Mya arenaria,53,40.5,1.7,NA,NA,27,Nootkan,6504
 479,Mya arenaria,53,40.5,1.7,NA,NA,27,Abenaki,6504
-479,Mya arenaria,53,40.5,1.7,NA,NA,27,Micmac,6504
+479,Mya arenaria,53,40.5,1.7,NA,NA,27,Mi'kmaq,6504
 479,Mya arenaria,53,40.5,1.7,NA,NA,27,Wampanoag,6504
 484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Inuit-Inupiaq,6438
 484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Bella Coola,6438
@@ -835,7 +835,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Kwakiutl,6438
 484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Nootkan,6438
 484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Cree,6438
-484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Micmac,6438
+484,Myoxocephalus scorpius,NA,NA,4.3,NA,NA,50,Mi'kmaq,6438
 485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Inuit-Inupiaq,6438
 485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Bella Coola,6438
 485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Central Salish,6438
@@ -844,7 +844,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Kwakiutl,6438
 485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Nootkan,6438
 485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Cree,6438
-485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Micmac,6438
+485,Myoxocephalus scorpius,NA,NA,10,NA,NA,50,Mi'kmaq,6438
 486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Inuit-Inupiaq,6438
 486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Bella Coola,6438
 486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Central Salish,6438
@@ -853,7 +853,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Kwakiutl,6438
 486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Nootkan,6438
 486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Cree,6438
-486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Micmac,6438
+486,Myoxocephalus spp.,329,NA,NA,NA,NA,11,Mi'kmaq,6438
 489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Inuit-Inupiaq,6438
 489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Bella Coola,6438
 489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Central Salish,6438
@@ -862,7 +862,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Kwakiutl,6438
 489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Nootkan,6438
 489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Cree,6438
-489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Micmac,6438
+489,Myoxocephalus spp.,12,0.4,NA,NA,NA,34,Mi'kmaq,6438
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Inuit-Inupiaq,6505
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Yupik,6505
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Bella Coola,6505
@@ -871,7 +871,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Tlingit,6505
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Kwakiutl,6505
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Nootkan,6505
-490,Mytilidae,NA,NA,NA,0.13,0.17,55,Micmac,6505
+490,Mytilidae,NA,NA,NA,0.13,0.17,55,Mi'kmaq,6505
 490,Mytilidae,NA,NA,NA,0.13,0.17,55,Wampanoag,6505
 491,Mytilidae,101,17,3.63,NA,NA,27,Inuit-Inupiaq,6505
 491,Mytilidae,101,17,3.63,NA,NA,27,Yupik,6505
@@ -881,7 +881,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 491,Mytilidae,101,17,3.63,NA,NA,27,Tlingit,6505
 491,Mytilidae,101,17,3.63,NA,NA,27,Kwakiutl,6505
 491,Mytilidae,101,17,3.63,NA,NA,27,Nootkan,6505
-491,Mytilidae,101,17,3.63,NA,NA,27,Micmac,6505
+491,Mytilidae,101,17,3.63,NA,NA,27,Mi'kmaq,6505
 491,Mytilidae,101,17,3.63,NA,NA,27,Wampanoag,6505
 496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Inuit-Inupiaq,6505
 496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Yupik,6505
@@ -891,7 +891,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Tlingit,6505
 496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Kwakiutl,6505
 496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Nootkan,6505
-496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Micmac,6505
+496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Mi'kmaq,6505
 496,Mytilus edulis,NA,NA,NA,0.13,0.17,55,Wampanoag,6505
 500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Inuit-Inupiaq,6505
 500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Yupik,6505
@@ -901,16 +901,16 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Tlingit,6505
 500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Kwakiutl,6505
 500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Nootkan,6505
-500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Micmac,6505
+500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Mi'kmaq,6505
 500,Mytilus edulis,85,10.8,3.95,NA,NA,27,Wampanoag,6505
 506,Nephropidae,NA,NA,NA,0.24,0.12,55,Abenaki,6520
-506,Nephropidae,NA,NA,NA,0.24,0.12,55,Micmac,6520
+506,Nephropidae,NA,NA,NA,0.24,0.12,55,Mi'kmaq,6520
 506,Nephropidae,NA,NA,NA,0.24,0.12,55,Wampanoag,6520
 508,Nephropidae,39,1.57,0.82,NA,NA,27,Abenaki,6520
-508,Nephropidae,39,1.57,0.82,NA,NA,27,Micmac,6520
+508,Nephropidae,39,1.57,0.82,NA,NA,27,Mi'kmaq,6520
 508,Nephropidae,39,1.57,0.82,NA,NA,27,Wampanoag,6520
 509,Nephropidae,NA,NA,2.2,NA,NA,27,Abenaki,6520
-509,Nephropidae,NA,NA,2.2,NA,NA,27,Micmac,6520
+509,Nephropidae,NA,NA,2.2,NA,NA,27,Mi'kmaq,6520
 509,Nephropidae,NA,NA,2.2,NA,NA,27,Wampanoag,6520
 518,Octopoda,22,1.27,1.73,NA,NA,27,Bella Coola,6527
 518,Octopoda,22,1.27,1.73,NA,NA,27,Tsimshian,6527
@@ -928,7 +928,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 526,Oncorhynchus gorbuscha,13,0.93,NA,NA,NA,27,Cree,6446
 526,Oncorhynchus gorbuscha,13,0.93,NA,NA,NA,27,Montagnais-Naskapi,6446
 526,Oncorhynchus gorbuscha,13,0.93,NA,NA,NA,27,Abenaki,6446
-526,Oncorhynchus gorbuscha,13,0.93,NA,NA,NA,27,Micmac,6446
+526,Oncorhynchus gorbuscha,13,0.93,NA,NA,NA,27,Mi'kmaq,6446
 534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Inuit-Inupiaq,6446
 534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Yupik,6446
 534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Bella Coola,6446
@@ -941,7 +941,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Cree,6446
 534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Montagnais-Naskapi,6446
 534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Abenaki,6446
-534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Micmac,6446
+534,Oncorhynchus keta,11,NA,NA,NA,NA,34,Mi'kmaq,6446
 536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Inuit-Inupiaq,6446
 536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Yupik,6446
 536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Bella Coola,6446
@@ -954,7 +954,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Cree,6446
 536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Montagnais-Naskapi,6446
 536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Abenaki,6446
-536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Micmac,6446
+536,Oncorhynchus keta,12,0.475,1.37,NA,NA,27,Mi'kmaq,6446
 547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Inuit-Inupiaq,6446
 547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Yupik,6446
 547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Bella Coola,6446
@@ -967,7 +967,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Cree,6446
 547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Montagnais-Naskapi,6446
 547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Abenaki,6446
-547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Micmac,6446
+547,Oncorhynchus kisutch,36,1.345,NA,NA,NA,27,Mi'kmaq,6446
 553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Inuit-Inupiaq,6151
 553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Yupik,6151
 553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Bella Coola,6151
@@ -979,7 +979,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Nootkan,6151
 553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Cree,6151
 553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Montagnais-Naskapi,6151
-553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Micmac,6151
+553,Oncorhynchus mykiss,54,NA,NA,NA,NA,11,Mi'kmaq,6151
 559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Inuit-Inupiaq,6151
 559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Yupik,6151
 559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Bella Coola,6151
@@ -991,7 +991,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Nootkan,6151
 559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Cree,6151
 559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Montagnais-Naskapi,6151
-559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Micmac,6151
+559,Oncorhynchus mykiss,NA,NA,NA,0.377,1.05,59,Mi'kmaq,6151
 561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Inuit-Inupiaq,6151
 561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Yupik,6151
 561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Bella Coola,6151
@@ -1003,7 +1003,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Nootkan,6151
 561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Cree,6151
 561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Montagnais-Naskapi,6151
-561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Micmac,6151
+561,Oncorhynchus mykiss,9,NA,NA,NA,NA,11,Mi'kmaq,6151
 564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Inuit-Inupiaq,6151
 564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Yupik,6151
 564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Bella Coola,6151
@@ -1015,7 +1015,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Nootkan,6151
 564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Cree,6151
 564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Montagnais-Naskapi,6151
-564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Micmac,6151
+564,Oncorhynchus mykiss,32,2.37,1.28,NA,NA,27,Mi'kmaq,6151
 566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Inuit-Inupiaq,6151
 566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Yupik,6151
 566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Bella Coola,6151
@@ -1027,7 +1027,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Nootkan,6151
 566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Cree,6151
 566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Montagnais-Naskapi,6151
-566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Micmac,6151
+566,Oncorhynchus mykiss,NA,3.392,11.8,NA,NA,27,Mi'kmaq,6151
 568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Inuit-Inupiaq,6151
 568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Yupik,6151
 568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Bella Coola,6151
@@ -1039,7 +1039,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Nootkan,6151
 568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Cree,6151
 568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Montagnais-Naskapi,6151
-568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Micmac,6151
+568,Oncorhynchus mykiss,NA,NA,NA,0.459,1.44,59,Mi'kmaq,6151
 579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Inuit-Inupiaq,6446
 579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Yupik,6446
 579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Bella Coola,6446
@@ -1052,7 +1052,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Cree,6446
 579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Montagnais-Naskapi,6446
 579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Abenaki,6446
-579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Micmac,6446
+579,Oncorhynchus nerka,NA,NA,NA,0.22,0.57,28,Mi'kmaq,6446
 580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Inuit-Inupiaq,6446
 580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Yupik,6446
 580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Bella Coola,6446
@@ -1065,7 +1065,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Cree,6446
 580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Montagnais-Naskapi,6446
 580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Abenaki,6446
-580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Micmac,6446
+580,Oncorhynchus nerka,NA,NA,NA,1.88,3.67,28,Mi'kmaq,6446
 581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Inuit-Inupiaq,6446
 581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Yupik,6446
 581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Bella Coola,6446
@@ -1078,7 +1078,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Cree,6446
 581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Montagnais-Naskapi,6446
 581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Abenaki,6446
-581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Micmac,6446
+581,Oncorhynchus nerka,176,1.18,NA,NA,NA,27,Mi'kmaq,6446
 590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Yupik,6446
 590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1091,7 +1091,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Cree,6446
 590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Abenaki,6446
-590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Micmac,6446
+590,Oncorhynchus tshawytscha,30,NA,NA,NA,NA,11,Mi'kmaq,6446
 595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Inuit-Inupiaq,6446
 595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Yupik,6446
 595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Bella Coola,6446
@@ -1104,7 +1104,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Cree,6446
 595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Montagnais-Naskapi,6446
 595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Abenaki,6446
-595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Micmac,6446
+595,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,25,Mi'kmaq,6446
 598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Yupik,6446
 598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1117,7 +1117,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Cree,6446
 598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Abenaki,6446
-598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Micmac,6446
+598,Oncorhynchus tshawytscha,28,NA,NA,NA,NA,11,Mi'kmaq,6446
 600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Yupik,6446
 600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1130,7 +1130,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Cree,6446
 600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Abenaki,6446
-600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Micmac,6446
+600,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Mi'kmaq,6446
 602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Yupik,6446
 602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1143,7 +1143,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Cree,6446
 602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Abenaki,6446
-602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Micmac,6446
+602,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Mi'kmaq,6446
 604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Yupik,6446
 604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1156,7 +1156,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Cree,6446
 604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Abenaki,6446
-604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Micmac,6446
+604,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Mi'kmaq,6446
 606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Inuit-Inupiaq,6446
 606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Yupik,6446
 606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Bella Coola,6446
@@ -1169,7 +1169,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Cree,6446
 606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Montagnais-Naskapi,6446
 606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Abenaki,6446
-606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Micmac,6446
+606,Oncorhynchus tshawytscha,20,0.9,0.8,NA,NA,27,Mi'kmaq,6446
 611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Inuit-Inupiaq,6446
 611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Yupik,6446
 611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Bella Coola,6446
@@ -1182,7 +1182,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Cree,6446
 611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Montagnais-Naskapi,6446
 611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Abenaki,6446
-611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Micmac,6446
+611,Oncorhynchus tshawytscha,NA,2.6,NA,NA,NA,34,Mi'kmaq,6446
 612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Yupik,6446
 612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1195,7 +1195,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Cree,6446
 612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Abenaki,6446
-612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Micmac,6446
+612,Oncorhynchus tshawytscha,20,NA,NA,NA,NA,11,Mi'kmaq,6446
 613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Yupik,6446
 613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1208,7 +1208,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Cree,6446
 613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Abenaki,6446
-613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Micmac,6446
+613,Oncorhynchus tshawytscha,22,NA,NA,NA,NA,11,Mi'kmaq,6446
 614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Inuit-Inupiaq,6446
 614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Yupik,6446
 614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Bella Coola,6446
@@ -1221,7 +1221,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Cree,6446
 614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Montagnais-Naskapi,6446
 614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Abenaki,6446
-614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Micmac,6446
+614,Oncorhynchus tshawytscha,14,NA,NA,NA,NA,11,Mi'kmaq,6446
 619,Ophiodon elongatus,5,1,NA,NA,NA,34,Inuit-Inupiaq,6433
 619,Ophiodon elongatus,5,1,NA,NA,NA,34,Yupik,6433
 619,Ophiodon elongatus,5,1,NA,NA,NA,34,Bella Coola,6433
@@ -1243,29 +1243,29 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 625,Osmerus mordax,NA,0.9,1.65,0.12,0.18,55,Inuit-Inupiaq,6451
 625,Osmerus mordax,NA,0.9,1.65,0.12,0.18,55,Montagnais-Naskapi,6451
 625,Osmerus mordax,NA,0.9,1.65,0.12,0.18,55,Abenaki,6451
-625,Osmerus mordax,NA,0.9,1.65,0.12,0.18,55,Micmac,6451
+625,Osmerus mordax,NA,0.9,1.65,0.12,0.18,55,Mi'kmaq,6451
 625,Osmerus mordax,NA,0.9,1.65,0.12,0.18,55,Wampanoag,6451
 626,Osmerus mordax,NA,NA,2,NA,NA,27,Inuit-Inupiaq,6451
 626,Osmerus mordax,NA,NA,2,NA,NA,27,Montagnais-Naskapi,6451
 626,Osmerus mordax,NA,NA,2,NA,NA,27,Abenaki,6451
-626,Osmerus mordax,NA,NA,2,NA,NA,27,Micmac,6451
+626,Osmerus mordax,NA,NA,2,NA,NA,27,Mi'kmaq,6451
 626,Osmerus mordax,NA,NA,2,NA,NA,27,Wampanoag,6451
 634,Osmerus mordax,74,0.6,NA,NA,NA,34,Inuit-Inupiaq,6451
 634,Osmerus mordax,74,0.6,NA,NA,NA,34,Montagnais-Naskapi,6451
 634,Osmerus mordax,74,0.6,NA,NA,NA,34,Abenaki,6451
-634,Osmerus mordax,74,0.6,NA,NA,NA,34,Micmac,6451
+634,Osmerus mordax,74,0.6,NA,NA,NA,34,Mi'kmaq,6451
 634,Osmerus mordax,74,0.6,NA,NA,NA,34,Wampanoag,6451
 635,Ostrea lurida,68,10.3,NA,NA,NA,27,Tlingit,6507
 635,Ostrea lurida,68,10.3,NA,NA,NA,27,Nootkan,6507
 635,Ostrea lurida,68,10.3,NA,NA,NA,27,Cree,6507
 635,Ostrea lurida,68,10.3,NA,NA,NA,27,Abenaki,6507
-635,Ostrea lurida,68,10.3,NA,NA,NA,27,Micmac,6507
+635,Ostrea lurida,68,10.3,NA,NA,NA,27,Mi'kmaq,6507
 635,Ostrea lurida,68,10.3,NA,NA,NA,27,Wampanoag,6507
 644,Ostreidae,111,8.185,23.2,NA,NA,27,Tlingit,6507
 644,Ostreidae,111,8.185,23.2,NA,NA,27,Nootkan,6507
 644,Ostreidae,111,8.185,23.2,NA,NA,27,Cree,6507
 644,Ostreidae,111,8.185,23.2,NA,NA,27,Abenaki,6507
-644,Ostreidae,111,8.185,23.2,NA,NA,27,Micmac,6507
+644,Ostreidae,111,8.185,23.2,NA,NA,27,Mi'kmaq,6507
 644,Ostreidae,111,8.185,23.2,NA,NA,27,Wampanoag,6507
 646,Parastichopus californicus,30,0.6,NA,NA,NA,19,Inuit-Inupiaq,6524
 646,Parastichopus californicus,30,0.6,NA,NA,NA,19,Bella Coola,6524
@@ -1275,28 +1275,28 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 655,Pectinidae,NA,NA,NA,0.19,0.18,55,Haida,6508
 655,Pectinidae,NA,NA,NA,0.19,0.18,55,Tlingit,6508
 655,Pectinidae,NA,NA,NA,0.19,0.18,55,Nootkan,6508
-655,Pectinidae,NA,NA,NA,0.19,0.18,55,Micmac,6508
+655,Pectinidae,NA,NA,NA,0.19,0.18,55,Mi'kmaq,6508
 655,Pectinidae,NA,NA,NA,0.19,0.18,55,Wampanoag,6508
 656,Pectinidae,9.2,0.107,1.22,NA,NA,65,Haida,6508
 656,Pectinidae,9.2,0.107,1.22,NA,NA,65,Tlingit,6508
 656,Pectinidae,9.2,0.107,1.22,NA,NA,65,Nootkan,6508
-656,Pectinidae,9.2,0.107,1.22,NA,NA,65,Micmac,6508
+656,Pectinidae,9.2,0.107,1.22,NA,NA,65,Mi'kmaq,6508
 656,Pectinidae,9.2,0.107,1.22,NA,NA,65,Wampanoag,6508
 657,Pectinidae,46,1.1,NA,NA,NA,27,Haida,6508
 657,Pectinidae,46,1.1,NA,NA,NA,27,Tlingit,6508
 657,Pectinidae,46,1.1,NA,NA,NA,27,Nootkan,6508
-657,Pectinidae,46,1.1,NA,NA,NA,27,Micmac,6508
+657,Pectinidae,46,1.1,NA,NA,NA,27,Mi'kmaq,6508
 657,Pectinidae,46,1.1,NA,NA,NA,27,Wampanoag,6508
 660,Perca flavescens,59.77,0.209,0.546,NA,NA,44,Cree,6411
-660,Perca flavescens,59.77,0.209,0.546,NA,NA,44,Micmac,6411
+660,Perca flavescens,59.77,0.209,0.546,NA,NA,44,Mi'kmaq,6411
 662,Perca flavescens,NA,0.56,1.2,NA,NA,27,Cree,6411
-662,Perca flavescens,NA,0.56,1.2,NA,NA,27,Micmac,6411
+662,Perca flavescens,NA,0.56,1.2,NA,NA,27,Mi'kmaq,6411
 667,Percidae,NA,NA,NA,0.054,0.245,59,Cree,6411
-667,Percidae,NA,NA,NA,0.054,0.245,59,Micmac,6411
+667,Percidae,NA,NA,NA,0.054,0.245,59,Mi'kmaq,6411
 669,Percidae,NA,NA,1.285,NA,NA,27,Cree,6411
-669,Percidae,NA,NA,1.285,NA,NA,27,Micmac,6411
+669,Percidae,NA,NA,1.285,NA,NA,27,Mi'kmaq,6411
 670,Petromyzontinae,16,NA,NA,NA,NA,27,Montagnais-Naskapi,6452
-670,Petromyzontinae,16,NA,NA,NA,NA,27,Micmac,6452
+670,Petromyzontinae,16,NA,NA,NA,NA,27,Mi'kmaq,6452
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Inuit-Inupiaq,6437
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Yupik,6437
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Bella Coola,6437
@@ -1306,7 +1306,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Tlingit,6437
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Kwakiutl,6437
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Nootkan,6437
-685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Micmac,6437
+685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Mi'kmaq,6437
 685,Pomatomus saltatrix,6.8,0.452,0.763,NA,NA,65,Wampanoag,6437
 686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Inuit-Inupiaq,6437
 686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Yupik,6437
@@ -1317,7 +1317,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Tlingit,6437
 686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Kwakiutl,6437
 686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Nootkan,6437
-686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Micmac,6437
+686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Mi'kmaq,6437
 686,Pomatomus saltatrix,59,5.2,NA,NA,NA,27,Wampanoag,6437
 689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Inuit-Inupiaq,6152
 689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Yupik,6152
@@ -1329,7 +1329,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Kwakiutl,6152
 689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Nootkan,6152
 689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Abenaki,6152
-689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Micmac,6152
+689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Mi'kmaq,6152
 689,Pseudopleuronectes americanus,13.2,0.103,0.394,NA,NA,65,Wampanoag,6152
 690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Inuit-Inupiaq,6152
 690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Yupik,6152
@@ -1341,7 +1341,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Kwakiutl,6152
 690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Nootkan,6152
 690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Abenaki,6152
-690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Micmac,6152
+690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Mi'kmaq,6152
 690,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Wampanoag,6152
 691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Inuit-Inupiaq,6152
 691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Yupik,6152
@@ -1353,15 +1353,15 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Kwakiutl,6152
 691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Nootkan,6152
 691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Abenaki,6152
-691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Micmac,6152
+691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Mi'kmaq,6152
 691,Pseudopleuronectes americanus,NA,NA,NA,0.07,0.12,55,Wampanoag,6152
 700,Rajidae,38,0.075,0.98,NA,NA,27,Central Salish,6441
 700,Rajidae,38,0.075,0.98,NA,NA,27,Nootkan,6441
-700,Rajidae,38,0.075,0.98,NA,NA,27,Micmac,6441
+700,Rajidae,38,0.075,0.98,NA,NA,27,Mi'kmaq,6441
 700,Rajidae,38,0.075,0.98,NA,NA,27,Wampanoag,6441
 701,Rajidae,123,NA,NA,NA,NA,27,Central Salish,6441
 701,Rajidae,123,NA,NA,NA,NA,27,Nootkan,6441
-701,Rajidae,123,NA,NA,NA,NA,27,Micmac,6441
+701,Rajidae,123,NA,NA,NA,NA,27,Mi'kmaq,6441
 701,Rajidae,123,NA,NA,NA,NA,27,Wampanoag,6441
 713,Salmo salar,NA,NA,NA,0.345,1,59,Inuit-Inupiaq,6446
 713,Salmo salar,NA,NA,NA,0.345,1,59,Yupik,6446
@@ -1375,7 +1375,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 713,Salmo salar,NA,NA,NA,0.345,1,59,Cree,6446
 713,Salmo salar,NA,NA,NA,0.345,1,59,Montagnais-Naskapi,6446
 713,Salmo salar,NA,NA,NA,0.345,1,59,Abenaki,6446
-713,Salmo salar,NA,NA,NA,0.345,1,59,Micmac,6446
+713,Salmo salar,NA,NA,NA,0.345,1,59,Mi'kmaq,6446
 717,Salmo salar,15,1.15,0.47,NA,NA,27,Inuit-Inupiaq,6446
 717,Salmo salar,15,1.15,0.47,NA,NA,27,Yupik,6446
 717,Salmo salar,15,1.15,0.47,NA,NA,27,Bella Coola,6446
@@ -1388,7 +1388,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 717,Salmo salar,15,1.15,0.47,NA,NA,27,Cree,6446
 717,Salmo salar,15,1.15,0.47,NA,NA,27,Montagnais-Naskapi,6446
 717,Salmo salar,15,1.15,0.47,NA,NA,27,Abenaki,6446
-717,Salmo salar,15,1.15,0.47,NA,NA,27,Micmac,6446
+717,Salmo salar,15,1.15,0.47,NA,NA,27,Mi'kmaq,6446
 720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Inuit-Inupiaq,6446
 720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Yupik,6446
 720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Bella Coola,6446
@@ -1401,7 +1401,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Cree,6446
 720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Montagnais-Naskapi,6446
 720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Abenaki,6446
-720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Micmac,6446
+720,Salmo salar,11.6,0.4,0.6,0.269,0.612,2,Mi'kmaq,6446
 725,Salmo trutta,20,1,0.46,NA,NA,27,Inuit-Inupiaq,6151
 725,Salmo trutta,20,1,0.46,NA,NA,27,Yupik,6151
 725,Salmo trutta,20,1,0.46,NA,NA,27,Bella Coola,6151
@@ -1413,27 +1413,27 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 725,Salmo trutta,20,1,0.46,NA,NA,27,Nootkan,6151
 725,Salmo trutta,20,1,0.46,NA,NA,27,Cree,6151
 725,Salmo trutta,20,1,0.46,NA,NA,27,Montagnais-Naskapi,6151
-725,Salmo trutta,20,1,0.46,NA,NA,27,Micmac,6151
+725,Salmo trutta,20,1,0.46,NA,NA,27,Mi'kmaq,6151
 729,Salvelinus alpinus,34,1.8,0.8,NA,NA,30,Inuit-Inupiaq,6449
 729,Salvelinus alpinus,34,1.8,0.8,NA,NA,30,Cree,6449
 729,Salvelinus alpinus,34,1.8,0.8,NA,NA,30,Montagnais-Naskapi,6449
-729,Salvelinus alpinus,34,1.8,0.8,NA,NA,30,Micmac,6449
+729,Salvelinus alpinus,34,1.8,0.8,NA,NA,30,Mi'kmaq,6449
 732,Salvelinus alpinus,18.8,0.32,0.6,NA,NA,9,Inuit-Inupiaq,6449
 732,Salvelinus alpinus,18.8,0.32,0.6,NA,NA,9,Cree,6449
 732,Salvelinus alpinus,18.8,0.32,0.6,NA,NA,9,Montagnais-Naskapi,6449
-732,Salvelinus alpinus,18.8,0.32,0.6,NA,NA,9,Micmac,6449
+732,Salvelinus alpinus,18.8,0.32,0.6,NA,NA,9,Mi'kmaq,6449
 743,Salvelinus alpinus,7.2,0.7,0.6,0.78,0.69,2,Inuit-Inupiaq,6449
 743,Salvelinus alpinus,7.2,0.7,0.6,0.78,0.69,2,Cree,6449
 743,Salvelinus alpinus,7.2,0.7,0.6,0.78,0.69,2,Montagnais-Naskapi,6449
-743,Salvelinus alpinus,7.2,0.7,0.6,0.78,0.69,2,Micmac,6449
+743,Salvelinus alpinus,7.2,0.7,0.6,0.78,0.69,2,Mi'kmaq,6449
 744,Salvelinus alpinus,NA,NA,2.3,NA,NA,50,Inuit-Inupiaq,6449
 744,Salvelinus alpinus,NA,NA,2.3,NA,NA,50,Cree,6449
 744,Salvelinus alpinus,NA,NA,2.3,NA,NA,50,Montagnais-Naskapi,6449
-744,Salvelinus alpinus,NA,NA,2.3,NA,NA,50,Micmac,6449
+744,Salvelinus alpinus,NA,NA,2.3,NA,NA,50,Mi'kmaq,6449
 748,Salvelinus alpinus,NA,NA,13,NA,NA,50,Inuit-Inupiaq,6449
 748,Salvelinus alpinus,NA,NA,13,NA,NA,50,Cree,6449
 748,Salvelinus alpinus,NA,NA,13,NA,NA,50,Montagnais-Naskapi,6449
-748,Salvelinus alpinus,NA,NA,13,NA,NA,50,Micmac,6449
+748,Salvelinus alpinus,NA,NA,13,NA,NA,50,Mi'kmaq,6449
 753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Inuit-Inupiaq,6151
 753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Yupik,6151
 753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Bella Coola,6151
@@ -1445,7 +1445,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Nootkan,6151
 753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Cree,6151
 753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Montagnais-Naskapi,6151
-753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Micmac,6151
+753,Salvelinus fontinalis,14.3,0.226,0.471,NA,NA,65,Mi'kmaq,6151
 765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Inuit-Inupiaq,6151
 765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Yupik,6151
 765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Bella Coola,6151
@@ -1457,7 +1457,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Nootkan,6151
 765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Cree,6151
 765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Montagnais-Naskapi,6151
-765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Micmac,6151
+765,Salvelinus fontinalis,9.3,0.3,0.5,0.112,0.322,2,Mi'kmaq,6151
 766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Inuit-Inupiaq,6151
 766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Yupik,6151
 766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Bella Coola,6151
@@ -1469,7 +1469,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Nootkan,6151
 766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Cree,6151
 766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Montagnais-Naskapi,6151
-766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Micmac,6151
+766,Salvelinus fontinalis,38,1.2,0.46,NA,NA,27,Mi'kmaq,6151
 780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Inuit-Inupiaq,6151
 780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Yupik,6151
 780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Bella Coola,6151
@@ -1481,7 +1481,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Nootkan,6151
 780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Cree,6151
 780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Montagnais-Naskapi,6151
-780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Micmac,6151
+780,Salvelinus namaycush,6.1,0.3,0.4,0.072,0.232,2,Mi'kmaq,6151
 781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Inuit-Inupiaq,6151
 781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Yupik,6151
 781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Bella Coola,6151
@@ -1493,7 +1493,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Nootkan,6151
 781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Cree,6151
 781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Montagnais-Naskapi,6151
-781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Micmac,6151
+781,Salvelinus namaycush,NA,0.478,0.21,NA,NA,27,Mi'kmaq,6151
 788,Sardinops spp.,554,5.25,NA,NA,NA,27,Inuit-Inupiaq,6431
 788,Sardinops spp.,554,5.25,NA,NA,NA,27,Yupik,6431
 788,Sardinops spp.,554,5.25,NA,NA,NA,27,Bella Coola,6431
@@ -1504,7 +1504,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 788,Sardinops spp.,554,5.25,NA,NA,NA,27,Kwakiutl,6431
 788,Sardinops spp.,554,5.25,NA,NA,NA,27,Nootkan,6431
 788,Sardinops spp.,554,5.25,NA,NA,NA,27,Abenaki,6431
-788,Sardinops spp.,554,5.25,NA,NA,NA,27,Micmac,6431
+788,Sardinops spp.,554,5.25,NA,NA,NA,27,Mi'kmaq,6431
 789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Inuit-Inupiaq,6431
 789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Yupik,6431
 789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Bella Coola,6431
@@ -1515,7 +1515,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Kwakiutl,6431
 789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Nootkan,6431
 789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Abenaki,6431
-789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Micmac,6431
+789,Sardinops spp.,73,2.313,1.03,NA,NA,27,Mi'kmaq,6431
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Inuit-Inupiaq,6504
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Bella Coola,6504
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Tsimshian,6504
@@ -1524,32 +1524,32 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Kwakiutl,6504
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Nootkan,6504
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Abenaki,6504
-791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Micmac,6504
+791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Mi'kmaq,6504
 791,Saxidomus gigantea,41,NA,NA,NA,NA,27,Wampanoag,6504
 797,Scomber scombrus,8,1.01,0.639,NA,NA,27,Inuit-Inupiaq,6442
 797,Scomber scombrus,8,1.01,0.639,NA,NA,27,Nootkan,6442
 797,Scomber scombrus,8,1.01,0.639,NA,NA,27,Abenaki,6442
-797,Scomber scombrus,8,1.01,0.639,NA,NA,27,Micmac,6442
+797,Scomber scombrus,8,1.01,0.639,NA,NA,27,Mi'kmaq,6442
 797,Scomber scombrus,8,1.01,0.639,NA,NA,27,Wampanoag,6442
 808,Scomber scombrus,NA,NA,NA,1.45,2.16,55,Inuit-Inupiaq,6442
 808,Scomber scombrus,NA,NA,NA,1.45,2.16,55,Nootkan,6442
 808,Scomber scombrus,NA,NA,NA,1.45,2.16,55,Abenaki,6442
-808,Scomber scombrus,NA,NA,NA,1.45,2.16,55,Micmac,6442
+808,Scomber scombrus,NA,NA,NA,1.45,2.16,55,Mi'kmaq,6442
 808,Scomber scombrus,NA,NA,NA,1.45,2.16,55,Wampanoag,6442
 811,Scomber spp.,NA,NA,NA,1.45,2.16,55,Inuit-Inupiaq,6442
 811,Scomber spp.,NA,NA,NA,1.45,2.16,55,Nootkan,6442
 811,Scomber spp.,NA,NA,NA,1.45,2.16,55,Abenaki,6442
-811,Scomber spp.,NA,NA,NA,1.45,2.16,55,Micmac,6442
+811,Scomber spp.,NA,NA,NA,1.45,2.16,55,Mi'kmaq,6442
 811,Scomber spp.,NA,NA,NA,1.45,2.16,55,Wampanoag,6442
 812,Scomber spp.,22,1.409,0.538,NA,NA,27,Inuit-Inupiaq,6442
 812,Scomber spp.,22,1.409,0.538,NA,NA,27,Nootkan,6442
 812,Scomber spp.,22,1.409,0.538,NA,NA,27,Abenaki,6442
-812,Scomber spp.,22,1.409,0.538,NA,NA,27,Micmac,6442
+812,Scomber spp.,22,1.409,0.538,NA,NA,27,Mi'kmaq,6442
 812,Scomber spp.,22,1.409,0.538,NA,NA,27,Wampanoag,6442
 816,Scombridae,12,1,1.13,NA,NA,27,Inuit-Inupiaq,6442
 816,Scombridae,12,1,1.13,NA,NA,27,Nootkan,6442
 816,Scombridae,12,1,1.13,NA,NA,27,Abenaki,6442
-816,Scombridae,12,1,1.13,NA,NA,27,Micmac,6442
+816,Scombridae,12,1,1.13,NA,NA,27,Mi'kmaq,6442
 816,Scombridae,12,1,1.13,NA,NA,27,Wampanoag,6442
 817,Sebastes flavidus,8,NA,NA,NA,NA,27,Inuit-Inupiaq,6436
 817,Sebastes flavidus,8,NA,NA,NA,NA,27,Bella Coola,6436
@@ -1558,7 +1558,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 817,Sebastes flavidus,8,NA,NA,NA,NA,27,Tlingit,6436
 817,Sebastes flavidus,8,NA,NA,NA,NA,27,Kwakiutl,6436
 817,Sebastes flavidus,8,NA,NA,NA,NA,27,Nootkan,6436
-817,Sebastes flavidus,8,NA,NA,NA,NA,27,Micmac,6436
+817,Sebastes flavidus,8,NA,NA,NA,NA,27,Mi'kmaq,6436
 821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Inuit-Inupiaq,6436
 821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Bella Coola,6436
 821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Central Salish,6436
@@ -1566,7 +1566,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Tlingit,6436
 821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Kwakiutl,6436
 821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Nootkan,6436
-821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Micmac,6436
+821,Sebastes norvegicus,141,0.633,0.683,NA,NA,27,Mi'kmaq,6436
 827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Inuit-Inupiaq,6436
 827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Bella Coola,6436
 827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Central Salish,6436
@@ -1574,7 +1574,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Tlingit,6436
 827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Kwakiutl,6436
 827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Nootkan,6436
-827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Micmac,6436
+827,Sebastes norvegicus,NA,NA,NA,0.14,0.07,55,Mi'kmaq,6436
 840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Inuit-Inupiaq,6436
 840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Bella Coola,6436
 840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Central Salish,6436
@@ -1582,7 +1582,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Tlingit,6436
 840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Kwakiutl,6436
 840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Nootkan,6436
-840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Micmac,6436
+840,Sebastes spp.,NA,NA,NA,0.373,0.649,59,Mi'kmaq,6436
 841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Inuit-Inupiaq,6436
 841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Bella Coola,6436
 841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Central Salish,6436
@@ -1590,7 +1590,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Tlingit,6436
 841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Kwakiutl,6436
 841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Nootkan,6436
-841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Micmac,6436
+841,Sebastes spp.,NA,NA,NA,0.14,0.07,55,Mi'kmaq,6436
 844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Inuit-Inupiaq,6436
 844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Bella Coola,6436
 844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Central Salish,6436
@@ -1598,7 +1598,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Tlingit,6436
 844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Kwakiutl,6436
 844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Nootkan,6436
-844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Micmac,6436
+844,Sebastes spp.,NA,NA,0.147,NA,NA,27,Mi'kmaq,6436
 847,Sparidae,35,0.933,NA,NA,NA,27,Inuit-Inupiaq,6437
 847,Sparidae,35,0.933,NA,NA,NA,27,Yupik,6437
 847,Sparidae,35,0.933,NA,NA,NA,27,Bella Coola,6437
@@ -1608,7 +1608,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 847,Sparidae,35,0.933,NA,NA,NA,27,Tlingit,6437
 847,Sparidae,35,0.933,NA,NA,NA,27,Kwakiutl,6437
 847,Sparidae,35,0.933,NA,NA,NA,27,Nootkan,6437
-847,Sparidae,35,0.933,NA,NA,NA,27,Micmac,6437
+847,Sparidae,35,0.933,NA,NA,NA,27,Mi'kmaq,6437
 847,Sparidae,35,0.933,NA,NA,NA,27,Wampanoag,6437
 848,Sparidae,47,0.982,1.92,NA,NA,27,Inuit-Inupiaq,6437
 848,Sparidae,47,0.982,1.92,NA,NA,27,Yupik,6437
@@ -1619,7 +1619,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 848,Sparidae,47,0.982,1.92,NA,NA,27,Tlingit,6437
 848,Sparidae,47,0.982,1.92,NA,NA,27,Kwakiutl,6437
 848,Sparidae,47,0.982,1.92,NA,NA,27,Nootkan,6437
-848,Sparidae,47,0.982,1.92,NA,NA,27,Micmac,6437
+848,Sparidae,47,0.982,1.92,NA,NA,27,Mi'kmaq,6437
 848,Sparidae,47,0.982,1.92,NA,NA,27,Wampanoag,6437
 849,Sparidae,NA,NA,NA,0.199,0.273,59,Inuit-Inupiaq,6437
 849,Sparidae,NA,NA,NA,0.199,0.273,59,Yupik,6437
@@ -1630,7 +1630,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 849,Sparidae,NA,NA,NA,0.199,0.273,59,Tlingit,6437
 849,Sparidae,NA,NA,NA,0.199,0.273,59,Kwakiutl,6437
 849,Sparidae,NA,NA,NA,0.199,0.273,59,Nootkan,6437
-849,Sparidae,NA,NA,NA,0.199,0.273,59,Micmac,6437
+849,Sparidae,NA,NA,NA,0.199,0.273,59,Mi'kmaq,6437
 849,Sparidae,NA,NA,NA,0.199,0.273,59,Wampanoag,6437
 856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Inuit-Inupiaq,6504
 856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Bella Coola,6504
@@ -1640,7 +1640,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Kwakiutl,6504
 856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Nootkan,6504
 856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Abenaki,6504
-856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Micmac,6504
+856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Mi'kmaq,6504
 856,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Wampanoag,6504
 858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Inuit-Inupiaq,6504
 858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Bella Coola,6504
@@ -1650,7 +1650,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Kwakiutl,6504
 858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Nootkan,6504
 858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Abenaki,6504
-858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Micmac,6504
+858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Mi'kmaq,6504
 858,Spisula solidissima,NA,NA,NA,0.15,0.21,55,Wampanoag,6504
 859,Spisula solidissima,41,NA,NA,NA,NA,27,Inuit-Inupiaq,6504
 859,Spisula solidissima,41,NA,NA,NA,NA,27,Bella Coola,6504
@@ -1660,28 +1660,28 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 859,Spisula solidissima,41,NA,NA,NA,NA,27,Kwakiutl,6504
 859,Spisula solidissima,41,NA,NA,NA,NA,27,Nootkan,6504
 859,Spisula solidissima,41,NA,NA,NA,NA,27,Abenaki,6504
-859,Spisula solidissima,41,NA,NA,NA,NA,27,Micmac,6504
+859,Spisula solidissima,41,NA,NA,NA,NA,27,Mi'kmaq,6504
 859,Spisula solidissima,41,NA,NA,NA,NA,27,Wampanoag,6504
 863,Squaliformes,48,1.4,NA,NA,NA,27,Inuit-Inupiaq,6440
 863,Squaliformes,48,1.4,NA,NA,NA,27,Central Salish,6440
 863,Squaliformes,48,1.4,NA,NA,NA,27,Tsimshian,6440
 863,Squaliformes,48,1.4,NA,NA,NA,27,Haida,6440
 863,Squaliformes,48,1.4,NA,NA,NA,27,Nootkan,6440
-863,Squaliformes,48,1.4,NA,NA,NA,27,Micmac,6440
+863,Squaliformes,48,1.4,NA,NA,NA,27,Mi'kmaq,6440
 863,Squaliformes,48,1.4,NA,NA,NA,27,Wampanoag,6440
 867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Inuit-Inupiaq,6440
 867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Central Salish,6440
 867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Tsimshian,6440
 867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Haida,6440
 867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Nootkan,6440
-867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Micmac,6440
+867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Mi'kmaq,6440
 867,Squalus acanthias,NA,NA,0.52,NA,NA,27,Wampanoag,6440
 869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Inuit-Inupiaq,6440
 869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Central Salish,6440
 869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Tsimshian,6440
 869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Haida,6440
 869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Nootkan,6440
-869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Micmac,6440
+869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Mi'kmaq,6440
 869,Squalus acanthias,11,1.25,0.819,NA,NA,27,Wampanoag,6440
 882,Thaleichthys pacificus,273,1.6,1.3,NA,NA,38,Inuit-Inupiaq,6448
 882,Thaleichthys pacificus,273,1.6,1.3,NA,NA,38,Bella Coola,6448
@@ -1726,7 +1726,7 @@ cine_id,genus_species,ca_mg,fe_mg,zn_mg,epa,dha,biblio_id,culture,culture_page_i
 911,Thunnus thynnus,8,1.5,NA,NA,NA,27,Inuit-Inupiaq,6442
 911,Thunnus thynnus,8,1.5,NA,NA,NA,27,Nootkan,6442
 911,Thunnus thynnus,8,1.5,NA,NA,NA,27,Abenaki,6442
-911,Thunnus thynnus,8,1.5,NA,NA,NA,27,Micmac,6442
+911,Thunnus thynnus,8,1.5,NA,NA,NA,27,Mi'kmaq,6442
 911,Thunnus thynnus,8,1.5,NA,NA,NA,27,Wampanoag,6442
 917,Thymallus arcticus,532,NA,NA,NA,NA,11,Inuit-Inupiaq,6406
 917,Thymallus arcticus,532,NA,NA,NA,NA,11,Central Salish,6406
@@ -1742,7 +1742,7 @@ NA,Alosa sapidissima,14.4,0.9444,0.3792,NA,NA,fi125,Tlingit,6431
 NA,Alosa sapidissima,14.4,0.9444,0.3792,NA,NA,fi125,Kwakiutl,6431
 NA,Alosa sapidissima,14.4,0.9444,0.3792,NA,NA,fi125,Nootkan,6431
 NA,Alosa sapidissima,14.4,0.9444,0.3792,NA,NA,fi125,Abenaki,6431
-NA,Alosa sapidissima,14.4,0.9444,0.3792,NA,NA,fi125,Micmac,6431
+NA,Alosa sapidissima,14.4,0.9444,0.3792,NA,NA,fi125,Mi'kmaq,6431
 NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Inuit-Inupiaq,6431
 NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Yupik,6431
 NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Bella Coola,6431
@@ -1753,10 +1753,10 @@ NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Tlingit,6431
 NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Kwakiutl,6431
 NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Nootkan,6431
 NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Abenaki,6431
-NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Micmac,6431
+NA,Alosa sapidissima,47,0.97,0.37,1.086,1.321,SR27,Mi'kmaq,6431
 NA,Anguilla rostrata,NA,NA,NA,0.0856776,0.1595376,fi21,Montagnais-Naskapi,6450
 NA,Anguilla rostrata,NA,NA,NA,0.0856776,0.1595376,fi21,Abenaki,6450
-NA,Anguilla rostrata,NA,NA,NA,0.0856776,0.1595376,fi21,Micmac,6450
+NA,Anguilla rostrata,NA,NA,NA,0.0856776,0.1595376,fi21,Mi'kmaq,6450
 NA,Anguilla rostrata,NA,NA,NA,0.0856776,0.1595376,fi21,Wampanoag,6450
 NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Inuit-Inupiaq,6437
 NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Yupik,6437
@@ -1767,7 +1767,7 @@ NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Haida,6437
 NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Tlingit,6437
 NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Kwakiutl,6437
 NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Nootkan,6437
-NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Micmac,6437
+NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Mi'kmaq,6437
 NA,Anoplopoma fimbria,NA,NA,NA,0.35,0.42,fi36,Wampanoag,6437
 NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Inuit-Inupiaq,6437
 NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Yupik,6437
@@ -1778,7 +1778,7 @@ NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Haida,6437
 NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Tlingit,6437
 NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Kwakiutl,6437
 NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Nootkan,6437
-NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Micmac,6437
+NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Mi'kmaq,6437
 NA,Anoplopoma fimbria,35,1.28,0.32,0.677,0.718,SR27,Wampanoag,6437
 NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Yupik,6518
 NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Bella Coola,6518
@@ -1786,7 +1786,7 @@ NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Tsimshian,6518
 NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Tlingit,6518
 NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Kwakiutl,6518
 NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Nootkan,6518
-NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Micmac,6518
+NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Mi'kmaq,6518
 NA,Callinectes sapidus,89,0.74,3.54,0.17,0.15,SR27,Wampanoag,6518
 NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Yupik,6518
 NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Bella Coola,6518
@@ -1794,14 +1794,14 @@ NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Tsimshian,6518
 NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Tlingit,6518
 NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Kwakiutl,6518
 NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Nootkan,6518
-NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Micmac,6518
+NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Mi'kmaq,6518
 NA,Cancer magister,46,0.37,4.27,0.219,0.088,SR27,Wampanoag,6518
 NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Inuit-Inupiaq,6403
 NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Central Salish,6403
 NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Tlingit,6403
 NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Cree,6403
 NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Montagnais-Naskapi,6403
-NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Micmac,6403
+NA,Catostomus commersonii,70,1.3,0.75,0.19,0.289,SR27,Mi'kmaq,6403
 NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Inuit-Inupiaq,6431
 NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Yupik,6431
 NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Bella Coola,6431
@@ -1812,7 +1812,7 @@ NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Tlingit,6431
 NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Kwakiutl,6431
 NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Nootkan,6431
 NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Abenaki,6431
-NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Micmac,6431
+NA,Clupea harengus,47.7,0.88,0.44,NA,NA,fi244,Mi'kmaq,6431
 NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Inuit-Inupiaq,6431
 NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Yupik,6431
 NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Bella Coola,6431
@@ -1823,7 +1823,7 @@ NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Tlingit,6431
 NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Kwakiutl,6431
 NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Nootkan,6431
 NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Abenaki,6431
-NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Micmac,6431
+NA,Clupea harengus,23.8,0.87,0.5,NA,NA,fi244,Mi'kmaq,6431
 NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Inuit-Inupiaq,6431
 NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Yupik,6431
 NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Bella Coola,6431
@@ -1834,7 +1834,7 @@ NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Tlingit,6431
 NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Kwakiutl,6431
 NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Nootkan,6431
 NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Abenaki,6431
-NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Micmac,6431
+NA,Clupea harengus,NA,NA,NA,0.205817752,0.679594407,fi74,Mi'kmaq,6431
 NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Inuit-Inupiaq,6431
 NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Yupik,6431
 NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Bella Coola,6431
@@ -1845,7 +1845,7 @@ NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Tlingit,6431
 NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Kwakiutl,6431
 NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Nootkan,6431
 NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Abenaki,6431
-NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Micmac,6431
+NA,Clupea harengus,NA,NA,NA,0.146682,0.32103,fi146,Mi'kmaq,6431
 NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Inuit-Inupiaq,6431
 NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Yupik,6431
 NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Bella Coola,6431
@@ -1856,7 +1856,7 @@ NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Tlingit,6431
 NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Kwakiutl,6431
 NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Nootkan,6431
 NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Abenaki,6431
-NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Micmac,6431
+NA,Clupea harengus,50,1.3,0.85,2.8,2.52,DK7,Mi'kmaq,6431
 NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Inuit-Inupiaq,6431
 NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Yupik,6431
 NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Bella Coola,6431
@@ -1867,7 +1867,7 @@ NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Tlingit,6431
 NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Kwakiutl,6431
 NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Nootkan,6431
 NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Abenaki,6431
-NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Micmac,6431
+NA,Clupea harengus,50,1.3,0.85,0.583,1.34,DK7,Mi'kmaq,6431
 NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Inuit-Inupiaq,6431
 NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Yupik,6431
 NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Bella Coola,6431
@@ -1878,7 +1878,7 @@ NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Tlingit,6431
 NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Kwakiutl,6431
 NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Nootkan,6431
 NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Abenaki,6431
-NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Micmac,6431
+NA,Clupea harengus,57,1.1,0.99,0.709,0.862,SR27,Mi'kmaq,6431
 NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Inuit-Inupiaq,6431
 NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Yupik,6431
 NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Bella Coola,6431
@@ -1889,7 +1889,7 @@ NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Tlingit,6431
 NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Kwakiutl,6431
 NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Nootkan,6431
 NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Abenaki,6431
-NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Micmac,6431
+NA,Clupea pallasii pallasii,NA,NA,NA,0.866548276,0.850684692,fi59,Mi'kmaq,6431
 NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Inuit-Inupiaq,6431
 NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Yupik,6431
 NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Bella Coola,6431
@@ -1900,46 +1900,46 @@ NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Tlingit,6431
 NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Kwakiutl,6431
 NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Nootkan,6431
 NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Abenaki,6431
-NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Micmac,6431
+NA,Clupea pallasii pallasii,83,1.12,0.53,0.969,0.689,SR27,Mi'kmaq,6431
 NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Inuit-Inupiaq,6388
 NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Yupik,6388
 NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Central Salish,6388
 NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Tlingit,6388
 NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Cree,6388
 NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Montagnais-Naskapi,6388
-NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Micmac,6388
+NA,Coregonus artedi,12,0.4,0.37,0.095,0.257,SR27,Mi'kmaq,6388
 NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Inuit-Inupiaq,6388
 NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Yupik,6388
 NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Central Salish,6388
 NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Tlingit,6388
 NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Cree,6388
 NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Montagnais-Naskapi,6388
-NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Micmac,6388
+NA,Coregonus clupeaformis,7,0.23,0.4,NA,NA,fi4,Mi'kmaq,6388
 NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Inuit-Inupiaq,6388
 NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Yupik,6388
 NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Central Salish,6388
 NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Tlingit,6388
 NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Cree,6388
 NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Montagnais-Naskapi,6388
-NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Micmac,6388
+NA,Coregonus clupeaformis,5,0.3,0.6,NA,NA,fi4,Mi'kmaq,6388
 NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Inuit-Inupiaq,6388
 NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Yupik,6388
 NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Central Salish,6388
 NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Tlingit,6388
 NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Cree,6388
 NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Montagnais-Naskapi,6388
-NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Micmac,6388
+NA,Coregonus clupeaformis,5,0.2,0.4,NA,NA,fi4,Mi'kmaq,6388
 NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Tlingit,6507
 NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Nootkan,6507
 NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Cree,6507
 NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Abenaki,6507
-NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Micmac,6507
+NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Mi'kmaq,6507
 NA,Crassostrea virginica,59,4.61,39.3,0.177,0.136,SR27,Wampanoag,6507
 NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Tlingit,6507
 NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Nootkan,6507
 NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Cree,6507
 NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Abenaki,6507
-NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Micmac,6507
+NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Mi'kmaq,6507
 NA,Crassostrea virginica,44,5.78,37.92,0.188,0.203,SR27,Wampanoag,6507
 NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Yupik,6437
@@ -1950,7 +1950,7 @@ NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Haida,6437
 NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Tlingit,6437
 NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Nootkan,6437
-NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Micmac,6437
+NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,7.9,0.46,0.61,NA,NA,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Yupik,6437
@@ -1961,7 +1961,7 @@ NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Haida,6437
 NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Tlingit,6437
 NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Nootkan,6437
-NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Micmac,6437
+NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,16,0.34,1.35,NA,NA,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Yupik,6437
@@ -1972,7 +1972,7 @@ NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Haida,6437
 NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Tlingit,6437
 NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Nootkan,6437
-NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Micmac,6437
+NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,4.5,1.93,2.61,NA,NA,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Yupik,6437
@@ -1983,7 +1983,7 @@ NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Haida,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Tlingit,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Nootkan,6437
-NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Micmac,6437
+NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.922597746,1.582811631,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Yupik,6437
@@ -1994,7 +1994,7 @@ NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Haida,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Tlingit,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Nootkan,6437
-NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Micmac,6437
+NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.716296458,1.111066476,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Yupik,6437
@@ -2005,7 +2005,7 @@ NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Haida,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Tlingit,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Nootkan,6437
-NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Micmac,6437
+NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,0.790729074,1.095857717,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Yupik,6437
@@ -2016,7 +2016,7 @@ NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Haida,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Tlingit,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Nootkan,6437
-NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Micmac,6437
+NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.988751156,2.012968768,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Yupik,6437
@@ -2027,7 +2027,7 @@ NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Haida,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Tlingit,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Nootkan,6437
-NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Micmac,6437
+NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.436085114,1.522607588,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Yupik,6437
@@ -2038,7 +2038,7 @@ NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Haida,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Tlingit,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Kwakiutl,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Nootkan,6437
-NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Micmac,6437
+NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Mi'kmaq,6437
 NA,Cyclopterus lumpus,NA,NA,NA,1.39754671,1.463037526,im11,Wampanoag,6437
 NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Inuit-Inupiaq,6437
 NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Yupik,6437
@@ -2049,7 +2049,7 @@ NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Haida,6437
 NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Tlingit,6437
 NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Kwakiutl,6437
 NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Nootkan,6437
-NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Micmac,6437
+NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Mi'kmaq,6437
 NA,Cyclopterus lumpus,20,0.5,NA,1.1,0.944,DK7,Wampanoag,6437
 NA,Cyprinus carpio,NA,NA,NA,NA,0.014040524,fi17,Central Salish,6408
 NA,Cyprinus carpio,NA,NA,NA,NA,0.014040524,fi17,Nootkan,6408
@@ -2123,7 +2123,7 @@ NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Nootkan,6432
 NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Cree,6432
 NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Montagnais-Naskapi,6432
 NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Abenaki,6432
-NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Micmac,6432
+NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Mi'kmaq,6432
 NA,Gadus macrocephalus,NA,NA,NA,0.054679898,0.144061265,fi30,Wampanoag,6432
 NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Inuit-Inupiaq,6432
 NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Yupik,6432
@@ -2137,7 +2137,7 @@ NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Nootkan,6432
 NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Cree,6432
 NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Montagnais-Naskapi,6432
 NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Abenaki,6432
-NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Micmac,6432
+NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Mi'kmaq,6432
 NA,Gadus macrocephalus,10.8,0.2099,0.416,NA,NA,fi125,Wampanoag,6432
 NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Inuit-Inupiaq,6432
 NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Yupik,6432
@@ -2151,7 +2151,7 @@ NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Nootkan,6432
 NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Cree,6432
 NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Montagnais-Naskapi,6432
 NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Abenaki,6432
-NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Micmac,6432
+NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Mi'kmaq,6432
 NA,Gadus macrocephalus,11.3,0.165,0.3627,NA,NA,fi125,Wampanoag,6432
 NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Inuit-Inupiaq,6432
 NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Yupik,6432
@@ -2165,7 +2165,7 @@ NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Nootkan,6432
 NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Cree,6432
 NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Montagnais-Naskapi,6432
 NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Abenaki,6432
-NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Micmac,6432
+NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Mi'kmaq,6432
 NA,Gadus macrocephalus,13.3,0.1581,0.3731,NA,NA,fi125,Wampanoag,6432
 NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Inuit-Inupiaq,6432
 NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Yupik,6432
@@ -2179,7 +2179,7 @@ NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Nootkan,6432
 NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Cree,6432
 NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Montagnais-Naskapi,6432
 NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Abenaki,6432
-NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Micmac,6432
+NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Mi'kmaq,6432
 NA,Gadus macrocephalus,8,0.16,0.31,0.034,0.096,SR27,Wampanoag,6432
 NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Inuit-Inupiaq,6432
 NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Yupik,6432
@@ -2193,7 +2193,7 @@ NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Nootkan,6432
 NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Cree,6432
 NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Montagnais-Naskapi,6432
 NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Abenaki,6432
-NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Micmac,6432
+NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Mi'kmaq,6432
 NA,Gadus morhua,NA,NA,NA,0.004089305,0.027430143,fi74,Wampanoag,6432
 NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Inuit-Inupiaq,6432
 NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Yupik,6432
@@ -2207,7 +2207,7 @@ NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Nootkan,6432
 NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Cree,6432
 NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Montagnais-Naskapi,6432
 NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Abenaki,6432
-NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Micmac,6432
+NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Mi'kmaq,6432
 NA,Gadus morhua,NA,NA,NA,0.028,0.075,fi45,Wampanoag,6432
 NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Inuit-Inupiaq,6432
 NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Yupik,6432
@@ -2221,7 +2221,7 @@ NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Nootkan,6432
 NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Cree,6432
 NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Montagnais-Naskapi,6432
 NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Abenaki,6432
-NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Micmac,6432
+NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Mi'kmaq,6432
 NA,Gadus morhua,1.6,0.5,0.37,NA,NA,fi244,Wampanoag,6432
 NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Inuit-Inupiaq,6432
 NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Yupik,6432
@@ -2235,7 +2235,7 @@ NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Nootkan,6432
 NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Cree,6432
 NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Montagnais-Naskapi,6432
 NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Abenaki,6432
-NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Micmac,6432
+NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Mi'kmaq,6432
 NA,Gadus morhua,NA,NA,NA,0.063226,0.152914,fi146,Wampanoag,6432
 NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Inuit-Inupiaq,6432
 NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Yupik,6432
@@ -2249,7 +2249,7 @@ NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Nootkan,6432
 NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Cree,6432
 NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Montagnais-Naskapi,6432
 NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Abenaki,6432
-NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Micmac,6432
+NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Mi'kmaq,6432
 NA,Gadus morhua,8.7,0.12,0.34,NA,NA,im11,Wampanoag,6432
 NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Inuit-Inupiaq,6432
 NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Yupik,6432
@@ -2263,7 +2263,7 @@ NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Nootkan,6432
 NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Cree,6432
 NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Montagnais-Naskapi,6432
 NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Abenaki,6432
-NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Micmac,6432
+NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Mi'kmaq,6432
 NA,Gadus morhua,8.2,0.66,4.27,NA,NA,im11,Wampanoag,6432
 NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Inuit-Inupiaq,6432
 NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Yupik,6432
@@ -2277,7 +2277,7 @@ NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Nootkan,6432
 NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Cree,6432
 NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Montagnais-Naskapi,6432
 NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Abenaki,6432
-NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Micmac,6432
+NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Mi'kmaq,6432
 NA,Gadus morhua,NA,NA,NA,0.05697345,0.129272235,im11,Wampanoag,6432
 NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Inuit-Inupiaq,6432
 NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Yupik,6432
@@ -2291,7 +2291,7 @@ NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Nootkan,6432
 NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Cree,6432
 NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Montagnais-Naskapi,6432
 NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Abenaki,6432
-NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Micmac,6432
+NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Mi'kmaq,6432
 NA,Gadus morhua,NA,NA,NA,0.057327117,0.14931632,im11,Wampanoag,6432
 NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Inuit-Inupiaq,6432
 NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Yupik,6432
@@ -2305,7 +2305,7 @@ NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Nootkan,6432
 NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Cree,6432
 NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Montagnais-Naskapi,6432
 NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Abenaki,6432
-NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Micmac,6432
+NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Mi'kmaq,6432
 NA,Gadus morhua,NA,NA,NA,0.073775946,0.18396877,im11,Wampanoag,6432
 NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Inuit-Inupiaq,6432
 NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Yupik,6432
@@ -2319,7 +2319,7 @@ NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Nootkan,6432
 NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Cree,6432
 NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Montagnais-Naskapi,6432
 NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Abenaki,6432
-NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Micmac,6432
+NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Mi'kmaq,6432
 NA,Gadus morhua,15,0.2,0.38,0.132,0.132,DK7,Wampanoag,6432
 NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Inuit-Inupiaq,6432
 NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Yupik,6432
@@ -2333,7 +2333,7 @@ NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Nootkan,6432
 NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Cree,6432
 NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Montagnais-Naskapi,6432
 NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Abenaki,6432
-NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Micmac,6432
+NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Mi'kmaq,6432
 NA,Gadus morhua,10,4,1.94,6.41,4.76,DK7,Wampanoag,6432
 NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Inuit-Inupiaq,6432
 NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Yupik,6432
@@ -2347,7 +2347,7 @@ NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Nootkan,6432
 NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Cree,6432
 NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Montagnais-Naskapi,6432
 NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Abenaki,6432
-NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Micmac,6432
+NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Mi'kmaq,6432
 NA,Gadus morhua,10,1.5,2.2,0.345,0.575,DK7,Wampanoag,6432
 NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Inuit-Inupiaq,6432
 NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Yupik,6432
@@ -2361,7 +2361,7 @@ NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Nootkan,6432
 NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Cree,6432
 NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Montagnais-Naskapi,6432
 NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Abenaki,6432
-NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Micmac,6432
+NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Mi'kmaq,6432
 NA,Gadus morhua,16,0.38,0.45,0.064,0.12,SR27,Wampanoag,6432
 NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Inuit-Inupiaq,6152
 NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Yupik,6152
@@ -2373,7 +2373,7 @@ NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Tlingit,6152
 NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Kwakiutl,6152
 NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Nootkan,6152
 NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Abenaki,6152
-NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Micmac,6152
+NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Mi'kmaq,6152
 NA,Hippoglossus hippoglossus,NA,NA,NA,0.016,0.033,fi77,Wampanoag,6152
 NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Inuit-Inupiaq,6152
 NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Yupik,6152
@@ -2385,7 +2385,7 @@ NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Tlingit,6152
 NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Kwakiutl,6152
 NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Nootkan,6152
 NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Abenaki,6152
-NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Micmac,6152
+NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Mi'kmaq,6152
 NA,Hippoglossus hippoglossus,4.3,0.18,0.42,0.34,0.5,fi361,Wampanoag,6152
 NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Inuit-Inupiaq,6152
 NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Yupik,6152
@@ -2397,22 +2397,22 @@ NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Tlingit,6152
 NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Kwakiutl,6152
 NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Nootkan,6152
 NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Abenaki,6152
-NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Micmac,6152
+NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Mi'kmaq,6152
 NA,Hippoglossus hippoglossus,15,0.5,0.5,0.187,0.272,DK7,Wampanoag,6152
 NA,Homarus americanus,47.3,0.23,2.9,NA,NA,fi159,Abenaki,6520
-NA,Homarus americanus,47.3,0.23,2.9,NA,NA,fi159,Micmac,6520
+NA,Homarus americanus,47.3,0.23,2.9,NA,NA,fi159,Mi'kmaq,6520
 NA,Homarus americanus,47.3,0.23,2.9,NA,NA,fi159,Wampanoag,6520
 NA,Homarus americanus,29.3,2.9,3.1,NA,NA,fi159,Abenaki,6520
-NA,Homarus americanus,29.3,2.9,3.1,NA,NA,fi159,Micmac,6520
+NA,Homarus americanus,29.3,2.9,3.1,NA,NA,fi159,Mi'kmaq,6520
 NA,Homarus americanus,29.3,2.9,3.1,NA,NA,fi159,Wampanoag,6520
 NA,Homarus americanus,17.3,1.2,1.7,NA,NA,fi159,Abenaki,6520
-NA,Homarus americanus,17.3,1.2,1.7,NA,NA,fi159,Micmac,6520
+NA,Homarus americanus,17.3,1.2,1.7,NA,NA,fi159,Mi'kmaq,6520
 NA,Homarus americanus,17.3,1.2,1.7,NA,NA,fi159,Wampanoag,6520
 NA,Homarus americanus,48,0.3,4.6,0.251,0.118,DK7,Abenaki,6520
-NA,Homarus americanus,48,0.3,4.6,0.251,0.118,DK7,Micmac,6520
+NA,Homarus americanus,48,0.3,4.6,0.251,0.118,DK7,Mi'kmaq,6520
 NA,Homarus americanus,48,0.3,4.6,0.251,0.118,DK7,Wampanoag,6520
 NA,Homarus americanus,84,0.26,3.53,0.102,0.068,SR27,Abenaki,6520
-NA,Homarus americanus,84,0.26,3.53,0.102,0.068,SR27,Micmac,6520
+NA,Homarus americanus,84,0.26,3.53,0.102,0.068,SR27,Mi'kmaq,6520
 NA,Homarus americanus,84,0.26,3.53,0.102,0.068,SR27,Wampanoag,6520
 NA,Ictalurus punctatus,14,0.3,0.51,0.13,0.234,SR27,Montagnais-Naskapi,6410
 NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Inuit-Inupiaq,6152
@@ -2425,7 +2425,7 @@ NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Tlingit,6152
 NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Kwakiutl,6152
 NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Nootkan,6152
 NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Abenaki,6152
-NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Micmac,6152
+NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Mi'kmaq,6152
 NA,Lepidopsetta bilineata,NA,NA,NA,0.174717,0.111537,fi146,Wampanoag,6152
 NA,Lota lota,11.5947,0.146668,0.82253,NA,NA,fi26,Inuit-Inupiaq,6405
 NA,Lota lota,11.5947,0.146668,0.82253,NA,NA,fi26,Tlingit,6405
@@ -2454,7 +2454,7 @@ NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Nootkan,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Cree,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Abenaki,6432
-NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Micmac,6432
+NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.018,0.06,fi45,Wampanoag,6432
 NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Yupik,6432
@@ -2468,7 +2468,7 @@ NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Nootkan,6432
 NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Cree,6432
 NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Abenaki,6432
-NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Micmac,6432
+NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,9.2,0.28,0.32,NA,NA,fi244,Wampanoag,6432
 NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Yupik,6432
@@ -2482,7 +2482,7 @@ NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Nootkan,6432
 NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Cree,6432
 NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Abenaki,6432
-NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Micmac,6432
+NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,7.8,0.11,0.29,NA,NA,im11,Wampanoag,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Yupik,6432
@@ -2496,7 +2496,7 @@ NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Nootkan,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Cree,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Abenaki,6432
-NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Micmac,6432
+NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.060220439,0.137400308,im11,Wampanoag,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Yupik,6432
@@ -2510,7 +2510,7 @@ NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Nootkan,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Cree,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Abenaki,6432
-NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Micmac,6432
+NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.044520072,0.115993934,im11,Wampanoag,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Yupik,6432
@@ -2524,7 +2524,7 @@ NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Nootkan,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Cree,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Abenaki,6432
-NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Micmac,6432
+NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,NA,NA,NA,0.057734954,0.117637353,im11,Wampanoag,6432
 NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Yupik,6432
@@ -2538,7 +2538,7 @@ NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Nootkan,6432
 NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Cree,6432
 NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Abenaki,6432
-NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Micmac,6432
+NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,18,0.6,0.3,0.129,0.387,DK7,Wampanoag,6432
 NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Inuit-Inupiaq,6432
 NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Yupik,6432
@@ -2552,7 +2552,7 @@ NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Nootkan,6432
 NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Cree,6432
 NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Montagnais-Naskapi,6432
 NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Abenaki,6432
-NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Micmac,6432
+NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Mi'kmaq,6432
 NA,Melanogrammus aeglefinus,11,0.17,0.32,0.042,0.089,SR27,Wampanoag,6432
 NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Inuit-Inupiaq,6432
 NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Yupik,6432
@@ -2566,7 +2566,7 @@ NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Nootkan,6432
 NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Cree,6432
 NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Montagnais-Naskapi,6432
 NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Abenaki,6432
-NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Micmac,6432
+NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Mi'kmaq,6432
 NA,Merluccius productus,NA,NA,NA,0.069467419,0.118810272,fi59,Wampanoag,6432
 NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Inuit-Inupiaq,6432
 NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Yupik,6432
@@ -2580,7 +2580,7 @@ NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Nootkan,6432
 NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Cree,6432
 NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Montagnais-Naskapi,6432
 NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Abenaki,6432
-NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Micmac,6432
+NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Mi'kmaq,6432
 NA,Merluccius productus,9.2,0.2579,0.3969,NA,NA,fi125,Wampanoag,6432
 NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Inuit-Inupiaq,6432
 NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Yupik,6432
@@ -2594,7 +2594,7 @@ NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Nootkan,6432
 NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Cree,6432
 NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Montagnais-Naskapi,6432
 NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Abenaki,6432
-NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Micmac,6432
+NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Mi'kmaq,6432
 NA,Merluccius productus,10.4,0.2437,0.3052,NA,NA,fi125,Wampanoag,6432
 NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Inuit-Inupiaq,6437
 NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Yupik,6437
@@ -2605,7 +2605,7 @@ NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Haida,6437
 NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Tlingit,6437
 NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Kwakiutl,6437
 NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Nootkan,6437
-NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Micmac,6437
+NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Mi'kmaq,6437
 NA,Micropogonias undulatus,15,0.37,0.42,0.123,0.097,SR27,Wampanoag,6437
 NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Inuit-Inupiaq,6152
 NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Yupik,6152
@@ -2617,7 +2617,7 @@ NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Tlingit,6152
 NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Kwakiutl,6152
 NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Nootkan,6152
 NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Abenaki,6152
-NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Micmac,6152
+NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Mi'kmaq,6152
 NA,Microstomus pacificus,NA,NA,NA,0.08,0.09,fi36,Wampanoag,6152
 NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Inuit-Inupiaq,6152
 NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Yupik,6152
@@ -2629,7 +2629,7 @@ NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Tlingit,6152
 NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Kwakiutl,6152
 NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Nootkan,6152
 NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Abenaki,6152
-NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Micmac,6152
+NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Mi'kmaq,6152
 NA,Microstomus pacificus,11.5,0.1984,0.3428,NA,NA,fi125,Wampanoag,6152
 NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Inuit-Inupiaq,6152
 NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Yupik,6152
@@ -2641,7 +2641,7 @@ NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Tlingit,6152
 NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Kwakiutl,6152
 NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Nootkan,6152
 NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Abenaki,6152
-NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Micmac,6152
+NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Mi'kmaq,6152
 NA,Microstomus pacificus,11.9,0.1795,0.3179,NA,NA,fi125,Wampanoag,6152
 NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Inuit-Inupiaq,6152
 NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Yupik,6152
@@ -2653,7 +2653,7 @@ NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Tlingit,6152
 NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Kwakiutl,6152
 NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Nootkan,6152
 NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Abenaki,6152
-NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Micmac,6152
+NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Mi'kmaq,6152
 NA,Microstomus pacificus,20.2,0.256,0.5056,NA,NA,fi125,Wampanoag,6152
 NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Yupik,6437
@@ -2664,7 +2664,7 @@ NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.108376051,0.137723084,fi132,Wampanoag,6437
 NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Yupik,6437
@@ -2675,7 +2675,7 @@ NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.116950645,0.127684165,fi132,Wampanoag,6437
 NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Yupik,6437
@@ -2686,7 +2686,7 @@ NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.109320718,0.092059552,fi132,Wampanoag,6437
 NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Yupik,6437
@@ -2697,7 +2697,7 @@ NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.153419175,0.2022475,fi132,Wampanoag,6437
 NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Yupik,6437
@@ -2708,7 +2708,7 @@ NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.030294607,0.039406969,fi132,Wampanoag,6437
 NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Yupik,6437
@@ -2719,7 +2719,7 @@ NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.202316218,0.217035819,fi132,Wampanoag,6437
 NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Inuit-Inupiaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Yupik,6437
@@ -2730,7 +2730,7 @@ NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Haida,6437
 NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Tlingit,6437
 NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Kwakiutl,6437
 NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Nootkan,6437
-NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Micmac,6437
+NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Mi'kmaq,6437
 NA,Morone saxatilis,NA,NA,NA,0.144192955,0.0885191,fi132,Wampanoag,6437
 NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Inuit-Inupiaq,6437
 NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Yupik,6437
@@ -2741,7 +2741,7 @@ NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Haida,6437
 NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Tlingit,6437
 NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Kwakiutl,6437
 NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Nootkan,6437
-NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Micmac,6437
+NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Mi'kmaq,6437
 NA,Morone saxatilis,15,0.84,0.4,0.169,0.585,SR27,Wampanoag,6437
 NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Inuit-Inupiaq,6437
 NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Yupik,6437
@@ -2752,7 +2752,7 @@ NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Haida,6437
 NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Tlingit,6437
 NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Kwakiutl,6437
 NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Nootkan,6437
-NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Micmac,6437
+NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Mi'kmaq,6437
 NA,Mugil cephalus,15.7,0.8,2.2,NA,NA,fi98,Wampanoag,6437
 NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Inuit-Inupiaq,6437
 NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Yupik,6437
@@ -2763,7 +2763,7 @@ NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Haida,6437
 NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Tlingit,6437
 NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Kwakiutl,6437
 NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Nootkan,6437
-NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Micmac,6437
+NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Mi'kmaq,6437
 NA,Mugil cephalus,NA,NA,NA,0.18973185,0.138955993,fi66,Wampanoag,6437
 NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Inuit-Inupiaq,6437
 NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Yupik,6437
@@ -2774,7 +2774,7 @@ NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Haida,6437
 NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Tlingit,6437
 NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Kwakiutl,6437
 NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Nootkan,6437
-NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Micmac,6437
+NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Mi'kmaq,6437
 NA,Mugil cephalus,NA,NA,NA,0.170965683,0.086497201,fi67,Wampanoag,6437
 NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Inuit-Inupiaq,6437
 NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Yupik,6437
@@ -2785,7 +2785,7 @@ NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Haida,6437
 NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Tlingit,6437
 NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Kwakiutl,6437
 NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Nootkan,6437
-NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Micmac,6437
+NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Mi'kmaq,6437
 NA,Mugil cephalus,41,1.02,0.52,0.217,0.108,SR27,Wampanoag,6437
 NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Inuit-Inupiaq,6505
 NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Yupik,6505
@@ -2795,7 +2795,7 @@ NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Haida,6505
 NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Tlingit,6505
 NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Kwakiutl,6505
 NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Nootkan,6505
-NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Micmac,6505
+NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Mi'kmaq,6505
 NA,Mytilus edulis,30,7.7,3.4,0.209,0.085,DK7,Wampanoag,6505
 NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Inuit-Inupiaq,6505
 NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Yupik,6505
@@ -2805,7 +2805,7 @@ NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Haida,6505
 NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Tlingit,6505
 NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Kwakiutl,6505
 NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Nootkan,6505
-NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Micmac,6505
+NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Mi'kmaq,6505
 NA,Mytilus edulis,26,3.95,1.6,0.188,0.253,SR27,Wampanoag,6505
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Inuit-Inupiaq,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Yupik,6446
@@ -2819,7 +2819,7 @@ NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Nootkan,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Cree,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Montagnais-Naskapi,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Abenaki,6446
-NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Micmac,6446
+NA,Oncorhynchus gorbuscha,NA,NA,NA,0.289409995,0.68509049,fi59,Mi'kmaq,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Inuit-Inupiaq,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Yupik,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Bella Coola,6446
@@ -2832,7 +2832,7 @@ NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Nootkan,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Cree,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Montagnais-Naskapi,6446
 NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Abenaki,6446
-NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Micmac,6446
+NA,Oncorhynchus gorbuscha,NA,NA,NA,0.166696,0.328416,fi84,Mi'kmaq,6446
 NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Inuit-Inupiaq,6446
 NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Yupik,6446
 NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Bella Coola,6446
@@ -2845,7 +2845,7 @@ NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Nootkan,6446
 NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Cree,6446
 NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Montagnais-Naskapi,6446
 NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Abenaki,6446
-NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Micmac,6446
+NA,Oncorhynchus gorbuscha,7,0.38,0.39,0.182,0.333,SR27,Mi'kmaq,6446
 NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Inuit-Inupiaq,6446
 NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Yupik,6446
 NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Bella Coola,6446
@@ -2858,7 +2858,7 @@ NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Nootkan,6446
 NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Cree,6446
 NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Montagnais-Naskapi,6446
 NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Abenaki,6446
-NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Micmac,6446
+NA,Oncorhynchus keta,11,0.55,0.47,0.233,0.394,SR27,Mi'kmaq,6446
 NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Inuit-Inupiaq,6446
 NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Yupik,6446
 NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Bella Coola,6446
@@ -2871,7 +2871,7 @@ NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Nootkan,6446
 NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Cree,6446
 NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Montagnais-Naskapi,6446
 NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Abenaki,6446
-NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Micmac,6446
+NA,Oncorhynchus kisutch,36,0.56,0.41,0.429,0.656,SR27,Mi'kmaq,6446
 NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Inuit-Inupiaq,6151
 NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Yupik,6151
 NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Bella Coola,6151
@@ -2883,7 +2883,7 @@ NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Kwakiutl,6151
 NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Nootkan,6151
 NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Cree,6151
 NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Montagnais-Naskapi,6151
-NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Micmac,6151
+NA,Oncorhynchus mykiss,71.33,1.45,NA,0.02513,0.231196,fi99,Mi'kmaq,6151
 NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Inuit-Inupiaq,6151
 NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Yupik,6151
 NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Bella Coola,6151
@@ -2895,7 +2895,7 @@ NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Kwakiutl,6151
 NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Nootkan,6151
 NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Cree,6151
 NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Montagnais-Naskapi,6151
-NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Micmac,6151
+NA,Oncorhynchus mykiss,127,0.4,0.48,0.322,1.16,DK7,Mi'kmaq,6151
 NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Inuit-Inupiaq,6151
 NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Yupik,6151
 NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Bella Coola,6151
@@ -2907,7 +2907,7 @@ NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Kwakiutl,6151
 NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Nootkan,6151
 NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Cree,6151
 NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Montagnais-Naskapi,6151
-NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Micmac,6151
+NA,Oncorhynchus mykiss,67,0.7,1.08,0.167,0.42,SR27,Mi'kmaq,6151
 NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Inuit-Inupiaq,6446
 NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Yupik,6446
 NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Bella Coola,6446
@@ -2920,7 +2920,7 @@ NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Nootkan,6446
 NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Cree,6446
 NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Montagnais-Naskapi,6446
 NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Abenaki,6446
-NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Micmac,6446
+NA,Oncorhynchus nerka,10,0.42,0.42,0.348,0.681,SR27,Mi'kmaq,6446
 NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Inuit-Inupiaq,6446
 NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Yupik,6446
 NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Bella Coola,6446
@@ -2933,7 +2933,7 @@ NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Nootkan,6446
 NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Cree,6446
 NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Montagnais-Naskapi,6446
 NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Abenaki,6446
-NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Micmac,6446
+NA,Oncorhynchus tshawytscha,NA,NA,NA,0.44,0.55,fi36,Mi'kmaq,6446
 NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Inuit-Inupiaq,6446
 NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Yupik,6446
 NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Bella Coola,6446
@@ -2946,7 +2946,7 @@ NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Nootkan,6446
 NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Cree,6446
 NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Montagnais-Naskapi,6446
 NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Abenaki,6446
-NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Micmac,6446
+NA,Oncorhynchus tshawytscha,26,0.25,0.44,1.008,0.944,SR27,Mi'kmaq,6446
 NA,Ophiodon elongatus,14,0.32,0.45,0,0,SR27,Inuit-Inupiaq,6433
 NA,Ophiodon elongatus,14,0.32,0.45,0,0,SR27,Yupik,6433
 NA,Ophiodon elongatus,14,0.32,0.45,0,0,SR27,Bella Coola,6433
@@ -2959,10 +2959,10 @@ NA,Ophiodon elongatus,14,0.32,0.45,0,0,SR27,Cree,6433
 NA,Osmerus mordax,60,0.9,1.65,0.275,0.418,SR27,Inuit-Inupiaq,6451
 NA,Osmerus mordax,60,0.9,1.65,0.275,0.418,SR27,Montagnais-Naskapi,6451
 NA,Osmerus mordax,60,0.9,1.65,0.275,0.418,SR27,Abenaki,6451
-NA,Osmerus mordax,60,0.9,1.65,0.275,0.418,SR27,Micmac,6451
+NA,Osmerus mordax,60,0.9,1.65,0.275,0.418,SR27,Mi'kmaq,6451
 NA,Osmerus mordax,60,0.9,1.65,0.275,0.418,SR27,Wampanoag,6451
 NA,Perca flavescens,2.992,0.086955,0.135388,3.84852e-4,0.056503323,fi128,Cree,6411
-NA,Perca flavescens,2.992,0.086955,0.135388,3.84852e-4,0.056503323,fi128,Micmac,6411
+NA,Perca flavescens,2.992,0.086955,0.135388,3.84852e-4,0.056503323,fi128,Mi'kmaq,6411
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Inuit-Inupiaq,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Yupik,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Bella Coola,6437
@@ -2972,7 +2972,7 @@ NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Haida,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Tlingit,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Kwakiutl,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Nootkan,6437
-NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Micmac,6437
+NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Mi'kmaq,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.034770855,0.28855813,fi34,Wampanoag,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Inuit-Inupiaq,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Yupik,6437
@@ -2983,7 +2983,7 @@ NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Haida,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Tlingit,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Kwakiutl,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Nootkan,6437
-NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Micmac,6437
+NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Mi'kmaq,6437
 NA,Pomatomus saltatrix,NA,NA,NA,0.748,2.5058,fi131,Wampanoag,6437
 NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Inuit-Inupiaq,6437
 NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Yupik,6437
@@ -2994,7 +2994,7 @@ NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Haida,6437
 NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Tlingit,6437
 NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Kwakiutl,6437
 NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Nootkan,6437
-NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Micmac,6437
+NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Mi'kmaq,6437
 NA,Pomatomus saltatrix,7,0.48,0.81,0.252,0.519,SR27,Wampanoag,6437
 NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Inuit-Inupiaq,6446
 NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Yupik,6446
@@ -3008,7 +3008,7 @@ NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Nootkan,6446
 NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Cree,6446
 NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Montagnais-Naskapi,6446
 NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Abenaki,6446
-NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Micmac,6446
+NA,Salmo salar,NA,NA,NA,1.112,2.164,fi45,Mi'kmaq,6446
 NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Inuit-Inupiaq,6446
 NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Yupik,6446
 NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Bella Coola,6446
@@ -3021,7 +3021,7 @@ NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Nootkan,6446
 NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Cree,6446
 NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Montagnais-Naskapi,6446
 NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Abenaki,6446
-NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Micmac,6446
+NA,Salmo salar,NA,NA,NA,0.459944842,3.23096521,fi74,Mi'kmaq,6446
 NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Inuit-Inupiaq,6446
 NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Yupik,6446
 NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Bella Coola,6446
@@ -3034,7 +3034,7 @@ NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Nootkan,6446
 NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Cree,6446
 NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Montagnais-Naskapi,6446
 NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Abenaki,6446
-NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Micmac,6446
+NA,Salmo salar,20,0.8,1.04,0.713,1.85,DK7,Mi'kmaq,6446
 NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Inuit-Inupiaq,6446
 NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Yupik,6446
 NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Bella Coola,6446
@@ -3047,7 +3047,7 @@ NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Nootkan,6446
 NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Cree,6446
 NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Montagnais-Naskapi,6446
 NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Abenaki,6446
-NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Micmac,6446
+NA,Salmo salar,12,0.8,0.64,0.321,1.115,SR27,Mi'kmaq,6446
 NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Inuit-Inupiaq,6151
 NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Yupik,6151
 NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Bella Coola,6151
@@ -3059,7 +3059,7 @@ NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Kwakiutl,6151
 NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Nootkan,6151
 NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Cree,6151
 NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Montagnais-Naskapi,6151
-NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Micmac,6151
+NA,Salmo trutta,NA,0.75,0.44,NA,NA,DK7,Mi'kmaq,6151
 NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Inuit-Inupiaq,6151
 NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Yupik,6151
 NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Bella Coola,6151
@@ -3071,19 +3071,19 @@ NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Kwakiutl,6151
 NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Nootkan,6151
 NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Cree,6151
 NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Montagnais-Naskapi,6151
-NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Micmac,6151
+NA,Salmo trutta,20,0.7,0.44,NA,NA,DK7,Mi'kmaq,6151
 NA,Salvelinus alpinus,11,0.3,0.4,NA,NA,fi197,Inuit-Inupiaq,6449
 NA,Salvelinus alpinus,11,0.3,0.4,NA,NA,fi197,Cree,6449
 NA,Salvelinus alpinus,11,0.3,0.4,NA,NA,fi197,Montagnais-Naskapi,6449
-NA,Salvelinus alpinus,11,0.3,0.4,NA,NA,fi197,Micmac,6449
+NA,Salvelinus alpinus,11,0.3,0.4,NA,NA,fi197,Mi'kmaq,6449
 NA,Salvelinus alpinus,7,0.7,0.6,NA,NA,fi197,Inuit-Inupiaq,6449
 NA,Salvelinus alpinus,7,0.7,0.6,NA,NA,fi197,Cree,6449
 NA,Salvelinus alpinus,7,0.7,0.6,NA,NA,fi197,Montagnais-Naskapi,6449
-NA,Salvelinus alpinus,7,0.7,0.6,NA,NA,fi197,Micmac,6449
+NA,Salvelinus alpinus,7,0.7,0.6,NA,NA,fi197,Mi'kmaq,6449
 NA,Salvelinus alpinus,NA,0.75,0.67,NA,NA,DK7,Inuit-Inupiaq,6449
 NA,Salvelinus alpinus,NA,0.75,0.67,NA,NA,DK7,Cree,6449
 NA,Salvelinus alpinus,NA,0.75,0.67,NA,NA,DK7,Montagnais-Naskapi,6449
-NA,Salvelinus alpinus,NA,0.75,0.67,NA,NA,DK7,Micmac,6449
+NA,Salvelinus alpinus,NA,0.75,0.67,NA,NA,DK7,Mi'kmaq,6449
 NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Inuit-Inupiaq,6151
 NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Yupik,6151
 NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Bella Coola,6151
@@ -3095,7 +3095,7 @@ NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Kwakiutl,6151
 NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Nootkan,6151
 NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Cree,6151
 NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Montagnais-Naskapi,6151
-NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Micmac,6151
+NA,Salvelinus fontinalis,12.7,0.33,0.8,NA,NA,fi4,Mi'kmaq,6151
 NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Inuit-Inupiaq,6151
 NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Yupik,6151
 NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Bella Coola,6151
@@ -3107,7 +3107,7 @@ NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Kwakiutl,6151
 NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Nootkan,6151
 NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Cree,6151
 NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Montagnais-Naskapi,6151
-NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Micmac,6151
+NA,Salvelinus fontinalis,3.1,0.18,0.8,NA,NA,fi4,Mi'kmaq,6151
 NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Inuit-Inupiaq,6151
 NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Yupik,6151
 NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Bella Coola,6151
@@ -3119,36 +3119,36 @@ NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Kwakiutl,6151
 NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Nootkan,6151
 NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Cree,6151
 NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Montagnais-Naskapi,6151
-NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Micmac,6151
+NA,Salvelinus namaycush,3,0.2,0.5,NA,NA,fi4,Mi'kmaq,6151
 NA,Scomber scombrus,NA,NA,NA,0.044521872,0.33062656,fi34,Inuit-Inupiaq,6442
 NA,Scomber scombrus,NA,NA,NA,0.044521872,0.33062656,fi34,Nootkan,6442
 NA,Scomber scombrus,NA,NA,NA,0.044521872,0.33062656,fi34,Abenaki,6442
-NA,Scomber scombrus,NA,NA,NA,0.044521872,0.33062656,fi34,Micmac,6442
+NA,Scomber scombrus,NA,NA,NA,0.044521872,0.33062656,fi34,Mi'kmaq,6442
 NA,Scomber scombrus,NA,NA,NA,0.044521872,0.33062656,fi34,Wampanoag,6442
 NA,Scomber scombrus,NA,NA,NA,0.662,1.404,fi45,Inuit-Inupiaq,6442
 NA,Scomber scombrus,NA,NA,NA,0.662,1.404,fi45,Nootkan,6442
 NA,Scomber scombrus,NA,NA,NA,0.662,1.404,fi45,Abenaki,6442
-NA,Scomber scombrus,NA,NA,NA,0.662,1.404,fi45,Micmac,6442
+NA,Scomber scombrus,NA,NA,NA,0.662,1.404,fi45,Mi'kmaq,6442
 NA,Scomber scombrus,NA,NA,NA,0.662,1.404,fi45,Wampanoag,6442
 NA,Scomber scombrus,4.9,0.48,0.6,NA,NA,fi244,Inuit-Inupiaq,6442
 NA,Scomber scombrus,4.9,0.48,0.6,NA,NA,fi244,Nootkan,6442
 NA,Scomber scombrus,4.9,0.48,0.6,NA,NA,fi244,Abenaki,6442
-NA,Scomber scombrus,4.9,0.48,0.6,NA,NA,fi244,Micmac,6442
+NA,Scomber scombrus,4.9,0.48,0.6,NA,NA,fi244,Mi'kmaq,6442
 NA,Scomber scombrus,4.9,0.48,0.6,NA,NA,fi244,Wampanoag,6442
 NA,Scomber scombrus,15,0.8,0.62,1.76,2.8,fi361,Inuit-Inupiaq,6442
 NA,Scomber scombrus,15,0.8,0.62,1.76,2.8,fi361,Nootkan,6442
 NA,Scomber scombrus,15,0.8,0.62,1.76,2.8,fi361,Abenaki,6442
-NA,Scomber scombrus,15,0.8,0.62,1.76,2.8,fi361,Micmac,6442
+NA,Scomber scombrus,15,0.8,0.62,1.76,2.8,fi361,Mi'kmaq,6442
 NA,Scomber scombrus,15,0.8,0.62,1.76,2.8,fi361,Wampanoag,6442
 NA,Scomber scombrus,15,0.75,0.1,1.22,3.28,DK7,Inuit-Inupiaq,6442
 NA,Scomber scombrus,15,0.75,0.1,1.22,3.28,DK7,Nootkan,6442
 NA,Scomber scombrus,15,0.75,0.1,1.22,3.28,DK7,Abenaki,6442
-NA,Scomber scombrus,15,0.75,0.1,1.22,3.28,DK7,Micmac,6442
+NA,Scomber scombrus,15,0.75,0.1,1.22,3.28,DK7,Mi'kmaq,6442
 NA,Scomber scombrus,15,0.75,0.1,1.22,3.28,DK7,Wampanoag,6442
 NA,Scomber scombrus,12,1.63,0.63,0.898,1.401,SR27,Inuit-Inupiaq,6442
 NA,Scomber scombrus,12,1.63,0.63,0.898,1.401,SR27,Nootkan,6442
 NA,Scomber scombrus,12,1.63,0.63,0.898,1.401,SR27,Abenaki,6442
-NA,Scomber scombrus,12,1.63,0.63,0.898,1.401,SR27,Micmac,6442
+NA,Scomber scombrus,12,1.63,0.63,0.898,1.401,SR27,Mi'kmaq,6442
 NA,Scomber scombrus,12,1.63,0.63,0.898,1.401,SR27,Wampanoag,6442
 NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Inuit-Inupiaq,6436
 NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Bella Coola,6436
@@ -3157,53 +3157,53 @@ NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Tsimshian,6436
 NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Tlingit,6436
 NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Kwakiutl,6436
 NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Nootkan,6436
-NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Micmac,6436
+NA,Sebastes pinniger,NA,NA,NA,0.342824772,0.534559245,fi59,Mi'kmaq,6436
 NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Inuit-Inupiaq,6440
 NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Central Salish,6440
 NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Tsimshian,6440
 NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Haida,6440
 NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Nootkan,6440
-NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Micmac,6440
+NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Mi'kmaq,6440
 NA,Squalus acanthias,13,1.32,0.52,NA,NA,DK7,Wampanoag,6440
 NA,Thunnus alalunga,NA,NA,NA,0.33915,0.9625,fi152,Inuit-Inupiaq,6442
 NA,Thunnus alalunga,NA,NA,NA,0.33915,0.9625,fi152,Nootkan,6442
 NA,Thunnus alalunga,NA,NA,NA,0.33915,0.9625,fi152,Abenaki,6442
-NA,Thunnus alalunga,NA,NA,NA,0.33915,0.9625,fi152,Micmac,6442
+NA,Thunnus alalunga,NA,NA,NA,0.33915,0.9625,fi152,Mi'kmaq,6442
 NA,Thunnus alalunga,NA,NA,NA,0.33915,0.9625,fi152,Wampanoag,6442
 NA,Thunnus alalunga,2.9,0.94,0.36,NA,NA,fi244,Inuit-Inupiaq,6442
 NA,Thunnus alalunga,2.9,0.94,0.36,NA,NA,fi244,Nootkan,6442
 NA,Thunnus alalunga,2.9,0.94,0.36,NA,NA,fi244,Abenaki,6442
-NA,Thunnus alalunga,2.9,0.94,0.36,NA,NA,fi244,Micmac,6442
+NA,Thunnus alalunga,2.9,0.94,0.36,NA,NA,fi244,Mi'kmaq,6442
 NA,Thunnus alalunga,2.9,0.94,0.36,NA,NA,fi244,Wampanoag,6442
 NA,Thunnus alalunga,18,0.6,0.5,0.29393,0.85918,fi117,Inuit-Inupiaq,6442
 NA,Thunnus alalunga,18,0.6,0.5,0.29393,0.85918,fi117,Nootkan,6442
 NA,Thunnus alalunga,18,0.6,0.5,0.29393,0.85918,fi117,Abenaki,6442
-NA,Thunnus alalunga,18,0.6,0.5,0.29393,0.85918,fi117,Micmac,6442
+NA,Thunnus alalunga,18,0.6,0.5,0.29393,0.85918,fi117,Mi'kmaq,6442
 NA,Thunnus alalunga,18,0.6,0.5,0.29393,0.85918,fi117,Wampanoag,6442
 NA,Thunnus thynnus,NA,NA,NA,0.035,0.131,fi45,Inuit-Inupiaq,6442
 NA,Thunnus thynnus,NA,NA,NA,0.035,0.131,fi45,Nootkan,6442
 NA,Thunnus thynnus,NA,NA,NA,0.035,0.131,fi45,Abenaki,6442
-NA,Thunnus thynnus,NA,NA,NA,0.035,0.131,fi45,Micmac,6442
+NA,Thunnus thynnus,NA,NA,NA,0.035,0.131,fi45,Mi'kmaq,6442
 NA,Thunnus thynnus,NA,NA,NA,0.035,0.131,fi45,Wampanoag,6442
 NA,Thunnus thynnus,NA,NA,NA,0.01337,0.15624,fi152,Inuit-Inupiaq,6442
 NA,Thunnus thynnus,NA,NA,NA,0.01337,0.15624,fi152,Nootkan,6442
 NA,Thunnus thynnus,NA,NA,NA,0.01337,0.15624,fi152,Abenaki,6442
-NA,Thunnus thynnus,NA,NA,NA,0.01337,0.15624,fi152,Micmac,6442
+NA,Thunnus thynnus,NA,NA,NA,0.01337,0.15624,fi152,Mi'kmaq,6442
 NA,Thunnus thynnus,NA,NA,NA,0.01337,0.15624,fi152,Wampanoag,6442
 NA,Thunnus thynnus,NA,NA,NA,0.22137,1.70973,fi131,Inuit-Inupiaq,6442
 NA,Thunnus thynnus,NA,NA,NA,0.22137,1.70973,fi131,Nootkan,6442
 NA,Thunnus thynnus,NA,NA,NA,0.22137,1.70973,fi131,Abenaki,6442
-NA,Thunnus thynnus,NA,NA,NA,0.22137,1.70973,fi131,Micmac,6442
+NA,Thunnus thynnus,NA,NA,NA,0.22137,1.70973,fi131,Mi'kmaq,6442
 NA,Thunnus thynnus,NA,NA,NA,0.22137,1.70973,fi131,Wampanoag,6442
 NA,Thunnus thynnus,10,1.5,0.08,NA,NA,DK7,Inuit-Inupiaq,6442
 NA,Thunnus thynnus,10,1.5,0.08,NA,NA,DK7,Nootkan,6442
 NA,Thunnus thynnus,10,1.5,0.08,NA,NA,DK7,Abenaki,6442
-NA,Thunnus thynnus,10,1.5,0.08,NA,NA,DK7,Micmac,6442
+NA,Thunnus thynnus,10,1.5,0.08,NA,NA,DK7,Mi'kmaq,6442
 NA,Thunnus thynnus,10,1.5,0.08,NA,NA,DK7,Wampanoag,6442
 NA,Thunnus thynnus,8,1.02,0.6,0.283,0.89,SR27,Inuit-Inupiaq,6442
 NA,Thunnus thynnus,8,1.02,0.6,0.283,0.89,SR27,Nootkan,6442
 NA,Thunnus thynnus,8,1.02,0.6,0.283,0.89,SR27,Abenaki,6442
-NA,Thunnus thynnus,8,1.02,0.6,0.283,0.89,SR27,Micmac,6442
+NA,Thunnus thynnus,8,1.02,0.6,0.283,0.89,SR27,Mi'kmaq,6442
 NA,Thunnus thynnus,8,1.02,0.6,0.283,0.89,SR27,Wampanoag,6442
 NA,Thymallus arcticus,31,1,0.7,NA,0.1,fi197,Inuit-Inupiaq,6406
 NA,Thymallus arcticus,31,1,0.7,NA,0.1,fi197,Central Salish,6406

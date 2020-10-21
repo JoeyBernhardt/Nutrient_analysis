@@ -34,7 +34,7 @@ s2 <- all_traits6 %>%
   mutate(log_concentration = log(concentration))
 
 
-
+unique(s2$EnvTemp)
 
 
 zinc <-  s2 %>% 
@@ -160,11 +160,11 @@ mod14 <- gls(log_concentration ~  1, corPagel(value = 0, phy = zinc_tree, fixed 
 R2(mod11, phy = zinc_tree)
 
 ### model selection
-msel_zinc <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+msel_zinc <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc, extra = "R2") %>% 
 	mutate(model_num = rownames(.)) %>% 
 	mutate(cum_weight = cumsum(weight))
 
-
+summary(mod11)
 
 confints_zinc <- data.frame(confint(model.avg(get.models(msel_zinc, subset = cumsum(weight) <= .95))),
 							   estimate = coef(model.avg(get.models(msel_zinc, subset = cumsum(weight) <= .95)))) %>% 

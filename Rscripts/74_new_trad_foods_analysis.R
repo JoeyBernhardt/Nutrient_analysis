@@ -118,6 +118,7 @@ all_trad3 <- all_trad %>%
 
 length(unique(all_trad3$genus_species))
 
+write_csv(all_trad3, "data-processed/all_trad3.csv")
 
 at2 <- all_trad3 %>% 
   filter(!cine_id %in% c("549", "548")) %>% 
@@ -145,6 +146,7 @@ at3 <- all_trad3 %>%
   filter(!is.na(culture_page_id)) %>% 
   full_join(., culture_foods, by = c("culture_page_id" = 'page_id')) %>%
   filter(!is.na(culture)) %>% 
+  filter(!is.na(biblio_id)) %>%
   mutate(ca_na = ifelse(is.na(ca_mg), 1, 0)) %>% 
   mutate(fe_na = ifelse(is.na(fe_mg), 1, 0)) %>% 
   mutate(zn_na = ifelse(is.na(zn_mg), 1, 0)) %>% 
@@ -152,10 +154,15 @@ at3 <- all_trad3 %>%
   mutate(dha_na = ifelse(is.na(dha), 1, 0)) %>% 
   mutate(nutrient_na = ca_na + fe_na + zn_na + epa_na + dha_na) %>% 
   filter(nutrient_na < 5) %>% 
-  dplyr::select(cine_id, genus_species, ca_mg, fe_mg, zn_mg, epa, dha, biblio_id, culture, culture_page_id)
+  dplyr::select(cine_id, genus_species, ca_mg, fe_mg, zn_mg, epa, dha, biblio_id, culture, culture_page_id) %>% 
+  mutate(culture = ifelse(culture == "Micmac", "Mi'kmaq", culture))
+
+
 
 write_csv(at3, "data-processed/traditional_foods_nutrients_cultures.csv")
 length(unique(at3$genus_species))
+
+at3 <- read.csv("data-processed/traditional_foods_nutrients_cultures.csv")
 
 at4 <- at3 %>% 
   dplyr::select(genus_species, culture, ca_mg, zn_mg, fe_mg, epa, dha) %>% 

@@ -929,8 +929,10 @@ library(WriteXLS)
 # read in complete dataset ------------------------------------------------
 
 
-all7 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")
-str(all7)
+all7 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")  ### this one has the skon and mart refs added back in 
+View(all7)
+
+
 all5 %>% 
   filter(!grepl(" ", taxize_name)) %>% 
   dplyr::select(food_name_in_english, common_name, scientific_name, taxize_name, genus_species, everything()) %>% View
@@ -1073,7 +1075,9 @@ length(unique(perc2$taxize_name))
 
 perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
-write_csv(perc2, "data-processed/seafood-rda-percentages.csv")
+write_csv(perc2, "data-processed/seafood-rda-percentages.csv") ### updated October 
+perc2 <- read_csv("data-processed/seafood-rda-percentages.csv")
+perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 
 perc2 %>% 
   ggplot(aes(x = dri_per, fill = subgroup)) + 
@@ -1081,7 +1085,7 @@ perc2 %>%
   scale_fill_brewer(type = "qual", palette = "Paired") +
   scale_x_log10(breaks = c(1, 10, 100)) +
   facet_grid(nutrient ~ subgroup, scales = "free_y", switch = "x") + theme_bw() + geom_vline(xintercept = 10) +
-  xlab("Percentage of DRI in 100g edible portion") +
+  xlab("Percentage of RDA in 100g edible portion") +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
   theme(text=element_text(family="Helvetica", size=12)) +
@@ -1149,7 +1153,7 @@ perc2 %>%
   mutate(log_cv = (exp(sd^2)-1)^1/2) %>% View
 
 
-
+percentage <- 0.1
 ##### percentage of each group that reaches RDAs
 rdis <- all7 %>% 
   filter(grepl(" ", taxize_name)) %>% 
@@ -1167,7 +1171,7 @@ rdis <- all7 %>%
 
 
 ### proportion that reach RDI targets
-proportions <- rdis %>% 
+proportions <- rdis %>% View
   gather(key = nutrient, value = rdi, 10:16) %>% 
   filter(!is.na(rdi)) %>% 
   dplyr::select(-contains("mean")) %>% 
@@ -1178,3 +1182,40 @@ proportions <- rdis %>%
   filter(rdi == 1) %>% 
   mutate(proportion_that_reach_RDI = n*100/total) 
 write_csv(proportions, "data-processed/proportion-species-reaching-rdas.csv")
+
+proportions <- read_csv("data-processed/proportion-species-reaching-rdas.csv")
+View(proportions)
+
+
+
+# get datasets ready for export -------------------------------------------
+
+#### this is the global dataset
+all7 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")  ### this one has the skon and mart refs added back in 
+
+### get the traditional foods data
+
+trad_data <- read.csv("data-processed/traditional_foods_nutrients_cultures.csv") 
+trad_papers <- unique(trad_data$biblio_id)
+
+trad_refs <- read_excel("data-processed/all-trad-foods-refs.xlsx") %>% 
+  rename(biblio_id = Biblioid) %>% 
+  filter(biblio_id %in% trad_papers)
+
+trad_data_all <- trad_data %>% 
+  left_join(., trad_refs) %>%
+  dplyr::select(-culture_page_id, - Database) %>% 
+  mutate(trad_foods_data_id = rownames(.)) %>% 
+  dplyr::select(trad_foods_data_id, everything()) %>% 
+  dplyr::select(-cine_id) %>% 
+  rename(taxon_name = genus_species)
+
+write_csv(trad_data_all, "data-processed/traditional-foods-dataset.csv") #### this is the complete traditional foods dataset before averages
+
+View(trad_data)
+View(trad_refs)
+
+  rename(calcium = ca_mg,
+         iron = fe_mg,
+         zinc = zn_mg) %>% 
+  dplyr::select(-contains("na")) 

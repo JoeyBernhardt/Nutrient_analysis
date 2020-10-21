@@ -107,7 +107,7 @@ rdi_10_long2 %>%
   theme(legend.position="none") 
 ggsave("figures/flower_plots_all_nutrients.png", width = 14, height = 8)
 
-
+library(viridis)
 rdi_10_long2 %>% 
   group_by(subgroup, nutrient) %>% 
   # summarise(mean_conc = mean(concentration)) %>% 
