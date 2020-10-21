@@ -114,7 +114,7 @@ dha_tree <- pruned.tree
 any(duplicated(dha_tree$node.label)) # FALSE
 
 dha_tree$node.label<-NULL
-
+write.tree(dha_tree, "data-to-share/dha-seafood-species-muscle.tre")
 #prune data to match treetips
 Phylodata <- data[(data$Phylospecies %in% dha_tree$tip.label),]
 
@@ -322,6 +322,8 @@ treenameslist <- as.data.frame(table(data$Phylospecies))
 Speciestoretain <- intersect(treenameslist$Var1, nameslist)
 pruned.tree <- drop.tip(phylo,phylo$tip.label[-match(Speciestoretain,phylo$tip.label)])
 dha_all_tree <- pruned.tree
+write.tree(dha_all_tree, "data-to-share/dha-seafood-species-all-tissues.tre")
+
 # plot(tree)
 # is.ultrametric(tree) # has to be TRUE
 # is.rooted(tree) # TRUE

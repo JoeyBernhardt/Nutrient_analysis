@@ -1,8 +1,8 @@
-nutrient,rdi,subgroup,n,total,proportion_that_reach_RDI,nutrient,rdi,subgroup,n,total,proportion_that_reach_RDI,nutrient,rdi,subgroup,n,total,proportion_that_reach_RDI,n
-RDI.CA,1,Crustacean,3,18,16.67,RDI.CA,1,Finfish,59,181,32.60,RDI.CA,1,Mollusc,10,38,26.32,237
-RDI.DHA,1,Crustacean,11,25,44.00,RDI.DHA,1,Finfish,163,224,72.77,RDI.DHA,1,Mollusc,18,30,60.00,279
-RDI.EPA,1,Crustacean,13,26,50.00,RDI.EPA,1,Finfish,103,220,46.82,RDI.EPA,1,Mollusc,20,30,66.67,276
-RDI.fat,1,Crustacean,4,42,9.52,RDI.fat,1,Finfish,64,398,16.08,,,,,,,440
-RDI.FE,1,Crustacean,8,17,47.06,RDI.FE,1,Finfish,41,178,23.03,RDI.FE,1,Mollusc,33,40,82.50,235
-RDI.protein,1,Crustacean,33,33,100.00,RDI.protein,1,Finfish,322,322,100.00,RDI.protein,1,Mollusc,60,60,100.00,415
-RDI.ZN,1,Crustacean,10,10,100.00,RDI.ZN,1,Finfish,76,164,46.34,RDI.ZN,1,Mollusc,30,33,90.91,207
+nutrient,rdi,subgroup,n,total,proportion_that_reach_RDI,nutrient,rdi,subgroup,n,total,proportion_that_reach_RDI,nutrient,rdi,subgroup,n,total,proportion_that_reach_RDI,n,,all %
+RDI.CA,1,Crustacean,3,18,16.67,RDI.CA,1,Finfish,59,181,32.6,RDI.CA,1,Mollusc,10,38,26.32,237,72,30.37974684
+RDI.DHA,1,Crustacean,11,25,44,RDI.DHA,1,Finfish,163,224,72.77,RDI.DHA,1,Mollusc,18,30,60,279,192,68.8172043
+RDI.EPA,1,Crustacean,13,26,50,RDI.EPA,1,Finfish,103,220,46.82,RDI.EPA,1,Mollusc,20,30,66.67,276,136,49.27536232
+RDI.fat,1,Crustacean,4,42,9.52,RDI.fat,1,Finfish,64,398,16.08,,,,,,,440,68,15.45454545
+RDI.FE,1,Crustacean,8,17,47.06,RDI.FE,1,Finfish,41,178,23.03,RDI.FE,1,Mollusc,33,40,82.5,235,82,34.89361702
+RDI.protein,1,Crustacean,33,33,100,RDI.protein,1,Finfish,322,322,100,RDI.protein,1,Mollusc,60,60,100,415,415,100
+RDI.ZN,1,Crustacean,10,10,100,RDI.ZN,1,Finfish,76,164,46.34,RDI.ZN,1,Mollusc,30,33,90.91,207,116,56.03864734

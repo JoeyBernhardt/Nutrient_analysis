@@ -125,7 +125,7 @@ irong <- Phylodata1 %>%
   ungroup() %>%
   distinct(species, .keep_all = TRUE) 
 
-
+write.tree(iron_tree, "data-to-share/iron-seafood-species-muscle.tre")
 
 
 irong2 <- irong 
@@ -285,6 +285,8 @@ iron_all_tree <- pruned.tree
 any(duplicated(iron_all_tree$node.label)) # FALSE
 
 iron_all_tree$node.label<-NULL
+
+write.tree(iron_all_tree, "data-to-share/iron-seafood-species-all-tissues.tre")
 
 #prune data to match treetips
 Phylodata <- data[(data$Phylospecies %in% iron_all_tree$tip.label),]

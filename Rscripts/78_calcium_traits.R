@@ -116,7 +116,7 @@ calcium_tree <- pruned.tree
 any(duplicated(calcium_tree$node.label)) # FALSE
 
 calcium_tree$node.label<-NULL
-
+write.tree(calcium_tree, "data-to-share/calcium-seafood-species-muscle.tre")
 #prune data to match treetips
 Phylodata <- data[(data$Phylospecies %in% calcium_tree$tip.label),]
 
@@ -335,6 +335,8 @@ treenameslist <- as.data.frame(table(data$Phylospecies))
 Speciestoretain <- intersect(treenameslist$Var1, nameslist)
 pruned.tree <- drop.tip(phylo,phylo$tip.label[-match(Speciestoretain,phylo$tip.label)])
 calcium_all_tree <- pruned.tree
+write.tree(calcium_all_tree, "data-to-share/calcium-seafood-species-all-tissues.tre")
+
 # plot(tree)
 # is.ultrametric(tree) # has to be TRUE
 # is.rooted(tree) # TRUE

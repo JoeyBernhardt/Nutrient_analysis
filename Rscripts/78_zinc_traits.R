@@ -111,7 +111,7 @@ zinc_tree <- pruned.tree
 any(duplicated(zinc_tree$node.label)) # FALSE
 
 zinc_tree$node.label<-NULL
-
+write.tree(zinc_tree, "data-to-share/zinc-seafood-species-muscle.tre")
 #prune data to match treetips
 Phylodata <- data[(data$Phylospecies %in% zinc_tree$tip.label),]
 
@@ -283,6 +283,7 @@ zinc_all_tree <- pruned.tree
 any(duplicated(zinc_all_tree$node.label)) # FALSE
 
 zinc_all_tree$node.label<-NULL
+write.tree(zinc_all_tree, "data-to-share/zinc-seafood-species-all-tissues.tre")
 
 #prune data to match treetips
 Phylodata <- data[(data$Phylospecies %in% zinc_all_tree$tip.label),]

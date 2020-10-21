@@ -1224,3 +1224,38 @@ write_csv(trad_data_all, "data-processed/traditional-foods-dataset.csv") #### th
 write_csv(trad_data_all, "data-to-share/traditional-foods-dataset-raw.csv") 
 trad_nuts_mean <- read_csv("data-processed/traditional_foods_nutrients_cultures_for_analysis.csv")
 write_csv(trad_nuts_mean, "data-to-share/traditional-foods-dataset-for-analysis.csv") 
+
+
+
+### now export derived data
+
+
+mean_nuts <- read_csv("data-processed/mean_nuts_oct-4-2020.csv") %>% 
+  filter(grepl(" ", taxize_name))
+
+
+View(mean_nuts)
+
+
+write_csv(mean_nuts, "data-to-share/global-seafood-nutrient-data-for-analysis.csv")
+
+
+perc2 <- read_csv("data-processed/seafood-rda-percentages.csv") %>% 
+  rename(taxon_name = taxize_name) %>%
+  rename(sample_info = food_name_in_english) %>% 
+  dplyr::select(obs_id, taxon_name, common_name, subgroup, sample_info, body_part, nutrient, concentration, dri_per, location, season, everything()) %>% 
+  dplyr::select(-scientific_name, -asfis_scientific_name, -submitted_name, -genus_species) %>% 
+  rename(RDA_percentage = dri_per)
+
+View(perc2)
+
+perc2$nutrient <- factor(perc2$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
+
+write_csv(perc2, "data-to-share/global-seafood-nutrient-data-RDAs.csv")
+
+
+all_traits6 <- read_csv("data-processed/fishbase-traits-aug-26-2020.csv") %>% 
+  rename(taxon_name = Species) %>% 
+  rename(sample_info = food_name_in_english) %>% 
+  dplyr::select(obs_id, taxon_name, everything())
+write_csv(all_traits6, "data-to-share/seafood-species-ecological-traits.csv")
