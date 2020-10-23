@@ -36,11 +36,12 @@ all_contaminants <- bind_rows(tox, all_merc)%>%
   dplyr::select(-code, -mercury, -site) %>% 
   mutate(location_of_study = str_replace(location_of_study, "area", "US")) %>% 
   mutate(genus_species = str_to_lower(genus_species)) %>% 
-  # mutate(location_of_study = ifelse(dataset == "adams", "US-Florida", location_of_study)) %>% 
+  mutate(location_of_study = ifelse(dataset == "adams", "US-Florida", location_of_study)) %>% 
   dplyr::select(genus_species, subgroup, taxon_common_name, location_of_study, methylmercury, lead, arsenic, cadmium, everything()) %>% 
   arrange(genus_species) 
 
-write_csv(all_contaminants, )
+write_csv(all_contaminants, "data-processed/all-contaminant-raw.csv")
+WriteXLS::WriteXLS(all_contaminants, "data-processed/all-contaminant-raw.xlsx")
 
 
 # all_merc <- read_csv("data-processed/mercury-data-compiled.csv")

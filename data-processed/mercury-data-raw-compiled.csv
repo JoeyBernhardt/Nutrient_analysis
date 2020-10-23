@@ -554,1017 +554,343 @@ whitefish-lake,finfish,Coregonus clupeaformis,US-Michigan,9.027499999999998,38,k
 whitefish-lake,finfish,Coregonus clupeaformis,US,5.415,171,karimi,USEPA (U.S. Environmental Protection Agency). 2011a. National Listing of Fish Advisories. Available: http://map1.epa.gov [accessed 14 September 2011].,karimi
 whitefish-round,finfish,Prosopium cylindraceum,Northern Canada - lakes,8.549999999999999,41,karimi,"Lockhart WL, Stern GA, Low G, Hendzel M, Boila G, Roach P, et al. 2005. A history of total mercury in edible muscle of fish from lakes in northern Canada. Sci Total Environ 351:427-463.",karimi
 whitefish-round,finfish,Prosopium cylindraceum,Lake Huron,4.2749999999999995,5,karimi,"Miller TJ, Jude DJ. 1984. Organochlorine pesticides, PBBs, and mercury in round whitefish fillets from Saginaw Bay, Lake Huron, 1977-1978. J Gt Lakes Res 10(2):215-220.",karimi
-NA,finfish,odontaspis taurus,NA,28.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharodon carcharius,NA,513,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharodon carcharius,NA,514.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharodon carcharius,NA,408.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,isurus oxyrinchus,NA,304,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus acronotus,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus acronotus,NA,55.09999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus brevipinna,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus isodon,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus leucas,NA,92.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus leucas,NA,74.1,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus leucas,NA,62.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus limbatus,NA,75.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus limbatus,NA,72.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus limbatus,NA,174.79999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,carcharhinus limbatus,NA,51.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mustelus norrisi,NA,114,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,negaprion brevirostris,NA,66.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,negaprion brevirostris,NA,61.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,negaprion brevirostris,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rhizoprionodon terraenovae,NA,100.69999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rhizoprionodon terraenovae,NA,54.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna lewini,NA,41.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna lewini,NA,118.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna tiburo,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna tiburo,NA,55.09999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna tiburo,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna tiburo,NA,108.29999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyrna tiburo,NA,56.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pristis pectinata,NA,66.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pristis pectinata,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis americana,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis sabina,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis sabina,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis sabina,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis sabina,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis sabina,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis say,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis say,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis say,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,dasyatis say,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,gymnura micrura,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,gymnura micrura,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,gymnura micrura,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,myliobatis freminvillei,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rhinoptera bonasus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rhinoptera bonasus,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acipenser brevirostrum,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lepisosteus platyrhincus,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,elops saurus,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,elops saurus,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,elops saurus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,elops saurus,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,elops saurus,NA,68.39999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,elops saurus,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,megalops atlanticus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,megalops atlanticus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,albula vulpes,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,albula vulpes,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,albula vulpes,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,brevoortia smithi,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,brevoortia smithi,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,opisthonema oglinum,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,opisthonema oglinum,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,harengula jaguana,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,synodus foetens,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,synodus foetens,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,arius felis,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,arius felis,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,arius felis,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,arius felis,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bagre marinus,NA,63.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bagre marinus,NA,91.19999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bagre marinus,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bagre marinus,NA,57,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,opsanus beta,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,59.849999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,57,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropomus undecimalis,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropristis striata,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropristis striata,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropristis striata,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,centropristis philadelphica,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus itajara,NA,109.24999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus itajara,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus itajara,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus drummondhayi,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus flavolimbatus,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus flavolimbatus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus morio,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus morio,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus morio,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus morio,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus niveatus,NA,90.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus niveatus,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,epinephelus niveatus,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca microlepis,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca microlepis,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca microlepis,NA,36.1,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca microlepis,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca microlepis,NA,28.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca microlepis,NA,64.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca bonaci,NA,110.19999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca bonaci,NA,54.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca phenax,NA,42.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mycteroperca phenax,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lepomis macrochirus,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,41.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,62.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pomatomus saltatrix,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,57,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,54.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,134.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,135.85,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,38.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rachycentron canadum,NA,72.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx bartholomaei,NA,38.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx hippos,NA,48.449999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx hippos,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx hippos,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx hippos,NA,92.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx hippos,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,caranx crysos,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,oligoplites saurus,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,oligoplites saurus,NA,137.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,selene vomer,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola dumerili,NA,86.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola dumerili,NA,46.55,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola dumerili,NA,56.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola dumerili,NA,48.449999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola dumerili,NA,62.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola dumerili,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola rivoliana,NA,53.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,seriola zonata,NA,56.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus carolinus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus carolinus,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus carolinus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus carolinus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus falcatus,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus falcatus,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus falcatus,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,trachinotus falcatus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,coryphaena hippurus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus griseus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus griseus,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus griseus,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus griseus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus griseus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus griseus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus analis,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus analis,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus analis,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus analis,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus campechanus,NA,266,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus campechanus,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus synagris,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus synagris,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus synagris,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus synagris,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lutjanus synagris,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,ocyurus chrysurus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,ocyurus chrysurus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rhomboplites aurorubens,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,rhomboplites aurorubens,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lobotes surinamensis,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lobotes surinamensis,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lobotes surinamensis,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,diapterus plumieri,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,diapterus plumieri,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,diapterus plumieri,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,diapterus auratus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,haemulon plumieri,NA,47.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,haemulon plumieri,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,haemulon plumieri,NA,30.4,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,haemulon plumieri,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,haemulon sciurus,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,orthopristis chrysoptera,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,orthopristis chrysoptera,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,orthopristis chrysoptera,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,orthopristis chrysoptera,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,orthopristis chrysoptera,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,orthopristis chrysoptera,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus probatocephalus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,archosargus rhomboidalis,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lagodon rhomboides,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lagodon rhomboides,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lagodon rhomboides,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bairdiella chrysoura,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bairdiella chrysoura,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bairdiella chrysoura,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bairdiella chrysoura,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,bairdiella chrysoura,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion arenarius,NA,76.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion arenarius,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion arenarius,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,39.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,42.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,40.85,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,60.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nebulosus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nothus,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion nothus,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion regalis/arenarius,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion regalis/arenarius,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,cynoscion regalis/arenarius,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,leiostomus xanthurus,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,leiostomus xanthurus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,leiostomus xanthurus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,leiostomus xanthurus,NA,3.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,leiostomus xanthurus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,leiostomus xanthurus,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus americanus,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus americanus,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus americanus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus americanus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus americanus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus americanus,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus saxatilis,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,menticirrhus saxatilis,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,micropogonias undulatus,NA,4.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,micropogonias undulatus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,micropogonias undulatus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,micropogonias undulatus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pogonias cromis,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pogonias cromis,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pogonias cromis,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pogonias cromis,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pogonias cromis,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,pogonias cromis,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,45.599999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sciaenops ocellatus,NA,104.50000000000001,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,umbrina coroides,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,chaetodipterus faber,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,chaetodipterus faber,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,chaetodipterus faber,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,chaetodipterus faber,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil cephalus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil cephalus,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil cephalus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil cephalus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil cephalus,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil cephalus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil curema,NA,2.8499999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil curema,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil curema,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil curema,NA,4.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil curema,NA,2.8499999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil gyrans,NA,2.8499999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mugil gyrans,NA,3.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyraena barracuda,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyraena barracuda,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyraena barracuda,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,sphyraena barracuda,NA,51.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,lachnolaimus maximus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acanthocybium solanderi,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acanthocybium solanderi,NA,64.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acanthocybium solanderi,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acanthocybium solanderi,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acanthocybium solanderi,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,acanthocybium solanderi,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,euthynnus alletteratus,NA,204.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,euthynnus alletteratus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,euthynnus alletteratus,NA,59.849999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,euthynnus alletteratus,NA,75.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus cavalla,NA,52.25000000000001,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus cavalla,NA,70.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus cavalla,NA,161.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus cavalla,NA,197.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus cavalla,NA,148.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus cavalla,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,67.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,30.4,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,30.4,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,65.55,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus maculatus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,scomberomorus regalis,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,thunnus albacares,NA,28.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,thunnus atlanticus,NA,110.19999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,istiophorus platypterus,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,makaira nigricans,NA,292.59999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,tetrapturus albidus,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,tetrapturus albidus,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys dentatus,NA,3.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,36.1,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,paralichthys albigutta,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,balistes capriscus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
-NA,finfish,mola mola,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.",adams
+NA,finfish,odontaspis taurus,NA,28.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharodon carcharius,NA,513,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharodon carcharius,NA,514.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharodon carcharius,NA,408.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,isurus oxyrinchus,NA,304,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus acronotus,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus acronotus,NA,55.09999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus brevipinna,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus isodon,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus leucas,NA,92.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus leucas,NA,74.1,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus leucas,NA,62.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus limbatus,NA,75.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus limbatus,NA,72.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus limbatus,NA,174.79999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,carcharhinus limbatus,NA,51.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mustelus norrisi,NA,114,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,negaprion brevirostris,NA,66.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,negaprion brevirostris,NA,61.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,negaprion brevirostris,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rhizoprionodon terraenovae,NA,100.69999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rhizoprionodon terraenovae,NA,54.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna lewini,NA,41.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna lewini,NA,118.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna tiburo,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna tiburo,NA,55.09999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna tiburo,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna tiburo,NA,108.29999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyrna tiburo,NA,56.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pristis pectinata,NA,66.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pristis pectinata,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis americana,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis sabina,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis sabina,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis sabina,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis sabina,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis sabina,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis say,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis say,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis say,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,dasyatis say,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,gymnura micrura,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,gymnura micrura,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,gymnura micrura,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,myliobatis freminvillei,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rhinoptera bonasus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rhinoptera bonasus,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acipenser brevirostrum,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lepisosteus platyrhincus,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,elops saurus,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,elops saurus,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,elops saurus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,elops saurus,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,elops saurus,NA,68.39999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,elops saurus,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,megalops atlanticus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,megalops atlanticus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,albula vulpes,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,albula vulpes,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,albula vulpes,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,brevoortia smithi,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,brevoortia smithi,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,opisthonema oglinum,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,opisthonema oglinum,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,harengula jaguana,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,synodus foetens,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,synodus foetens,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,arius felis,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,arius felis,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,arius felis,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,arius felis,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bagre marinus,NA,63.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bagre marinus,NA,91.19999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bagre marinus,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bagre marinus,NA,57,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,opsanus beta,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,59.849999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,57,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropomus undecimalis,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropristis striata,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropristis striata,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropristis striata,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,centropristis philadelphica,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus itajara,NA,109.24999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus itajara,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus itajara,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus drummondhayi,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus flavolimbatus,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus flavolimbatus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus morio,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus morio,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus morio,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus morio,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus niveatus,NA,90.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus niveatus,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,epinephelus niveatus,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca microlepis,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca microlepis,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca microlepis,NA,36.1,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca microlepis,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca microlepis,NA,28.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca microlepis,NA,64.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca bonaci,NA,110.19999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca bonaci,NA,54.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca phenax,NA,42.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mycteroperca phenax,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lepomis macrochirus,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,41.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,62.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pomatomus saltatrix,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,57,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,54.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,134.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,135.85,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,38.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rachycentron canadum,NA,72.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx bartholomaei,NA,38.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx hippos,NA,48.449999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx hippos,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx hippos,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx hippos,NA,92.14999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx hippos,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,caranx crysos,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,oligoplites saurus,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,oligoplites saurus,NA,137.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,selene vomer,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola dumerili,NA,86.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola dumerili,NA,46.55,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola dumerili,NA,56.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola dumerili,NA,48.449999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola dumerili,NA,62.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola dumerili,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola rivoliana,NA,53.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,seriola zonata,NA,56.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus carolinus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus carolinus,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus carolinus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus carolinus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus falcatus,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus falcatus,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus falcatus,NA,57.949999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,trachinotus falcatus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,20.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,8.549999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,coryphaena hippurus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus griseus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus griseus,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus griseus,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus griseus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus griseus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus griseus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus analis,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus analis,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus analis,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus analis,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus campechanus,NA,266,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus campechanus,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus synagris,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus synagris,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus synagris,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus synagris,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lutjanus synagris,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,ocyurus chrysurus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,ocyurus chrysurus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rhomboplites aurorubens,NA,23.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,rhomboplites aurorubens,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lobotes surinamensis,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lobotes surinamensis,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lobotes surinamensis,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,diapterus plumieri,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,diapterus plumieri,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,diapterus plumieri,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,diapterus auratus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,haemulon plumieri,NA,47.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,haemulon plumieri,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,haemulon plumieri,NA,30.4,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,haemulon plumieri,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,haemulon sciurus,NA,26.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,orthopristis chrysoptera,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,orthopristis chrysoptera,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,orthopristis chrysoptera,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,orthopristis chrysoptera,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,orthopristis chrysoptera,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,orthopristis chrysoptera,NA,6.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus probatocephalus,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,archosargus rhomboidalis,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lagodon rhomboides,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lagodon rhomboides,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lagodon rhomboides,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bairdiella chrysoura,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bairdiella chrysoura,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bairdiella chrysoura,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bairdiella chrysoura,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,bairdiella chrysoura,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion arenarius,NA,76.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion arenarius,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion arenarius,NA,43.699999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,39.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,42.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,40.85,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,60.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nebulosus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nothus,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion nothus,NA,44.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion regalis/arenarius,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion regalis/arenarius,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,cynoscion regalis/arenarius,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,leiostomus xanthurus,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,leiostomus xanthurus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,leiostomus xanthurus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,leiostomus xanthurus,NA,3.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,leiostomus xanthurus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,leiostomus xanthurus,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus americanus,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus americanus,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus americanus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus americanus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus americanus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus americanus,NA,18.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus saxatilis,NA,19.95,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,menticirrhus saxatilis,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,micropogonias undulatus,NA,4.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,micropogonias undulatus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,micropogonias undulatus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,micropogonias undulatus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pogonias cromis,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pogonias cromis,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pogonias cromis,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pogonias cromis,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pogonias cromis,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,pogonias cromis,NA,22.799999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,35.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,45.599999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sciaenops ocellatus,NA,104.50000000000001,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,umbrina coroides,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,chaetodipterus faber,NA,31.349999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,chaetodipterus faber,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,chaetodipterus faber,NA,32.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,chaetodipterus faber,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil cephalus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil cephalus,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil cephalus,NA,11.399999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil cephalus,NA,5.699999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil cephalus,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil cephalus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil curema,NA,2.8499999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil curema,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil curema,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil curema,NA,4.75,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil curema,NA,2.8499999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil gyrans,NA,2.8499999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mugil gyrans,NA,3.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyraena barracuda,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyraena barracuda,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyraena barracuda,NA,82.64999999999999,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,sphyraena barracuda,NA,51.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,lachnolaimus maximus,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acanthocybium solanderi,NA,24.7,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acanthocybium solanderi,NA,64.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acanthocybium solanderi,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acanthocybium solanderi,NA,34.199999999999996,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acanthocybium solanderi,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,acanthocybium solanderi,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,euthynnus alletteratus,NA,204.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,euthynnus alletteratus,NA,38,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,euthynnus alletteratus,NA,59.849999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,euthynnus alletteratus,NA,75.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus cavalla,NA,52.25000000000001,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus cavalla,NA,70.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus cavalla,NA,161.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus cavalla,NA,197.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus cavalla,NA,148.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus cavalla,NA,27.549999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,33.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,67.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,30.4,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,30.4,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,65.55,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,50.349999999999994,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus maculatus,NA,21.849999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,scomberomorus regalis,NA,14.25,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,thunnus albacares,NA,28.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,thunnus atlanticus,NA,110.19999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,istiophorus platypterus,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,makaira nigricans,NA,292.59999999999997,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,tetrapturus albidus,NA,25.65,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,tetrapturus albidus,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys dentatus,NA,3.8,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,29.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,9.5,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,36.1,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,19,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,37.05,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,13.3,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,15.2,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,16.15,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,17.099999999999998,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,7.6,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,paralichthys albigutta,NA,10.45,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,balistes capriscus,NA,12.35,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
+NA,finfish,mola mola,NA,1.9,NA,adams,"Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.",adams
 NA,finfish,anchoa hepsetus,area- gulf,7.790000000000001,NA,hall,"Hall, R. A., E. G. Zook, and G. M. Meaburn. 1978. National Marine Fisheries Service Survey of Trace Elements in the Fishery Resource. https://spo.nmfs.noaa.gov/content/national-marine-fisheries-service-survey-trace-elements-fishery-resource.",hall
 NA,finfish,anchoa hepsetus,area- gulf,8.645,NA,hall,"Hall, R. A., E. G. Zook, and G. M. Meaburn. 1978. National Marine Fisheries Service Survey of Trace Elements in the Fishery Resource. https://spo.nmfs.noaa.gov/content/national-marine-fisheries-service-survey-trace-elements-fishery-resource.",hall
 NA,finfish,anchoa hepsetus,area- california,7.6,NA,hall,"Hall, R. A., E. G. Zook, and G. M. Meaburn. 1978. National Marine Fisheries Service Survey of Trace Elements in the Fishery Resource. https://spo.nmfs.noaa.gov/content/national-marine-fisheries-service-survey-trace-elements-fishery-resource.",hall

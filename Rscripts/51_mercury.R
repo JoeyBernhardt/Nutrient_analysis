@@ -188,9 +188,7 @@ all_merc_raw <- bind_rows(karimi3, adams, hall_mercury_raw, burger) %>%
   dplyr::select(taxon_common_name, subgroup, genus_species, location_of_study, mean_hg, number_of_samples, biblio_id, bibliography, dataset) %>% 
   rename(methylmercury = mean_hg) %>% 
   mutate(biblio_id = dataset) %>% 
-  mutate(bibliography = ifelse(dataset == "adams", "Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
-estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
-2nd ed. rev. 57 pp.", bibliography)) %>% 
+  mutate(bibliography = ifelse(dataset == "adams", "Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9. 2nd ed. rev. 57 pp.", bibliography)) %>% 
   mutate(bibliography = ifelse(dataset == "hall", "Hall, R. A., E. G. Zook, and G. M. Meaburn. 1978. National Marine Fisheries Service Survey of Trace Elements in the Fishery Resource. https://spo.nmfs.noaa.gov/content/national-marine-fisheries-service-survey-trace-elements-fishery-resource.", bibliography)) %>% 
   filter(!is.na(bibliography))
 
