@@ -28,16 +28,43 @@ karimi <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Dat
 karimi2 <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Database.data_JB.xls", sheet = "Seafood Hg Database") %>% 
   clean_names() %>% 
   rename(ug_hg = mean_hg_concentration_ppm_wet_weight) %>% 
-  mutate(ug_hg = ug_hg*100) %>% View
+  mutate(ug_hg = ug_hg*100) %>% 
   group_by(genus_species, subgroup) %>% 
   summarise(mean_hg = mean(ug_hg))
+View(karimi2)
+  
+karimi_refs_sub <- read_excel("data-processed/karimi-refs-sub.xlsx")
+  
+karimi_refs <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Database.data_JB.xls", sheet = "Seafood Hg Database") %>% 
+  clean_names() %>% 
+  distinct(data_source_see_supplemental_material_for_references) %>% 
+  rename(biblio_id = data_source_see_supplemental_material_for_references) 
 
-names(karimi)
+write_csv(karimi_refs, "data-processed/karimi-refs.csv")
+  
+karimi_refs_edited <- read_csv("data-processed/karimi-refs-edited.csv") 
+karimi3 <- read_excel("data/resourceMap_knb_295_2/data/rkarimi.7.1-Seafood_Hg_Database.data_JB.xls", sheet = "Seafood Hg Database") %>% 
+  clean_names() %>% 
+  rename(ug_hg = mean_hg_concentration_ppm_wet_weight) %>% 
+  mutate(ug_hg = ug_hg*100) %>% 
+  rename(biblio_id = data_source_see_supplemental_material_for_references) %>% 
+  left_join(., karimi_refs_edited) %>% 
+  rename(mean_hg = ug_hg) %>% 
+  mutate(dataset = "karimi")
+
+library(pdftools)
+refs_split <- pdf_text("data/resourceMap_knb_295_2/data/Karimi-references.pdf") %>% 
+   strsplit(split = "\n")
+
+
+refs_split[[1]]
+length(refs_split)
 
 burger <- read_csv("data/tabula-Burger.csv") %>% 
   rename(species = species_name) %>% 
   mutate(mean_hg = mean_hg_ppm*100) %>% 
-  mutate(dataset = "burger")
+  mutate(dataset = "burger") %>% 
+  mutate(bibliography = "Burger, Joanna, Michael Gochfeld, Christian Jeitner, Sean Burke, Tim Stamm, Ronald Snigaroff, Dan Snigaroff, Robert Patrick, and Jim Weston. Mercury levels and potential risk from subsistence foods from the Aleutians. Science of the Total Environment 384, no. 1-3 (2007): 93-105.")
 
 tox <- read_excel("data/Hall-trace-elements.xlsx") %>% 
   clean_names() %>%
@@ -66,6 +93,15 @@ hall_mercury <- tox %>%
   mutate_at(c(names_tox[6:20]), times_hundred) %>% 
   dplyr::select(species, mercury, subgroup) %>% 
   rename(mean_ug = mercury) 
+
+hall_mercury_raw <- tox %>% 
+  group_by(species, subgroup) %>% 
+  # summarise_at(c(names_tox[6:20]), mean) %>% 
+  mutate_at(c(names_tox[6:20]), times_hundred) %>%
+  dplyr::select(species, mercury, subgroup, area, part) %>% 
+  rename(mean_hg = mercury) %>% 
+  mutate(dataset = "hall") %>% 
+  rename(location_of_study = area)
 
 hall_anti <- tox %>% 
   group_by(species) %>% 
@@ -138,13 +174,31 @@ adams <- read_csv("data/tabula-Adams-2003.csv") %>%
   mutate(mean_hg = mean_ug*100) %>% 
   mutate(dataset = "adams")
 
+
+#### bind together all the mercury data
 all_merc <- bind_rows(karimi_mean2, adams, hall_mean2, burger) %>% 
   mutate(species = str_to_lower(species)) %>% 
   mutate(mean_hg = ifelse(subgroup == "mollusc", mean_hg*0.30, mean_hg*0.95))
 
+all_merc_raw <- bind_rows(karimi3, adams, hall_mercury_raw, burger) %>% 
+  mutate(species = str_to_lower(species)) %>%
+  mutate(genus_species = ifelse(is.na(genus_species), species, genus_species)) %>% 
+  mutate(mean_hg = ifelse(subgroup == "mollusc", mean_hg*0.30, mean_hg*0.95)) %>% 
+  mutate(taxon_common_name = ifelse(is.na(taxon_common_name), common_name, taxon_common_name)) %>%
+  dplyr::select(taxon_common_name, subgroup, genus_species, location_of_study, mean_hg, number_of_samples, biblio_id, bibliography, dataset) %>% 
+  rename(methylmercury = mean_hg) %>% 
+  mutate(biblio_id = dataset) %>% 
+  mutate(bibliography = ifelse(dataset == "adams", "Adams, D. H., R. H. McMichael, Jr., and G. E. Henderson. 2003. Mercury levels in marine and
+estuarine fishes of Florida 1989–2001. Florida Marine Research Institute Technical Report TR-9.
+2nd ed. rev. 57 pp.", bibliography)) %>% 
+  mutate(bibliography = ifelse(dataset == "hall", "Hall, R. A., E. G. Zook, and G. M. Meaburn. 1978. National Marine Fisheries Service Survey of Trace Elements in the Fishery Resource. https://spo.nmfs.noaa.gov/content/national-marine-fisheries-service-survey-trace-elements-fishery-resource.", bibliography)) %>% 
+  filter(!is.na(bibliography))
+
+write_csv(all_merc_raw, "data-processed/mercury-data-raw-compiled.csv")
+
 write_csv(all_merc, "data-processed/mercury-data-compiled.csv")
 all_merc <- read_csv("data-processed/mercury-data-compiled.csv")
-
+View(all_merc)
 length(unique(all_merc$species))
 #### how many species in CINE are in mercury?
 

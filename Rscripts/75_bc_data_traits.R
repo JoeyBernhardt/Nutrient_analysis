@@ -1200,6 +1200,13 @@ all7b <- all7 %>%
   dplyr::select(-scientific_name, -asfis_scientific_name, -submitted_name, -genus_species)
   
 
+all8 <- all7b %>% 
+  filter(grepl(" ", taxon_name)) %>%
+  gather(key = nutrient, value = concentration, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+  filter(!is.na(concentration))
+
+length(unique(all8$taxon_name)) #### 547 unique species, 5041 observations
+
 write_csv(all7b, "data-to-share/global-seafood-nutrient-dataset-raw.csv") 
 
 
@@ -1259,3 +1266,24 @@ all_traits6 <- read_csv("data-processed/fishbase-traits-aug-26-2020.csv") %>%
   rename(sample_info = food_name_in_english) %>% 
   dplyr::select(obs_id, taxon_name, everything())
 write_csv(all_traits6, "data-to-share/seafood-species-ecological-traits.csv")
+
+
+all_con <- read_csv("data-processed/all-contaminant-means.csv") %>% 
+  filter(grepl(" ", species)) %>% 
+  dplyr::select(species)
+all_nuts <-read_csv("data-to-share/global-seafood-nutrient-dataset-raw.csv") %>% 
+  filter(grepl(" ", taxon_name)) %>% 
+  mutate(species = str_to_lower(taxon_name)) %>% 
+  dplyr::select(species)
+
+all_species <- bind_rows(all_con, all_nuts)
+length(unique(all_species$species))
+length(unique(all_con$species)) ### 356 contaminant species
+
+setdiff(unique(all_con$species), unique(all_nuts$species))
+
+
+all_nuts <-read_csv("data-to-share/global-seafood-nutrient-dataset-raw.csv") %>% 
+  
+  distinct(taxon_name) %>% View
+
