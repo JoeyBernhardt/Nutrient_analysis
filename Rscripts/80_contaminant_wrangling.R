@@ -1,6 +1,7 @@
 
 library(readxl)
 library(tidyverse)
+library(janitor)
 
 
 all_merc_raw <- read_csv("data-processed/mercury-data-raw-compiled.csv")
@@ -38,10 +39,57 @@ all_contaminants <- bind_rows(tox, all_merc)%>%
   mutate(genus_species = str_to_lower(genus_species)) %>% 
   mutate(location_of_study = ifelse(dataset == "adams", "US-Florida", location_of_study)) %>% 
   dplyr::select(genus_species, subgroup, taxon_common_name, location_of_study, methylmercury, lead, arsenic, cadmium, everything()) %>% 
-  arrange(genus_species) 
+  arrange(genus_species) %>% 
+  select(-biblio_id) %>% 
+  mutate(obs_id = paste0("contam", rownames(.)))
 
 write_csv(all_contaminants, "data-processed/all-contaminant-raw.csv")
 WriteXLS::WriteXLS(all_contaminants, "data-processed/all-contaminant-raw.xlsx")
+write_csv(all_contaminants, "data-to-share/seafood-contaminant-data.csv")
+
+View(all_contaminants)
+
+library(taxize)
+gnr_datasources() %>% View
+con_species <- unique(all_contaminants$genus_species)
+length(con_species)
+
+
+  results_species <- con_species %>% 
+    gnr_resolve(data_source_ids = c(1,9, 12, 11, 149, 155), 
+              with_canonical_ranks=T)
+  
+  length(unique(results_species$user_supplied_name))
+  
+  results_species2 <- results_species %>% 
+    distinct(matched_name2, .keep_all = TRUE)
+  
+ all_contam2 <-  all_contaminants %>% 
+    left_join(., results_species2, by = c("genus_species" = "user_supplied_name")) 
+ 
+ 
+ no_match <- all_contam2 %>% 
+    filter(is.na(matched_name2)) %>% 
+    distinct()
+
+write_csv(no_match, "data-processed/contaminant-missing-species-name.csv")
+
+no_match_edited <- read_csv("data-processed/contaminant-missing-species-name-edited.csv") %>% 
+  select(genus_species, genus_species_new)
+
+
+all_contam3 <- left_join(all_contam2, no_match_edited) %>% 
+  mutate(matched_name2 = ifelse(is.na(matched_name2), genus_species_new, matched_name2)) %>% 
+  rename(taxize_species = matched_name2)
+
+all_contam4 <- all_contam3 %>% 
+  select(1:12, taxize_species, obs_id) %>% 
+  group_by(obs_id) %>% 
+  top_n(n = 1, wt = taxize_species) %>% 
+  distinct() %>% 
+  rename(taxon_name = taxize_species) %>% 
+  select(obs_id, taxon_name, everything())
+write_csv(all_contaminants, "data-to-share/seafood-contaminant-data-cleaned.csv")
 
 
 # all_merc <- read_csv("data-processed/mercury-data-compiled.csv")

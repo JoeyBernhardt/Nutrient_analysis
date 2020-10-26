@@ -1278,7 +1278,8 @@ all_nuts <-read_csv("data-to-share/global-seafood-nutrient-dataset-raw.csv") %>%
 
 all_species <- bind_rows(all_con, all_nuts)
 length(unique(all_species$species))
-length(unique(all_con$species)) ### 356 contaminant species
+length(unique(all_con$species)) ### 353 contaminant species
+length(unique(all_nuts$species)) ### 547 nutrient species
 
 setdiff(unique(all_con$species), unique(all_nuts$species))
 
@@ -1287,3 +1288,24 @@ all_nuts <-read_csv("data-to-share/global-seafood-nutrient-dataset-raw.csv") %>%
   
   distinct(taxon_name) %>% View
 
+
+
+all_nuts_raw <-read_csv("data-to-share/global-seafood-nutrient-dataset-raw.csv") %>% 
+  filter(grepl(" ", taxon_name)) %>% 
+  mutate(species = str_to_lower(taxon_name)) 
+
+nut_obs <- all_nuts_raw %>% 
+  gather(key = nutrient, value = concentration, ca_mg, fe_mg, zn_mg, epa, dha, fat, protein) %>% 
+  filter(!is.na(concentration)) %>% 
+  nrow() ### 5041 observations of nutrients
+
+
+all_contaminants_raw <- read_csv("data-processed/all-contaminant-raw.csv")
+
+
+con_obs <- all_contaminants_raw %>% 
+  gather(key = contaminant, value = concentration, methylmercury, arsenic, lead, cadmium) %>% 
+  nrow() ### 2204 observations of contaminants
+
+5041+2204
+  
