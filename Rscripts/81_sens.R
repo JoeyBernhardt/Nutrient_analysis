@@ -3,6 +3,11 @@ mean_nuts <- read_csv("data-processed/mean_nuts_oct-4-2020.csv") %>%
   filter(grepl(" ", taxize_name))
 mean_nuts$culture <- "global"
 
+mean_nuts %>% 
+  gather(key = nutrient, value = concentration, 3:7) %>%
+  summarise(mean_conc = mean(concentration)) %>% View
+
+
 threshold <- 0.5
 sample_size <- 10
 nutrient_fishing_function_global <- function(threshold) {
@@ -83,10 +88,13 @@ results2 %>%
   summarise(mean_b = mean(b),
             max_b = max(b),
             median_b = median(b)) %>% 
+  filter(threshold < 0.5) %>%
   ggplot(aes(x = threshold, y = median_b)) + geom_point() +
-  geom_hline(yintercept = 0) + geom_vline(xintercept = 0.1) + xlim(0, .5)
+  geom_hline(yintercept = 0) + geom_vline(xintercept = 0.1) + xlim(0, .5) +
+  geom_hline(yintercept = 0.2)
 
-
+write_csv(results2, "data-processed/nt-sensitivity-thresholds.csv")
+results2 <- read_csv("data-processed/nt-sensitivity-thresholds.csv")
 
 prediction_function <- function(df) {
   pf <-function(x){
@@ -108,11 +116,13 @@ prediction_function <- function(df) {
 
 
 CS_preds <- results2 %>% 
+  filter(threshold < 0.5) %>% 
   mutate(replicate = rownames(.)) %>% 
   split(.$replicate) %>% 
   map_df(prediction_function, .id = "replicate") 
 
 results3 <- results2 %>% 
+  filter(threshold < 0.5) %>% 
   mutate(replicate = rownames(.))
 
 cs2 <- CS_preds %>% 
@@ -132,3 +142,128 @@ global_0.9 <- samples_rep %>%
 GL_mod <- nls(formula = (mean ~ a * species_no^b), data = global_0.9,  start = c(a=2, b=0.5))
 GL_boot <- nlsBoot(GL_mod)
 GL_boot$bootCI
+
+
+
+
+# now for Pmin ------------------------------------------------------------
+all_pmins <- read_csv("data-processed/pmin-sensitivity-threshold.csv")
+
+all_pmins %>% 
+  ungroup() %>%
+  ggplot(aes(x = species_no, y = grams_required_median, color = rda_threshold, group = rda_threshold)) + geom_line() +
+  scale_color_viridis_c()
+
+
+results_pmin <- data.frame()
+for (i in seq(.01, 1, by = 0.01)) {
+  all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_pmins, rda_threshold == i),  start = c(a=500, b=-0.6))
+  all_boot <- nlsBoot(all_mod)
+  all_boot_df <- as_data_frame(all_boot$bootCI) %>% 
+    mutate(rda_threshold = i)
+  results_pmin <- bind_rows(results_pmin, all_boot_df)
+  
+}
+
+
+pmin_prediction_function <- function(df) {
+  pf <-function(x){
+    res<-(df$a[[1]]*x^df$b[[1]])
+    res
+  }
+  
+  pred <- function(x) {
+    y <- pf(x)
+  }
+  
+  x <- seq(1, 10, by = 0.5)
+  
+  preds <- sapply(x, pred)
+  preds <- data.frame(x, preds) %>% 
+    rename(species_no = x, 
+           DRI_targets = preds)
+}
+
+
+all_pmins_calcium <- read_csv("data-processed/pmin-calcium-sensitivity-threshold.csv")
+results_pmin_calcium <- read_csv("data-processed/pmin-calcium-b-params.csv")
+
+calcium_pmin_preds <- results_pmin_calcium %>%
+  dplyr::select(rda_threshold, Median) %>% 
+  mutate(parameter = ifelse(Median < 1, "b", "a")) %>% 
+  spread(key = parameter, value = Median) %>% 
+  split(.$rda_threshold) %>% 
+  map_df(pmin_prediction_function, .id = "threshold") 
+
+
+pmin_preds <- results_pmin %>%
+ dplyr::select(rda_threshold, Median) %>% 
+  mutate(parameter = ifelse(Median < 1, "b", "a")) %>% 
+  spread(key = parameter, value = Median) %>% 
+  split(.$rda_threshold) %>% 
+  map_df(pmin_prediction_function, .id = "threshold") 
+
+
+cal_pmin_plot <- calcium_pmin_preds %>% 
+  mutate(threshold = as.numeric(threshold)) %>% 
+  filter(threshold < 0.5) %>% 
+  mutate(threshold = threshold*100) %>% 
+  ggplot(aes(x = species_no, y = DRI_targets, color = threshold, group = threshold)) + geom_line() +
+  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  xlab("Species richness") + labs(y=expression(paste(italic(Pmin[calcium])))) + 
+  scale_x_continuous(breaks = c(1:10)) + ggtitle("A")
+
+cal_bpmin_plot <- results_pmin_calcium %>% 
+  filter(Median < 1) %>% 
+  mutate(rda_threshold = rda_threshold*100) %>% 
+  filter(rda_threshold< 50) %>% 
+  ggplot(aes(x = rda_threshold, y = Median, color = rda_threshold)) + geom_point() +
+  ylim(-1, 0) + 
+  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(b[Pmin[calcium]])))) + xlab("RDA threshold (%)") + ggtitle("B")
+
+
+pmin_plot <- pmin_preds %>% 
+  mutate(threshold = as.numeric(threshold)) %>% 
+  filter(threshold < 0.5) %>% 
+  mutate(threshold = threshold*100) %>% 
+  ggplot(aes(x = species_no, y = DRI_targets, color = threshold, group = threshold)) + geom_line() +
+  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  xlab("Species richness") + labs(y=expression(paste(italic(Pmin)))) + 
+  scale_x_continuous(breaks = c(1:10)) + ggtitle("C")
+
+bpmin_plot <- results_pmin %>% 
+  filter(Median < 1) %>% 
+  mutate(rda_threshold = rda_threshold*100) %>% 
+  filter(rda_threshold< 50) %>% 
+  ggplot(aes(x = rda_threshold, y = Median, color = rda_threshold)) + geom_point() +
+  ylim(-1, 0) + scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(b[Pmin])))) + xlab("RDA threshold (%)") + ggtitle("D")
+
+nt_plot <- cs2 %>% 
+  mutate(threshold = threshold*100) %>% 
+  group_by(threshold, species_no) %>%
+  top_n(n = 5, replicate) %>% 
+  # filter(b < 0) %>% 
+  ggplot(aes(x = species_no, y = DRI_targets, group = replicate, color = threshold)) + geom_line(alpha = 1) +
+  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(NT))))+ xlab("Species richness") +
+  scale_x_continuous(breaks = c(1:10)) + ggtitle("E")
+
+bnt_plot <- results2 %>% 
+  group_by(threshold) %>% 
+  summarise(mean_b = mean(b),
+            max_b = max(b),
+            median_b = median(b)) %>% 
+  mutate(threshold = threshold*100) %>% 
+  filter(threshold < 50) %>% 
+  ggplot(aes(x = threshold, y = median_b, color = threshold)) + geom_point() +
+  geom_hline(yintercept = 0) + geom_vline(xintercept = 10) +
+  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(b[NT])))) +xlab("RDA threshold (%)") + ggtitle("F")
+
+
+library(patchwork)
+sens_plot <- (cal_pmin_plot + pmin_plot + nt_plot) / (cal_bpmin_plot + bpmin_plot + bnt_plot)
+ggplot2::ggsave(plot = sens_plot, filename = "figures/sensitivity_plot_single", device = "pdf", width =15, height = 7)
+

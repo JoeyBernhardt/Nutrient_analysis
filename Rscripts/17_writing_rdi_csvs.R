@@ -256,7 +256,7 @@ all_pmins %>%
   ungroup() %>%
   ggplot(aes(x = species_no, y = grams_required_median, color = rda_threshold, group = rda_threshold)) + geom_line() +
   scale_color_viridis_c()
-
+write_csv(all_pmins, "data-processed/pmin-sensitivity-threshold.csv")
 
 results %>% 
   filter(Median < 1) %>% 
@@ -266,6 +266,76 @@ results %>%
 
 
 
+
+
+# Now for single nutrient -------------------------------------------------
+
+# calcium -----------------------------------------------------------------
+nutrient_fishing_calcium <- function(sample_size) {
+  ntbl_sub1 <- mean_nuts_new %>% 
+    sample_n(size = sample_size, replace = FALSE)
+  
+  sample_list <- NULL
+  for (i in 1:nrow(ntbl_sub1) ) {
+    output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+    output <- bind_rows(output, .id = "sample_id")
+    subsample_size <- rep(i, nrow(output))
+    output <- cbind(output, subsample_size)
+    sample_list <- rbind(sample_list,output)
+  }
+  
+  sample_list <- split(sample_list, f = sample_list$subsample_size)
+  
+  new_data_sub1 <- sample_list %>% 
+    map_df(`[`, .id = "replicate")
+  
+  resampling_15 <- new_data_sub1 %>% 
+    dplyr::rename(species_number = subsample_size) %>%
+    group_by(species_number, sample_id) %>% 
+    mutate(cal_total = (calcium/species_number)) %>% ## get the amount of calcium each species will contribute
+    summarise_each(funs(sum), contains("total")) %>% ## sum up all of each of the nutrients
+    mutate(cal_grams = (cal_total/(1200))) %>% ## divide that total by the RDI, and into 100 to find out the number of grams required to reach target
+    dplyr::rename(species_no = species_number) %>% 
+    group_by(species_no, sample_id) %>% 
+    dplyr::select(-contains("total")) %>% 
+    gather(key = nutrient, value = concentration, contains("grams")) %>% 
+    group_by(species_no, sample_id) %>% 
+    summarise(min_percentage = min(concentration)) %>% 
+    mutate(grams_required = 100/min_percentage)
+}
+output_calciumm <- samples_rep %>% 
+  map_df(nutrient_fishing_calcium, .id = "run") %>% 
+  mutate(nutrient = "calcium")
+
+pmin_function_calcium <- function(threshold) {
+  
+  all_grams_median_nuts <- output_calciumm %>% 
+    mutate(grams_required = grams_required*threshold) %>% 
+    group_by(species_no) %>% 
+    summarise_each(funs(mean, median), grams_required) %>% 
+    rename(grams_required_median = median) %>% 
+    mutate(rda_threshold = threshold)
+  
+}
+
+thresholds <- seq(.01, 1, by = 0.01)
+
+
+all_pmins_calcium <- thresholds %>% 
+  map_df(pmin_function_calcium)
+
+library(nlstools)
+results_calcium <- data.frame()
+for (i in seq(.01, 1, by = 0.01)) {
+  all_mod <- nls(formula = (grams_required_median ~ a * species_no^b),data = filter(all_pmins_calcium, rda_threshold == i),  start = c(a=500, b=-0.6))
+  all_boot <- nlsBoot(all_mod)
+  all_boot_df <- as_data_frame(all_boot$bootCI) %>% 
+    mutate(rda_threshold = i)
+  results_calcium <- bind_rows(results_calcium, all_boot_df)
+  
+}
+write_csv(all_pmins_calcium, "data-processed/pmin-calcium-sensitivity-threshold.csv")
+write_csv(results_calcium, "data-processed/pmin-calcium-b-params.csv")
 ### ok let's estimate NT
 
 targets <- read_csv("data-processed/targets_richness.csv") %>% 
