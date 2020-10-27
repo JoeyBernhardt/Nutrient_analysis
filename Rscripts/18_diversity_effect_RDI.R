@@ -9,7 +9,7 @@ targets <- read_csv("data-processed/targets_richness.csv")
 
 
 targets_split <- targets %>% 
-filter(number_of_species < 30) %>% 
+filter(number_of_species < 10) %>% 
   split(.$threshold1)
 
 
@@ -37,11 +37,11 @@ results <- targets_split %>%
   
 diversity_effect <- results %>%
   mutate(threshold = as.numeric(threshold)) %>% 
-  mutate(threshold = threshold*100) %>% 
+  mutate(threshold = threshold*100) %>%
   group_by(threshold) %>% 
   summarise_each(funs(mean, std.error), diversity_effect) %>% 
-  ggplot(aes(x = threshold, y = diversity_effect_mean)) + geom_point() + theme_bw() +
-  geom_ribbon(aes(ymin = diversity_effect_mean-diversity_effect_std.error, ymax = diversity_effect_mean + diversity_effect_std.error)) +
+  ggplot(aes(x = threshold, y = mean)) + geom_point() + theme_bw() +
+  # geom_ribbon(aes(ymin = diversity_effect_mean-diversity_effect_std.error, ymax = diversity_effect_mean + diversity_effect_std.error)) +
   # geom_smooth() + 
   xlab("Threshold (percent of DRI)") + ylab("Diversity effect (max slope of diversity-function curve)") + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -166,4 +166,6 @@ mutate(calcium_rdi = calcium/(1200),
 ggsave("figures/species_by_RDI_tagets_reached_25_percentRDI.pdf")
 ggsave("figures/species_by_RDI_tagets_reached_10_percentRDI.pdf")
 
+
+#### now do the same for Pmin
 

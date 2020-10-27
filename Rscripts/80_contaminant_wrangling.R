@@ -64,6 +64,9 @@ length(con_species)
   results_species2 <- results_species %>% 
     distinct(matched_name2, .keep_all = TRUE)
   
+results_species2 %>% 
+  distinct(data_source_title)
+  
  all_contam2 <-  all_contaminants %>% 
     left_join(., results_species2, by = c("genus_species" = "user_supplied_name")) 
  
@@ -89,7 +92,7 @@ all_contam4 <- all_contam3 %>%
   distinct() %>% 
   rename(taxon_name = taxize_species) %>% 
   select(obs_id, taxon_name, everything())
-write_csv(all_contaminants, "data-to-share/seafood-contaminant-data-cleaned.csv")
+write_csv(all_contam4, "data-to-share/seafood-contaminant-data-cleaned.csv")
 
 
 # all_merc <- read_csv("data-processed/mercury-data-compiled.csv")

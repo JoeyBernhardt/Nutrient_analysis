@@ -1,0 +1,35 @@
+
+
+Metadata for Bernhardt and O'Connor 2020 - Global seafood nutrient dataset ("global-seafood-nutrient-dataset-raw.csv")
+
+All nutrient concentrations are presented per 100 g edible portion on a fresh weight basis, for only raw or frozen samples (no prepared seafood items).
+
+
+obs_id: unique identifier for each sample in the dataset. 
+taxon_name: scientific name (genus and species), as resolved with one of the following taxonomic data sources: Catalogue of Life, Encyclopedia of Life, GBIF Backbone Taxonomy, World Register of Marine Species, OBIS
+common_name: common name in English
+subgroup: broad taxonomic group; mollusc, crustacean, finfish
+sample_info: sample description, including information on which parts are included
+body_part: for finfish samples, body part in the edible portion sample; muscle (fillet or skinless fillet), muscle and organs (including bones, liver, etc), eggs, liver, oil
+ca_mg: concentration of calcium in edible portion, in mg / 100g edible portion (includes both elemental and ionic forms)
+fe_mg: concentration of iron in edible portion, in mg / 100g edible portion (includes both elemental and ionic forms)
+zn_mg: concentration of zinc in edible portion, in mg / 100g edible portion (includes both elemental and ionic forms)
+epa: concentration of EPA in edible portion, in g / 100g edible portion
+dha: concentration of DHA in edible portion, in g / 100g edible portion
+fat: concentration of fat in edible portion, in g / 100g edible portion (total fat; following INFOODS, calculated as one of the following: sum of triglycerides, phospholipids, sterols and related compounds; derived by analysis using continuous extraction, method of determination unknown or mixed methods)
+protein: concentration of protein in edible portion, in g / 100g edible portion (total protein; following INFOODS, calculated by any of the following methods: calculated from total nitrogen, calculated from protein nitrogen, method of determination unknown or variable)
+location: location of sample collection
+season: season of sample collection
+biblio_id: unique identifier for each reference
+bibliography: complete reference information for original data source
+comments_on_data_processing_methods: notes describing how data were processed relative to their original source
+publication_year: year of publication of original data source
+food_item_id: if observation comes from an existing compilation, the id of that observation in pre-existing database
+caldata: 0 or 1, corresponding to whether the sample has a calcium measurement
+irondata: 0 or 1, corresponding to whether the sample has an iron measurement
+zincdata: 0 or 1, corresponding to whether the sample has a zinc measurement
+epadata: 0 or 1, corresponding to whether the sample has an EPA measurement
+dhadata: 0 or 1, corresponding to whether the sample has a DHA measurement
+proteindata: 0 or 1, corresponding to whether the sample has a protein measurement
+fatdata: 0 or 1, corresponding to whether the sample has a fat measurement
+data_here: total number of nutrients for which there are data for the sample

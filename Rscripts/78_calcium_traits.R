@@ -221,7 +221,7 @@ mod14 <- gls(log_concentration ~  1, corPagel(value = 0, phy = calcium_tree, fix
 R2(mod11, phy = calcium_tree)
 
 ### model selection
-msel_calcium <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc) %>% 
+msel_calcium <- model.sel(mod1, mod2, mod3, mod4, mod5, mod6, mod7, mod8, mod9, mod10, mod11, mod12, mod13, mod2b, mod14, rank = AICc, extra = "R2") %>% 
 	mutate(model_num = rownames(.)) %>% 
 	mutate(cum_weight = cumsum(weight))
 

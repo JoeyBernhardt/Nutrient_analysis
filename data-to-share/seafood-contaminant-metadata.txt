@@ -1,0 +1,18 @@
+Metadata for Bernhardt and O'Connor 2020 - North American seafood contaminant dataset
+
+obs_id: unique identifier for each contaminant observation
+taxon_name: genus and species, checked against one of the following taxonomic data sources: Catalogue of Life, Encyclopedia of Life, GBIF Backbone Taxonomy, World Register of Marine Species, OBIS
+genus_species: genus and species extracted from original data sources
+subgroup: broad taxonomic group: finfish / crustacean / mollusc
+taxon_common_name: species common name in English
+location_of_study: location of sample collection
+methylmercury: concentration of methylmercury in ug / 100g raw edible tissue. Methylmercury was calculated from total mercury following Sunderland et al. 2007 (assuming methylmercury  = 95% of total mercury in finfish and crustaceans, 30% of total mercury in molluscs)
+lead: concentration of total lead in ug / 100g raw edible tissue.
+arsenic: concentration of total arsenic in ug / 100g raw edible tissue.
+cadmium: concentration of total cadmium in ug / 100g raw edible tissue.
+part: body part included in the edible portion.
+dataset: if the observation comes from an existing data compilation, first author of original data compilation.
+bibliography: complete reference information for observation.
+number_of_samples: if applicable, the number of individuals or individual samples included in contaminant concentration estimation.
+
+
