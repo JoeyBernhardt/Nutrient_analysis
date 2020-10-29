@@ -143,8 +143,10 @@ all_fds <- left_join(all_observed_fd, expected_fds, by = c("n_species" = "sample
 write_csv(all_fds, "data-processed/all_fds_october.csv")
 
 library(plotrix)
-all_fds <- read_csv("data-processed/all_fds.csv")
-all_feves <- read_csv("data-processed/observed-expected-functional-evenness-october20202.csv")
+all_fds <- read_csv("data-processed/all_fds.csv") %>% 
+  mutate(region = ifelse(region == "Micmac", "Mi'kmaq", region))
+all_feves <- read_csv("data-processed/observed-expected-functional-evenness-october20202.csv") %>% 
+  mutate(culture = ifelse(culture == "Micmac", "Mi'kmaq", culture))
 
 
 #### main text results
@@ -191,7 +193,7 @@ obs_exp_FEve <- all_feves %>%
 library(patchwork)
 
 obs_exp_plot <- obs_exp_FD + obs_exp_FEve + plot_layout(ncol = 2)
-ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD_no_order-october.pdf", device = "pdf", width =11, height = 4)
+ggplot2::ggsave(plot = obs_exp_plot, filename = "figures/obs_exp_FD_no_order-october2.pdf", device = "pdf", width =11, height = 4)
 
 
 
