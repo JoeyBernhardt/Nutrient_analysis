@@ -337,7 +337,7 @@ plot4 <- visreg(mod1p, "bulk_trophic_level", gg = TRUE, size = 6) +
   ylab("log(zinc) mg/100g") + xlab("Trophic position") +
   theme(axis.text.x = element_text(angle = 90))
 plot5 <- visreg(mod1p, "EnvTemp", gg = TRUE, size = 6) +
-  ylab("log(zinc) mg/100g") + xlab("Thermal regime") +
+  ylab("log(zinc) mg/100g") + xlab("Climate zone") +
   theme(axis.text.x = element_text(angle = 90))
 plot6 <- visreg(mod1p, "feeding_mode", gg = TRUE, size = 6) +
   ylab("log(zinc) mg/100g") + xlab("Feeding mode") +

@@ -387,7 +387,7 @@ plot4 <- visreg(mod1p, "bulk_trophic_level", gg = TRUE, size = 6) +
   ylab("log(dha) mg/100g") + xlab("Trophic position") +
   theme(axis.text.x = element_text(angle = 90))
 plot5 <- visreg(mod1p, "EnvTemp", gg = TRUE, size = 6) +
-  ylab("log(dha) mg/100g") + xlab("Thermal regime") +
+  ylab("log(dha) mg/100g") + xlab("Climate zone") +
   theme(axis.text.x = element_text(angle = 90))
 plot6 <- visreg(mod1p, "feeding_mode", gg = TRUE, size = 6) +
   ylab("log(dha) mg/100g") + xlab("Feeding mode") +
@@ -398,7 +398,7 @@ plot7 <- visreg(mod1p, "body_part", gg = TRUE, size = 6) +
 
 plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot7+
   plot_annotation(tag_levels = 'A') + plot_layout(ncol = 3)
-ggsave("figures/all-parts-pgls-dha-partial-regressions-oct.pdf", plot = plot_all, width = 8, height = 11)
+ggsave("figures/all-parts-pgls-dha-partial-regressions-oct2.pdf", plot = plot_all, width = 8, height = 11)
 
 
 

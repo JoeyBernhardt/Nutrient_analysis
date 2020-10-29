@@ -927,7 +927,7 @@ length(unique(all6$taxize_name))
 library(WriteXLS)
 
 # read in complete dataset ------------------------------------------------
-
+library(readxl)
 
 all7 <- read_excel("data-processed/all7-seanuts-rebuild-oct-taxized.xlsx")  ### this one has the skon and mart refs added back in 
 View(all7)
@@ -963,7 +963,7 @@ unique(all_data_traits2$subgroup)
 
 
 # Body parts figure -------------------------------------------------------
-
+library(plotrix)
 cal_plot <- all7 %>% 
   mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
   mutate(body_part = ifelse(body_part == "muscle_organs", "muscle & organs", body_part)) %>% 
@@ -976,7 +976,7 @@ cal_plot <- all7 %>%
   filter(!is.na(mean_ca)) %>% 
   ggplot(aes(x = reorder(body_part, mean_ca), y = mean_ca)) + geom_point() +
   geom_errorbar(aes(x = reorder(body_part, mean_ca), ymin = mean_ca - stde_ca, ymax = mean_ca + stde_ca), width = 0.1) +
-  ylab("Calcium (mg/100g)") + xlab("Body part")
+  ylab("Calcium (mg/100g)") + xlab("Body part") + ggtitle("A")
 
 cal <- all7 %>% 
   mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
@@ -1003,7 +1003,7 @@ iron_plot <- all7 %>%
   filter(!is.na(mean_fe)) %>% 
   ggplot(aes(x = reorder(body_part, mean_fe), y = mean_fe)) + geom_point() +
   geom_errorbar(aes(x = reorder(body_part, mean_fe), ymin = mean_fe - stde_fe, ymax = mean_fe + stde_fe), width = 0.1) +
-  ylab("Iron (mg/100g)") + xlab("Body part")
+  ylab("Iron (mg/100g)") + xlab("Body part") + ggtitle("B")
 
 
 iron <- all7 %>% 
@@ -1028,7 +1028,7 @@ zinc_plot <- all7 %>%
   filter(!is.na(mean_zn)) %>% 
   ggplot(aes(x = reorder(body_part, mean_zn), y = mean_zn)) + geom_point() +
   geom_errorbar(aes(x = reorder(body_part, mean_zn), ymin = mean_zn - stde_zn, ymax = mean_zn + stde_zn), width = 0.1) +
-  ylab("Zinc (mg/100g)") + xlab("Body part")
+  ylab("Zinc (mg/100g)") + xlab("Body part") + ggtitle("C")
 
 zinc <- all7 %>% 
   mutate(body_part = ifelse(body_part == "muscle_skinless", "muscle", body_part)) %>% 
@@ -1063,7 +1063,9 @@ percentages <- all7 %>%
 
   unique(percentages$nutrient)
   
-length(unique(percentages$taxize_name))
+  View(percentages)
+  
+length(unique(percentages$biblio_id))
 
 percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 

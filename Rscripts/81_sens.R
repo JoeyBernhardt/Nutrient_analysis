@@ -209,7 +209,7 @@ cal_pmin_plot <- calcium_pmin_preds %>%
   filter(threshold < 0.5) %>% 
   mutate(threshold = threshold*100) %>% 
   ggplot(aes(x = species_no, y = DRI_targets, color = threshold, group = threshold)) + geom_line() +
-  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  scale_color_gradient(name="RDA target (%)", low="blue", high="red") +
   xlab("Species richness") + labs(y=expression(paste(italic(Pmin[calcium])))) + 
   scale_x_continuous(breaks = c(1:10)) + ggtitle("A")
 
@@ -219,8 +219,8 @@ cal_bpmin_plot <- results_pmin_calcium %>%
   filter(rda_threshold< 50) %>% 
   ggplot(aes(x = rda_threshold, y = Median, color = rda_threshold)) + geom_point() +
   ylim(-1, 0) + 
-  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
-  labs(y=expression(paste(italic(b[Pmin[calcium]])))) + xlab("RDA threshold (%)") + ggtitle("B")
+  scale_color_gradient(name="RDA target (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(b[Pmin[calcium]])))) + xlab("RDA target (%)") + ggtitle("B")
 
 
 pmin_plot <- pmin_preds %>% 
@@ -228,7 +228,7 @@ pmin_plot <- pmin_preds %>%
   filter(threshold < 0.5) %>% 
   mutate(threshold = threshold*100) %>% 
   ggplot(aes(x = species_no, y = DRI_targets, color = threshold, group = threshold)) + geom_line() +
-  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  scale_color_gradient(name="RDA target (%)", low="blue", high="red") +
   xlab("Species richness") + labs(y=expression(paste(italic(Pmin)))) + 
   scale_x_continuous(breaks = c(1:10)) + ggtitle("C")
 
@@ -237,8 +237,8 @@ bpmin_plot <- results_pmin %>%
   mutate(rda_threshold = rda_threshold*100) %>% 
   filter(rda_threshold< 50) %>% 
   ggplot(aes(x = rda_threshold, y = Median, color = rda_threshold)) + geom_point() +
-  ylim(-1, 0) + scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
-  labs(y=expression(paste(italic(b[Pmin])))) + xlab("RDA threshold (%)") + ggtitle("D")
+  ylim(-1, 0) + scale_color_gradient(name="RDA target (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(b[Pmin])))) + xlab("RDA target (%)") + ggtitle("D")
 
 nt_plot <- cs2 %>% 
   mutate(threshold = threshold*100) %>% 
@@ -246,7 +246,7 @@ nt_plot <- cs2 %>%
   top_n(n = 5, replicate) %>% 
   # filter(b < 0) %>% 
   ggplot(aes(x = species_no, y = DRI_targets, group = replicate, color = threshold)) + geom_line(alpha = 1) +
-  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
+  scale_color_gradient(name="RDA target (%)", low="blue", high="red") +
   labs(y=expression(paste(italic(NT))))+ xlab("Species richness") +
   scale_x_continuous(breaks = c(1:10)) + ggtitle("E")
 
@@ -259,11 +259,11 @@ bnt_plot <- results2 %>%
   filter(threshold < 50) %>% 
   ggplot(aes(x = threshold, y = median_b, color = threshold)) + geom_point() +
   geom_hline(yintercept = 0) + geom_vline(xintercept = 10) +
-  scale_color_gradient(name="RDA threshold (%)", low="blue", high="red") +
-  labs(y=expression(paste(italic(b[NT])))) +xlab("RDA threshold (%)") + ggtitle("F")
+  scale_color_gradient(name="RDA target (%)", low="blue", high="red") +
+  labs(y=expression(paste(italic(b[NT])))) +xlab("RDA target (%)") + ggtitle("F")
 
 
 library(patchwork)
-sens_plot <- (cal_pmin_plot + pmin_plot + nt_plot) / (cal_bpmin_plot + bpmin_plot + bnt_plot)
-ggplot2::ggsave(plot = sens_plot, filename = "figures/sensitivity_plot_single", device = "pdf", width =15, height = 7)
+sens_plot <- (cal_pmin_plot + cal_bpmin_plot) / (pmin_plot + bpmin_plot) / (nt_plot + bnt_plot)
+ggplot2::ggsave(plot = sens_plot, filename = "figures/sensitivity_plot_single", device = "pdf", width =12, height = 12)
 
