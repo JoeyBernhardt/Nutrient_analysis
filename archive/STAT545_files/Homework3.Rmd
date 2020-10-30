@@ -1,0 +1,124 @@
+---
+title: "Homework3"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+Initial set up
+```{r}
+library(plotrix)
+library(ggthemes)
+suppressPackageStartupMessages(library(dplyr))
+library(ggplot2)
+library(knitr)
+suppressPackageStartupMessages(library(Hmisc))
+
+nut <- read.csv("~/Desktop/Nutrient_databases/nut_sept22_lwr_dec3.csv", comment.char="#", stringsAsFactors=FALSE)
+
+ntbl <- tbl_df(nut)
+
+glimpse(ntbl)
+```
+
+Change variable names to more intuitive names
+```{r}
+ ntbl <- ntbl %>%
+  rename(species = ASFIS.Scientific.name,
+         taxon = ISSCAAP_cat,
+         max_length = SLMAX)
+```
+
+Pull out variables we will use in this analysis :blowfish:
+```{r select variables of interest}
+ntbl <- ntbl %>%
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
+```
+
+Convert max length to max body size using length-weight conversion (W = a × L^b)
+```{r}
+ntbl <- ntbl %>%
+  mutate(max_size = (lwA * (max_length^lwB)/1000))
+ntbl %>%
+  glimpse()
+```
+
+What if we want to know the number of species in each habitat?
+```{r}
+n_obs_hab <- ntbl %>%
+  group_by(Habitat) %>%
+  tally
+knitr::kable(n_obs_hab, align = 'c', format = 'markdown', digits = 2)
+```
+
+
+How does body size vary by habitat?
+```{r}
+hab.size <- ntbl %>%
+  filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
+  filter(!is.na(max_size)) %>% 
+  group_by(Habitat) %>%
+  summarise_each(funs(mean, median, min, max, std.error), max_size)
+knitr::kable(hab.size, align = 'c', format = 'markdown', digits = 2)
+```
+
+Oh good, it looks like body size is pretty consistent across habitats. 
+```{r}
+ggplot(ntbl, aes(x = Habitat, y = log(max_size))) + geom_boxplot(aes(group = Habitat, color = Habitat)) + ylab("log body mass (kg)") + theme_pander()
+
+```
+
+How does body size vary by taxon?
+```{r}
+taxon.size <- ntbl %>%
+  filter(Habitat %in% c("marine", "freshwater", "brackish")) %>%
+  filter(!is.na(max_size)) %>% 
+  group_by(taxon) %>%
+  summarise_each(funs(mean, median), max_size)
+knitr::kable(taxon.size, align = 'c', format = 'markdown', digits = 2)
+
+ggplot(ntbl, aes(x=factor(taxon), y=log(max_size), group = 1)) +
+  stat_summary(fun.data = mean_cl_boot, geom = "pointrange") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  theme_pander()
+```
+
+How does calcium content vary across taxa?
+```{r}
+calcium <- ntbl %>%
+  filter(!is.na(CA_mg)) %>%
+  filter(Habitat == "marine") %>%
+  group_by(taxon) %>%
+  summarise_each(funs(min, max, mean), CA_mg)
+knitr::kable(calcium, align = 'c', format = 'markdown', digits = 2)
+
+```
+
+How does calcium vary with body size?
+```{r body size CA by hab, cal.size}
+ggplot(subset(ntbl, Habitat %in% c("marine", "freshwater")), aes(x=max_size, y=CA_mg, group = Habitat, color = Habitat)) + stat_summary(fun.y= "mean", geom = "point") + geom_hline(aes(yintercept=250)) + stat_smooth(method = "lm") + theme_pander() + scale_x_log10() + scale_y_log10()
+```
+
+The recommended daily intake (RDI) for EPA, an essential fatty acid in the human diet is 1g/day. How many species in the dataset have 50% of RDI for EPA in one portion?
+```{r EPA RDI}
+EPA.RDI <- ntbl %>%
+  filter(EPA_g > 0.5) %>% 
+group_by(taxon) %>%
+  tally
+
+EPA.RDI.prop <- EPA.RDI %>% mutate (RDI.prop = (n/45)*100)
+knitr::kable(EPA.RDI.prop, align = 'c', format = 'markdown', digits = 2)
+
+EPA.total <- ntbl %>%
+filter(!is.na(EPA_g)) %>% 
+  group_by(taxon) %>%
+  tally
+knitr::kable(EPA.total, align = 'c', format = 'markdown', digits = 2)
+```
+
+How does EPA content vary with latitude?
+In the following figure, which shows the EPA content in g per 100g edible portion, the black line indicates the recommended daily intake. 
+```{r}
+p <- ggplot(subset(ntbl, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion")
+```
+

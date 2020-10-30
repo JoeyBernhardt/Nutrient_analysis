@@ -1,0 +1,22 @@
+species_name,subgroup,RDI.CA,RDI.FE,RDI.ZN,RDI.EPA,RDI.DHA,RDI.micro.tot,ID
+Meretrix lusoria,mollusc,0.0,1.0,0.0,0.0,1.0,2.0,48
+Lamna nasus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,36
+Sardinella longiceps,finfish,1.0,1.0,1.0,1.0,1.0,5.0,89
+Ctenopharyngodon idella,finfish,0.0,0.0,0.0,0.0,0.0,0.0,21
+Tilapia pra,finfish,1.0,0.0,0.0,0.0,0.0,1.0,103
+Anarhichas lupus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,4
+Pangasianodon hypophthalmus (juvenile),finfish,0.0,0.0,0.0,0.0,0.0,0.0,69
+Tor putitora,finfish,0.0,0.0,0.0,1.0,1.0,2.0,105
+Fenneropenaeus indicus,crustacean,1.0,1.0,1.0,1.0,1.0,5.0,27
+Sander lucioperca,finfish,0.0,0.0,0.0,0.0,0.0,0.0,86
+Octopus vulgaris,mollusc,0.0,0.0,0.0,0.0,0.0,0.0,59
+Melanogrammus aeglefinus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,47
+Pampus argenteus,finfish,0.0,0.0,0.0,0.0,1.0,1.0,67
+Mya spp,mollusc,0.0,0.0,1.0,0.0,0.0,1.0,54
+Salvelinus fontinalis,finfish,0.0,0.0,0.0,0.0,1.0,1.0,83
+Salvelinus naresi,finfish,0.0,0.0,0.0,1.0,0.0,1.0,85
+Pagellus bogaraveo,finfish,0.0,0.0,0.0,0.0,0.0,0.0,66
+Lamna nasus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,36
+Octopus vulgaris,mollusc,0.0,0.0,0.0,0.0,0.0,0.0,59
+Pangasianodon hypophthalmus (juvenile),finfish,0.0,0.0,0.0,0.0,0.0,0.0,69
+Merluccius productus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,50

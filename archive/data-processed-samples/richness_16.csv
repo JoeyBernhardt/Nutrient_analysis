@@ -1,0 +1,17 @@
+species_name,subgroup,RDI.CA,RDI.FE,RDI.ZN,RDI.EPA,RDI.DHA,RDI.micro.tot,ID
+Tenualosa ilisha,finfish,0.0,0.0,0.0,1.0,1.0,2.0,98
+Tilapia pra,finfish,1.0,0.0,0.0,0.0,0.0,1.0,103
+Lamna nasus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,36
+Patagonotothen ramsayi,finfish,0.0,0.0,0.0,0.0,0.0,0.0,71
+Mya spp,mollusc,0.0,0.0,1.0,0.0,0.0,1.0,54
+Coregonus lavaretus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,18
+Thunnus alalunga,finfish,0.0,0.0,0.0,1.0,1.0,2.0,101
+Sardinella longiceps,finfish,1.0,1.0,1.0,1.0,1.0,5.0,89
+Leuciscus cephalus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,40
+Liza aurata,finfish,0.0,0.0,0.0,0.0,0.0,0.0,43
+Sepia officinalis,mollusc,0.0,0.0,0.0,0.0,0.0,0.0,93
+Psetta maxima,finfish,0.0,0.0,0.0,0.0,0.0,0.0,80
+Coregonus autumnalis,finfish,0.0,0.0,0.0,0.0,0.0,0.0,16
+Eleutheronema tetradactylum,finfish,0.0,0.0,0.0,0.0,0.0,0.0,25
+Sardinella longiceps,finfish,1.0,1.0,1.0,1.0,1.0,5.0,89
+Carcinus maenus,crustacean,0.0,0.0,1.0,1.0,1.0,3.0,9

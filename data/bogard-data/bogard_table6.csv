@@ -1,0 +1,50 @@
+species_name,type,Vitamin B12,Vitamin D3,Vitamin D2,Vitamin E (α-tocopherol),Folate,β-carotene,13-cis-retinol,13-cis-dehydroretinol,All-trans-retinol,All-trans-dehydroretinol,Total Vitamin A
+Baim,SIS,1.72,1.3,0.76,0,0,5,1,5,1,51,27
+Bele,SIS,2.1,1.6,NA,0.17,6.7,NA,0,0,18,0,18
+Boro Kholisha,SIS,5.55,3.13,2.1,0.12,0,11,5,5,34,14,46
+Chanda,SIS,6.42,11.9,0,0.18,0,43,14,51,128,433,336
+Chapila,SIS,6.99,4.92,0,0,0,0,1,21,9,136,73
+Chela,SIS,5.64,4,0,0.11,0,21,25,9,90,45,132
+Darkina,SIS,12.5,6.31,0,0.84,0,100,63,48,433,381,660
+Dhelab,SIS,4.7,0.14,NA,0.24,6.6,NA,15,68,28,2130,918
+Ekthute,SIS,3,2.4,NA,0.65,11,NA,18,0,84,0,98
+Foli,SIS,2,0.7,NA,0.64,18,NA,0,0,0,0,0
+Guchi,SIS,2.47,2.29,0,0.11,0,110,1,14,9,133,78
+Gutum,SIS,8.75,0,0,0.19,0,25,1,9,17,131,76
+Jat Punti,SIS,4.01,1.29,0,0.15,0,13,4,9,27,49,54
+Kachki,SIS,3.55,1.5,0,0.09,0,15,2,30,14,122,78
+Kajuli,SIS,4.1,0.091,NA,0.28,2.9,NA,0,0,37,0,37
+Kakila,SIS,2.89,1.4,0.66,0.4,9.2,56,9,12,54,53,91
+Koi,SIS,2.38,1.19,0,0,11.4,74,61,30,163,171,295
+Kuli,SIS,1.4,22,NA,0.55,3.7,NA,0,0,37,0,37
+Magur,SIS,4.83,0,0,0.13,9.4,64,4,8,7,15,25
+Meni,SIS,0.9,0.78,NA,0.36,3.5,NA,0,0,36,61,60
+Mola,SIS,7.98,2.03,2.9,0.27,0,0,0,460,323,4990,2503
+Mola (cultured),SIS,5.9,3,NA,0.91,4.3,NA,44,42,340,4590,2226
+Rani,SIS,6.4,0.12,NA,0.63,3.2,NA,0,0,0,60,24
+Shing,SIS,12.8,0,0,0.34,0,45,5,11,11,22,32
+Taki,SIS,1.6,0,0,0.14,0,22,9,13,84,104,139
+Tara Baim,SIS,5.2,0,0,0.17,0,135,2,15,16,120,83
+Tengra,SIS,3.5,0.19,NA,0.23,10,NA,0,0,0,29,12
+Tit Punti,SIS,6.74,0.995,0,0.16,0,25,4,5,11,8,21
+Gojar,large,0.55,0.42,NA,0.28,2,NA,0,0,0,0,0
+Ilish,large,2.3,18,NA,1.7,1.5,NA,0,0,0,49,20
+Jatka Ilish,large,2,9,NA,1.9,3.2,NA,0,0,0,36,14
+Sholb,large,1.2,0.18,NA,0.52,2.4,NA,0,0,0,0,0
+Harina Chingri,large,1.4,0.055,NA,1.6,14,NA,0,0,0,0,0
+Catla,aquaculture,1.3,0.28,NA,0.23,4.4,NA,0,0,22,0,22
+Mrigal,aquaculture,5.57,0.616,0.39,0,0,0,2,2,9,9,15
+Rui,aquaculture,5.05,1.17,0,0.12,0,6,2,1,9,4,13
+Silver Carp,aquaculture,0.55,0.24,NA,0.49,7.7,NA,0,0,0,0,0
+Thai Pangas,aquaculture,1.5,0.13,NA,0.32,9,NA,0,0,0,78,31
+Majhari Thai Pangas,aquaculture,14,0.12,NA,0.1,15,NA,0,0,0,31,12
+Thai Sharpunti,aquaculture,2.2,23,NA,0.32,2.2,NA,0,0,12,0,12
+Tilapia,aquaculture,0.7,6.3,NA,0.4,7.6,NA,0,0,10,0,10
+Majhari Tilapia,aquaculture,2.5,34,NA,1.5,8,NA,0,0,10,27,21
+Foli Chanda,marine,1.5,0.097,NA,0.19,4.8,NA,0,0,0,0,0
+Kata Phasa,marine,1.3,3.8,NA,0.37,8.6,NA,0,0,0,0,0
+Lal Poa,marine,2,1.3,NA,0.38,7.7,NA,0,0,0,0,0
+Maita,marine,1.6,1.7,NA,0.5,2.5,NA,0,0,0,0,0
+Murbaila,marine,0.5,0.2,NA,0.09,2.2,NA,0,0,0,0,0
+Tailla,marine,0.85,13,NA,0.44,3.1,NA,0,0,0,0,0
+Tular Dandi,marine,1.7,0.28,NA,0.26,8.7,NA,0,0,20,0,20

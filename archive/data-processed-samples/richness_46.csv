@@ -1,0 +1,47 @@
+species_name,subgroup,RDI.CA,RDI.FE,RDI.ZN,RDI.EPA,RDI.DHA,RDI.micro.tot,ID
+Leuciscus idus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,41
+Salvelinus naresi,finfish,0.0,0.0,0.0,1.0,0.0,1.0,85
+Merluccius productus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,50
+Pagellus bogaraveo,finfish,0.0,0.0,0.0,0.0,0.0,0.0,66
+Sardinella longiceps,finfish,1.0,1.0,1.0,1.0,1.0,5.0,89
+Tilapia pra,finfish,1.0,0.0,0.0,0.0,0.0,1.0,103
+Botia dario,finfish,1.0,0.0,1.0,0.0,0.0,2.0,7
+Hexaplex trunculus,mollusc,1.0,1.0,1.0,1.0,1.0,5.0,31
+Tinca tinca,finfish,0.0,0.0,0.0,0.0,0.0,0.0,104
+Anarhichas lupus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,4
+Fenneropenaeus indicus,crustacean,1.0,1.0,1.0,1.0,1.0,5.0,27
+Gadus morhua,finfish,0.0,0.0,0.0,0.0,0.0,0.0,29
+Salvelinus namaycush,finfish,0.0,0.0,0.0,0.0,1.0,1.0,84
+Coregonus clupeaformis,finfish,0.0,0.0,0.0,0.0,0.0,0.0,17
+Clarias batrachus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,15
+Anarhichas lupus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,4
+Sander lucioperca,finfish,0.0,0.0,0.0,0.0,0.0,0.0,86
+Amblypharyngodon mola,finfish,1.0,1.0,1.0,1.0,1.0,5.0,2
+Salvelinus fontinalis,finfish,0.0,0.0,0.0,0.0,1.0,1.0,83
+Perca fluviatilis,finfish,0.0,0.0,0.0,0.0,1.0,1.0,74
+Oncorhynchus mykiss,finfish,0.0,0.0,0.0,1.0,1.0,2.0,62
+Rastrelliger kanagurta,finfish,0.0,0.0,1.0,0.0,1.0,2.0,82
+Sepia officinalis,mollusc,0.0,0.0,0.0,0.0,0.0,0.0,93
+Melanogrammus aeglefinus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,47
+Pagellus bogaraveo,finfish,0.0,0.0,0.0,0.0,0.0,0.0,66
+Isurus oxyrinchus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,33
+Coregonus autumnalis,finfish,0.0,0.0,0.0,0.0,0.0,0.0,16
+Oncorhynchus mykiss,finfish,0.0,0.0,0.0,1.0,1.0,2.0,62
+Isurus oxyrinchus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,33
+Trachurus trachurus,finfish,0.0,1.0,0.0,0.0,1.0,2.0,106
+Catla catla,finfish,0.0,0.0,0.0,0.0,0.0,0.0,10
+Pollachius virens,finfish,0.0,0.0,0.0,0.0,0.0,0.0,77
+Nephrops norvegicus,crustacean,0.0,0.0,0.0,0.0,0.0,0.0,58
+Trichiurus lepturus,finfish,0.0,0.0,0.0,1.0,1.0,2.0,107
+Eleutheronema tetradactylum,finfish,0.0,0.0,0.0,0.0,0.0,0.0,25
+Meretrix lusoria,mollusc,0.0,1.0,0.0,0.0,1.0,2.0,48
+Liza parsia,finfish,0.0,0.0,0.0,1.0,0.0,1.0,44
+Pangasianodon hypophthalmus (juvenile),finfish,0.0,0.0,0.0,0.0,0.0,0.0,69
+Eleutheronema tetradactylum,finfish,0.0,0.0,0.0,0.0,0.0,0.0,25
+Pangasianodon hypophthalmus (juvenile),finfish,0.0,0.0,0.0,0.0,0.0,0.0,69
+Gasterochisma melampus,finfish,0.0,0.0,0.0,0.0,1.0,1.0,30
+Melanogrammus aeglefinus,finfish,0.0,0.0,0.0,0.0,0.0,0.0,47
+Perca flavescens,finfish,0.0,0.0,0.0,0.0,0.0,0.0,73
+Sarda sarda,finfish,0.0,1.0,0.0,1.0,0.0,2.0,87
+Oncorhynchus tshawytscha,finfish,0.0,0.0,0.0,1.0,1.0,2.0,63
+Litopenaeus vannamei,crustacean,0.0,0.0,0.0,1.0,1.0,2.0,42

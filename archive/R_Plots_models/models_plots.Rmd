@@ -1,0 +1,780 @@
+---
+title: "Nutrient analysis plots and models"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+Some background on the project: 
+
+*gmseorigjw[eorigj[wjrOne of the most widely studied and universally important benefits that humans derive from natural ecosystems is food provisioning. Indeed, many coastal human communities rely on wild harvests from local aquatic ecosystems to meet nutritional requirements for macronutrients, such as protein and fats, and micronutrients, such as vitamins and minerals. The value of a fish species in terms of human nutrition benefits can be quantified as the nutrient content in an edible portion relative to Recommended Daily Intake (RDI) values. The RDI is the daily intake level of a nutrient that is considered to be sufficient to meet the requirements of 97–98% of healthy individuals in every demographic. Although fisheries productivity is studied extensively, there has been surprisingly little consideration of the drivers of the nutritional quality of fisheries yields.*
+
+Thus, the main questions I'll be adressing with this data are: 
+
+1. What is the range of nutrient content across species? 
+2. Does nutrient content vary with fish species' traits such as body size or trophic level? 
+
+To do this I'll take a model selection approach, wherein I'll compare models which contain different species' traits as parameters to see which models fit the data best, and thus which species traits vary with nutrient content. 
+
+I've collected nutrient and fish trait data from the peer-reviewed literature and databases such as [FishBase](https://en.wikipedia.org/wiki/FishBase). 
+
+#### Loading required packages.
+```{r warning= FALSE}
+library(ggplot2)
+library(plotrix)
+library(broom)
+library(ggthemes)
+library(plyr)
+suppressPackageStartupMessages(library(dplyr))
+library(knitr)
+suppressPackageStartupMessages(library(Hmisc))
+suppressPackageStartupMessages(library(robustbase))
+library(tidyr)
+library(MuMIn)
+library(readr)
+library(FD)
+
+
+nut <- read.csv("~/Desktop/Nutrient_databases/nut_dec3.csv", comment.char="#", stringsAsFactors=TRUE, na.strings=c("",".","NA"))
+
+ntbl <- tbl_df(nut)
+str(ntbl)
+View(ntbl)
+```
+
+#### Data cleaning and wrangling
+
+Let's change variable names to more intuitive names.
+
+```{r warning= FALSE}
+
+ntbl <- ntbl %>%
+  mutate(HG_mcg = as.numeric(HG_mcg)) %>% 
+   rename(species = ASFIS.Scientific.name,
+         taxon = ISSCAAP_cat,
+         max_length = SLMAX)
+ 
+ntbl <- ntbl %>%
+  mutate(species = revalue(species,
+                               c("Oreochromis _=Tilapia spp" = "Tilapia spp",
+                                 "Tilapia\x86zillii\x86\x86" = "Tilapia zillii",
+                                 "Thaleichthys\x86pacificus" = "Thaleichthys pacificus", 
+                                 "Zungaro\x86zungaro" = "Zungaro zungaro",
+                                 "Pinirampus\x86pirinampu\x86" = "Pinirampus pirinampu",
+                                 "Platichthys\x86stellatus" = "Platichthys stellatus",
+                                 "Parambassis\x86wolffii" = "Parambassis wolffii",
+                                 "Oncorhynchus\x86mykiss" = "Oncorhynchus mykiss",
+                                 "Oncorhynchus\x86tshawytscha" = "Oncorhynchus tshawytscha",
+                                 "Oncorhynchus\x86keta" = "Oncorhynchus keta",
+                                 "Oncorhynchus\x86nerka\x86" = "Oncorhynchus nerka")))
+
+```
+
+Pull out variables we will use in this analysis. 
+
+```{r select variables of interest}
+ntbl <- ntbl %>%
+  select(species, taxon, max_length, TL, CA_mg, EPA_g, DHA_g, FE_mg, ZN_mg, HG_mcg, lwA, lwB, Habitat, Subgroup, Abs_lat)
+
+```
+
+Convert max length to max body size using length-weight conversion (W = a × L^b). For more information about this conversion approach, see this [explanation](http://www.fishbase.ca/manual/FishBaseThe_LENGTH_WEIGHT_Table.htm) on FishBase. 
+```{r warning= FALSE}
+ntbl <- ntbl %>%
+  mutate(max_size = (lwA * (max_length^lwB)/1000))
+write_csv(ntbl, "ntbl.csv")
+
+```
+
+Let's clean up the df to trim out any NA values, because they were giving me some trouble. This just makes fitting the models easier. Here I'm removing any rows that have missing info for any of my variables of interest. Side note: I'd prefer to NOT have to do this kind of thing, and I can run some models without doing this, but not all. Any tips on dealing with lots of NAs would be great. 
+```{r warning= FALSE}
+ntbl.CA <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(CA_mg)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.HG <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(HG_mcg)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.FE <- ntbl %>%
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon))
+
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+str(ntbl.HG)
+
+```
+
+
+#### Exploring the range of variability in nutrient content among fish taxa 
+
+
+First, I'll write out our models. The question I'm asking here is: Does calcium content of fish tissues vary with the body size of the fish? I.e. are smaller fish (such as sardines) better sources of calcium than large fish (such as tuna)? So, I'll fit a model of calcium content as a function of body size. 
+
+
+
+
+Here is a function that will allow me to run a lm for any set of variables:
+```{r warning= FALSE}
+lm_gen<- function(df, y, x, ...) {
+#   lm_formula <-
+#     substitute(y ~ x,
+#                list(y = substitute(y), x = substitute(x)))
+  lm_form_char <- paste0(y, " ~ ", x)
+  lm_formula <- as.formula(lm_form_char)
+  # browser()
+  # eval(lm(lm_formula, data = df, ...))
+  lm(lm_formula, data = df, ...)
+}
+
+lm_gen(ntbl.CA, "log(max_size)", "log(CA_mg)") #' here I test it with calcium as function of max body size. looks like it works!
+```
+
+
+Here's an even more general function for fitting lms (thanks to Jenny's [post](http://stat545-ubc.github.io/block025_lm-poly.html) for this code). I think this is about as general it's going to get! Nice, it looks like this works. 
+```{r warning= FALSE}
+lm_general<- function(df, y, x, ...) {
+  lm_formula <-
+    substitute(y ~ x,
+               list(y = substitute(y), x = substitute(x)))
+  eval(lm(lm_formula, data = df, ...))
+}
+
+lm_general(ntbl.CA, log(max_size), log(CA_mg))
+
+size.fits3 <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_general(., log(max_size), log(CA_mg))))
+(size.fits3)
+```
+
+
+Now let's apply the CA as function of body size to each of the taxa separately.
+
+```{r warning= FALSE}
+
+size.fitsCA <- ntbl.CA %>% group_by(taxon) %>% do(tidy(lm_gen(., "log(CA_mg)", "log(max_size)"), conf.int = TRUE))
+
+#' And here I plot the slope estimates for each taxon.
+ggplot(subset(size.fitsCA, term == "log(max_size)"), aes(estimate, taxon, color = taxon)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline() + theme(legend.position="none") + xlab("body size slope estimate")
+
+```
+
+
+#### repeating for the other nutrients
+```{r warning= FALSE}
+
+# nuts <- ntbl %>% names %>% .[5:8]
+# 
+# indep_var <- lapply(nuts, function(nutname) paste0("log(", nutname, ")"))
+# 
+# names(indep_var) <- nuts
+# 
+# responses <- indep_var
+
+
+# for (k in nuts[[1]]){
+#   responses[[k]] <- ntbl %>% 
+#     group_by(taxon) %>% 
+#     do(tidy(lm_gen(.,
+#                    y = indep_var[[k]],
+#                    x = "log(max_size)"),
+#             conf.int = TRUE))
+# }
+
+
+ntbl %>% 
+  gather("nutrient", "value", CA_mg:HG_mcg) %>% 
+  group_by(taxon, nutrient) %>% 
+  mutate(logmass = log(max_size),
+         lognutr = log(value)) %>% 
+  filter(!is.na(value)) %>% 
+  filter(!is.na(logmass)) %>% 
+  do(tidy(lm(lognutr ~ logmass, data = .),
+          conf.int = TRUE)
+     ) %>% 
+  filter(term == "logmass") %>% 
+  ggplot(aes(estimate, taxon, color = taxon)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline() + theme(legend.position="none") + xlab("body size slope estimate") +
+  facet_wrap(~nutrient) + scale_x_continuous(limits=c(-2, 2))
+                                                              
+ggsave("slope_estimates.png")
+?droplevels
+#' now for trophic level subset(dftm, C!="Foo")
+ntbl %>% 
+  filter(taxon!= " Miscellaneous diadromous fishes") %>% 
+  droplevels() %>% 
+  gather("nutrient", "value", CA_mg:HG_mcg) %>% 
+  group_by(taxon, nutrient) %>% 
+  mutate(lognutr = log(value)) %>% 
+  filter(!is.na(value)) %>% 
+  filter(!is.na(TL)) %>% 
+  do(tidy(lm(lognutr ~ TL, data = .),
+          conf.int = TRUE)
+     ) %>% 
+  filter(term == "TL") %>% 
+  ggplot(aes(estimate, taxon, color = taxon)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline() + theme(legend.position="none") + xlab("TL slope estimate") +
+  facet_wrap(~nutrient) + scale_x_continuous(limits=c(-4, 4))
+ggsave("slope_estimates.png")
+```
+
+
+
+Mercury
+```{r warning= FALSE}
+ntbl.HG <- ntbl %>%
+  filter(!is.na(HG_mcg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL))
+
+size.HG <- tidy(lm(log(HG_mcg) ~ TL, data = ntbl.HG), conf.int = TRUE)
+
+summary(size.HG)
+ggplot(ntbl.HG, aes(TL, log(HG_mcg))) + stat_summary(fun.y= "mean", geom = "point") + stat_smooth(method = "lm")
+
+
+TL.fitsHG <- ntbl.HG %>% group_by(taxon) %>% do(tidy(lm_general(., log(HG_mcg), TL), conf.int = TRUE))
+
+
+
+#' And here I plot the slope estimates for each taxon.
+ggplot(subset(TL.fitsHG, term == "TL"), aes(estimate, taxon, color = taxon)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline() + theme(legend.position="none") + xlab("TL slope estimate")
+
+```
+
+
+
+Let's plot those two fits. Neither one looks all that great at this point. 
+```{r warning= FALSE}
+ntbl.CA %>% ggplot(aes(x = log(max_size), y = log(CA_mg), color=taxon)) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+```
+
+Residuals, grouped by taxon.
+```{r warning= FALSE}
+ntbl.CA %>%
+  group_by(taxon) %>% 
+  do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) %>% 
+ggplot(., aes(x= taxon, y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+```
+
+And now, plot the residuals, by size. Well at least this doesn't look too funnel-shaped or anything too weird. That's somewhat reassuring!
+```{r warning= FALSE}
+
+ntbl.CA %>%
+  group_by(taxon) %>% 
+  do(augment(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) %>% 
+ggplot(., aes(x= log.max_size., y=.resid, color = taxon)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+```
+
+Here's a function for finding the max residuals. This function allows us to figure out which taxon has the highest residual values...an indication of worst fit. Again, here we see that the group 'Miscellaneous freshwater fishes' has the highest residuals, i.e. worst fit to the linear model, which does make sense since it's the most 'grab bag' of the groups, being 'miscellaneous' and all. 
+```{r warning= FALSE}
+mean_resid <- function(df) {
+    size.fit <- lm(log(CA_mg) ~ log(max_size), df)
+    x <- mean(abs(resid(size.fit)))
+    y <- setNames(data.frame(t(x)), c("mean_residual"))
+    y
+}
+
+mean_resid(ntbl.CA %>% filter(Habitat == "marine"))
+
+
+resid_1 <- ntbl.CA %>%
+group_by(taxon) %>% 
+do(mean_resid(.)) %>% 
+  unnest(mean_residual) %>% 
+  arrange(desc(mean_residual))
+(resid_1)
+```
+
+Now let's run the same models, but group by habitat. Tidy as before. Weird! Both the marine and freshwater groups show significant negative slopes and the brackish group shows a positive relationship between calcium content and body size. I can think of no biological explanation for this!
+```{r warning= FALSE}
+  tidy.fit.hab <- ntbl.CA %>%
+  group_by(Habitat) %>% 
+  do(tidy(lm(log(CA_mg) ~ log(max_size), data = .),
+          conf.int = TRUE)) 
+
+  
+  ggplot(subset(tidy.fit.hab, term == "log(max_size)"), aes(estimate, Habitat, color = Habitat)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = conf.low, xmax = conf.high, height = .3)) +
+    geom_vline() + theme(legend.position="none")
+```
+
+
+##### Putting nutrient variability in the context of human nutrition
+
+Now, let's explore some of the variability in nutrient content that we saw above, but this time in the context of how this matters to humans: recommended daily intake (RDI) values. Recommended daily intake values may be familiar to you in the context of those numbers printed on food products' nutrition labels (i.e. one serving of milk gives you 30% of your RDI of calcium). These target intake values are typically set by a country's government nutritionists. 
+
+Let's find the % of each taxon that, in one portion, has EPA (an omega-3 fatty acid) values above RDI. 
+
+So, for one taxon, what would this look like?
+```{r warning= FALSE}
+#' Let's try for one taxon
+EPA.RDI <- ntbl.EPA %>%
+  filter(taxon == "Salmons, trouts, smelts") %>% 
+  mutate(RDI = ifelse(EPA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))    
+```
+Here's a function for calculating the percentage of species in a taxon that reach 25% of RDI in a single portion (i.e. 100g of fish tissue). 
+```{r warning= FALSE}
+epa.prop <- function(df) {
+  (EPA.RDI <- df %>%
+  mutate(RDI = ifelse(EPA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+```
+
+Here it is applied to my dataset, grouped by taxon, and unnested, summarised etc. The final output that I want is the percentage of fish species in each taxon that reaches a threshold of 25% of RDI in one portion.
+
+####EPA
+```{r warning= FALSE}
+epa.prp <- ntbl.EPA %>%
+  do(EPA.prp=epa.prop(.)) %>% 
+    unnest(EPA.prp) %>%
+  group_by(species) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+```
+
+And this graph shows these percentages ordered by increasing percentage. Yahoo! Success!
+```{r warning= FALSE}
+ggplot(epa.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+
+head(epa.prp)
+```       
+    
+####DHA
+```{r DHA}
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon))
+
+ggplot(ntbl, aes(x=taxon, y=DHA_g)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +geom_hline(aes(yintercept=0.25))
+
+dha.prop <- function(df) {
+  (DHA.RDI <- df %>%
+  mutate(RDI = ifelse(DHA_g > 0.25, 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(DHA_g)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+dha.prp <- ntbl.DHA%>%
+  do(DHA.prp=dha.prop(.)) %>% 
+    unnest(DHA.prp) %>%
+  group_by(species) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(dha.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+```
+
+df <- data.frame(species = c("a","b","a","c","b"), mg = c(NA,5,8,10,3), logic1 = c(FALSE, TRUE, FALSE, TRUE, TRUE), logic2 = c(FALSE, FALSE, FALSE, TRUE, TRUE))
+
+#### Calcium
+```{r}
+
+ntbl.CA.mean <- df %>% 
+  group_by(species) %>% 
+  #summarise(mean.mg = mean(mg, na.rm = TRUE)) %>% 
+  mutate(logic.tot = sum(logic1, logic2))
+
+View(ntbl.CA.mean)
+
+View(ntbl)
+View(ntbl.CA)
+ntbl.RDI <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > -1)) %>% 
+  mutate(RDI.EPA = (mean.EPA > -1)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.tot = sum(RDI.CA, RDI.FE, RDI.ZN, RDI.EPA, RDI.DHA)) 
+
+View(ntbl.RDI)
+ntbl.RDI <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE), 
+            mean.size = mean(max_size, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = (mean.CA > 300)) %>% 
+  mutate(RDI.FE = (mean.FE > 4.5)) %>% 
+  mutate(RDI.ZN = (mean.ZN > 2.75)) %>% 
+  mutate(RDI.EPA = (mean.EPA > 0.25)) %>% 
+  mutate(RDI.DHA = (mean.DHA > 0.25)) %>% 
+  mutate(RDI.tot = rowSums(.[8:12])) %>% 
+  filter(!is.na(RDI.tot)) %>%
+    ggplot(., aes(x = reorder(species, RDI.tot), y = RDI.tot, na.rm = TRUE)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 75, hjust = 1)) + theme(legend.position="none")
+ggsave("RDI.tot.png")
+
+library(cati)
+ntbl.matrix <- data.matrix(ntbl.RDI[, 2:6])
+rownames(ntbl.matrix) <- ntbl.RDI$species
+
+ntbl.matrix
+
+mydist <- function(x) dist(x, method = "euclidian")
+myhclust <- function(x) hclust(x, method = "average")
+
+tree <- myhclust(mydist(ntbl.matrix))
+plot(tree)
+rect.hclust(tree, k = 5)
+
+#'SumBL(ntbl.matrix, gower.dist = TRUE, method.hclust = "average", 
+	#'scale.tr = TRUE, method.dist = "euclidian")
+
+FD <- dbFD(ntbl.matrix)
+FD
+
+ggplot(ntbl.RDI, aes(x = mean.size, y = RDI.tot)) + geom_point(size = 3) 
+ggplot(ntbl.RDI, aes(x = RDI.tot)) + geom_histogram(binwidth = .5, origin = 0)  + scale_x_continuous(breaks=0:2)
+
+CA.prop <- function(df) {
+  (CA.RDI <- df %>%
+  mutate(RDI = (CA_mg > 250)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(CA_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+CA.prp <- ntbl.CA%>%
+  do(CA.prp=CA.prop(.)) %>% 
+    unnest(CA.prp) %>%
+  group_by(species) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+ggplot(CA.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for calcium")
+
+
+CA.percent <- function(df) {
+  (CA.RDI <- df %>%
+  mutate(percent = ((CA_mg / (1000)))*100) %>% 
+  group_by(species))
+}
+
+CA.per <- ntbl.CA%>%
+  do(CA.per=CA.percent(.)) %>% 
+    unnest(CA.per) %>%
+  group_by(species)
+
+hist(CA.per$percent, breaks = 5000, xlim = c(0, 100))
+abline(v = 25, col = "red")
+```
+
+#### Zinc
+```{r}
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(max_size)) %>% 
+  filter(!is.na(taxon))
+
+
+ZN.prop <- function(df) {
+  (ZN.RDI <- df %>%
+  mutate(RDI = ifelse(ZN_mg > (11/4), 1, 0)) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(ZN_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+ZN.prp <- ntbl.ZN%>%
+  do(ZN.prp=ZN.prop(.)) %>% 
+    unnest(ZN.prp) %>%
+  group_by(species) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+p <- ggplot(ZN.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for zinc")
+ggsave("zinc.percent.png", p)
+
+
+ZN.percent <- function(df) {
+  (ZN.RDI <- df %>%
+  mutate(percent = ((ZN_mg / (11/4)))*100) %>% 
+  group_by(species))
+}
+
+ZN.per <- ntbl.ZN%>%
+  do(ZN.per=ZN.percent(.)) %>% 
+    unnest(ZN.per) %>%
+  group_by(species)
+
+hist(ZN.per$percent, breaks = 5000, xlim = c(0, 100))
+abline(v = 25, col = "red")
+
+```
+
+ ![](/Documents/Nutrient_Analysis/zinc.percent.png)
+
+#### Iron
+```{r}
+ntbl.FE <- ntbl %>%
+  filter(!is.na(FE_mg))
+
+
+FE.prop <- function(df) {
+  (FE.RDI <- df %>%
+  mutate(RDI = (FE_mg > (18/4))) %>% 
+  group_by(species) %>% 
+ mutate(per.RDI = sum(RDI)/n_distinct(FE_mg)) %>% 
+  mutate(mean.per.RDI= mean(per.RDI))) 
+}
+
+
+FE.percent <- function(df) {
+  (FE.RDI <- df %>%
+  mutate(percent = ((FE_mg / (18/4)))*100) %>% 
+  group_by(species))
+}
+
+FE.per <- ntbl.FE%>%
+  do(FE.per=FE.percent(.)) %>% 
+    unnest(FE.per) %>%
+  group_by(species)
+
+hist(FE.per$percent, breaks = 5000, xlim = c(0, 100))
+abline(v = 25)
+
+FE.prp <- ntbl.FE%>%
+  do(FE.prp=FE.prop(.)) %>% 
+    unnest(FE.prp) %>%
+  group_by(species) %>% 
+  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+  mutate(mean.percent.RDI = meanRDI * 100) %>% 
+  arrange(mean.percent.RDI)
+
+FE.prp
+
+ggplot(FE.prp, aes(x = reorder(species, mean.percent.RDI), y = mean.percent.RDI, color = species)) + geom_point(size = 3) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none") + ylab("percent of sp that reach RDI for iron")
+
+
+ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size)) %>% 
+  ggplot(., aes(x=log(max_size), y=log(FE_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+
+
+ntbl.FE <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(FE_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+FE.1 <- lm(log(FE_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.FE, na.action = "na.fail")
+
+dredge(FE.1) #' best model has lat, habitat, size, and lat*size
+
+FE.R1 <- lm(log(FE_mg) ~ log(max_size)*Abs_lat + Habitat, data=ntbl.FE, na.action = "na.fail")
+summary(FE.R1)
+
+```
+
+Now, let's look at some latitudinal patterns in EPA. Because EPA is required by aquatic species to maintain membrane fluidity at cold water temperatures, I hypothesize that EPA content would be higher in cold water fish species. Here I'm using latitude from the which the fish was caught as a proxy for cold water adaptations. OK, let's look at latitude patterns.
+
+
+This figure shows how EPA content varies as a function of latitude. 
+```{r warning= FALSE}
+p <- ggplot(subset(ntbl.EPA, Habitat == "marine"), aes(x=Abs_lat, y=log(EPA_g)))
+p + stat_summary(aes(y = log(EPA_g)), fun.y=mean, geom = "point") + geom_hline(aes(yintercept=log(0.5))) + stat_smooth(method = "lm") + theme_pander() + xlab("Absolute latitude") + ylab("log EPA content, g/100g portion") + theme(legend.position="none")
+
+```
+
+
+Here I apply my EPA RDI function to the whole dataset and arrange the results by decreasing latitude. 
+```{r warning= FALSE}
+epa.prp2 <- ntbl.EPA %>%
+  do(EPA.prp=epa.prop(.)) %>% 
+    unnest(EPA.prp) %>%
+arrange(desc(Abs_lat))
+```
+
+This figure shows the percentage of each taxon that reaches RDI, as arranged by increasing latitude. This figure probably isn't the best way to visualize this, but one thing that you can see is that many of the taxa that score on the RDI scale are also lower latitude, consistent the cold water adaptation hypothesis. 
+
+```{r warning= FALSE}
+ggplot(epa.prp2, aes(x = reorder(taxon, Abs_lat), y = mean.per.RDI, color = taxon)) + stat_summary(fun.y= "mean", geom = "point") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + theme(legend.position="none")
+
+```
+   
+Here I tried to apply this function to all taxa individually, but couldn't figure out. See below for where I was getting errors.     
+```{r warning= FALSE}        
+#' this doesn't work, because I can't figure out how to pull out the right column to unnest.
+#' epa.prop2 <- function(df) {
+#'  (EPA.RDI <- df %>%
+#'  mutate(RDI = ifelse(EPA_g > 0.25, 1, 0)) %>% 
+#'  group_by(species) %>% 
+#' mutate(per.RDI = sum(RDI)/n_distinct(EPA_g)) %>% 
+#'  mutate(mean.per.RDI= mean(per.RDI))) %>%  
+#'  unnest(.[,2]) %>% ##this is where I run into problems. 
+#'  group_by(taxon) %>% 
+#'  summarise(meanRDI = mean(mean.per.RDI)) %>% 
+#'  mutate(mean.percent.RDI = meanRDI * 100)
+#'}
+#'epa.prop2(ntbl.EPA)
+#'head(epa.prp)
+```
+
+OK, now we've seen that some fish species' traits (i.e. body size, latitude) are related to nutritional profile. But what if I want to uncover which traits vary with nutritional profile in a more systematic way? I could create a set of models which contain different subsets of the variables I think might influence nutritional profile, and then compare how to models fit the data. Here I write out two such candiate models. 
+```{r warning= FALSE}
+library(MuMIn)
+
+ntbl.EPA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(EPA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+EPA.1 <- lm(log(EPA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.EPA, na.action = "na.fail")
+
+dredge(EPA.1)
+
+EPA.r1 <- lm(log(EPA_g) ~ Abs_lat + Habitat, data=ntbl.EPA, na.action = "na.fail")
+EPA.r2 <- lm(log(EPA_g) ~ Abs_lat + Habitat + TL, data=ntbl.EPA, na.action = "na.fail")
+EPA.r3 <- lm(log(EPA_g) ~ Abs_lat + Habitat + log(max_size), data=ntbl.EPA, na.action = "na.fail")
+
+
+AIC.table <- function(mod1, mod2, mod3) {
+  model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
+  return((msTable <- model.average$msTable))
+  }
+
+(AIC.table(EPA.r1, EPA.r2, EPA.r3))
+model.average <-  model.avg(EPA.r1, EPA.r2, EPA.r3)
+summary(model.average)
+```
+
+####DHA
+```{r}
+ntbl.DHA <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(DHA_g)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+DHA.1 <- lm(log(DHA_g) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.DHA, na.action = "na.fail")
+
+confint(DHA.1)
+dredge(DHA.1)
+summary(DHA.1)
+
+```
+
+#####Zinc
+
+```{r}
+ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size)) %>% 
+  ggplot(., aes(x=log(max_size), y=log(ZN_mg))) + stat_summary(fun.y= "mean", geom = "point") + geom_smooth(method = 'lm')
+
+ntbl.ZN <- ntbl %>%
+  filter(!is.na(Abs_lat)) %>% 
+  filter(!is.na(ZN_mg)) %>% 
+  filter(!is.na(taxon)) %>% 
+  filter(!is.na(TL)) %>% 
+  filter(!is.na(Habitat)) %>% 
+  filter(!is.na(max_size))
+
+ZN.1 <- lm(log(ZN_mg) ~ log(max_size)*TL + log(max_size)*Abs_lat + log(max_size)*Habitat, data=ntbl.ZN, na.action = "na.fail")
+
+dredge(ZN.1) #' best model set includes latitude, size, and TL 
+
+ZN.R1 <- lm(log(ZN_mg) ~ Abs_lat + log(max_size), data=ntbl.ZN, na.action = "na.fail")
+
+ZN.R2 <- lm(log(ZN_mg) ~ Abs_lat + log(max_size) + TL, data=ntbl.ZN, na.action = "na.fail")
+
+ZN.avg <- confint(model.avg(ZN.R1, ZN.R2))
+
+
+ZN.avg
+
+ZN.size <- lm(log(ZN_mg) ~ log(max_size), data=ntbl.ZN)
+summary(ZN.size)
+
+```
+
+
+
+This function allows me to average the top models and then prints out a table with the relevant AIC values, and importance weights. One thing I would like it to be able to do, but haven't yet figured out, is to select the top model set and then average them, all in one function. Right now I need to do the model selection process outside the function and plop in the top models into the function. It'd be great if I could automate that process somehow!
+
+```{r warning= FALSE}
+AIC.table <- function(mod1, mod2) {
+  model.average <-  model.avg(mod1, mod2)
+  return((msTable <- model.average$msTable))
+}
+
+
+
+```
+

@@ -1,0 +1,6 @@
+species_name,subgroup,RDI.CA,RDI.FE,RDI.ZN,RDI.EPA,RDI.DHA,RDI.micro.tot,ID
+Fenneropenaeus indicus,crustacean,1.0,1.0,1.0,1.0,1.0,5.0,27
+Oncorhynchus tshawytscha,finfish,0.0,0.0,0.0,1.0,1.0,2.0,63
+Pollachius virens,finfish,0.0,0.0,0.0,0.0,0.0,0.0,77
+Sepia officinalis,mollusc,0.0,0.0,0.0,0.0,0.0,0.0,93
+Homarus gammarus,crustacean,0.0,0.0,0.0,0.0,0.0,0.0,32

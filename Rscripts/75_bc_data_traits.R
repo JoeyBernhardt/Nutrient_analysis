@@ -1063,9 +1063,10 @@ percentages <- all7 %>%
 
   unique(percentages$nutrient)
   
-  View(percentages)
+  percentages %>% 
+    filter(grepl(" ", taxize_name)) %>% View
   
-length(unique(percentages$biblio_id))
+
 
 percentages$nutrient <- factor(percentages$nutrient, levels = c("protein", "fat", "calcium", "zinc", "iron", "epa", "dha"))
 

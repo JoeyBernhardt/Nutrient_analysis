@@ -1,0 +1,263 @@
+---
+title: "rarefaction practice"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+Hi Mary,
+
+Thanks for taking a look at this!
+
+The main gist of what I did to get the figures you see at the bottom on this doc is to:
+
+* treat each species as a 'plot'
+
+* create my 'species abundances' columns using the individual micronutrients, and the values in each row correspond to whether a species reaches 25% of RDI for that nutrient (so it's all 0s or 1s)
+
+* so the 'species accumulation curves' below answer the question: how many fish species do you need to sample before you reach X number of RDI targets (so # of RDIs is on the y axis, and number of species is on the x axis)
+
+* as such, since the number of micronutrients I have is 5, the max number of RDI targets reached is 5.
+
+```{r}
+###Rarefaction
+suppressPackageStartupMessages(library(dplyr))
+library(readr)
+suppressPackageStartupMessages(library(vegan))
+library(broom)
+```
+
+Examples from Jenna Jacob's website (can skip below to my nutrient data if wanted!)
+```{r}
+# ##### Examples from Jenna Jacob's website:
+# # source("http://www.jennajacobs.org/R/rarefaction.txt")
+# #Try this example dataset from Work et al (2010):
+# # 1) import the emend dataset from my website
+# emend<-read.csv("http://www.jennajacobs.org/R/EMEND.csv", row.names=1)
+# 
+# # 2) load the vegan library
+# library(vegan)
+# 
+# # 3) The the rarefaction function
+# source("C:\\Program Files\\R\\functions\\rarefaction.txt")
+# #or 
+# source("http://www.jennajacobs.org/R/rarefaction.txt")
+# 
+# # 4) Rarefy your dataset
+# emend.rare<-rarefaction(emend, col=F) # I'm a big fan of B&W
+# 
+# 
+# # 5) The rarefaction function creates 3 objects to access them type
+# 
+# emend.rare$richness # a matrix of the mean richness at each subsample
+# emend.rare$SE  # a matrix of the iterative SE of the mean richness at each subsample
+# emend.rare$subsample # the subsample sizes used to find the means
+# 
+# # You can then use these files to create pretty graphs in R or if you must you can export then with
+# # 
+# # write.csv(emend.rare$richness, file="EMENDrichness.csv")
+```
+
+### With my data now:
+Load the data (which is posted in the Nutrient_Analysis repo)
+```{r}
+ntbl <- read_csv("/Users/Joey/Documents/Nutrient_Analysis/data/ntbl.csv")
+View(ntbl)
+```
+
+
+Step 1. create RDI target matrix, unordered in terms of increasing number of RDI targets reached.
+```{r}
+hist(ntbl$TL)
+
+ntbl.RDI.noMolluscs <- ntbl %>% 
+  group_by(species) %>% 
+  filter(Subgroup != "Molluscs") %>% 
+  # filter(TL > 2.5) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>% 
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) %>% 
+  select(., 7:11)
+
+ntbl.matrix.mic <- data.matrix(ntbl.RDI[, 7:11])
+rownames(ntbl.matrix.mic) <- ntbl.RDI$species
+
+
+ntbl.matrix.mic <- as.data.frame(ntbl.matrix.mic)
+View(ntbl.matrix.mic)
+
+write_csv(ntbl.matrix.mic, "nutcomm.csv")
+
+ntbl.10RDI <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 100, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 1.8, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 1.5, 1, 0)) %>% 
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.1, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.1, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) %>% 
+  select(., 7:11)
+
+```
+
+Step 2. create RDI target matrix, ordered
+```{r}
+ntbl.RDI.no <- ntbl %>% 
+  group_by(species) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>% 
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  # arrange(., RDI.micro.tot) %>% 
+  select(., 7:11)
+```
+
+### Create SACs
+Option 1: SAC method = random
+```{r}
+
+ntbl.RDI.above2.5 <- ntbl %>% 
+  group_by(species) %>% 
+  # filter(taxon != "Carps, barbels and other cyprinids") %>% 
+   filter(TL > 2.5) %>% 
+  summarise(mean.CA = mean(CA_mg, na.rm = TRUE),
+            mean.EPA = mean(EPA_g, na.rm = TRUE), 
+            mean.DHA = mean(DHA_g, na.rm = TRUE), 
+            mean.ZN = mean(ZN_mg, na.rm = TRUE), 
+            mean.FE = mean(FE_mg, na.rm = TRUE)) %>% 
+  mutate(RDI.CA = ifelse(mean.CA > 250, 1, 0)) %>% 
+  mutate(RDI.FE = ifelse(mean.FE > 4.5, 1, 0)) %>% 
+  mutate(RDI.ZN = ifelse(mean.ZN > 2.75, 1, 0)) %>% 
+  mutate(RDI.EPA = ifelse(mean.EPA > 0.25, 1, 0)) %>% 
+  mutate(RDI.DHA = ifelse(mean.DHA > 0.25, 1, 0)) %>% 
+  mutate(RDI.micro.tot = rowSums(.[7:11])) %>% 
+  filter(!is.na(RDI.micro.tot)) %>% 
+  arrange(., RDI.micro.tot) %>% 
+  select(., 7:11)
+
+spa.rand <- specaccum(ntbl.RDI.no, method = "random")
+png(filename = "/Users/Joey/Documents/Nutrient_Analysis/figures/sac.full.vs.noMoll1.png", width = 10, height = 8, units = 'in', res = 300)
+plot(spa.rand, col = "cadetblue", lwd = 3, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "micronutrients and fatty acids: 25% RDI targets")
+abline( v= 15, col = "cadetblue")
+abline( v = 26, col = "pink")
+dev.off()
+summary(spa.rand)
+
+mod1 <- fitspecaccum(spa.rand, "lomolino")
+plot(mod1, add = TRUE, col=2, lwd=4)
+
+spa.rand4 <- specaccum(ntbl.RDI.TL4, method = "random")
+plot(spa.rand4, lwd = 3, add = TRUE, col = "red", ci = 0, ci.type = "bar", ci.col = "red", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+
+summary(spa.rand4)
+spa.rand4$richness
+
+spa.rand3 <- specaccum(ntbl.RDI.TL3, method = "exact")
+plot(spa.rand3, col = "green", add = TRUE, ci = 0, ci.type = "bar", ci.col = "green", lwd = 2, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+
+spa.noMolluscs <- specaccum(ntbl.RDI.noMolluscs, method = "random")
+plot(spa.noMolluscs, col = "coral", add = TRUE, ci = 0, ci.type = "bar", ci.col = "green", lwd = 2, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+
+summary(spa.noMolluscs)
+
+mod3 <- fitspecaccum(spa.rand3, "lomolino")
+plot(mod3, add = TRUE, col= "green", lwd=4)
+
+spa.randnc <- specaccum(ntbl.RDI.nc, method = "random")
+plot(spa.randnc, col = "yellow", add = TRUE, ci = 0, ci.lty = 3, ci.type = "bar", ci.col = "yellow", lwd = 2, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+
+summary(spa.randnc)
+
+spa.rand.carp <- specaccum(ntbl.RDI.noCarp, method = "random")
+plot(spa.rand.carp, add = TRUE, col = "pink", ci = 0, ci.type = "bar", ci.col = "pink", lwd = 2, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+
+summary(spa.rand.carp)
+hist(spa.rand.carp$richness)
+
+spa.rand.above2.5 <- specaccum(ntbl.RDI.above2.5, method = "random")
+plot(spa.rand.above2.5, add = TRUE, col = "blue", ci.type = "bar", ci = 0, ci.col = "blue", lwd = 2, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% RDI targets")
+summary(spa.rand.above2.5)
+
+spa.rand10 <- specaccum(ntbl.10RDI, method = "random")
+plot(spa.rand10, ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "10% RDI targets")
+
+summary(spa.rand) ###What I don't understand from the figures and this summary is how do you get a max value of 5 nutrients, if in the actual dataset you only have a max of 3?
+as.data.frame(summary(spa.rand))
+View(as.data.frame(summary(spa.rand)))
+boxplot(spa.rand)
+```
+
+Option 2: SAC method = collector, adding species arranged in ascending order of total number of RDI targets reached. 
+```{r}
+spa.coll <- specaccum(ntbl.RDI, method = "collector")
+plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached") #males a prettier plot
+```
+
+Option 3: SAC method = collector, adding species arranged in alphabetical order.
+```{r}
+spa.coll <- specaccum(ntbl.RDI.no, method = "collector")
+plot(spa.coll, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", ylim = c(0,6), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached") #males a prettier plot
+```
+
+Below was my attempt to make a SAC with the nutrient quantitative values as species
+
+```{r}
+# ### turn the RDI matrix into integer values in micrograms
+# RDI.um <- RDI.mat %>% 
+#   mutate_each(funs(um = .*1000)) %>% 
+#   mutate_each(funs(um = as.integer(.)))
+# 
+# RDI.rare <- rarefaction(RDI.um)
+
+RDI.rare <- rarefy(ntbl.RDI, 2, MARGIN = 2)
+plot(RDI.rare)
+
+```
+
+Macronutrients
+```{r}
+macro.RDI <- ntbl.raw %>% 
+  group_by(species) %>% 
+    summarise(mean.FAT = mean(FAT, na.rm = TRUE),
+              mean.PRO = mean(PROTCNT_g, na.rm = TRUE)) %>% 
+  mutate(RDI.FAT = (mean.FAT > 7)) %>% 
+  mutate(RDI.PRO = (mean.PRO > 5)) %>% 
+  mutate(RDI.macro.tot = rowSums(.[4:5])) %>% 
+  filter(!is.na(RDI.macro.tot)) %>% 
+  select(., 4:5)
+  
+View(macro.RDI)
+spa.rand.macro <- specaccum(macro.RDI, method = "random")
+png(filename = "sac.macro.png", width = 6, height = 4, units = 'in', res = 300)
+plot(spa.rand.macro, col = "cadetblue", lwd = 2, ci = 1, ci.type = "bar", ci.lty = 3,  ci.col = "cadetblue", ylim = c(0,2.5), xlab = "number of fish species in diet", ylab = "number of distinct RDI targets reached", main = "25% macronutrient RDI targets")
+abline(v = 5, col = "purple")
+dev.off()
+
+summary(spa.rand.macro)
+```
+
