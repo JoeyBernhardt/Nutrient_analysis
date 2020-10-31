@@ -1,8 +1,8 @@
-#### Aquatic biodiversity enhances multiple nutritional benefits to humans
+### Aquatic biodiversity enhances multiple nutritional benefits to humans
 
 Please contact Joey Bernhardt with any questions about the code or data.
 
-#### Repository organization
+### Repository organization
 
 This repository contains all of the raw data and derived datasets produced in Bernhardt and O'Connor 'Aquatic biodiversity enhances multiple nutritional benefits to humans'. 
 
