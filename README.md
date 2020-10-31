@@ -11,7 +11,7 @@ This repository contains all of the raw data and derived datasets produced in Be
 
 * [Processed data files](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-processed): Contains data outputs from analysis and intermediate data files.
 
-* [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share:) Contains cleaned datasets and metadata for publication and sharing. 
+* [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share): Contains cleaned datasets and metadata for publication and sharing. 
 
 
 
