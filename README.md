@@ -7,16 +7,16 @@ Please contact Joey Bernhardt with any questions about the code or data.
 This repository contains all of the raw data and derived datasets produced in Bernhardt and O'Connor 'Aquatic biodiversity enhances multiple nutritional benefits to humans'. 
 
 
-* [Raw data files](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data)
+* [Raw data files](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data): Contains data as extracted from original data sources.
 
-* [Processed data files](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-processed) Contains data outputs from analysis and intermediate data files.
+* [Processed data files](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-processed): Contains data outputs from analysis and intermediate data files.
 
-* [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share) Contains cleaned datasets for publication and sharing. 
-
-
-
-* [R code](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/Rscripts)
+* [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share:) Contains cleaned datasets and metadata for publication and sharing. 
 
 
-* [Figures](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/figures)
+
+* [R code](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/Rscripts): Contains all of the scripts for analysis and figures.
+
+
+* [Figures](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/figures): Contains figures.
 
