@@ -11,7 +11,10 @@ This repository contains all of the raw data and derived datasets produced in Be
 
 * [Processed data files](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-processed): Contains data outputs from analysis and intermediate data files.
 
-* [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share): Contains cleaned datasets and metadata for publication and sharing. 
+* [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share): Contains cleaned datasets and metadata for publication and sharing.
+
+  * [Global seafood dataset - raw form](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-nutrient-dataset-raw.csv) and [metadata](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-metadata.txt)
+  * [Global seafood dataset - analysis form](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-nutrient-data-for-analysis.csv)
 
 
 
