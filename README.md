@@ -13,12 +13,15 @@ This repository contains all of the raw data and derived datasets produced in Be
 
 * [Derived data](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/data-to-share): Contains cleaned datasets and metadata for publication and sharing.
 
+#### Seafood nutrients and contaminants
   * [Seafood nutrient dataset - raw form](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-nutrient-dataset-raw.csv) and [metadata](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-metadata.txt)
   * [Seafood nutrient dataset - analysis form](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-nutrient-data-for-analysis.csv): contains cleaned data with species-level averages, as used in analyses.
   * [Seafood contaminant dataset - raw form](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/seafood-contaminant-data-cleaned.csv) and [metadata](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/seafood-contaminant-metadata.txt)
   * [Seafood contaminant dataset - analysis form](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/global-seafood-nutrient-data-for-analysis.csv): contains cleaned data with species-level averages, as used in analyses.
 
+#### Seafood species ecological traits
 
+ * [Ecological traits of seafood species](https://github.com/JoeyBernhardt/Nutrient_analysis/blob/master/data-to-share/seafood-species-ecological-traits.csv)
 
 * [R code](https://github.com/JoeyBernhardt/Nutrient_analysis/tree/master/Rscripts): Contains all of the scripts for analysis and figures.
 
