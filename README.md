@@ -1,6 +1,6 @@
 ### Aquatic biodiversity enhances multiple nutritional benefits to humans
 
-Please contact Joey Bernhardt with any questions about the code or data.
+Please contact Joey Bernhardt (joey.bernhardt @ biodiversity.ubc.ca) with any questions about the code or data.
 
 ### Repository organization
 
